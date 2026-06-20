@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>스테이The머무름 | 노량진 여성전용 고시원</title>
+  <meta name="description" content="스테이The머무름은 노량진에 위치한 여성전용 고시원입니다. 조용하고 안전한 수험생 생활공간을 찾는 분들을 위한 공간입니다.">
+  <meta name="keywords" content="노량진 고시원, 여성전용 고시원, 노량진 여성전용 고시원, 스테이The머무름, 수험생 고시원, 노량진 원룸텔">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Sans KR", "Malgun Gothic", sans-serif;
+      line-height: 1.7;
+      color: #222;
+      background: #f7f5f0;
+    }
+
+    header {
+      background: linear-gradient(135deg, rgba(47,59,47,0.88), rgba(79,96,72,0.88)), url("images/main.jpg");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 88px 20px 76px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 40px;
+      letter-spacing: -1px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    }
+
+    header .subtitle {
+      margin-top: 12px;
+      font-size: 21px;
+      font-weight: 600;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    }
+
+    header .desc {
+      margin-top: 10px;
+      font-size: 16px;
+      opacity: 0.95;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    }
+
+    nav {
+      background: rgba(255, 255, 255, 0.96);
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(6px);
+    }
+
+    nav a {
+      display: inline-block;
+      margin: 4px 8px;
+      color: #2f3b2f;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    section {
+      max-width: 920px;
+      margin: 26px auto;
+      padding: 28px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      color: #2f3b2f;
+      margin-top: 0;
+      font-size: 26px;
+      letter-spacing: -0.5px;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      color: #3b4736;
+    }
+
+    p {
+      margin: 8px 0;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    .button-wrap {
+      margin-top: 18px;
+    }
+
+    .button {
+      display: inline-block;
+      margin: 8px 5px 0 0;
+      padding: 13px 18px;
+      background: #2f3b2f;
+      color: white;
+      text-decoration: none;
+      border-radius: 9px;
+      font-weight: bold;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      opacity: 0.92;
+    }
+
+    .button.sub {
+      background: #7a6a4f;
+    }
+
+    .button.light {
+      background: #5f6f58;
+    }
+
+    .info-box {
+      background: #f4f1ea;
+      padding: 18px;
+      border-radius: 14px;
+      margin-top: 14px;
+    }
+
+    .section-photo {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 15px;
+      margin: 18px 0;
+      object-fit: cover;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+    }
+
+    .photo-caption {
+      font-size: 14px;
+      color: #666;
+      margin-top: -8px;
+      margin-bottom: 14px;
+    }
+
+    .point-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .point-card {
+      background: #f8f8f8;
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid #eee;
+    }
+
+    .point-card strong {
+      display: block;
+      color: #2f3b2f;
+      margin-bottom: 6px;
+    }
+
+    .room-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .room-card {
+      border: 1px solid #eee;
+      border-radius: 14px;
+      padding: 18px;
+      background: #fafafa;
+    }
+
+    .room-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .care-note {
+      background: #eef4ea;
+      border: 1px solid #dce8d4;
+      padding: 18px;
+      border-radius: 14px;
+      margin-top: 14px;
+    }
+
+    .review {
+      background: #f8f8f8;
+      padding: 16px;
+      border-left: 4px solid #2f3b2f;
+      margin-bottom: 12px;
+      border-radius: 9px;
+    }
+
+    .notice {
+      font-size: 14px;
+      color: #666;
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 34px 20px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        padding: 70px 18px 60px;
+      }
+
+      header h1 {
+        font-size: 31px;
+      }
+
+      header .subtitle {
+        font-size: 18px;
+      }
+
+      section {
+        margin: 18px 12px;
+        padding: 22px;
+        border-radius: 15px;
+      }
+
+      nav a {
+        font-size: 13px;
+        margin: 4px 5px;
+      }
+
+      .button {
+        display: block;
+        text-align: center;
+        margin: 10px 0;
+      }
+
+      .point-grid,
+      .room-list,
+      .photo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-grid img,
+      .room-card img {
+        height: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>스테이The머무름</h1>
+    <div class="subtitle">노량진 여성전용 고시원</div>
+    <div class="desc">조용하고 안전한 수험생 생활공간</div>
+
+    <div class="button-wrap">
+      <a class="button" href="tel:010-0000-0000">입실 문의 전화</a>
+      <a class="button sub" href="sms:010-0000-0000">문자 문의</a>
+      <a class="button light" href="https://naver.me/xv3o4qD1" target="_blank">위치 보기</a>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#intro">소개</a>
+    <a href="#points">장점</a>
+    <a href="#rooms">객실</a>
+    <a href="#facilities">시설</a>
+    <a href="#care">작은 배려</a>
+    <a href="#guide">이용안내</a>
+    <a href="#contact">문의</a>
+    <a href="#review">리뷰</a>
+  </nav>
+
+  <section id="intro">
+    <h2>스테이The머무름 소개</h2>
+    <p>
+      스테이The머무름은 노량진에 위치한 여성전용 고시원입니다.
+      법원직, 경찰, 소방, 임용, 7급·9급 공무원 시험을 준비하는 분들이
+      조용하고 안정적으로 생활할 수 있도록 운영하고 있습니다.
+    </p>
+
+    <div class="info-box">
+      <strong>이런 분께 추천합니다</strong>
+      <p>
+        노량진 학원가 근처에서 공부와 생활을 함께할 공간을 찾는 여성 수험생,
+        조용한 환경과 안전한 생활 관리를 원하는 분께 적합합니다.
+      </p>
+    </div>
+  </section>
+
+  <section id="points">
+    <h2>머무름의 장점</h2>
+
+    <div class="point-grid">
+      <div class="point-card">
+        <strong>여성전용</strong>
+        <p>여성 입주자를 위한 생활공간으로 운영됩니다.</p>
+      </div>
+
+      <div class="point-card">
+        <strong>수험생 중심</strong>
+        <p>공부와 생활 리듬을 유지하기 좋은 조용한 환경을 지향합니다.</p>
+      </div>
+
+      <div class="point-card">
+        <strong>안전 관리</strong>
+        <p>공용부 보안과 생활 관리를 통해 안정적인 환경을 제공합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="rooms">
+    <h2>객실 안내</h2>
+    <p>
+      객실은 생활에 필요한 기본 구성을 갖춘 형태로 운영됩니다.
+      실제 공실 여부와 객실 타입은 입실 시기에 따라 달라질 수 있습니다.
+    </p>
+
+    <div class="room-list">
+      <div class="room-card">
+        <img src="images/room-standard.jpg" alt="스테이The머무름 스탠다드룸 사진">
+        <h3>스탠다드룸</h3>
+        <p>합리적인 비용으로 조용하게 생활할 수 있는 기본 객실입니다.</p>
+      </div>
+
+      <div class="room-card">
+        <img src="images/room-deluxe.jpg" alt="스테이The머무름 디럭스룸 사진">
+        <h3>디럭스룸</h3>
+        <p>보다 여유 있는 생활공간을 원하는 분께 적합한 객실입니다.</p>
+      </div>
+
+      <div class="room-card">
+        <img src="images/room-suite.jpg" alt="스테이The머무름 스위트룸 사진">
+        <h3>스위트룸</h3>
+        <p>넓고 쾌적한 공간을 원하는 분께 적합한 객실입니다.</p>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <p>
+        객실별 구성과 월 이용료는 공실 상황에 따라 달라질 수 있으므로
+        입실 가능 여부를 먼저 문의해 주세요.
+      </p>
+    </div>
+  </section>
+
+  <section id="facilities">
+    <h2>공용시설 및 생활환경</h2>
+
+    <div class="photo-grid">
+      <img src="images/hallway.jpg" alt="스테이The머무름 복도 사진">
+      <img src="images/kitchen.jpg" alt="스테이The머무름 주방 사진">
+    </div>
+
+    <ul>
+      <li>공용 주방 이용 가능</li>
+      <li>공용부 청소 관리</li>
+      <li>출입 보안 및 CCTV 관리</li>
+      <li>조용한 수험생 생활 분위기 지향</li>
+    </ul>
+
+    <p class="notice">
+      실제 시설 구성은 현장 상황에 따라 달라질 수 있으므로 방문 또는 문의 시 확인해 주세요.
+    </p>
+  </section>
+
+  <section id="care">
+    <h2>머무름의 작은 배려</h2>
+    <p>
+      스테이The머무름은 단순히 잠만 자는 공간이 아니라,
+      입주자분들이 조금 더 편안하고 따뜻하게 머무를 수 있는 분위기를 지향합니다.
+      직접 가꾸는 식물재배기와 정성껏 만든 수제비누는 머무름만의 작은 차별점입니다.
+    </p>
+
+    <div class="photo-grid">
+      <img src="images/hydroponic-garden.jpg" alt="스테이The머무름 식물재배기 사진">
+      <img src="images/handmade-soap-showcase.png" alt="머무름 수제비누 원목 쇼케이스 사진">
+    </div>
+
+    <div class="care-note">
+      <strong>생활 속 작은 정성</strong>
+      <p>
+        직접 키우는 식물과 정성껏 만든 수제비누처럼,
+        생활 속 디테일을 통해 입주자분들이 안정감을 느낄 수 있는 공간을 만들어가고 있습니다.
+      </p>
+    </div>
+  </section>
+
+  <section id="guide">
+    <h2>이용 안내</h2>
+
+    <div class="info-box">
+      <p><strong>대상:</strong> 여성 입주자</p>
+      <p><strong>위치:</strong> 노량진 일대</p>
+      <p><strong>입실:</strong> 공실 여부 확인 후 상담</p>
+      <p><strong>이용료:</strong> 객실 타입 및 기간에 따라 별도 안내</p>
+    </div>
+
+    <p>
+      입실 전 객실 타입, 월 이용료, 보증금, 공실 여부를 확인해 주세요.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>문의 및 입실 상담</h2>
+    <p>
+      빈방 여부, 월 이용료, 위치, 시설 등 간단한 문의는 아래 버튼을 통해 남겨주세요.
+      답변을 원하시는 경우에만 연락처를 선택적으로 남기시면 됩니다.
+    </p>
+
+    <div class="button-wrap">
+      <a class="button" href="구글폼_간단문의_주소" target="_blank">간단 문의 남기기</a>
+      <a class="button sub" href="구글폼_입실상담_주소" target="_blank">입실 상담 신청</a>
+      <a class="button light" href="tel:010-0000-0000">전화 문의</a>
+      <a class="button light" href="sms:010-0000-0000">문자 문의</a>
+    </div>
+
+    <p class="notice">
+      간단 문의는 개인정보 입력 없이도 가능합니다.
+      입실 상담 단계에서는 상담을 위해 연락처가 필요할 수 있습니다.
+    </p>
+  </section>
+
+  <section id="location">
+    <h2>위치 안내</h2>
+    <p>
+      노량진 학원가와 생활 편의시설을 이용하기 좋은 위치입니다.
+      정확한 위치는 아래 네이버 지도에서 확인해 주세요.
+    </p>
+
+    <div class="button-wrap">
+      <a class="button" href="https://naver.me/xv3o4qD1" target="_blank">네이버 지도 보기</a>
+    </div>
+  </section>
+
+  <section id="review">
+    <h2>이용 후기</h2>
+
+    <div class="review">
+      <p>“조용한 분위기라 공부에 집중하기 좋았습니다.”</p>
+      <small>- 이용 고객 후기</small>
+    </div>
+
+    <div class="review">
+      <p>“여성전용이라 생활하기 편했고 관리가 잘 되어 좋았습니다.”</p>
+      <small>- 이용 고객 후기</small>
+    </div>
+
+    <p>
+      이용 후기는 네이버플레이스를 통해 남겨주시면 큰 도움이 됩니다.
+    </p>
+
+    <div class="button-wrap">
+      <a class="button sub" href="네이버플레이스_리뷰주소" target="_blank">네이버 리뷰 남기기</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© <span id="year"></span> 스테이The머무름. All rights reserved.</p>
+    <p>노량진 여성전용 고시원</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
