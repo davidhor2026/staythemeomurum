@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://davidhor2026.github.io/staythemeomurum/sitemap.xml
