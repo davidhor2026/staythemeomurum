@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>머무름 쉼표 | 스테이The머무름</title>
+  <meta name="description" content="스테이The머무름 수험생을 위한 짧은 쉬어가기 게임 페이지입니다. 숫자 순서 터치, 미니 스도쿠, 시험 낱말 맞추기를 즐길 수 있습니다.">
+  <meta name="keywords" content="수험생 쉬어가기, 수험생 게임, 머무름 쉼표, 노량진 수험생 고시원, 시험 낱말 맞추기, 미니 스도쿠">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .game-menu {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .game-panel {
+      display: none;
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 14px;
+      background: #f8f8f8;
+      border: 1px solid #eee;
+    }
+
+    .game-panel.active {
+      display: block;
+    }
+
+    .number-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 360px;
+      margin: 18px auto;
+    }
+
+    .number-board button,
+    .choice-button,
+    .sudoku-cell {
+      min-height: 46px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .number-board button.done {
+      background: #dce8d4;
+      color: #777;
+      cursor: default;
+    }
+
+    .choice-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .choice-button {
+      text-align: center;
+      padding: 12px;
+      font-size: 15px;
+    }
+
+    .sudoku-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 54px);
+      gap: 8px;
+      justify-content: center;
+      margin: 18px auto;
+    }
+
+    .sudoku-cell {
+      text-align: center;
+      width: 54px;
+      height: 54px;
+    }
+
+    .sudoku-cell.fixed {
+      background: #eef4ea;
+      color: #2f3b2f;
+      cursor: default;
+    }
+
+    .game-status {
+      text-align: center;
+      font-weight: bold;
+      color: #2f3b2f;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 700px) {
+      .game-menu,
+      .choice-list {
+        grid-template-columns: 1fr;
+      }
+
+      .sudoku-grid {
+        grid-template-columns: repeat(4, 46px);
+      }
+
+      .sudoku-cell {
+        width: 46px;
+        height: 46px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="sub-header">
+    <h1>머무름 쉼표</h1>
+    <p>공부하다 잠깐 머리를 식히고 싶을 때, 1~3분 정도 가볍게 즐기는 쉬어가기 공간입니다.</p>
+
+    <div class="button-wrap">
+      <a class="button sub" href="index.html">홈페이지로 돌아가기</a>
+    </div>
+  </header>
+
+  <nav>
+    <a href="index.html">홈</a>
+    <a href="rooms.html">방 타입</a>
+    <a href="facilities.html">시설</a>
+    <a href="reviews.html">후기</a>
+    <a href="faq.html">FAQ</a>
+    <a href="quiz.html">시험대비 퀴즈</a>
+    <a href="games.html">머무름 쉼표</a>
+    <a href="gift.html">응원글 이벤트</a>
+    <a href="index.html#contact">문의</a>
+  </nav>
+
+  <section>
+    <h2>수험생을 위한 짧은 쉼표</h2>
+    <p>
+      오래 붙잡는 게임보다 짧게 집중을 전환하고 다시 공부로 돌아갈 수 있는 게임으로 구성했습니다.
+      너무 오래 하기보다는 1~3분 정도 가볍게 즐겨보세요.
+    </p>
+
+    <div class="game-menu">
+      <div class="card">
+        <strong>숫자 순서 터치</strong>
+        <p>흩어진 숫자를 1부터 순서대로 눌러 집중력을 깨워보세요.</p>
+        <button class="button" type="button" onclick="showGame('number-game')">시작하기</button>
+      </div>
+
+      <div class="card">
+        <strong>시험 낱말 맞추기</strong>
+        <p>시험에 자주 나오는 단어와 용어를 가볍게 확인해 보세요.</p>
+        <button class="button" type="button" onclick="showGame('word-game')">시작하기</button>
+      </div>
+
+      <div class="card">
+        <strong>미니 스도쿠</strong>
+        <p>4×4 미니 스도쿠로 잠깐 머리를 전환해 보세요.</p>
+        <button class="button" type="button" onclick="showGame('sudoku-game')">시작하기</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="number-game" class="game-panel active">
+    <h2>숫자 순서 터치</h2>
+    <p>1부터 16까지 순서대로 눌러보세요.</p>
+    <div class="game-status" id="number-status">다음 숫자: 1</div>
+    <div class="number-board" id="number-board"></div>
+    <div class="button-wrap" style="text-align:center;">
+      <button class="button sub" type="button" onclick="startNumberGame()">다시 시작</button>
+    </div>
+  </section>
+
+  <section id="word-game" class="game-panel">
+    <h2>시험 낱말 맞추기</h2>
+    <p id="word-question">문제가 표시됩니다.</p>
+    <div class="choice-list" id="choice-list"></div>
+    <div class="game-status" id="word-status">정답을 골라보세요.</div>
+    <div class="button-wrap" style="text-align:center;">
+      <button class="button sub" type="button" onclick="nextWordQuestion()">다음 문제</button>
+    </div>
+  </section>
+
+  <section id="sudoku-game" class="game-panel">
+    <h2>미니 스도쿠</h2>
+    <p>가로, 세로에 1~4가 한 번씩 들어가도록 채워보세요.</p>
+    <div class="sudoku-grid" id="sudoku-grid"></div>
+    <div class="game-status" id="sudoku-status">빈칸을 채운 뒤 정답 확인을 눌러보세요.</div>
+    <div class="button-wrap" style="text-align:center;">
+      <button class="button" type="button" onclick="checkSudoku()">정답 확인</button>
+      <button class="button sub" type="button" onclick="resetSudoku()">다시 시작</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>추가 예정 게임</h2>
+    <p>
+      반응이 좋으면 차량 탈출 퍼즐, 길 연결 퍼즐, 블록 정리 퍼즐 같은 게임도 추가할 수 있습니다.
+      단, 특정 게임명이나 화면을 그대로 따라 하기보다는 머무름만의 가벼운 퍼즐 형태로 제작하는 것이 좋습니다.
+    </p>
+  </section>
+
+  <footer>
+    <p>© <span id="year"></span> 스테이The머무름. All rights reserved.</p>
+    <p>노량진 여성전용 고시원</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function showGame(id) {
+      document.querySelectorAll('.game-panel').forEach(function(panel) {
+        panel.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    let nextNumber = 1;
+    let numberStartTime = null;
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function startNumberGame() {
+      nextNumber = 1;
+      numberStartTime = Date.now();
+      const board = document.getElementById('number-board');
+      const status = document.getElementById('number-status');
+      board.innerHTML = '';
+      status.textContent = '다음 숫자: 1';
+
+      shuffle(Array.from({ length: 16 }, function(_, i) { return i + 1; })).forEach(function(num) {
+        const btn = document.createElement('button');
+        btn.textContent = num;
+        btn.type = 'button';
+        btn.onclick = function() {
+          if (num === nextNumber) {
+            btn.classList.add('done');
+            btn.disabled = true;
+            nextNumber++;
+
+            if (nextNumber > 16) {
+              const seconds = ((Date.now() - numberStartTime) / 1000).toFixed(1);
+              status.textContent = '완료! 기록: ' + seconds + '초';
+            } else {
+              status.textContent = '다음 숫자: ' + nextNumber;
+            }
+          }
+        };
+        board.appendChild(btn);
+      });
+    }
+
+    const wordQuestions = [
+      {
+        question: '민법에서 권리와 의무의 주체가 되는 지위를 뜻하는 말은?',
+        answer: '권리능력',
+        choices: ['권리능력', '변제', '소송능력', '청구취지']
+      },
+      {
+        question: '소송에서 원고가 법원에 구하는 판단의 내용을 뜻하는 말은?',
+        answer: '청구취지',
+        choices: ['청구취지', '기각', '상계', '착오']
+      },
+      {
+        question: '영어 지문에서 글의 중심 생각을 뜻하는 표현은?',
+        answer: 'main idea',
+        choices: ['main idea', 'receipt', 'deadline', 'evidence']
+      },
+      {
+        question: '계약에서 당사자가 서로 주고받는 약속을 뜻하는 영어 단어는?',
+        answer: 'agreement',
+        choices: ['agreement', 'weather', 'distance', 'silence']
+      },
+      {
+        question: '법원직 영어 독해에서 글의 흐름상 알맞은 문장을 찾는 문제와 관련 깊은 표현은?',
+        answer: 'context',
+        choices: ['context', 'accident', 'furniture', 'temperature']
+      }
+    ];
+
+    let currentWordIndex = -1;
+    let wordScore = 0;
+
+    function nextWordQuestion() {
+      currentWordIndex = (currentWordIndex + 1) % wordQuestions.length;
+      const q = wordQuestions[currentWordIndex];
+      document.getElementById('word-question').textContent = 'Q. ' + q.question;
+      document.getElementById('word-status').textContent = '정답을 골라보세요. 현재 점수: ' + wordScore;
+
+      const list = document.getElementById('choice-list');
+      list.innerHTML = '';
+
+      shuffle(q.choices.slice()).forEach(function(choice) {
+        const btn = document.createElement('button');
+        btn.className = 'choice-button';
+        btn.type = 'button';
+        btn.textContent = choice;
+        btn.onclick = function() {
+          if (choice === q.answer) {
+            wordScore++;
+            document.getElementById('word-status').textContent = '정답입니다! 현재 점수: ' + wordScore;
+          } else {
+            document.getElementById('word-status').textContent = '아쉬워요. 정답은 ' + q.answer + '입니다.';
+          }
+        };
+        list.appendChild(btn);
+      });
+    }
+
+    const sudokuPuzzle = [
+      [1, 0, 0, 4],
+      [0, 4, 1, 0],
+      [0, 1, 4, 0],
+      [4, 0, 0, 1]
+    ];
+
+    const sudokuAnswer = [
+      [1, 2, 3, 4],
+      [3, 4, 1, 2],
+      [2, 1, 4, 3],
+      [4, 3, 2, 1]
+    ];
+
+    function resetSudoku() {
+      const grid = document.getElementById('sudoku-grid');
+      grid.innerHTML = '';
+      document.getElementById('sudoku-status').textContent = '빈칸을 채운 뒤 정답 확인을 눌러보세요.';
+
+      sudokuPuzzle.forEach(function(row, r) {
+        row.forEach(function(value, c) {
+          const input = document.createElement('input');
+          input.className = 'sudoku-cell';
+          input.maxLength = 1;
+          input.inputMode = 'numeric';
+          input.dataset.r = r;
+          input.dataset.c = c;
+
+          if (value !== 0) {
+            input.value = value;
+            input.disabled = true;
+            input.classList.add('fixed');
+          }
+
+          grid.appendChild(input);
+        });
+      });
+    }
+
+    function checkSudoku() {
+      let correct = true;
+      document.querySelectorAll('.sudoku-cell').forEach(function(input) {
+        const r = Number(input.dataset.r);
+        const c = Number(input.dataset.c);
+        if (Number(input.value) !== sudokuAnswer[r][c]) {
+          correct = false;
+        }
+      });
+
+      document.getElementById('sudoku-status').textContent = correct
+        ? '정답입니다! 잠깐 쉬었으니 다시 공부 리듬을 이어가 보세요.'
+        : '아직 맞지 않는 칸이 있어요. 다시 확인해 보세요.';
+    }
+
+    startNumberGame();
+    nextWordQuestion();
+    resetSudoku();
+  </script>
+</body>
+</html>
