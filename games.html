@@ -247,7 +247,7 @@
 
     .leaderboard-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 14px;
       margin-top: 16px;
     }
@@ -270,6 +270,99 @@
       margin-top: 8px;
     }
 
+
+
+    /* 공통과목 고난도 낱말퀴즈 */
+    .common-subject-tabs {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 14px 0;
+    }
+
+    .common-subject-tabs button {
+      border: 1px solid #d8d0bd;
+      border-radius: 999px;
+      background: #fff8ed;
+      color: #4b3f31;
+      font-weight: bold;
+      padding: 10px 14px;
+      cursor: pointer;
+    }
+
+    .common-subject-tabs button.active {
+      background: #2f3b2f;
+      border-color: #2f3b2f;
+      color: white;
+    }
+
+    .common-cw-grid {
+      display: grid;
+      gap: 3px;
+      justify-content: center;
+      margin: 18px auto;
+      max-width: max-content;
+      padding: 8px;
+      border-radius: 14px;
+      background: #d9d3c5;
+      overflow: auto;
+    }
+
+    .common-cw-cell,
+    .common-cw-empty {
+      width: 34px;
+      height: 34px;
+      border-radius: 7px;
+      box-sizing: border-box;
+    }
+
+    .common-cw-cell {
+      position: relative;
+      background: white;
+      border: 1px solid #c8c8c8;
+    }
+
+    .common-cw-cell input {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      outline: none;
+      background: transparent;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      padding-top: 8px;
+      text-transform: uppercase;
+    }
+
+    .common-cw-cell .common-cw-num {
+      position: absolute;
+      top: 2px;
+      left: 4px;
+      font-size: 9px;
+      font-weight: bold;
+      color: #8b7357;
+      line-height: 1;
+    }
+
+    .common-cw-empty {
+      background: #403c33;
+      border: 1px solid #403c33;
+    }
+
+    .common-cw-cell.correct { background: #eef8ed; }
+    .common-cw-cell.wrong { background: #fff0ec; }
+    .common-cw-cell.revealed { background: #fff5dc; }
+
+    .common-cw-meta {
+      text-align: center;
+      color: #5b4a34;
+      font-size: 14px;
+      margin-top: 4px;
+      line-height: 1.6;
+    }
+
     @media (max-width: 760px) {
       .game-menu,
       .clue-grid,
@@ -281,7 +374,9 @@
       }
 
       .cw-cell,
-      .cw-empty {
+      .cw-empty,
+      .common-cw-cell,
+      .common-cw-empty {
         width: 32px;
         height: 32px;
         font-size: 16px;
@@ -344,9 +439,15 @@
 
     <div class="game-menu">
       <div class="card">
-        <strong>가로세로 낱말 맞추기</strong>
-        <p>정사각형 판에서 보이는 글자와 힌트를 참고해 시험 관련 낱말을 맞춰보세요.</p>
+        <strong>법원직 가로세로 낱말 맞추기</strong>
+        <p>기존 법원직 중심의 법률·소송 용어 낱말퀴즈입니다.</p>
         <button class="button" type="button" onclick="showGame('crossword-game')">시작하기</button>
+      </div>
+
+      <div class="card">
+        <strong>공통과목 고난도 낱말퀴즈</strong>
+        <p>국어·영어·한국사를 과목별로 선택해 푸는 수험생용 고난도 낱말퀴즈입니다.</p>
+        <button class="button" type="button" onclick="showGame('common-crossword-game')">시작하기</button>
       </div>
 
       <div class="card">
@@ -382,8 +483,13 @@
 
     <div class="leaderboard-grid">
       <div class="info-box">
-        <strong>가로세로 낱말 맞추기 순위</strong>
+        <strong>법원직 낱말 맞추기 순위</strong>
         <ol class="ranking-list" id="rank-crossword"><li>순위 불러오는 중...</li></ol>
+      </div>
+
+      <div class="info-box">
+        <strong>공통과목 낱말퀴즈 순위</strong>
+        <ol class="ranking-list" id="rank-common-crossword"><li>순위 불러오는 중...</li></ol>
       </div>
 
       <div class="info-box">
@@ -433,6 +539,41 @@
     </div>
 
     <div class="game-status" id="crossword-status">공개된 글자와 힌트를 참고해 빈칸을 채워보세요.</div>
+  </section>
+
+
+  <section id="common-crossword-game" class="game-panel">
+    <h2>공통과목 고난도 낱말퀴즈</h2>
+    <p>
+      기존 법원직 낱말 게임은 그대로 두고, 국어·영어·한국사 과목별로 따로 풀 수 있게 만든 고난도 수험생용 낱말퀴즈입니다.
+      영어는 법원직 수준의 고급 어휘 중심으로 구성했습니다.
+    </p>
+
+    <div class="hint-box">
+      <strong id="common-cw-title">국어 고난도 낱말퀴즈</strong>
+      <p id="common-cw-desc">문법·어문규정·독해 용어 중심</p>
+      <p class="common-cw-meta">과목을 선택한 뒤 빈칸을 채우고 정답 확인을 누르세요.</p>
+    </div>
+
+    <div class="common-subject-tabs" id="common-cw-tabs"></div>
+
+    <div class="crossword-wrap">
+      <div class="common-cw-grid" id="common-cw-grid"></div>
+    </div>
+
+    <div class="clue-grid">
+      <div class="info-box" id="common-clue-across"><strong>가로 힌트</strong></div>
+      <div class="info-box" id="common-clue-down"><strong>세로 힌트</strong></div>
+    </div>
+
+    <div class="button-wrap" style="text-align:center;">
+      <button class="button" type="button" onclick="checkCommonCrossword()">정답 확인</button>
+      <button class="button sub" type="button" onclick="hintCommonCrossword()">힌트 한 칸</button>
+      <button class="button sub" type="button" onclick="showCommonCrosswordAnswers()">전체 정답 보기</button>
+      <button class="button sub" type="button" onclick="resetCommonCrossword()">다시 풀기</button>
+    </div>
+
+    <div class="game-status" id="common-cw-status">국어·영어·한국사 중 원하는 과목을 선택해 풀어보세요.</div>
   </section>
 
   <section id="falling-game" class="game-panel">
@@ -506,6 +647,7 @@
 
     const RANKING_API_URL = 'https://script.google.com/macros/s/AKfycbx6cKKgOEYgkacGrwJf7bNJUO6BhocIgln-D5D-zL_LUBzMiYiqEz6-BWQxjZqyAjGoMw/exec';
     const GAME_CROSSWORD = '가로세로 낱말 맞추기';
+    const GAME_COMMON_CROSSWORD = '공통과목 고난도 낱말퀴즈';
     const GAME_FALLING = '떨어지는 블록 퍼즐';
     const GAME_ADVENTURE = '공룡 점프 어드벤처';
 
@@ -583,6 +725,7 @@
 
     function loadAllLeaderboards() {
       loadLeaderboard(GAME_CROSSWORD, 'rank-crossword');
+      loadLeaderboard(GAME_COMMON_CROSSWORD, 'rank-common-crossword');
       loadLeaderboard(GAME_FALLING, 'rank-falling');
       loadLeaderboard(GAME_ADVENTURE, 'rank-adventure');
     }
@@ -799,6 +942,197 @@
       } else {
         document.getElementById('crossword-status').textContent = '아직 맞지 않는 빈칸이 있어요. 힌트의 핵심 표현을 다시 확인해 보세요.';
       }
+    }
+
+
+    const commonCrosswordPuzzles = {
+      korean: {label:'국어', title:'국어 고난도 낱말퀴즈', level:'어려움', size:13, desc:'문법·어문규정·독해 용어 중심', entries:[
+        {word:'두음법칙', clue:'단어 첫머리의 ㄹ, ㄴ 발음이 바뀌는 규칙', row:6, col:4, dir:'A'},
+        {word:'중세국어', clue:'훈민정음 창제 무렵의 국어 시기', row:12, col:9, dir:'A'},
+        {word:'한자성어', clue:'한자로 이루어진 관용적 표현', row:9, col:12, dir:'D'},
+        {word:'띄어쓰기', clue:'단어별로 띄어 쓰는 어문 규정', row:12, col:4, dir:'A'},
+        {word:'형태소', clue:'뜻을 가진 가장 작은 말의 단위', row:12, col:0, dir:'A'},
+        {word:'관형사', clue:'체언 앞에서 그 내용을 꾸며 주는 품사', row:10, col:8, dir:'A'},
+        {word:'비문학', clue:'문학 작품이 아닌 설명·논증 중심 글', row:10, col:4, dir:'A'},
+        {word:'표준어', clue:'교양 있는 사람들이 두루 쓰는 현대 서울말', row:10, col:0, dir:'A'},
+        {word:'피동', clue:'주어가 남의 행동을 입는 문법 표현', row:8, col:10, dir:'A'},
+        {word:'사동', clue:'남에게 어떤 동작을 하게 하는 표현', row:7, col:11, dir:'D'},
+        {word:'음운', clue:'말의 뜻을 구별해 주는 소리의 최소 단위', row:6, col:5, dir:'D'},
+        {word:'문맥', clue:'앞뒤 내용의 흐름과 관계', row:8, col:7, dir:'D'}
+      ]},
+      english: {label:'영어', title:'영어 고난도 낱말퀴즈', level:'매우 어려움', size:17, desc:'법원직 수준의 고급 어휘 중심', entries:[
+        {word:'PREREQUISITE', clue:'전제 조건, 필수 요건', row:8, col:2, dir:'A'},
+        {word:'DISCREPANCY', clue:'불일치, 차이', row:6, col:10, dir:'D'},
+        {word:'METICULOUS', clue:'매우 꼼꼼하고 세심한', row:15, col:6, dir:'A'},
+        {word:'EXACERBATE', clue:'문제나 고통을 악화시키다', row:13, col:3, dir:'A'},
+        {word:'PLAUSIBLE', clue:'그럴듯한, 타당해 보이는', row:11, col:2, dir:'A'},
+        {word:'UNDERMINE', clue:'서서히 약화시키다', row:6, col:8, dir:'A'},
+        {word:'ARBITRARY', clue:'자의적인, 임의의', row:1, col:5, dir:'D'},
+        {word:'VINDICATE', clue:'정당함을 입증하다', row:4, col:15, dir:'D'},
+        {word:'AMBIGUOUS', clue:'애매한, 중의적인', row:1, col:8, dir:'D'},
+        {word:'ABROGATE', clue:'법률·제도 등을 공식적으로 폐지하다', row:3, col:7, dir:'A'},
+        {word:'IMMINENT', clue:'곧 닥칠, 임박한', row:9, col:0, dir:'D'},
+        {word:'COHERENT', clue:'논리적으로 일관된', row:0, col:9, dir:'A'}
+      ]},
+      history: {label:'한국사', title:'한국사 고난도 낱말퀴즈', level:'어려움', size:13, desc:'제도·사건·인물·단체명 중심', entries:[
+        {word:'갑신정변', clue:'1884년 급진 개화파가 일으킨 정변', row:6, col:4, dir:'A'},
+        {word:'을사늑약', clue:'1905년 대한제국의 외교권을 박탈한 조약', row:12, col:9, dir:'A'},
+        {word:'반민특위', clue:'친일 반민족 행위자를 처벌하기 위해 설치된 특별위원회', row:12, col:4, dir:'A'},
+        {word:'위정척사', clue:'성리학 질서를 지키고 서양·일본 세력을 배척한 사상', row:9, col:10, dir:'D'},
+        {word:'골품제', clue:'신라의 신분제도로 관직 진출과 생활 전반을 제한', row:12, col:0, dir:'A'},
+        {word:'과전법', clue:'고려 말 시행되어 조선 건국의 경제 기반이 된 토지 제도', row:10, col:6, dir:'A'},
+        {word:'대동법', clue:'공납을 쌀·포·동전 등으로 통일하여 납부하게 한 제도', row:8, col:8, dir:'D'},
+        {word:'비변사', clue:'조선 후기 국정 전반을 장악한 최고 회의 기구', row:5, col:7, dir:'D'},
+        {word:'탕평책', clue:'붕당의 대립을 완화하려 한 영조·정조의 정치 운영책', row:10, col:2, dir:'A'},
+        {word:'홍경래', clue:'1811년 평안도 지역 농민 봉기를 이끈 인물', row:8, col:12, dir:'D'},
+        {word:'신간회', clue:'민족주의와 사회주의 세력이 함께 만든 최대 규모 민족운동 단체', row:6, col:5, dir:'D'},
+        {word:'균역법', clue:'군포 부담을 1년에 1필로 줄인 영조 때 제도', row:8, col:1, dir:'A'}
+      ]}
+    };
+
+    let currentCommonSubject = 'korean';
+    let commonInputs = [];
+
+    function buildCommonAnswerMap(puzzle) {
+      const map = {};
+      const numbers = {};
+      let n = 1;
+      const starts = puzzle.entries.slice().sort(function(a,b) {
+        return a.row - b.row || a.col - b.col || a.dir.localeCompare(b.dir);
+      });
+      starts.forEach(function(entry) {
+        const key = entry.row + '-' + entry.col;
+        if (!numbers[key]) numbers[key] = n++;
+        entry.num = numbers[key];
+      });
+      puzzle.entries.forEach(function(entry) {
+        entry.word.split('').forEach(function(ch, i) {
+          const r = entry.row + (entry.dir === 'D' ? i : 0);
+          const c = entry.col + (entry.dir === 'A' ? i : 0);
+          map[r + '-' + c] = ch;
+        });
+      });
+      return { map: map, numbers: numbers };
+    }
+
+    function initCommonSubjectCrossword() {
+      const tabs = document.getElementById('common-cw-tabs');
+      if (!tabs) return;
+      tabs.innerHTML = '';
+      Object.keys(commonCrosswordPuzzles).forEach(function(key) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = commonCrosswordPuzzles[key].label;
+        button.onclick = function() { renderCommonCrossword(key); };
+        button.dataset.subject = key;
+        tabs.appendChild(button);
+      });
+      renderCommonCrossword(currentCommonSubject);
+    }
+
+    function renderCommonCrossword(subject) {
+      currentCommonSubject = subject;
+      const puzzle = commonCrosswordPuzzles[subject];
+      const built = buildCommonAnswerMap(puzzle);
+      const grid = document.getElementById('common-cw-grid');
+      const across = document.getElementById('common-clue-across');
+      const down = document.getElementById('common-clue-down');
+      if (!grid || !across || !down) return;
+      document.getElementById('common-cw-title').textContent = puzzle.title;
+      document.getElementById('common-cw-desc').textContent = puzzle.desc + ' · 난이도: ' + puzzle.level;
+      document.getElementById('common-cw-status').textContent = puzzle.label + ' 낱말퀴즈를 시작합니다.';
+      document.querySelectorAll('#common-cw-tabs button').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.subject === subject);
+      });
+      grid.innerHTML = '';
+      grid.style.gridTemplateColumns = 'repeat(' + puzzle.size + ', 34px)';
+      commonInputs = [];
+      for (let r = 0; r < puzzle.size; r++) {
+        for (let c = 0; c < puzzle.size; c++) {
+          const key = r + '-' + c;
+          const answer = built.map[key];
+          if (!answer) {
+            const empty = document.createElement('div');
+            empty.className = 'common-cw-empty';
+            grid.appendChild(empty);
+          } else {
+            const cell = document.createElement('div');
+            cell.className = 'common-cw-cell';
+            if (built.numbers[key]) {
+              const num = document.createElement('span');
+              num.className = 'common-cw-num';
+              num.textContent = built.numbers[key];
+              cell.appendChild(num);
+            }
+            const input = document.createElement('input');
+            input.maxLength = 1;
+            input.dataset.answer = answer;
+            input.addEventListener('input', function(e) {
+              e.target.value = e.target.value.toUpperCase();
+              const index = commonInputs.indexOf(e.target);
+              if (e.target.value && commonInputs[index + 1]) commonInputs[index + 1].focus();
+            });
+            cell.appendChild(input);
+            commonInputs.push(input);
+            grid.appendChild(cell);
+          }
+        }
+      }
+      across.innerHTML = '<strong>가로 힌트</strong>';
+      down.innerHTML = '<strong>세로 힌트</strong>';
+      puzzle.entries.slice().sort(function(a,b){ return a.num - b.num; }).forEach(function(entry) {
+        const p = document.createElement('p');
+        p.textContent = entry.num + '. ' + entry.clue + ' (' + entry.word.length + '글자)';
+        if (entry.dir === 'A') across.appendChild(p); else down.appendChild(p);
+      });
+    }
+
+    function checkCommonCrossword() {
+      let correct = 0;
+      commonInputs.forEach(function(input) {
+        const cell = input.parentElement;
+        const value = input.value.trim().toUpperCase();
+        cell.classList.remove('correct', 'wrong', 'revealed');
+        if (value === input.dataset.answer) {
+          correct++;
+          cell.classList.add('correct');
+        } else if (value) {
+          cell.classList.add('wrong');
+        }
+      });
+      const total = commonInputs.length;
+      if (correct === total) {
+        submitScore(GAME_COMMON_CROSSWORD, 100, commonCrosswordPuzzles[currentCommonSubject].label + ' 전체 정답');
+        document.getElementById('common-cw-status').textContent = '정답입니다! 공통과목 낱말퀴즈 점수 100점이 기록되었습니다.';
+      } else {
+        document.getElementById('common-cw-status').textContent = '현재 ' + correct + '/' + total + '칸 정답입니다.';
+      }
+    }
+
+    function showCommonCrosswordAnswers() {
+      commonInputs.forEach(function(input) {
+        input.value = input.dataset.answer;
+        input.parentElement.classList.remove('wrong');
+        input.parentElement.classList.add('revealed');
+      });
+      document.getElementById('common-cw-status').textContent = '전체 정답을 표시했습니다.';
+    }
+
+    function resetCommonCrossword() {
+      renderCommonCrossword(currentCommonSubject);
+    }
+
+    function hintCommonCrossword() {
+      const blanks = commonInputs.filter(function(input) { return !input.value; });
+      if (!blanks.length) {
+        document.getElementById('common-cw-status').textContent = '빈칸이 없습니다.';
+        return;
+      }
+      const input = blanks[Math.floor(Math.random() * blanks.length)];
+      input.value = input.dataset.answer;
+      input.parentElement.classList.add('revealed');
+      input.focus();
+      document.getElementById('common-cw-status').textContent = '힌트 한 칸을 열었습니다.';
     }
 
     const F_ROWS = 18;
@@ -1119,6 +1453,7 @@
 
     initNickname();
     startRandomCrossword();
+    initCommonSubjectCrossword();
     resetFallingGame();
     resetAdventureGame();
     loadAllLeaderboards();
