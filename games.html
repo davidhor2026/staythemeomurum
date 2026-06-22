@@ -406,13 +406,13 @@
     <p>공부하다 잠깐 머리를 식히고 싶을 때 즐기는 수험생 쉬어가기 게임입니다.</p>
 
     <div class="button-wrap">
-      <a class="button sub" href="index.html">메인페이지로 돌아가기</a>
+      <a class="button sub" href="index.html">홈페이지로 돌아가기</a>
     </div>
   </header>
 
   <nav>
-    <a href="index.html">메인페이지</a>
-    <a href="rooms.html">방타입</a>
+    <a href="index.html">홈</a>
+    <a href="rooms.html">방 타입</a>
     <a href="facilities.html">시설</a>
     <a href="reviews.html">후기</a>
     <a href="faq.html">FAQ</a>
@@ -546,8 +546,8 @@
   <section id="common-crossword-game" class="game-panel">
     <h2>공통과목 고난도 낱말퀴즈</h2>
     <p>
-      국어·영어·한국사 과목별로 따로 풀 수 있게 만든 고난도 수험생용 낱말퀴즈입니다.
-      영어는 고급 어휘 중심으로 구성했습니다.
+      기존 법원직 낱말 게임은 그대로 두고, 국어·영어·한국사 과목별로 따로 풀 수 있게 만든 고난도 수험생용 낱말퀴즈입니다.
+      영어는 법원직 수준의 고급 어휘 중심으로 구성했습니다.
     </p>
 
     <div class="hint-box">
@@ -754,6 +754,7 @@
     let crosswordInputs = [];
     let crosswordInputMap = {};
     let crosswordSolvedCount = 0;
+    let crosswordCurrentSolved = false;
 
     function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -778,6 +779,7 @@
 
     function loadCrosswordSet(setIndex) {
       currentCrosswordSet = setIndex;
+      crosswordCurrentSolved = false;
       crosswordCells = {};
       const set = crosswordSets[currentCrosswordSet];
 
@@ -880,23 +882,51 @@
 
     function handleCrosswordInput(e) {
       const input = e.target;
-      if (input.dataset.composing === '1') return;
+      if (input.dataset.composing === '1' || input.readOnly) return;
       input.value = input.value.trim().slice(0, 1);
       if (input.value.trim() === input.dataset.answer) {
         input.style.borderColor = '#8aa36f';
-        const nextKey = input.dataset.nextKey;
-        if (nextKey && crosswordInputMap[nextKey]) {
-          crosswordInputMap[nextKey].focus();
-        } else {
-          const currentIndex = crosswordInputs.indexOf(input);
-          const nextInput = crosswordInputs[currentIndex + 1];
-          if (nextInput) nextInput.focus();
-        }
+        focusNextUnsolvedCrosswordInput(input);
+        autoCompleteCrosswordIfSolved();
       } else if (input.value.trim() !== '') {
         input.style.borderColor = '#b95d48';
       } else {
         input.style.borderColor = '#c8c8c8';
       }
+    }
+
+    function focusNextUnsolvedCrosswordInput(currentInput) {
+      if (!crosswordInputs.length) return;
+      const start = Math.max(0, crosswordInputs.indexOf(currentInput));
+      for (let offset = 1; offset <= crosswordInputs.length; offset++) {
+        const candidate = crosswordInputs[(start + offset) % crosswordInputs.length];
+        if (!candidate || candidate === currentInput) continue;
+        if (candidate.value.trim() !== candidate.dataset.answer) {
+          candidate.focus();
+          return;
+        }
+      }
+    }
+
+    function isCrosswordSolved() {
+      return crosswordInputs.length > 0 && crosswordInputs.every(function(input) {
+        return input.value.trim() === input.dataset.answer;
+      });
+    }
+
+    function completeCrosswordSolvedMessage(auto) {
+      if (crosswordCurrentSolved) return;
+      crosswordCurrentSolved = true;
+      crosswordSolvedCount++;
+      const score = crosswordSolvedCount * 100;
+      submitScore(GAME_CROSSWORD, score, '맞힌 문제 수: ' + crosswordSolvedCount);
+      document.getElementById('crossword-status').textContent = auto
+        ? '전체 정답입니다! 정답확인을 누르지 않아도 완료 처리되었습니다. 점수: ' + score + '점'
+        : '정답입니다! 점수: ' + score + '점';
+    }
+
+    function autoCompleteCrosswordIfSolved() {
+      if (isCrosswordSolved()) completeCrosswordSolvedMessage(true);
     }
 
     function resetCrossword() {
@@ -936,15 +966,11 @@
       });
 
       if (correct) {
-        crosswordSolvedCount++;
-        const score = crosswordSolvedCount * 100;
-        submitScore(GAME_CROSSWORD, score, '맞힌 문제 수: ' + crosswordSolvedCount);
-
-        if (currentCrosswordPosition >= crosswordOrder.length - 1) {
-          document.getElementById('crossword-status').textContent = '축하합니다! 60문제를 모두 완료했습니다. 점수: ' + score + '점';
+        completeCrosswordSolvedMessage(false);
+        if (currentCrosswordPosition < crosswordOrder.length - 1) {
+          document.getElementById('crossword-status').textContent += ' 다음 세트 버튼을 누르면 이어서 진행할 수 있습니다.';
         } else {
-          document.getElementById('crossword-status').textContent = '정답입니다! 점수 저장 후 다음 랜덤 문제로 넘어갑니다.';
-          setTimeout(nextCrosswordSet, 900);
+          document.getElementById('crossword-status').textContent = '축하합니다! 60문제를 모두 완료했습니다.';
         }
       } else {
         document.getElementById('crossword-status').textContent = '아직 맞지 않는 빈칸이 있어요. 힌트의 핵심 표현을 다시 확인해 보세요.';
@@ -999,6 +1025,7 @@
 
     let currentCommonSubject = 'korean';
     let commonInputs = [];
+    let commonCurrentSolved = false;
 
     function buildCommonAnswerMap(puzzle) {
       const map = {};
@@ -1048,6 +1075,7 @@
 
     function renderCommonCrossword(subject) {
       currentCommonSubject = subject;
+      commonCurrentSolved = false;
       const puzzle = commonCrosswordPuzzles[subject];
       const built = buildCommonAnswerMap(puzzle);
       const grid = document.getElementById('common-cw-grid');
@@ -1113,10 +1141,49 @@
 
     function normalizeCommonInput(e) {
       const input = e.target;
-      if (input.dataset.composing === '1') return;
+      if (input.dataset.composing === '1' || input.readOnly) return;
       const value = input.value.trim().toUpperCase().slice(0, 1);
       input.value = value;
       input.parentElement.classList.remove('correct', 'wrong', 'revealed');
+      if (value === input.dataset.answer) {
+        input.parentElement.classList.add('correct');
+        focusNextUnsolvedCommonInput(input);
+        autoCompleteCommonCrosswordIfSolved();
+      } else if (value) {
+        input.parentElement.classList.add('wrong');
+      }
+    }
+
+    function focusNextUnsolvedCommonInput(currentInput) {
+      if (!commonInputs.length) return;
+      const start = Math.max(0, commonInputs.indexOf(currentInput));
+      for (let offset = 1; offset <= commonInputs.length; offset++) {
+        const candidate = commonInputs[(start + offset) % commonInputs.length];
+        if (!candidate || candidate === currentInput) continue;
+        if (candidate.value.trim().toUpperCase() !== candidate.dataset.answer) {
+          candidate.focus();
+          return;
+        }
+      }
+    }
+
+    function isCommonCrosswordSolved() {
+      return commonInputs.length > 0 && commonInputs.every(function(input) {
+        return input.value.trim().toUpperCase() === input.dataset.answer;
+      });
+    }
+
+    function completeCommonCrosswordSolvedMessage(auto) {
+      if (commonCurrentSolved) return;
+      commonCurrentSolved = true;
+      submitScore(GAME_COMMON_CROSSWORD, 100, commonCrosswordPuzzles[currentCommonSubject].label + ' 전체 정답');
+      document.getElementById('common-cw-status').textContent = auto
+        ? '전체 정답입니다! 정답확인을 누르지 않아도 완료 처리되었습니다.'
+        : '정답입니다! 공통과목 낱말퀴즈 점수 100점이 기록되었습니다.';
+    }
+
+    function autoCompleteCommonCrosswordIfSolved() {
+      if (isCommonCrosswordSolved()) completeCommonCrosswordSolvedMessage(true);
     }
 
     function checkCommonCrossword() {
@@ -1134,8 +1201,7 @@
       });
       const total = commonInputs.length;
       if (correct === total) {
-        submitScore(GAME_COMMON_CROSSWORD, 100, commonCrosswordPuzzles[currentCommonSubject].label + ' 전체 정답');
-        document.getElementById('common-cw-status').textContent = '정답입니다! 공통과목 낱말퀴즈 점수 100점이 기록되었습니다.';
+        completeCommonCrosswordSolvedMessage(false);
       } else {
         document.getElementById('common-cw-status').textContent = '현재 ' + correct + '/' + total + '칸 정답입니다.';
       }
