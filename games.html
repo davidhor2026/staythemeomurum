@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>머무름 쉼표 | 스테이The머무름</title>
-  <meta name="description" content="스테이The머무름 수험생을 위한 짧은 쉬어가기 게임 페이지입니다. 가로세로 낱말 맞추기, 떨어지는 블록 퍼즐, 2048 게임을 즐길 수 있습니다.">
-  <meta name="keywords" content="수험생 쉬어가기, 수험생 게임, 머무름 쉼표, 가로세로 낱말 맞추기, 떨어지는 블록 퍼즐, 2048 게임, 노량진 수험생 고시원">
+  <meta name="description" content="스테이The머무름 수험생을 위한 짧은 쉬어가기 게임 페이지입니다. 가로세로 낱말 맞추기, 떨어지는 블록 퍼즐, 공룡 달리기 게임을 즐길 수 있습니다.">
+  <meta name="keywords" content="수험생 쉬어가기, 수험생 게임, 머무름 쉼표, 가로세로 낱말 맞추기, 떨어지는 블록 퍼즐, 공룡 달리기, 노량진 수험생 고시원">
 
   <link rel="stylesheet" href="style.css">
 
@@ -27,57 +27,13 @@
       border: 1px solid #eee;
     }
 
-    .game-panel.active {
-      display: block;
-    }
+    .game-panel.active { display: block; }
 
     .game-status {
       text-align: center;
       font-weight: bold;
       color: #2f3b2f;
       margin-top: 12px;
-    }
-
-    .crossword-wrap {
-      overflow-x: auto;
-    }
-
-    .crossword-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 42px);
-      gap: 5px;
-      justify-content: center;
-      margin: 18px auto;
-    }
-
-    .cw-cell {
-      width: 42px;
-      height: 42px;
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      background: white;
-    }
-
-    .cw-cell.fixed {
-      background: #eef4ea;
-      color: #2f3b2f;
-    }
-
-    .cw-block {
-      width: 42px;
-      height: 42px;
-      border-radius: 8px;
-      background: #2f3b2f;
-    }
-
-    .clue-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 16px;
     }
 
     .hint-box {
@@ -89,48 +45,38 @@
       color: #5b4a34;
     }
 
+    .crossword-wrap { overflow-x: auto; }
 
-
-    .partial-word-list {
+    .crossword-grid {
       display: grid;
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .word-question {
-      background: white;
-      border: 1px solid #eee;
+      grid-template-columns: repeat(9, 36px);
+      grid-template-rows: repeat(9, 36px);
+      gap: 4px;
+      justify-content: center;
+      margin: 18px auto;
+      max-width: max-content;
+      padding: 8px;
       border-radius: 14px;
-      padding: 14px;
+      background: #e9e6dc;
     }
 
-    .word-question strong {
-      display: block;
-      margin-bottom: 8px;
-      color: #2f3b2f;
-    }
-
-    .letter-row {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin: 10px 0;
-    }
-
-    .letter-box,
-    .letter-input {
-      width: 42px;
-      height: 42px;
-      border-radius: 9px;
-      border: 1px solid #ccc;
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
+    .cw-cell,
+    .cw-empty {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
       box-sizing: border-box;
     }
 
-    .letter-box {
+    .cw-cell {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      border: 1px solid #c8c8c8;
+      background: white;
+    }
+
+    .cw-cell.fixed {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -138,14 +84,16 @@
       color: #2f3b2f;
     }
 
-    .letter-input {
-      background: #fff;
+    .cw-empty {
+      background: #f4f2eb;
+      border: 1px solid #e6e0d3;
     }
 
-    .word-hint {
-      margin: 4px 0 0;
-      color: #555;
-      line-height: 1.55;
+    .clue-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
     }
 
     .falling-wrap {
@@ -174,15 +122,12 @@
       background: #f4f4f0;
     }
 
-    .falling-filled {
-      background: #d2a75f;
-    }
+    .falling-filled { background: #d2a75f; }
+    .falling-current { background: #8aa36f; }
 
-    .falling-current {
-      background: #8aa36f;
-    }
-
-    .touch-controls {
+    .touch-controls,
+    .speed-controls,
+    .dino-controls {
       display: grid;
       grid-template-columns: repeat(3, 72px);
       gap: 8px;
@@ -191,6 +136,8 @@
     }
 
     .touch-controls button,
+    .speed-controls button,
+    .dino-controls button,
     .small-game-button {
       min-height: 48px;
       border: none;
@@ -202,9 +149,10 @@
       cursor: pointer;
     }
 
-    .touch-controls .wide-control {
-      grid-column: span 3;
-    }
+    .touch-controls .wide-control,
+    .dino-controls .wide-control { grid-column: span 3; }
+
+    .speed-controls button.active-speed { background: #8aa36f; }
 
     .score-box {
       text-align: center;
@@ -215,72 +163,53 @@
       min-width: 140px;
     }
 
-    .game2048-board {
-      display: grid;
-      grid-template-columns: repeat(4, 68px);
-      grid-template-rows: repeat(4, 68px);
-      gap: 8px;
-      justify-content: center;
+    .dino-stage {
+      position: relative;
+      width: min(100%, 520px);
+      height: 180px;
       margin: 18px auto;
-      padding: 10px;
-      border-radius: 14px;
-      background: #b8aa92;
-      max-width: max-content;
-      touch-action: none;
+      overflow: hidden;
+      border: 2px solid #2f3b2f;
+      border-radius: 16px;
+      background: linear-gradient(#fbfbf5 0%, #fbfbf5 70%, #e9e0cf 70%, #e9e0cf 100%);
+      touch-action: manipulation;
     }
 
-    .tile2048 {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      background: #eee7dc;
-      color: #3a3329;
-      font-size: 24px;
-      font-weight: bold;
+    .dino-player,
+    .dino-obstacle {
+      position: absolute;
+      bottom: 42px;
+      font-size: 34px;
+      line-height: 1;
+      user-select: none;
     }
 
-    .v2 { background: #eee7dc; }
-    .v4 { background: #ead8b8; }
-    .v8 { background: #d9ad6a; color: #fff; }
-    .v16 { background: #c7824c; color: #fff; }
-    .v32 { background: #b95d48; color: #fff; }
-    .v64 { background: #944039; color: #fff; }
-    .v128, .v256, .v512, .v1024, .v2048 { background: #6f7f58; color: #fff; font-size: 20px; }
+    .dino-player { left: 42px; }
+    .dino-obstacle { left: 420px; }
 
-    .controls2048 {
-      display: grid;
-      grid-template-columns: repeat(3, 72px);
-      gap: 8px;
-      justify-content: center;
-      margin-top: 12px;
-    }
-
-    .controls2048 button {
-      min-height: 48px;
-      border: none;
-      border-radius: 12px;
+    .dino-ground {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 40px;
+      height: 2px;
       background: #2f3b2f;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 760px) {
       .game-menu,
-      .clue-grid {
-        grid-template-columns: 1fr;
-      }
+      .clue-grid { grid-template-columns: 1fr; }
 
       .crossword-grid {
-        grid-template-columns: repeat(6, 36px);
+        grid-template-columns: repeat(9, 32px);
+        grid-template-rows: repeat(9, 32px);
       }
 
       .cw-cell,
-      .cw-block {
-        width: 36px;
-        height: 36px;
-        font-size: 17px;
+      .cw-empty {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
       }
 
       .falling-board {
@@ -293,14 +222,9 @@
         height: 20px;
       }
 
-      .game2048-board {
-        grid-template-columns: repeat(4, 58px);
-        grid-template-rows: repeat(4, 58px);
-      }
-
-      .tile2048 {
-        font-size: 21px;
-      }
+      .dino-stage { height: 165px; }
+      .dino-player,
+      .dino-obstacle { font-size: 32px; }
     }
   </style>
 </head>
@@ -337,7 +261,7 @@
     <div class="game-menu">
       <div class="card">
         <strong>가로세로 낱말 맞추기</strong>
-        <p>공개된 단어와 힌트를 참고해 법원직·공무원 시험 관련 낱말을 맞춰보세요.</p>
+        <p>정사각형 판에서 보이는 글자와 힌트를 참고해 시험 관련 낱말을 맞춰보세요.</p>
         <button class="button" type="button" onclick="showGame('crossword-game')">시작하기</button>
       </div>
 
@@ -348,9 +272,9 @@
       </div>
 
       <div class="card">
-        <strong>2048</strong>
-        <p>같은 숫자를 합쳐 2048을 만드는 짧은 숫자 퍼즐입니다.</p>
-        <button class="button" type="button" onclick="showGame('game2048')">시작하기</button>
+        <strong>공룡 달리기</strong>
+        <p>장애물을 피해 점프하는 짧은 반응속도 게임입니다.</p>
+        <button class="button" type="button" onclick="showGame('dino-game')">시작하기</button>
       </div>
     </div>
   </section>
@@ -358,33 +282,60 @@
   <section id="crossword-game" class="game-panel active">
     <h2>가로세로 낱말 맞추기</h2>
     <p>
-      정답 전체를 빈칸으로 두지 않고, 일부 글자는 미리 보여주는 방식입니다.
-      예를 들어 <strong>대법원</strong>은 <strong>대 _ 원</strong>처럼 가운데 글자만 맞추면 됩니다.
+      난이도를 높여 법률·시험 용어 중심으로 구성했습니다.
+      전체 판은 하나의 정사각형 모양이며, 각 낱말은 첫 글자 정도만 공개됩니다.
     </p>
 
     <div class="hint-box">
-      <strong>풀이 방법</strong>
-      <p>보이는 글자와 힌트 문구를 참고해 빈칸에 들어갈 글자만 입력하세요.</p>
-      <p>가로 문제와 세로 문제를 모두 맞히면 정답입니다.</p>
+      <strong>난이도: 어려움</strong>
+      <p>정답은 3~5글자입니다. 공개된 첫 글자와 힌트를 함께 보고 빈칸을 채워보세요.</p>
+      <p>법원직·공무원 시험 공부 중 자주 접할 수 있는 법률 용어 위주로 구성했습니다.</p>
     </div>
 
-    <div class="partial-word-list" id="partial-word-list"></div>
+    <div class="crossword-wrap">
+      <div class="crossword-grid" id="crossword-grid"></div>
+    </div>
+
+    <div class="clue-grid">
+      <div class="info-box">
+        <strong>가로 힌트</strong>
+        <p>1. 법 _ _ 리 _ : 제한능력자 등을 대신해 법률행위를 하는 사람</p>
+        <p>2. 소 _ _ _ : 권리를 행사하지 않은 상태가 오래 계속되어 권리가 소멸하는 제도</p>
+        <p>3. 채 _ _ _ : 채권자가 채권을 제3자에게 이전하는 행위</p>
+        <p>4. 항 _ _ _ : 제1심 판결에 불복해 항소를 제기해야 하는 법정 기간</p>
+      </div>
+
+      <div class="info-box">
+        <strong>세로 힌트</strong>
+        <p>1. 불 _ _ _ : 통상 예상하거나 방지하기 어려운 외부적 사유</p>
+        <p>2. 기 _ _ : 확정판결의 판단에 당사자와 법원이 구속되는 효력</p>
+        <p>3. 변 _ _ _ : 재판자료의 제출 책임이 당사자에게 있다는 원칙</p>
+        <p>4. 증 _ _ _ : 사실이 불명확할 때 불이익을 부담하는 당사자의 책임</p>
+      </div>
+    </div>
 
     <div class="button-wrap" style="text-align:center;">
       <button class="button" type="button" onclick="checkCrossword()">정답 확인</button>
       <button class="button sub" type="button" onclick="resetCrossword()">다시 시작</button>
     </div>
 
-    <div class="game-status" id="crossword-status">보이는 글자와 힌트를 참고해 빈칸을 채워보세요.</div>
+    <div class="game-status" id="crossword-status">공개된 첫 글자와 힌트를 참고해 빈칸을 채워보세요.</div>
   </section>
 
   <section id="falling-game" class="game-panel">
     <h2>떨어지는 블록 퍼즐</h2>
-    <p>핸드폰에서는 아래 버튼으로 조작하세요. 줄이 꽉 차면 사라집니다.</p>
+    <p>핸드폰에서는 아래 버튼으로 조작하세요. 줄이 꽉 차면 사라집니다. 속도도 조절할 수 있습니다.</p>
 
     <div class="falling-wrap">
       <div>
         <div class="falling-board" id="falling-board"></div>
+
+        <div class="speed-controls">
+          <button type="button" id="speed-slow" onclick="setFallingSpeed('slow')">느림</button>
+          <button type="button" id="speed-normal" onclick="setFallingSpeed('normal')">보통</button>
+          <button type="button" id="speed-fast" onclick="setFallingSpeed('fast')">빠름</button>
+        </div>
+
         <div class="touch-controls">
           <button type="button" onclick="movePiece(-1)">◀</button>
           <button type="button" onclick="rotatePiece()">회전</button>
@@ -401,35 +352,36 @@
         <p id="falling-score">0</p>
         <p>지운 줄</p>
         <p id="falling-lines">0</p>
+        <p>속도</p>
+        <p id="falling-speed-label">보통</p>
       </div>
     </div>
 
     <div class="game-status" id="falling-status">시작/멈춤 버튼을 눌러 시작하세요.</div>
   </section>
 
-  <section id="game2048" class="game-panel">
-    <h2>2048</h2>
-    <p>같은 숫자를 합쳐 더 큰 숫자를 만들어 보세요. 핸드폰에서는 버튼 또는 화면 밀기로 조작할 수 있습니다.</p>
+  <section id="dino-game" class="game-panel">
+    <h2>공룡 달리기</h2>
+    <p>장애물이 오면 점프하세요. 핸드폰에서는 화면이나 점프 버튼을 누르면 됩니다.</p>
 
-    <div class="score-box" style="margin:0 auto; max-width:160px;">
-      점수: <span id="score2048">0</span>
+    <div class="score-box" style="margin:0 auto; max-width:180px;">
+      점수: <span id="dino-score">0</span>
     </div>
 
-    <div class="game2048-board" id="board2048"></div>
-
-    <div class="controls2048">
-      <span></span>
-      <button type="button" onclick="move2048('up')">위</button>
-      <span></span>
-      <button type="button" onclick="move2048('left')">왼쪽</button>
-      <button type="button" onclick="reset2048()">새 게임</button>
-      <button type="button" onclick="move2048('right')">오른쪽</button>
-      <span></span>
-      <button type="button" onclick="move2048('down')">아래</button>
-      <span></span>
+    <div class="dino-stage" id="dino-stage" onclick="dinoJump()">
+      <div class="dino-ground"></div>
+      <div class="dino-player" id="dino-player">🦖</div>
+      <div class="dino-obstacle" id="dino-obstacle">🌵</div>
     </div>
 
-    <div class="game-status" id="status2048">같은 숫자를 합쳐 2048을 만들어 보세요.</div>
+    <div class="dino-controls">
+      <button type="button" onclick="dinoJump()">점프</button>
+      <button type="button" onclick="toggleDinoGame()">시작/멈춤</button>
+      <button type="button" onclick="resetDinoGame()">다시</button>
+      <button class="wide-control" type="button" onclick="resetDinoGame(); toggleDinoGame();">처음부터 시작</button>
+    </div>
+
+    <div class="game-status" id="dino-status">시작 버튼을 누른 뒤 장애물을 피해 점프하세요.</div>
   </section>
 
   <footer>
@@ -448,98 +400,71 @@
       document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    const partialWords = [
-      {
-        label: '가로 1',
-        answer: '대법원',
-        reveal: [0, 2],
-        hint: '대한민국 사법부의 최고 법원입니다.'
-      },
-      {
-        label: '가로 2',
-        answer: '민사소송',
-        reveal: [0, 2],
-        hint: '개인 간 권리관계의 다툼을 법원 절차로 해결하는 제도입니다.'
-      },
-      {
-        label: '가로 3',
-        answer: '계약해제',
-        reveal: [0, 2],
-        hint: '계약을 처음부터 없었던 것처럼 되돌리는 의사표시입니다.'
-      },
-      {
-        label: '세로 1',
-        answer: '공소시효',
-        reveal: [0, 2],
-        hint: '일정 기간이 지나면 공소를 제기할 수 없게 되는 제도입니다.'
-      },
-      {
-        label: '세로 2',
-        answer: '증거능력',
-        reveal: [0, 2],
-        hint: '재판에서 증거로 사용할 수 있는 법적 자격을 말합니다.'
-      },
-      {
-        label: '세로 3',
-        answer: '변론기일',
-        reveal: [0, 2],
-        hint: '당사자가 주장과 답변을 하는 재판 날짜를 말합니다.'
-      }
-    ];
+    const crosswordSize = 9;
+    const crosswordCells = {};
+
+    function addWord(row, col, direction, answer, revealIndexes) {
+      answer.split('').forEach(function(ch, i) {
+        const r = row + (direction === 'down' ? i : 0);
+        const c = col + (direction === 'across' ? i : 0);
+        crosswordCells[r + '-' + c] = {
+          answer: ch,
+          fixed: revealIndexes.includes(i)
+        };
+      });
+    }
+
+    addWord(0, 0, 'across', '법정대리인', [0, 3]);
+    addWord(2, 0, 'across', '소멸시효', [0]);
+    addWord(4, 0, 'across', '채권양도', [0]);
+    addWord(6, 0, 'across', '항소기간', [0]);
+    addWord(0, 6, 'down', '불가항력', [0]);
+    addWord(1, 8, 'down', '기판력', [0]);
+    addWord(5, 5, 'down', '변론주의', [0]);
+    addWord(5, 7, 'down', '증명책임', [0]);
 
     function buildCrossword() {
-      const list = document.getElementById('partial-word-list');
-      list.innerHTML = '';
+      const grid = document.getElementById('crossword-grid');
+      grid.innerHTML = '';
 
-      partialWords.forEach(function(item, wordIndex) {
-        const box = document.createElement('div');
-        box.className = 'word-question';
+      for (let r = 0; r < crosswordSize; r++) {
+        for (let c = 0; c < crosswordSize; c++) {
+          const key = r + '-' + c;
+          const cell = crosswordCells[key];
 
-        const title = document.createElement('strong');
-        title.textContent = item.label + ' 문제';
-        box.appendChild(title);
+          if (!cell) {
+            const empty = document.createElement('div');
+            empty.className = 'cw-empty';
+            grid.appendChild(empty);
+            continue;
+          }
 
-        const row = document.createElement('div');
-        row.className = 'letter-row';
-
-        item.answer.split('').forEach(function(ch, charIndex) {
-          if (item.reveal.includes(charIndex)) {
-            const span = document.createElement('span');
-            span.className = 'letter-box';
-            span.textContent = ch;
-            row.appendChild(span);
+          if (cell.fixed) {
+            const fixed = document.createElement('span');
+            fixed.className = 'cw-cell fixed';
+            fixed.textContent = cell.answer;
+            grid.appendChild(fixed);
           } else {
             const input = document.createElement('input');
-            input.className = 'letter-input';
+            input.className = 'cw-cell';
             input.maxLength = 1;
-            input.dataset.answer = ch;
-            input.dataset.wordIndex = wordIndex;
-            input.dataset.charIndex = charIndex;
-            input.setAttribute('aria-label', item.label + ' 빈칸');
-            row.appendChild(input);
+            input.dataset.answer = cell.answer;
+            input.setAttribute('aria-label', '낱말 맞추기 빈칸');
+            grid.appendChild(input);
           }
-        });
-
-        box.appendChild(row);
-
-        const hint = document.createElement('p');
-        hint.className = 'word-hint';
-        hint.innerHTML = '<strong>힌트:</strong> ' + item.hint;
-        box.appendChild(hint);
-
-        list.appendChild(box);
-      });
+        }
+      }
     }
 
     function resetCrossword() {
       buildCrossword();
-      document.getElementById('crossword-status').textContent = '보이는 글자와 힌트를 참고해 빈칸을 채워보세요.';
+      document.getElementById('crossword-status').textContent = '공개된 첫 글자와 힌트를 참고해 빈칸을 채워보세요.';
     }
 
     function checkCrossword() {
       let correct = true;
 
-      document.querySelectorAll('.letter-input').forEach(function(input) {
+      document.querySelectorAll('.cw-cell:not(.fixed)').forEach(function(input) {
         if (input.value.trim() !== input.dataset.answer) {
           correct = false;
           input.style.borderColor = '#b95d48';
@@ -549,8 +474,8 @@
       });
 
       document.getElementById('crossword-status').textContent = correct
-        ? '정답입니다! 보이는 글자와 힌트를 잘 활용하셨습니다.'
-        : '아직 맞지 않는 빈칸이 있어요. 공개된 글자와 힌트를 다시 확인해 보세요.';
+        ? '정답입니다! 어려운 법률 용어까지 잘 맞히셨습니다.'
+        : '아직 맞지 않는 빈칸이 있어요. 힌트의 핵심 표현을 다시 확인해 보세요.';
     }
 
     const F_ROWS = 18;
@@ -571,6 +496,21 @@
     let fallingRunning = false;
     let fallingScore = 0;
     let fallingLines = 0;
+    let fallingSpeed = 'normal';
+    const speedMap = { slow: 850, normal: 550, fast: 300 };
+    const speedLabel = { slow: '느림', normal: '보통', fast: '빠름' };
+
+    function setFallingSpeed(speed) {
+      fallingSpeed = speed;
+      document.getElementById('falling-speed-label').textContent = speedLabel[speed];
+      ['slow', 'normal', 'fast'].forEach(function(s) {
+        document.getElementById('speed-' + s).classList.toggle('active-speed', s === speed);
+      });
+      if (fallingRunning) {
+        clearInterval(fallingTimer);
+        fallingTimer = setInterval(tickFalling, speedMap[fallingSpeed]);
+      }
+    }
 
     function resetFallingGame() {
       fBoard = Array.from({ length: F_ROWS }, function() { return Array(F_COLS).fill(0); });
@@ -581,6 +521,7 @@
       fallingTimer = null;
       spawnPiece();
       drawFalling();
+      setFallingSpeed(fallingSpeed);
       updateFallingInfo('시작/멈춤 버튼을 눌러 시작하세요.');
     }
 
@@ -609,74 +550,83 @@
     function drawFalling() {
       const board = document.getElementById('falling-board');
       board.innerHTML = '';
-      const view = fBoard.map(function(row) { return row.slice(); });
-
-      if (piece) {
-        piece.shape.forEach(function(row, r) {
-          row.forEach(function(value, c) {
-            if (value) {
-              const nr = piece.row + r;
-              const nc = piece.col + c;
-              if (nr >= 0 && nr < F_ROWS && nc >= 0 && nc < F_COLS) view[nr][nc] = 2;
-            }
-          });
-        });
-      }
 
       for (let r = 0; r < F_ROWS; r++) {
         for (let c = 0; c < F_COLS; c++) {
           const cell = document.createElement('div');
           cell.className = 'falling-cell';
-          if (view[r][c] === 1) cell.classList.add('falling-filled');
-          if (view[r][c] === 2) cell.classList.add('falling-current');
+          if (fBoard[r][c]) cell.classList.add('falling-filled');
+
+          if (piece) {
+            for (let pr = 0; pr < piece.shape.length; pr++) {
+              for (let pc = 0; pc < piece.shape[pr].length; pc++) {
+                if (piece.shape[pr][pc] && piece.row + pr === r && piece.col + pc === c) {
+                  cell.classList.add('falling-current');
+                }
+              }
+            }
+          }
           board.appendChild(cell);
         }
       }
+
+      document.getElementById('falling-score').textContent = fallingScore;
+      document.getElementById('falling-lines').textContent = fallingLines;
     }
 
-    function mergePiece() {
+    function updateFallingInfo(text) {
+      document.getElementById('falling-status').textContent = text;
+      drawFalling();
+    }
+
+    function lockPiece() {
       piece.shape.forEach(function(row, r) {
         row.forEach(function(value, c) {
-          if (value) {
-            fBoard[piece.row + r][piece.col + c] = 1;
-          }
+          if (value) fBoard[piece.row + r][piece.col + c] = 1;
         });
       });
+      clearLines();
+      spawnPiece();
     }
 
-    function clearFallingLines() {
-      let removed = 0;
+    function clearLines() {
+      let cleared = 0;
       fBoard = fBoard.filter(function(row) {
-        if (row.every(function(v) { return v === 1; })) {
-          removed++;
+        if (row.every(Boolean)) {
+          cleared++;
           return false;
         }
         return true;
       });
       while (fBoard.length < F_ROWS) fBoard.unshift(Array(F_COLS).fill(0));
-      if (removed > 0) {
-        fallingLines += removed;
-        fallingScore += removed * 100;
-      }
+      fallingLines += cleared;
+      fallingScore += cleared * 100;
     }
 
-    function fallingStep() {
+    function tickFalling() {
       if (!piece) return;
       if (canPlace(piece.shape, piece.row + 1, piece.col)) {
         piece.row++;
       } else {
-        mergePiece();
-        clearFallingLines();
-        spawnPiece();
+        lockPiece();
       }
       drawFalling();
-      updateFallingInfo();
     }
 
-    function movePiece(delta) {
-      if (!piece) return;
-      if (canPlace(piece.shape, piece.row, piece.col + delta)) {
-        piece.col += delta;
+    function toggleFallingGame() {
+      fallingRunning = !fallingRunning;
+      if (fallingRunning) {
+        fallingTimer = setInterval(tickFalling, speedMap[fallingSpeed]);
+        updateFallingInfo('진행 중입니다. 속도를 바꾸면 바로 적용됩니다.');
+      } else {
+        clearInterval(fallingTimer);
+        updateFallingInfo('일시정지 상태입니다.');
+      }
+    }
+
+    function movePiece(direction) {
+      if (piece && canPlace(piece.shape, piece.row, piece.col + direction)) {
+        piece.col += direction;
         drawFalling();
       }
     }
@@ -693,145 +643,97 @@
     }
 
     function softDrop() {
-      fallingStep();
+      if (piece && canPlace(piece.shape, piece.row + 1, piece.col)) {
+        piece.row++;
+        drawFalling();
+      }
     }
 
     function hardDrop() {
       if (!piece) return;
-      while (canPlace(piece.shape, piece.row + 1, piece.col)) {
-        piece.row++;
-      }
-      fallingStep();
+      while (canPlace(piece.shape, piece.row + 1, piece.col)) piece.row++;
+      lockPiece();
+      drawFalling();
     }
 
-    function toggleFallingGame() {
-      fallingRunning = !fallingRunning;
-      if (fallingRunning) {
-        if (fallingTimer) clearInterval(fallingTimer);
-        fallingTimer = setInterval(fallingStep, 700);
-        updateFallingInfo('진행 중입니다. 핸드폰 버튼으로 조작하세요.');
+    let dinoRunning = false;
+    let dinoTimer = null;
+    let dinoY = 0;
+    let dinoVelocity = 0;
+    let obstacleX = 420;
+    let dinoScore = 0;
+
+    function resetDinoGame() {
+      dinoRunning = false;
+      if (dinoTimer) clearInterval(dinoTimer);
+      dinoTimer = null;
+      dinoY = 0;
+      dinoVelocity = 0;
+      obstacleX = 420;
+      dinoScore = 0;
+      drawDino();
+      document.getElementById('dino-status').textContent = '시작 버튼을 누른 뒤 장애물을 피해 점프하세요.';
+    }
+
+    function toggleDinoGame() {
+      dinoRunning = !dinoRunning;
+      if (dinoRunning) {
+        if (dinoTimer) clearInterval(dinoTimer);
+        dinoTimer = setInterval(tickDino, 25);
+        document.getElementById('dino-status').textContent = '진행 중입니다. 장애물이 오면 점프하세요.';
       } else {
-        if (fallingTimer) clearInterval(fallingTimer);
-        fallingTimer = null;
-        updateFallingInfo('일시정지되었습니다.');
+        if (dinoTimer) clearInterval(dinoTimer);
+        document.getElementById('dino-status').textContent = '일시정지 상태입니다.';
       }
     }
 
-    function updateFallingInfo(message) {
-      document.getElementById('falling-score').textContent = fallingScore;
-      document.getElementById('falling-lines').textContent = fallingLines;
-      if (message) document.getElementById('falling-status').textContent = message;
+    function dinoJump() {
+      if (!dinoRunning) return;
+      if (dinoY === 0) dinoVelocity = 13;
     }
 
-    let board2048 = [];
-    let score2048 = 0;
+    function tickDino() {
+      dinoVelocity -= 0.7;
+      dinoY += dinoVelocity;
+      if (dinoY < 0) {
+        dinoY = 0;
+        dinoVelocity = 0;
+      }
 
-    function reset2048() {
-      board2048 = Array.from({ length: 4 }, function() { return Array(4).fill(0); });
-      score2048 = 0;
-      addTile2048();
-      addTile2048();
-      draw2048();
-      document.getElementById('status2048').textContent = '같은 숫자를 합쳐 2048을 만들어 보세요.';
+      obstacleX -= 6;
+      if (obstacleX < -30) {
+        obstacleX = 500;
+        dinoScore += 10;
+      }
+
+      if (obstacleX > 38 && obstacleX < 78 && dinoY < 28) {
+        dinoRunning = false;
+        clearInterval(dinoTimer);
+        document.getElementById('dino-status').textContent = '부딪혔습니다. 다시 버튼을 눌러 재도전하세요.';
+      }
+
+      dinoScore += 1;
+      drawDino();
     }
 
-    function addTile2048() {
-      const empty = [];
-      for (let r = 0; r < 4; r++) {
-        for (let c = 0; c < 4; c++) {
-          if (board2048[r][c] === 0) empty.push([r, c]);
-        }
-      }
-      if (empty.length === 0) return;
-      const spot = empty[Math.floor(Math.random() * empty.length)];
-      board2048[spot[0]][spot[1]] = Math.random() < 0.9 ? 2 : 4;
+    function drawDino() {
+      document.getElementById('dino-player').style.bottom = (42 + dinoY) + 'px';
+      document.getElementById('dino-obstacle').style.left = obstacleX + 'px';
+      document.getElementById('dino-score').textContent = dinoScore;
     }
-
-    function draw2048() {
-      const board = document.getElementById('board2048');
-      board.innerHTML = '';
-      document.getElementById('score2048').textContent = score2048;
-
-      for (let r = 0; r < 4; r++) {
-        for (let c = 0; c < 4; c++) {
-          const tile = document.createElement('div');
-          const value = board2048[r][c];
-          tile.className = 'tile2048' + (value ? ' v' + value : '');
-          tile.textContent = value || '';
-          board.appendChild(tile);
-        }
-      }
-    }
-
-    function slideLine(line) {
-      const filtered = line.filter(function(v) { return v !== 0; });
-      const result = [];
-      for (let i = 0; i < filtered.length; i++) {
-        if (filtered[i] === filtered[i + 1]) {
-          const merged = filtered[i] * 2;
-          result.push(merged);
-          score2048 += merged;
-          i++;
-        } else {
-          result.push(filtered[i]);
-        }
-      }
-      while (result.length < 4) result.push(0);
-      return result;
-    }
-
-    function move2048(direction) {
-      const before = JSON.stringify(board2048);
-
-      if (direction === 'left') {
-        board2048 = board2048.map(slideLine);
-      }
-      if (direction === 'right') {
-        board2048 = board2048.map(function(row) { return slideLine(row.slice().reverse()).reverse(); });
-      }
-      if (direction === 'up' || direction === 'down') {
-        for (let c = 0; c < 4; c++) {
-          let col = [];
-          for (let r = 0; r < 4; r++) col.push(board2048[r][c]);
-          if (direction === 'down') col.reverse();
-          col = slideLine(col);
-          if (direction === 'down') col.reverse();
-          for (let r = 0; r < 4; r++) board2048[r][c] = col[r];
-        }
-      }
-
-      if (JSON.stringify(board2048) !== before) {
-        addTile2048();
-        draw2048();
-      }
-    }
-
-    let touchStartX = 0;
-    let touchStartY = 0;
-    const board2048Element = document.getElementById('board2048');
-    board2048Element.addEventListener('touchstart', function(e) {
-      touchStartX = e.touches[0].clientX;
-      touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-
-    board2048Element.addEventListener('touchend', function(e) {
-      const dx = e.changedTouches[0].clientX - touchStartX;
-      const dy = e.changedTouches[0].clientY - touchStartY;
-      if (Math.abs(dx) < 30 && Math.abs(dy) < 30) return;
-      if (Math.abs(dx) > Math.abs(dy)) move2048(dx > 0 ? 'right' : 'left');
-      else move2048(dy > 0 ? 'down' : 'up');
-    }, { passive: true });
 
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'ArrowLeft') { movePiece(-1); move2048('left'); }
-      if (e.key === 'ArrowRight') { movePiece(1); move2048('right'); }
-      if (e.key === 'ArrowUp') { rotatePiece(); move2048('up'); }
-      if (e.key === 'ArrowDown') { softDrop(); move2048('down'); }
+      if (e.key === 'ArrowLeft') movePiece(-1);
+      if (e.key === 'ArrowRight') movePiece(1);
+      if (e.key === 'ArrowUp') rotatePiece();
+      if (e.key === 'ArrowDown') softDrop();
+      if (e.key === ' ' || e.key === 'Spacebar') dinoJump();
     });
 
     resetCrossword();
+    setFallingSpeed('normal');
     resetFallingGame();
-    reset2048();
+    resetDinoGame();
   </script>
 </body>
 </html>
