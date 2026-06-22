@@ -311,8 +311,8 @@
 
     .common-cw-cell,
     .common-cw-empty {
-      width: 34px;
-      height: 34px;
+      width: var(--common-cell-size, 34px);
+      height: var(--common-cell-size, 34px);
       border-radius: 7px;
       box-sizing: border-box;
     }
@@ -330,9 +330,9 @@
       outline: none;
       background: transparent;
       text-align: center;
-      font-size: 18px;
+      font-size: var(--common-font-size, 18px);
       font-weight: bold;
-      padding-top: 8px;
+      padding-top: 6px;
       text-transform: uppercase;
     }
 
@@ -340,7 +340,7 @@
       position: absolute;
       top: 2px;
       left: 4px;
-      font-size: 9px;
+      font-size: var(--common-num-size, 9px);
       font-weight: bold;
       color: #8b7357;
       line-height: 1;
@@ -866,6 +866,8 @@
             input.dataset.key = key;
             input.dataset.nextKey = cell.nextKey || '';
             input.setAttribute('aria-label', '낱말 맞추기 빈칸');
+            input.addEventListener('compositionstart', function() { input.dataset.composing = '1'; });
+            input.addEventListener('compositionend', function() { input.dataset.composing = '0'; handleCrosswordInput({ target: input }); });
             input.addEventListener('input', handleCrosswordInput);
             crosswordInputs.push(input);
             crosswordInputMap[key] = input;
@@ -877,6 +879,8 @@
 
     function handleCrosswordInput(e) {
       const input = e.target;
+      if (input.dataset.composing === '1') return;
+      input.value = input.value.trim().slice(0, 1);
       if (input.value.trim() === input.dataset.answer) {
         input.style.borderColor = '#8aa36f';
         const nextKey = input.dataset.nextKey;
@@ -1030,6 +1034,14 @@
       renderCommonCrossword(currentCommonSubject);
     }
 
+    function getCommonCellSize(size) {
+      const viewport = Math.max(280, window.innerWidth || 360);
+      const available = Math.min(620, viewport - 52);
+      const gapSpace = (size - 1) * 3 + 16;
+      const raw = Math.floor((available - gapSpace) / size);
+      return Math.max(18, Math.min(34, raw));
+    }
+
     function renderCommonCrossword(subject) {
       currentCommonSubject = subject;
       const puzzle = commonCrosswordPuzzles[subject];
@@ -1045,7 +1057,11 @@
         btn.classList.toggle('active', btn.dataset.subject === subject);
       });
       grid.innerHTML = '';
-      grid.style.gridTemplateColumns = 'repeat(' + puzzle.size + ', 34px)';
+      const cellSize = getCommonCellSize(puzzle.size);
+      grid.style.setProperty('--common-cell-size', cellSize + 'px');
+      grid.style.setProperty('--common-font-size', Math.max(13, Math.floor(cellSize * 0.52)) + 'px');
+      grid.style.setProperty('--common-num-size', Math.max(7, Math.floor(cellSize * 0.28)) + 'px');
+      grid.style.gridTemplateColumns = 'repeat(' + puzzle.size + ', ' + cellSize + 'px)';
       commonInputs = [];
       for (let r = 0; r < puzzle.size; r++) {
         for (let c = 0; c < puzzle.size; c++) {
@@ -1067,11 +1083,12 @@
             const input = document.createElement('input');
             input.maxLength = 1;
             input.dataset.answer = answer;
-            input.addEventListener('input', function(e) {
-              e.target.value = e.target.value.toUpperCase();
-              const index = commonInputs.indexOf(e.target);
-              if (e.target.value && commonInputs[index + 1]) commonInputs[index + 1].focus();
+            input.addEventListener('compositionstart', function() { input.dataset.composing = '1'; });
+            input.addEventListener('compositionend', function(e) {
+              input.dataset.composing = '0';
+              normalizeCommonInput(e);
             });
+            input.addEventListener('input', normalizeCommonInput);
             cell.appendChild(input);
             commonInputs.push(input);
             grid.appendChild(cell);
@@ -1085,6 +1102,14 @@
         p.textContent = entry.num + '. ' + entry.clue + ' (' + entry.word.length + '글자)';
         if (entry.dir === 'A') across.appendChild(p); else down.appendChild(p);
       });
+    }
+
+    function normalizeCommonInput(e) {
+      const input = e.target;
+      if (input.dataset.composing === '1') return;
+      const value = input.value.trim().toUpperCase().slice(0, 1);
+      input.value = value;
+      input.parentElement.classList.remove('correct', 'wrong', 'revealed');
     }
 
     function checkCommonCrossword() {
@@ -1442,6 +1467,11 @@
       document.getElementById('adventure-stars').textContent = starsCollected;
       document.getElementById('adventure-growth').textContent = stage.label;
     }
+
+    window.addEventListener('resize', function() {
+      const panel = document.getElementById('common-crossword-game');
+      if (panel && panel.classList.contains('active')) renderCommonCrossword(currentCommonSubject);
+    });
 
     document.addEventListener('keydown' , function(e) {
       if (e.key === 'ArrowLeft') movePiece(-1);
