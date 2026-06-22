@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>머무름 쉼표 | 스테이The머무름</title>
-  <meta name="description" content="스테이The머무름 수험생을 위한 짧은 쉬어가기 게임 페이지입니다. 숫자 순서 터치, 미니 스도쿠, 시험 낱말 맞추기를 즐길 수 있습니다.">
-  <meta name="keywords" content="수험생 쉬어가기, 수험생 게임, 머무름 쉼표, 노량진 수험생 고시원, 시험 낱말 맞추기, 미니 스도쿠">
+  <meta name="description" content="스테이The머무름 수험생을 위한 짧은 쉬어가기 게임 페이지입니다. 가로세로 낱말 맞추기, 차량 탈출 퍼즐, 블록 쌓기 퍼즐을 즐길 수 있습니다.">
+  <meta name="keywords" content="수험생 쉬어가기, 수험생 게임, 머무름 쉼표, 가로세로 낱말 맞추기, 차량 탈출 퍼즐, 블록 쌓기 퍼즐, 노량진 수험생 고시원">
 
   <link rel="stylesheet" href="style.css">
 
@@ -31,85 +31,206 @@
       display: block;
     }
 
-    .number-board {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      max-width: 360px;
-      margin: 18px auto;
-    }
-
-    .number-board button,
-    .choice-button,
-    .sudoku-cell {
-      min-height: 46px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      background: white;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .number-board button.done {
-      background: #dce8d4;
-      color: #777;
-      cursor: default;
-    }
-
-    .choice-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .choice-button {
-      text-align: center;
-      padding: 12px;
-      font-size: 15px;
-    }
-
-    .sudoku-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 54px);
-      gap: 8px;
-      justify-content: center;
-      margin: 18px auto;
-    }
-
-    .sudoku-cell {
-      text-align: center;
-      width: 54px;
-      height: 54px;
-    }
-
-    .sudoku-cell.fixed {
-      background: #eef4ea;
-      color: #2f3b2f;
-      cursor: default;
-    }
-
     .game-status {
       text-align: center;
       font-weight: bold;
       color: #2f3b2f;
+      margin-top: 12px;
+    }
+
+    .crossword-wrap {
+      overflow-x: auto;
+    }
+
+    .crossword-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 42px);
+      gap: 5px;
+      justify-content: center;
+      margin: 18px auto;
+    }
+
+    .cw-cell {
+      width: 42px;
+      height: 42px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: white;
+    }
+
+    .cw-block {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background: #2f3b2f;
+    }
+
+    .clue-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .mini-board {
+      display: grid;
+      grid-template-columns: repeat(6, 48px);
+      grid-template-rows: repeat(6, 48px);
+      gap: 4px;
+      justify-content: center;
+      margin: 18px auto;
+      position: relative;
+    }
+
+    .road-cell {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .vehicle {
+      cursor: pointer;
+      color: white;
+      border: none;
+      font-weight: bold;
+    }
+
+    .selected-car {
+      outline: 3px solid #e8b45c;
+    }
+
+    .exit-cell {
+      background: #eef4ea;
+      border: 2px dashed #5f6f58;
+      color: #5f6f58;
+    }
+
+    .move-buttons {
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .move-buttons button,
+    .small-game-button {
+      margin: 4px;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 9px;
+      background: #2f3b2f;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .block-game-info {
+      text-align: center;
+      font-weight: bold;
       margin-top: 10px;
+    }
+
+    .block-board {
+      display: grid;
+      grid-template-columns: repeat(7, 38px);
+      grid-template-rows: repeat(10, 38px);
+      gap: 4px;
+      justify-content: center;
+      margin: 18px auto;
+    }
+
+    .block-cell {
+      width: 38px;
+      height: 38px;
+      border-radius: 7px;
+      border: 1px solid #ddd;
+      background: #fff;
+    }
+
+    .block-filled {
+      background: #5f6f58;
+    }
+
+    .block-current {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #eef4ea;
+      color: #2f3b2f;
+      font-weight: bold;
+    }
+
+    .column-buttons {
+      display: grid;
+      grid-template-columns: repeat(7, 38px);
+      gap: 4px;
+      justify-content: center;
+      margin: 8px auto;
+    }
+
+    .column-buttons button {
+      width: 38px;
+      height: 34px;
+      border: none;
+      border-radius: 7px;
+      background: #7a6a4f;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     @media (max-width: 700px) {
       .game-menu,
-      .choice-list {
+      .clue-grid {
         grid-template-columns: 1fr;
       }
 
-      .sudoku-grid {
-        grid-template-columns: repeat(4, 46px);
+      .crossword-grid {
+        grid-template-columns: repeat(6, 36px);
       }
 
-      .sudoku-cell {
-        width: 46px;
-        height: 46px;
+      .cw-cell,
+      .cw-block {
+        width: 36px;
+        height: 36px;
+        font-size: 17px;
+      }
+
+      .mini-board {
+        grid-template-columns: repeat(6, 40px);
+        grid-template-rows: repeat(6, 40px);
+      }
+
+      .road-cell {
+        width: 40px;
+        height: 40px;
+        font-size: 13px;
+      }
+
+      .block-board {
+        grid-template-columns: repeat(7, 34px);
+        grid-template-rows: repeat(10, 34px);
+      }
+
+      .block-cell {
+        width: 34px;
+        height: 34px;
+      }
+
+      .column-buttons {
+        grid-template-columns: repeat(7, 34px);
+      }
+
+      .column-buttons button {
+        width: 34px;
       }
     }
   </style>
@@ -118,7 +239,7 @@
 <body>
   <header class="sub-header">
     <h1>머무름 쉼표</h1>
-    <p>공부하다 잠깐 머리를 식히고 싶을 때, 1~3분 정도 가볍게 즐기는 쉬어가기 공간입니다.</p>
+    <p>공부하다 잠깐 머리를 식히고 싶을 때 즐기는 수험생 쉬어가기 게임입니다.</p>
 
     <div class="button-wrap">
       <a class="button sub" href="index.html">홈페이지로 돌아가기</a>
@@ -140,68 +261,98 @@
   <section>
     <h2>수험생을 위한 짧은 쉼표</h2>
     <p>
-      오래 붙잡는 게임보다 짧게 집중을 전환하고 다시 공부로 돌아갈 수 있는 게임으로 구성했습니다.
-      너무 오래 하기보다는 1~3분 정도 가볍게 즐겨보세요.
+      너무 오래 붙잡는 게임보다 짧게 집중을 전환하고 다시 공부로 돌아갈 수 있는 게임으로 구성했습니다.
+      가볍게 즐기고 다시 공부 리듬을 이어가 보세요.
     </p>
 
     <div class="game-menu">
       <div class="card">
-        <strong>숫자 순서 터치</strong>
-        <p>흩어진 숫자를 1부터 순서대로 눌러 집중력을 깨워보세요.</p>
-        <button class="button" type="button" onclick="showGame('number-game')">시작하기</button>
+        <strong>가로세로 낱말 맞추기</strong>
+        <p>법원직·공무원 시험 관련 용어를 가볍게 확인하는 낱말 퍼즐입니다.</p>
+        <button class="button" type="button" onclick="showGame('crossword-game')">시작하기</button>
       </div>
 
       <div class="card">
-        <strong>시험 낱말 맞추기</strong>
-        <p>시험에 자주 나오는 단어와 용어를 가볍게 확인해 보세요.</p>
-        <button class="button" type="button" onclick="showGame('word-game')">시작하기</button>
+        <strong>차량 탈출 퍼즐</strong>
+        <p>막힌 길을 비켜 빨간 차량을 출구까지 이동시키는 퍼즐입니다.</p>
+        <button class="button" type="button" onclick="showGame('car-game')">시작하기</button>
       </div>
 
       <div class="card">
-        <strong>미니 스도쿠</strong>
-        <p>4×4 미니 스도쿠로 잠깐 머리를 전환해 보세요.</p>
-        <button class="button" type="button" onclick="showGame('sudoku-game')">시작하기</button>
+        <strong>블록 쌓기 퍼즐</strong>
+        <p>블록을 쌓고 줄을 지우며 짧게 머리를 전환하는 퍼즐입니다.</p>
+        <button class="button" type="button" onclick="showGame('block-game')">시작하기</button>
       </div>
     </div>
   </section>
 
-  <section id="number-game" class="game-panel active">
-    <h2>숫자 순서 터치</h2>
-    <p>1부터 16까지 순서대로 눌러보세요.</p>
-    <div class="game-status" id="number-status">다음 숫자: 1</div>
-    <div class="number-board" id="number-board"></div>
-    <div class="button-wrap" style="text-align:center;">
-      <button class="button sub" type="button" onclick="startNumberGame()">다시 시작</button>
+  <section id="crossword-game" class="game-panel active">
+    <h2>가로세로 낱말 맞추기</h2>
+    <p>힌트를 보고 빈칸에 알맞은 글자를 입력해 보세요.</p>
+
+    <div class="crossword-wrap">
+      <div class="crossword-grid" id="crossword-grid"></div>
     </div>
+
+    <div class="clue-grid">
+      <div class="info-box">
+        <strong>가로</strong>
+        <p>1. 사법 관계의 기본 법률</p>
+        <p>2. 서로 권리·의무를 약속하는 법률행위</p>
+        <p>3. 법원이 사건에 대해 내리는 판단</p>
+        <p>4. 사실을 뒷받침하는 자료</p>
+      </div>
+
+      <div class="info-box">
+        <strong>세로</strong>
+        <p>1. 개인 간 권리관계를 다루는 사건 성격</p>
+        <p>2. 재판과 소송을 담당하는 기관</p>
+        <p>3. 법원에 권리 구제를 구하는 절차</p>
+        <p>4. 어떤 사실을 증거로 밝히는 것</p>
+      </div>
+    </div>
+
+    <div class="button-wrap" style="text-align:center;">
+      <button class="button" type="button" onclick="checkCrossword()">정답 확인</button>
+      <button class="button sub" type="button" onclick="resetCrossword()">다시 시작</button>
+    </div>
+
+    <div class="game-status" id="crossword-status">빈칸을 채운 뒤 정답 확인을 눌러보세요.</div>
   </section>
 
-  <section id="word-game" class="game-panel">
-    <h2>시험 낱말 맞추기</h2>
-    <p id="word-question">문제가 표시됩니다.</p>
-    <div class="choice-list" id="choice-list"></div>
-    <div class="game-status" id="word-status">정답을 골라보세요.</div>
-    <div class="button-wrap" style="text-align:center;">
-      <button class="button sub" type="button" onclick="nextWordQuestion()">다음 문제</button>
+  <section id="car-game" class="game-panel">
+    <h2>차량 탈출 퍼즐</h2>
+    <p>차량을 선택한 뒤 방향 버튼으로 움직여 빨간 차량 X를 오른쪽 출구까지 이동해 보세요.</p>
+
+    <div class="mini-board" id="car-board"></div>
+
+    <div class="move-buttons">
+      <button type="button" onclick="moveCar('up')">위</button>
+      <button type="button" onclick="moveCar('left')">왼쪽</button>
+      <button type="button" onclick="moveCar('right')">오른쪽</button>
+      <button type="button" onclick="moveCar('down')">아래</button>
+      <button type="button" onclick="resetCarGame()">다시 시작</button>
     </div>
+
+    <div class="game-status" id="car-status">먼저 차량을 선택하세요. 목표는 빨간 차량 X를 오른쪽 출구까지 보내는 것입니다.</div>
   </section>
 
-  <section id="sudoku-game" class="game-panel">
-    <h2>미니 스도쿠</h2>
-    <p>가로, 세로에 1~4가 한 번씩 들어가도록 채워보세요.</p>
-    <div class="sudoku-grid" id="sudoku-grid"></div>
-    <div class="game-status" id="sudoku-status">빈칸을 채운 뒤 정답 확인을 눌러보세요.</div>
-    <div class="button-wrap" style="text-align:center;">
-      <button class="button" type="button" onclick="checkSudoku()">정답 확인</button>
-      <button class="button sub" type="button" onclick="resetSudoku()">다시 시작</button>
-    </div>
-  </section>
+  <section id="block-game" class="game-panel">
+    <h2>블록 쌓기 퍼즐</h2>
+    <p>현재 블록을 원하는 칸에 떨어뜨려 줄을 완성해 보세요. 한 줄이 꽉 차면 사라집니다.</p>
 
-  <section>
-    <h2>추가 예정 게임</h2>
-    <p>
-      반응이 좋으면 차량 탈출 퍼즐, 길 연결 퍼즐, 블록 정리 퍼즐 같은 게임도 추가할 수 있습니다.
-      단, 특정 게임명이나 화면을 그대로 따라 하기보다는 머무름만의 가벼운 퍼즐 형태로 제작하는 것이 좋습니다.
-    </p>
+    <div class="block-game-info">
+      현재 블록: <span class="block-current" id="current-block-name">1칸 블록</span>
+    </div>
+
+    <div class="block-board" id="block-board"></div>
+    <div class="column-buttons" id="column-buttons"></div>
+
+    <div class="button-wrap" style="text-align:center;">
+      <button class="button sub" type="button" onclick="resetBlockGame()">다시 시작</button>
+    </div>
+
+    <div class="game-status" id="block-status">원하는 열 번호를 눌러 블록을 떨어뜨려 보세요.</div>
   </section>
 
   <footer>
@@ -220,161 +371,284 @@
       document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    let nextNumber = 1;
-    let numberStartTime = null;
-
-    function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
-
-    function startNumberGame() {
-      nextNumber = 1;
-      numberStartTime = Date.now();
-      const board = document.getElementById('number-board');
-      const status = document.getElementById('number-status');
-      board.innerHTML = '';
-      status.textContent = '다음 숫자: 1';
-
-      shuffle(Array.from({ length: 16 }, function(_, i) { return i + 1; })).forEach(function(num) {
-        const btn = document.createElement('button');
-        btn.textContent = num;
-        btn.type = 'button';
-        btn.onclick = function() {
-          if (num === nextNumber) {
-            btn.classList.add('done');
-            btn.disabled = true;
-            nextNumber++;
-
-            if (nextNumber > 16) {
-              const seconds = ((Date.now() - numberStartTime) / 1000).toFixed(1);
-              status.textContent = '완료! 기록: ' + seconds + '초';
-            } else {
-              status.textContent = '다음 숫자: ' + nextNumber;
-            }
-          }
-        };
-        board.appendChild(btn);
-      });
-    }
-
-    const wordQuestions = [
-      {
-        question: '민법에서 권리와 의무의 주체가 되는 지위를 뜻하는 말은?',
-        answer: '권리능력',
-        choices: ['권리능력', '변제', '소송능력', '청구취지']
-      },
-      {
-        question: '소송에서 원고가 법원에 구하는 판단의 내용을 뜻하는 말은?',
-        answer: '청구취지',
-        choices: ['청구취지', '기각', '상계', '착오']
-      },
-      {
-        question: '영어 지문에서 글의 중심 생각을 뜻하는 표현은?',
-        answer: 'main idea',
-        choices: ['main idea', 'receipt', 'deadline', 'evidence']
-      },
-      {
-        question: '계약에서 당사자가 서로 주고받는 약속을 뜻하는 영어 단어는?',
-        answer: 'agreement',
-        choices: ['agreement', 'weather', 'distance', 'silence']
-      },
-      {
-        question: '법원직 영어 독해에서 글의 흐름상 알맞은 문장을 찾는 문제와 관련 깊은 표현은?',
-        answer: 'context',
-        choices: ['context', 'accident', 'furniture', 'temperature']
-      }
+    const crosswordAnswer = [
+      ['민', '법', '#', '#', '#', '#'],
+      ['사', '원', '#', '소', '#', '#'],
+      ['#', '#', '#', '송', '#', '#'],
+      ['계', '약', '#', '#', '#', '#'],
+      ['판', '결', '#', '증', '거', '#'],
+      ['#', '#', '#', '명', '#', '#']
     ];
 
-    let currentWordIndex = -1;
-    let wordScore = 0;
-
-    function nextWordQuestion() {
-      currentWordIndex = (currentWordIndex + 1) % wordQuestions.length;
-      const q = wordQuestions[currentWordIndex];
-      document.getElementById('word-question').textContent = 'Q. ' + q.question;
-      document.getElementById('word-status').textContent = '정답을 골라보세요. 현재 점수: ' + wordScore;
-
-      const list = document.getElementById('choice-list');
-      list.innerHTML = '';
-
-      shuffle(q.choices.slice()).forEach(function(choice) {
-        const btn = document.createElement('button');
-        btn.className = 'choice-button';
-        btn.type = 'button';
-        btn.textContent = choice;
-        btn.onclick = function() {
-          if (choice === q.answer) {
-            wordScore++;
-            document.getElementById('word-status').textContent = '정답입니다! 현재 점수: ' + wordScore;
-          } else {
-            document.getElementById('word-status').textContent = '아쉬워요. 정답은 ' + q.answer + '입니다.';
-          }
-        };
-        list.appendChild(btn);
-      });
-    }
-
-    const sudokuPuzzle = [
-      [1, 0, 0, 4],
-      [0, 4, 1, 0],
-      [0, 1, 4, 0],
-      [4, 0, 0, 1]
-    ];
-
-    const sudokuAnswer = [
-      [1, 2, 3, 4],
-      [3, 4, 1, 2],
-      [2, 1, 4, 3],
-      [4, 3, 2, 1]
-    ];
-
-    function resetSudoku() {
-      const grid = document.getElementById('sudoku-grid');
+    function buildCrossword() {
+      const grid = document.getElementById('crossword-grid');
       grid.innerHTML = '';
-      document.getElementById('sudoku-status').textContent = '빈칸을 채운 뒤 정답 확인을 눌러보세요.';
 
-      sudokuPuzzle.forEach(function(row, r) {
+      crosswordAnswer.forEach(function(row, r) {
         row.forEach(function(value, c) {
-          const input = document.createElement('input');
-          input.className = 'sudoku-cell';
-          input.maxLength = 1;
-          input.inputMode = 'numeric';
-          input.dataset.r = r;
-          input.dataset.c = c;
-
-          if (value !== 0) {
-            input.value = value;
-            input.disabled = true;
-            input.classList.add('fixed');
+          if (value === '#') {
+            const block = document.createElement('div');
+            block.className = 'cw-block';
+            grid.appendChild(block);
+          } else {
+            const input = document.createElement('input');
+            input.className = 'cw-cell';
+            input.maxLength = 1;
+            input.dataset.r = r;
+            input.dataset.c = c;
+            grid.appendChild(input);
           }
-
-          grid.appendChild(input);
         });
       });
     }
 
-    function checkSudoku() {
+    function resetCrossword() {
+      buildCrossword();
+      document.getElementById('crossword-status').textContent = '빈칸을 채운 뒤 정답 확인을 눌러보세요.';
+    }
+
+    function checkCrossword() {
       let correct = true;
-      document.querySelectorAll('.sudoku-cell').forEach(function(input) {
+
+      document.querySelectorAll('.cw-cell').forEach(function(input) {
         const r = Number(input.dataset.r);
         const c = Number(input.dataset.c);
-        if (Number(input.value) !== sudokuAnswer[r][c]) {
+        if (input.value.trim() !== crosswordAnswer[r][c]) {
           correct = false;
         }
       });
 
-      document.getElementById('sudoku-status').textContent = correct
+      document.getElementById('crossword-status').textContent = correct
         ? '정답입니다! 잠깐 쉬었으니 다시 공부 리듬을 이어가 보세요.'
-        : '아직 맞지 않는 칸이 있어요. 다시 확인해 보세요.';
+        : '아직 맞지 않는 칸이 있어요. 힌트를 다시 확인해 보세요.';
     }
 
-    startNumberGame();
-    nextWordQuestion();
-    resetSudoku();
+    const initialCars = {
+      X: { row: 2, col: 0, len: 2, dir: 'h', color: '#b45145' },
+      A: { row: 1, col: 3, len: 2, dir: 'v', color: '#5f6f58' },
+      B: { row: 0, col: 0, len: 2, dir: 'h', color: '#7a6a4f' },
+      C: { row: 3, col: 4, len: 2, dir: 'v', color: '#6b7f9b' },
+      D: { row: 4, col: 0, len: 2, dir: 'h', color: '#9b7a52' }
+    };
+
+    let cars = {};
+    let selectedCar = null;
+
+    function cloneCars() {
+      cars = JSON.parse(JSON.stringify(initialCars));
+      selectedCar = null;
+    }
+
+    function carCells(car) {
+      const cells = [];
+      for (let i = 0; i < car.len; i++) {
+        cells.push({
+          row: car.row + (car.dir === 'v' ? i : 0),
+          col: car.col + (car.dir === 'h' ? i : 0)
+        });
+      }
+      return cells;
+    }
+
+    function occupiedMap(exceptKey) {
+      const map = {};
+      Object.keys(cars).forEach(function(key) {
+        if (key === exceptKey) return;
+        carCells(cars[key]).forEach(function(cell) {
+          map[cell.row + '-' + cell.col] = key;
+        });
+      });
+      return map;
+    }
+
+    function drawCarGame() {
+      const board = document.getElementById('car-board');
+      board.innerHTML = '';
+      const occ = occupiedMap(null);
+
+      for (let r = 0; r < 6; r++) {
+        for (let c = 0; c < 6; c++) {
+          const cell = document.createElement('div');
+          cell.className = 'road-cell';
+          if (r === 2 && c === 5) cell.classList.add('exit-cell');
+          const key = occ[r + '-' + c];
+
+          if (key) {
+            cell.textContent = key;
+            cell.style.background = cars[key].color;
+            cell.classList.add('vehicle');
+            if (selectedCar === key) cell.classList.add('selected-car');
+            cell.onclick = function() {
+              selectedCar = key;
+              document.getElementById('car-status').textContent = key + ' 차량이 선택되었습니다.';
+              drawCarGame();
+            };
+          } else if (r === 2 && c === 5) {
+            cell.textContent = '출구';
+          }
+          board.appendChild(cell);
+        }
+      }
+    }
+
+    function canMove(key, direction) {
+      const car = cars[key];
+      const map = occupiedMap(key);
+      let dr = 0, dc = 0;
+      if (direction === 'up') dr = -1;
+      if (direction === 'down') dr = 1;
+      if (direction === 'left') dc = -1;
+      if (direction === 'right') dc = 1;
+
+      if (car.dir === 'h' && (direction === 'up' || direction === 'down')) return false;
+      if (car.dir === 'v' && (direction === 'left' || direction === 'right')) return false;
+
+      return carCells(car).every(function(cell) {
+        const nr = cell.row + dr;
+        const nc = cell.col + dc;
+        return nr >= 0 && nr < 6 && nc >= 0 && nc < 6 && !map[nr + '-' + nc];
+      });
+    }
+
+    function moveCar(direction) {
+      if (!selectedCar) {
+        document.getElementById('car-status').textContent = '먼저 차량을 선택하세요.';
+        return;
+      }
+      if (!canMove(selectedCar, direction)) {
+        document.getElementById('car-status').textContent = '그 방향으로는 이동할 수 없습니다.';
+        return;
+      }
+
+      if (direction === 'up') cars[selectedCar].row--;
+      if (direction === 'down') cars[selectedCar].row++;
+      if (direction === 'left') cars[selectedCar].col--;
+      if (direction === 'right') cars[selectedCar].col++;
+
+      if (cars.X.row === 2 && cars.X.col >= 4) {
+        document.getElementById('car-status').textContent = '성공! 빨간 차량이 출구에 도착했습니다.';
+      } else {
+        document.getElementById('car-status').textContent = selectedCar + ' 차량을 이동했습니다.';
+      }
+      drawCarGame();
+    }
+
+    function resetCarGame() {
+      cloneCars();
+      drawCarGame();
+      document.getElementById('car-status').textContent = '먼저 차량을 선택하세요. 목표는 빨간 차량 X를 오른쪽 출구까지 보내는 것입니다.';
+    }
+
+    const blockRows = 10;
+    const blockCols = 7;
+    let blockBoard = [];
+    let currentBlock = 'single';
+    let clearedLines = 0;
+
+    function resetBlockGame() {
+      blockBoard = Array.from({ length: blockRows }, function() {
+        return Array(blockCols).fill(0);
+      });
+      clearedLines = 0;
+      pickBlock();
+      drawBlockGame();
+      document.getElementById('block-status').textContent = '원하는 열 번호를 눌러 블록을 떨어뜨려 보세요.';
+    }
+
+    function pickBlock() {
+      const blocks = ['single', 'double', 'wide'];
+      currentBlock = blocks[Math.floor(Math.random() * blocks.length)];
+      const name = currentBlock === 'single' ? '1칸 블록' : currentBlock === 'double' ? '세로 2칸 블록' : '가로 2칸 블록';
+      document.getElementById('current-block-name').textContent = name;
+    }
+
+    function drawBlockGame() {
+      const board = document.getElementById('block-board');
+      const buttons = document.getElementById('column-buttons');
+      board.innerHTML = '';
+      buttons.innerHTML = '';
+
+      for (let r = 0; r < blockRows; r++) {
+        for (let c = 0; c < blockCols; c++) {
+          const cell = document.createElement('div');
+          cell.className = 'block-cell';
+          if (blockBoard[r][c]) cell.classList.add('block-filled');
+          board.appendChild(cell);
+        }
+      }
+
+      for (let c = 0; c < blockCols; c++) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = c + 1;
+        btn.onclick = function() { dropBlock(c); };
+        buttons.appendChild(btn);
+      }
+    }
+
+    function findDropRow(col, height) {
+      for (let r = blockRows - 1; r >= 0; r--) {
+        let ok = true;
+        for (let h = 0; h < height; h++) {
+          if (r - h < 0 || blockBoard[r - h][col]) ok = false;
+        }
+        if (ok) return r;
+      }
+      return -1;
+    }
+
+    function dropBlock(col) {
+      if (currentBlock === 'wide') {
+        if (col >= blockCols - 1) {
+          document.getElementById('block-status').textContent = '가로 2칸 블록은 마지막 열에 놓을 수 없습니다.';
+          return;
+        }
+        for (let r = blockRows - 1; r >= 0; r--) {
+          if (!blockBoard[r][col] && !blockBoard[r][col + 1]) {
+            blockBoard[r][col] = 1;
+            blockBoard[r][col + 1] = 1;
+            afterBlockPlaced();
+            return;
+          }
+        }
+        document.getElementById('block-status').textContent = '그 열에는 놓을 수 없습니다.';
+        return;
+      }
+
+      const height = currentBlock === 'double' ? 2 : 1;
+      const row = findDropRow(col, height);
+      if (row < 0) {
+        document.getElementById('block-status').textContent = '그 열에는 놓을 수 없습니다.';
+        return;
+      }
+      for (let h = 0; h < height; h++) {
+        blockBoard[row - h][col] = 1;
+      }
+      afterBlockPlaced();
+    }
+
+    function afterBlockPlaced() {
+      clearLines();
+      pickBlock();
+      drawBlockGame();
+      document.getElementById('block-status').textContent = '지운 줄: ' + clearedLines + '줄';
+    }
+
+    function clearLines() {
+      const newBoard = blockBoard.filter(function(row) {
+        return !row.every(function(cell) { return cell === 1; });
+      });
+      const removed = blockRows - newBoard.length;
+      clearedLines += removed;
+      while (newBoard.length < blockRows) {
+        newBoard.unshift(Array(blockCols).fill(0));
+      }
+      blockBoard = newBoard;
+    }
+
+    buildCrossword();
+    resetCarGame();
+    resetBlockGame();
   </script>
 </body>
 </html>
