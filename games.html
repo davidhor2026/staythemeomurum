@@ -219,9 +219,61 @@
       color: #2f3b2f;
     }
 
+
+
+    .player-box {
+      background: #eef4ea;
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+
+    .player-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .player-row input {
+      min-height: 44px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 0 12px;
+      font-size: 16px;
+      min-width: 220px;
+    }
+
+    .leaderboard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .ranking-list {
+      margin: 10px 0 0;
+      padding-left: 20px;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .ranking-list li {
+      margin-bottom: 3px;
+    }
+
+    .ranking-note {
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+      margin-top: 8px;
+    }
+
     @media (max-width: 760px) {
       .game-menu,
-      .clue-grid { grid-template-columns: 1fr; }
+      .clue-grid,
+      .leaderboard-grid { grid-template-columns: 1fr; }
 
       .crossword-grid {
         grid-template-columns: repeat(9, 32px);
@@ -302,17 +354,52 @@
     </div>
   </section>
 
+
+  <section id="player-ranking">
+    <h2>닉네임과 전체 순위</h2>
+    <p>
+      게임 점수는 닉네임으로 기록됩니다. 방번호는 저장하지 않습니다.
+      순위는 게임별 최고 점수 기준으로 표시됩니다.
+    </p>
+
+    <div class="player-box">
+      <div class="player-row">
+        <input id="player-nickname" type="text" maxlength="20" placeholder="닉네임 입력 예: 민법왕">
+        <button class="button" type="button" onclick="saveNickname()">닉네임 저장</button>
+        <button class="button sub" type="button" onclick="loadAllLeaderboards()">순위 새로고침</button>
+      </div>
+      <p class="ranking-note" id="nickname-status">닉네임을 입력하지 않으면 ‘익명’으로 기록됩니다.</p>
+    </div>
+
+    <div class="leaderboard-grid">
+      <div class="info-box">
+        <strong>가로세로 낱말 맞추기 순위</strong>
+        <ol class="ranking-list" id="rank-crossword"><li>순위 불러오는 중...</li></ol>
+      </div>
+
+      <div class="info-box">
+        <strong>떨어지는 블록 퍼즐 순위</strong>
+        <ol class="ranking-list" id="rank-falling"><li>순위 불러오는 중...</li></ol>
+      </div>
+
+      <div class="info-box">
+        <strong>공룡 점프 어드벤처 순위</strong>
+        <ol class="ranking-list" id="rank-adventure"><li>순위 불러오는 중...</li></ol>
+      </div>
+    </div>
+  </section>
+
   <section id="crossword-game" class="game-panel active">
     <h2>가로세로 낱말 맞추기</h2>
     <p>
-      난이도를 높여 법률·시험 용어 중심으로 구성했습니다.
+      총 60세트로 구성했습니다. 한 세트를 모두 맞히면 자동으로 다음 세트로 넘어갑니다.
       정답 글자를 입력하면 자동으로 다음 빈칸으로 커서가 이동합니다.
     </p>
 
     <div class="hint-box">
-      <strong>난이도: 어려움</strong>
-      <p>정답은 3~5글자입니다. 공개된 첫 글자와 힌트를 함께 보고 빈칸을 채워보세요.</p>
-      <p>정답 글자를 정확히 입력하면 다음 빈칸으로 자동 이동합니다.</p>
+      <strong id="crossword-progress">1세트 / 총 60세트</strong>
+      <p>정답은 3~5글자입니다. 공개된 글자와 힌트를 함께 보고 빈칸을 채워보세요.</p>
+      <p>포기할 경우 전체 정답을 볼 수 있고, 다음 세트로 넘어갈 수도 있습니다.</p>
     </div>
 
     <div class="crossword-wrap">
@@ -320,30 +407,23 @@
     </div>
 
     <div class="clue-grid">
-      <div class="info-box">
+      <div class="info-box" id="clue-across">
         <strong>가로 힌트</strong>
-        <p>1. 법 _ _ 리 _ : 제한능력자 등을 대신해 법률행위를 하는 사람</p>
-        <p>2. 소 _ _ _ : 권리를 행사하지 않은 상태가 오래 계속되어 권리가 소멸하는 제도</p>
-        <p>3. 채 _ _ _ : 채권자가 채권을 제3자에게 이전하는 행위</p>
-        <p>4. 항 _ _ _ : 제1심 판결에 불복해 항소를 제기해야 하는 법정 기간</p>
       </div>
 
-      <div class="info-box">
+      <div class="info-box" id="clue-down">
         <strong>세로 힌트</strong>
-        <p>1. 불 _ _ _ : 통상 예상하거나 방지하기 어려운 외부적 사유</p>
-        <p>2. 기 _ _ : 확정판결의 판단에 당사자와 법원이 구속되는 효력</p>
-        <p>3. 변 _ _ _ : 재판자료의 제출 책임이 당사자에게 있다는 원칙</p>
-        <p>4. 증 _ _ _ : 사실이 불명확할 때 불이익을 부담하는 당사자의 책임</p>
       </div>
     </div>
 
     <div class="button-wrap" style="text-align:center;">
       <button class="button" type="button" onclick="checkCrossword()">정답 확인</button>
       <button class="button sub" type="button" onclick="showCrosswordAnswers()">포기하고 정답 보기</button>
+      <button class="button sub" type="button" onclick="nextCrosswordSet()">다음 세트</button>
       <button class="button sub" type="button" onclick="resetCrossword()">다시 시작</button>
     </div>
 
-    <div class="game-status" id="crossword-status">공개된 첫 글자와 힌트를 참고해 빈칸을 채워보세요.</div>
+    <div class="game-status" id="crossword-status">공개된 글자와 힌트를 참고해 빈칸을 채워보세요.</div>
   </section>
 
   <section id="falling-game" class="game-panel">
@@ -414,6 +494,96 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+
+    const RANKING_API_URL = 'https://script.google.com/macros/s/AKfycbx6cKKgOEYgkacGrwJf7bNJUO6BhocIgln-D5D-zL_LUBzMiYiqEz6-BWQxjZqyAjGoMw/exec';
+    const GAME_CROSSWORD = '가로세로 낱말 맞추기';
+    const GAME_FALLING = '떨어지는 블록 퍼즐';
+    const GAME_ADVENTURE = '공룡 점프 어드벤처';
+
+    function getNickname() {
+      const input = document.getElementById('player-nickname');
+      const value = input ? input.value.trim() : '';
+      return value || localStorage.getItem('meomurumNickname') || '익명';
+    }
+
+    function saveNickname() {
+      const input = document.getElementById('player-nickname');
+      const value = input.value.trim();
+      if (value) {
+        localStorage.setItem('meomurumNickname', value);
+        document.getElementById('nickname-status').textContent = '닉네임이 저장되었습니다: ' + value;
+      } else {
+        localStorage.removeItem('meomurumNickname');
+        document.getElementById('nickname-status').textContent = '닉네임을 입력하지 않으면 익명으로 기록됩니다.';
+      }
+    }
+
+    function initNickname() {
+      const saved = localStorage.getItem('meomurumNickname') || '';
+      document.getElementById('player-nickname').value = saved;
+      if (saved) document.getElementById('nickname-status').textContent = '현재 닉네임: ' + saved;
+    }
+
+    function submitScore(game, score, extra) {
+      const nickname = getNickname();
+      const payload = {
+        nickname: nickname,
+        game: game,
+        score: Math.max(0, Math.floor(Number(score) || 0)),
+        extra: extra || ''
+      };
+
+      try {
+        fetch(RANKING_API_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: JSON.stringify(payload)
+        });
+        setTimeout(loadAllLeaderboards, 1200);
+      } catch (error) {
+        console.log('score save failed', error);
+      }
+    }
+
+    function loadLeaderboard(game, elementId) {
+      const target = document.getElementById(elementId);
+      target.innerHTML = '<li>순위 불러오는 중...</li>';
+      const callbackName = 'rankingCallback_' + Math.random().toString(36).slice(2);
+      window[callbackName] = function(result) {
+        try {
+          const ranking = result && result.ranking ? result.ranking : [];
+          if (!ranking.length) {
+            target.innerHTML = '<li>아직 기록이 없습니다.</li>';
+          } else {
+            target.innerHTML = ranking.map(function(item) {
+              return '<li>' + escapeHtml(item.nickname || '익명') + ' - ' + Number(item.score || 0).toLocaleString() + '점</li>';
+            }).join('');
+          }
+        } finally {
+          delete window[callbackName];
+          if (script.parentNode) script.parentNode.removeChild(script);
+        }
+      };
+      const script = document.createElement('script');
+      script.src = RANKING_API_URL
+        + '?game=' + encodeURIComponent(game)
+        + '&limit=10&callback=' + callbackName
+        + '&t=' + Date.now();
+      document.body.appendChild(script);
+    }
+
+    function loadAllLeaderboards() {
+      loadLeaderboard(GAME_CROSSWORD, 'rank-crossword');
+      loadLeaderboard(GAME_FALLING, 'rank-falling');
+      loadLeaderboard(GAME_ADVENTURE, 'rank-adventure');
+    }
+
+    function escapeHtml(text) {
+      return String(text).replace(/[&<>"']/g, function(ch) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+      });
+    }
+
     function showGame(id) {
       document.querySelectorAll('.game-panel').forEach(function(panel) {
         panel.classList.remove('active');
@@ -423,28 +593,74 @@
     }
 
     const crosswordSize = 9;
-    const crosswordCells = {};
+    const crosswordSets = [{"title": "1세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "법정대리인", "reveal": [0, 3], "hint": "제한능력자 등을 대신해 법률행위를 하는 사람", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "소멸시효", "reveal": [0], "hint": "권리를 행사하지 않은 상태가 오래 계속되어 권리가 소멸하는 제도", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "채권양도", "reveal": [0], "hint": "채권자가 채권을 제3자에게 이전하는 행위", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "항소기간", "reveal": [0], "hint": "항소를 제기해야 하는 법정 기간", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "불가항력", "reveal": [0], "hint": "예상하거나 방지하기 어려운 외부적 사유", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "기판력", "reveal": [0], "hint": "확정판결의 판단에 당사자와 법원이 구속되는 효력", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "변론주의", "reveal": [0], "hint": "재판자료 제출 책임이 당사자에게 있다는 원칙", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "증명책임", "reveal": [0], "hint": "사실이 불명확할 때 불이익을 부담하는 책임", "label": "세로"}]}, {"title": "2세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "행정소송법", "reveal": [0, 3], "hint": "행정청 처분에 대한 소송 절차를 정한 법", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "계약해제", "reveal": [0], "hint": "계약을 처음부터 없었던 것처럼 되돌리는 의사표시", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "계약취소", "reveal": [0], "hint": "하자 있는 의사표시 등을 이유로 효력을 없애는 행위", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "기한이익", "reveal": [0], "hint": "정해진 기한까지 이행을 미룰 수 있는 이익", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "사정변경", "reveal": [0], "hint": "계약 당시와 달리 중대한 사정이 바뀐 경우", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "항소심", "reveal": [0], "hint": "제1심 판결에 대한 불복심", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "동시이행", "reveal": [0], "hint": "상대방 이행과 맞물려 자기 이행을 거절할 수 있는 항변", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "변제공탁", "reveal": [0], "hint": "채무자가 변제를 대신해 공탁하는 제도", "label": "세로"}]}, {"title": "3세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "민사소송법", "reveal": [0, 3], "hint": "민사 재판 절차를 정한 기본 법률", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "부당이득", "reveal": [0], "hint": "법률상 원인 없이 얻은 이익", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "불법행위", "reveal": [0], "hint": "고의 또는 과실로 타인에게 손해를 주는 행위", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "과실책임", "reveal": [0], "hint": "주의의무 위반을 근거로 지는 책임", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "공시송달", "reveal": [0], "hint": "상대방 주소 등을 알 수 없을 때 공시로 하는 송달", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "상고심", "reveal": [0], "hint": "항소심 판결에 대한 법률심", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "재판관할", "reveal": [0], "hint": "어느 법원이 사건을 맡을지 정하는 기준", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "관할법원", "reveal": [0], "hint": "사건을 담당할 권한이 있는 법원", "label": "세로"}]}, {"title": "4세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "형사소송법", "reveal": [0, 3], "hint": "형사 재판과 수사 절차를 정한 법률", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "상소기간", "reveal": [0], "hint": "판결 등에 불복할 수 있는 기간", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "상고이유", "reveal": [0], "hint": "상고를 제기할 수 있는 법률상 이유", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "청구취지", "reveal": [0], "hint": "소송에서 원고가 구하는 결론", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "청구원인", "reveal": [0], "hint": "청구를 뒷받침하는 구체적 사실관계", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "피고인", "reveal": [0], "hint": "형사재판에서 공소가 제기된 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "준비서면", "reveal": [0], "hint": "변론 준비를 위해 제출하는 서면", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "변론기일", "reveal": [0], "hint": "당사자가 주장과 답변을 하는 재판 날짜", "label": "세로"}]}, {"title": "5세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "소송대리인", "reveal": [0, 3], "hint": "당사자를 대신해 소송행위를 하는 사람", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "증거조사", "reveal": [0], "hint": "증거를 법정에서 조사하는 절차", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "증인신문", "reveal": [0], "hint": "증인에게 질문해 진술을 듣는 절차", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "사실인정", "reveal": [0], "hint": "증거를 바탕으로 사실을 확정하는 판단", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "권리남용", "reveal": [0], "hint": "권리 행사가 사회질서상 허용되지 않는 경우", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "답변서", "reveal": [0], "hint": "피고가 원고 청구에 대해 답하는 서면", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "신의성실", "reveal": [0], "hint": "권리 행사와 의무 이행의 기본 원칙", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "표현대리", "reveal": [0], "hint": "대리권이 있는 것처럼 보인 외관을 믿은 경우", "label": "세로"}]}, {"title": "6세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "특별대리인", "reveal": [0, 3], "hint": "특정 사건을 위해 특별히 선임되는 대리인", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "무권대리", "reveal": [0], "hint": "대리권 없이 한 대리행위", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "법정대리", "reveal": [0], "hint": "법률 규정에 의해 발생하는 대리", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "임의대리", "reveal": [0], "hint": "본인의 위임 등에 의해 발생하는 대리", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "제한능력", "reveal": [0], "hint": "단독으로 완전한 법률행위를 하기 어려운 능력 상태", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "송달료", "reveal": [0], "hint": "소송서류 송달에 필요한 비용", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "의사표시", "reveal": [0], "hint": "법률효과를 발생시키려는 의사의 외부 표시", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "착오취소", "reveal": [0], "hint": "중요 부분의 착오를 이유로 취소하는 것", "label": "세로"}]}, {"title": "7세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "불법행위자", "reveal": [0, 3], "hint": "고의 또는 과실로 타인에게 손해를 준 사람", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "사기강박", "reveal": [0], "hint": "속임수나 위협으로 의사표시를 하게 하는 행위", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "대리권한", "reveal": [0], "hint": "대리인이 본인을 위해 행위할 수 있는 권한", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "추인거절", "reveal": [0], "hint": "무권대리 행위를 사후에 인정하지 않는 것", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "계약성립", "reveal": [0], "hint": "청약과 승낙이 합치되어 계약이 이루어지는 것", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "인지대", "reveal": [0], "hint": "소장 등에 붙이는 수수료 성격의 비용", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "계약해지", "reveal": [0], "hint": "계속적 계약을 장래에 향해 종료시키는 것", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "손해배상", "reveal": [0], "hint": "손해를 금전 등으로 메워 주는 것", "label": "세로"}]}, {"title": "8세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "권리능력자", "reveal": [0, 3], "hint": "권리와 의무의 주체가 될 수 있는 사람", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "지연손해", "reveal": [0], "hint": "이행이 늦어져 발생하는 손해", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "원상회복", "reveal": [0], "hint": "계약 해제 등으로 원래 상태로 되돌리는 것", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "이행지체", "reveal": [0], "hint": "이행할 수 있는데도 기한에 이행하지 않는 것", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "이행불능", "reveal": [0], "hint": "채무 이행이 불가능한 상태", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "판결문", "reveal": [0], "hint": "법원의 판단 내용이 적힌 문서", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "채무불이", "reveal": [0], "hint": "채무를 내용대로 이행하지 않는 것", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "채권소멸", "reveal": [0], "hint": "채권이 변제 등으로 없어지는 것", "label": "세로"}]}, {"title": "9세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "의사무능력", "reveal": [0, 3], "hint": "자기 행위의 의미를 판단할 능력이 없는 상태", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "공소시효", "reveal": [0], "hint": "일정 기간이 지나 공소 제기가 제한되는 제도", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "기소유예", "reveal": [0], "hint": "혐의는 있으나 검사가 기소하지 않는 처분", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "약식명령", "reveal": [0], "hint": "정식 공판 없이 벌금 등을 명하는 절차", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "즉결심판", "reveal": [0], "hint": "가벼운 사건을 간이하게 처리하는 절차", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "공소장", "reveal": [0], "hint": "검사가 공소를 제기하며 제출하는 서류", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "구속영장", "reveal": [0], "hint": "피의자 등을 구속하기 위해 필요한 영장", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "압수수색", "reveal": [0], "hint": "증거물 등을 확보하기 위한 강제처분", "label": "세로"}]}, {"title": "10세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "표현대리권", "reveal": [0, 3], "hint": "대리권이 있는 것처럼 보이는 외관에 관한 문제", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "위법수집", "reveal": [0], "hint": "위법하게 수집된 증거와 관련된 문제", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "전문증거", "reveal": [0], "hint": "다른 사람의 진술을 내용으로 하는 증거", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "자백보강", "reveal": [0], "hint": "자백만으로 유죄 인정이 부족할 때 필요한 보강", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "무죄추정", "reveal": [0], "hint": "유죄 확정 전까지 무죄로 보는 원칙", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "변호인", "reveal": [0], "hint": "형사절차에서 피고인 등을 돕는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "공판기일", "reveal": [0], "hint": "형사재판에서 공판이 열리는 날짜", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "검찰항고", "reveal": [0], "hint": "검사의 처분에 불복하는 절차", "label": "세로"}]}, {"title": "11세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "선의취득자", "reveal": [0, 3], "hint": "권리 없는 자에게서도 일정 요건으로 소유권을 취득한 사람", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "송달장소", "reveal": [0], "hint": "소송서류를 받을 장소", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "주소보정", "reveal": [0], "hint": "당사자 주소를 바로잡는 절차", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "소멸시효", "reveal": [0], "hint": "권리를 행사하지 않은 상태가 오래 계속되어 권리가 소멸하는 제도", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "채권양도", "reveal": [0], "hint": "채권자가 채권을 제3자에게 이전하는 행위", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "감정인", "reveal": [0], "hint": "전문지식으로 판단을 돕는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "항소기간", "reveal": [0], "hint": "항소를 제기해야 하는 법정 기간", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "불가항력", "reveal": [0], "hint": "예상하거나 방지하기 어려운 외부적 사유", "label": "세로"}]}, {"title": "12세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "임의대리인", "reveal": [0, 3], "hint": "본인의 수권행위에 의해 정해지는 대리인", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "변론주의", "reveal": [0], "hint": "재판자료 제출 책임이 당사자에게 있다는 원칙", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "증명책임", "reveal": [0], "hint": "사실이 불명확할 때 불이익을 부담하는 책임", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "계약해제", "reveal": [0], "hint": "계약을 처음부터 없었던 것처럼 되돌리는 의사표시", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "계약취소", "reveal": [0], "hint": "하자 있는 의사표시 등을 이유로 효력을 없애는 행위", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "대리인", "reveal": [0], "hint": "본인을 대신해 법률행위를 하는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "기한이익", "reveal": [0], "hint": "정해진 기한까지 이행을 미룰 수 있는 이익", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "사정변경", "reveal": [0], "hint": "계약 당시와 달리 중대한 사정이 바뀐 경우", "label": "세로"}]}, {"title": "13세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "증인신문권", "reveal": [0, 3], "hint": "증인을 신문할 수 있는 절차상 권리", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "동시이행", "reveal": [0], "hint": "상대방 이행과 맞물려 자기 이행을 거절할 수 있는 항변", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "변제공탁", "reveal": [0], "hint": "채무자가 변제를 대신해 공탁하는 제도", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "부당이득", "reveal": [0], "hint": "법률상 원인 없이 얻은 이익", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "불법행위", "reveal": [0], "hint": "고의 또는 과실로 타인에게 손해를 주는 행위", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "채권자", "reveal": [0], "hint": "급부를 청구할 권리가 있는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "과실책임", "reveal": [0], "hint": "주의의무 위반을 근거로 지는 책임", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "공시송달", "reveal": [0], "hint": "상대방 주소 등을 알 수 없을 때 공시로 하는 송달", "label": "세로"}]}, {"title": "14세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "항소제기권", "reveal": [0, 3], "hint": "제1심 판결에 불복해 항소할 수 있는 권리", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "재판관할", "reveal": [0], "hint": "어느 법원이 사건을 맡을지 정하는 기준", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "관할법원", "reveal": [0], "hint": "사건을 담당할 권한이 있는 법원", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "상소기간", "reveal": [0], "hint": "판결 등에 불복할 수 있는 기간", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "상고이유", "reveal": [0], "hint": "상고를 제기할 수 있는 법률상 이유", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "채무자", "reveal": [0], "hint": "급부를 이행할 의무가 있는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "청구취지", "reveal": [0], "hint": "소송에서 원고가 구하는 결론", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "청구원인", "reveal": [0], "hint": "청구를 뒷받침하는 구체적 사실관계", "label": "세로"}]}, {"title": "15세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "계약체결권", "reveal": [0, 3], "hint": "계약을 맺을 수 있는 권한 또는 지위", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "준비서면", "reveal": [0], "hint": "변론 준비를 위해 제출하는 서면", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "변론기일", "reveal": [0], "hint": "당사자가 주장과 답변을 하는 재판 날짜", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "증거조사", "reveal": [0], "hint": "증거를 법정에서 조사하는 절차", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "증인신문", "reveal": [0], "hint": "증인에게 질문해 진술을 듣는 절차", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "소유자", "reveal": [0], "hint": "물건을 소유하는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "사실인정", "reveal": [0], "hint": "증거를 바탕으로 사실을 확정하는 판단", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "권리남용", "reveal": [0], "hint": "권리 행사가 사회질서상 허용되지 않는 경우", "label": "세로"}]}, {"title": "16세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "당사자능력", "reveal": [0, 3], "hint": "소송의 당사자가 될 수 있는 능력", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "신의성실", "reveal": [0], "hint": "권리 행사와 의무 이행의 기본 원칙", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "표현대리", "reveal": [0], "hint": "대리권이 있는 것처럼 보인 외관을 믿은 경우", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "무권대리", "reveal": [0], "hint": "대리권 없이 한 대리행위", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "법정대리", "reveal": [0], "hint": "법률 규정에 의해 발생하는 대리", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "점유자", "reveal": [0], "hint": "물건을 사실상 지배하는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "임의대리", "reveal": [0], "hint": "본인의 위임 등에 의해 발생하는 대리", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "제한능력", "reveal": [0], "hint": "단독으로 완전한 법률행위를 하기 어려운 능력 상태", "label": "세로"}]}, {"title": "17세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "원고적격성", "reveal": [0, 3], "hint": "소송을 제기할 수 있는 법률상 자격", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "의사표시", "reveal": [0], "hint": "법률효과를 발생시키려는 의사의 외부 표시", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "착오취소", "reveal": [0], "hint": "중요 부분의 착오를 이유로 취소하는 것", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "사기강박", "reveal": [0], "hint": "속임수나 위협으로 의사표시를 하게 하는 행위", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "대리권한", "reveal": [0], "hint": "대리인이 본인을 위해 행위할 수 있는 권한", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "재판부", "reveal": [0], "hint": "사건을 심리하고 판단하는 법관 구성", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "추인거절", "reveal": [0], "hint": "무권대리 행위를 사후에 인정하지 않는 것", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "계약성립", "reveal": [0], "hint": "청약과 승낙이 합치되어 계약이 이루어지는 것", "label": "세로"}]}, {"title": "18세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "소송수행권", "reveal": [0, 3], "hint": "소송을 실제로 수행할 수 있는 권한", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "계약해지", "reveal": [0], "hint": "계속적 계약을 장래에 향해 종료시키는 것", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "손해배상", "reveal": [0], "hint": "손해를 금전 등으로 메워 주는 것", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "지연손해", "reveal": [0], "hint": "이행이 늦어져 발생하는 손해", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "원상회복", "reveal": [0], "hint": "계약 해제 등으로 원래 상태로 되돌리는 것", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "합의부", "reveal": [0], "hint": "여러 법관이 합의해 판단하는 재판부", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "이행지체", "reveal": [0], "hint": "이행할 수 있는데도 기한에 이행하지 않는 것", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "이행불능", "reveal": [0], "hint": "채무 이행이 불가능한 상태", "label": "세로"}]}, {"title": "19세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "재판청구권", "reveal": [0, 3], "hint": "법원에 재판을 청구할 수 있는 기본권", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "채무불이", "reveal": [0], "hint": "채무를 내용대로 이행하지 않는 것", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "채권소멸", "reveal": [0], "hint": "채권이 변제 등으로 없어지는 것", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "공소시효", "reveal": [0], "hint": "일정 기간이 지나 공소 제기가 제한되는 제도", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "기소유예", "reveal": [0], "hint": "혐의는 있으나 검사가 기소하지 않는 처분", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "소송물", "reveal": [0], "hint": "소송에서 심판의 대상이 되는 권리관계", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "약식명령", "reveal": [0], "hint": "정식 공판 없이 벌금 등을 명하는 절차", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "즉결심판", "reveal": [0], "hint": "가벼운 사건을 간이하게 처리하는 절차", "label": "세로"}]}, {"title": "20세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "법률상원인", "reveal": [0, 3], "hint": "부당이득 성립 여부에서 문제 되는 법률상 근거", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "구속영장", "reveal": [0], "hint": "피의자 등을 구속하기 위해 필요한 영장", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "압수수색", "reveal": [0], "hint": "증거물 등을 확보하기 위한 강제처분", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "위법수집", "reveal": [0], "hint": "위법하게 수집된 증거와 관련된 문제", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "전문증거", "reveal": [0], "hint": "다른 사람의 진술을 내용으로 하는 증거", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "청구권", "reveal": [0], "hint": "상대방에게 일정 행위를 요구할 수 있는 권리", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "자백보강", "reveal": [0], "hint": "자백만으로 유죄 인정이 부족할 때 필요한 보강", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "무죄추정", "reveal": [0], "hint": "유죄 확정 전까지 무죄로 보는 원칙", "label": "세로"}]}, {"title": "21세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "법정대리인", "reveal": [0, 3], "hint": "제한능력자 등을 대신해 법률행위를 하는 사람", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "공판기일", "reveal": [0], "hint": "형사재판에서 공판이 열리는 날짜", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "검찰항고", "reveal": [0], "hint": "검사의 처분에 불복하는 절차", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "송달장소", "reveal": [0], "hint": "소송서류를 받을 장소", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "주소보정", "reveal": [0], "hint": "당사자 주소를 바로잡는 절차", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "취소권", "reveal": [0], "hint": "법률행위의 효력을 없앨 수 있는 권리", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "소멸시효", "reveal": [0], "hint": "권리를 행사하지 않은 상태가 오래 계속되어 권리가 소멸하는 제도", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "채권양도", "reveal": [0], "hint": "채권자가 채권을 제3자에게 이전하는 행위", "label": "세로"}]}, {"title": "22세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "행정소송법", "reveal": [0, 3], "hint": "행정청 처분에 대한 소송 절차를 정한 법", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "항소기간", "reveal": [0], "hint": "항소를 제기해야 하는 법정 기간", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "불가항력", "reveal": [0], "hint": "예상하거나 방지하기 어려운 외부적 사유", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "변론주의", "reveal": [0], "hint": "재판자료 제출 책임이 당사자에게 있다는 원칙", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "증명책임", "reveal": [0], "hint": "사실이 불명확할 때 불이익을 부담하는 책임", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "해제권", "reveal": [0], "hint": "계약을 해제할 수 있는 권리", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "계약해제", "reveal": [0], "hint": "계약을 처음부터 없었던 것처럼 되돌리는 의사표시", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "계약취소", "reveal": [0], "hint": "하자 있는 의사표시 등을 이유로 효력을 없애는 행위", "label": "세로"}]}, {"title": "23세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "민사소송법", "reveal": [0, 3], "hint": "민사 재판 절차를 정한 기본 법률", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "기한이익", "reveal": [0], "hint": "정해진 기한까지 이행을 미룰 수 있는 이익", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "사정변경", "reveal": [0], "hint": "계약 당시와 달리 중대한 사정이 바뀐 경우", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "동시이행", "reveal": [0], "hint": "상대방 이행과 맞물려 자기 이행을 거절할 수 있는 항변", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "변제공탁", "reveal": [0], "hint": "채무자가 변제를 대신해 공탁하는 제도", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "상계권", "reveal": [0], "hint": "서로 같은 종류의 채권을 맞물려 소멸시키는 권리", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "부당이득", "reveal": [0], "hint": "법률상 원인 없이 얻은 이익", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "불법행위", "reveal": [0], "hint": "고의 또는 과실로 타인에게 손해를 주는 행위", "label": "세로"}]}, {"title": "24세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "형사소송법", "reveal": [0, 3], "hint": "형사 재판과 수사 절차를 정한 법률", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "과실책임", "reveal": [0], "hint": "주의의무 위반을 근거로 지는 책임", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "공시송달", "reveal": [0], "hint": "상대방 주소 등을 알 수 없을 때 공시로 하는 송달", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "재판관할", "reveal": [0], "hint": "어느 법원이 사건을 맡을지 정하는 기준", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "관할법원", "reveal": [0], "hint": "사건을 담당할 권한이 있는 법원", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "저당권", "reveal": [0], "hint": "채무 담보를 위해 부동산 등에 설정하는 권리", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "상소기간", "reveal": [0], "hint": "판결 등에 불복할 수 있는 기간", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "상고이유", "reveal": [0], "hint": "상고를 제기할 수 있는 법률상 이유", "label": "세로"}]}, {"title": "25세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "소송대리인", "reveal": [0, 3], "hint": "당사자를 대신해 소송행위를 하는 사람", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "청구취지", "reveal": [0], "hint": "소송에서 원고가 구하는 결론", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "청구원인", "reveal": [0], "hint": "청구를 뒷받침하는 구체적 사실관계", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "준비서면", "reveal": [0], "hint": "변론 준비를 위해 제출하는 서면", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "변론기일", "reveal": [0], "hint": "당사자가 주장과 답변을 하는 재판 날짜", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "질권자", "reveal": [0], "hint": "질권을 가진 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "증거조사", "reveal": [0], "hint": "증거를 법정에서 조사하는 절차", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "증인신문", "reveal": [0], "hint": "증인에게 질문해 진술을 듣는 절차", "label": "세로"}]}, {"title": "26세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "특별대리인", "reveal": [0, 3], "hint": "특정 사건을 위해 특별히 선임되는 대리인", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "사실인정", "reveal": [0], "hint": "증거를 바탕으로 사실을 확정하는 판단", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "권리남용", "reveal": [0], "hint": "권리 행사가 사회질서상 허용되지 않는 경우", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "신의성실", "reveal": [0], "hint": "권리 행사와 의무 이행의 기본 원칙", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "표현대리", "reveal": [0], "hint": "대리권이 있는 것처럼 보인 외관을 믿은 경우", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "공범자", "reveal": [0], "hint": "범죄를 함께 실행하거나 관여한 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "무권대리", "reveal": [0], "hint": "대리권 없이 한 대리행위", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "법정대리", "reveal": [0], "hint": "법률 규정에 의해 발생하는 대리", "label": "세로"}]}, {"title": "27세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "불법행위자", "reveal": [0, 3], "hint": "고의 또는 과실로 타인에게 손해를 준 사람", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "임의대리", "reveal": [0], "hint": "본인의 위임 등에 의해 발생하는 대리", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "제한능력", "reveal": [0], "hint": "단독으로 완전한 법률행위를 하기 어려운 능력 상태", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "의사표시", "reveal": [0], "hint": "법률효과를 발생시키려는 의사의 외부 표시", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "착오취소", "reveal": [0], "hint": "중요 부분의 착오를 이유로 취소하는 것", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "증거물", "reveal": [0], "hint": "증명에 사용되는 물건", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "사기강박", "reveal": [0], "hint": "속임수나 위협으로 의사표시를 하게 하는 행위", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "대리권한", "reveal": [0], "hint": "대리인이 본인을 위해 행위할 수 있는 권한", "label": "세로"}]}, {"title": "28세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "권리능력자", "reveal": [0, 3], "hint": "권리와 의무의 주체가 될 수 있는 사람", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "추인거절", "reveal": [0], "hint": "무권대리 행위를 사후에 인정하지 않는 것", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "계약성립", "reveal": [0], "hint": "청약과 승낙이 합치되어 계약이 이루어지는 것", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "계약해지", "reveal": [0], "hint": "계속적 계약을 장래에 향해 종료시키는 것", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "손해배상", "reveal": [0], "hint": "손해를 금전 등으로 메워 주는 것", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "기일표", "reveal": [0], "hint": "재판 날짜를 정리한 표", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "지연손해", "reveal": [0], "hint": "이행이 늦어져 발생하는 손해", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "원상회복", "reveal": [0], "hint": "계약 해제 등으로 원래 상태로 되돌리는 것", "label": "세로"}]}, {"title": "29세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "의사무능력", "reveal": [0, 3], "hint": "자기 행위의 의미를 판단할 능력이 없는 상태", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "이행지체", "reveal": [0], "hint": "이행할 수 있는데도 기한에 이행하지 않는 것", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "이행불능", "reveal": [0], "hint": "채무 이행이 불가능한 상태", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "채무불이", "reveal": [0], "hint": "채무를 내용대로 이행하지 않는 것", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "채권소멸", "reveal": [0], "hint": "채권이 변제 등으로 없어지는 것", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "소장부", "reveal": [0], "hint": "소장 접수와 관련된 기록", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "공소시효", "reveal": [0], "hint": "일정 기간이 지나 공소 제기가 제한되는 제도", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "기소유예", "reveal": [0], "hint": "혐의는 있으나 검사가 기소하지 않는 처분", "label": "세로"}]}, {"title": "30세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "표현대리권", "reveal": [0, 3], "hint": "대리권이 있는 것처럼 보이는 외관에 관한 문제", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "약식명령", "reveal": [0], "hint": "정식 공판 없이 벌금 등을 명하는 절차", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "즉결심판", "reveal": [0], "hint": "가벼운 사건을 간이하게 처리하는 절차", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "구속영장", "reveal": [0], "hint": "피의자 등을 구속하기 위해 필요한 영장", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "압수수색", "reveal": [0], "hint": "증거물 등을 확보하기 위한 강제처분", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "집행관", "reveal": [0], "hint": "강제집행 등의 업무를 담당하는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "위법수집", "reveal": [0], "hint": "위법하게 수집된 증거와 관련된 문제", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "전문증거", "reveal": [0], "hint": "다른 사람의 진술을 내용으로 하는 증거", "label": "세로"}]}, {"title": "31세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "선의취득자", "reveal": [0, 3], "hint": "권리 없는 자에게서도 일정 요건으로 소유권을 취득한 사람", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "자백보강", "reveal": [0], "hint": "자백만으로 유죄 인정이 부족할 때 필요한 보강", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "무죄추정", "reveal": [0], "hint": "유죄 확정 전까지 무죄로 보는 원칙", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "공판기일", "reveal": [0], "hint": "형사재판에서 공판이 열리는 날짜", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "검찰항고", "reveal": [0], "hint": "검사의 처분에 불복하는 절차", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "기판력", "reveal": [0], "hint": "확정판결의 판단에 당사자와 법원이 구속되는 효력", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "송달장소", "reveal": [0], "hint": "소송서류를 받을 장소", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "주소보정", "reveal": [0], "hint": "당사자 주소를 바로잡는 절차", "label": "세로"}]}, {"title": "32세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "임의대리인", "reveal": [0, 3], "hint": "본인의 수권행위에 의해 정해지는 대리인", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "소멸시효", "reveal": [0], "hint": "권리를 행사하지 않은 상태가 오래 계속되어 권리가 소멸하는 제도", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "채권양도", "reveal": [0], "hint": "채권자가 채권을 제3자에게 이전하는 행위", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "항소기간", "reveal": [0], "hint": "항소를 제기해야 하는 법정 기간", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "불가항력", "reveal": [0], "hint": "예상하거나 방지하기 어려운 외부적 사유", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "항소심", "reveal": [0], "hint": "제1심 판결에 대한 불복심", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "변론주의", "reveal": [0], "hint": "재판자료 제출 책임이 당사자에게 있다는 원칙", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "증명책임", "reveal": [0], "hint": "사실이 불명확할 때 불이익을 부담하는 책임", "label": "세로"}]}, {"title": "33세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "증인신문권", "reveal": [0, 3], "hint": "증인을 신문할 수 있는 절차상 권리", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "계약해제", "reveal": [0], "hint": "계약을 처음부터 없었던 것처럼 되돌리는 의사표시", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "계약취소", "reveal": [0], "hint": "하자 있는 의사표시 등을 이유로 효력을 없애는 행위", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "기한이익", "reveal": [0], "hint": "정해진 기한까지 이행을 미룰 수 있는 이익", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "사정변경", "reveal": [0], "hint": "계약 당시와 달리 중대한 사정이 바뀐 경우", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "상고심", "reveal": [0], "hint": "항소심 판결에 대한 법률심", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "동시이행", "reveal": [0], "hint": "상대방 이행과 맞물려 자기 이행을 거절할 수 있는 항변", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "변제공탁", "reveal": [0], "hint": "채무자가 변제를 대신해 공탁하는 제도", "label": "세로"}]}, {"title": "34세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "항소제기권", "reveal": [0, 3], "hint": "제1심 판결에 불복해 항소할 수 있는 권리", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "부당이득", "reveal": [0], "hint": "법률상 원인 없이 얻은 이익", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "불법행위", "reveal": [0], "hint": "고의 또는 과실로 타인에게 손해를 주는 행위", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "과실책임", "reveal": [0], "hint": "주의의무 위반을 근거로 지는 책임", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "공시송달", "reveal": [0], "hint": "상대방 주소 등을 알 수 없을 때 공시로 하는 송달", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "피고인", "reveal": [0], "hint": "형사재판에서 공소가 제기된 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "재판관할", "reveal": [0], "hint": "어느 법원이 사건을 맡을지 정하는 기준", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "관할법원", "reveal": [0], "hint": "사건을 담당할 권한이 있는 법원", "label": "세로"}]}, {"title": "35세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "계약체결권", "reveal": [0, 3], "hint": "계약을 맺을 수 있는 권한 또는 지위", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "상소기간", "reveal": [0], "hint": "판결 등에 불복할 수 있는 기간", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "상고이유", "reveal": [0], "hint": "상고를 제기할 수 있는 법률상 이유", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "청구취지", "reveal": [0], "hint": "소송에서 원고가 구하는 결론", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "청구원인", "reveal": [0], "hint": "청구를 뒷받침하는 구체적 사실관계", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "답변서", "reveal": [0], "hint": "피고가 원고 청구에 대해 답하는 서면", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "준비서면", "reveal": [0], "hint": "변론 준비를 위해 제출하는 서면", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "변론기일", "reveal": [0], "hint": "당사자가 주장과 답변을 하는 재판 날짜", "label": "세로"}]}, {"title": "36세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "당사자능력", "reveal": [0, 3], "hint": "소송의 당사자가 될 수 있는 능력", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "증거조사", "reveal": [0], "hint": "증거를 법정에서 조사하는 절차", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "증인신문", "reveal": [0], "hint": "증인에게 질문해 진술을 듣는 절차", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "사실인정", "reveal": [0], "hint": "증거를 바탕으로 사실을 확정하는 판단", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "권리남용", "reveal": [0], "hint": "권리 행사가 사회질서상 허용되지 않는 경우", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "송달료", "reveal": [0], "hint": "소송서류 송달에 필요한 비용", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "신의성실", "reveal": [0], "hint": "권리 행사와 의무 이행의 기본 원칙", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "표현대리", "reveal": [0], "hint": "대리권이 있는 것처럼 보인 외관을 믿은 경우", "label": "세로"}]}, {"title": "37세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "원고적격성", "reveal": [0, 3], "hint": "소송을 제기할 수 있는 법률상 자격", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "무권대리", "reveal": [0], "hint": "대리권 없이 한 대리행위", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "법정대리", "reveal": [0], "hint": "법률 규정에 의해 발생하는 대리", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "임의대리", "reveal": [0], "hint": "본인의 위임 등에 의해 발생하는 대리", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "제한능력", "reveal": [0], "hint": "단독으로 완전한 법률행위를 하기 어려운 능력 상태", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "인지대", "reveal": [0], "hint": "소장 등에 붙이는 수수료 성격의 비용", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "의사표시", "reveal": [0], "hint": "법률효과를 발생시키려는 의사의 외부 표시", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "착오취소", "reveal": [0], "hint": "중요 부분의 착오를 이유로 취소하는 것", "label": "세로"}]}, {"title": "38세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "소송수행권", "reveal": [0, 3], "hint": "소송을 실제로 수행할 수 있는 권한", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "사기강박", "reveal": [0], "hint": "속임수나 위협으로 의사표시를 하게 하는 행위", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "대리권한", "reveal": [0], "hint": "대리인이 본인을 위해 행위할 수 있는 권한", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "추인거절", "reveal": [0], "hint": "무권대리 행위를 사후에 인정하지 않는 것", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "계약성립", "reveal": [0], "hint": "청약과 승낙이 합치되어 계약이 이루어지는 것", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "판결문", "reveal": [0], "hint": "법원의 판단 내용이 적힌 문서", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "계약해지", "reveal": [0], "hint": "계속적 계약을 장래에 향해 종료시키는 것", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "손해배상", "reveal": [0], "hint": "손해를 금전 등으로 메워 주는 것", "label": "세로"}]}, {"title": "39세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "재판청구권", "reveal": [0, 3], "hint": "법원에 재판을 청구할 수 있는 기본권", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "지연손해", "reveal": [0], "hint": "이행이 늦어져 발생하는 손해", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "원상회복", "reveal": [0], "hint": "계약 해제 등으로 원래 상태로 되돌리는 것", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "이행지체", "reveal": [0], "hint": "이행할 수 있는데도 기한에 이행하지 않는 것", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "이행불능", "reveal": [0], "hint": "채무 이행이 불가능한 상태", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "공소장", "reveal": [0], "hint": "검사가 공소를 제기하며 제출하는 서류", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "채무불이", "reveal": [0], "hint": "채무를 내용대로 이행하지 않는 것", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "채권소멸", "reveal": [0], "hint": "채권이 변제 등으로 없어지는 것", "label": "세로"}]}, {"title": "40세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "법률상원인", "reveal": [0, 3], "hint": "부당이득 성립 여부에서 문제 되는 법률상 근거", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "공소시효", "reveal": [0], "hint": "일정 기간이 지나 공소 제기가 제한되는 제도", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "기소유예", "reveal": [0], "hint": "혐의는 있으나 검사가 기소하지 않는 처분", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "약식명령", "reveal": [0], "hint": "정식 공판 없이 벌금 등을 명하는 절차", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "즉결심판", "reveal": [0], "hint": "가벼운 사건을 간이하게 처리하는 절차", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "변호인", "reveal": [0], "hint": "형사절차에서 피고인 등을 돕는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "구속영장", "reveal": [0], "hint": "피의자 등을 구속하기 위해 필요한 영장", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "압수수색", "reveal": [0], "hint": "증거물 등을 확보하기 위한 강제처분", "label": "세로"}]}, {"title": "41세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "법정대리인", "reveal": [0, 3], "hint": "제한능력자 등을 대신해 법률행위를 하는 사람", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "위법수집", "reveal": [0], "hint": "위법하게 수집된 증거와 관련된 문제", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "전문증거", "reveal": [0], "hint": "다른 사람의 진술을 내용으로 하는 증거", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "자백보강", "reveal": [0], "hint": "자백만으로 유죄 인정이 부족할 때 필요한 보강", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "무죄추정", "reveal": [0], "hint": "유죄 확정 전까지 무죄로 보는 원칙", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "감정인", "reveal": [0], "hint": "전문지식으로 판단을 돕는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "공판기일", "reveal": [0], "hint": "형사재판에서 공판이 열리는 날짜", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "검찰항고", "reveal": [0], "hint": "검사의 처분에 불복하는 절차", "label": "세로"}]}, {"title": "42세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "행정소송법", "reveal": [0, 3], "hint": "행정청 처분에 대한 소송 절차를 정한 법", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "송달장소", "reveal": [0], "hint": "소송서류를 받을 장소", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "주소보정", "reveal": [0], "hint": "당사자 주소를 바로잡는 절차", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "소멸시효", "reveal": [0], "hint": "권리를 행사하지 않은 상태가 오래 계속되어 권리가 소멸하는 제도", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "채권양도", "reveal": [0], "hint": "채권자가 채권을 제3자에게 이전하는 행위", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "대리인", "reveal": [0], "hint": "본인을 대신해 법률행위를 하는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "항소기간", "reveal": [0], "hint": "항소를 제기해야 하는 법정 기간", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "불가항력", "reveal": [0], "hint": "예상하거나 방지하기 어려운 외부적 사유", "label": "세로"}]}, {"title": "43세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "민사소송법", "reveal": [0, 3], "hint": "민사 재판 절차를 정한 기본 법률", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "변론주의", "reveal": [0], "hint": "재판자료 제출 책임이 당사자에게 있다는 원칙", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "증명책임", "reveal": [0], "hint": "사실이 불명확할 때 불이익을 부담하는 책임", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "계약해제", "reveal": [0], "hint": "계약을 처음부터 없었던 것처럼 되돌리는 의사표시", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "계약취소", "reveal": [0], "hint": "하자 있는 의사표시 등을 이유로 효력을 없애는 행위", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "채권자", "reveal": [0], "hint": "급부를 청구할 권리가 있는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "기한이익", "reveal": [0], "hint": "정해진 기한까지 이행을 미룰 수 있는 이익", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "사정변경", "reveal": [0], "hint": "계약 당시와 달리 중대한 사정이 바뀐 경우", "label": "세로"}]}, {"title": "44세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "형사소송법", "reveal": [0, 3], "hint": "형사 재판과 수사 절차를 정한 법률", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "동시이행", "reveal": [0], "hint": "상대방 이행과 맞물려 자기 이행을 거절할 수 있는 항변", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "변제공탁", "reveal": [0], "hint": "채무자가 변제를 대신해 공탁하는 제도", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "부당이득", "reveal": [0], "hint": "법률상 원인 없이 얻은 이익", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "불법행위", "reveal": [0], "hint": "고의 또는 과실로 타인에게 손해를 주는 행위", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "채무자", "reveal": [0], "hint": "급부를 이행할 의무가 있는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "과실책임", "reveal": [0], "hint": "주의의무 위반을 근거로 지는 책임", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "공시송달", "reveal": [0], "hint": "상대방 주소 등을 알 수 없을 때 공시로 하는 송달", "label": "세로"}]}, {"title": "45세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "소송대리인", "reveal": [0, 3], "hint": "당사자를 대신해 소송행위를 하는 사람", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "재판관할", "reveal": [0], "hint": "어느 법원이 사건을 맡을지 정하는 기준", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "관할법원", "reveal": [0], "hint": "사건을 담당할 권한이 있는 법원", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "상소기간", "reveal": [0], "hint": "판결 등에 불복할 수 있는 기간", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "상고이유", "reveal": [0], "hint": "상고를 제기할 수 있는 법률상 이유", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "소유자", "reveal": [0], "hint": "물건을 소유하는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "청구취지", "reveal": [0], "hint": "소송에서 원고가 구하는 결론", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "청구원인", "reveal": [0], "hint": "청구를 뒷받침하는 구체적 사실관계", "label": "세로"}]}, {"title": "46세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "특별대리인", "reveal": [0, 3], "hint": "특정 사건을 위해 특별히 선임되는 대리인", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "준비서면", "reveal": [0], "hint": "변론 준비를 위해 제출하는 서면", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "변론기일", "reveal": [0], "hint": "당사자가 주장과 답변을 하는 재판 날짜", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "증거조사", "reveal": [0], "hint": "증거를 법정에서 조사하는 절차", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "증인신문", "reveal": [0], "hint": "증인에게 질문해 진술을 듣는 절차", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "점유자", "reveal": [0], "hint": "물건을 사실상 지배하는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "사실인정", "reveal": [0], "hint": "증거를 바탕으로 사실을 확정하는 판단", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "권리남용", "reveal": [0], "hint": "권리 행사가 사회질서상 허용되지 않는 경우", "label": "세로"}]}, {"title": "47세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "불법행위자", "reveal": [0, 3], "hint": "고의 또는 과실로 타인에게 손해를 준 사람", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "신의성실", "reveal": [0], "hint": "권리 행사와 의무 이행의 기본 원칙", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "표현대리", "reveal": [0], "hint": "대리권이 있는 것처럼 보인 외관을 믿은 경우", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "무권대리", "reveal": [0], "hint": "대리권 없이 한 대리행위", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "법정대리", "reveal": [0], "hint": "법률 규정에 의해 발생하는 대리", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "재판부", "reveal": [0], "hint": "사건을 심리하고 판단하는 법관 구성", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "임의대리", "reveal": [0], "hint": "본인의 위임 등에 의해 발생하는 대리", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "제한능력", "reveal": [0], "hint": "단독으로 완전한 법률행위를 하기 어려운 능력 상태", "label": "세로"}]}, {"title": "48세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "권리능력자", "reveal": [0, 3], "hint": "권리와 의무의 주체가 될 수 있는 사람", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "의사표시", "reveal": [0], "hint": "법률효과를 발생시키려는 의사의 외부 표시", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "착오취소", "reveal": [0], "hint": "중요 부분의 착오를 이유로 취소하는 것", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "사기강박", "reveal": [0], "hint": "속임수나 위협으로 의사표시를 하게 하는 행위", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "대리권한", "reveal": [0], "hint": "대리인이 본인을 위해 행위할 수 있는 권한", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "합의부", "reveal": [0], "hint": "여러 법관이 합의해 판단하는 재판부", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "추인거절", "reveal": [0], "hint": "무권대리 행위를 사후에 인정하지 않는 것", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "계약성립", "reveal": [0], "hint": "청약과 승낙이 합치되어 계약이 이루어지는 것", "label": "세로"}]}, {"title": "49세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "의사무능력", "reveal": [0, 3], "hint": "자기 행위의 의미를 판단할 능력이 없는 상태", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "계약해지", "reveal": [0], "hint": "계속적 계약을 장래에 향해 종료시키는 것", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "손해배상", "reveal": [0], "hint": "손해를 금전 등으로 메워 주는 것", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "지연손해", "reveal": [0], "hint": "이행이 늦어져 발생하는 손해", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "원상회복", "reveal": [0], "hint": "계약 해제 등으로 원래 상태로 되돌리는 것", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "소송물", "reveal": [0], "hint": "소송에서 심판의 대상이 되는 권리관계", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "이행지체", "reveal": [0], "hint": "이행할 수 있는데도 기한에 이행하지 않는 것", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "이행불능", "reveal": [0], "hint": "채무 이행이 불가능한 상태", "label": "세로"}]}, {"title": "50세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "표현대리권", "reveal": [0, 3], "hint": "대리권이 있는 것처럼 보이는 외관에 관한 문제", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "채무불이", "reveal": [0], "hint": "채무를 내용대로 이행하지 않는 것", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "채권소멸", "reveal": [0], "hint": "채권이 변제 등으로 없어지는 것", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "공소시효", "reveal": [0], "hint": "일정 기간이 지나 공소 제기가 제한되는 제도", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "기소유예", "reveal": [0], "hint": "혐의는 있으나 검사가 기소하지 않는 처분", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "청구권", "reveal": [0], "hint": "상대방에게 일정 행위를 요구할 수 있는 권리", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "약식명령", "reveal": [0], "hint": "정식 공판 없이 벌금 등을 명하는 절차", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "즉결심판", "reveal": [0], "hint": "가벼운 사건을 간이하게 처리하는 절차", "label": "세로"}]}, {"title": "51세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "선의취득자", "reveal": [0, 3], "hint": "권리 없는 자에게서도 일정 요건으로 소유권을 취득한 사람", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "구속영장", "reveal": [0], "hint": "피의자 등을 구속하기 위해 필요한 영장", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "압수수색", "reveal": [0], "hint": "증거물 등을 확보하기 위한 강제처분", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "위법수집", "reveal": [0], "hint": "위법하게 수집된 증거와 관련된 문제", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "전문증거", "reveal": [0], "hint": "다른 사람의 진술을 내용으로 하는 증거", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "취소권", "reveal": [0], "hint": "법률행위의 효력을 없앨 수 있는 권리", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "자백보강", "reveal": [0], "hint": "자백만으로 유죄 인정이 부족할 때 필요한 보강", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "무죄추정", "reveal": [0], "hint": "유죄 확정 전까지 무죄로 보는 원칙", "label": "세로"}]}, {"title": "52세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "임의대리인", "reveal": [0, 3], "hint": "본인의 수권행위에 의해 정해지는 대리인", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "공판기일", "reveal": [0], "hint": "형사재판에서 공판이 열리는 날짜", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "검찰항고", "reveal": [0], "hint": "검사의 처분에 불복하는 절차", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "송달장소", "reveal": [0], "hint": "소송서류를 받을 장소", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "주소보정", "reveal": [0], "hint": "당사자 주소를 바로잡는 절차", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "해제권", "reveal": [0], "hint": "계약을 해제할 수 있는 권리", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "소멸시효", "reveal": [0], "hint": "권리를 행사하지 않은 상태가 오래 계속되어 권리가 소멸하는 제도", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "채권양도", "reveal": [0], "hint": "채권자가 채권을 제3자에게 이전하는 행위", "label": "세로"}]}, {"title": "53세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "증인신문권", "reveal": [0, 3], "hint": "증인을 신문할 수 있는 절차상 권리", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "항소기간", "reveal": [0], "hint": "항소를 제기해야 하는 법정 기간", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "불가항력", "reveal": [0], "hint": "예상하거나 방지하기 어려운 외부적 사유", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "변론주의", "reveal": [0], "hint": "재판자료 제출 책임이 당사자에게 있다는 원칙", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "증명책임", "reveal": [0], "hint": "사실이 불명확할 때 불이익을 부담하는 책임", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "상계권", "reveal": [0], "hint": "서로 같은 종류의 채권을 맞물려 소멸시키는 권리", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "계약해제", "reveal": [0], "hint": "계약을 처음부터 없었던 것처럼 되돌리는 의사표시", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "계약취소", "reveal": [0], "hint": "하자 있는 의사표시 등을 이유로 효력을 없애는 행위", "label": "세로"}]}, {"title": "54세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "항소제기권", "reveal": [0, 3], "hint": "제1심 판결에 불복해 항소할 수 있는 권리", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "기한이익", "reveal": [0], "hint": "정해진 기한까지 이행을 미룰 수 있는 이익", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "사정변경", "reveal": [0], "hint": "계약 당시와 달리 중대한 사정이 바뀐 경우", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "동시이행", "reveal": [0], "hint": "상대방 이행과 맞물려 자기 이행을 거절할 수 있는 항변", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "변제공탁", "reveal": [0], "hint": "채무자가 변제를 대신해 공탁하는 제도", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "저당권", "reveal": [0], "hint": "채무 담보를 위해 부동산 등에 설정하는 권리", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "부당이득", "reveal": [0], "hint": "법률상 원인 없이 얻은 이익", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "불법행위", "reveal": [0], "hint": "고의 또는 과실로 타인에게 손해를 주는 행위", "label": "세로"}]}, {"title": "55세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "계약체결권", "reveal": [0, 3], "hint": "계약을 맺을 수 있는 권한 또는 지위", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "과실책임", "reveal": [0], "hint": "주의의무 위반을 근거로 지는 책임", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "공시송달", "reveal": [0], "hint": "상대방 주소 등을 알 수 없을 때 공시로 하는 송달", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "재판관할", "reveal": [0], "hint": "어느 법원이 사건을 맡을지 정하는 기준", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "관할법원", "reveal": [0], "hint": "사건을 담당할 권한이 있는 법원", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "질권자", "reveal": [0], "hint": "질권을 가진 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "상소기간", "reveal": [0], "hint": "판결 등에 불복할 수 있는 기간", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "상고이유", "reveal": [0], "hint": "상고를 제기할 수 있는 법률상 이유", "label": "세로"}]}, {"title": "56세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "당사자능력", "reveal": [0, 3], "hint": "소송의 당사자가 될 수 있는 능력", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "청구취지", "reveal": [0], "hint": "소송에서 원고가 구하는 결론", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "청구원인", "reveal": [0], "hint": "청구를 뒷받침하는 구체적 사실관계", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "준비서면", "reveal": [0], "hint": "변론 준비를 위해 제출하는 서면", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "변론기일", "reveal": [0], "hint": "당사자가 주장과 답변을 하는 재판 날짜", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "공범자", "reveal": [0], "hint": "범죄를 함께 실행하거나 관여한 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "증거조사", "reveal": [0], "hint": "증거를 법정에서 조사하는 절차", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "증인신문", "reveal": [0], "hint": "증인에게 질문해 진술을 듣는 절차", "label": "세로"}]}, {"title": "57세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "원고적격성", "reveal": [0, 3], "hint": "소송을 제기할 수 있는 법률상 자격", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "사실인정", "reveal": [0], "hint": "증거를 바탕으로 사실을 확정하는 판단", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "권리남용", "reveal": [0], "hint": "권리 행사가 사회질서상 허용되지 않는 경우", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "신의성실", "reveal": [0], "hint": "권리 행사와 의무 이행의 기본 원칙", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "표현대리", "reveal": [0], "hint": "대리권이 있는 것처럼 보인 외관을 믿은 경우", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "증거물", "reveal": [0], "hint": "증명에 사용되는 물건", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "무권대리", "reveal": [0], "hint": "대리권 없이 한 대리행위", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "법정대리", "reveal": [0], "hint": "법률 규정에 의해 발생하는 대리", "label": "세로"}]}, {"title": "58세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "소송수행권", "reveal": [0, 3], "hint": "소송을 실제로 수행할 수 있는 권한", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "임의대리", "reveal": [0], "hint": "본인의 위임 등에 의해 발생하는 대리", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "제한능력", "reveal": [0], "hint": "단독으로 완전한 법률행위를 하기 어려운 능력 상태", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "의사표시", "reveal": [0], "hint": "법률효과를 발생시키려는 의사의 외부 표시", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "착오취소", "reveal": [0], "hint": "중요 부분의 착오를 이유로 취소하는 것", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "기일표", "reveal": [0], "hint": "재판 날짜를 정리한 표", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "사기강박", "reveal": [0], "hint": "속임수나 위협으로 의사표시를 하게 하는 행위", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "대리권한", "reveal": [0], "hint": "대리인이 본인을 위해 행위할 수 있는 권한", "label": "세로"}]}, {"title": "59세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "재판청구권", "reveal": [0, 3], "hint": "법원에 재판을 청구할 수 있는 기본권", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "추인거절", "reveal": [0], "hint": "무권대리 행위를 사후에 인정하지 않는 것", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "계약성립", "reveal": [0], "hint": "청약과 승낙이 합치되어 계약이 이루어지는 것", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "계약해지", "reveal": [0], "hint": "계속적 계약을 장래에 향해 종료시키는 것", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "손해배상", "reveal": [0], "hint": "손해를 금전 등으로 메워 주는 것", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "소장부", "reveal": [0], "hint": "소장 접수와 관련된 기록", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "지연손해", "reveal": [0], "hint": "이행이 늦어져 발생하는 손해", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "원상회복", "reveal": [0], "hint": "계약 해제 등으로 원래 상태로 되돌리는 것", "label": "세로"}]}, {"title": "60세트", "words": [{"row": 0, "col": 0, "direction": "across", "answer": "법률상원인", "reveal": [0, 3], "hint": "부당이득 성립 여부에서 문제 되는 법률상 근거", "label": "가로"}, {"row": 2, "col": 0, "direction": "across", "answer": "이행지체", "reveal": [0], "hint": "이행할 수 있는데도 기한에 이행하지 않는 것", "label": "가로"}, {"row": 4, "col": 0, "direction": "across", "answer": "이행불능", "reveal": [0], "hint": "채무 이행이 불가능한 상태", "label": "가로"}, {"row": 6, "col": 0, "direction": "across", "answer": "채무불이", "reveal": [0], "hint": "채무를 내용대로 이행하지 않는 것", "label": "가로"}, {"row": 0, "col": 6, "direction": "down", "answer": "채권소멸", "reveal": [0], "hint": "채권이 변제 등으로 없어지는 것", "label": "세로"}, {"row": 1, "col": 8, "direction": "down", "answer": "집행관", "reveal": [0], "hint": "강제집행 등의 업무를 담당하는 사람", "label": "세로"}, {"row": 5, "col": 5, "direction": "down", "answer": "공소시효", "reveal": [0], "hint": "일정 기간이 지나 공소 제기가 제한되는 제도", "label": "세로"}, {"row": 5, "col": 7, "direction": "down", "answer": "기소유예", "reveal": [0], "hint": "혐의는 있으나 검사가 기소하지 않는 처분", "label": "세로"}]}];
+    let currentCrosswordSet = 0;
+    let currentCrosswordPosition = 0;
+    let crosswordOrder = [];
+    let crosswordCells = {};
     let crosswordInputs = [];
+    let crosswordSolvedCount = 0;
 
-    function addWord(row, col, direction, answer, revealIndexes) {
-      answer.split('').forEach(function(ch, i) {
-        const r = row + (direction === 'down' ? i : 0);
-        const c = col + (direction === 'across' ? i : 0);
-        crosswordCells[r + '-' + c] = {
-          answer: ch,
-          fixed: revealIndexes.includes(i)
-        };
-      });
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+      return array;
     }
 
-    addWord(0, 0, 'across', '법정대리인', [0, 3]);
-    addWord(2, 0, 'across', '소멸시효', [0]);
-    addWord(4, 0, 'across', '채권양도', [0]);
-    addWord(6, 0, 'across', '항소기간', [0]);
-    addWord(0, 6, 'down', '불가항력', [0]);
-    addWord(1, 8, 'down', '기판력', [0]);
-    addWord(5, 5, 'down', '변론주의', [0]);
-    addWord(5, 7, 'down', '증명책임', [0]);
+    function startRandomCrossword() {
+      crosswordOrder = shuffleArray(Array.from({ length: crosswordSets.length }, function(_, i) { return i; }));
+      currentCrosswordPosition = 0;
+      crosswordSolvedCount = 0;
+      loadCrosswordSet(crosswordOrder[currentCrosswordPosition]);
+    }
+
+    function makePattern(answer, revealIndexes) {
+      return answer.split('').map(function(ch, i) { return revealIndexes.includes(i) ? ch : '_'; }).join(' ');
+    }
+
+    function loadCrosswordSet(setIndex) {
+      currentCrosswordSet = setIndex;
+      crosswordCells = {};
+      const set = crosswordSets[currentCrosswordSet];
+
+      set.words.forEach(function(word) {
+        word.answer.split('').forEach(function(ch, i) {
+          const r = word.row + (word.direction === 'down' ? i : 0);
+          const c = word.col + (word.direction === 'across' ? i : 0);
+          crosswordCells[r + '-' + c] = {
+            answer: ch,
+            fixed: word.reveal.includes(i)
+          };
+        });
+      });
+
+      buildCrossword();
+      buildCrosswordClues();
+      document.getElementById('crossword-progress').textContent = (currentCrosswordPosition + 1) + '문제 / 총 ' + crosswordSets.length + '문제';
+      document.getElementById('crossword-status').textContent = '이번 문제는 60세트 중 랜덤으로 출제되었습니다.';
+    }
+
+    function buildCrosswordClues() {
+      const set = crosswordSets[currentCrosswordSet];
+      const across = document.getElementById('clue-across');
+      const down = document.getElementById('clue-down');
+      across.innerHTML = '<strong>가로 힌트</strong>';
+      down.innerHTML = '<strong>세로 힌트</strong>';
+      let acrossNo = 1;
+      let downNo = 1;
+
+      set.words.forEach(function(word) {
+        const p = document.createElement('p');
+        const no = word.direction === 'across' ? acrossNo++ : downNo++;
+        p.textContent = no + '. ' + makePattern(word.answer, word.reveal) + ' : ' + word.hint;
+        if (word.direction === 'across') across.appendChild(p);
+        else down.appendChild(p);
+      });
+    }
 
     function buildCrossword() {
       const grid = document.getElementById('crossword-grid');
@@ -497,18 +713,25 @@
     }
 
     function resetCrossword() {
-      buildCrossword();
-      document.getElementById('crossword-status').textContent = '공개된 첫 글자와 힌트를 참고해 빈칸을 채워보세요.';
+      loadCrosswordSet(currentCrosswordSet);
     }
-
-
 
     function showCrosswordAnswers() {
       crosswordInputs.forEach(function(input) {
         input.value = input.dataset.answer;
         input.style.borderColor = '#8aa36f';
       });
-      document.getElementById('crossword-status').textContent = '전체 정답을 표시했습니다. 다시 풀고 싶으면 다시 시작을 눌러주세요.';
+      document.getElementById('crossword-status').textContent = '전체 정답을 표시했습니다. 다음 문제를 누르면 랜덤 순서로 이어서 진행할 수 있습니다.';
+    }
+
+    function nextCrosswordSet() {
+      if (currentCrosswordPosition >= crosswordOrder.length - 1) {
+        document.getElementById('crossword-status').textContent = '60문제를 모두 지나갔습니다. 새 랜덤 순서로 다시 시작합니다.';
+        setTimeout(startRandomCrossword, 900);
+        return;
+      }
+      currentCrosswordPosition++;
+      loadCrosswordSet(crosswordOrder[currentCrosswordPosition]);
     }
 
     function checkCrossword() {
@@ -523,9 +746,20 @@
         }
       });
 
-      document.getElementById('crossword-status').textContent = correct
-        ? '정답입니다! 어려운 법률 용어까지 잘 맞히셨습니다.'
-        : '아직 맞지 않는 빈칸이 있어요. 힌트의 핵심 표현을 다시 확인해 보세요.';
+      if (correct) {
+        crosswordSolvedCount++;
+        const score = crosswordSolvedCount * 100;
+        submitScore(GAME_CROSSWORD, score, '맞힌 문제 수: ' + crosswordSolvedCount);
+
+        if (currentCrosswordPosition >= crosswordOrder.length - 1) {
+          document.getElementById('crossword-status').textContent = '축하합니다! 60문제를 모두 완료했습니다. 점수: ' + score + '점';
+        } else {
+          document.getElementById('crossword-status').textContent = '정답입니다! 점수 저장 후 다음 랜덤 문제로 넘어갑니다.';
+          setTimeout(nextCrosswordSet, 900);
+        }
+      } else {
+        document.getElementById('crossword-status').textContent = '아직 맞지 않는 빈칸이 있어요. 힌트의 핵심 표현을 다시 확인해 보세요.';
+      }
     }
 
     const F_ROWS = 18;
@@ -580,7 +814,8 @@
       const shape = shapes[Math.floor(Math.random() * shapes.length)].map(function(row) { return row.slice(); });
       piece = { shape: shape, row: 0, col: Math.floor(F_COLS / 2) - 2 };
       if (!canPlace(piece.shape, piece.row, piece.col)) {
-        updateFallingInfo('게임 종료! 처음부터 다시 버튼을 눌러주세요.');
+        updateFallingInfo('게임 종료! 점수가 저장되었습니다. 처음부터 다시 버튼을 눌러주세요.');
+        submitScore(GAME_FALLING, fallingScore, '지운 줄: ' + fallingLines + ', 난이도: ' + getFallingLevel() + '단계');
         fallingRunning = false;
         if (fallingTimer) clearInterval(fallingTimer);
       }
@@ -814,7 +1049,8 @@
       if (obstacleX > 38 && obstacleX < 86 && playerY < collisionHeight) {
         adventureRunning = false;
         clearInterval(adventureTimer);
-        document.getElementById('adventure-status').textContent = '장애물에 부딪혔습니다. 다시 버튼을 눌러 재도전하세요.';
+        document.getElementById('adventure-status').textContent = '장애물에 부딪혔습니다. 점수가 저장되었습니다. 다시 버튼을 눌러 재도전하세요.';
+        submitScore(GAME_ADVENTURE, adventureScore, '별: ' + starsCollected + ', 성장: ' + getGrowthStage().label);
       }
 
       adventureScore += 1;
@@ -842,9 +1078,11 @@
       if (e.key === ' ' || e.key === 'Spacebar') adventureJump();
     });
 
-    resetCrossword();
+    initNickname();
+    startRandomCrossword();
     resetFallingGame();
     resetAdventureGame();
+    loadAllLeaderboards();
   </script>
 </body>
 </html>
