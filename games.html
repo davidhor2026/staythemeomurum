@@ -45,7 +45,11 @@
       color: #5b4a34;
     }
 
-    .crossword-wrap { overflow-x: auto; }
+    .crossword-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+    }
 
     .crossword-grid {
       display: grid;
@@ -375,6 +379,46 @@
     }
 
     @media (max-width: 760px) {
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 16px;
+        padding: 12px 8px;
+        line-height: 1.4;
+      }
+
+      nav a {
+        font-size: 14px;
+        white-space: nowrap;
+      }
+
+      section {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .common-subject-tabs {
+        gap: 8px;
+        margin: 12px 0;
+      }
+
+      .common-subject-tabs button {
+        padding: 9px 18px;
+        min-width: 82px;
+      }
+
+      .common-cw-grid {
+        margin: 14px auto;
+        padding: 7px;
+        border-radius: 12px;
+      }
+
+      .common-cw-cell,
+      .common-cw-empty {
+        border-radius: 8px;
+      }
+
       .game-menu,
       .clue-grid,
       .leaderboard-grid { grid-template-columns: 1fr; }
@@ -1075,7 +1119,13 @@
     }
 
     function getCommonCellSize(size) {
-      return (window.innerWidth || 360) < 430 ? 34 : 38;
+      const viewport = Math.max(280, window.innerWidth || 360);
+      const sectionPadding = viewport < 430 ? 42 : 80;
+      const gap = viewport < 430 ? 4 : 6;
+      const gridPadding = viewport < 430 ? 14 : 16;
+      const available = Math.min(620, viewport - sectionPadding);
+      const raw = Math.floor((available - gridPadding - ((size - 1) * gap)) / size);
+      return Math.max(25, Math.min(viewport < 430 ? 30 : 36, raw));
     }
 
     function buildCommonCrosswordGrid() {
@@ -1083,11 +1133,11 @@
       if (!grid) return;
       grid.innerHTML = '';
       const cellSize = getCommonCellSize(commonCrosswordSize);
-      const gapSize = (window.innerWidth || 360) < 430 ? 8 : 10;
+      const gapSize = (window.innerWidth || 360) < 430 ? 4 : 6;
       grid.style.setProperty('--common-cell-gap', gapSize + 'px');
       grid.style.setProperty('--common-cell-size', cellSize + 'px');
-      grid.style.setProperty('--common-font-size', Math.max(17, Math.floor(cellSize * 0.55)) + 'px');
-      grid.style.setProperty('--common-num-size', '10px');
+      grid.style.setProperty('--common-font-size', Math.max(15, Math.floor(cellSize * 0.56)) + 'px');
+      grid.style.setProperty('--common-num-size', Math.max(8, Math.floor(cellSize * 0.30)) + 'px');
       grid.style.gridTemplateColumns = 'repeat(' + commonCrosswordSize + ', ' + cellSize + 'px)';
       for (let r = 0; r < commonCrosswordSize; r++) {
         for (let c = 0; c < commonCrosswordSize; c++) {
@@ -1593,7 +1643,7 @@
 
     window.addEventListener('resize', function() {
       const panel = document.getElementById('common-crossword-game');
-      if (panel && panel.classList.contains('active')) renderCommonCrossword(currentCommonSubject);
+      if (panel && panel.classList.contains('active')) loadCommonCrosswordSet(currentCommonSetIndex);
     });
 
     document.addEventListener('keydown' , function(e) {
