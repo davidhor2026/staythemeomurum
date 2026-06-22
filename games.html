@@ -359,6 +359,7 @@
     .common-cw-cell.correct { background: #eef8ed; }
     .common-cw-cell.wrong { background: #fff0ec; }
     .common-cw-cell.revealed { background: #fff5dc; }
+    .common-cw-cell.revealed span:not(.common-cw-num) { color: #2e2b25; }
 
     .common-answer-box {
       display: none;
@@ -458,13 +459,13 @@
     <p>공부하다 잠깐 머리를 식히고 싶을 때 즐기는 수험생 쉬어가기 게임입니다.</p>
 
     <div class="button-wrap">
-      <a class="button sub" href="index.html">홈페이지로 돌아가기</a>
+      <a class="button sub" href="index.html">메인페이지로 돌아가기</a>
     </div>
   </header>
 
   <nav>
-    <a href="index.html">홈</a>
-    <a href="rooms.html">방 타입</a>
+    <a href="index.html">메인페이지</a>
+    <a href="rooms.html">방타입</a>
     <a href="facilities.html">시설</a>
     <a href="reviews.html">후기</a>
     <a href="faq.html">FAQ</a>
@@ -622,7 +623,7 @@
     <div class="button-wrap" style="text-align:center;">
       <button class="button" type="button" onclick="checkCommonCrossword()">정답 확인</button>
       <button class="button sub" type="button" onclick="hintCommonCrossword()">힌트 한 칸</button>
-      <button class="button sub" type="button" onclick="showCommonCrosswordAnswers()">포기하고 정답보기</button>
+      <button class="button sub" type="button" onclick="showCommonCrosswordAnswers()">포기하고 전체정답보기</button>
       <button class="button sub" type="button" onclick="nextCommonCrosswordSet()">다음 세트</button>
       <button class="button sub" type="button" onclick="resetCommonCrossword()">다시 풀기</button>
     </div>
@@ -1048,6 +1049,7 @@
     let commonInputs = [];
     let commonInputMap = {};
     let commonCurrentSolved = false;
+    let commonShowAnswers = false;
     let commonSolvedCount = { korean: 0, english: 0, history: 0 };
 
     function initCommonSubjectCrossword() {
@@ -1078,6 +1080,7 @@
     function loadCommonCrosswordSet(setIndex) {
       currentCommonSetIndex = setIndex;
       commonCurrentSolved = false;
+      commonShowAnswers = false;
       commonCells = {};
       commonInputs = [];
       commonInputMap = {};
@@ -1151,13 +1154,14 @@
           }
           const cell = document.createElement('div');
           cell.className = 'common-cw-cell';
+          cell.dataset.answer = cellData.answer;
           if (isCommonStartCell(r, c)) {
             const num = document.createElement('span');
             num.className = 'common-cw-num';
             num.textContent = getCommonStartNumber(r, c);
             cell.appendChild(num);
           }
-          if (cellData.fixed) {
+          if (cellData.fixed || commonShowAnswers) {
             const fixed = document.createElement('span');
             fixed.style.display = 'flex';
             fixed.style.alignItems = 'center';
@@ -1296,16 +1300,14 @@
     }
 
     function showCommonCrosswordAnswers() {
-      commonInputs.forEach(function(input) {
-        input.value = input.dataset.answer;
-        input.readOnly = true;
-        input.style.color = '#2e2b25';
-        input.parentElement.classList.remove('wrong', 'correct');
-        input.parentElement.classList.add('revealed');
-      });
+      commonShowAnswers = true;
+      buildCommonCrosswordGrid();
       const answerBox = document.getElementById('common-cw-answer-list');
-      if (answerBox) { answerBox.innerHTML = buildCommonAnswerListHtml(); answerBox.style.display = 'block'; }
-      document.getElementById('common-cw-status').textContent = '포기하고 정답보기를 실행했습니다. 아래에 전체 정답 목록도 함께 표시했습니다.';
+      if (answerBox) {
+        answerBox.innerHTML = buildCommonAnswerListHtml();
+        answerBox.style.display = 'block';
+      }
+      document.getElementById('common-cw-status').textContent = '포기하고 전체정답보기를 실행했습니다. 퍼즐판과 아래 목록에 전체 정답을 표시했습니다.';
     }
 
     function nextCommonCrosswordSet() {
