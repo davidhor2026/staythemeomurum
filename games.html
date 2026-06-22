@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>머무름 쉼표 | 스테이The머무름</title>
-  <meta name="description" content="스테이The머무름 수험생을 위한 짧은 쉬어가기 게임 페이지입니다. 가로세로 낱말 맞추기, 떨어지는 블록 퍼즐, 공룡 달리기 게임을 즐길 수 있습니다.">
-  <meta name="keywords" content="수험생 쉬어가기, 수험생 게임, 머무름 쉼표, 가로세로 낱말 맞추기, 떨어지는 블록 퍼즐, 공룡 달리기, 노량진 수험생 고시원">
+  <meta name="description" content="스테이The머무름 수험생을 위한 짧은 쉬어가기 게임 페이지입니다. 가로세로 낱말 맞추기, 떨어지는 블록 퍼즐, 공룡 점프 어드벤처 게임을 즐길 수 있습니다.">
+  <meta name="keywords" content="수험생 쉬어가기, 수험생 게임, 머무름 쉼표, 가로세로 낱말 맞추기, 떨어지는 블록 퍼즐, 공룡 점프 게임, 노량진 수험생 고시원">
 
   <link rel="stylesheet" href="style.css">
 
@@ -126,8 +126,7 @@
     .falling-current { background: #8aa36f; }
 
     .touch-controls,
-    .speed-controls,
-    .dino-controls {
+    .adventure-controls {
       display: grid;
       grid-template-columns: repeat(3, 72px);
       gap: 8px;
@@ -136,8 +135,7 @@
     }
 
     .touch-controls button,
-    .speed-controls button,
-    .dino-controls button,
+    .adventure-controls button,
     .small-game-button {
       min-height: 48px;
       border: none;
@@ -150,9 +148,7 @@
     }
 
     .touch-controls .wide-control,
-    .dino-controls .wide-control { grid-column: span 3; }
-
-    .speed-controls button.active-speed { background: #8aa36f; }
+    .adventure-controls .wide-control { grid-column: span 3; }
 
     .score-box {
       text-align: center;
@@ -163,37 +159,64 @@
       min-width: 140px;
     }
 
-    .dino-stage {
+    .adventure-stage {
       position: relative;
-      width: min(100%, 520px);
-      height: 180px;
+      width: min(100%, 540px);
+      height: 220px;
       margin: 18px auto;
       overflow: hidden;
       border: 2px solid #2f3b2f;
       border-radius: 16px;
-      background: linear-gradient(#fbfbf5 0%, #fbfbf5 70%, #e9e0cf 70%, #e9e0cf 100%);
+      background: linear-gradient(#dff2ff 0%, #f8fbf2 67%, #e5d8bd 67%, #e5d8bd 100%);
       touch-action: manipulation;
     }
 
-    .dino-player,
-    .dino-obstacle {
+    .adventure-ground {
       position: absolute;
-      bottom: 42px;
-      font-size: 34px;
+      left: 0;
+      right: 0;
+      bottom: 56px;
+      height: 4px;
+      background: #2f3b2f;
+    }
+
+    .adventure-player,
+    .adventure-obstacle,
+    .adventure-coin {
+      position: absolute;
       line-height: 1;
       user-select: none;
     }
 
-    .dino-player { left: 42px; }
-    .dino-obstacle { left: 420px; }
+    .adventure-player {
+      left: 46px;
+      bottom: 58px;
+      font-size: 38px;
+      transform: scaleX(-1);
+    }
 
-    .dino-ground {
+    .adventure-obstacle {
+      left: 430px;
+      bottom: 58px;
+      font-size: 32px;
+    }
+
+    .adventure-coin {
+      left: 330px;
+      bottom: 125px;
+      font-size: 28px;
+    }
+
+    .floating-label {
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 40px;
-      height: 2px;
-      background: #2f3b2f;
+      left: 14px;
+      top: 10px;
+      background: rgba(255,255,255,0.75);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 13px;
+      font-weight: bold;
+      color: #2f3b2f;
     }
 
     @media (max-width: 760px) {
@@ -222,9 +245,9 @@
         height: 20px;
       }
 
-      .dino-stage { height: 165px; }
-      .dino-player,
-      .dino-obstacle { font-size: 32px; }
+      .adventure-stage { height: 205px; }
+      .adventure-player { font-size: 36px; }
+      .adventure-obstacle { font-size: 30px; }
     }
   </style>
 </head>
@@ -267,14 +290,14 @@
 
       <div class="card">
         <strong>떨어지는 블록 퍼즐</strong>
-        <p>떨어지는 블록을 움직이고 회전해 줄을 지우는 고전적인 방식의 퍼즐입니다.</p>
+        <p>시간이 지날수록 속도가 빨라져 난이도가 올라가는 블록 퍼즐입니다.</p>
         <button class="button" type="button" onclick="showGame('falling-game')">시작하기</button>
       </div>
 
       <div class="card">
-        <strong>공룡 달리기</strong>
-        <p>장애물을 피해 점프하는 짧은 반응속도 게임입니다.</p>
-        <button class="button" type="button" onclick="showGame('dino-game')">시작하기</button>
+        <strong>공룡 점프 어드벤처</strong>
+        <p>장애물을 넘고 별을 모으는 가벼운 점프 게임입니다.</p>
+        <button class="button" type="button" onclick="showGame('adventure-game')">시작하기</button>
       </div>
     </div>
   </section>
@@ -283,13 +306,13 @@
     <h2>가로세로 낱말 맞추기</h2>
     <p>
       난이도를 높여 법률·시험 용어 중심으로 구성했습니다.
-      전체 판은 하나의 정사각형 모양이며, 각 낱말은 첫 글자 정도만 공개됩니다.
+      정답 글자를 입력하면 자동으로 다음 빈칸으로 커서가 이동합니다.
     </p>
 
     <div class="hint-box">
       <strong>난이도: 어려움</strong>
       <p>정답은 3~5글자입니다. 공개된 첫 글자와 힌트를 함께 보고 빈칸을 채워보세요.</p>
-      <p>법원직·공무원 시험 공부 중 자주 접할 수 있는 법률 용어 위주로 구성했습니다.</p>
+      <p>정답 글자를 정확히 입력하면 다음 빈칸으로 자동 이동합니다.</p>
     </div>
 
     <div class="crossword-wrap">
@@ -324,17 +347,11 @@
 
   <section id="falling-game" class="game-panel">
     <h2>떨어지는 블록 퍼즐</h2>
-    <p>핸드폰에서는 아래 버튼으로 조작하세요. 줄이 꽉 차면 사라집니다. 속도도 조절할 수 있습니다.</p>
+    <p>핸드폰에서는 아래 버튼으로 조작하세요. 시간이 지날수록 자동으로 떨어지는 속도가 빨라집니다.</p>
 
     <div class="falling-wrap">
       <div>
         <div class="falling-board" id="falling-board"></div>
-
-        <div class="speed-controls">
-          <button type="button" id="speed-slow" onclick="setFallingSpeed('slow')">느림</button>
-          <button type="button" id="speed-normal" onclick="setFallingSpeed('normal')">보통</button>
-          <button type="button" id="speed-fast" onclick="setFallingSpeed('fast')">빠름</button>
-        </div>
 
         <div class="touch-controls">
           <button type="button" onclick="movePiece(-1)">◀</button>
@@ -352,36 +369,38 @@
         <p id="falling-score">0</p>
         <p>지운 줄</p>
         <p id="falling-lines">0</p>
-        <p>속도</p>
-        <p id="falling-speed-label">보통</p>
+        <p>난이도</p>
+        <p id="falling-level">1단계</p>
       </div>
     </div>
 
     <div class="game-status" id="falling-status">시작/멈춤 버튼을 눌러 시작하세요.</div>
   </section>
 
-  <section id="dino-game" class="game-panel">
-    <h2>공룡 달리기</h2>
-    <p>장애물이 오면 점프하세요. 핸드폰에서는 화면이나 점프 버튼을 누르면 됩니다.</p>
+  <section id="adventure-game" class="game-panel">
+    <h2>공룡 점프 어드벤처</h2>
+    <p>오른쪽을 바라보는 공룡이 장애물을 넘고 별을 모으는 방식입니다. 핸드폰에서는 화면이나 점프 버튼을 누르세요.</p>
 
-    <div class="score-box" style="margin:0 auto; max-width:180px;">
-      점수: <span id="dino-score">0</span>
+    <div class="score-box" style="margin:0 auto; max-width:190px;">
+      점수: <span id="adventure-score">0</span>
     </div>
 
-    <div class="dino-stage" id="dino-stage" onclick="dinoJump()">
-      <div class="dino-ground"></div>
-      <div class="dino-player" id="dino-player">🦖</div>
-      <div class="dino-obstacle" id="dino-obstacle">🌵</div>
+    <div class="adventure-stage" id="adventure-stage" onclick="adventureJump()">
+      <div class="floating-label">점프해서 장애물을 넘고 별을 모으세요</div>
+      <div class="adventure-ground"></div>
+      <div class="adventure-player" id="adventure-player">🦖</div>
+      <div class="adventure-obstacle" id="adventure-obstacle">🧱</div>
+      <div class="adventure-coin" id="adventure-coin">⭐</div>
     </div>
 
-    <div class="dino-controls">
-      <button type="button" onclick="dinoJump()">점프</button>
-      <button type="button" onclick="toggleDinoGame()">시작/멈춤</button>
-      <button type="button" onclick="resetDinoGame()">다시</button>
-      <button class="wide-control" type="button" onclick="resetDinoGame(); toggleDinoGame();">처음부터 시작</button>
+    <div class="adventure-controls">
+      <button type="button" onclick="adventureJump()">점프</button>
+      <button type="button" onclick="toggleAdventureGame()">시작/멈춤</button>
+      <button type="button" onclick="resetAdventureGame()">다시</button>
+      <button class="wide-control" type="button" onclick="resetAdventureGame(); toggleAdventureGame();">처음부터 시작</button>
     </div>
 
-    <div class="game-status" id="dino-status">시작 버튼을 누른 뒤 장애물을 피해 점프하세요.</div>
+    <div class="game-status" id="adventure-status">시작 버튼을 누른 뒤 장애물을 피해 점프하세요.</div>
   </section>
 
   <footer>
@@ -402,6 +421,7 @@
 
     const crosswordSize = 9;
     const crosswordCells = {};
+    let crosswordInputs = [];
 
     function addWord(row, col, direction, answer, revealIndexes) {
       answer.split('').forEach(function(ch, i) {
@@ -426,6 +446,7 @@
     function buildCrossword() {
       const grid = document.getElementById('crossword-grid');
       grid.innerHTML = '';
+      crosswordInputs = [];
 
       for (let r = 0; r < crosswordSize; r++) {
         for (let c = 0; c < crosswordSize; c++) {
@@ -450,9 +471,25 @@
             input.maxLength = 1;
             input.dataset.answer = cell.answer;
             input.setAttribute('aria-label', '낱말 맞추기 빈칸');
+            input.addEventListener('input', handleCrosswordInput);
+            crosswordInputs.push(input);
             grid.appendChild(input);
           }
         }
+      }
+    }
+
+    function handleCrosswordInput(e) {
+      const input = e.target;
+      if (input.value.trim() === input.dataset.answer) {
+        input.style.borderColor = '#8aa36f';
+        const currentIndex = crosswordInputs.indexOf(input);
+        const nextInput = crosswordInputs[currentIndex + 1];
+        if (nextInput) nextInput.focus();
+      } else if (input.value.trim() !== '') {
+        input.style.borderColor = '#b95d48';
+      } else {
+        input.style.borderColor = '#c8c8c8';
       }
     }
 
@@ -464,7 +501,7 @@
     function checkCrossword() {
       let correct = true;
 
-      document.querySelectorAll('.cw-cell:not(.fixed)').forEach(function(input) {
+      crosswordInputs.forEach(function(input) {
         if (input.value.trim() !== input.dataset.answer) {
           correct = false;
           input.style.borderColor = '#b95d48';
@@ -496,20 +533,19 @@
     let fallingRunning = false;
     let fallingScore = 0;
     let fallingLines = 0;
-    let fallingSpeed = 'normal';
-    const speedMap = { slow: 850, normal: 550, fast: 300 };
-    const speedLabel = { slow: '느림', normal: '보통', fast: '빠름' };
+    let fallingStartTime = 0;
+    let fallingElapsedBeforePause = 0;
+    let lastFallTime = 0;
 
-    function setFallingSpeed(speed) {
-      fallingSpeed = speed;
-      document.getElementById('falling-speed-label').textContent = speedLabel[speed];
-      ['slow', 'normal', 'fast'].forEach(function(s) {
-        document.getElementById('speed-' + s).classList.toggle('active-speed', s === speed);
-      });
-      if (fallingRunning) {
-        clearInterval(fallingTimer);
-        fallingTimer = setInterval(tickFalling, speedMap[fallingSpeed]);
-      }
+    function getFallingLevel() {
+      if (!fallingStartTime) return 1;
+      const elapsed = Date.now() - fallingStartTime;
+      return Math.min(12, 1 + Math.floor(elapsed / 18000));
+    }
+
+    function getFallInterval() {
+      const level = getFallingLevel();
+      return Math.max(180, 720 - (level - 1) * 50);
     }
 
     function resetFallingGame() {
@@ -517,11 +553,13 @@
       fallingScore = 0;
       fallingLines = 0;
       fallingRunning = false;
+      fallingStartTime = 0;
+      fallingElapsedBeforePause = 0;
+      lastFallTime = 0;
       if (fallingTimer) clearInterval(fallingTimer);
       fallingTimer = null;
       spawnPiece();
       drawFalling();
-      setFallingSpeed(fallingSpeed);
       updateFallingInfo('시작/멈춤 버튼을 눌러 시작하세요.');
     }
 
@@ -572,6 +610,7 @@
 
       document.getElementById('falling-score').textContent = fallingScore;
       document.getElementById('falling-lines').textContent = fallingLines;
+      document.getElementById('falling-level').textContent = getFallingLevel() + '단계';
     }
 
     function updateFallingInfo(text) {
@@ -613,12 +652,27 @@
       drawFalling();
     }
 
+    function fallingLoop() {
+      if (!fallingRunning) return;
+      const now = Date.now();
+      if (now - lastFallTime >= getFallInterval()) {
+        tickFalling();
+        lastFallTime = now;
+      } else {
+        document.getElementById('falling-level').textContent = getFallingLevel() + '단계';
+      }
+    }
+
     function toggleFallingGame() {
       fallingRunning = !fallingRunning;
       if (fallingRunning) {
-        fallingTimer = setInterval(tickFalling, speedMap[fallingSpeed]);
-        updateFallingInfo('진행 중입니다. 속도를 바꾸면 바로 적용됩니다.');
+        fallingStartTime = Date.now() - fallingElapsedBeforePause;
+        lastFallTime = Date.now();
+        if (fallingTimer) clearInterval(fallingTimer);
+        fallingTimer = setInterval(fallingLoop, 50);
+        updateFallingInfo('진행 중입니다. 시간이 지날수록 속도가 빨라집니다.');
       } else {
+        fallingElapsedBeforePause = Date.now() - fallingStartTime;
         clearInterval(fallingTimer);
         updateFallingInfo('일시정지 상태입니다.');
       }
@@ -656,70 +710,88 @@
       drawFalling();
     }
 
-    let dinoRunning = false;
-    let dinoTimer = null;
-    let dinoY = 0;
-    let dinoVelocity = 0;
-    let obstacleX = 420;
-    let dinoScore = 0;
+    let adventureRunning = false;
+    let adventureTimer = null;
+    let playerY = 0;
+    let playerVelocity = 0;
+    let obstacleX = 430;
+    let coinX = 330;
+    let adventureScore = 0;
+    let coinVisible = true;
 
-    function resetDinoGame() {
-      dinoRunning = false;
-      if (dinoTimer) clearInterval(dinoTimer);
-      dinoTimer = null;
-      dinoY = 0;
-      dinoVelocity = 0;
-      obstacleX = 420;
-      dinoScore = 0;
-      drawDino();
-      document.getElementById('dino-status').textContent = '시작 버튼을 누른 뒤 장애물을 피해 점프하세요.';
+    function resetAdventureGame() {
+      adventureRunning = false;
+      if (adventureTimer) clearInterval(adventureTimer);
+      adventureTimer = null;
+      playerY = 0;
+      playerVelocity = 0;
+      obstacleX = 430;
+      coinX = 330;
+      adventureScore = 0;
+      coinVisible = true;
+      drawAdventure();
+      document.getElementById('adventure-status').textContent = '시작 버튼을 누른 뒤 장애물을 피해 점프하세요.';
     }
 
-    function toggleDinoGame() {
-      dinoRunning = !dinoRunning;
-      if (dinoRunning) {
-        if (dinoTimer) clearInterval(dinoTimer);
-        dinoTimer = setInterval(tickDino, 25);
-        document.getElementById('dino-status').textContent = '진행 중입니다. 장애물이 오면 점프하세요.';
+    function toggleAdventureGame() {
+      adventureRunning = !adventureRunning;
+      if (adventureRunning) {
+        if (adventureTimer) clearInterval(adventureTimer);
+        adventureTimer = setInterval(tickAdventure, 25);
+        document.getElementById('adventure-status').textContent = '진행 중입니다. 장애물을 넘고 별을 모아보세요.';
       } else {
-        if (dinoTimer) clearInterval(dinoTimer);
-        document.getElementById('dino-status').textContent = '일시정지 상태입니다.';
+        if (adventureTimer) clearInterval(adventureTimer);
+        document.getElementById('adventure-status').textContent = '일시정지 상태입니다.';
       }
     }
 
-    function dinoJump() {
-      if (!dinoRunning) return;
-      if (dinoY === 0) dinoVelocity = 13;
+    function adventureJump() {
+      if (!adventureRunning) return;
+      if (playerY === 0) playerVelocity = 14;
     }
 
-    function tickDino() {
-      dinoVelocity -= 0.7;
-      dinoY += dinoVelocity;
-      if (dinoY < 0) {
-        dinoY = 0;
-        dinoVelocity = 0;
+    function tickAdventure() {
+      playerVelocity -= 0.75;
+      playerY += playerVelocity;
+      if (playerY < 0) {
+        playerY = 0;
+        playerVelocity = 0;
       }
 
       obstacleX -= 6;
-      if (obstacleX < -30) {
-        obstacleX = 500;
-        dinoScore += 10;
+      coinX -= 6;
+
+      if (obstacleX < -40) {
+        obstacleX = 520;
+        adventureScore += 10;
       }
 
-      if (obstacleX > 38 && obstacleX < 78 && dinoY < 28) {
-        dinoRunning = false;
-        clearInterval(dinoTimer);
-        document.getElementById('dino-status').textContent = '부딪혔습니다. 다시 버튼을 눌러 재도전하세요.';
+      if (coinX < -40) {
+        coinX = 620;
+        coinVisible = true;
       }
 
-      dinoScore += 1;
-      drawDino();
+      if (coinVisible && coinX > 42 && coinX < 82 && playerY > 45) {
+        coinVisible = false;
+        adventureScore += 50;
+      }
+
+      if (obstacleX > 38 && obstacleX < 82 && playerY < 32) {
+        adventureRunning = false;
+        clearInterval(adventureTimer);
+        document.getElementById('adventure-status').textContent = '장애물에 부딪혔습니다. 다시 버튼을 눌러 재도전하세요.';
+      }
+
+      adventureScore += 1;
+      drawAdventure();
     }
 
-    function drawDino() {
-      document.getElementById('dino-player').style.bottom = (42 + dinoY) + 'px';
-      document.getElementById('dino-obstacle').style.left = obstacleX + 'px';
-      document.getElementById('dino-score').textContent = dinoScore;
+    function drawAdventure() {
+      document.getElementById('adventure-player').style.bottom = (58 + playerY) + 'px';
+      document.getElementById('adventure-obstacle').style.left = obstacleX + 'px';
+      document.getElementById('adventure-coin').style.left = coinX + 'px';
+      document.getElementById('adventure-coin').style.display = coinVisible ? 'block' : 'none';
+      document.getElementById('adventure-score').textContent = adventureScore;
     }
 
     document.addEventListener('keydown', function(e) {
@@ -727,13 +799,12 @@
       if (e.key === 'ArrowRight') movePiece(1);
       if (e.key === 'ArrowUp') rotatePiece();
       if (e.key === 'ArrowDown') softDrop();
-      if (e.key === ' ' || e.key === 'Spacebar') dinoJump();
+      if (e.key === ' ' || e.key === 'Spacebar') adventureJump();
     });
 
     resetCrossword();
-    setFallingSpeed('normal');
     resetFallingGame();
-    resetDinoGame();
+    resetAdventureGame();
   </script>
 </body>
 </html>
