@@ -337,8 +337,14 @@
       text-align: center;
       font-size: var(--common-font-size, 18px);
       font-weight: bold;
-      padding-top: 6px;
+      line-height: 1;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: inherit;
+      color: #1f1f1f;
       text-transform: uppercase;
+      -webkit-appearance: none;
+      appearance: none;
     }
 
     .common-cw-cell .common-cw-num {
@@ -1139,7 +1145,7 @@
       const gapSize = (window.innerWidth || 360) < 430 ? 4 : 6;
       grid.style.setProperty('--common-cell-gap', gapSize + 'px');
       grid.style.setProperty('--common-cell-size', cellSize + 'px');
-      grid.style.setProperty('--common-font-size', Math.max(15, Math.floor(cellSize * 0.56)) + 'px');
+      grid.style.setProperty('--common-font-size', Math.max(14, Math.floor(cellSize * 0.50)) + 'px');
       grid.style.setProperty('--common-num-size', Math.max(8, Math.floor(cellSize * 0.30)) + 'px');
       grid.style.gridTemplateColumns = 'repeat(' + commonCrosswordSize + ', ' + cellSize + 'px)';
       for (let r = 0; r < commonCrosswordSize; r++) {
@@ -1170,7 +1176,9 @@
             fixed.style.height = '100%';
             fixed.style.fontWeight = 'bold';
             fixed.style.fontSize = 'var(--common-font-size, 18px)';
-            fixed.style.paddingTop = '6px';
+            fixed.style.padding = '0';
+            fixed.style.lineHeight = '1';
+            fixed.style.boxSizing = 'border-box';
             fixed.textContent = cellData.answer;
             cell.classList.add('revealed');
             cell.appendChild(fixed);
