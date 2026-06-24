@@ -1,1 +1,217 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>시설 안내 | 스테이The머무름</title><meta name="description" content="스테이The머무름의 공용시설, 주방, 복도, 샤워실, 화장실, 공용공간 사진 안내입니다."><meta name="keywords" content="노량진 고시원 시설, 여성전용 고시원 시설"><link rel="stylesheet" href="style.css"></head><body><header class="sub-header"><h1>시설 안내</h1><p>깨끗하게 관리하는 공용시설과 생활환경</p><div class="button-wrap"><a class="button sub" href="index.html">메인페이지로 돌아가기</a></div></header><nav><a href="index.html">메인페이지</a><a href="rooms.html">방타입</a><a href="facilities.html">시설</a><a href="reviews.html">후기</a><a href="quiz.html">시험대비 퀴즈</a><a href="gift.html">수제비누 선물</a><a href="index.html#contact">문의</a></nav><section><h2>공용시설 및 생활환경</h2><p>노량진 수험생 생활에 필요한 주방, 복도, 샤워실, 화장실, 공용공간을 깔끔하게 관리합니다.</p><div class="photo-grid"><img src="hallway.jpg" alt="복도 사진"><img src="hallway2.jpg" alt="복도 사진"><img src="kitchen.jpg" alt="주방 사진"><img src="showerroom.jpg" alt="샤워실 사진"><img src="bathroom.jpg" alt="화장실 사진"><img src="cafeteria.jpg" alt="공용공간 사진"></div><ul><li>24시간 주방 이용 가능</li><li>공용공간 청소 관리</li><li>현관 출입문과 모든 방에 도어락 설치 및 CCTV 관리</li><li>1층- 화장실 겸 샤워실 2, 샤워실 2 / 2층- 화장실 겸 샤워실 2</li></ul><p class="notice">실제 시설 구성은 현장 상황에 따라 달라질 수 있으므로 방문 또는 문의 시 확인해 주세요.</p></section><section><h2>머무름의 작은 배려</h2><p>직접 가꾸는 식물재배기와 정성껏 만든 수제비누는 머무름만의 작은 차별점입니다.</p><div class="photo-grid"><img src="fresh-vegetable-collage.jpg" alt="식물재배기 사진"><img src="handmade-soap-showcase.png" alt="수제비누 쇼케이스 사진"></div></section><footer><p>© <span id="year"></span> 스테이The머무름. All rights reserved.</p><p>노량진 여성전용 고시원</p></footer><script>document.getElementById("year").textContent=new Date().getFullYear();</script></body></html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>시설 안내 | 스테이The머무름</title>
+  <meta name="description" content="스테이The머무름의 공용시설, 커피·주방 편의시설, 세탁시설, 냉장·냉동시설을 안내합니다.">
+  <meta name="keywords" content="노량진 고시원 시설, 여성전용 고시원 시설, 커피머신, 아이스메이커, 세탁기, 건조기, 냉동고">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .facility-lead {
+      color: #555;
+    }
+
+    .facility-card-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .facility-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      display: block;
+      box-shadow: 0 3px 10px rgba(0,0,0,.07);
+    }
+
+    .facility-card strong {
+      display: block;
+      color: #2f3b2f;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .facility-card p {
+      margin: 0;
+      color: #555;
+      font-size: 15px;
+    }
+
+    .facility-note {
+      background: #f4f1ea;
+      border: 1px solid #e5ddd0;
+      padding: 16px 18px;
+      border-radius: 14px;
+      margin-top: 18px;
+    }
+
+    .facility-note strong {
+      display: block;
+      color: #2f3b2f;
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 700px) {
+      .facility-card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="sub-header">
+    <h1>시설 안내</h1>
+    <p>깨끗하게 관리하는 공용시설과 생활 편의 환경</p>
+    <div class="button-wrap">
+      <a class="button sub" href="index.html">메인페이지로 돌아가기</a>
+    </div>
+  </header>
+
+  <nav>
+    <a href="index.html">메인페이지</a>
+    <a href="rooms.html">방타입</a>
+    <a href="facilities.html">시설</a>
+    <a href="reviews.html">후기</a>
+    <a href="quiz.html">시험대비 퀴즈</a>
+    <a href="gift.html">수제비누 선물</a>
+    <a href="index.html#contact">문의</a>
+  </nav>
+
+  <section>
+    <h2>공용시설 및 생활환경</h2>
+    <p class="facility-lead">
+      노량진 수험생 생활에 필요한 주방, 복도, 샤워실, 화장실, 공용공간을 깔끔하게 관리합니다.
+    </p>
+
+    <div class="photo-grid">
+      <img src="hallway.jpg" alt="복도 사진">
+      <img src="hallway2.jpg" alt="복도 사진">
+      <img src="kitchen.jpg" alt="주방 사진">
+      <img src="showerroom.jpg" alt="샤워실 사진">
+      <img src="bathroom.jpg" alt="화장실 사진">
+      <img src="cafeteria.jpg" alt="공용공간 사진">
+    </div>
+
+    <ul>
+      <li>24시간 주방 이용 가능</li>
+      <li>공용공간 청소 관리</li>
+      <li>출입 보안 및 CCTV 관리</li>
+      <li>깨끗한 생활 분위기 지향</li>
+    </ul>
+
+    <p class="notice">실제 시설 구성은 현장 상황에 따라 달라질 수 있으므로 방문 또는 문의 시 확인해 주세요.</p>
+  </section>
+
+  <section>
+    <h2>커피 & 음료 편의</h2>
+    <p class="facility-lead">
+      공부 중 잠깐 쉬어갈 수 있도록 커피와 시원한 음료를 즐길 수 있는 편의 환경을 준비하고 있습니다.
+    </p>
+
+    <div class="card-grid facility-card-grid">
+      <div class="card facility-card">
+        <img src="coffee-machine.jpg" alt="커피머신 사진">
+        <strong>커피머신</strong>
+        <p>주방에서 간편하게 커피를 내려 마실 수 있도록 커피머신을 비치해 두고 있습니다.</p>
+      </div>
+
+      <div class="card facility-card">
+        <img src="ice-maker.jpg" alt="아이스메이커 사진">
+        <strong>아이스메이커</strong>
+        <p>더운 날에도 시원한 음료를 즐길 수 있도록 아이스메이커를 함께 사용합니다.</p>
+      </div>
+
+      <div class="card facility-card">
+        <img src="iced-americano.jpg" alt="아이스 아메리카노 사진">
+        <strong>시원한 아이스 아메리카노</strong>
+        <p>얼음이 가득한 아이스 아메리카노 한 잔으로 공부 중 잠깐의 휴식을 즐길 수 있습니다.</p>
+      </div>
+
+      <div class="card facility-card">
+        <img src="home-roasting.jpg" alt="집에서 원두를 로스팅 하는 사진">
+        <strong>가끔 직접 하는 홈 로스팅</strong>
+        <p>원두는 주로 시중에서 구입하지만, 가끔 집에서 직접 로스팅한 원두를 가져오기도 합니다.</p>
+      </div>
+
+      <div class="card facility-card">
+        <img src="roasted-beans.jpg" alt="로스팅 직후 원두 사진">
+        <strong>로스팅 직후 원두</strong>
+        <p>직접 로스팅한 원두는 향과 풍미가 살아 있어 머무름만의 작은 즐거움을 더해 줍니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>생활 편의 가전</h2>
+    <p class="facility-lead">
+      일상생활에 필요한 가전도 편리하게 사용할 수 있도록 준비해 두었습니다.
+    </p>
+
+    <div class="card-grid facility-card-grid">
+      <div class="card facility-card">
+        <img src="rice-cooker.jpg" alt="전기밥솥 사진">
+        <strong>전기밥솥</strong>
+        <p>간단한 식사 준비를 위해 전기밥솥을 비치해 두어 생활의 편의성을 높였습니다.</p>
+      </div>
+
+      <div class="card facility-card">
+        <img src="washing-machine.jpg" alt="세탁기 사진">
+        <strong>세탁기</strong>
+        <p>입주 중 필요한 세탁을 편리하게 할 수 있도록 공용 세탁기를 이용하실 수 있습니다.</p>
+      </div>
+
+      <div class="card facility-card">
+        <img src="dryer.jpg" alt="건조기 사진">
+        <strong>건조기</strong>
+        <p>날씨와 관계없이 빨래를 빠르게 말릴 수 있도록 건조기도 함께 운영합니다.</p>
+      </div>
+
+      <div class="card facility-card">
+        <img src="room-fridge.jpg" alt="방 안의 냉장고 사진">
+        <strong>객실 내 냉장고</strong>
+        <p>각 방에서 간단한 음료와 식품을 보관할 수 있도록 객실 냉장고를 구비하고 있습니다.</p>
+      </div>
+
+      <div class="card facility-card">
+        <img src="kitchen-freezer.jpg" alt="주방 냉동 전용고 사진">
+        <strong>주방 냉동 전용고</strong>
+        <p>주방의 냉동 전용고는 작은 바구니로 칸을 나누어 두며, 사용 요청 시 칸을 지정해 배정합니다.</p>
+      </div>
+    </div>
+
+    <div class="facility-note">
+      <strong>냉동 전용고 이용 안내</strong>
+      <p>
+        냉동고는 바구니 단위로 구역을 나누어 사용합니다.
+        사용을 원하실 경우 빈 칸을 확인한 뒤 배정해 드리며,
+        빈 자리가 없을 때에는 순서대로 대기해 주셔야 합니다.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>머무름의 작은 배려</h2>
+    <p>직접 가꾸는 식물재배기와 정성껏 만든 수제비누는 머무름만의 작은 차별점입니다.</p>
+
+    <div class="photo-grid">
+      <img src="fresh-vegetable-collage.jpg" alt="식물재배기 사진">
+      <img src="handmade-soap-showcase.png" alt="수제비누 쇼케이스 사진">
+    </div>
+  </section>
+
+  <footer>
+    <p>© <span id="year"></span> 스테이The머무름. All rights reserved.</p>
+    <p>노량진 여성전용 고시원</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
