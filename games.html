@@ -523,7 +523,7 @@
 
     <div class="hint-box">
       <strong>게임 시작 전 닉네임을 등록하시겠어요?</strong>
-      <p>닉네임을 등록하면 게임 점수가 전체 순위에 기록됩니다. 원하지 않으면 익명으로도 진행할 수 있습니다.</p>
+      <p>닉네임을 등록하면 게임 순위에 기록됩니다. 원하지 않으면 익명으로도 진행할 수 있습니다.</p>
       <div class="button-wrap" style="text-align:center;">
         <a class="button" href="#player-ranking">닉네임 등록하기</a>
         <button class="button sub" type="button" onclick="showGame('crossword-game')">익명으로 바로 시작</button>
@@ -561,8 +561,8 @@
   <section id="player-ranking">
     <h2>닉네임과 전체 순위</h2>
     <p>
-      게임 시작 전에 닉네임을 등록하면 점수가 전체 순위에 기록됩니다. 방번호는 저장하지 않습니다.
-      닉네임을 입력하지 않으면 익명으로 기록되며, 순위는 게임별 최고 점수 기준으로 표시됩니다.
+      게임 시작 전에 닉네임을 등록하면 게임 순위에 기록됩니다. 방번호는 저장하지 않습니다.
+      닉네임을 입력하지 않으면 익명으로 기록되며, 순위는 게임별 기록 기준으로 표시됩니다.
     </p>
 
     <div class="player-box">
@@ -801,8 +801,8 @@
           if (!ranking.length) {
             target.innerHTML = '<li>아직 기록이 없습니다.</li>';
           } else {
-            target.innerHTML = ranking.map(function(item) {
-              return '<li>' + escapeHtml(item.nickname || '익명') + ' - ' + Number(item.score || 0).toLocaleString() + '점</li>';
+            target.innerHTML = ranking.map(function(item, index) {
+              return '<li>' + escapeHtml(item.nickname || '익명') + ' - ' + (index + 1) + '위</li>';
             }).join('');
           }
         } finally {
@@ -849,6 +849,7 @@
     let crosswordInputMap = {};
     let crosswordSolvedCount = 0;
     let crosswordCurrentSolved = false;
+    let crosswordAnswerRevealed = false;
 
     function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -874,6 +875,7 @@
     function loadCrosswordSet(setIndex) {
       currentCrosswordSet = setIndex;
       crosswordCurrentSolved = false;
+      crosswordAnswerRevealed = false;
       crosswordCells = {};
       const set = crosswordSets[currentCrosswordSet];
 
@@ -1015,13 +1017,17 @@
 
     function completeCrosswordSolvedMessage(auto) {
       if (crosswordCurrentSolved) return;
+      if (crosswordAnswerRevealed) {
+        document.getElementById('crossword-status').textContent = '포기하고 정답을 확인한 문제는 순위에 반영되지 않습니다. 다음 세트로 이어서 진행해 주세요.';
+        return;
+      }
       crosswordCurrentSolved = true;
       crosswordSolvedCount++;
       const score = crosswordSolvedCount * 100;
       submitScore(GAME_CROSSWORD, score, '맞힌 문제 수: ' + crosswordSolvedCount);
       document.getElementById('crossword-status').textContent = auto
-        ? '전체 정답입니다! 정답확인을 누르지 않아도 완료 처리되었습니다. 점수: ' + score + '점'
-        : '정답입니다! 점수: ' + score + '점';
+        ? '전체 정답입니다! 정답확인을 누르지 않아도 완료 처리되었고 순위에 반영되었습니다.'
+        : '정답입니다! 순위에 반영되었습니다.';
     }
 
     function autoCompleteCrosswordIfSolved() {
@@ -1033,6 +1039,7 @@
     }
 
     function showCrosswordAnswers() {
+      crosswordAnswerRevealed = true;
       crosswordInputs.forEach(function(input) {
         input.value = input.dataset.answer;
         input.readOnly = true;
@@ -1312,13 +1319,17 @@
 
     function completeCommonCrosswordSolvedMessage(auto) {
       if (commonCurrentSolved) return;
+      if (commonShowAnswers) {
+        document.getElementById('common-cw-status').textContent = '포기하고 전체정답을 확인한 문제는 순위에 반영되지 않습니다. 다음 세트로 이어서 진행해 주세요.';
+        return;
+      }
       commonCurrentSolved = true;
       commonSolvedCount[currentCommonSubject]++;
       const score = commonSolvedCount[currentCommonSubject] * 100;
       submitScore(GAME_COMMON_CROSSWORD, score, commonCrosswordSubjects[currentCommonSubject].label + ' 맞힌 세트: ' + commonSolvedCount[currentCommonSubject]);
       document.getElementById('common-cw-status').textContent = auto
-        ? '전체 정답입니다! 정답확인을 누르지 않아도 완료 처리되었습니다. 점수: ' + score + '점'
-        : '정답입니다! 점수: ' + score + '점';
+        ? '전체 정답입니다! 정답확인을 누르지 않아도 완료 처리되었고 순위에 반영되었습니다.'
+        : '정답입니다! 순위에 반영되었습니다.';
     }
 
     function autoCompleteCommonCrosswordIfSolved() {
