@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>시설 안내 | 스테이The머무름</title>
-  <meta name="description" content="스테이The머무름의 공용시설, 커피·주방 편의시설, 세탁시설, 냉장·냉동시설을 안내합니다.">
-  <meta name="keywords" content="노량진 고시원 시설, 여성전용 고시원 시설, 커피머신, 아이스메이커, 세탁기, 건조기, 냉동고">
+  <meta name="description" content="스테이The머무름의 공용시설, 주방 편의시설, 세탁시설, 냉장·냉동시설, 객실 편의시설을 안내합니다.">
+  <meta name="keywords" content="노량진 고시원 시설, 여성전용 고시원 시설, 공용 냉동고, 커피머신, 아이스메이커, 세탁기, 건조기, 라면 제공">
 
   <link rel="stylesheet" href="style.css">
 
@@ -16,16 +16,25 @@
     }
 
     .facility-card-grid {
-      grid-template-columns: repeat(3, 1fr);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .facility-card {
+      border: 1px solid #eee;
+      border-radius: 16px;
+      padding: 18px;
+      background: #fafafa;
     }
 
     .facility-card img {
       width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 12px;
+      height: auto;
       display: block;
+      border-radius: 14px;
+      margin-bottom: 14px;
       box-shadow: 0 3px 10px rgba(0,0,0,.07);
     }
 
@@ -99,99 +108,111 @@
     </div>
 
     <ul>
-      <li>현관 및 모든 방에 도어락 설치</li>
-      <li>원장님이 공용공간 직접 청소 관리</li>
+      <li>24시간 주방 이용 가능</li>
+      <li>공용공간 청소 관리</li>
       <li>출입 보안 및 CCTV 관리</li>
-      <li>방역업체 세스코 정기 방문 방역</li>
+      <li>깨끗한 생활 분위기 지향</li>
     </ul>
 
     <p class="notice">실제 시설 구성은 현장 상황에 따라 달라질 수 있으므로 방문 또는 문의 시 확인해 주세요.</p>
   </section>
 
   <section>
-    <h2>커피 & 아이스 </h2>
+    <h2>주방 & 식사 편의</h2>
     <p class="facility-lead">
-      공부에 카페인도 필요하죠~ 카페에 갈 필요 없어요.
+      공부에 집중할 수 있도록 간단한 식사와 음료를 편리하게 이용할 수 있는 공간을 준비했습니다.
     </p>
 
-    <div class="card-grid facility-card-grid">
-      <div class="card facility-card">
-        <img src="coffee-machine.jpg" alt="커피머신 사진">
-        <strong>커피머신</strong>
-        <p>주방에서 간편하게 커피를 내려 마실 수 있도록 에스프레소머신을 비치해 두고 있습니다.</p>
+    <div class="facility-card-grid">
+      <div class="facility-card">
+        <img src="coffee-ice-maker-guide.png" alt="커피머신과 아이스메이커 안내 이미지">
+        <strong>커피머신 · 아이스메이커</strong>
+        <p>커피머신과 아이스메이커를 비치해 두어 따뜻한 커피와 시원한 아이스 음료를 편리하게 즐길 수 있습니다.</p>
       </div>
 
-      <div class="card facility-card">
-        <img src="ice-maker.jpg" alt="아이스메이커 사진">
-        <strong>아이스메이커</strong>
-        <p>365일 시원한 음료를 즐길 수 있도록 아이스메이커가 준비되어 있습니다.</p>
+      <div class="facility-card">
+        <img src="rice-cooker-guide.png" alt="쌀과 전기밥솥 안내 이미지">
+        <strong>쌀 & 전기밥솥 비치</strong>
+        <p>쌀과 전기밥솥을 비치해 두어 간편하게 따뜻한 한 끼를 준비할 수 있습니다.</p>
       </div>
 
-      <div class="card facility-card">
-        <img src="iced-americano.jpg" alt="아이스 아메리카노 사진">
-        <strong>시원한 아이스 아메리카노</strong>
-        <p>얼음이 가득한 아이스 아메리카노 한 잔으로 공부 중 잠깐의 휴식을 즐길 수 있습니다.</p>
+      <div class="facility-card">
+        <img src="ramen-guide.png" alt="라면 무료 제공 안내 이미지">
+        <strong>라면 무료 제공</strong>
+        <p>입주자분들을 위해 다양한 라면을 준비해 두었습니다. 종류와 수량은 상황에 따라 달라질 수 있습니다.</p>
       </div>
 
-      <div class="card facility-card">
-        <img src="home-roasting.jpg" alt="집에서 원두를 로스팅 하는 사진">
-        <strong>직접 하는 홈 로스팅</strong>
+      <div class="facility-card">
+        <img src="home-roasting-guide.png" alt="집에서 하는 커피 로스팅 안내 이미지">
+        <strong>가끔 직접 하는 홈 로스팅</strong>
         <p>원두는 주로 시중에서 구입하지만, 가끔 집에서 직접 로스팅한 원두를 가져오기도 합니다.</p>
-      </div>
-
-      <div class="card facility-card">
-        <img src="roasted-beans.jpg" alt="로스팅 직후 원두 사진">
-        <strong>로스팅 직후 원두</strong>
-        <p>직접 로스팅한 원두는 향과 풍미가 살아 있어 머무름만의 작은 즐거움을 더해 줍니다.</p>
       </div>
     </div>
   </section>
 
   <section>
-    <h2>생활 편의 가전</h2>
+    <h2>냉장 · 냉동 보관</h2>
     <p class="facility-lead">
-      일상생활에 필요한 가전도 편리하게 사용할 수 있도록 준비해 두었습니다.
+      각 방의 개별 냉장고와 공용 냉동전용고를 상황에 맞게 이용할 수 있습니다.
     </p>
 
-    <div class="card-grid facility-card-grid">
-      <div class="card facility-card">
-        <img src="rice-cooker.jpg" alt="전기밥솥 사진">
-        <strong>전기밥솥</strong>
-        <p>간단한 식사 준비를 위해 전기밥솥을 비치해 두어 생활의 편의성을 높였습니다.</p>
+    <div class="facility-card-grid">
+      <div class="facility-card">
+        <img src="room-fridge-guide.png" alt="각 방 개별 냉장고 안내 이미지">
+        <strong>각 방 개별 냉장고</strong>
+        <p>객실마다 개별 냉장고가 구비되어 있어 음료와 간단한 식품을 방 안에서 보관할 수 있습니다.</p>
       </div>
 
-      <div class="card facility-card">
-        <img src="washing-machine.jpg" alt="세탁기 사진">
-        <strong>세탁기</strong>
-        <p>입주 중 필요한 세탁을 편리하게 할 수 있도록 공용 세탁기를 이용하실 수 있습니다.</p>
-      </div>
-
-      <div class="card facility-card">
-        <img src="dryer.jpg" alt="건조기 사진">
-        <strong>건조기</strong>
-        <p>날씨와 관계없이 빨래를 빠르게 말릴 수 있도록 건조기도 함께 운영합니다.</p>
-      </div>
-
-      <div class="card facility-card">
-        <img src="room-fridge.jpg" alt="방 안의 냉장고 사진">
-        <strong>객실 내 냉장고</strong>
-        <p>각 방에서 간단한 음료와 식품을 보관할 수 있도록 객실 냉장고를 구비하고 있습니다.</p>
-      </div>
-
-      <div class="card facility-card">
-        <img src="kitchen-freezer.jpg" alt="주방 냉동 전용고 사진">
-        <strong>주방 냉동 전용고</strong>
-        <p>주방의 냉동 전용고는 작은 바구니로 칸을 나누어 두며, 사용 요청 시 칸을 지정해 배정합니다.</p>
+      <div class="facility-card">
+        <img src="freezer-guide.png" alt="공용 냉동고 안내 이미지">
+        <strong>공용 냉동전용고</strong>
+        <p>냉동전용고는 요청 시 지정 칸을 배정해 드리며, 지정 가능한 칸이 모두 찬 경우에는 대기 후 이용 가능합니다.</p>
       </div>
     </div>
 
     <div class="facility-note">
-      <strong>냉동 전용고 이용 안내</strong>
+      <strong>공용 냉동전용고 이용 안내</strong>
       <p>
-        냉동고는 바구니 단위로 구역을 나누어 사용합니다.
-        사용을 원하실 경우 빈 칸을 확인한 뒤 배정해 드리며,
-        빈 자리가 없을 때에는 순서대로 대기해 주셔야 합니다.
+        기본 냉장 보관은 각 방 냉장고를 이용해 주세요.
+        공용 냉동전용고는 사용 요청 시 작은 바구니 단위로 칸을 지정해 드립니다.
+        빈 자리가 없을 경우에는 대기 후 이용 가능합니다.
       </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>세탁 · 위생 공간</h2>
+    <p class="facility-lead">
+      기다림은 줄이고 편의는 높일 수 있도록 세탁·건조 시설과 공용 위생공간을 관리하고 있습니다.
+    </p>
+
+    <div class="facility-card-grid">
+      <div class="facility-card">
+        <img src="laundry-guide.png" alt="세탁기와 건조기 안내 이미지">
+        <strong>세탁기 2대 · 건조기 2대</strong>
+        <p>세탁기와 건조기를 각각 2대씩 비치해 바쁜 시간대에도 조금 더 여유롭게 이용할 수 있습니다.</p>
+      </div>
+
+      <div class="facility-card">
+        <img src="bathroom-shower-guide.png" alt="층별 공용 샤워실과 화장실 안내 이미지">
+        <strong>층별 공용 샤워실 · 화장실</strong>
+        <p>층별로 편리하게 이용할 수 있도록 공용 샤워실과 화장실을 구성하고 청결하게 관리합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>객실 편의</h2>
+    <p class="facility-lead">
+      방 안에서도 편안하게 생활할 수 있도록 필요한 기본 편의시설을 준비했습니다.
+    </p>
+
+    <div class="facility-card-grid">
+      <div class="facility-card">
+        <img src="air-purifier-room-guide.png" alt="객실 공기청정기 안내 이미지">
+        <strong>객실 공기청정기</strong>
+        <p>더 맑은 실내 공기를 위해 객실 타입에 따라 공기청정기가 설치되어 있습니다.</p>
+      </div>
     </div>
   </section>
 
