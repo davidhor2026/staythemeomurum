@@ -11,4 +11,10 @@
   <url>
     <loc>https://staythemeomurum.com/fortune.html</loc>
   </url>
+
+  <url>
+    <loc>https://davidhor2026.github.io/staythemeomurum/rent-support.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

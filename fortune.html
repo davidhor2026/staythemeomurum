@@ -4,28 +4,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>오늘의 사주 운세 | 스테이The머무름</title>
-  <meta name="description" content="생년월일과 출생시간으로 보는 스테이The머무름 오늘의 사주 운세. 오늘, 이번주, 이번달, 올해 운세와 바이오리듬, 띠, 오행, 삼재를 간단히 확인하세요.">
+  <meta name="description" content="생년월일로 보는 스테이The머무름 오늘의 사주 운세. 오늘, 이번주, 이번달, 올해 운세와 바이오리듬, 띠, 오행, 삼재, 공부 방향을 쉽게 확인하세요.">
   <link rel="stylesheet" href="style.css">
   <style>
-    .fortune-wrap{max-width:980px;margin:0 auto;padding:24px 16px 60px}
-    .fortune-hero{background:linear-gradient(135deg,#fff7ed,#fef3c7);border:1px solid #f0d9b5;border-radius:24px;padding:28px 20px;margin:20px 0;box-shadow:0 10px 24px rgba(80,45,15,.08)}
-    .fortune-hero h1{margin:0 0 10px;font-size:2rem;color:#6b3f18}.fortune-hero p{margin:8px 0;line-height:1.75;color:#5b4636}
-    .notice{background:#fff;border:1px dashed #d6ad7b;border-radius:16px;padding:14px 16px;margin-top:16px;font-size:.95rem;color:#6b4a27}
-    .fortune-form{background:#fff;border:1px solid #ead7c0;border-radius:20px;padding:18px;margin:18px 0;display:grid;gap:14px;box-shadow:0 8px 18px rgba(80,45,15,.06)}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-field label{display:block;font-weight:700;margin-bottom:6px;color:#4b3423}.form-field input,.form-field select{width:100%;box-sizing:border-box;border:1px solid #dbc6ad;border-radius:12px;padding:12px;font-size:1rem;background:#fffdf9}
-    .fortune-form button{border:0;border-radius:14px;background:#8b5e34;color:white;font-weight:800;padding:14px 18px;font-size:1rem;cursor:pointer}.fortune-form button:hover{background:#70471f}
-    .result{display:none;margin-top:22px}.result.show{display:block}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:#fff;border:1px solid #ead7c0;border-radius:20px;padding:18px;box-shadow:0 8px 18px rgba(80,45,15,.06)}
-    .card h2,.card h3{margin:0 0 12px;color:#6b3f18}.pill-list{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.pill{background:#fff7ed;border:1px solid #ead7c0;border-radius:999px;padding:7px 11px;font-size:.92rem;color:#6b4a27}.big-message{font-size:1.08rem;line-height:1.8;color:#4b3423}.small{font-size:.9rem;color:#7b6958;line-height:1.6}.scorebar{height:10px;background:#f3e5d4;border-radius:999px;overflow:hidden;margin:7px 0 12px}.scorebar span{display:block;height:100%;background:#9a6b3e;border-radius:999px}.section-title{margin:28px 0 12px;color:#5b3412}.table{width:100%;border-collapse:collapse}.table th,.table td{border-bottom:1px solid #f0e1cf;padding:10px 6px;text-align:left;vertical-align:top}.table th{color:#6b3f18;width:32%}.muted{color:#8a7563}.warning{background:#fff8f1;border:1px solid #efd3af;border-radius:16px;padding:14px;line-height:1.7;color:#6b4a27}.good{color:#216e39;font-weight:800}.caution{color:#a15c00;font-weight:800}.bad{color:#a12727;font-weight:800}.easy-box{background:#fffaf3;border:1px solid #efd3af;border-radius:16px;padding:14px 16px;margin-top:12px;line-height:1.75;color:#5b4636}.easy-box h4{margin:0 0 8px;color:#6b3f18}.easy-box ul{margin:6px 0 0;padding-left:18px}.easy-box li{margin:4px 0}.study-table td{line-height:1.65}.study-table .why{color:#7b6958;font-size:.92rem}
-    @media(max-width:720px){.form-row,.grid{grid-template-columns:1fr}.fortune-hero h1{font-size:1.6rem}.fortune-wrap{padding-left:12px;padding-right:12px}}
+    .fortune-page{background:linear-gradient(180deg,#fff8ec 0%,#f7f5f0 42%,#f7f5f0 100%);}
+    .fortune-wrap{max-width:1060px;margin:0 auto;padding:24px 16px 68px;}
+    .fortune-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#fff7ed,#fff1c9 56%,#edf7ee);border:1px solid #efd8b2;border-radius:28px;padding:30px 24px;margin:22px 0 18px;box-shadow:0 16px 34px rgba(92,58,23,.10);}
+    .fortune-hero::after{content:"☀️";position:absolute;right:22px;top:18px;font-size:58px;opacity:.18;}
+    .eyebrow{display:inline-block;margin-bottom:10px;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid #efd8b2;color:#7a4c1d;font-weight:800;font-size:.9rem;}
+    .fortune-hero h1{margin:0 0 10px;font-size:2.08rem;color:#573510;letter-spacing:-.8px;}
+    .fortune-hero p{margin:8px 0;line-height:1.78;color:#5b4636;}
+    .notice{background:rgba(255,255,255,.78);border:1px dashed #d6ad7b;border-radius:18px;padding:14px 16px;margin-top:16px;font-size:.95rem;color:#654624;}
+    .quick-guide{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0 18px;}
+    .quick-card{background:#fff;border:1px solid #ead7c0;border-radius:18px;padding:15px 14px;box-shadow:0 8px 20px rgba(80,45,15,.055);}
+    .quick-card strong{display:block;color:#5b3412;margin-bottom:4px;}
+    .quick-card span{display:block;color:#716254;font-size:.91rem;line-height:1.55;}
+    .fortune-form{background:#fff;border:1px solid #ead7c0;border-radius:24px;padding:20px;margin:18px 0;display:grid;gap:14px;box-shadow:0 12px 26px rgba(80,45,15,.07);}
+    .form-title{margin:0 0 2px;color:#573510;font-size:1.25rem;}
+    .form-help{margin:0 0 6px;color:#7b6958;font-size:.94rem;line-height:1.6;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .form-field label{display:block;font-weight:800;margin-bottom:6px;color:#4b3423;}
+    .form-field input,.form-field select{width:100%;box-sizing:border-box;border:1px solid #dbc6ad;border-radius:14px;padding:12px 13px;font-size:1rem;background:#fffdf9;}
+    .fortune-form button{border:0;border-radius:16px;background:#7a4c1d;color:white;font-weight:900;padding:15px 18px;font-size:1.02rem;cursor:pointer;box-shadow:0 8px 16px rgba(122,76,29,.18);}
+    .fortune-form button:hover{background:#5f3814;}
+    .result{display:none;margin-top:24px;}
+    .result.show{display:block;}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+    .card{background:#fff;border:1px solid #ead7c0;border-radius:22px;padding:19px;box-shadow:0 10px 22px rgba(80,45,15,.06);}
+    .card h2,.card h3{margin:0 0 12px;color:#5b3412;letter-spacing:-.4px;}
+    .pill-list{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;}
+    .pill{background:#fff7ed;border:1px solid #ead7c0;border-radius:999px;padding:7px 11px;font-size:.92rem;color:#6b4a27;}
+    .big-message{font-size:1.05rem;line-height:1.85;color:#3f3329;}
+    .small{font-size:.92rem;color:#776858;line-height:1.65;}
+    .scorebar{height:11px;background:#f1e2cf;border-radius:999px;overflow:hidden;margin:7px 0 12px;}
+    .scorebar span{display:block;height:100%;background:linear-gradient(90deg,#9a6b3e,#d4a35e);border-radius:999px;}
+    .section-title{margin:30px 0 12px;color:#4b3423;font-size:1.45rem;}
+    .table{width:100%;border-collapse:collapse;}
+    .table th,.table td{border-bottom:1px solid #f0e1cf;padding:11px 7px;text-align:left;vertical-align:top;}
+    .table th{color:#6b3f18;width:32%;}
+    .warning{background:#fff8f1;border:1px solid #efd3af;border-radius:18px;padding:15px;line-height:1.75;color:#6b4a27;}
+    .good{color:#216e39;font-weight:900;}.caution{color:#a15c00;font-weight:900;}.bad{color:#a12727;font-weight:900;}
+    .easy-box{background:#fffaf3;border:1px solid #efd3af;border-radius:18px;padding:15px 16px;margin-top:12px;line-height:1.75;color:#5b4636;}
+    .easy-box h4{margin:0 0 8px;color:#6b3f18;}
+    .easy-box ul{margin:6px 0 0;padding-left:18px;}
+    .easy-box li{margin:4px 0;}
+    .study-table td{line-height:1.68;}
+    .study-table .why{color:#7b6958;font-size:.92rem;}
+    .read-box{background:#f6f9f4;border:1px solid #dce8d4;border-radius:20px;padding:17px 18px;margin:18px 0;}
+    .read-box h2{margin:0 0 10px;font-size:1.28rem;color:#2f3b2f;}
+    .read-box ul{margin:0;padding-left:20px;}
+    .read-box li{margin:5px 0;color:#4c5c48;}
+    @media(max-width:860px){.quick-guide{grid-template-columns:repeat(2,minmax(0,1fr));}}
+    @media(max-width:720px){.form-row,.grid,.quick-guide{grid-template-columns:1fr;}.fortune-hero h1{font-size:1.62rem;}.fortune-wrap{padding-left:12px;padding-right:12px;}.fortune-hero{padding:24px 18px;}}
   </style>
 </head>
-<body>
+<body class="fortune-page">
   <header class="sub-header">
     <h1>오늘의 사주 운세</h1>
-    <p>스테이The머무름에서 가볍게 보는 오늘의 흐름</p>
+    <p>어려운 말은 줄이고, 오늘의 흐름을 쉽게 알려드립니다</p>
   </header>
 
-  <!-- 공통 상단 메뉴 -->
   <nav>
     <a href="index.html">메인페이지</a>
     <a href="rooms.html">방타입</a>
@@ -35,18 +73,29 @@
     <a href="quiz.html">시험대비 퀴즈</a>
     <a href="games.html">머무름 게임</a>
     <a href="fortune.html">오늘의 운세</a>
+    <a href="rent-support.html">월세 지원 정책</a>
     <a href="gift.html">응원글 이벤트</a>
     <a href="index.html#contact">문의</a>
   </nav>
 
   <main class="fortune-wrap">
     <section class="fortune-hero">
-      <h1>생년월일로 보는 쉬운 사주 운세</h1>
-      <p>생년월일과 출생시간을 바탕으로 띠, 나의 기본 기운, 다섯 가지 기운의 균형, 삼재 여부, 바이오리듬을 함께 참고해 오늘·이번주·이번달·올해의 운세를 쉽게 보여드립니다.</p>
+      <span class="eyebrow">재미와 응원을 위한 간이 사주 콘텐츠</span>
+      <h1>생년월일로 보는 쉬운 오늘의 운세</h1>
+      <p>생년월일과 출생시간을 입력하면 띠, 오행 에너지, 삼재 흐름, 바이오리듬을 함께 참고해 오늘·이번주·이번달·올해의 운세를 보여드립니다. 공부하는 입주자들이 보기 쉽도록 오늘 집중하면 좋은 공부 방향도 함께 안내합니다.</p>
       <div class="notice"><strong>개인정보 안내</strong><br>입력한 생년월일과 출생시간은 저장되거나 취합되지 않습니다. 서버로 전송하지 않고, 현재 화면에서 운세를 계산하는 용도로만 사용됩니다.</div>
     </section>
 
+    <div class="quick-guide" aria-label="운세 페이지 주요 기능">
+      <div class="quick-card"><strong>오늘의 운세</strong><span>공부운, 생활운, 관계운, 컨디션을 한눈에 봅니다.</span></div>
+      <div class="quick-card"><strong>오행 균형</strong><span>목·화·토·금·수 기운의 많고 적음을 쉬운 점수로 보여줍니다.</span></div>
+      <div class="quick-card"><strong>보완 방법</strong><span>부족한 기운에 맞는 음식, 장소, 생활 팁을 알려드립니다.</span></div>
+      <div class="quick-card"><strong>공부 방향</strong><span>오늘 집중하면 좋은 과목과 공부법을 참고할 수 있습니다.</span></div>
+    </div>
+
     <form class="fortune-form" id="fortuneForm">
+      <h2 class="form-title">운세 보기</h2>
+      <p class="form-help">양력·음력을 선택한 뒤 생년월일을 입력하세요. 출생시간은 모르면 비워두어도 됩니다.</p>
       <div class="form-row">
         <div class="form-field"><label for="calendarType">날짜 기준</label><select id="calendarType"><option value="solar">양력으로 입력</option><option value="lunar">음력으로 입력</option></select></div>
         <div class="form-field"><label for="birthDate">생년월일</label><input id="birthDate" type="date" required></div>
@@ -57,11 +106,20 @@
       </div>
       <div class="form-row">
         <div class="form-field"><label for="focus">오늘 가장 궁금한 분야</label><select id="focus"><option value="study">공부·시험운</option><option value="money">금전·생활운</option><option value="relation">인간관계운</option><option value="health">컨디션운</option></select></div>
-        <div class="form-field"><label for="name">닉네임 선택사항</label><input id="name" type="text" maxlength="12" placeholder="예: 원장, 수험생"></div>
+        <div class="form-field"><label for="name">닉네임 선택사항</label><input id="name" type="text" maxlength="12" placeholder="예: 수험생, 원장"></div>
       </div>
-      <button type="submit">오늘의 운세 보기</button>
-      <p class="small">전문가가 보는 정통 사주 감정은 아니지만, 홈페이지 안에서 가능한 범위에서 띠·사주 기운·오행·삼재·바이오리듬 요소를 조합한 재미와 응원용 운세입니다.</p>
+      <button type="submit">운세 확인하기</button>
+      <p class="small">전문가가 보는 정통 사주 감정은 아니지만, 홈페이지 안에서 가능한 범위에서 띠·오행·삼재·바이오리듬을 조합한 참고용 운세입니다.</p>
     </form>
+
+    <div class="read-box">
+      <h2>결과를 읽는 쉬운 방법</h2>
+      <ul>
+        <li><strong>오행 에너지 숫자</strong>는 날짜가 아니라 목·화·토·금·수 기운의 간단한 점수입니다. 숫자가 높을수록 그 기운이 많은 편입니다.</li>
+        <li><strong>보완하면 좋은 기운</strong>은 상대적으로 부족한 기운입니다. 음식, 장소, 색상, 생활 습관 추천에 참고하세요.</li>
+        <li><strong>공부 추천</strong>은 실제 성적 예측이 아니라, 오늘의 흐름에 맞춰 공부 방식을 정하는 응원용 조언입니다.</li>
+      </ul>
+    </div>
 
     <section id="result" class="result">
       <div class="grid">
@@ -77,7 +135,7 @@
 
       <h2 class="section-title">오행별 공부 과목 안내</h2>
       <div class="card">
-        <p class="small">아래 분류는 실제 성적을 예측하는 기능이 아니라, 오행이 상징하는 성향을 공부 과목과 공부 방식에 쉽게 연결한 참고용 조언입니다.</p>
+        <p class="small">아래 분류는 오행이 상징하는 성향을 과목과 공부 방식에 연결한 참고용 조언입니다. 실제 성적을 예측하는 기능은 아닙니다.</p>
         <table class="table study-table">
           <tr><th>목 🌱</th><td><strong>국어·영어 독해, 글쓰기, 개념 이해</strong><br><span class="why">목은 나무처럼 자라고 뻗는 기운이라, 글을 읽고 생각을 넓히는 공부와 잘 어울립니다.</span></td></tr>
           <tr><th>화 🔥</th><td><strong>빠른 문제풀이, 실전 모의고사, 면접·발표·말하기</strong><br><span class="why">화는 밝고 활발한 기운이라, 순발력·표현력·짧고 강한 집중이 필요한 공부와 잘 어울립니다.</span></td></tr>
@@ -87,7 +145,7 @@
         </table>
       </div>
 
-      <div class="warning" style="margin-top:20px"><strong>안내</strong><br>이 운세는 전통 사주에서 쓰는 띠, 하늘기운·땅기운, 오행, 삼재 흐름과 바이오리듬을 쉽게 풀어 만든 간이 콘텐츠입니다. 재미와 응원용으로 참고하시고, 중요한 결정은 실제 상황을 함께 보고 판단해 주세요.</div>
+      <div class="warning" style="margin-top:20px"><strong>안내</strong><br>이 운세는 전통 사주에서 쓰는 띠, 오행, 삼재 흐름과 바이오리듬을 쉽게 풀어 만든 간이 콘텐츠입니다. 재미와 응원용으로 참고하시고, 중요한 결정은 실제 상황을 함께 보고 판단해 주세요.</div>
     </section>
   </main>
 
@@ -181,7 +239,7 @@
     const birthBranch=yp.branch; const syears=samjaeMap[birthBranch]; const samIdx=syears.indexOf(typ.branch); const samText=samIdx>=0?`${samjaeStage[samIdx]}에 해당합니다. 삼재는 겁내라는 뜻보다 조심하고 점검하라는 신호로 보면 됩니다. 새 일을 크게 벌이기보다 정리와 안전 확인을 우선하면 좋습니다.`:'삼재에 직접 해당하는 해는 아닙니다. 흐름을 키우되 기본 관리만 꾸준히 해도 좋습니다.';
     const bioP=biorhythm(birth,today,23), bioE=biorhythm(birth,today,28), bioI=biorhythm(birth,today,33);
     const base=seedNum(bd,hour,today.toISOString().slice(0,10)); const rel=relation(dp.branch,tdp.branch,dayE,todayE); const study=50+((base+bal[gen[dayE]]*7)%45)|0; const life=50+((base>>3)+bal[weakest]*6)%45|0; const people=50+((base>>5)+(rel.includes('합')?18:0)-(rel.includes('충')?10:0))%45|0; const condition=Math.round((bioP.pct+bioE.pct+bioI.pct)/3);
-    const openers=['차분하게 실속을 챙기기 좋은 날입니다.','작은 성취가 다음 흐름을 여는 날입니다.','무리한 확장보다 정리와 집중이 잘 맞는 날입니다.','사람의 도움과 정보가 운을 키우는 날입니다.','계획을 다시 세우면 막혔던 부분이 풀리기 쉬운 날입니다.'];
+    const openers=['차분하게 실속을 챙기기 좋은 날입니다.','작은 성취가 다음 흐름을 여는 날입니다.','새로운 일을 많이 늘리기보다 정리와 집중이 잘 맞는 날입니다.','사람의 도움과 정보가 운을 키우는 날입니다.','계획을 다시 정리하면 막혔던 부분이 풀리기 쉬운 날입니다.'];
     const focusMsg={study:'공부·시험운은 오늘 한꺼번에 많이 하기보다 오답, 암기카드, 짧은 회독처럼 반복형 공부가 좋습니다.',money:'금전·생활운은 큰 지출보다 필요한 것과 미뤄도 되는 것을 구분하는 쪽이 유리합니다.',relation:'인간관계운은 먼저 부드럽게 말하면 상대 반응이 좋아지는 흐름입니다.',health:'컨디션운은 몸의 신호를 무시하지 말고 수면·식사·가벼운 스트레칭을 챙기면 회복이 빠릅니다.'};
     document.getElementById('helloTitle').textContent=name+'의 오늘 운세';
     document.getElementById('summaryPills').innerHTML=[`${yp.animal}띠`, `나의 중심 기운 ${dp.elem}`, `오늘의 흐름 ${tdp.stem}${tdp.branch}`, `보완하면 좋은 기운 ${weakest}`].map(x=>`<span class="pill">${x}</span>`).join('');
@@ -193,7 +251,7 @@
     document.getElementById('dayMasterText').textContent=`쉽게 말해, ${strongest} 기운은 비교적 많은 편이고 ${weakest} 기운은 보완하면 좋은 편입니다. 숫자는 날짜나 요일이 아니라, 다섯 가지 기운이 얼마나 들어 있는지 보여주는 간단한 점수입니다. ${weakest} 기운은 ${elemCare[weakest].easy}을 뜻합니다.`;
     document.getElementById('sajuHelp').innerHTML=`<h4>용어 쉽게 보기</h4><ul><li><strong>양력/음력 선택</strong>: 양력을 고르면 입력한 날짜 그대로, 음력을 고르면 양력 날짜로 바꾼 뒤 계산합니다.</li><li><strong>띠</strong>: 양력 입력은 양력 출생연도 기준, 음력 입력은 음력 출생연도 기준으로 표시합니다. 예: 양력 1976년생 또는 음력 1976년생은 용띠입니다.</li><li><strong>태어난 해·달·날·시간</strong>: 사주에서 보는 네 가지 기본 정보입니다. 요일을 뜻하는 것이 아닙니다.</li><li><strong>목·화·토·금·수</strong>: 사람마다 다르게 섞여 있다고 보는 다섯 가지 자연 기운입니다.</li><li><strong>오행 에너지 숫자</strong>: 날짜가 아니라 기운의 많고 적음을 보여주는 점수입니다. 숫자가 클수록 그 기운이 많은 편입니다.</li><li><strong>보완하면 좋은 기운</strong>: 점수가 낮은 기운입니다. 음식, 장소, 색상, 생활 습관 추천에 참고합니다.</li></ul>`;
     document.getElementById('weekMsg').textContent=`이번주는 ${tmp.text} 달의 흐름과 오늘 분위기를 함께 보면, 초반에는 정리·준비, 중반 이후에는 실행이 어울립니다. 특히 ${weakest} 기운을 보완하려면 ${elemCare[weakest].food}을 챙기고, ${elemCare[weakest].place}에서 시간을 보내는 것이 도움이 됩니다.`;
-    document.getElementById('monthMsg').textContent=`이번달은 ${tmp.branch}월의 ${branchElem[branches.indexOf(tmp.branch)]} 기운이 중심입니다. 나의 나의 중심 기운 ${dayE}와 비교하면 ${rel||'큰 부담 없이 기본기를 쌓기 좋은 흐름'}으로 볼 수 있습니다. 욕심을 나누어 진행하면 좋습니다.`;
+    document.getElementById('monthMsg').textContent=`이번달은 ${tmp.branch}월의 ${branchElem[branches.indexOf(tmp.branch)]} 기운이 중심입니다. 나의 중심 기운 ${dayE}와 비교하면 ${rel||'큰 부담 없이 기본기를 쌓기 좋은 흐름'}으로 볼 수 있습니다. 욕심을 나누어 진행하면 좋습니다.`;
     document.getElementById('yearMsg').textContent=`올해는 ${typ.animal}의 해입니다. ${yp.animal}띠 기준으로 ${samText} 올해의 핵심은 한 번에 바꾸기보다 생활 루틴을 안정시키는 것입니다.`;
     document.getElementById('samjaeMsg').textContent=`${yp.animal}띠의 삼재 흐름: ${syears.map((b,i)=>animals[branches.indexOf(b)]+'해 '+samjaeStage[i]).join(' → ')}. 현재 ${typ.animal}해는 ${samText}`;
     document.getElementById('bioCard').innerHTML=`<h3>바이오리듬</h3>${scoreBar('신체 리듬',bioP.pct)}<p class="small">상태: ${bioState(bioP.pct)} · 체력과 활동 에너지</p>${scoreBar('감성 리듬',bioE.pct)}<p class="small">상태: ${bioState(bioE.pct)} · 감정과 사람 관계의 느낌</p>${scoreBar('지성 리듬',bioI.pct)}<p class="small">상태: ${bioState(bioI.pct)} · 공부·판단·집중 흐름</p>`;
