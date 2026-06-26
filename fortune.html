@@ -35,6 +35,12 @@
     .pill-list{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;}
     .pill{background:#fff7ed;border:1px solid #ead7c0;border-radius:999px;padding:7px 11px;font-size:.92rem;color:#6b4a27;}
     .big-message{font-size:1.05rem;line-height:1.85;color:#3f3329;}
+    .period-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
+    .period-card{background:#fff;border:1px solid #ead7c0;border-radius:18px;padding:15px 16px;box-shadow:0 8px 18px rgba(80,45,15,.05);}
+    .period-card h3{margin:0 0 6px;color:#5b3412;font-size:1.05rem;}
+    .period-card p{margin:0;color:#59493b;line-height:1.65;font-size:.95rem;}
+    .today-list{margin:10px 0 0;padding-left:18px;}
+    .today-list li{margin:6px 0;line-height:1.75;}
     .small{font-size:.92rem;color:#776858;line-height:1.65;}
     .scorebar{height:11px;background:#f1e2cf;border-radius:999px;overflow:hidden;margin:7px 0 12px;}
     .scorebar span{display:block;height:100%;background:linear-gradient(90deg,#9a6b3e,#d4a35e);border-radius:999px;}
@@ -55,7 +61,7 @@
     .read-box ul{margin:0;padding-left:20px;}
     .read-box li{margin:5px 0;color:#4c5c48;}
     @media(max-width:860px){.quick-guide{grid-template-columns:repeat(2,minmax(0,1fr));}}
-    @media(max-width:720px){.form-row,.grid,.quick-guide{grid-template-columns:1fr;}.fortune-hero h1{font-size:1.62rem;}.fortune-wrap{padding-left:12px;padding-right:12px;}.fortune-hero{padding:24px 18px;}}
+    @media(max-width:720px){.form-row,.grid,.quick-guide,.period-grid{grid-template-columns:1fr;}.fortune-hero h1{font-size:1.62rem;}.fortune-wrap{padding-left:12px;padding-right:12px;}.fortune-hero{padding:24px 18px;}}
   </style>
 </head>
 <body class="fortune-page">
@@ -124,11 +130,16 @@
     <section id="result" class="result">
       <div class="grid">
         <div class="card"><h2 id="helloTitle">오늘의 운세</h2><div class="pill-list" id="summaryPills"></div><p class="big-message" id="todayMsg"></p><div id="todayScores"></div><div class="easy-box" id="studyGuide"></div></div>
-        <div class="card"><h2>나의 기본 운세 정보</h2><table class="table" id="sajuTable"></table><p class="small" id="dayMasterText"></p><div class="easy-box" id="sajuHelp"></div></div>
+        <div class="card"><h2>나의 기본 운세 정보</h2><table class="table" id="sajuTable"></table><p class="small" id="dayMasterText"></p></div>
       </div>
 
-      <h2 class="section-title">기간별 운세</h2>
-      <div class="grid"><div class="card"><h3>이번주 운세</h3><p id="weekMsg" class="big-message"></p></div><div class="card"><h3>이번달 운세</h3><p id="monthMsg" class="big-message"></p></div><div class="card"><h3>올해의 운세</h3><p id="yearMsg" class="big-message"></p></div><div class="card"><h3>삼재와 띠별 흐름</h3><p id="samjaeMsg" class="big-message"></p></div></div>
+      <h2 class="section-title">기간별 운세 한눈에 보기</h2>
+      <div class="period-grid">
+        <div class="period-card"><h3>이번주</h3><p id="weekMsg"></p></div>
+        <div class="period-card"><h3>이번달</h3><p id="monthMsg"></p></div>
+        <div class="period-card"><h3>올해</h3><p id="yearMsg"></p></div>
+      </div>
+      <div class="card" style="margin-top:12px;"><h3>삼재와 띠별 흐름</h3><p id="samjaeMsg" class="big-message"></p></div>
 
       <h2 class="section-title">오늘의 바이오리듬</h2>
       <div class="grid"><div class="card" id="bioCard"></div><div class="card"><h3>오늘 이렇게 해보세요</h3><p id="adviceMsg" class="big-message"></p><div class="pill-list" id="luckyPills"></div></div></div>
@@ -144,6 +155,9 @@
           <tr><th>수 💧</th><td><strong>영어, 자료해석, 추론 문제, 차분한 복습</strong><br><span class="why">수는 물처럼 흐르고 깊은 기운이라, 차분히 흐름을 읽고 생각을 깊게 하는 공부와 잘 어울립니다.</span></td></tr>
         </table>
       </div>
+
+      <h2 class="section-title">용어 쉽게 보기</h2>
+      <div class="easy-box" id="sajuHelp"></div>
 
       <div class="warning" style="margin-top:20px"><strong>안내</strong><br>이 운세는 전통 사주에서 쓰는 띠, 오행, 삼재 흐름과 바이오리듬을 쉽게 풀어 만든 간이 콘텐츠입니다. 재미와 응원용으로 참고하시고, 중요한 결정은 실제 상황을 함께 보고 판단해 주세요.</div>
     </section>
@@ -228,7 +242,15 @@
   function dayPillar(date){const n=jdn(date.getFullYear(),date.getMonth()+1,date.getDate()); return ganji(n+11);}
   function hourPillar(hour,dp){ if(hour===''||hour===null) return null; hour=Number(hour); const b=(hour===23||hour===0)?0:Math.floor((hour+1)/2)%12; const start=(dp.i%10%5)*2; const s=mod(start+b,10); let idx=s; while(idx%12!==b) idx+=10; return ganji(idx);}
   function elemBalance(ps){const cnt={목:0,화:0,토:0,금:0,수:0}; ps.filter(Boolean).forEach(p=>{cnt[p.elem]+=1.2; cnt[branchElem[branches.indexOf(p.branch)]]+=1;}); return cnt;}
-  function relation(dayB,todayB,dayE,todayE){let parts=[]; if(clash[dayB]===todayB) parts.push('일지와 오늘 지지가 충이라 마음이 급해질 수 있습니다. 중요한 말은 한 번 더 확인하세요.'); if(combos.some(c=>c.includes(dayB)&&c.includes(todayB))) parts.push('일지와 오늘 지지가 합을 이루어 도움·협조 운이 살아납니다.'); if(triads.some(t=>t.includes(dayB)&&t.includes(todayB))) parts.push('삼합의 기운이 일부 맞아 관심 분야를 깊게 파기 좋습니다.'); if(gen[dayE]===todayE) parts.push('내가 오늘의 기운을 생해 주는 흐름이라 베풀고 정리할 일이 생기기 쉽습니다.'); else if(gen[todayE]===dayE) parts.push('오늘의 기운이 나를 도와주는 흐름이라 컨디션 회복과 도움 운이 있습니다.'); else if(ctrl[dayE]===todayE) parts.push('내가 조절할 수 있는 기운이 들어와 목표를 붙잡기 좋습니다.'); else if(ctrl[todayE]===dayE) parts.push('오늘의 기운이 나를 압박할 수 있으니 무리한 약속은 줄이는 편이 좋습니다.'); return parts.join(' ');}
+  function relation(dayB,todayB,dayE,todayE){let parts=[];
+    if(clash[dayB]===todayB) parts.push('오늘은 평소보다 마음이 급해지거나 말이 빠르게 나올 수 있습니다. 중요한 연락, 계약, 시험 일정은 한 번 더 확인하는 편이 좋습니다.');
+    if(combos.some(c=>c.includes(dayB)&&c.includes(todayB))) parts.push('주변 사람의 도움을 받기 좋은 날입니다. 혼자 끙끙대기보다 질문하거나 조언을 구하면 흐름이 부드러워집니다.');
+    if(triads.some(t=>t.includes(dayB)&&t.includes(todayB))) parts.push('관심 있는 분야를 조금 더 깊게 파고들기 좋은 날입니다. 한 가지 주제를 정해 집중해 보세요.');
+    if(gen[dayE]===todayE) parts.push('오늘은 내가 먼저 정리하고 도와주는 역할을 하면 운의 흐름이 좋아집니다.');
+    else if(gen[todayE]===dayE) parts.push('오늘은 도움을 받거나 컨디션을 회복하기 좋은 흐름입니다. 무리하기보다 리듬을 되찾는 데 집중하세요.');
+    else if(ctrl[dayE]===todayE) parts.push('목표를 정하고 계획대로 움직이기 좋은 날입니다. 할 일을 작게 나누면 성취감이 커집니다.');
+    else if(ctrl[todayE]===dayE) parts.push('해야 할 일이 많아 부담을 느낄 수 있습니다. 오늘은 욕심을 줄이고 중요한 일부터 처리하세요.');
+    return parts.join(' ');}
   function biorhythm(birth,today,cycle){const days=Math.floor((today-birth)/86400000);const v=Math.sin(2*Math.PI*days/cycle);return {pct:Math.round((v+1)*50), raw:v};}
   function bioState(p){if(p>=75)return '<span class="good">상승</span>'; if(p>=45)return '<span class="caution">보통</span>'; return '<span class="bad">저조</span>';}
   function scoreBar(name,p){return `<div><strong>${name} ${p}%</strong><div class="scorebar"><span style="width:${p}%"></span></div></div>`}
@@ -238,22 +260,22 @@
     let yp=yearPillar(birth); if(birthInfo.type==='lunar'){yp=ganji(birthInfo.originalYear-1984);} const mp=monthPillar(birth,yp), dp=dayPillar(birth), hp=hourPillar(hour,dp); const typ=yearPillar(today), tmp=monthPillar(today,typ), tdp=dayPillar(today); const ps=[yp,mp,dp,hp]; const bal=elemBalance(ps); const weakest=Object.keys(bal).sort((a,b)=>bal[a]-bal[b])[0]; const strongest=Object.keys(bal).sort((a,b)=>bal[b]-bal[a])[0]; const dayE=dp.elem, todayE=tdp.elem;
     const birthBranch=yp.branch; const syears=samjaeMap[birthBranch]; const samIdx=syears.indexOf(typ.branch); const samText=samIdx>=0?`${samjaeStage[samIdx]}에 해당합니다. 삼재는 겁내라는 뜻보다 조심하고 점검하라는 신호로 보면 됩니다. 새 일을 크게 벌이기보다 정리와 안전 확인을 우선하면 좋습니다.`:'삼재에 직접 해당하는 해는 아닙니다. 흐름을 키우되 기본 관리만 꾸준히 해도 좋습니다.';
     const bioP=biorhythm(birth,today,23), bioE=biorhythm(birth,today,28), bioI=biorhythm(birth,today,33);
-    const base=seedNum(bd,hour,today.toISOString().slice(0,10)); const rel=relation(dp.branch,tdp.branch,dayE,todayE); const study=50+((base+bal[gen[dayE]]*7)%45)|0; const life=50+((base>>3)+bal[weakest]*6)%45|0; const people=50+((base>>5)+(rel.includes('합')?18:0)-(rel.includes('충')?10:0))%45|0; const condition=Math.round((bioP.pct+bioE.pct+bioI.pct)/3);
+    const base=seedNum(bd,hour,today.toISOString().slice(0,10)); const rel=relation(dp.branch,tdp.branch,dayE,todayE); const study=50+((base+bal[gen[dayE]]*7)%45)|0; const life=50+((base>>3)+bal[weakest]*6)%45|0; const relationBonus=(combos.some(c=>c.includes(dp.branch)&&c.includes(tdp.branch))?18:0)-(clash[dp.branch]===tdp.branch?10:0); const people=50+((base>>5)+relationBonus)%45|0; const condition=Math.round((bioP.pct+bioE.pct+bioI.pct)/3);
     const openers=['차분하게 실속을 챙기기 좋은 날입니다.','작은 성취가 다음 흐름을 여는 날입니다.','새로운 일을 많이 늘리기보다 정리와 집중이 잘 맞는 날입니다.','사람의 도움과 정보가 운을 키우는 날입니다.','계획을 다시 정리하면 막혔던 부분이 풀리기 쉬운 날입니다.'];
     const focusMsg={study:'공부·시험운은 오늘 한꺼번에 많이 하기보다 오답, 암기카드, 짧은 회독처럼 반복형 공부가 좋습니다.',money:'금전·생활운은 큰 지출보다 필요한 것과 미뤄도 되는 것을 구분하는 쪽이 유리합니다.',relation:'인간관계운은 먼저 부드럽게 말하면 상대 반응이 좋아지는 흐름입니다.',health:'컨디션운은 몸의 신호를 무시하지 말고 수면·식사·가벼운 스트레칭을 챙기면 회복이 빠릅니다.'};
     document.getElementById('helloTitle').textContent=name+'의 오늘 운세';
     document.getElementById('summaryPills').innerHTML=[`${yp.animal}띠`, `나의 중심 기운 ${dp.elem}`, `오늘의 흐름 ${tdp.stem}${tdp.branch}`, `보완하면 좋은 기운 ${weakest}`].map(x=>`<span class="pill">${x}</span>`).join('');
-    document.getElementById('todayMsg').textContent=`${pick(openers,base)} ${rel} ${focusMsg[focus]} 오늘은 ${elemEmoji[weakest]} ${weakest} 기운(${elemCare[weakest].easy})을 보완하면 균형이 좋아집니다.`;
+    document.getElementById('todayMsg').innerHTML=`<strong>${pick(openers,base)}</strong><ul class="today-list"><li>${focusMsg[focus]}</li><li>${rel || '오늘은 큰 무리 없이 기본 루틴을 지키기 좋은 흐름입니다. 정해 둔 계획을 차분히 진행해 보세요.'}</li><li>오늘은 ${elemEmoji[weakest]} <strong>${weakest}</strong> 기운을 조금 보완하면 균형이 좋아집니다. ${weakest} 기운은 ${elemCare[weakest].easy}과 관련이 있습니다.</li></ul>`;
     document.getElementById('todayScores').innerHTML=scoreBar('공부운',Math.min(95,study))+scoreBar('생활운',Math.min(95,life))+scoreBar('관계운',Math.min(95,people))+scoreBar('컨디션',condition);
     const guide=studyCare[weakest];
-    document.getElementById('studyGuide').innerHTML=`<h4>오늘 집중하면 좋은 공부</h4><p><strong>${guide.subject}</strong></p><ul><li><strong>추천 공부법:</strong> ${guide.method}</li><li><strong>오늘 피하면 좋은 방식:</strong> ${guide.avoid}</li><li><strong>왜 이렇게 분류했나요?</strong> ${guide.reason}</li></ul>`;
+    document.getElementById('studyGuide').innerHTML=`<h4>오늘 집중하면 좋은 공부</h4><p><strong>${guide.subject}</strong></p><ul><li><strong>추천 공부법:</strong> ${guide.method}</li><li><strong>오늘 피하면 좋은 방식:</strong> ${guide.avoid}</li><li><strong>이렇게 보는 이유:</strong> ${guide.reason}</li></ul>`;
     document.getElementById('sajuTable').innerHTML=`<tr><th>입력 날짜 기준</th><td>${birthInfo.note}</td></tr><tr><th>태어난 해</th><td>${yp.text} · ${yp.animal}띠 · ${yp.elem} 기운</td></tr><tr><th>태어난 달</th><td>${mp.text} · 계절상 ${branchElem[branches.indexOf(mp.branch)]} 기운</td></tr><tr><th>나의 중심 기운</th><td>${dp.text} · 나를 대표하는 기운은 ${dp.elem}입니다</td></tr><tr><th>태어난 시간</th><td>${hp?hp.text+' · '+hp.elem+' 기운':'출생시간 미입력'}</td></tr><tr><th>오행 에너지 균형</th><td>목 ${bal.목.toFixed(1)} · 화 ${bal.화.toFixed(1)} · 토 ${bal.토.toFixed(1)} · 금 ${bal.금.toFixed(1)} · 수 ${bal.수.toFixed(1)}</td></tr>`;
     document.getElementById('dayMasterText').textContent=`쉽게 말해, ${strongest} 기운은 비교적 많은 편이고 ${weakest} 기운은 보완하면 좋은 편입니다. 숫자는 날짜나 요일이 아니라, 다섯 가지 기운이 얼마나 들어 있는지 보여주는 간단한 점수입니다. ${weakest} 기운은 ${elemCare[weakest].easy}을 뜻합니다.`;
-    document.getElementById('sajuHelp').innerHTML=`<h4>용어 쉽게 보기</h4><ul><li><strong>양력/음력 선택</strong>: 양력을 고르면 입력한 날짜 그대로, 음력을 고르면 양력 날짜로 바꾼 뒤 계산합니다.</li><li><strong>띠</strong>: 양력 입력은 양력 출생연도 기준, 음력 입력은 음력 출생연도 기준으로 표시합니다. 예: 양력 1976년생 또는 음력 1976년생은 용띠입니다.</li><li><strong>태어난 해·달·날·시간</strong>: 사주에서 보는 네 가지 기본 정보입니다. 요일을 뜻하는 것이 아닙니다.</li><li><strong>목·화·토·금·수</strong>: 사람마다 다르게 섞여 있다고 보는 다섯 가지 자연 기운입니다.</li><li><strong>오행 에너지 숫자</strong>: 날짜가 아니라 기운의 많고 적음을 보여주는 점수입니다. 숫자가 클수록 그 기운이 많은 편입니다.</li><li><strong>보완하면 좋은 기운</strong>: 점수가 낮은 기운입니다. 음식, 장소, 색상, 생활 습관 추천에 참고합니다.</li></ul>`;
-    document.getElementById('weekMsg').textContent=`이번주는 ${tmp.text} 달의 흐름과 오늘 분위기를 함께 보면, 초반에는 정리·준비, 중반 이후에는 실행이 어울립니다. 특히 ${weakest} 기운을 보완하려면 ${elemCare[weakest].food}을 챙기고, ${elemCare[weakest].place}에서 시간을 보내는 것이 도움이 됩니다.`;
-    document.getElementById('monthMsg').textContent=`이번달은 ${tmp.branch}월의 ${branchElem[branches.indexOf(tmp.branch)]} 기운이 중심입니다. 나의 중심 기운 ${dayE}와 비교하면 ${rel||'큰 부담 없이 기본기를 쌓기 좋은 흐름'}으로 볼 수 있습니다. 욕심을 나누어 진행하면 좋습니다.`;
-    document.getElementById('yearMsg').textContent=`올해는 ${typ.animal}의 해입니다. ${yp.animal}띠 기준으로 ${samText} 올해의 핵심은 한 번에 바꾸기보다 생활 루틴을 안정시키는 것입니다.`;
-    document.getElementById('samjaeMsg').textContent=`${yp.animal}띠의 삼재 흐름: ${syears.map((b,i)=>animals[branches.indexOf(b)]+'해 '+samjaeStage[i]).join(' → ')}. 현재 ${typ.animal}해는 ${samText}`;
+    document.getElementById('sajuHelp').innerHTML=`<h4>용어 쉽게 보기</h4><ul><li><strong>양력/음력</strong>: 양력은 달력에 보통 표시되는 생일이고, 음력은 음력 생일입니다. 음력을 선택하면 화면 안에서 양력 날짜로 바꿔 계산합니다.</li><li><strong>띠</strong>: 입력한 생년을 기준으로 표시합니다. 예를 들어 1976년생은 용띠로 표시됩니다.</li><li><strong>태어난 해·달·날·시간</strong>: 사주에서 참고하는 네 가지 출생 정보입니다. 요일을 뜻하는 말이 아닙니다.</li><li><strong>목·화·토·금·수</strong>: 성격을 단정하는 말이 아니라, 운세를 쉽게 설명하기 위해 사용하는 다섯 가지 에너지입니다.</li><li><strong>오행 에너지 숫자</strong>: 날짜나 점수가 아닙니다. 목·화·토·금·수 중 어떤 기운이 많은지 적은지 보여주는 간단한 비교값입니다.</li><li><strong>보완하면 좋은 기운</strong>: 상대적으로 적게 나온 기운입니다. 해당 기운에 맞는 음식, 장소, 색상, 공부법을 참고하면 하루 리듬을 잡는 데 도움이 됩니다.</li></ul>`;
+    document.getElementById('weekMsg').textContent=`정리와 실행을 나누면 좋은 주간입니다. 초반에는 계획을 가볍게 정리하고, 중반 이후에는 정한 일을 하나씩 처리해 보세요.`;
+    document.getElementById('monthMsg').textContent=`이번달은 기본기를 다시 잡기 좋은 달입니다. 큰 목표 하나보다 작은 목표를 여러 번 나누어 진행하면 부담이 줄어듭니다.`;
+    document.getElementById('yearMsg').textContent=`올해는 생활 루틴을 안정시키는 것이 핵심입니다. 한 번에 크게 바꾸기보다 수면, 공부 시간, 지출 습관을 조금씩 정리해 보세요.`;
+    document.getElementById('samjaeMsg').textContent=`${yp.animal}띠 기준으로 보면, 현재 ${typ.animal}해는 ${samText} 삼재는 무조건 나쁜 뜻이 아니라 조심하고 점검하라는 참고 신호로 보시면 됩니다.`;
     document.getElementById('bioCard').innerHTML=`<h3>바이오리듬</h3>${scoreBar('신체 리듬',bioP.pct)}<p class="small">상태: ${bioState(bioP.pct)} · 체력과 활동 에너지</p>${scoreBar('감성 리듬',bioE.pct)}<p class="small">상태: ${bioState(bioE.pct)} · 감정과 사람 관계의 느낌</p>${scoreBar('지성 리듬',bioI.pct)}<p class="small">상태: ${bioState(bioI.pct)} · 공부·판단·집중 흐름</p>`;
     const advs=[`오늘은 ${colors[weakest]}을 가까이 두고 ${directions[weakest]} 방향의 정리부터 시작해 보세요.`,`${weakest} 기운 보완에는 ${elemCare[weakest].food}이 잘 어울립니다.`,`${elemCare[weakest].place}에 잠깐 머물거나 ${elemCare[weakest].action}을 해보면 흐름이 안정됩니다.`,`중요한 일은 오전에 윤곽을 잡고, 오후에는 확인과 마무리에 힘을 주면 좋습니다.`,`충동적인 선택보다 10분만 미루고 다시 판단하면 실수를 줄일 수 있습니다.`];
     document.getElementById('adviceMsg').textContent=pick(advs,base+7);
