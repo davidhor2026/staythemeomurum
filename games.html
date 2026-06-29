@@ -1396,9 +1396,17 @@
       selectCommonSubject(currentCommonSubject);
     }
 
+    function updateCommonSubjectTabsVisibility() {
+      const tabs = document.getElementById('common-cw-tabs');
+      if (!tabs) return;
+      const isCourtEnglish = currentCommonSubject === 'courtEnglish';
+      tabs.style.display = isCourtEnglish ? 'none' : '';
+    }
+
     function selectCommonSubject(subject) {
       currentCommonSubject = subject;
       currentCommonPosition = 0;
+      updateCommonSubjectTabsVisibility();
       if (!commonOrder[subject] || !commonOrder[subject].length) {
         commonOrder[subject] = shuffleArray(Array.from({ length: commonCrosswordSets[subject].length }, function(_, i) { return i; }));
       }
@@ -1420,6 +1428,7 @@
       document.getElementById('common-cw-status').textContent = meta.label + ' ' + set.title + '입니다. 공개된 첫 글자를 참고해 빈칸을 채워보세요.';
       const answerBox = document.getElementById('common-cw-answer-list');
       if (answerBox) { answerBox.style.display = 'none'; answerBox.innerHTML = ''; }
+      updateCommonSubjectTabsVisibility();
       document.querySelectorAll('#common-cw-tabs button').forEach(function(btn) {
         btn.classList.toggle('active', btn.dataset.subject === currentCommonSubject);
       });
