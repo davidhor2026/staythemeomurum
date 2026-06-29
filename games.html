@@ -452,6 +452,45 @@
       font-family: "Times New Roman", serif;
     }
 
+    .answer-meaning {
+      display: inline-block;
+      margin-left: 8px;
+      color: #5f5549;
+      font-size: 0.94rem;
+      line-height: 1.55;
+    }
+
+    .answer-meaning::before {
+      content: "뜻: ";
+      color: #8a6b45;
+      font-weight: 800;
+    }
+
+
+    .answer-study-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 5px 0 2px 22px;
+    }
+
+    .study-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid #e0d1b8;
+      background: #fff8ea;
+      color: #6a4a24;
+      font-size: 0.84rem;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .study-badge.level { background: #f2f7ff; border-color: #cfe0f6; color: #294f7a; }
+    .study-badge.priority-high { background: #fff0ef; border-color: #efc3bd; color: #9b3128; }
+    .study-badge.priority-mid { background: #fff8e6; border-color: #edd8a8; color: #80621b; }
+    .study-badge.priority-low { background: #f3f6ef; border-color: #d5e1cb; color: #466339; }
+
 
     .common-cw-meta {
       text-align: center;
@@ -900,14 +939,53 @@
         + (ipa ? ' <span class="ipa">' + ipa + '</span>' : '');
     }
 
-    function buildAnswerLine(no, answer) {
-      return '<div class="answer-line"><span class="answer-no">' + no + '. </span>' + formatAnswerWord(answer) + '</div>';
+    function getStudyMeta(answer, meaning) {
+      const raw = String(answer || '').trim();
+      const isEng = isEnglishAnswerWord(raw);
+      if (!raw) return null;
+      if (isEng) {
+        const len = raw.replace(/[^A-Za-z]/g, '').length;
+        const advancedWords = ['ABROGATE','VACILLATE','OBDURATE','OBLIQUE','PLACATE','VILIFY','PERUSE','REFUTE','DEMUR','CAVIL','AUSTERE','SORDID','DUBIOUS','COHERENT','BOLSTER','ELUDE','ABHOR','WAIVE','EXTOL','BELIE','INERT','BANAL','TERSE','VIABLE','FERVOR','ARDOR','ADEPT','LUCID'];
+        const basicWords = ['VAGUE','NOVEL','AMPLE','AGILE','IMPLY','ALIBI','IRATE','WARY','AMEND','AVERT'];
+        let stars = 3;
+        if (len >= 8 || advancedWords.includes(raw.toUpperCase())) stars = 4;
+        if (len <= 5 || basicWords.includes(raw.toUpperCase())) stars = Math.min(stars, 3);
+        if (['ABROGATE','VACILLATE','OBDURATE','OBLIQUE'].includes(raw.toUpperCase())) stars = 5;
+        const priority = stars >= 4 ? '높음' : (stars === 3 ? '보통' : '기초');
+        const pClass = stars >= 4 ? 'priority-high' : (stars === 3 ? 'priority-mid' : 'priority-low');
+        return { level: '난이도 ' + '★'.repeat(stars) + '☆'.repeat(5-stars), priority: '학습 중요도 ' + priority, priorityClass: pClass };
+      }
+      const txt = raw + ' ' + String(meaning || '');
+      const highKeys = ['소멸시효','기판력','변론주의','증명책임','공시송달','부당이득','불법행위','무권대리','표현대리','채권양도','항소기간','계약해제','계약취소','이행지체','이행불능','공소시효','기소유예','압수수색','전문증거','무죄추정'];
+      const midKeys = ['법정대리','항소심','상고심','관할법원','청구취지','청구원인','준비서면','증거조사','증인신문','의사표시','권리남용','손해배상'];
+      let stars = 3;
+      if (highKeys.some(function(k){ return txt.indexOf(k) >= 0; })) stars = 4;
+      else if (midKeys.some(function(k){ return txt.indexOf(k) >= 0; })) stars = 3;
+      else if (raw.length <= 3) stars = 2;
+      const priority = stars >= 4 ? '높음' : (stars === 3 ? '보통' : '기초');
+      const pClass = stars >= 4 ? 'priority-high' : (stars === 3 ? 'priority-mid' : 'priority-low');
+      return { level: '난이도 ' + '★'.repeat(stars) + '☆'.repeat(5-stars), priority: '학습 중요도 ' + priority, priorityClass: pClass };
+    }
+
+    function formatStudyMeta(answer, meaning) {
+      const meta = getStudyMeta(answer, meaning);
+      if (!meta) return '';
+      return '<div class="answer-study-meta"><span class="study-badge level">' + escapeHtml(meta.level) + '</span><span class="study-badge ' + meta.priorityClass + '">' + escapeHtml(meta.priority) + '</span></div>';
+    }
+
+    function buildAnswerLine(no, answer, meaning) {
+      const meaningText = String(meaning || '').trim();
+      return '<div class="answer-line"><span class="answer-no">' + no + '. </span>'
+        + formatAnswerWord(answer)
+        + (meaningText ? ' <span class="answer-meaning">' + escapeHtml(meaningText) + '</span>' : '')
+        + formatStudyMeta(answer, meaningText)
+        + '</div>';
     }
 
     function answerListNote(hasEnglish) {
       return hasEnglish
-        ? '<p class="answer-list-note">영어 단어를 누르면 네이버 영어사전으로 이동해 뜻, 예문, 발음기호를 더 확인할 수 있습니다.</p>'
-        : '<p class="answer-list-note">정답 확인 후 복습할 수 있도록 이번 세트의 정답을 모아 보여드립니다.</p>';
+        ? '<p class="answer-list-note">정답 옆에 뜻, 발음기호, 난이도와 학습 중요도를 함께 표시합니다. 영어 단어를 누르면 네이버 영어사전으로 이동해 뜻, 예문, 발음기호를 더 확인할 수 있습니다.<br><span class="small">난이도와 학습 중요도는 실제 출제 횟수 통계가 아니라, 공무원·법원직 영어 학습 기준으로 복습 우선순위를 돕기 위한 참고 표시입니다.</span></p>'
+        : '<p class="answer-list-note">정답 확인 후 복습할 수 있도록 이번 세트의 정답, 뜻, 난이도와 학습 중요도를 함께 보여드립니다.<br><span class="small">난이도와 학습 중요도는 실제 출제 횟수 통계가 아니라, 복습 우선순위를 돕기 위한 참고 표시입니다.</span></p>';
     }
 
     function showGame(id) {
@@ -1127,8 +1205,8 @@
       const acrossWords = set.words.filter(function(w) { return w.direction === 'across'; });
       const downWords = set.words.filter(function(w) { return w.direction === 'down'; });
       const hasEnglish = set.words.some(function(w) { return isEnglishAnswerWord(w.answer); });
-      const across = acrossWords.map(function(w, i) { return buildAnswerLine(i + 1, w.answer); }).join('');
-      const down = downWords.map(function(w, i) { return buildAnswerLine(i + 1, w.answer); }).join('');
+      const across = acrossWords.map(function(w, i) { return buildAnswerLine(i + 1, w.answer, w.hint); }).join('');
+      const down = downWords.map(function(w, i) { return buildAnswerLine(i + 1, w.answer, w.hint); }).join('');
       return '<strong>이번 세트 정답</strong>' + answerListNote(hasEnglish)
         + '<div class="answer-section-title">가로</div>' + (across || '<p class="small">가로 정답이 없습니다.</p>')
         + '<div class="answer-section-title">세로</div>' + (down || '<p class="small">세로 정답이 없습니다.</p>');
@@ -1425,7 +1503,7 @@
     function completeCommonCrosswordSolvedMessage(auto) {
       if (commonCurrentSolved) return;
       if (commonShowAnswers) {
-        document.getElementById('common-cw-status').textContent = '전체정답보기를 사용한 세트는 순위에 반영되지 않습니다. 영어 단어를 눌러 뜻과 발음기호를 복습해 보세요.';
+        document.getElementById('common-cw-status').textContent = '전체정답보기를 사용한 세트는 순위에 반영되지 않습니다. 정답 옆의 뜻을 확인하고, 영어 단어를 누르면 사전에서 발음기호와 예문을 볼 수 있습니다.';
         showCommonAnswerList();
         return;
       }
@@ -1460,8 +1538,8 @@
       const set = commonCrosswordSets[currentCommonSubject][currentCommonSetIndex];
       const starts = set.words.slice().sort(function(a,b) { return a.row - b.row || a.col - b.col; });
       const hasEnglish = currentCommonSubject === 'english' || set.words.some(function(w) { return isEnglishAnswerWord(w.answer); });
-      const across = set.words.filter(function(w) { return w.direction === 'across'; }).map(function(w) { return buildAnswerLine(starts.indexOf(w)+1, w.answer); }).join('');
-      const down = set.words.filter(function(w) { return w.direction === 'down'; }).map(function(w) { return buildAnswerLine(starts.indexOf(w)+1, w.answer); }).join('');
+      const across = set.words.filter(function(w) { return w.direction === 'across'; }).map(function(w) { return buildAnswerLine(starts.indexOf(w)+1, w.answer, w.hint); }).join('');
+      const down = set.words.filter(function(w) { return w.direction === 'down'; }).map(function(w) { return buildAnswerLine(starts.indexOf(w)+1, w.answer, w.hint); }).join('');
       return '<strong>전체 정답</strong>' + answerListNote(hasEnglish)
         + '<div class="answer-section-title">가로</div>' + (across || '<p class="small">가로 정답이 없습니다.</p>')
         + '<div class="answer-section-title">세로</div>' + (down || '<p class="small">세로 정답이 없습니다.</p>');
@@ -1478,7 +1556,7 @@
       commonShowAnswers = true;
       buildCommonCrosswordGrid();
       showCommonAnswerList();
-      document.getElementById('common-cw-status').textContent = '포기하고 전체정답보기를 실행했습니다. 이 세트는 순위에 반영되지 않습니다. 영어 단어를 누르면 뜻과 발음기호를 복습할 수 있습니다.';
+      document.getElementById('common-cw-status').textContent = '포기하고 전체정답보기를 실행했습니다. 이 세트는 순위에 반영되지 않습니다. 정답 옆의 뜻을 확인하고, 영어 단어를 누르면 사전에서 발음기호와 예문을 볼 수 있습니다.';
     }
 
     function nextCommonCrosswordSet() {
