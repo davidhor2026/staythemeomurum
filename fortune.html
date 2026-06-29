@@ -15,7 +15,7 @@
     .fortune-hero h1{margin:0 0 10px;font-size:2.08rem;color:#573510;letter-spacing:-.8px;}
     .fortune-hero p{margin:8px 0;line-height:1.78;color:#5b4636;}
     .notice{background:rgba(255,255,255,.78);border:1px dashed #d6ad7b;border-radius:18px;padding:14px 16px;margin-top:16px;font-size:.95rem;color:#654624;}
-    .quick-guide{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0 18px;}
+    .quick-guide{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0 18px;}
     .quick-card{background:#fff;border:1px solid #ead7c0;border-radius:18px;padding:15px 14px;box-shadow:0 8px 20px rgba(80,45,15,.055);}
     .quick-card strong{display:block;color:#5b3412;margin-bottom:4px;}
     .quick-card span{display:block;color:#716254;font-size:.91rem;line-height:1.55;}
@@ -80,12 +80,36 @@
     .easy-box li{margin:4px 0;}
     .study-table td{line-height:1.68;}
     .study-table .why{color:#7b6958;font-size:.92rem;}
-    .read-box{background:#f6f9f4;border:1px solid #dce8d4;border-radius:20px;padding:17px 18px;margin:18px 0;}
+    .read-box{background:#f6f9f4;border:1px solid #dce8d4;border-radius:20px;padding:15px 16px;margin:16px 0;}
     .read-box h2{margin:0 0 10px;font-size:1.28rem;color:#2f3b2f;}
     .read-box ul{margin:0;padding-left:20px;}
-    .read-box li{margin:5px 0;color:#4c5c48;}
-    @media(max-width:860px){.quick-guide{grid-template-columns:repeat(2,minmax(0,1fr));}}
-    @media(max-width:720px){.form-row,.grid,.quick-guide,.period-grid,.mini-grid{grid-template-columns:1fr;}.date-selects{grid-template-columns:1fr 1fr 1fr;}.fortune-hero h1{font-size:1.62rem;}.fortune-wrap{padding-left:12px;padding-right:12px;}.fortune-hero{padding:24px 18px;}}
+    .read-box li{margin:4px 0;color:#4c5c48;line-height:1.55;}
+    
+    .today-action-grid{margin-bottom:12px;}
+    .toon-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:8px 0 18px;}
+    .toon-panel{position:relative;background:#fff;border:2px solid #ead7c0;border-radius:22px;padding:14px 12px 12px;min-height:178px;box-shadow:0 10px 22px rgba(80,45,15,.05);overflow:hidden;}
+    .toon-panel.good{background:linear-gradient(180deg,#f7fff8,#fffdf8);}
+    .toon-panel.caution{background:linear-gradient(180deg,#fff8f3,#fffdfb);}
+    .toon-panel .sticker{position:absolute;top:10px;right:10px;font-size:.78rem;padding:4px 8px;border-radius:999px;background:#fff6dd;border:1px solid #edd7ae;color:#7a4c1d;font-weight:800;}
+    .toon-emoji{font-size:2.2rem;line-height:1;margin-bottom:10px;}
+    .toon-title{font-weight:900;color:#5a3513;margin-bottom:8px;}
+    .speech{position:relative;background:#fff;border:1px solid #ecdabf;border-radius:16px;padding:10px 10px 11px;line-height:1.55;color:#5d5145;font-size:.92rem;}
+    .speech:after{content:"";position:absolute;left:18px;bottom:-9px;border-width:9px 8px 0 8px;border-style:solid;border-color:#ecdabf transparent transparent transparent;}
+    .speech:before{content:"";position:absolute;left:19px;bottom:-7px;border-width:8px 7px 0 7px;border-style:solid;border-color:#fff transparent transparent transparent;z-index:1;}
+    .compact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
+    .compact-card{background:#fff;border:1px solid #ead7c0;border-radius:18px;padding:14px 15px;box-shadow:0 8px 18px rgba(80,45,15,.05);}
+    .compact-card h3{margin:0 0 8px;color:#5b3412;font-size:1.03rem;}
+    .compact-card ul{margin:6px 0 0;padding-left:18px;}
+    .compact-card li{margin:4px 0;line-height:1.52;color:#56483c;font-size:.93rem;}
+    .compact-card p{margin:0;color:#56483c;line-height:1.6;font-size:.94rem;}
+    details.fold-card{background:#fff;border:1px solid #ead7c0;border-radius:18px;padding:0 0 6px;box-shadow:0 8px 18px rgba(80,45,15,.04);}
+    details.fold-card+details.fold-card{margin-top:12px;}
+    details.fold-card summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:900;color:#5b3412;}
+    details.fold-card summary::-webkit-details-marker{display:none;}
+    details.fold-card .fold-inner{padding:0 16px 14px;}
+
+    @media(max-width:860px){.quick-guide{grid-template-columns:repeat(2,minmax(0,1fr));}.toon-strip,.compact-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+    @media(max-width:720px){.form-row,.grid,.quick-guide,.period-grid,.mini-grid,.compact-grid,.toon-strip{grid-template-columns:1fr;}.date-selects{grid-template-columns:1fr 1fr 1fr;}.fortune-hero h1{font-size:1.62rem;}.fortune-wrap{padding-left:12px;padding-right:12px;}.fortune-hero{padding:24px 18px;}}
   </style>
 </head>
 <body class="fortune-page">
@@ -117,10 +141,9 @@
     </section>
 
     <div class="quick-guide" aria-label="운세 페이지 주요 기능">
-      <div class="quick-card"><strong>오늘의 운세</strong><span>공부운, 생활운, 관계운, 컨디션을 한눈에 봅니다.</span></div>
-      <div class="quick-card"><strong>오행 균형</strong><span>목·화·토·금·수 기운의 많고 적음을 쉬운 점수로 보여줍니다.</span></div>
-      <div class="quick-card"><strong>보완 방법</strong><span>부족한 기운에 맞는 음식, 장소, 생활 팁을 알려드립니다.</span></div>
-      <div class="quick-card"><strong>공부 방향</strong><span>오늘 집중하면 좋은 과목과 공부법을 참고할 수 있습니다.</span></div>
+      <div class="quick-card"><strong>오늘 먼저 보기</strong><span>오늘의 흐름, 주의할 점, 하면 좋은 일을 가장 먼저 보여줍니다.</span></div>
+      <div class="quick-card"><strong>한눈에 요약</strong><span>이번주·이번달·올해 흐름은 짧고 간단하게 정리해 보여줍니다.</span></div>
+      <div class="quick-card"><strong>필요한 설명만</strong><span>어려운 용어는 맨 아래에 짧게 모아 두어 스크롤 부담을 줄였습니다.</span></div>
     </div>
 
     <form class="fortune-form" id="fortuneForm">
@@ -142,11 +165,10 @@
     </form>
 
     <div class="read-box">
-      <h2>결과를 읽는 쉬운 방법</h2>
+      <h2>읽는 법 한 줄 정리</h2>
       <ul>
-        <li><strong>오행 에너지 숫자</strong>는 날짜가 아니라 목·화·토·금·수 기운의 간단한 점수입니다. 숫자가 높을수록 그 기운이 많은 편입니다.</li>
-        <li><strong>보완하면 좋은 기운</strong>은 상대적으로 부족한 기운입니다. 음식, 장소, 색상, 생활 습관 추천에 참고하세요.</li>
-        <li><strong>공부 추천</strong>은 실제 성적 예측이 아니라, 오늘의 흐름에 맞춰 공부 방식을 정하는 응원용 조언입니다.</li>
+        <li><strong>오늘의 운세</strong>를 먼저 보고, 아래 카드에서 오늘 조심할 것과 하면 좋은 것을 바로 확인해 보세요.</li>
+        <li><strong>오행 에너지 숫자</strong>는 날짜가 아니라 다섯 가지 기운의 분포를 보여주는 간단한 비교 점수입니다.</li>
       </ul>
     </div>
 
@@ -154,41 +176,45 @@
       <div class="card today-main"><h2 id="helloTitle">오늘의 운세</h2><div class="pill-list" id="summaryPills"></div><p class="big-message" id="todayMsg"></p><div id="todayScores"></div></div>
 
       <div class="today-action-grid" id="todayActionCards"></div>
+      <div class="toon-strip" id="todayToonStrip"></div>
+
+      <h2 class="section-title">이번주 · 이번달 · 올해 한눈에 보기</h2>
+      <div class="compact-grid">
+        <div class="compact-card"><h3>이번주 운세</h3><div id="weekMsg" class="small"></div></div>
+        <div class="compact-card"><h3>이번달 운세</h3><div id="monthMsg" class="small"></div></div>
+        <div class="compact-card"><h3>올해 운세</h3><div id="yearMsg" class="small"></div></div>
+      </div>
 
       <div class="grid" style="margin-top:16px;">
         <div class="card"><h2>오늘 집중하면 좋은 공부</h2><div class="easy-box" id="studyGuide"></div></div>
-        <div class="card"><h2>올해 금전운·시험운</h2><p class="small">올해의 큰 흐름을 보고, 부족한 부분은 실천 팁으로 보완해 보세요.</p><div id="yearMoneyExam"></div></div>
+        <div class="card"><h2>올해 금전운·시험운</h2><p class="small">좋고 나쁨을 단정하기보다, 올해 어떤 점을 보완하면 좋은지 참고용으로 보시면 됩니다.</p><div id="yearMoneyExam"></div></div>
       </div>
 
       <div class="grid" style="margin-top:16px;">
         <div class="card"><h2>나의 기본 운세 정보</h2><table class="table" id="sajuTable"></table><p class="small" id="dayMasterText"></p></div>
+        <div class="card" id="bioCardWrap"><h2>오늘의 바이오리듬</h2><div id="bioCard"></div></div>
       </div>
 
-      <h2 class="section-title">기간별 운세 한눈에 보기</h2>
-      <div class="period-grid">
-        <div class="period-card"><h3>이번주</h3><div id="weekMsg" class="small"></div></div>
-        <div class="period-card"><h3>이번달</h3><div id="monthMsg" class="small"></div></div>
-        <div class="period-card"><h3>올해</h3><div id="yearMsg" class="small"></div></div>
-      </div>
-      <div class="card" style="margin-top:12px;"><h3>삼재와 띠별 흐름</h3><p id="samjaeMsg" class="big-message"></p></div>
+      <div class="card" style="margin-top:16px;"><h3>삼재와 띠별 흐름</h3><p id="samjaeMsg" class="big-message"></p></div>
 
-      <h2 class="section-title">오늘의 바이오리듬</h2>
-      <div class="grid"><div class="card" id="bioCard"></div><div class="card"><h3>오늘 이렇게 해보세요</h3><p id="adviceMsg" class="big-message"></p><div class="pill-list" id="luckyPills"></div></div></div>
+      <details class="fold-card" style="margin-top:16px;">
+        <summary>오행별 공부 과목 안내 펼쳐보기</summary>
+        <div class="fold-inner">
+          <p class="small">아래 분류는 오행이 상징하는 성향을 과목과 공부 방식에 연결한 참고용 조언입니다. 실제 성적을 예측하는 기능은 아닙니다.</p>
+          <table class="table study-table">
+            <tr><th>목 🌱</th><td><strong>국어·영어 독해, 글쓰기, 개념 이해</strong><br><span class="why">목은 나무처럼 자라고 뻗는 기운이라, 글을 읽고 생각을 넓히는 공부와 잘 어울립니다.</span></td></tr>
+            <tr><th>화 🔥</th><td><strong>빠른 문제풀이, 실전 모의고사, 면접·발표·말하기</strong><br><span class="why">화는 밝고 활발한 기운이라, 순발력·표현력·짧고 강한 집중이 필요한 공부와 잘 어울립니다.</span></td></tr>
+            <tr><th>토 ⛰️</th><td><strong>한국사, 행정학, 기본서 정리, 암기 과목</strong><br><span class="why">토는 땅처럼 중심을 잡아주는 기운이라, 기본기를 다지고 반복해서 정리하는 공부와 잘 어울립니다.</span></td></tr>
+            <tr><th>금 💎</th><td><strong>법 과목, 판례, 객관식 기출, 논리 문제</strong><br><span class="why">금은 단단하고 정확한 기운이라, 정답의 근거·판단 기준·논리가 중요한 공부와 잘 어울립니다.</span></td></tr>
+            <tr><th>수 💧</th><td><strong>영어, 자료해석, 추론 문제, 차분한 복습</strong><br><span class="why">수는 물처럼 흐르고 깊은 기운이라, 차분히 흐름을 읽고 생각을 깊게 하는 공부와 잘 어울립니다.</span></td></tr>
+          </table>
+        </div>
+      </details>
 
-      <h2 class="section-title">오행별 공부 과목 안내</h2>
-      <div class="card">
-        <p class="small">아래 분류는 오행이 상징하는 성향을 과목과 공부 방식에 연결한 참고용 조언입니다. 실제 성적을 예측하는 기능은 아닙니다.</p>
-        <table class="table study-table">
-          <tr><th>목 🌱</th><td><strong>국어·영어 독해, 글쓰기, 개념 이해</strong><br><span class="why">목은 나무처럼 자라고 뻗는 기운이라, 글을 읽고 생각을 넓히는 공부와 잘 어울립니다.</span></td></tr>
-          <tr><th>화 🔥</th><td><strong>빠른 문제풀이, 실전 모의고사, 면접·발표·말하기</strong><br><span class="why">화는 밝고 활발한 기운이라, 순발력·표현력·짧고 강한 집중이 필요한 공부와 잘 어울립니다.</span></td></tr>
-          <tr><th>토 ⛰️</th><td><strong>한국사, 행정학, 기본서 정리, 암기 과목</strong><br><span class="why">토는 땅처럼 중심을 잡아주는 기운이라, 기본기를 다지고 반복해서 정리하는 공부와 잘 어울립니다.</span></td></tr>
-          <tr><th>금 💎</th><td><strong>법 과목, 판례, 객관식 기출, 논리 문제</strong><br><span class="why">금은 단단하고 정확한 기운이라, 정답의 근거·판단 기준·논리가 중요한 공부와 잘 어울립니다.</span></td></tr>
-          <tr><th>수 💧</th><td><strong>영어, 자료해석, 추론 문제, 차분한 복습</strong><br><span class="why">수는 물처럼 흐르고 깊은 기운이라, 차분히 흐름을 읽고 생각을 깊게 하는 공부와 잘 어울립니다.</span></td></tr>
-        </table>
-      </div>
-
-      <h2 class="section-title">용어 쉽게 보기</h2>
-      <div class="easy-box" id="sajuHelp"></div>
+      <details class="fold-card">
+        <summary>용어 풀이 간단히 보기</summary>
+        <div class="fold-inner easy-box" id="sajuHelp"></div>
+      </details>
 
       <div class="warning" style="margin-top:20px"><strong>안내</strong><br>이 운세는 전통 사주에서 쓰는 띠, 오행, 삼재 흐름과 바이오리듬을 쉽게 풀어 만든 간이 콘텐츠입니다. 재미와 응원용으로 참고하시고, 중요한 결정은 실제 상황을 함께 보고 판단해 주세요.</div>
     </section>
@@ -206,6 +232,7 @@
   const branchElem=['수','토','목','목','토','화','화','토','금','금','토','수'];
   const elemEmoji={목:'🌱',화:'🔥',토:'⛰️',금:'💎',수:'💧'};
   const colors={목:'초록 계열',화:'따뜻한 빨강·주황',토:'베이지·노랑',금:'흰색·아이보리',수:'검정·네이비'};
+  const moodLabel={목:'생각을 넓히기 좋은 날',화:'활기 있게 움직이기 좋은 날',토:'기본기를 다지기 좋은 날',금:'정리와 집중이 잘 되는 날',수:'차분히 회복하기 좋은 날'};
   const colorExamples={목:'초록색, 연두색',화:'빨강, 주황, 분홍',토:'베이지, 노랑, 브라운',금:'흰색, 아이보리, 은색',수:'검정, 남색, 파랑'};
   const avoidColorTip={목:'너무 진한 초록 계열을 과하게 쓰기보다 밝은 색으로 균형을 맞추세요.',화:'빨강·주황을 과하게 쓰면 마음이 급해질 수 있으니 차분한 색을 함께 쓰세요.',토:'베이지·노랑만 너무 많이 쓰면 답답하게 느껴질 수 있으니 흰색이나 초록을 곁들이세요.',금:'흰색·회색만 과하면 차갑게 느껴질 수 있으니 따뜻한 색을 조금 더하세요.',수:'검정·남색이 과하면 기분이 가라앉을 수 있으니 밝은 색을 함께 쓰세요.'};
   const directions={목:'동쪽',화:'남쪽',토:'중앙·가까운 곳',금:'서쪽',수:'북쪽'};
@@ -311,13 +338,17 @@
   function seedNum(...args){let s=args.join('|'), h=0; for(let i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))>>>0; return h;}
   function pick(arr,seed){return arr[seed%arr.length]}
   function totalElementScore(hasHour){return hasHour?8.8:6.6;}
-  function balanceExplanation(total){return `점수는 태어난 해·달·날${total>7?'·시간':''}에 들어 있는 기운을 더한 값입니다. 각 항목은 겉으로 보이는 기운 1.2점, 안쪽에 깔린 기운 1.0점으로 계산합니다. 그래서 ${total>7?'출생시간을 입력하면 전체 기준은 8.8점':'출생시간을 모르면 전체 기준은 6.6점'}입니다. 한 기운의 점수가 높을수록 그 기운이 많은 편이고, 낮을수록 보완하면 좋은 기운으로 봅니다.`;}
+  function balanceExplanation(total){return `이 점수는 날짜가 아니라 목·화·토·금·수 기운이 얼마나 들어 있는지 보여주는 비교 점수입니다. 출생시간을 입력하면 전체 기준은 8.8점, 입력하지 않으면 6.6점입니다. 보통 한 기운이 0.8점 이하이면 부족한 편, 1.0~2.2점이면 무난한 편, 2.4점 이상이면 비교적 강한 편으로 이해하면 쉽습니다.`;}
+  function weekDetail(elem, weak, strong){
+    const t=periodTips[elem];
+    const goodColor=colorExamples[weak]||colors[weak];
+    const avoidColor=colorExamples[strong]||colors[strong];
+    return `<p><strong>이번주 흐름:</strong> ${t.flow}</p><ul class="period-detail"><li><strong>주간 포인트:</strong> ${t.study}</li><li><strong>인간관계:</strong> ${t.relation}</li><li><strong>도움 되는 음식:</strong> ${elemCare[weak].food}</li><li><strong>조심할 음식:</strong> ${avoidFood[strong]}</li><li><strong>도움 되는 색:</strong> ${goodColor}</li><li><strong>피하면 좋은 색:</strong> ${avoidColor}</li></ul>`;
+  }
   function periodDetail(title, elem, weak, seed){
     const t=periodTips[elem];
-    const c=elemCare[weak];
-    const color=colors[weak];
-    const food=avoidFood[elem];
-    return `<strong>${title}의 큰 흐름:</strong> ${t.flow}<ul class="period-detail"><li><strong>조심할 음식:</strong> ${food}</li><li><strong>도움 되는 색:</strong> ${color}</li><li><strong>인간관계:</strong> ${t.relation}</li><li><strong>공부:</strong> ${t.study}</li><li><strong>금전운:</strong> ${t.money}</li><li><strong>건강운:</strong> ${t.health}</li></ul>`;
+    const flowLead=title==='이번달'?'이번달은':'올해는';
+    return `<p><strong>${flowLead} ${t.flow}</strong></p><ul class="period-detail"><li><strong>인간관계:</strong> ${t.relation}</li><li><strong>공부:</strong> ${t.study}</li><li><strong>금전운:</strong> ${t.money}</li><li><strong>건강운:</strong> ${t.health}</li></ul>`;
   }
   function gradeText(score){
     if(score>=78) return {label:'좋은 편', cls:'status-good', text:'흐름이 좋은 편입니다. 무리하게 욕심내기보다 지금 하던 방식을 꾸준히 이어가면 좋습니다.'};
@@ -346,16 +377,25 @@
       <div class="action-card caution">
         <h3>⚠️ 오늘 주의하면 좋은 것</h3>
         <div class="action-row"><div class="action-icon">📌</div><div><strong>주의할 일</strong><span>${cautionWork}</span></div></div>
-        <div class="action-row"><div class="action-icon">🍽️</div><div><strong>피하면 좋은 음식</strong><span>${avoid}<br>완전히 금지라는 뜻은 아니고, 오늘 과해지기 쉬운 기운을 조금 줄여보자는 의미입니다.</span></div></div>
+        <div class="action-row"><div class="action-icon">🍽️</div><div><strong>피하면 좋은 음식</strong><span>${avoid}</span></div></div>
         <div class="action-row"><div class="action-icon">🎨</div><div><strong>피하면 좋은 색깔</strong><span>${avoidColor}<br>${avoidColorTip[strong]}</span></div></div>
       </div>
       <div class="action-card good">
         <h3>🌿 오늘 하면 좋은 것</h3>
         <div class="action-row"><div class="action-icon">✨</div><div><strong>하면 좋은 일</strong><span>${goodWork}</span></div></div>
-        <div class="action-row"><div class="action-icon">📚</div><div><strong>공부</strong><span>${guide.subject}<br>${guide.method}</span></div></div>
+        <div class="action-row"><div class="action-icon">📚</div><div><strong>오늘 잘 맞는 공부</strong><span>${guide.subject}<br>${guide.method}</span></div></div>
         <div class="action-row"><div class="action-icon">🥗</div><div><strong>먹으면 좋은 음식</strong><span>${goodFood}</span></div></div>
-        <div class="action-row"><div class="action-icon">🌈</div><div><strong>복이 되는 색깔</strong><span>${goodColor}<br>옷, 필통, 메모지, 배경화면처럼 작은 곳에 가볍게 활용해 보세요.</span></div></div>
+        <div class="action-row"><div class="action-icon">🌈</div><div><strong>복이 되는 색깔</strong><span>${goodColor}<br>작은 소품이나 옷 한 부분에만 써도 충분합니다.</span></div></div>
       </div>`;
+  }
+  function todayToonHtml(weak,strong,guide,relationText){
+    const goodColor=colorExamples[weak]||colors[weak];
+    const avoidColor=colorExamples[strong]||colors[strong];
+    return `
+      <div class="toon-panel good"><span class="sticker">오늘 하면 좋아요</span><div class="toon-emoji">📚</div><div class="toon-title">공부 컷</div><div class="speech">오늘은 <strong>${guide.subject}</strong>처럼 ${weak} 기운을 살리는 공부가 잘 맞아요.</div></div>
+      <div class="toon-panel good"><span class="sticker">오늘 먹으면 좋아요</span><div class="toon-emoji">🥗</div><div class="toon-title">음식 컷</div><div class="speech">${elemCare[weak].food}처럼 ${weak} 기운을 보완하는 음식을 가볍게 챙겨 보세요.</div></div>
+      <div class="toon-panel good"><span class="sticker">복이 되는 색</span><div class="toon-emoji">🌈</div><div class="toon-title">색상 컷</div><div class="speech">오늘은 <strong>${goodColor}</strong> 계열을 메모지, 옷, 배경화면에 작게 써보면 좋습니다.</div></div>
+      <div class="toon-panel caution"><span class="sticker">오늘 조심해요</span><div class="toon-emoji">⚠️</div><div class="toon-title">주의 컷</div><div class="speech">${relationText || '서두르지 말고 계획한 순서대로 움직이면 실수를 줄일 수 있어요.'}<br><br>색은 <strong>${avoidColor}</strong>, 음식은 과한 ${strong} 기운을 자극하지 않게 조절해 보세요.</div></div>`;
   }
   function yearMoneyExamHtml(yearElem, weak, moneyScore, examScore){
     const money=gradeText(moneyScore), exam=gradeText(examScore);
@@ -387,27 +427,25 @@
     const openers=['차분하게 실속을 챙기기 좋은 날입니다.','작은 성취가 다음 흐름을 여는 날입니다.','새로운 일을 많이 늘리기보다 정리와 집중이 잘 맞는 날입니다.','사람의 도움과 정보가 운을 키우는 날입니다.','계획을 다시 정리하면 막혔던 부분이 풀리기 쉬운 날입니다.'];
     const focusMsg={study:'공부·시험운은 오늘 한꺼번에 많이 하기보다 오답, 암기카드, 짧은 회독처럼 반복형 공부가 좋습니다.',money:'금전·생활운은 큰 지출보다 필요한 것과 미뤄도 되는 것을 구분하는 쪽이 유리합니다.',relation:'인간관계운은 먼저 부드럽게 말하면 상대 반응이 좋아지는 흐름입니다.',health:'컨디션운은 몸의 신호를 무시하지 말고 수면·식사·가벼운 스트레칭을 챙기면 회복이 빠릅니다.'};
     document.getElementById('helloTitle').textContent='오늘의 운세';
-    document.getElementById('summaryPills').innerHTML=[`${yp.animal}띠`, `나의 중심 기운 ${dp.elem}`, `오늘의 흐름 ${tdp.stem}${tdp.branch}`, `보완하면 좋은 기운 ${weakest}`].map(x=>`<span class="pill">${x}</span>`).join('');
-    document.getElementById('todayMsg').innerHTML=`<strong>${pick(openers,base)}</strong><ul class="today-list"><li><strong>공부·일정:</strong> ${focusMsg[focus]}</li><li><strong>주의할 점:</strong> ${rel || '오늘은 큰 무리 없이 기본 루틴을 지키기 좋은 흐름입니다. 정해 둔 계획을 차분히 진행해 보세요.'}</li><li><strong>오늘의 보완 기운:</strong> ${elemEmoji[weakest]} <strong>${weakest}</strong>입니다. ${weakest} 기운은 ${elemCare[weakest].easy}과 관련이 있으니, 아래 음식·장소·공부법을 참고해 하루 리듬을 잡아보세요.</li></ul>`;
+    document.getElementById('summaryPills').innerHTML=[`${yp.animal}띠`, `나의 중심 기운 ${dp.elem}`, `오늘의 분위기 ${moodLabel[todayE]}`, `보완 포인트 ${weakest}`].map(x=>`<span class="pill">${x}</span>`).join('');
+    document.getElementById('todayMsg').innerHTML=`<strong>${pick(openers,base)}</strong><ul class="today-list"><li><strong>오늘의 핵심:</strong> ${focusMsg[focus]}</li><li><strong>오늘 주의할 점:</strong> ${rel || '오늘은 큰 무리 없이 기본 루틴을 지키기 좋은 흐름입니다. 정해 둔 계획을 차분히 진행해 보세요.'}</li><li><strong>오늘의 보완 포인트:</strong> ${elemEmoji[weakest]} <strong>${weakest}</strong> 기운입니다. 쉽게 말해 ${elemCare[weakest].easy}을 조금 더 채워 주면 좋다는 뜻입니다.</li></ul>`;
     document.getElementById('todayScores').innerHTML=scoreBar('공부운',Math.min(95,study))+scoreBar('생활운',Math.min(95,life))+scoreBar('관계운',Math.min(95,people))+scoreBar('컨디션',condition);
     const guide=studyCare[weakest];
     document.getElementById('todayActionCards').innerHTML=todayActionCardsHtml(weakest,strongest,rel,guide);
+    document.getElementById('todayToonStrip').innerHTML=todayToonHtml(weakest,strongest,guide,rel);
     const yearMoneyScore=Math.min(95,Math.max(35,55+bal[gen[typ.elem]]*8+(typ.elem===dayE?10:0)-(strongest===typ.elem?5:0)+((base>>7)%18)));
     const yearExamScore=Math.min(95,Math.max(35,52+bal[weakest]*5+(bioI.pct-50)/3+(typ.elem===weakest?8:0)+((base>>9)%16)));
     document.getElementById('yearMoneyExam').innerHTML=yearMoneyExamHtml(typ.elem,weakest,Math.round(yearMoneyScore),Math.round(yearExamScore));
-    document.getElementById('studyGuide').innerHTML=`<h4>오늘 집중하면 좋은 공부</h4><p><strong>${guide.subject}</strong></p><ul><li><strong>추천 공부법:</strong> ${guide.method}</li><li><strong>오늘 피하면 좋은 방식:</strong> ${guide.avoid}</li><li><strong>이렇게 보는 이유:</strong> ${guide.reason}</li></ul>`;
+    document.getElementById('studyGuide').innerHTML=`<h4>오늘 집중하면 좋은 공부</h4><p><strong>${guide.subject}</strong></p><ul><li><strong>추천 공부법:</strong> ${guide.method}</li><li><strong>오늘 피하면 좋은 방식:</strong> ${guide.avoid}</li></ul><p class="small" style="margin-top:8px;">이 분류는 실제 성적 예측이 아니라, 오늘 부족한 기운에 맞춰 공부 방식을 고르는 참고용 조언입니다.</p>`;
     const totalScore=totalElementScore(!!hp);
-    document.getElementById('sajuTable').innerHTML=`<tr><th>입력 날짜 기준</th><td>${birthInfo.note}</td></tr><tr><th>태어난 해</th><td>${yp.text} · ${yp.animal}띠 · ${yp.elem} 기운</td></tr><tr><th>태어난 달</th><td>${mp.text} · 계절상 ${branchElem[branches.indexOf(mp.branch)]} 기운</td></tr><tr><th>나의 중심 기운</th><td>${dp.text} · 나를 대표하는 기운은 ${dp.elem}입니다</td></tr><tr><th>태어난 시간</th><td>${hp?hp.text+' · '+hp.elem+' 기운':'출생시간 미입력'}</td></tr><tr><th>오행 에너지 균형</th><td>목 ${bal.목.toFixed(1)} · 화 ${bal.화.toFixed(1)} · 토 ${bal.토.toFixed(1)} · 금 ${bal.금.toFixed(1)} · 수 ${bal.수.toFixed(1)}<div class="score-note"><strong>점수 기준:</strong> ${balanceExplanation(totalScore)}</div></td></tr>`;
-    document.getElementById('dayMasterText').textContent=`쉽게 말해, ${strongest} 기운은 비교적 많은 편이고 ${weakest} 기운은 보완하면 좋은 편입니다. 숫자는 날짜나 요일이 아니라, 다섯 가지 기운이 얼마나 들어 있는지 보여주는 간단한 점수입니다. 전체 기준은 ${totalScore.toFixed(1)}점이며, 모든 기운이 한쪽으로 몰리기보다 서로 적당히 나뉘어 있을수록 균형 있게 봅니다. ${weakest} 기운은 ${elemCare[weakest].easy}을 뜻합니다.`;
-    document.getElementById('sajuHelp').innerHTML=`<h4>용어 쉽게 보기</h4><ul><li><strong>양력/음력</strong>: 양력은 달력에 보통 표시되는 생일이고, 음력은 음력 생일입니다. 음력을 선택하면 화면 안에서 양력 날짜로 바꿔 계산합니다.</li><li><strong>띠</strong>: 입력한 생년을 기준으로 표시합니다. 예를 들어 1976년생은 용띠로 표시됩니다.</li><li><strong>태어난 해·달·날·시간</strong>: 사주에서 참고하는 네 가지 출생 정보입니다. 요일을 뜻하는 말이 아닙니다.</li><li><strong>목·화·토·금·수</strong>: 성격을 단정하는 말이 아니라, 운세를 쉽게 설명하기 위해 사용하는 다섯 가지 에너지입니다.</li><li><strong>오행 에너지 숫자</strong>: 날짜나 요일이 아닙니다. 태어난 해·달·날·시간에 들어 있는 목·화·토·금·수 기운을 더한 비교값입니다. 출생시간을 입력하면 전체 기준은 8.8점, 입력하지 않으면 6.6점입니다.</li><li><strong>보완하면 좋은 기운</strong>: 상대적으로 적게 나온 기운입니다. 해당 기운에 맞는 음식, 장소, 색상, 공부법을 참고하면 하루 리듬을 잡는 데 도움이 됩니다.</li><li><strong>피하면 좋은 음식·색상</strong>: 완전히 금지라는 뜻이 아니라, 오늘 과해지기 쉬운 기운을 조금 줄여 보자는 참고용 안내입니다.</li><li><strong>올해 금전운·시험운</strong>: 좋다/나쁘다를 단정하기보다, 올해의 큰 흐름에 맞춰 어떤 부분을 관리하면 좋은지 알려주는 응원용 조언입니다.</li></ul>`;
-    document.getElementById('weekMsg').innerHTML=`정리와 실행을 나누면 좋은 주간입니다. 초반에는 계획을 가볍게 정리하고, 중반 이후에는 정한 일을 하나씩 처리해 보세요.`;
+    document.getElementById('sajuTable').innerHTML=`<tr><th>입력 날짜 기준</th><td>${birthInfo.note}</td></tr><tr><th>띠</th><td>${yp.animal}띠</td></tr><tr><th>나의 중심 기운</th><td>${dp.elem} · 쉽게 말해 나를 가장 잘 보여주는 기본 에너지입니다.</td></tr><tr><th>보완하면 좋은 기운</th><td>${weakest} · 오늘 음식, 색상, 공부 추천은 이 기운을 보완하는 방향으로 안내합니다.</td></tr><tr><th>오행 에너지 균형</th><td>목 ${bal.목.toFixed(1)} · 화 ${bal.화.toFixed(1)} · 토 ${bal.토.toFixed(1)} · 금 ${bal.금.toFixed(1)} · 수 ${bal.수.toFixed(1)}<div class="score-note"><strong>쉽게 이해하기:</strong> ${balanceExplanation(totalScore)}</div></td></tr>`;
+    document.getElementById('dayMasterText').textContent=`쉽게 말해 ${strongest} 기운은 비교적 강하고, ${weakest} 기운은 조금 더 보완하면 좋은 편입니다. 점수는 날짜가 아니라 다섯 가지 기운의 분포를 뜻합니다. 한쪽으로 아주 몰리기보다 적당히 나뉘어 있으면 균형이 좋다고 봅니다.`;
+    document.getElementById('sajuHelp').innerHTML=`<ul><li><strong>양력/음력</strong>: 달력 생일이면 양력, 음력 생일이면 음력을 고르면 됩니다.</li><li><strong>띠</strong>: 입력한 생년을 기준으로 보여줍니다. 예: 1976년생은 용띠입니다.</li><li><strong>오행 에너지 숫자</strong>: 날짜가 아니라 목·화·토·금·수 기운의 분포를 보여주는 비교 점수입니다.</li><li><strong>보완하면 좋은 기운</strong>: 상대적으로 적게 나온 기운으로, 오늘 음식·색상·공부 추천의 기준이 됩니다.</li></ul>`;
+    document.getElementById('weekMsg').innerHTML=weekDetail(todayE,weakest,strongest);
     document.getElementById('monthMsg').innerHTML=periodDetail('이번달',tmp.elem,weakest,base+11);
     document.getElementById('yearMsg').innerHTML=periodDetail('올해',typ.elem,weakest,base+17);
     document.getElementById('samjaeMsg').textContent=`${yp.animal}띠 기준으로 보면, 현재 ${typ.animal}해는 ${samText} 삼재는 무조건 나쁜 뜻이 아니라 조심하고 점검하라는 참고 신호로 보시면 됩니다.`;
-    document.getElementById('bioCard').innerHTML=`<h3>바이오리듬</h3>${scoreBar('신체 리듬',bioP.pct)}<p class="small">상태: ${bioState(bioP.pct)} · 체력과 활동 에너지</p>${scoreBar('감성 리듬',bioE.pct)}<p class="small">상태: ${bioState(bioE.pct)} · 감정과 사람 관계의 느낌</p>${scoreBar('지성 리듬',bioI.pct)}<p class="small">상태: ${bioState(bioI.pct)} · 공부·판단·집중 흐름</p>`;
-    const advs=[`오늘은 ${colors[weakest]}을 가까이 두고 ${directions[weakest]} 방향의 정리부터 시작해 보세요.`,`${weakest} 기운 보완에는 ${elemCare[weakest].food}이 잘 어울립니다.`,`${elemCare[weakest].place}에 잠깐 머물거나 ${elemCare[weakest].action}을 해보면 흐름이 안정됩니다.`,`중요한 일은 오전에 윤곽을 잡고, 오후에는 확인과 마무리에 힘을 주면 좋습니다.`,`충동적인 선택보다 10분만 미루고 다시 판단하면 실수를 줄일 수 있습니다.`];
-    document.getElementById('adviceMsg').textContent=pick(advs,base+7);
-    document.getElementById('luckyPills').innerHTML=[`도움 색상: ${colors[weakest]}`,`도움 방향: ${directions[weakest]}`,`추천 음식: ${elemCare[weakest].food}`,`추천 장소: ${elemCare[weakest].place}`,`실천 팁: ${elemCare[weakest].action}`].map(x=>`<span class="pill">${x}</span>`).join('');
+    document.getElementById('bioCard').innerHTML=`<div class="small" style="margin-bottom:10px;">오늘의 컨디션 흐름을 간단히 보는 참고용 그래프입니다.</div>${scoreBar('신체 리듬',bioP.pct)}<p class="small">상태: ${bioState(bioP.pct)} · 체력과 활동 에너지</p>${scoreBar('감성 리듬',bioE.pct)}<p class="small">상태: ${bioState(bioE.pct)} · 감정과 사람 관계의 느낌</p>${scoreBar('지성 리듬',bioI.pct)}<p class="small">상태: ${bioState(bioI.pct)} · 공부·판단·집중 흐름</p><div class="easy-box" style="margin-top:12px;"><strong>오늘 한 줄 팁</strong><br>${pick([`오늘은 ${colors[weakest]}을 가까이 두고 ${directions[weakest]} 방향의 정리부터 시작해 보세요.`,`${weakest} 기운 보완에는 ${elemCare[weakest].food}이 잘 어울립니다.`,`${elemCare[weakest].place}에 잠깐 머물거나 ${elemCare[weakest].action}을 해보면 흐름이 안정됩니다.`,`중요한 일은 오전에 윤곽을 잡고, 오후에는 확인과 마무리에 힘을 주면 좋습니다.`,`충동적인 선택보다 10분만 미루고 다시 판단하면 실수를 줄일 수 있습니다.`],base+7)}</div>`;
     document.getElementById('result').classList.add('show'); document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
   }
   populateBirthSelects();
