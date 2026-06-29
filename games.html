@@ -409,6 +409,50 @@
 
     .common-answer-box strong { color: #2f3b2f; }
 
+    .word-answer-list {
+      line-height: 1.75;
+    }
+
+    .answer-list-note {
+      margin: 0 0 10px;
+      color: #6a5a45;
+      font-size: 0.92rem;
+    }
+
+    .answer-section-title {
+      margin-top: 10px;
+      font-weight: 800;
+      color: #2f3b2f;
+    }
+
+    .answer-line {
+      padding: 4px 0;
+      border-bottom: 1px dashed #eadfcb;
+    }
+
+    .answer-line:last-child {
+      border-bottom: 0;
+    }
+
+    .dict-word {
+      color: #1f5f92;
+      font-weight: 800;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .ipa {
+      display: inline-block;
+      margin-left: 4px;
+      padding: 1px 7px;
+      border-radius: 999px;
+      background: #eef4ea;
+      color: #365236;
+      font-size: 0.88rem;
+      font-family: "Times New Roman", serif;
+    }
+
+
     .common-cw-meta {
       text-align: center;
       color: #5b4a34;
@@ -524,7 +568,7 @@
 
     <div class="hint-box">
       <strong>게임 시작 전 닉네임을 등록하시겠어요?</strong>
-      <p>닉네임을 등록하면 게임 점수가 전체 순위에 기록됩니다. 원하지 않으면 익명으로도 진행할 수 있습니다.</p>
+      <p>닉네임을 등록하면 게임 기록이 전체 순위에 반영됩니다. 원하지 않으면 익명으로도 진행할 수 있습니다.</p>
       <div class="button-wrap" style="text-align:center;">
         <a class="button" href="#player-ranking">닉네임 등록하기</a>
         <button class="button sub" type="button" onclick="showGame('crossword-game')">익명으로 바로 시작</button>
@@ -562,8 +606,8 @@
   <section id="player-ranking">
     <h2>닉네임과 전체 순위</h2>
     <p>
-      게임 시작 전에 닉네임을 등록하면 점수가 전체 순위에 기록됩니다. 방번호는 저장하지 않습니다.
-      닉네임을 입력하지 않으면 익명으로 기록되며, 순위는 게임별 최고 점수 기준으로 표시됩니다.
+      게임 시작 전에 닉네임을 등록하면 게임 기록이 전체 순위에 반영됩니다. 방번호는 저장하지 않습니다.
+      닉네임을 입력하지 않으면 익명으로 기록되며, 순위는 게임별 기록 기준으로 표시됩니다.
     </p>
 
     <div class="player-box">
@@ -633,6 +677,7 @@
     </div>
 
     <div class="game-status" id="crossword-status">공개된 글자와 힌트를 참고해 빈칸을 채워보세요.</div>
+    <div class="hint-box common-answer-box word-answer-list" id="crossword-answer-list" style="display:none;"></div>
   </section>
 
 
@@ -669,7 +714,7 @@
     </div>
 
     <div class="game-status" id="common-cw-status">국어·영어·한국사 중 원하는 과목을 선택해 풀어보세요.</div>
-    <div class="hint-box common-answer-box" id="common-cw-answer-list"></div>
+    <div class="hint-box common-answer-box word-answer-list" id="common-cw-answer-list"></div>
   </section>
 
   <section id="falling-game" class="game-panel">
@@ -802,8 +847,8 @@
           if (!ranking.length) {
             target.innerHTML = '<li>아직 기록이 없습니다.</li>';
           } else {
-            target.innerHTML = ranking.map(function(item) {
-              return '<li>' + escapeHtml(item.nickname || '익명') + ' - ' + Number(item.score || 0).toLocaleString() + '점</li>';
+            target.innerHTML = ranking.map(function(item, index) {
+              return '<li>' + escapeHtml(item.nickname || '익명') + ' - ' + (index + 1) + '위</li>';
             }).join('');
           }
         } finally {
@@ -832,6 +877,39 @@
       });
     }
 
+
+
+    const englishPronunciationMap = {
+      ABATE: '/əˈbeɪt/', ABHOR: '/əbˈhɔːr/', ABROGATE: '/ˈæbrəɡeɪt/', ADAGE: '/ˈædɪdʒ/', ADEPT: '/əˈdept/', AERIE: '/ˈeri/', AFFIX: '/əˈfɪks/', AGILE: '/ˈædʒaɪl/', ALIBI: '/ˈæləbaɪ/', AMEND: '/əˈmend/', AMPLE: '/ˈæmpəl/', ARBITRARY: '/ˈɑːrbətreri/', ARDOR: '/ˈɑːrdər/', AUSTERE: '/ɔːˈstɪr/', AVERT: '/əˈvɜːrt/', BANAL: '/bəˈnɑːl/', BELIE: '/bɪˈlaɪ/', BLAND: '/blænd/', BOLSTER: '/ˈboʊlstər/', CANDOR: '/ˈkændər/', CAVIL: '/ˈkævəl/', COGENT: '/ˈkoʊdʒənt/', COHERENT: '/koʊˈhɪrənt/', DEFER: '/dɪˈfɜːr/', DEMUR: '/dɪˈmɜːr/', DILUTE: '/daɪˈluːt/', DOCILE: '/ˈdɑːsəl/', DUBIOUS: '/ˈduːbiəs/', ELICIT: '/ɪˈlɪsɪt/', ELUDE: '/ɪˈluːd/', ENNUI: '/ɑːnˈwiː/', EXTOL: '/ɪkˈstoʊl/', FERVOR: '/ˈfɜːrvər/', FRUGAL: '/ˈfruːɡəl/', GUILE: '/ɡaɪl/', IMMINENT: '/ˈɪmɪnənt/', IMPEDE: '/ɪmˈpiːd/', IMPLY: '/ɪmˈplaɪ/', INANE: '/ɪˈneɪn/', INERT: '/ɪˈnɜːrt/', IRATE: '/aɪˈreɪt/', LUCID: '/ˈluːsɪd/', MOROSE: '/məˈroʊs/', NOVEL: '/ˈnɑːvəl/', OBDURATE: '/ˈɑːbdərət/', OBLIQUE: '/əˈbliːk/', PACIFY: '/ˈpæsɪfaɪ/', PALLID: '/ˈpælɪd/', PARITY: '/ˈpærəti/', PERUSE: '/pəˈruːz/', PLACATE: '/ˈpleɪkeɪt/', PLAUSIBLE: '/ˈplɔːzəbəl/', PONDER: '/ˈpɑːndər/', PRUDENT: '/ˈpruːdənt/', QUIBBLE: '/ˈkwɪbəl/', REFUTE: '/rɪˈfjuːt/', RENEGE: '/rɪˈneɡ/', RESCIND: '/rɪˈsɪnd/', SALIENT: '/ˈseɪliənt/', SORDID: '/ˈsɔːrdɪd/', SPARSE: '/spɑːrs/', STYMIE: '/ˈstaɪmi/', TACIT: '/ˈtæsɪt/', TERSE: '/tɜːrs/', UNDERMINE: '/ˌʌndərˈmaɪn/', VACILLATE: '/ˈvæsəleɪt/', VAGUE: '/veɪɡ/', VENERATE: '/ˈvenəreɪt/', VIABLE: '/ˈvaɪəbəl/', VILIFY: '/ˈvɪlɪfaɪ/', WAIVE: '/weɪv/', WARY: '/ˈweri/', ZEAL: '/ziːl/'
+    };
+
+    function isEnglishAnswerWord(word) {
+      return /^[A-Za-z][A-Za-z\- ]*$/.test(String(word || ''));
+    }
+
+    function getEnglishDictUrl(word) {
+      return 'https://en.dict.naver.com/#/search?query=' + encodeURIComponent(String(word || '').toLowerCase());
+    }
+
+    function formatAnswerWord(word) {
+      const raw = String(word || '');
+      if (!isEnglishAnswerWord(raw)) return escapeHtml(raw);
+      const upper = raw.toUpperCase();
+      const ipa = englishPronunciationMap[upper] || '';
+      return '<a class="dict-word" href="' + getEnglishDictUrl(raw) + '" target="_blank" rel="noopener" title="뜻과 발음기호 보기">' + escapeHtml(raw) + '</a>'
+        + (ipa ? ' <span class="ipa">' + ipa + '</span>' : '');
+    }
+
+    function buildAnswerLine(no, answer) {
+      return '<div class="answer-line"><span class="answer-no">' + no + '. </span>' + formatAnswerWord(answer) + '</div>';
+    }
+
+    function answerListNote(hasEnglish) {
+      return hasEnglish
+        ? '<p class="answer-list-note">영어 단어를 누르면 네이버 영어사전으로 이동해 뜻, 예문, 발음기호를 더 확인할 수 있습니다.</p>'
+        : '<p class="answer-list-note">정답 확인 후 복습할 수 있도록 이번 세트의 정답을 모아 보여드립니다.</p>';
+    }
+
     function showGame(id) {
       document.querySelectorAll('.game-panel').forEach(function(panel) {
         panel.classList.remove('active');
@@ -850,6 +928,7 @@
     let crosswordInputMap = {};
     let crosswordSolvedCount = 0;
     let crosswordCurrentSolved = false;
+    let crosswordShowAnswers = false;
 
     function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -875,7 +954,10 @@
     function loadCrosswordSet(setIndex) {
       currentCrosswordSet = setIndex;
       crosswordCurrentSolved = false;
+      crosswordShowAnswers = false;
       crosswordCells = {};
+      const answerBox = document.getElementById('crossword-answer-list');
+      if (answerBox) { answerBox.style.display = 'none'; answerBox.innerHTML = ''; }
       const set = crosswordSets[currentCrosswordSet];
 
       set.words.forEach(function(word) {
@@ -1016,13 +1098,19 @@
 
     function completeCrosswordSolvedMessage(auto) {
       if (crosswordCurrentSolved) return;
+      if (crosswordShowAnswers) {
+        document.getElementById('crossword-status').textContent = '정답보기를 사용한 세트는 순위에 반영되지 않습니다. 정답 단어를 눌러 복습해 보세요.';
+        showCrosswordAnswerList();
+        return;
+      }
       crosswordCurrentSolved = true;
       crosswordSolvedCount++;
       const score = crosswordSolvedCount * 100;
       submitScore(GAME_CROSSWORD, score, '맞힌 문제 수: ' + crosswordSolvedCount);
       document.getElementById('crossword-status').textContent = auto
-        ? '전체 정답입니다! 정답확인을 누르지 않아도 완료 처리되었습니다. 점수: ' + score + '점'
-        : '정답입니다! 점수: ' + score + '점';
+        ? '전체 정답입니다! 정답확인을 누르지 않아도 완료 처리되었습니다. 현재 순위 기록에 반영됩니다.'
+        : '정답입니다! 현재 순위 기록에 반영됩니다.';
+      showCrosswordAnswerList();
     }
 
     function autoCompleteCrosswordIfSolved() {
@@ -1033,14 +1121,36 @@
       loadCrosswordSet(currentCrosswordSet);
     }
 
+
+    function buildCrosswordAnswerListHtml() {
+      const set = crosswordSets[currentCrosswordSet];
+      const acrossWords = set.words.filter(function(w) { return w.direction === 'across'; });
+      const downWords = set.words.filter(function(w) { return w.direction === 'down'; });
+      const hasEnglish = set.words.some(function(w) { return isEnglishAnswerWord(w.answer); });
+      const across = acrossWords.map(function(w, i) { return buildAnswerLine(i + 1, w.answer); }).join('');
+      const down = downWords.map(function(w, i) { return buildAnswerLine(i + 1, w.answer); }).join('');
+      return '<strong>이번 세트 정답</strong>' + answerListNote(hasEnglish)
+        + '<div class="answer-section-title">가로</div>' + (across || '<p class="small">가로 정답이 없습니다.</p>')
+        + '<div class="answer-section-title">세로</div>' + (down || '<p class="small">세로 정답이 없습니다.</p>');
+    }
+
+    function showCrosswordAnswerList() {
+      const answerBox = document.getElementById('crossword-answer-list');
+      if (!answerBox) return;
+      answerBox.innerHTML = buildCrosswordAnswerListHtml();
+      answerBox.style.display = 'block';
+    }
+
     function showCrosswordAnswers() {
+      crosswordShowAnswers = true;
       crosswordInputs.forEach(function(input) {
         input.value = input.dataset.answer;
         input.readOnly = true;
         input.style.borderColor = '#8aa36f';
         input.style.backgroundColor = '#fff5dc';
       });
-      document.getElementById('crossword-status').textContent = '포기하고 정답보기를 실행했습니다. 다음 문제를 누르면 랜덤 순서로 이어서 진행할 수 있습니다.';
+      showCrosswordAnswerList();
+      document.getElementById('crossword-status').textContent = '포기하고 정답보기를 실행했습니다. 이 세트는 순위에 반영되지 않습니다. 정답 단어를 눌러 복습할 수 있습니다.';
     }
 
     function nextCrosswordSet() {
@@ -1054,6 +1164,7 @@
     }
 
     function checkCrossword() {
+      if (crosswordShowAnswers) { completeCrosswordSolvedMessage(false); return; }
       let correct = true;
 
       crosswordInputs.forEach(function(input) {
@@ -1313,13 +1424,19 @@
 
     function completeCommonCrosswordSolvedMessage(auto) {
       if (commonCurrentSolved) return;
+      if (commonShowAnswers) {
+        document.getElementById('common-cw-status').textContent = '전체정답보기를 사용한 세트는 순위에 반영되지 않습니다. 영어 단어를 눌러 뜻과 발음기호를 복습해 보세요.';
+        showCommonAnswerList();
+        return;
+      }
       commonCurrentSolved = true;
       commonSolvedCount[currentCommonSubject]++;
       const score = commonSolvedCount[currentCommonSubject] * 100;
       submitScore(GAME_COMMON_CROSSWORD, score, commonCrosswordSubjects[currentCommonSubject].label + ' 맞힌 세트: ' + commonSolvedCount[currentCommonSubject]);
       document.getElementById('common-cw-status').textContent = auto
-        ? '전체 정답입니다! 정답확인을 누르지 않아도 완료 처리되었습니다. 점수: ' + score + '점'
-        : '정답입니다! 점수: ' + score + '점';
+        ? '전체 정답입니다! 정답확인을 누르지 않아도 완료 처리되었습니다. 현재 순위 기록에 반영됩니다.'
+        : '정답입니다! 현재 순위 기록에 반영됩니다.';
+      showCommonAnswerList();
     }
 
     function autoCompleteCommonCrosswordIfSolved() {
@@ -1327,6 +1444,7 @@
     }
 
     function checkCommonCrossword() {
+      if (commonShowAnswers) { completeCommonCrosswordSolvedMessage(false); return; }
       let correct = 0;
       commonInputs.forEach(function(input) {
         const value = input.value.trim().toUpperCase();
@@ -1341,20 +1459,26 @@
     function buildCommonAnswerListHtml() {
       const set = commonCrosswordSets[currentCommonSubject][currentCommonSetIndex];
       const starts = set.words.slice().sort(function(a,b) { return a.row - b.row || a.col - b.col; });
-      const across = set.words.filter(function(w) { return w.direction === 'across'; }).map(function(w) { return (starts.indexOf(w)+1) + '. ' + w.answer; }).join('<br>');
-      const down = set.words.filter(function(w) { return w.direction === 'down'; }).map(function(w) { return (starts.indexOf(w)+1) + '. ' + w.answer; }).join('<br>');
-      return '<strong>전체 정답</strong><br><br><strong>가로</strong><br>' + across + '<br><br><strong>세로</strong><br>' + down;
+      const hasEnglish = currentCommonSubject === 'english' || set.words.some(function(w) { return isEnglishAnswerWord(w.answer); });
+      const across = set.words.filter(function(w) { return w.direction === 'across'; }).map(function(w) { return buildAnswerLine(starts.indexOf(w)+1, w.answer); }).join('');
+      const down = set.words.filter(function(w) { return w.direction === 'down'; }).map(function(w) { return buildAnswerLine(starts.indexOf(w)+1, w.answer); }).join('');
+      return '<strong>전체 정답</strong>' + answerListNote(hasEnglish)
+        + '<div class="answer-section-title">가로</div>' + (across || '<p class="small">가로 정답이 없습니다.</p>')
+        + '<div class="answer-section-title">세로</div>' + (down || '<p class="small">세로 정답이 없습니다.</p>');
+    }
+
+    function showCommonAnswerList() {
+      const answerBox = document.getElementById('common-cw-answer-list');
+      if (!answerBox) return;
+      answerBox.innerHTML = buildCommonAnswerListHtml();
+      answerBox.style.display = 'block';
     }
 
     function showCommonCrosswordAnswers() {
       commonShowAnswers = true;
       buildCommonCrosswordGrid();
-      const answerBox = document.getElementById('common-cw-answer-list');
-      if (answerBox) {
-        answerBox.innerHTML = buildCommonAnswerListHtml();
-        answerBox.style.display = 'block';
-      }
-      document.getElementById('common-cw-status').textContent = '포기하고 전체정답보기를 실행했습니다. 퍼즐판과 아래 목록에 전체 정답을 표시했습니다.';
+      showCommonAnswerList();
+      document.getElementById('common-cw-status').textContent = '포기하고 전체정답보기를 실행했습니다. 이 세트는 순위에 반영되지 않습니다. 영어 단어를 누르면 뜻과 발음기호를 복습할 수 있습니다.';
     }
 
     function nextCommonCrosswordSet() {
