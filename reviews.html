@@ -38,6 +38,14 @@
     <a href="gift.html">응원글 이벤트</a>
     <a href="index.html#contact">문의</a>
   </nav>
+
+  <div class="visitor-counter" id="visitorCounter" aria-label="방문자수">
+    <span class="visitor-counter-label">방문현황</span>
+    <span>오늘 <strong id="visitorToday">-</strong>명</span>
+    <span class="visitor-sep">·</span>
+    <span>누적 <strong id="visitorTotal">-</strong>명</span>
+  </div>
+
   <section>
    <h2>
     이용 후기
@@ -100,5 +108,47 @@
   <script>
    document.getElementById("year").textContent=new Date().getFullYear();
   </script>
- </body>
+ 
+<script>
+(function() {
+  var VISITOR_API = 'https://script.google.com/macros/s/AKfycbydwR3nD5BpVPD5iKqPXtVQnhikBriLrshk3iIiKlBWWHooio6hDBfYbAdO-T_3nptVLg/exec';
+  var todayKey = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Seoul' });
+  var storageKey = 'meomurum_visit_counted_' + todayKey;
+  var shouldCount = false;
+
+  try {
+    shouldCount = localStorage.getItem(storageKey) !== '1';
+  } catch (e) {
+    shouldCount = true;
+  }
+
+  var action = shouldCount ? 'count' : 'get';
+  var url = VISITOR_API + '?action=' + action + '&t=' + Date.now();
+
+  function renderCounts(data) {
+    var todayEl = document.getElementById('visitorToday');
+    var totalEl = document.getElementById('visitorTotal');
+    if (!todayEl || !totalEl || !data || data.ok !== true) return;
+
+    todayEl.textContent = Number(data.today || 0).toLocaleString('ko-KR');
+    totalEl.textContent = Number(data.total || 0).toLocaleString('ko-KR');
+
+    if (shouldCount) {
+      try { localStorage.setItem(storageKey, '1'); } catch (e) {}
+    }
+  }
+
+  function showError() {
+    var counter = document.getElementById('visitorCounter');
+    if (counter) counter.classList.add('visitor-counter-muted');
+  }
+
+  fetch(url, { method: 'GET', cache: 'no-store' })
+    .then(function(res) { return res.json(); })
+    .then(renderCounts)
+    .catch(showError);
+})();
+</script>
+
+</body>
 </html>
