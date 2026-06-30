@@ -1,4 +1,4 @@
-const KNOWLEDGE_ITEMS = [
+window.KNOWLEDGE_ITEMS = [
   {
     "category": "경제·금융",
     "title": "환율 상승은 무역수지에 항상 유리할까?",
