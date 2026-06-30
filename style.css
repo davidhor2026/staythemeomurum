@@ -160,3 +160,5 @@
 .knowledge-detail p{color:#4d4a43;line-height:1.78;font-size:15px;}
 .related-keywords{margin-top:14px;padding:12px 13px;border-radius:14px;background:#f4f1ea;font-size:14px;}
 @media(max-width:760px){.knowledge-wrap{padding:18px 12px 52px;}.knowledge-list,.knowledge-guide-grid{grid-template-columns:1fr;}.knowledge-intro h2{font-size:1.42rem;}.knowledge-card-top{padding:18px 17px 12px;}.knowledge-card summary,.knowledge-detail{padding-left:17px;padding-right:17px;}}
+
+.knowledge-empty{padding:24px;border:1px dashed #d8ccb8;border-radius:16px;background:#fffaf3;color:#5b564d;text-align:center;}
