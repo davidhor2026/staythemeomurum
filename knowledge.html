@@ -35,13 +35,13 @@
       <span class="knowledge-eyebrow">공기업 · 공무원 · 면접 시사상식</span>
       <h2>뉴스에서 자주 보이지만 막상 설명하려면 어려운 개념들을 정리했습니다</h2>
       <p>단순한 생활상식이 아니라 공기업·공무원 시험, 면접, 논술형 답변에서 한 번쯤 마주칠 수 있는 경제·사회·국제 이슈를 중심으로 구성했습니다. 각 주제는 <strong>한 줄 요약 → 개념과 맥락 → 시험·면접 포인트 → 헷갈리기 쉬운 표현</strong> 순서로 읽을 수 있습니다.</p>
-      <div class="knowledge-tabs" aria-label="지식노트 카테고리">
-        <span>경제·금융</span>
-        <span>국제사회·무역</span>
-        <span>사회·노동</span>
-        <span>환경·에너지</span>
-        <span>정치·행정</span>
-        <span>과학기술·AI</span>
+      <div class="knowledge-tabs" aria-label="지식노트 카테고리 바로가기">
+        <a href="#knowledge-economy">경제·금융</a>
+        <a href="#knowledge-global">국제사회·무역</a>
+        <a href="#knowledge-social">사회·노동·시사</a>
+        <a href="#knowledge-environment">환경·에너지</a>
+        <a href="#knowledge-policy">정치·행정·법</a>
+        <a href="#knowledge-tech">과학기술·AI</a>
       </div>
     </section>
 <section class="knowledge-list" id="knowledgeList"></section>
@@ -62,12 +62,41 @@
       .replaceAll('"','&quot;')
       .replaceAll("'", '&#39;');
 
-    function renderKnowledge(items){
-      if(!Array.isArray(items) || !items.length){
-        listEl.innerHTML = '<p class="knowledge-empty">아직 등록된 지식노트가 없습니다.</p>';
-        return;
+    const CATEGORY_GROUPS = [
+      {
+        id: 'knowledge-economy',
+        label: '경제·금융',
+        match: ['경제·금융']
+      },
+      {
+        id: 'knowledge-global',
+        label: '국제사회·무역',
+        match: ['국제사회·무역']
+      },
+      {
+        id: 'knowledge-social',
+        label: '사회·노동·시사',
+        match: ['사회·노동', '사회·인구', '도시·사회', '사회·시사']
+      },
+      {
+        id: 'knowledge-environment',
+        label: '환경·에너지',
+        match: ['환경·에너지']
+      },
+      {
+        id: 'knowledge-policy',
+        label: '정치·행정·법',
+        match: ['정치·행정', '법·제도']
+      },
+      {
+        id: 'knowledge-tech',
+        label: '과학기술·AI',
+        match: ['과학기술·AI']
       }
-      listEl.innerHTML = items.map(item => `
+    ];
+
+    function cardTemplate(item){
+      return `
         <article class="knowledge-card" data-category="${esc(item.category)}">
           <div class="knowledge-card-top">
             <span class="knowledge-chip">${esc(item.category)}</span>
@@ -87,7 +116,44 @@
             </div>
           </details>
         </article>
-      `).join('');
+      `;
+    }
+
+    function renderKnowledge(items){
+      if(!Array.isArray(items) || !items.length){
+        listEl.innerHTML = '<p class="knowledge-empty">아직 등록된 지식노트가 없습니다.</p>';
+        return;
+      }
+
+      const used = new Set();
+      const sections = CATEGORY_GROUPS.map(group => {
+        const groupItems = items.filter(item => group.match.includes(item.category));
+        groupItems.forEach(item => used.add(item));
+        if(!groupItems.length) return '';
+
+        return `
+          <div class="knowledge-category-section" id="${group.id}">
+            <h2 class="knowledge-category-title">${esc(group.label)}</h2>
+            <div class="knowledge-category-grid">
+              ${groupItems.map(cardTemplate).join('')}
+            </div>
+          </div>
+        `;
+      });
+
+      const others = items.filter(item => !used.has(item));
+      if(others.length){
+        sections.push(`
+          <div class="knowledge-category-section" id="knowledge-etc">
+            <h2 class="knowledge-category-title">기타 시사상식</h2>
+            <div class="knowledge-category-grid">
+              ${others.map(cardTemplate).join('')}
+            </div>
+          </div>
+        `);
+      }
+
+      listEl.innerHTML = sections.join('');
     }
 
     renderKnowledge(window.KNOWLEDGE_ITEMS || []);
