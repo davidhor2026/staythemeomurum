@@ -8,3 +8,125 @@
 
 /* Room detail page update */
 .room-detail-list{display:flex;flex-direction:column;gap:28px;margin-top:22px}.room-detail-card{border:1px solid #eadfd4;border-radius:18px;background:#fffdf9;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.045)}.room-detail-card.featured{border-color:#ddc8bd}.room-detail-media img{width:100%;display:block;height:auto}.room-detail-body{padding:22px}.room-detail-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:12px}.room-detail-head h3{margin:0;color:#2f3b2f;font-size:24px}.room-price{background:#f4ebe5;border:1px solid #ead9cf;border-radius:14px;padding:10px 14px;color:#4d3c30;font-weight:700;line-height:1.5}.room-price small{display:block;color:#7a6659;font-weight:500;font-size:12px}.room-tags{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.room-tag{display:inline-block;padding:5px 10px;border-radius:999px;background:#eef4ea;color:#3b4736;font-size:13px;font-weight:700}.room-detail-text{color:#444;font-size:15.5px}.room-points{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}.room-point{background:#faf5f0;border-radius:14px;padding:14px;border:1px solid #efe2da}.room-point strong{display:block;color:#9b6d62;margin-bottom:5px}.room-note{margin-top:18px;padding:15px 16px;border-radius:14px;background:#f8f4ed;color:#5d5045;font-size:14px}.price-notice{background:#eef4ea;border:1px solid #dce8d4;padding:16px;border-radius:14px;margin-top:14px;color:#3b4736}.compact-room-card{border:1px solid #eee;border-radius:14px;padding:18px;background:#fafafa}.compact-room-card h3{margin-top:0}@media(max-width:700px){.room-detail-body{padding:18px}.room-detail-head h3{font-size:22px}.room-price{width:100%}.room-points{grid-template-columns:1fr}.room-detail-list{gap:22px}}
+
+/* ---- Page header background image enhancement ---- */
+.sub-header{
+  position:relative;
+  min-height:240px;
+  padding:40px 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  text-align:center;
+  isolation:isolate;
+}
+.sub-header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(34,45,35,.68), rgba(74,87,68,.38));
+  z-index:-1;
+}
+.sub-header h1{
+  position:relative;
+  z-index:1;
+  margin:0;
+  font-size:clamp(30px, 4vw, 44px);
+  line-height:1.2;
+  letter-spacing:-1px;
+  text-shadow:0 3px 18px rgba(0,0,0,.45);
+}
+.sub-header p{
+  position:relative;
+  z-index:1;
+  margin:0;
+  max-width:920px;
+  font-size:clamp(15px, 2vw, 18px);
+  line-height:1.6;
+  text-shadow:0 2px 12px rgba(0,0,0,.35);
+}
+.sub-header .button-wrap{
+  position:relative;
+  z-index:1;
+  margin-top:4px;
+  transform:none;
+}
+.sub-header .button.sub,
+.header-home-button{
+  position:relative;
+  z-index:1;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin:0;
+  padding:11px 18px;
+  border-radius:999px;
+  background:rgba(47,59,47,.78);
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(4px);
+  transition:transform .15s ease, background .15s ease;
+}
+.sub-header .button.sub:hover,
+.header-home-button:hover{
+  transform:translateY(-1px);
+  background:rgba(47,59,47,.88);
+}
+.sub-header--rooms{
+  background-image:linear-gradient(135deg, rgba(34,45,35,.34), rgba(74,87,68,.20)), url('header-bg-rooms.png');
+  background-position:center 38%;
+}
+.sub-header--facilities{
+  background-image:linear-gradient(135deg, rgba(34,45,35,.36), rgba(74,87,68,.20)), url('header-bg-facilities.jpg');
+  background-position:center 58%;
+}
+.sub-header--reviews{
+  background-image:linear-gradient(135deg, rgba(34,45,35,.50), rgba(74,87,68,.18)), url('header-bg-reviews.png');
+  background-position:center center;
+}
+.sub-header--faq{
+  background-image:linear-gradient(135deg, rgba(34,45,35,.46), rgba(74,87,68,.18)), url('header-bg-faq.png');
+  background-position:center center;
+}
+.sub-header--quiz{
+  background-image:linear-gradient(135deg, rgba(34,45,35,.52), rgba(74,87,68,.16)), url('header-bg-quiz.png');
+  background-position:center 35%;
+}
+.sub-header--games{
+  background-image:linear-gradient(135deg, rgba(34,45,35,.52), rgba(74,87,68,.16)), url('header-bg-games.png');
+  background-position:center 62%;
+}
+.sub-header--fortune{
+  background-image:linear-gradient(135deg, rgba(34,45,35,.40), rgba(74,87,68,.10)), url('header-bg-fortune.png');
+  background-position:center center;
+}
+.sub-header--rent-support{
+  background-image:linear-gradient(135deg, rgba(34,45,35,.56), rgba(74,87,68,.18)), url('header-bg-rent-support.png');
+  background-position:center center;
+}
+.sub-header--gift{
+  background-image:linear-gradient(135deg, rgba(34,45,35,.46), rgba(74,87,68,.14)), url('header-bg-gift.png');
+  background-position:center center;
+}
+@media(max-width:700px){
+  .sub-header{
+    min-height:200px;
+    padding:34px 16px;
+  }
+  .sub-header p{
+    font-size:15px;
+  }
+  .sub-header .button.sub,
+  .header-home-button{
+    width:auto;
+    padding:10px 16px;
+    font-size:14px;
+  }
+}
