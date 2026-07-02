@@ -54,12 +54,12 @@
     <section class="checkin-hero">
       <h1>입실 안내사항</h1>
       <p>스테이The머무름 입실 예정자를 위한 안내 페이지입니다. 입실 전 확인사항, 이용수칙, 퇴실 및 보증금 안내를 미리 확인해 주세요.</p>
-      <a class="checkin-home" href="index.html">메인페이지로 돌아가기</a>
+      <a class="checkin-home" href="index.html">홈페이지 구경하기</a>
     </section>
 
     <section class="gate" id="gateBox">
       <h2>입실 안내 비밀번호</h2>
-      <p>입실 예정자에게 안내받은 비밀번호를 입력해 주세요.</p>
+      <p>안내받은 비밀번호를 입력해 주세요.</p>
       <input id="guidePassword" type="password" inputmode="text" placeholder="비밀번호 입력">
       <br>
       <button type="button" onclick="openGuide()">안내사항 보기</button>
@@ -73,7 +73,7 @@
         <div class="quick-grid">
           <div class="quick-item"><strong>입실 시간</strong><span>오후 3시부터 입실 가능합니다.</span></div>
           <div class="quick-item"><strong>퇴실 시간</strong><span>퇴실일 오전 11시까지입니다.</span></div>
-          <div class="quick-item"><strong>계약 기준</strong><span>기본 월 계약이며, 중도퇴실 환불 정책은 없습니다.</span></div>
+          <div class="quick-item"><strong>계약 기준</strong><span>기본 월 계약이며, 입실 2일 이내 퇴실 시, 실 입주 기간에 해당하는 입실료를 납부하고 남은 잔액의 50%를 환불하며, 입실 3일 이후에는 전액 환불이 불가합니다. 더 상세한 내용은 입실 후 입실계약서를 확인바랍니다.</span></div>
           <div class="quick-item"><strong>입실료</strong><span>입실 전 안내받은 금액을 입주자 이름으로 입금해 주세요.</span></div>
           <div class="quick-item"><strong>계약서</strong><span>입주 후 책상 위 입실계약서를 작성해 사진으로 보내주세요.</span></div>
           <div class="quick-item"><strong>보안 정보</strong><span>현관/방문 도어락 번호는 입실 당일 별도 안내합니다.</span></div>
@@ -106,16 +106,16 @@
           <li>입실은 <strong>오후 3시부터</strong> 가능합니다.</li>
           <li>퇴실은 <strong>오전 11시까지</strong>입니다.</li>
           <li>퇴실일 기준은 입실일자 하루 전입니다. 예를 들어 7월 5일 입실이면 퇴실일은 8월 4일입니다.</li>
-          <li>매달 입실료는 입실했던 날짜의 하루 전까지, 입주자 이름으로 입금해 주세요.</li>
+          <li>매달 입실료는 입실했던 날짜의 하루 전까지(예: 매달 4일), 입주자 이름으로 입금해 주세요.</li>
         </ul>
       </section>
 
       <section class="guide-section">
         <h2><span class="num">3</span> 퇴실 예정 및 보증금 안내</h2>
         <ul>
-          <li>퇴실 예정은 가능하면 <strong>퇴실 한 달 전</strong>에 알려주세요.</li>
-          <li>늦어도 <strong>퇴실 10일 전</strong>에는 알려주셔야 보증금 반환 준비가 가능합니다.</li>
-          <li>퇴실 시 객실 상태와 정산 사항 확인 후 보증금이 반환됩니다.</li>
+          <li>퇴실은 가급적 <strong>퇴실 한 달 전</strong>에 알려주세요.</li>
+          <li>늦어도 <strong>퇴실 10일 전</strong>에는 알려주셔야 보증금 반환이 가능합니다.</li>
+          <li>퇴실 시 방의 훼손 여부와 방 상태 확인 후 보증금이 반환됩니다. 벽지 및 책상 등 시설 훼손 시 실비에 해당하는 비용을 청구합니다.</li>
         </ul>
       </section>
 
@@ -173,7 +173,7 @@
         <ul>
           <li>빈 박스는 꼭 접어서 휴지통 뒤에 꽂아주세요.</li>
           <li>빈 박스를 휴지통 위에 올려두지 마세요.</li>
-          <li>휴지는 반드시 휴지통 안에 버려주세요.</li>
+          <li>재활용 쓰레기는 반드시 분리해서 해당 휴지통 안에 버려주세요.</li>
           <li>2층 택배보관대에 가거나 2층에서 1층 공용시설 이용 시 실내화를 신고 이동하지 마세요.</li>
           <li>현관에 신발을 벗어두지 말고 신발장에 바로 넣어주세요.</li>
         </ul>
@@ -213,7 +213,8 @@
           <li>전열기구 사용 금지 확인</li>
         </ul>
       </section>
-<p class="footer-note">© <span id="year"></span> 스테이The머무름. 입실 안내사항은 운영 상황에 따라 변경될 수 있습니다.</p>
+
+      <p class="footer-note">© <span id="year"></span> 스테이The머무름. 입실 안내사항은 운영 상황에 따라 변경될 수 있습니다.</p>
     </div>
   </main>
 
@@ -235,7 +236,8 @@
         error.style.display = 'block';
       }
     }
-document.getElementById('guidePassword').addEventListener('keydown', function(e){
+
+    document.getElementById('guidePassword').addEventListener('keydown', function(e){
       if(e.key === 'Enter') openGuide();
     });
 
