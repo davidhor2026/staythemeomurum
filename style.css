@@ -259,3 +259,15 @@
   .root-tip,.root-word-line{flex-direction:column;gap:4px;}
   .root-tip strong,.root-word-line strong{min-width:0;}
 }
+
+.root-latin-line{
+  background:#f8f4ed;
+  border-radius:12px;
+  padding:9px 10px;
+}
+.root-latin-line strong{
+  color:#8b5e49;
+}
+.root-latin-line span{
+  color:#5b544b;
+}

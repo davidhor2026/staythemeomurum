@@ -35,7 +35,7 @@
     <section class="roots-intro">
       <span class="roots-eyebrow">중상 난이도 · 시험형 어휘</span>
       <h2>단어를 따로 외우기보다, 어근별로 묶어서 기억하면 오래 남습니다</h2>
-      <p>이 페이지는 <strong>공무원 · 임용 · 공기업 · 수능 심화 어휘</strong>에서 자주 마주칠 수 있는 단어를 중심으로 구성했습니다. 각 어근은 <strong>핵심 뜻 → 기억 포인트 → 대표 단어 10개</strong> 순서로 정리되어 있어 낯선 단어도 구조적으로 익힐 수 있습니다.</p>
+      <p>이 페이지는 <strong>공무원 · 임용 · 공기업 · 수능 심화 어휘</strong>에서 자주 마주칠 수 있는 단어를 중심으로 구성했습니다. 각 어근은 <strong>핵심 뜻 → 라틴어 기원 → 기억 포인트 → 대표 단어 10개</strong> 순서로 정리되어 있어 낯선 단어도 구조적으로 익힐 수 있습니다.</p>
       <div class="roots-stat-grid">
         <div><strong>10개</strong><span>핵심 어근</span></div>
         <div><strong>100개</strong><span>중상 이상 단어</span></div>
@@ -66,6 +66,13 @@
     const anchorWrap = document.getElementById('rootAnchors');
     const searchInput = document.getElementById('rootSearch');
 
+    function normalizeWord(word) {
+      if (Array.isArray(word)) {
+        return {word: word[0], meaning: word[1], breakdown: word[2], explain: word[3], latin: ''};
+      }
+      return word;
+    }
+
     function makeWordCard(item) {
       return `
         <article class="root-word-card">
@@ -74,6 +81,7 @@
             <span>${item.meaning}</span>
           </div>
           <div class="root-word-line"><strong>구조</strong><span>${item.breakdown}</span></div>
+          <div class="root-word-line root-latin-line"><strong>라틴어 기원</strong><span>${item.latin || '어근 중심의 학습용 풀이입니다.'}</span></div>
           <div class="root-word-line"><strong>어원식 풀이</strong><span>${item.explain}</span></div>
         </article>`;
     }
@@ -97,7 +105,7 @@
           <p class="root-summary">${root.summary}</p>
           <div class="root-tip"><strong>기억 포인트</strong><span>${root.tip}</span></div>
           <div class="root-word-grid">
-            ${root.words.map(word => makeWordCard({word:word[0], meaning:word[1], breakdown:word[2], explain:word[3]})).join('')}
+            ${root.words.map(word => makeWordCard(normalizeWord(word))).join('')}
           </div>
         </section>
       `).join('');
@@ -108,7 +116,7 @@
       if (!q) return roots;
       return roots.map(root => {
         const rootMatched = [root.root, root.origin, root.meaning, root.summary, root.tip].join(' ').toLowerCase().includes(q);
-        const words = root.words.filter(w => w.join(' ').toLowerCase().includes(q));
+        const words = root.words.filter(w => Object.values(normalizeWord(w)).join(' ').toLowerCase().includes(q));
         if (rootMatched) return root;
         if (words.length) return {...root, words};
         return null;
