@@ -272,56 +272,32 @@
   color:#5b544b;
 }
 
-/* ---- Exam insight / career benefits pages ---- */
-.sub-header--exam-insight{
-  background-image:linear-gradient(135deg, rgba(34,45,35,.20), rgba(74,87,68,.06)), url('header-bg-quiz.png');
-  background-position:center 42%;
-}
-.sub-header--career-benefits{
-  background-image:linear-gradient(135deg, rgba(34,45,35,.22), rgba(74,87,68,.08)), url('header-bg-career-benefits.png');
-  background-position:center center;
-}
-.exam-page-wrap{max-width:1060px;margin:0 auto;padding:0 14px 54px;}
-.exam-hero-note{border-left:5px solid #7a6a4f;}
-.exam-eyebrow{display:inline-block;margin-bottom:10px;padding:6px 12px;border-radius:999px;background:#eef4ea;color:#2f3b2f;font-size:13px;font-weight:800;}
-.exam-table-wrap{overflow-x:auto;margin-top:14px;}
-.exam-table{width:100%;border-collapse:collapse;background:#fffdf9;border-radius:14px;overflow:hidden;min-width:760px;}
-.exam-table th,.exam-table td{border:1px solid #eadfd1;padding:13px 14px;text-align:left;vertical-align:top;font-size:14.5px;}
-.exam-table th{background:#f4f1ea;color:#2f3b2f;font-weight:800;}
-.exam-table td:first-child{font-weight:800;color:#3b4736;white-space:nowrap;}
-.exam-small-note{margin-top:10px;color:#6d655a;font-size:14px;}
-.analysis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px;}
-.analysis-card{border:1px solid #eadfd1;border-radius:16px;background:#fffdf9;padding:18px;}
-.analysis-card strong{display:block;color:#2f3b2f;margin-bottom:8px;font-size:17px;}
-.forecast-list{display:grid;gap:12px;margin-top:14px;}
-.forecast-list div{background:#faf7f1;border:1px solid #eadfd1;border-radius:16px;padding:17px;}
-.forecast-list strong{display:block;color:#6b4a27;margin-bottom:6px;}
-.strategy-list{background:#fffdf9;border:1px solid #eadfd1;border-radius:16px;padding:18px 22px 18px 42px;}
-.strategy-list li{margin:10px 0;}
-.seo-note-section{background:#f8f4ed;}
-.source-section{background:#fffdf9;}
-.source-section a{color:#2f3b2f;font-weight:700;}
-.benefit-highlight-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px;}
-.benefit-highlight-grid div{background:#eef4ea;border:1px solid #dce8d4;border-radius:16px;padding:16px;text-align:center;}
-.benefit-highlight-grid strong{display:block;color:#2f3b2f;font-size:18px;}
-.benefit-highlight-grid span{display:block;color:#5d5045;font-size:13px;margin-top:5px;}
-@media(max-width:700px){
-  .exam-page-wrap{padding:0 0 44px;}
-  .analysis-grid,.benefit-highlight-grid{grid-template-columns:1fr;}
-  .exam-table{min-width:680px;}
-}
 
-
-/* career benefits page update */
-.sub-header--career-benefits{
-  background-image:linear-gradient(135deg, rgba(34,45,35,.18), rgba(74,87,68,.05)), url('header-bg-career-benefits.png');
-  background-position:center center;
-}
-.benefit-highlight-grid--numbers div span{font-weight:700;color:#6b543b}
-.salary-table-note{color:#555}
-.salary-table td strong{color:#2f3b2f;font-size:17px}
-.allowance-grid .analysis-card{background:#fbfaf6;border:1px solid #ece4d6}
-.metric-number{display:inline-block;margin-bottom:4px;font-weight:800;color:#6b543b}
-@media(max-width:700px){
-  .salary-table td strong{font-size:16px}
+/* YouTube review page */
+.reviews-page-wrap{max-width:1120px;margin:0 auto;padding:0 14px 58px}
+.reviews-hero-section,.review-summary-section,.youtube-review-section,.youtube-capture-section,.review-notice-section{max-width:1120px}
+.review-eyebrow{display:inline-block;margin-bottom:12px;padding:7px 13px;border-radius:999px;background:#eef4ea;color:#2f3b2f;font-size:13px;font-weight:800}
+.review-button-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.review-keyword-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+.review-keyword-grid div{background:#faf7f1;border:1px solid #eadfd1;border-radius:16px;padding:17px}
+.review-keyword-grid strong{display:block;color:#2f3b2f;font-size:17px;margin-bottom:5px}
+.review-keyword-grid span{display:block;color:#5f574e;font-size:14px;line-height:1.55}
+.review-section-desc{color:#555;line-height:1.8}
+.youtube-review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
+.youtube-review-card{background:#fffdf9;border:1px solid #eadfd1;border-radius:18px;padding:20px;box-shadow:0 3px 10px rgba(0,0,0,.035)}
+.youtube-review-source{display:inline-block;margin-bottom:10px;padding:5px 10px;border-radius:999px;background:#eef4ea;color:#2f3b2f;font-size:12px;font-weight:800}
+.youtube-review-card h3{margin:0 0 10px;color:#2f3b2f;font-size:20px;line-height:1.35}
+.youtube-review-summary{color:#4d4a43;font-weight:700;line-height:1.75}
+.youtube-review-card blockquote{margin:14px 0 0;padding:14px 16px;border-left:4px solid #7a6a4f;background:#f8f4ed;border-radius:12px;color:#333;line-height:1.85}
+.youtube-review-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.youtube-review-tags span{display:inline-block;padding:5px 9px;border-radius:999px;background:#f4ebe5;color:#6b543b;font-size:12px;font-weight:800}
+.youtube-capture-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+.youtube-capture-card{margin:0;background:#fff;border:1px solid #eadfd1;border-radius:16px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,.04)}
+.youtube-capture-card img{display:block;width:100%;height:260px;object-fit:cover;object-position:top center;background:#fff}
+.youtube-capture-card figcaption{padding:12px 13px;color:#4d4a43;font-size:13px;font-weight:700;line-height:1.5}
+.review-notice-section .notice{margin-top:14px}
+@media(max-width:800px){
+  .review-keyword-grid,.youtube-review-grid,.youtube-capture-grid{grid-template-columns:1fr}
+  .youtube-capture-card img{height:auto}
+  .review-button-row .button{width:100%}
 }
