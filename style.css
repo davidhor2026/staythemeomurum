@@ -372,3 +372,25 @@
 .subject-focus-table td:nth-child(1){font-weight:800;color:#2f3b2f;white-space:nowrap;}
 .portal-note{background:#f8f4ed;border:1px solid #eadfd1;border-radius:16px;padding:16px;color:#554b41;line-height:1.8;}
 @media(max-width:700px){.difficulty-detail-grid{grid-template-columns:1fr}.competition-table th:nth-child(2),.competition-table td:nth-child(2){border-right:1px solid #eadfd1}.competition-metric{font-size:16px}}
+
+
+/* Exam insight revision */
+.competition-table--split th:nth-child(2),
+.competition-table--split td:nth-child(2){background:#fffdf9;}
+.competition-table--split .interpret-col{border-left:3px solid #d9c6b7;background:#f8f4ed;}
+.competition-table--split td.interpret-col{padding-left:18px;}
+.exam-trend-box,.exam-final-box{background:#fffdf9;border:1px solid #eadfd1;border-radius:18px;padding:20px;line-height:1.9;}
+.exam-trend-box p,.exam-final-box p{margin:0 0 12px;}
+.exam-trend-box p:last-child,.exam-final-box p:last-child{margin-bottom:0;}
+.difficulty-detail-grid--wide{grid-template-columns:repeat(2,minmax(0,1fr));}
+.difficulty-badge.fire{background:#fff0eb;color:#9a4b2f;}
+.difficulty-badge.calm{background:#edf6f0;color:#2f6b45;}
+.difficulty-badge.law{background:#eef0f8;color:#34456e;}
+.difficulty-badge.police{background:#eef4f7;color:#30566a;}
+.difficulty-badge.teacher{background:#f5eef8;color:#6b3d7a;}
+.reform-table td:nth-child(2){font-weight:700;color:#2f3b2f;}
+.strategy-list--detail li{margin-bottom:16px;line-height:1.85;}
+@media(max-width:800px){
+  .difficulty-detail-grid--wide{grid-template-columns:1fr;}
+  .competition-table--split .interpret-col{border-left:none;border-top:2px solid #d9c6b7;}
+}
