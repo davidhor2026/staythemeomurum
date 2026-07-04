@@ -271,3 +271,42 @@
 .root-latin-line span{
   color:#5b544b;
 }
+
+/* ---- Exam insight / career benefits pages ---- */
+.sub-header--exam-insight{
+  background-image:linear-gradient(135deg, rgba(34,45,35,.20), rgba(74,87,68,.06)), url('header-bg-quiz.png');
+  background-position:center 42%;
+}
+.sub-header--career-benefits{
+  background-image:linear-gradient(135deg, rgba(34,45,35,.22), rgba(74,87,68,.08)), url('header-bg-rent-support.png');
+  background-position:center center;
+}
+.exam-page-wrap{max-width:1060px;margin:0 auto;padding:0 14px 54px;}
+.exam-hero-note{border-left:5px solid #7a6a4f;}
+.exam-eyebrow{display:inline-block;margin-bottom:10px;padding:6px 12px;border-radius:999px;background:#eef4ea;color:#2f3b2f;font-size:13px;font-weight:800;}
+.exam-table-wrap{overflow-x:auto;margin-top:14px;}
+.exam-table{width:100%;border-collapse:collapse;background:#fffdf9;border-radius:14px;overflow:hidden;min-width:760px;}
+.exam-table th,.exam-table td{border:1px solid #eadfd1;padding:13px 14px;text-align:left;vertical-align:top;font-size:14.5px;}
+.exam-table th{background:#f4f1ea;color:#2f3b2f;font-weight:800;}
+.exam-table td:first-child{font-weight:800;color:#3b4736;white-space:nowrap;}
+.exam-small-note{margin-top:10px;color:#6d655a;font-size:14px;}
+.analysis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px;}
+.analysis-card{border:1px solid #eadfd1;border-radius:16px;background:#fffdf9;padding:18px;}
+.analysis-card strong{display:block;color:#2f3b2f;margin-bottom:8px;font-size:17px;}
+.forecast-list{display:grid;gap:12px;margin-top:14px;}
+.forecast-list div{background:#faf7f1;border:1px solid #eadfd1;border-radius:16px;padding:17px;}
+.forecast-list strong{display:block;color:#6b4a27;margin-bottom:6px;}
+.strategy-list{background:#fffdf9;border:1px solid #eadfd1;border-radius:16px;padding:18px 22px 18px 42px;}
+.strategy-list li{margin:10px 0;}
+.seo-note-section{background:#f8f4ed;}
+.source-section{background:#fffdf9;}
+.source-section a{color:#2f3b2f;font-weight:700;}
+.benefit-highlight-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px;}
+.benefit-highlight-grid div{background:#eef4ea;border:1px solid #dce8d4;border-radius:16px;padding:16px;text-align:center;}
+.benefit-highlight-grid strong{display:block;color:#2f3b2f;font-size:18px;}
+.benefit-highlight-grid span{display:block;color:#5d5045;font-size:13px;margin-top:5px;}
+@media(max-width:700px){
+  .exam-page-wrap{padding:0 0 44px;}
+  .analysis-grid,.benefit-highlight-grid{grid-template-columns:1fr;}
+  .exam-table{min-width:680px;}
+}
