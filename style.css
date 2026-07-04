@@ -301,3 +301,74 @@
   .youtube-capture-card img{height:auto}
   .review-button-row .button{width:100%}
 }
+
+
+/* exam and career pages */
+.sub-header--exam-insight{
+  background-image:linear-gradient(135deg, rgba(34,45,35,.20), rgba(74,87,68,.06)), url('header-bg-quiz.png');
+  background-position:center 42%;
+}
+.sub-header--career-benefits{
+  background-image:linear-gradient(135deg, rgba(34,45,35,.22), rgba(74,87,68,.08)), url('header-bg-career-benefits.png');
+  background-position:center center;
+}
+.exam-page-wrap{max-width:1060px;margin:0 auto;padding:0 14px 54px;}
+.exam-hero-note{border-left:5px solid #7a6a4f;}
+.exam-eyebrow{display:inline-block;margin-bottom:10px;padding:6px 12px;border-radius:999px;background:#eef4ea;color:#2f3b2f;font-size:13px;font-weight:800;}
+.exam-table-wrap{overflow-x:auto;margin-top:14px;}
+.exam-table{width:100%;border-collapse:collapse;background:#fffdf9;border-radius:14px;overflow:hidden;min-width:760px;}
+.exam-table th,.exam-table td{border:1px solid #eadfd1;padding:13px 14px;text-align:left;vertical-align:top;font-size:14.5px;}
+.exam-table th{background:#f4f1ea;color:#2f3b2f;font-weight:800;}
+.exam-table td:first-child{font-weight:800;color:#3b4736;white-space:nowrap;}
+.exam-small-note{margin-top:10px;color:#6d655a;font-size:14px;}
+.analysis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px;}
+.analysis-card{border:1px solid #eadfd1;border-radius:16px;background:#fffdf9;padding:18px;}
+.analysis-card strong{display:block;color:#2f3b2f;margin-bottom:8px;font-size:17px;}
+.forecast-list{display:grid;gap:12px;margin-top:14px;}
+.forecast-list div{background:#faf7f1;border:1px solid #eadfd1;border-radius:16px;padding:17px;}
+.forecast-list strong{display:block;color:#6b4a27;margin-bottom:6px;}
+.strategy-list{background:#fffdf9;border:1px solid #eadfd1;border-radius:16px;padding:18px 22px 18px 42px;}
+.strategy-list li{margin:10px 0;}
+.seo-note-section{background:#f8f4ed;}
+.source-section{background:#fffdf9;}
+.source-section a{color:#2f3b2f;font-weight:700;}
+.benefit-highlight-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px;}
+.benefit-highlight-grid div{background:#eef4ea;border:1px solid #dce8d4;border-radius:16px;padding:16px;text-align:center;}
+.benefit-highlight-grid strong{display:block;color:#2f3b2f;font-size:18px;}
+.benefit-highlight-grid span{display:block;color:#5d5045;font-size:13px;margin-top:5px;}
+@media(max-width:700px){
+  .exam-page-wrap{padding:0 0 44px;}
+  .analysis-grid,.benefit-highlight-grid{grid-template-columns:1fr;}
+  .exam-table{min-width:680px;}
+}
+
+
+/* career benefits page update */
+.sub-header--career-benefits{
+  background-image:linear-gradient(135deg, rgba(34,45,35,.18), rgba(74,87,68,.05)), url('header-bg-career-benefits.png');
+  background-position:center center;
+}
+.benefit-highlight-grid--numbers div span{font-weight:700;color:#6b543b}
+.salary-table-note{color:#555}
+.salary-table td strong{color:#2f3b2f;font-size:17px}
+.allowance-grid .analysis-card{background:#fbfaf6;border:1px solid #ece4d6}
+.metric-number{display:inline-block;margin-bottom:4px;font-weight:800;color:#6b543b}
+@media(max-width:700px){
+  .salary-table td strong{font-size:16px}
+}
+
+
+/* exam insight readability update */
+.competition-table th:nth-child(2),.competition-table td:nth-child(2){border-right:4px solid #d2bfa8;}
+.competition-metric{display:block;font-size:18px;font-weight:900;color:#2f3b2f;line-height:1.35;margin-bottom:5px;}
+.competition-sub{display:block;color:#6d655a;font-size:13px;line-height:1.55;}
+.interpret-point{display:block;background:#fffaf3;border-left:4px solid #7a6a4f;border-radius:10px;padding:10px 12px;color:#4d443b;line-height:1.65;}
+.difficulty-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px;}
+.difficulty-detail-card{border:1px solid #eadfd1;background:#fffdf9;border-radius:18px;padding:18px;}
+.difficulty-detail-card h3{margin:0 0 8px;color:#2f3b2f;font-size:20px;}
+.difficulty-badge{display:inline-block;margin-bottom:10px;padding:5px 10px;border-radius:999px;background:#eef4ea;color:#2f3b2f;font-size:12px;font-weight:800;}
+.difficulty-detail-card ul{margin:10px 0 0;padding-left:19px;}
+.difficulty-detail-card li{margin:7px 0;color:#444;}
+.subject-focus-table td:nth-child(1){font-weight:800;color:#2f3b2f;white-space:nowrap;}
+.portal-note{background:#f8f4ed;border:1px solid #eadfd1;border-radius:16px;padding:16px;color:#554b41;line-height:1.8;}
+@media(max-width:700px){.difficulty-detail-grid{grid-template-columns:1fr}.competition-table th:nth-child(2),.competition-table td:nth-child(2){border-right:1px solid #eadfd1}.competition-metric{font-size:16px}}
