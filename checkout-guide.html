@@ -152,12 +152,10 @@ function openGuide(){
   if(input.value.trim()===GUIDE_PASSWORD){
     gate.style.display='none';
     content.style.display='block';
-    sessionStorage.setItem('checkoutGuideOpen','yes');
     window.scrollTo({top:0,behavior:'smooth'});
   }else{error.style.display='block';}
 }
 document.getElementById('guidePassword').addEventListener('keydown',function(e){if(e.key==='Enter')openGuide();});
-if(sessionStorage.getItem('checkoutGuideOpen')==='yes'){document.getElementById('gateBox').style.display='none';document.getElementById('guideContent').style.display='block';}
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 </body>
