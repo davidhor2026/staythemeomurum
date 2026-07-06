@@ -4,15 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>노량진 학원가 주요 시험 일정 | 스테이The머무름</title>
-<meta name="description" content="노량진 수험생을 위한 2026년 주요 공무원·경찰·소방·법원직·교원임용 시험 일정 안내입니다.">
-<meta name="keywords" content="노량진 시험일정, 국가직 7급, 지방직 7급, 경찰공무원, 소방공무원, 법원직, 교원임용, 공무원 시험 일정">
+<meta name="description" content="노량진 수험생을 위한 국가직·지방직·경찰·소방·법원직·교원임용 시험 일정 안내입니다.">
+<meta name="keywords" content="노량진 시험일정, 국가직 9급, 국가직 7급, 지방직 9급, 지방직 7급, 경찰공무원, 소방공무원, 법원직, 교원임용, 공무원 시험 일정">
 <link rel="stylesheet" href="style.css">
 <style>
 body{background:#f7f5f0;color:#2f332d;}
 .exam-header{
-  padding:54px 18px 48px;
-  text-align:center;
-  color:#fff;
+  padding:54px 18px 48px;text-align:center;color:#fff;
   background:linear-gradient(135deg,rgba(34,45,35,.22),rgba(74,87,68,.07)),url('header-bg-exam-schedule.png') center/cover no-repeat;
 }
 .exam-header h1{margin:0 0 12px;font-size:clamp(30px,5vw,48px);letter-spacing:-1.2px;text-shadow:0 2px 12px rgba(0,0,0,.34);}
@@ -22,37 +20,15 @@ body{background:#f7f5f0;color:#2f332d;}
 .exam-wrap{max-width:1060px;margin:0 auto;padding:26px 16px 68px;}
 .notice{background:#fffaf3;border:1px solid #eadfd1;border-radius:22px;padding:20px 22px;margin:0 0 20px;box-shadow:0 8px 20px rgba(0,0,0,.04);line-height:1.75;color:#514b43;}
 .notice strong{color:#6b4a27;}
-
-.exam-jump-tabs{
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
-  margin:18px 0 22px;
-}
-.exam-jump-tabs a{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:9px 14px;
-  border-radius:999px;
-  background:#fff;
-  border:1px solid #e4d8ca;
-  color:#57422c;
-  text-decoration:none;
-  font-size:14px;
-  font-weight:800;
-  box-shadow:0 4px 12px rgba(0,0,0,.035);
-}
-.exam-jump-tabs a:hover{
-  background:#f6eddf;
-}
-
 .top-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 22px;}
 .top-summary div{background:#fff;border:1px solid #eadfd1;border-radius:18px;padding:14px;box-shadow:0 6px 16px rgba(0,0,0,.035);}
 .top-summary strong{display:block;color:#6b4a27;margin-bottom:6px;}
 .top-summary span{display:block;color:#514b43;line-height:1.55;font-size:.93rem;}
-.overview{background:#fff;border:1px solid #e8ded2;border-radius:24px;padding:22px;margin:18px 0 22px;box-shadow:0 8px 22px rgba(0,0,0,.045);}
-.overview h2,.exam-list h2,.source-box h2{margin:0 0 14px;color:#2f3b2f;font-size:1.45rem;}
+.exam-jump-tabs{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0 22px;}
+.exam-jump-tabs a{display:inline-flex;align-items:center;justify-content:center;padding:9px 14px;border-radius:999px;background:#fff;border:1px solid #e4d8ca;color:#57422c;text-decoration:none;font-size:14px;font-weight:800;box-shadow:0 4px 12px rgba(0,0,0,.035);}
+.exam-jump-tabs a:hover{background:#f6eddf;}
+.overview,.future-schedule,.source-box{background:#fff;border:1px solid #e8ded2;border-radius:24px;padding:22px;margin:18px 0 22px;box-shadow:0 8px 22px rgba(0,0,0,.045);}
+.overview h2,.exam-list h2,.source-box h2,.future-schedule h2{margin:0 0 14px;color:#2f3b2f;font-size:1.45rem;}
 .overview-table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid #eadfd1;border-radius:16px;overflow:hidden;font-size:14px;background:#fff;}
 .overview-table th,.overview-table td{padding:11px 10px;border-bottom:1px solid #eee5db;text-align:left;vertical-align:top;line-height:1.55;}
 .overview-table th{background:#fbf6ee;color:#5e4b35;font-weight:900;white-space:nowrap;}
@@ -65,94 +41,34 @@ body{background:#f7f5f0;color:#2f332d;}
 .status.warn{background:#fff3e2;color:#7a4c16;}
 .status.done{background:#f1f1f1;color:#666;}
 .schedule-rows{border:1px solid #eadfd1;border-radius:16px;overflow:hidden;}
-.schedule-row{display:grid;grid-template-columns:160px 1fr;border-bottom:1px solid #eee5db;}
+.schedule-row{display:grid;grid-template-columns:180px 1fr;border-bottom:1px solid #eee5db;}
 .schedule-row:last-child{border-bottom:0;}
 .schedule-row b{background:#fbf6ee;color:#5e4b35;padding:11px 12px;font-size:14px;}
 .schedule-row span{padding:11px 12px;line-height:1.58;color:#47433d;font-size:14px;}
-.memo{margin-top:12px;padding:13px 14px;border-radius:15px;background:#f8f4ed;color:#5a5045;line-height:1.68;font-size:.94rem;}
-.source-box{background:#fff;border:1px solid #e8ded2;border-radius:22px;padding:22px;margin-top:22px;line-height:1.75;box-shadow:0 8px 22px rgba(0,0,0,.04);}
+.future-lead{margin:0 0 16px;color:#5d554c;line-height:1.72;}
+.future-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+.future-card{border:1px solid #eadfd1;border-radius:18px;padding:16px;background:#fffdf9;}
+.future-card h3{margin:0 0 8px;color:#4b3d2c;font-size:1.08rem;}
+.future-card ul{margin:0;padding-left:18px;color:#4f4941;line-height:1.72;font-size:.95rem;}
+.future-badge{display:inline-flex;margin:0 0 8px;padding:5px 9px;border-radius:999px;background:#eef4ea;color:#314631;font-size:12px;font-weight:900;}
+.future-badge.expected{background:#fff3e2;color:#7a4c16;}
+.future-note{margin:15px 0 0;padding:13px 14px;border-radius:15px;background:#f8f4ed;color:#5a5045;line-height:1.68;font-size:.94rem;}
+.future-note a{color:#375c32;font-weight:900;text-decoration:none;}
+.source-box{line-height:1.75;}
 .source-box a{color:#375c32;font-weight:800;text-decoration:none;}
 .source-box li{margin:5px 0;}
 .footer-note{text-align:center;color:#777;font-size:13px;margin-top:16px;}
-
-.future-schedule{
-  background:#fff;
-  border:1px solid #e8ded2;
-  border-radius:24px;
-  padding:22px;
-  margin:18px 0 22px;
-  box-shadow:0 8px 22px rgba(0,0,0,.045);
-}
-.future-schedule h2{
-  margin:0 0 10px;
-  color:#2f3b2f;
-  font-size:1.45rem;
-}
-.future-lead{
-  margin:0 0 16px;
-  color:#5d554c;
-  line-height:1.72;
-}
-.future-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:14px;
-}
-.future-card{
-  border:1px solid #eadfd1;
-  border-radius:18px;
-  padding:16px;
-  background:#fffdf9;
-}
-.future-card h3{
-  margin:0 0 8px;
-  color:#4b3d2c;
-  font-size:1.08rem;
-}
-.future-card ul{
-  margin:0;
-  padding-left:18px;
-  color:#4f4941;
-  line-height:1.72;
-  font-size:.95rem;
-}
-.future-badge{
-  display:inline-flex;
-  margin:0 0 8px;
-  padding:5px 9px;
-  border-radius:999px;
-  background:#eef4ea;
-  color:#314631;
-  font-size:12px;
-  font-weight:900;
-}
-.future-badge.expected{
-  background:#fff3e2;
-  color:#7a4c16;
-}
-.future-note a{color:#375c32;font-weight:900;text-decoration:none;}
-.future-note{
-  margin:15px 0 0;
-  padding:13px 14px;
-  border-radius:15px;
-  background:#f8f4ed;
-  color:#5a5045;
-  line-height:1.68;
-  font-size:.94rem;
-}
-
-@media(max-width:860px){.top-summary{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:860px){.top-summary{grid-template-columns:repeat(2,minmax(0,1fr));}.future-grid{grid-template-columns:1fr;}}
 @media(max-width:640px){
   .exam-wrap{padding:22px 12px 54px;}
   .top-summary{grid-template-columns:1fr;}
-  .overview,.exam-card,.source-box{padding:18px 15px;border-radius:20px;}
+  .overview,.exam-card,.source-box,.future-schedule{padding:18px 15px;border-radius:20px;}
   .overview-table thead{display:none;}
   .overview-table,.overview-table tbody,.overview-table tr,.overview-table td{display:block;width:100%;}
   .overview-table tr{border-bottom:1px solid #eee5db;padding:10px 0;}
   .overview-table tr:last-child{border-bottom:0;}
   .overview-table td{border-bottom:0;padding:5px 12px;}
   .overview-table td::before{content:attr(data-label);display:block;font-size:12px;font-weight:900;color:#7a6a55;margin-bottom:2px;}
-  .future-grid{grid-template-columns:1fr;}
   .schedule-row{grid-template-columns:1fr;}
   .schedule-row b{border-bottom:1px solid #f0e7dd;}
 }
@@ -190,80 +106,25 @@ body{background:#f7f5f0;color:#2f332d;}
 <main class="exam-wrap">
   <section class="notice">
     <strong>검토 기준일: 2026년 7월 6일</strong><br>
-    이 페이지는 수험생 편의를 위해 공식 기관 공고와 채용시스템에 공개된 일정을 요약한 것입니다. 지방직 7급·교원임용·경찰 세부 전형은 지역 또는 분야별 공고에 따라 달라질 수 있으므로, 원서접수 전과 시험 전에는 반드시 공식 공고문을 다시 확인해 주세요.
+    이 페이지는 수험생 편의를 위한 요약 안내입니다. 공식 기관 공고에 공개된 날짜는 최대한 세부 전형까지 반영했고, 지역·분야별로 달라지는 일정은 “공고 확인”으로 표시했습니다.
   </section>
 
   <section class="top-summary" aria-label="다가오는 핵심 일정">
+    <div><strong>7월 10일</strong><span>국가직 7급 1차시험 장소공고 · 법원직 필기합격 발표</span></div>
     <div><strong>7월 18일</strong><span>국가직 7급 1차시험(PSAT)</span></div>
-    <div><strong>8월 19일</strong><span>국가직 7급 1차 합격자 발표</span></div>
-    <div><strong>9월 19일</strong><span>국가직 7급 2차시험</span></div>
+    <div><strong>8월 22일</strong><span>경찰공무원 2차 순경 필기시험</span></div>
     <div><strong>10월 31일</strong><span>지방직 7급 필기시험</span></div>
   </section>
 
-
-
-  <section class="future-schedule" id="schedule-2027">
-    <h2>2027년 일정 업데이트 예정</h2>
-    <p class="future-lead">
-      2027년도 세부 시험일정은 아직 대부분 공식 확정 전입니다. 이 페이지에서는 접수일, 시험일, 합격자 발표일처럼
-      실제 일정 확인에 필요한 내용만 업데이트할 예정입니다. 제도 변경의 의미와 대비 전략은 시험분석 페이지에서 확인해 주세요.
-    </p>
-
-    <div class="future-grid">
-      <article class="future-card">
-        <span class="future-badge">확인된 변경 시점</span>
-        <h3>지방직 7급</h3>
-        <ul>
-          <li>2027년부터 PSAT 적용 예정</li>
-          <li>정확한 접수일·시험일·합격자 발표일은 2027년도 지방공무원 시험계획 공고 발표 후 반영</li>
-          <li>일정이 확정되면 국가직 7급과 구분해서 별도 정리 예정</li>
-        </ul>
-      </article>
-
-      <article class="future-card">
-        <span class="future-badge expected">업데이트 예정</span>
-        <h3>국가직 공채</h3>
-        <ul>
-          <li>2027 국가직 9급 원서접수일·필기시험일·합격자 발표일</li>
-          <li>2027 국가직 7급 1차시험·2차시험·면접·최종발표일</li>
-          <li>2027 국가직 5급 공채 1차·2차·면접 일정</li>
-        </ul>
-      </article>
-
-      <article class="future-card">
-        <span class="future-badge expected">업데이트 예정</span>
-        <h3>지방직·법원직</h3>
-        <ul>
-          <li>2027 지방직 7급 시험계획 공고 및 PSAT 시행 일정</li>
-          <li>2027 지방직 9급 원서접수일·필기시험일·합격자 발표일</li>
-          <li>2027 법원직 9급 원서접수일·필기시험일·면접·최종발표일</li>
-        </ul>
-      </article>
-
-      <article class="future-card">
-        <span class="future-badge expected">업데이트 예정</span>
-        <h3>경찰·소방·교원임용</h3>
-        <ul>
-          <li>2027 경찰공무원 상반기·하반기 필기시험일</li>
-          <li>2027 소방공무원 원서접수일·필기시험일·최종발표일</li>
-          <li>2027학년도 교원임용 1차·2차시험 및 최종발표 일정</li>
-        </ul>
-      </article>
-    </div>
-
-    <p class="future-note">
-      ※ 시험제도 변경의 배경, 수험생에게 미치는 영향, 준비 전략은 <a href="exam-insight.html">시험분석 페이지</a>에서 확인해 주세요.
-      이 페이지는 실제 시험일정이 확정될 때마다 일정표 중심으로 업데이트됩니다.
-    </p>
-  </section>
-
   <section class="exam-jump-tabs" aria-label="시험별 바로가기">
+    <a href="#national9">국가직 9급</a>
     <a href="#national7">국가직 7급</a>
+    <a href="#national5">국가직 5급</a>
+    <a href="#local9">지방직 9급</a>
     <a href="#local7">지방직 7급</a>
     <a href="#police">경찰공무원</a>
     <a href="#fire">소방공무원</a>
     <a href="#court">법원직 9급</a>
-    <a href="#five">5급 공채</a>
     <a href="#teacher">교원임용</a>
     <a href="#schedule-2027">2027년 일정</a>
   </section>
@@ -276,166 +137,286 @@ body{background:#f7f5f0;color:#2f332d;}
           <th>시험</th>
           <th>원서접수</th>
           <th>필기·1차</th>
-          <th>필기합격·1차합격</th>
+          <th>합격발표</th>
           <th>면접·최종발표</th>
         </tr>
       </thead>
       <tbody>
         <tr>
+          <td data-label="시험">국가직 9급</td>
+          <td data-label="원서접수">2.2~2.6</td>
+          <td data-label="필기·1차">필기 4.4</td>
+          <td data-label="합격발표">필기합격 5.8</td>
+          <td data-label="면접·최종발표">면접 5.28~6.2 / 최종 6.19</td>
+        </tr>
+        <tr>
           <td data-label="시험">국가직 7급</td>
-          <td data-label="원서접수">5.11 ~ 5.15</td>
+          <td data-label="원서접수">5.11~5.15</td>
           <td data-label="필기·1차">1차 7.18 / 2차 9.19</td>
-          <td data-label="필기합격·1차합격">1차 8.19 / 2차 10.29</td>
+          <td data-label="합격발표">1차 8.19 / 2차 10.29</td>
           <td data-label="면접·최종발표">면접 11.23~11.26 / 최종 12.11</td>
         </tr>
         <tr>
-          <td data-label="시험">지방직 7급</td>
-          <td data-label="원서접수">7.20 ~ 7.24</td>
-          <td data-label="필기·1차">필기 10.31</td>
-          <td data-label="필기합격·1차합격">지역별 공고</td>
+          <td data-label="시험">국가직 5급</td>
+          <td data-label="원서접수">1.19~1.23</td>
+          <td data-label="필기·1차">1차 3.7 / 2차 6.24~7.4</td>
+          <td data-label="합격발표">1차 4.10 / 2차 9.11</td>
+          <td data-label="면접·최종발표">면접 10.15 / 최종 10.30</td>
+        </tr>
+        <tr>
+          <td data-label="시험">지방직 9급</td>
+          <td data-label="원서접수">3.23~3.27</td>
+          <td data-label="필기·1차">필기 6.20</td>
+          <td data-label="합격발표">지역별 공고</td>
           <td data-label="면접·최종발표">지역별 공고</td>
         </tr>
         <tr>
-          <td data-label="시험">경찰 하반기 순경</td>
-          <td data-label="원서접수">하반기 공고 확인</td>
-          <td data-label="필기·1차">2차 필기 8.22</td>
-          <td data-label="필기합격·1차합격">시도청·분야별 공고</td>
-          <td data-label="면접·최종발표">최종 12.11 예정</td>
+          <td data-label="시험">지방직 7급</td>
+          <td data-label="원서접수">7.20~7.24</td>
+          <td data-label="필기·1차">필기 10.31</td>
+          <td data-label="합격발표">지역별 공고</td>
+          <td data-label="면접·최종발표">지역별 공고</td>
         </tr>
         <tr>
-          <td data-label="시험">법원직 9급</td>
-          <td data-label="원서접수">3.16 ~ 3.27</td>
-          <td data-label="필기·1차">필기 6.20</td>
-          <td data-label="필기합격·1차합격">7.10</td>
-          <td data-label="면접·최종발표">전산·사서 최종 7.27 / 법원·등기 최종 8.7</td>
-        </tr>
-        <tr>
-          <td data-label="시험">5급 공채</td>
-          <td data-label="원서접수">1.19 ~ 1.23</td>
-          <td data-label="필기·1차">1차 3.7 / 2차 6.24~7.4</td>
-          <td data-label="필기합격·1차합격">1차 4.10 / 2차 9.11</td>
-          <td data-label="면접·최종발표">면접 10.12~10.14 / 최종 10.30</td>
+          <td data-label="시험">경찰 순경</td>
+          <td data-label="원서접수">공고별 확인</td>
+          <td data-label="필기·1차">1차 3.14 / 2차 8.22</td>
+          <td data-label="합격발표">시도청·분야별 공고</td>
+          <td data-label="면접·최종발표">1차 최종 6.19 / 2차 최종 12.11 예정</td>
         </tr>
         <tr>
           <td data-label="시험">소방공무원</td>
-          <td data-label="원서접수">공채 2.9~2.13 / 항공·법무 5.25~5.29</td>
-          <td data-label="필기·1차">공채 주요 전형 종료</td>
-          <td data-label="필기합격·1차합격">분야별 공고 확인</td>
-          <td data-label="면접·최종발표">공채 최종 5.29 / 항공·법무 8.7 예정</td>
+          <td data-label="원서접수">2.9~2.13</td>
+          <td data-label="필기·1차">필기 3.7</td>
+          <td data-label="합격발표">필기합격 3.26</td>
+          <td data-label="면접·최종발표">체력 3.30~4.5 / 면접 4.26~5.1 / 최종 5.29</td>
         </tr>
         <tr>
-          <td data-label="시험">2027 교원임용</td>
-          <td data-label="원서접수">시·도교육청 공고 확인</td>
-          <td data-label="필기·1차">통상 11월경</td>
-          <td data-label="필기합격·1차합격">통상 12월경</td>
-          <td data-label="면접·최종발표">통상 다음 해 1~2월경</td>
+          <td data-label="시험">법원직 9급</td>
+          <td data-label="원서접수">3.16~3.27</td>
+          <td data-label="필기·1차">필기 6.20</td>
+          <td data-label="합격발표">필기합격 7.10</td>
+          <td data-label="면접·최종발표">인성 7.14 / 면접 7.21~8.4 / 최종 7.27 또는 8.7</td>
+        </tr>
+        <tr>
+          <td data-label="시험">교원임용</td>
+          <td data-label="원서접수">시·도교육청 공고</td>
+          <td data-label="필기·1차">통상 11월 하순</td>
+          <td data-label="합격발표">통상 12월</td>
+          <td data-label="면접·최종발표">통상 다음 해 1~2월</td>
         </tr>
       </tbody>
     </table>
   </section>
 
   <section class="exam-list">
-    <h2>시험별 세부 메모</h2>
+    <h2>시험별 세부 일정</h2>
+
+    <article class="exam-card" id="national9">
+      <span class="status">확정 일정</span>
+      <h3>국가직 9급 공개경쟁채용시험</h3>
+      <p class="exam-sub">국가직 9급은 필기시험 후 가산점 등록, 필기합격 발표, 면접, 최종합격자 발표 순서로 진행됩니다.</p>
+      <div class="schedule-rows">
+        <div class="schedule-row"><b>원서접수</b><span>2월 2일 09:00 ~ 2월 6일 21:00</span></div>
+        <div class="schedule-row"><b>원서접수 취소</b><span>2월 7일 09:00 ~ 2월 9일 18:00 / 추가 취소 3월 23일 09:00 ~ 3월 25일 18:00</span></div>
+        <div class="schedule-row"><b>시험장소 공고</b><span>3월 27일</span></div>
+        <div class="schedule-row"><b>필기시험</b><span>4월 4일</span></div>
+        <div class="schedule-row"><b>가산점 등록</b><span>4월 4일 ~ 4월 6일</span></div>
+        <div class="schedule-row"><b>필기합격 발표</b><span>5월 8일</span></div>
+        <div class="schedule-row"><b>면접시험</b><span>5월 28일 ~ 6월 2일</span></div>
+        <div class="schedule-row"><b>최종합격 발표</b><span>6월 19일</span></div>
+      </div>
+    </article>
 
     <article class="exam-card" id="national7">
       <span class="status">확정 일정</span>
       <h3>국가직 7급 공개경쟁채용시험</h3>
-      <p class="exam-sub">국가직 7급은 1차시험이 PSAT입니다. 지방직 7급 PSAT 도입과 혼동하지 않도록 표기를 “1차시험(PSAT)”로 정리했습니다.</p>
+      <p class="exam-sub">국가직 7급은 1차시험이 PSAT입니다. 지방직 7급의 2027년 PSAT 도입과 구분해 표기했습니다.</p>
       <div class="schedule-rows">
-        <div class="schedule-row"><b>1차시험</b><span>7월 18일</span></div>
-        <div class="schedule-row"><b>1차 합격자</b><span>8월 19일</span></div>
+        <div class="schedule-row"><b>원서접수</b><span>5월 11일 09:00 ~ 5월 15일 21:00</span></div>
+        <div class="schedule-row"><b>원서접수 취소</b><span>5월 16일 09:00 ~ 5월 18일 18:00 / 추가 취소 7월 6일 09:00 ~ 7월 8일 18:00</span></div>
+        <div class="schedule-row"><b>1차시험 장소공고</b><span>7월 10일</span></div>
+        <div class="schedule-row"><b>1차시험(PSAT)</b><span>7월 18일</span></div>
+        <div class="schedule-row"><b>1차 합격자 발표</b><span>8월 19일</span></div>
+        <div class="schedule-row"><b>2차시험 장소공고</b><span>8월 19일</span></div>
         <div class="schedule-row"><b>2차시험</b><span>9월 19일</span></div>
-        <div class="schedule-row"><b>2차 합격자</b><span>10월 29일</span></div>
-        <div class="schedule-row"><b>면접·최종</b><span>면접 11월 23일~26일 / 최종 합격자 발표 12월 11일</span></div>
+        <div class="schedule-row"><b>2차 합격자 발표</b><span>10월 29일</span></div>
+        <div class="schedule-row"><b>3차 면접시험</b><span>11월 23일 ~ 11월 26일</span></div>
+        <div class="schedule-row"><b>최종합격 발표</b><span>12월 11일</span></div>
+      </div>
+    </article>
+
+    <article class="exam-card" id="national5">
+      <span class="status">확정 일정</span>
+      <h3>국가직 5급 공채</h3>
+      <p class="exam-sub">5급 공채는 1차시험, 2차시험, 3차 면접시험 순서로 진행됩니다.</p>
+      <div class="schedule-rows">
+        <div class="schedule-row"><b>원서접수</b><span>1월 19일 09:00 ~ 1월 23일 21:00</span></div>
+        <div class="schedule-row"><b>원서접수 취소</b><span>1월 24일 09:00 ~ 1월 26일 18:00 / 추가 취소 2월 23일 09:00 ~ 2월 25일 18:00</span></div>
+        <div class="schedule-row"><b>1차시험 장소공고</b><span>2월 27일</span></div>
+        <div class="schedule-row"><b>1차시험</b><span>3월 7일</span></div>
+        <div class="schedule-row"><b>1차 합격자 발표</b><span>4월 10일</span></div>
+        <div class="schedule-row"><b>2차시험</b><span>행정직 6월 24일 ~ 6월 29일 / 과학기술직 7월 1일 ~ 7월 4일</span></div>
+        <div class="schedule-row"><b>2차 합격자 발표</b><span>9월 11일</span></div>
+        <div class="schedule-row"><b>3차 면접시험</b><span>10월 15일</span></div>
+        <div class="schedule-row"><b>최종합격 발표</b><span>10월 30일</span></div>
+      </div>
+    </article>
+
+    <article class="exam-card" id="local9">
+      <span class="status">전국 동시 필기</span>
+      <h3>지방직 9급 공채 등</h3>
+      <p class="exam-sub">전국 동시 시행되는 지방직 8·9급 필기시험 일정입니다. 필기합격·면접·최종발표는 시·도별 공고를 확인해야 합니다.</p>
+      <div class="schedule-rows">
+        <div class="schedule-row"><b>원서접수</b><span>3월 23일 09:00 ~ 3월 27일 18:00</span></div>
+        <div class="schedule-row"><b>필기시험</b><span>6월 20일</span></div>
+        <div class="schedule-row"><b>필기합격 발표</b><span>각 시·도별 공고 확인</span></div>
+        <div class="schedule-row"><b>면접시험</b><span>각 시·도별 공고 확인</span></div>
+        <div class="schedule-row"><b>최종합격 발표</b><span>각 시·도별 공고 확인</span></div>
+        <div class="schedule-row"><b>유의사항</b><span>전국 동시 시행 지방직 시험은 1개 지방자치단체에만 접수 가능</span></div>
       </div>
     </article>
 
     <article class="exam-card" id="local7">
-      <span class="status">확정·지역별 확인</span>
+      <span class="status">전국 동시 필기</span>
       <h3>지방직 7급 공채 등</h3>
-      <p class="exam-sub">2026년 지방직 7급 필기시험은 10월 31일입니다. PSAT는 2026년 지방직 7급에는 적용되지 않고, 2027년부터 도입 예정입니다.</p>
+      <p class="exam-sub">2026년 지방직 7급은 PSAT가 적용되지 않습니다. 지방직 7급 PSAT는 2027년부터 도입 예정입니다.</p>
       <div class="schedule-rows">
         <div class="schedule-row"><b>원서접수</b><span>7월 20일 09:00 ~ 7월 24일 18:00</span></div>
         <div class="schedule-row"><b>필기시험</b><span>10월 31일</span></div>
-        <div class="schedule-row"><b>필기합격·면접</b><span>각 시·도별 공고 확인</span></div>
-        <div class="schedule-row"><b>최종발표</b><span>각 시·도별 공고 확인</span></div>
+        <div class="schedule-row"><b>필기합격 발표</b><span>각 시·도별 공고 확인</span></div>
+        <div class="schedule-row"><b>면접시험</b><span>각 시·도별 공고 확인</span></div>
+        <div class="schedule-row"><b>최종합격 발표</b><span>각 시·도별 공고 확인</span></div>
+        <div class="schedule-row"><b>유의사항</b><span>전국 동시 시행 지방직 시험은 1개 지방자치단체에만 접수 가능</span></div>
       </div>
     </article>
 
     <article class="exam-card" id="police">
-      <span class="status">하반기 진행</span>
-      <h3>경찰공무원 하반기 순경 공채 등</h3>
-      <p class="exam-sub">하반기 순경 공채는 8월 22일 필기, 12월 11일 최종합격 발표 예정으로 확인됩니다. 필기합격 발표일과 체력·면접 세부 일정은 시도청·분야별 공고를 확인해야 합니다.</p>
+      <span class="status">상·하반기 채용</span>
+      <h3>경찰공무원 순경 공채</h3>
+      <p class="exam-sub">경찰 순경 공채는 1차와 2차로 나누어 진행됩니다. 필기 이후 체력·적성검사와 면접 등 세부 일정은 공고문과 시도청별 안내를 확인해야 합니다.</p>
       <div class="schedule-rows">
-        <div class="schedule-row"><b>하반기 공고</b><span>7월 10일 예정</span></div>
-        <div class="schedule-row"><b>2차 필기</b><span>8월 22일</span></div>
-        <div class="schedule-row"><b>필기합격</b><span>시도청·분야별 공고 확인</span></div>
-        <div class="schedule-row"><b>최종발표</b><span>12월 11일 예정</span></div>
+        <div class="schedule-row"><b>1차 필기시험</b><span>3월 14일</span></div>
+        <div class="schedule-row"><b>1차 후속 전형</b><span>체력·적성검사, 면접시험 등 순차 진행</span></div>
+        <div class="schedule-row"><b>1차 최종합격 발표</b><span>6월 19일 예정</span></div>
+        <div class="schedule-row"><b>2차 채용공고</b><span>7월 10일 예정</span></div>
+        <div class="schedule-row"><b>2차 필기시험</b><span>8월 22일</span></div>
+        <div class="schedule-row"><b>2차 후속 전형</b><span>체력·적성검사, 면접시험 등 순차 진행</span></div>
+        <div class="schedule-row"><b>2차 최종합격 발표</b><span>12월 11일 예정</span></div>
+        <div class="schedule-row"><b>유의사항</b><span>필기합격 발표일, 체력·면접 세부 일정은 분야·시도청별 공고 확인</span></div>
       </div>
     </article>
 
     <article class="exam-card" id="fire">
-      <span class="status done">주요 공채 종료</span>
-      <h3>소방공무원</h3>
-      <p class="exam-sub">2026년 소방공무원 공채 주요 전형은 상반기에 종료되었습니다. 현재 확인되는 항공·법무 분야는 5월 접수 후 8월 7일까지 전형이 이어지는 일정입니다.</p>
+      <span class="status done">공채 주요 전형 종료</span>
+      <h3>소방공무원 공개·경력경쟁채용시험</h3>
+      <p class="exam-sub">소방공무원 공채는 필기, 체력, 종합적성검사, 면접, 최종합격 발표 순서로 진행됩니다. 항공·법무 등 별도 채용은 별도 공고를 확인해야 합니다.</p>
       <div class="schedule-rows">
-        <div class="schedule-row"><b>공채 원서접수</b><span>2월 9일 ~ 2월 13일</span></div>
-        <div class="schedule-row"><b>공채 최종공고</b><span>최종합격자 공고 5월 29일</span></div>
-        <div class="schedule-row"><b>항공·법무</b><span>원서접수 5월 25일~29일 / 전형 5월 29일~8월 7일 / 합격자 발표 8월 7일 예정</span></div>
+        <div class="schedule-row"><b>원서접수</b><span>2월 9일 10:00 ~ 2월 13일 18:00</span></div>
+        <div class="schedule-row"><b>필기시험</b><span>3월 7일</span></div>
+        <div class="schedule-row"><b>필기합격 발표</b><span>3월 26일</span></div>
+        <div class="schedule-row"><b>체력시험</b><span>3월 30일 ~ 4월 5일</span></div>
+        <div class="schedule-row"><b>체력합격 발표</b><span>4월 13일</span></div>
+        <div class="schedule-row"><b>종합적성검사</b><span>4월 18일</span></div>
+        <div class="schedule-row"><b>면접시험</b><span>4월 26일 ~ 5월 1일</span></div>
+        <div class="schedule-row"><b>최종합격 발표</b><span>5월 29일</span></div>
+        <div class="schedule-row"><b>항공·법무 분야</b><span>원서접수 5월 25일~5월 29일 / 전형 5월 29일~8월 7일 / 합격자 발표 8월 7일 예정</span></div>
       </div>
     </article>
 
     <article class="exam-card" id="court">
       <span class="status">필기 종료·후속 진행</span>
       <h3>법원공무원 9급 공개경쟁채용시험</h3>
-      <p class="exam-sub">제1·2차 필기시험은 병합 실시되며, 필기합격 발표 이후 인성검사와 면접이 이어집니다.</p>
+      <p class="exam-sub">법원직 9급은 제1·2차 필기시험이 병합 실시되며, 필기합격 이후 인성검사와 직렬별 면접이 이어집니다.</p>
       <div class="schedule-rows">
         <div class="schedule-row"><b>원서접수</b><span>3월 16일 ~ 3월 27일</span></div>
-        <div class="schedule-row"><b>필기시험</b><span>6월 20일</span></div>
-        <div class="schedule-row"><b>필기합격</b><span>7월 10일</span></div>
+        <div class="schedule-row"><b>원서접수 취소마감</b><span>3월 30일</span></div>
+        <div class="schedule-row"><b>필기시험 장소공고</b><span>5월 29일</span></div>
+        <div class="schedule-row"><b>제1·2차 필기시험</b><span>6월 20일</span></div>
+        <div class="schedule-row"><b>필기합격 발표</b><span>7월 10일</span></div>
         <div class="schedule-row"><b>인성검사</b><span>7월 14일</span></div>
-        <div class="schedule-row"><b>최종발표</b><span>전산·사서 7월 27일 / 법원·등기사무 8월 7일</span></div>
-      </div>
-    </article>
-
-    <article class="exam-card" id="five">
-      <span class="status">하반기 진행</span>
-      <h3>5급 공채</h3>
-      <p class="exam-sub">5급 공채는 1차 PSAT, 2차 논술형 시험, 3차 면접 순으로 진행됩니다.</p>
-      <div class="schedule-rows">
-        <div class="schedule-row"><b>1차시험</b><span>3월 7일</span></div>
-        <div class="schedule-row"><b>1차 합격자</b><span>4월 10일</span></div>
-        <div class="schedule-row"><b>2차시험</b><span>행정 6월 24일~29일 / 과학기술 7월 1일~4일</span></div>
-        <div class="schedule-row"><b>2차 합격자</b><span>9월 11일</span></div>
-        <div class="schedule-row"><b>면접·최종</b><span>면접 10월 12일~14일 / 최종 합격자 발표 10월 30일</span></div>
+        <div class="schedule-row"><b>전산·사서 면접</b><span>일반면접 7월 21일 / 심층면접 7월 22일</span></div>
+        <div class="schedule-row"><b>전산·사서 최종합격 발표</b><span>7월 27일</span></div>
+        <div class="schedule-row"><b>법원사무·등기사무 면접</b><span>일반면접 7월 31일 / 심층면접 8월 4일</span></div>
+        <div class="schedule-row"><b>법원사무·등기사무 최종합격 발표</b><span>8월 7일</span></div>
       </div>
     </article>
 
     <article class="exam-card" id="teacher">
       <span class="status warn">공식 확정 전</span>
       <h3>2027학년도 교원임용시험</h3>
-      <p class="exam-sub">교원임용은 시·도교육청별로 공고되므로, 2026년 하반기 시행계획 공고 전까지는 날짜를 단정하지 않는 것이 안전합니다.</p>
+      <p class="exam-sub">교원임용은 시·도교육청별로 사전예고와 시행계획 공고가 발표됩니다. 아직 확정 전인 지역이 있으므로 날짜를 단정하지 않는 것이 안전합니다.</p>
       <div class="schedule-rows">
-        <div class="schedule-row"><b>시행계획</b><span>시·도교육청별 공고 확인</span></div>
-        <div class="schedule-row"><b>1차시험</b><span>통상 11월경 진행</span></div>
-        <div class="schedule-row"><b>1차 합격자</b><span>통상 12월경 발표</span></div>
-        <div class="schedule-row"><b>2차·최종</b><span>통상 다음 해 1~2월경 진행·발표</span></div>
+        <div class="schedule-row"><b>사전예고</b><span>시·도교육청별 공고 확인</span></div>
+        <div class="schedule-row"><b>시행계획 공고</b><span>통상 9~10월경</span></div>
+        <div class="schedule-row"><b>원서접수</b><span>통상 10월경</span></div>
+        <div class="schedule-row"><b>1차시험</b><span>통상 11월 하순경</span></div>
+        <div class="schedule-row"><b>1차 합격자 발표</b><span>통상 12월경</span></div>
+        <div class="schedule-row"><b>2차시험</b><span>통상 다음 해 1월경</span></div>
+        <div class="schedule-row"><b>최종합격 발표</b><span>통상 다음 해 2월경</span></div>
       </div>
     </article>
+  </section>
+
+  <section class="future-schedule" id="schedule-2027">
+    <h2>2027년 일정 업데이트 예정</h2>
+    <p class="future-lead">
+      2027년도 세부 시험일정은 아직 대부분 공식 확정 전입니다. 이 페이지에서는 접수일, 시험일, 합격자 발표일처럼 실제 일정 확인에 필요한 내용만 업데이트할 예정입니다. 제도 변경의 의미와 대비 전략은 시험분석 페이지에서 확인해 주세요.
+    </p>
+    <div class="future-grid">
+      <article class="future-card">
+        <span class="future-badge">확인된 변경 시점</span>
+        <h3>지방직 7급</h3>
+        <ul>
+          <li>2027년부터 PSAT 적용 예정</li>
+          <li>정확한 접수일·시험일·합격자 발표일은 2027년도 시험계획 공고 발표 후 반영</li>
+          <li>일정이 확정되면 국가직 7급과 구분해서 별도 정리 예정</li>
+        </ul>
+      </article>
+      <article class="future-card">
+        <span class="future-badge expected">업데이트 예정</span>
+        <h3>국가직·지방직·법원직</h3>
+        <ul>
+          <li>2027 국가직 5급·7급·9급 공채 세부 일정</li>
+          <li>2027 지방직 7급·9급 공채 세부 일정</li>
+          <li>2027 법원직 9급 세부 일정</li>
+        </ul>
+      </article>
+      <article class="future-card">
+        <span class="future-badge expected">업데이트 예정</span>
+        <h3>경찰·소방</h3>
+        <ul>
+          <li>2027 경찰공무원 상반기·하반기 필기와 최종발표 일정</li>
+          <li>2027 소방공무원 원서접수·필기·체력·면접·최종발표 일정</li>
+        </ul>
+      </article>
+      <article class="future-card">
+        <span class="future-badge expected">업데이트 예정</span>
+        <h3>교원임용</h3>
+        <ul>
+          <li>2027학년도 교원임용 사전예고·시행계획 공고</li>
+          <li>1차·2차시험과 최종합격 발표 일정</li>
+        </ul>
+      </article>
+    </div>
+    <p class="future-note">
+      ※ 시험제도 변경의 배경, 수험생에게 미치는 영향, 준비 전략은 <a href="exam-insight.html">시험분석 페이지</a>에서 확인해 주세요.
+      이 페이지는 실제 시험일정이 확정될 때마다 일정표 중심으로 업데이트됩니다.
+    </p>
   </section>
 
   <section class="source-box">
     <h2>공식 확인처</h2>
     <ul>
-      <li><a href="https://www.mpm.go.kr/mpm/etc/monthlySchedule/" target="_blank" rel="noopener noreferrer">인사혁신처 월간일정</a> · 국가직 5급·7급 공채 일정 확인</li>
+      <li><a href="https://www.mpm.go.kr/mpm/etc/yearlySchedule" target="_blank" rel="noopener noreferrer">인사혁신처 공개채용 연간일정</a> · 국가직 5급·7급·9급 공채</li>
       <li><a href="https://gongmuwon.gosi.kr/oprut/indexMain.do" target="_blank" rel="noopener noreferrer">국가공무원 채용시스템</a> · 국가직 공고문 최종 확인</li>
-      <li><a href="https://local.gosi.go.kr/klid/sihum/examNewNoticeView.do?strClass=0&strOperOrgCd=00&strSeq=274" target="_blank" rel="noopener noreferrer">지방자치단체 인터넷원서접수센터</a> · 지방직 7급·9급 일정 확인</li>
+      <li><a href="https://local.gosi.go.kr/" target="_blank" rel="noopener noreferrer">지방자치단체 인터넷원서접수센터</a> · 지방직 7급·9급 일정 확인</li>
       <li><a href="https://public.jinhakapply.com/policev2/main.aspx" target="_blank" rel="noopener noreferrer">사이버경찰청 원서접수</a> · 경찰 채용 공고 확인</li>
       <li><a href="https://gongmuwon.gosi.kr/spcsv/indexMain3.do" target="_blank" rel="noopener noreferrer">119고시·소방공무원 채용 공고</a> · 소방 공채·특수분야 확인</li>
       <li><a href="https://exam.scourt.go.kr/" target="_blank" rel="noopener noreferrer">대한민국 법원 시험정보</a> · 법원직 9급 공고 확인</li>
       <li>교원임용: 각 시·도교육청 임용시험 공고 게시판 확인</li>
     </ul>
-    <p class="footer-note">※ 이 페이지는 수험생 편의를 위한 요약 안내입니다. 실제 지원·응시 전에는 반드시 해당 기관의 최신 공고문을 확인해 주세요.</p>
+    <p class="footer-note">※ 실제 지원·응시 전에는 반드시 해당 기관의 최신 공고문을 확인해 주세요.</p>
   </section>
 </main>
 
