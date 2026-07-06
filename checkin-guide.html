@@ -219,7 +219,7 @@
   </main>
 
   <script>
-    const GUIDE_PASSWORD = 'stay2026';
+    const GUIDE_PASSWORD = '2026';
 
     function openGuide(){
       const input = document.getElementById('guidePassword');
@@ -230,7 +230,6 @@
       if(input.value.trim() === GUIDE_PASSWORD){
         gate.style.display = 'none';
         content.style.display = 'block';
-        sessionStorage.setItem('checkinGuideOpen','yes');
         window.scrollTo({top:0,behavior:'smooth'});
       }else{
         error.style.display = 'block';
@@ -240,13 +239,7 @@
     document.getElementById('guidePassword').addEventListener('keydown', function(e){
       if(e.key === 'Enter') openGuide();
     });
-
-    if(sessionStorage.getItem('checkinGuideOpen') === 'yes'){
-      document.getElementById('gateBox').style.display = 'none';
-      document.getElementById('guideContent').style.display = 'block';
-    }
-
-    document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
