@@ -6,25 +6,13 @@
   <url><loc>https://davidhor2026.github.io/staythemeomurum/reviews.html</loc><priority>0.8</priority></url>
   <url><loc>https://davidhor2026.github.io/staythemeomurum/faq.html</loc><priority>0.8</priority></url>
   <url><loc>https://davidhor2026.github.io/staythemeomurum/quiz.html</loc><priority>0.7</priority></url>
+  <url><loc>https://davidhor2026.github.io/staythemeomurum/exam-insight.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://davidhor2026.github.io/staythemeomurum/exam-schedule.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://davidhor2026.github.io/staythemeomurum/games.html</loc><priority>0.7</priority></url>
+  <url><loc>https://davidhor2026.github.io/staythemeomurum/fortune.html</loc><priority>0.7</priority></url>
+  <url><loc>https://davidhor2026.github.io/staythemeomurum/knowledge.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://davidhor2026.github.io/staythemeomurum/word-roots.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://davidhor2026.github.io/staythemeomurum/career-benefits.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://davidhor2026.github.io/staythemeomurum/rent-support.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://davidhor2026.github.io/staythemeomurum/gift.html</loc><priority>0.6</priority></url>
-  <url>
-    <loc>https://staythemeomurum.com/fortune.html</loc>
-  </url>
-
-  <url>
-    <loc>https://davidhor2026.github.io/staythemeomurum/rent-support.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://davidhor2026.github.io/staythemeomurum/exam-insight.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://davidhor2026.github.io/staythemeomurum/career-benefits.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
 </urlset>
