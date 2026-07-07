@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한국사능력검정시험 심화 대비 퀴즈 | 스테이The머무름</title>
+<meta name="description" content="한국사능력검정시험 심화 대비를 위한 시대별 핵심 한국사 퀴즈입니다.">
+<meta name="keywords" content="한국사능력검정시험, 한능검 심화, 한국사 퀴즈, 수험생 학습자료, 스테이The머무름">
+<link rel="stylesheet" href="style.css">
+<style>
+body{background:#f7f5f0;color:#2f332d;}
+.history-hero{padding:54px 18px 48px;text-align:center;color:#fff;background:linear-gradient(135deg,rgba(65,49,36,.88),rgba(133,104,66,.66));}
+.history-hero h1{margin:0 0 12px;font-size:clamp(30px,5vw,48px);letter-spacing:-1px;}
+.history-hero p{max-width:860px;margin:0 auto;line-height:1.75;font-size:clamp(15px,2vw,18px);}
+.history-wrap{max-width:1060px;margin:0 auto;padding:26px 16px 68px;}
+.notice,.question-card,.list-panel{background:#fff;border:1px solid #e8ded2;border-radius:24px;padding:22px;margin-bottom:18px;box-shadow:0 8px 22px rgba(0,0,0,.045);}
+.notice{background:#fffaf3;line-height:1.72;color:#514b43;}
+.mode-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 18px;}
+.mode-tabs button{border:1px solid #e4d8ca;background:#fff;border-radius:999px;padding:9px 13px;font-weight:800;color:#57422c;cursor:pointer;}
+.mode-tabs button.active{background:#6b4a27;color:#fff;border-color:#6b4a27;}
+.progress-box{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0;}
+.progress-box div{background:#fff;border:1px solid #eadfd1;border-radius:16px;padding:13px;text-align:center;}
+.progress-box strong{display:block;color:#6b4a27;font-size:1.15rem;}
+.q-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+.q-meta span{display:inline-flex;border-radius:999px;padding:6px 9px;font-size:12px;font-weight:900;background:#f2eadf;color:#6b4a27;}
+.q-text{white-space:pre-line;line-height:1.75;font-size:1.04rem;color:#333;margin:0 0 16px;}
+.choices{display:grid;gap:10px;}
+.choice{width:100%;text-align:left;border:1px solid #e5dace;background:#fffdf9;border-radius:15px;padding:12px 14px;line-height:1.55;color:#3d3832;cursor:pointer;font-size:15px;}
+.choice.correct{border-color:#5f8f57;background:#eef7ea;font-weight:900;}
+.choice.wrong{border-color:#c87d65;background:#fff0eb;}
+.explain{display:none;margin-top:14px;padding:14px;border-radius:16px;background:#f8f4ed;line-height:1.68;color:#514b43;}
+.explain.show{display:block;}
+.nav-buttons{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px;}
+.nav-buttons button,.nav-buttons a{border:0;border-radius:999px;padding:10px 15px;background:#6b4a27;color:#fff;font-weight:900;text-decoration:none;cursor:pointer;}
+.nav-buttons button.secondary,.nav-buttons a.secondary{background:#fff;color:#6b4a27;border:1px solid #d9cfbf;}
+.mini-list{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;}
+.mini-list button{border:1px solid #e4d8ca;background:#fff;border-radius:10px;padding:8px 0;font-weight:800;color:#57422c;}
+.mini-list button.done{background:#eef4ea;color:#314631;}
+.mini-list button.current{background:#6b4a27;color:#fff;}
+@media(max-width:760px){.progress-box{grid-template-columns:repeat(2,1fr);}.mini-list{grid-template-columns:repeat(5,1fr);}}
+</style>
+</head>
+<body>
+<header class="history-hero">
+  <h1>한국사능력검정시험 심화 대비 퀴즈</h1>
+  <p>시대별 핵심 흐름, 제도, 인물, 문화유산을 빠르게 점검하는 수험생용 한국사 퀴즈입니다.</p>
+  <div class="button-wrap">
+    <a class="button sub" href="quiz.html">시험대비 퀴즈로 돌아가기</a>
+    <a class="button light" href="index.html">메인페이지</a>
+  </div>
+</header>
+
+<nav>
+  <a href="index.html">메인페이지</a>
+  <a href="rooms.html">방타입</a>
+  <a href="facilities.html">시설</a>
+  <a href="reviews.html">후기</a>
+  <a href="faq.html">FAQ</a>
+  <a href="quiz.html">시험대비 퀴즈</a>
+  <a href="exam-insight.html">시험분석</a>
+  <a href="exam-schedule.html">시험 일정</a>
+  <a href="games.html">머무름 게임</a>
+  <a href="fortune.html">오늘의 운세</a>
+  <a href="knowledge.html">지식노트</a>
+  <a href="word-roots.html">어원 영단어</a>
+  <a href="career-benefits.html">임금·복지</a>
+  <a href="rent-support.html">월세 지원 정책</a>
+  <a href="gift.html">응원글 이벤트</a>
+  <a href="index.html#contact">문의</a>
+</nav>
+
+<div class="visitor-counter" id="visitorCounter" aria-label="방문자수">
+  <span class="visitor-counter-label">방문현황</span>
+  <span>오늘 <strong id="visitorToday">-</strong>명</span>
+  <span class="visitor-sep">·</span>
+  <span>누적 <strong id="visitorTotal">-</strong>명</span>
+</div>
+
+<main class="history-wrap">
+  <section class="notice">
+    <strong>학습 안내</strong>
+    <p>한국사능력검정시험 심화에서 자주 다루는 내용을 시대별로 점검할 수 있도록 구성했습니다. 문제를 푼 뒤 해설을 확인하고, 틀린 문제는 번호 버튼으로 다시 돌아가 복습해 보세요.</p>
+  </section>
+
+  <section class="list-panel">
+    <div class="mode-tabs" id="eraTabs"></div>
+    <div class="progress-box">
+      <div><strong id="totalCount">0</strong><span>전체 문항</span></div>
+      <div><strong id="solvedCount">0</strong><span>풀이 완료</span></div>
+      <div><strong id="correctCount">0</strong><span>정답</span></div>
+      <div><strong id="scoreRate">0%</strong><span>정답률</span></div>
+    </div>
+  </section>
+
+  <section class="question-card">
+    <div class="q-meta">
+      <span id="qEra">시대</span>
+      <span id="qNumber">1번</span>
+    </div>
+    <p class="q-text" id="qText"></p>
+    <div class="choices" id="choices"></div>
+    <div class="explain" id="explain"></div>
+    <div class="nav-buttons">
+      <button type="button" class="secondary" id="prevBtn">이전 문제</button>
+      <button type="button" id="nextBtn">다음 문제</button>
+      <button type="button" class="secondary" id="resetBtn">처음부터 다시 풀기</button>
+      <a class="secondary" href="quiz.html">퀴즈 목록</a>
+    </div>
+  </section>
+
+  <section class="list-panel">
+    <h2>문제 바로가기</h2>
+    <div class="mini-list" id="miniList"></div>
+  </section>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> 스테이The머무름. All rights reserved.</p>
+  <p>노량진 여성전용 고시원 · 수험생을 위한 생활과 학습 콘텐츠</p>
+</footer>
+
+<script>
+const questions = [{"id": 1, "era": "선사 시대", "q": "구석기 시대의 대표적인 도구로 가장 알맞은 것은?", "choices": ["주먹도끼", "비파형 동검", "철제 농기구", "반달 돌칼"], "answer": 0, "explain": "구석기 시대에는 뗀석기를 사용했으며, 주먹도끼가 대표적입니다."}, {"id": 2, "era": "선사 시대", "q": "신석기 시대 생활 모습으로 옳은 것은?", "choices": ["명도전 유통", "집강소 설치", "골품제 운영", "빗살무늬 토기 사용"], "answer": 3, "explain": "신석기 시대에는 농경과 목축이 시작되고 빗살무늬 토기를 사용했습니다."}, {"id": 3, "era": "선사 시대", "q": "청동기 시대에 널리 사용된 농기구로 알맞은 것은?", "choices": ["주먹도끼", "반달 돌칼", "철제 쟁기", "이앙법"], "answer": 1, "explain": "청동기 시대에는 벼농사가 확대되고 반달 돌칼이 수확 도구로 사용되었습니다."}, {"id": 4, "era": "고조선", "q": "고조선의 사회 질서를 보여주는 자료로 가장 알맞은 것은?", "choices": ["8조법", "훈요 10조", "골품제", "화랑도"], "answer": 0, "explain": "고조선의 8조법은 사유 재산과 생명, 노동력 중시를 보여줍니다."}, {"id": 5, "era": "여러 나라", "q": "부여의 풍습으로 옳은 것은?", "choices": ["서옥제", "동맹", "영고", "무천"], "answer": 2, "explain": "부여에는 12월 제천 행사인 영고가 있었습니다."}, {"id": 6, "era": "여러 나라", "q": "고구려의 혼인 풍습으로 알맞은 것은?", "choices": ["순장", "서옥제", "책화", "민며느리제"], "answer": 1, "explain": "고구려에는 혼인 후 남자가 신부 집 뒤에 서옥을 짓고 사는 서옥제가 있었습니다."}, {"id": 7, "era": "삼국", "q": "고구려 소수림왕의 업적으로 옳은 것은?", "choices": ["불국사 창건", "태학 설립", "금관가야 병합", "상대등 설치"], "answer": 1, "explain": "소수림왕은 불교 수용, 태학 설립, 율령 반포로 국가 체제를 정비했습니다."}, {"id": 8, "era": "삼국", "q": "백제 근초고왕 때의 사실로 옳은 것은?", "choices": ["마한 지역 장악과 해외 진출", "평양 천도", "화랑도 정비", "노비안검법 실시"], "answer": 0, "explain": "근초고왕은 백제의 전성기를 이끌며 마한 지역을 장악하고 요서·왜와 교류했습니다."}, {"id": 9, "era": "삼국", "q": "신라 진흥왕의 업적으로 옳은 것은?", "choices": ["한강 유역 장악", "전민변정도감 설치", "강동 6주 획득", "과거제 실시"], "answer": 0, "explain": "진흥왕은 한강 유역을 장악하고 순수비를 세웠습니다."}, {"id": 10, "era": "삼국", "q": "가야 연맹의 성장 기반으로 가장 알맞은 것은?", "choices": ["비단길 장악", "철 생산과 중계 무역", "팔만대장경 제작", "화폐 경제 발달"], "answer": 1, "explain": "가야는 풍부한 철을 바탕으로 낙랑·왜 등과 교역했습니다."}, {"id": 11, "era": "남북국", "q": "통일 신라 신문왕의 정책으로 옳은 것은?", "choices": ["직전법 폐지", "과전법 시행", "쌍성총관부 회복", "관료전 지급과 녹읍 폐지"], "answer": 3, "explain": "신문왕은 귀족 세력을 억제하고 왕권을 강화하기 위해 관료전을 지급하고 녹읍을 폐지했습니다."}, {"id": 12, "era": "남북국", "q": "발해 무왕 때의 사실로 옳은 것은?", "choices": ["중앙군 9서당 편성", "상경 천도", "장문휴의 산둥반도 공격", "3성 6부 정비"], "answer": 2, "explain": "발해 무왕 때 장문휴가 당의 산둥반도를 공격했습니다."}, {"id": 13, "era": "남북국", "q": "발해의 중앙 정치 제도로 알맞은 것은?", "choices": ["2성 6부", "도병마사", "의정부 6조", "3성 6부"], "answer": 3, "explain": "발해는 당 제도를 참고해 3성 6부를 운영했습니다."}, {"id": 14, "era": "고려", "q": "고려 태조 왕건의 정책으로 옳은 것은?", "choices": ["노비안검법 실시", "별무반 설치", "전시과 제도 완성", "북진 정책 추진"], "answer": 3, "explain": "태조는 고구려 계승 의식을 바탕으로 북진 정책을 추진했습니다."}, {"id": 15, "era": "고려", "q": "고려 광종의 왕권 강화 정책으로 옳은 것은?", "choices": ["별무반 편성", "훈요 10조 제정", "삼별초 설치", "노비안검법과 과거제 실시"], "answer": 3, "explain": "광종은 노비안검법과 과거제를 실시해 호족 세력을 견제했습니다."}, {"id": 16, "era": "고려", "q": "고려 성종 때 정비된 지방 제도와 관련 깊은 것은?", "choices": ["속현 폐지", "12목 파견", "향약 실시", "5도 양계 완성"], "answer": 1, "explain": "성종은 최승로의 시무 28조를 수용하고 12목에 지방관을 파견했습니다."}, {"id": 17, "era": "고려", "q": "거란의 3차 침입을 물리친 전투는?", "choices": ["한산도 대첩", "귀주 대첩", "살수 대첩", "황산벌 전투"], "answer": 1, "explain": "강감찬은 귀주에서 거란군을 크게 격파했습니다."}, {"id": 18, "era": "고려", "q": "윤관이 여진 정벌을 위해 편성한 군대는?", "choices": ["훈련도감", "장용영", "별무반", "삼별초"], "answer": 2, "explain": "윤관은 기병 보강을 위해 별무반을 편성했습니다."}, {"id": 19, "era": "고려", "q": "무신 정권기 최우가 설치한 사병 조직은?", "choices": ["집현전", "교정도감", "도방", "삼사"], "answer": 2, "explain": "최우는 사병 조직인 도방을 강화해 권력 기반으로 삼았습니다."}, {"id": 20, "era": "고려", "q": "고려 후기 원 간섭기의 개혁 기구로 알맞은 것은?", "choices": ["비변사", "홍문관", "전민변정도감", "교정청"], "answer": 2, "explain": "공민왕은 권문세족이 빼앗은 토지와 노비 문제를 바로잡기 위해 전민변정도감을 설치했습니다."}, {"id": 21, "era": "조선 전기", "q": "조선 태종의 왕권 강화 정책으로 옳은 것은?", "choices": ["집현전 폐지", "6조 직계제 실시", "균역법 시행", "대동법 전국 실시"], "answer": 1, "explain": "태종은 6조가 국왕에게 직접 보고하는 6조 직계제를 실시했습니다."}, {"id": 22, "era": "조선 전기", "q": "세종 때의 업적으로 옳은 것은?", "choices": ["훈민정음 창제", "비변사 상설화", "경국대전 완성", "탕평책 추진"], "answer": 0, "explain": "세종은 훈민정음을 창제하고 과학 기술과 문화 발전을 이끌었습니다."}, {"id": 23, "era": "조선 전기", "q": "성종 때 완성되어 조선 통치 체제의 기준이 된 법전은?", "choices": ["대전통편", "속대전", "대명률", "경국대전"], "answer": 3, "explain": "경국대전은 성종 때 완성·반포되어 조선의 기본 법전이 되었습니다."}, {"id": 24, "era": "조선 전기", "q": "사림이 중앙 정계에 본격 진출한 시기는?", "choices": ["성종 때", "광해군 때", "세종 때", "태조 때"], "answer": 0, "explain": "성종 때 김종직 등 사림이 중앙 정계에 진출했습니다."}, {"id": 25, "era": "조선 후기", "q": "임진왜란 중 이순신이 큰 승리를 거둔 해전은?", "choices": ["명량 해전만 해당", "한산도 대첩", "귀주 대첩", "진포 대첩"], "answer": 1, "explain": "한산도 대첩은 임진왜란 초기 조선 수군의 대표적 승리입니다."}, {"id": 26, "era": "조선 후기", "q": "광해군의 대외 정책으로 가장 알맞은 것은?", "choices": ["척화비 건립", "북벌론", "중립 외교", "친일 개화 정책"], "answer": 2, "explain": "광해군은 명과 후금 사이에서 실리적인 중립 외교를 추진했습니다."}, {"id": 27, "era": "조선 후기", "q": "영조의 탕평책과 관련 깊은 정책은?", "choices": ["완론 탕평과 균역법", "규장각 설치", "초계문신제", "대전통편 편찬"], "answer": 0, "explain": "영조는 완론 탕평을 추진하고 균역법을 시행했습니다."}, {"id": 28, "era": "조선 후기", "q": "정조가 왕권 강화를 위해 설치한 친위 부대는?", "choices": ["별기군", "어영청", "훈련도감", "장용영"], "answer": 3, "explain": "정조는 왕권 강화를 위해 장용영을 설치했습니다."}, {"id": 29, "era": "조선 후기", "q": "대동법의 내용으로 옳은 것은?", "choices": ["양반에게도 군포 부과", "군포를 1필로 감면", "공인을 폐지", "공납을 토지 결수 기준으로 쌀·동전 등으로 납부"], "answer": 3, "explain": "대동법은 공납 부담을 토지 결수 기준으로 바꾼 제도입니다."}, {"id": 30, "era": "근대", "q": "흥선 대원군의 정책으로 옳은 것은?", "choices": ["독립협회 창립", "대한제국 선포", "갑오개혁 추진", "서원 정리와 경복궁 중건"], "answer": 3, "explain": "흥선 대원군은 왕권 강화를 위해 서원을 정리하고 경복궁을 중건했습니다."}, {"id": 31, "era": "근대", "q": "강화도 조약의 성격으로 옳은 것은?", "choices": ["불평등 조약", "조공 무역 협정", "상호 방위 조약", "군사 동맹 조약"], "answer": 0, "explain": "1876년 강화도 조약은 조선이 일본과 맺은 최초의 근대적 불평등 조약입니다."}, {"id": 32, "era": "근대", "q": "갑신정변을 주도한 세력은?", "choices": ["독립협회", "위정척사파", "동학 농민군", "급진 개화파"], "answer": 3, "explain": "갑신정변은 김옥균 등 급진 개화파가 주도했습니다."}, {"id": 33, "era": "근대", "q": "동학 농민 운동의 폐정 개혁안이 실천되던 기구는?", "choices": ["집강소", "통리기무아문", "교정청", "군국기무처"], "answer": 0, "explain": "동학 농민군은 전주 화약 이후 집강소를 통해 개혁을 추진했습니다."}, {"id": 34, "era": "근대", "q": "갑오개혁 때 설치되어 개혁을 추진한 기구는?", "choices": ["군국기무처", "통감부", "비변사", "중추원"], "answer": 0, "explain": "갑오개혁은 군국기무처를 중심으로 추진되었습니다."}, {"id": 35, "era": "근대", "q": "독립협회가 추진한 활동으로 옳은 것은?", "choices": ["브나로드 운동", "만민공동회 개최", "정미의병 주도", "위정척사 운동 전개"], "answer": 1, "explain": "독립협회는 만민공동회와 관민공동회를 열고 자주·민권 운동을 전개했습니다."}, {"id": 36, "era": "대한제국", "q": "대한제국 광무개혁의 내용으로 옳은 것은?", "choices": ["별기군 창설", "양전 사업과 지계 발급", "집강소 설치", "홍범 14조 반포"], "answer": 1, "explain": "광무개혁은 황제권 강화와 근대적 토지 소유권 확립을 위해 양전 사업과 지계 발급을 추진했습니다."}, {"id": 37, "era": "일제강점기", "q": "1910년대 일제의 통치 방식은?", "choices": ["무단 통치", "문화 통치", "유화 정책", "민족 말살 통치"], "answer": 0, "explain": "1910년대에는 헌병 경찰을 앞세운 무단 통치가 실시되었습니다."}, {"id": 38, "era": "일제강점기", "q": "3·1 운동 이후 일제가 내세운 통치 방식은?", "choices": ["문화 통치", "무단 통치", "병참 기지화 정책", "황국 신민화 정책"], "answer": 0, "explain": "3·1 운동 이후 일제는 이른바 문화 통치를 표방했습니다."}, {"id": 39, "era": "일제강점기", "q": "1920년대 물산 장려 운동의 구호로 알맞은 것은?", "choices": ["토지는 농민에게", "조선 사람 조선 것", "브나로드", "내 살림 내 것으로"], "answer": 1, "explain": "물산 장려 운동은 민족 산업 육성을 위해 국산품 애용을 강조했습니다."}, {"id": 40, "era": "일제강점기", "q": "신간회의 성격으로 옳은 것은?", "choices": ["민족 유일당 운동", "친일 단체", "임시정부 산하 군대", "비밀 결사 의병 조직"], "answer": 0, "explain": "신간회는 좌우 합작으로 결성된 민족 유일당 성격의 단체였습니다."}, {"id": 41, "era": "일제강점기", "q": "봉오동 전투에서 일본군을 격파한 부대와 관련 깊은 인물은?", "choices": ["김좌진만 해당", "홍범도", "이봉창", "안중근"], "answer": 1, "explain": "봉오동 전투는 홍범도 부대 등이 일본군을 격파한 전투입니다."}, {"id": 42, "era": "일제강점기", "q": "청산리 대첩과 관련 깊은 인물은?", "choices": ["신채호", "박은식", "전봉준", "김좌진"], "answer": 3, "explain": "청산리 대첩은 김좌진의 북로 군정서군 등이 활약한 전투입니다."}, {"id": 43, "era": "일제강점기", "q": "대한민국 임시정부가 수립된 해는?", "choices": ["1945년", "1919년", "1910년", "1905년"], "answer": 1, "explain": "대한민국 임시정부는 3·1 운동 이후 1919년 상하이에서 수립되었습니다."}, {"id": 44, "era": "현대", "q": "8·15 광복 이후 남한에서 실시된 첫 총선거는?", "choices": ["1960년 3·15 선거", "1950년 총선거", "1946년 좌우합작위원회", "1948년 5·10 총선거"], "answer": 3, "explain": "1948년 5월 10일 제헌 국회의원 선거가 실시되었습니다."}, {"id": 45, "era": "현대", "q": "4·19 혁명의 직접적 배경으로 옳은 것은?", "choices": ["10월 유신", "유신 헌법 선포", "3·15 부정 선거", "6월 민주 항쟁"], "answer": 2, "explain": "1960년 3·15 부정 선거에 대한 저항이 4·19 혁명으로 이어졌습니다."}, {"id": 46, "era": "현대", "q": "5·18 민주화 운동이 일어난 지역은?", "choices": ["광주", "제주", "마산", "부산"], "answer": 0, "explain": "1980년 5·18 민주화 운동은 광주를 중심으로 전개되었습니다."}, {"id": 47, "era": "현대", "q": "6월 민주 항쟁의 결과로 옳은 것은?", "choices": ["발췌 개헌", "대통령 직선제 개헌", "유신 헌법 제정", "한일 협정 체결"], "answer": 1, "explain": "1987년 6월 민주 항쟁의 결과 대통령 직선제 개헌이 이루어졌습니다."}, {"id": 48, "era": "문화사", "q": "불국사와 석굴암이 조성된 시기는?", "choices": ["통일 신라", "고구려", "조선 후기", "고려 후기"], "answer": 0, "explain": "불국사와 석굴암은 통일 신라 불교문화를 대표합니다."}, {"id": 49, "era": "문화사", "q": "고려 시대 목판 인쇄 문화재로 옳은 것은?", "choices": ["무구정광대다라니경", "훈민정음 해례본", "팔만대장경", "직지심체요절 금속활자본"], "answer": 2, "explain": "팔만대장경은 몽골 침입기에 조성된 고려의 대표 목판 대장경입니다."}, {"id": 50, "era": "문화사", "q": "세계적으로 오래된 금속 활자본으로 알려진 고려 문화재는?", "choices": ["동국통감", "삼국유사", "조선왕조실록", "직지심체요절"], "answer": 3, "explain": "직지심체요절은 고려 말 금속 활자로 인쇄된 책입니다."}, {"id": 51, "era": "문화사", "q": "조선 세종 때 만들어진 과학 기구로 옳은 것은?", "choices": ["측우기만 해당", "혼일강리역대국도지도", "앙부일구", "자격루만 해당"], "answer": 2, "explain": "앙부일구는 세종 때 제작된 해시계입니다."}];
+const state = {
+  era: '전체',
+  index: 0,
+  answered: {},
+  correct: {}
+};
+
+const eras = ['전체'].concat([...new Set(questions.map(q => q.era))]);
+const eraTabs = document.getElementById('eraTabs');
+const qEra = document.getElementById('qEra');
+const qNumber = document.getElementById('qNumber');
+const qText = document.getElementById('qText');
+const choicesEl = document.getElementById('choices');
+const explainEl = document.getElementById('explain');
+const miniList = document.getElementById('miniList');
+
+function filteredQuestions() {
+  return state.era === '전체' ? questions : questions.filter(q => q.era === state.era);
+}
+
+function renderTabs() {
+  eraTabs.innerHTML = eras.map(era => `<button type="button" class="${era === state.era ? 'active' : ''}" data-era="${era}">${era}</button>`).join('');
+  eraTabs.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.era = btn.dataset.era;
+      state.index = 0;
+      render();
+    });
+  });
+}
+
+function renderProgress(list) {
+  const visibleIds = list.map(q => q.id);
+  const solved = visibleIds.filter(id => state.answered[id] !== undefined).length;
+  const correct = visibleIds.filter(id => state.correct[id] === true).length;
+  document.getElementById('totalCount').textContent = list.length;
+  document.getElementById('solvedCount').textContent = solved;
+  document.getElementById('correctCount').textContent = correct;
+  document.getElementById('scoreRate').textContent = solved ? Math.round(correct / solved * 100) + '%' : '0%';
+}
+
+function renderQuestion(list) {
+  const q = list[state.index];
+  qEra.textContent = q.era;
+  qNumber.textContent = q.id + '번';
+  qText.textContent = q.q;
+  explainEl.className = 'explain';
+  explainEl.textContent = '해설: ' + q.explain;
+  choicesEl.innerHTML = q.choices.map((choice, i) => `<button type="button" class="choice" data-index="${i}">${i + 1}. ${choice}</button>`).join('');
+  choicesEl.querySelectorAll('.choice').forEach(btn => {
+    btn.addEventListener('click', () => chooseAnswer(q, Number(btn.dataset.index)));
+  });
+  if (state.answered[q.id] !== undefined) {
+    showAnswer(q);
+  }
+}
+
+function chooseAnswer(q, selected) {
+  state.answered[q.id] = selected;
+  state.correct[q.id] = selected === q.answer;
+  showAnswer(q);
+  renderProgress(filteredQuestions());
+  renderMiniList(filteredQuestions());
+}
+
+function showAnswer(q) {
+  choicesEl.querySelectorAll('.choice').forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.answer) btn.classList.add('correct');
+    if (state.answered[q.id] === i && i !== q.answer) btn.classList.add('wrong');
+  });
+  explainEl.classList.add('show');
+}
+
+function renderMiniList(list) {
+  miniList.innerHTML = list.map((q, i) => `<button type="button" class="${state.answered[q.id] !== undefined ? 'done' : ''} ${i === state.index ? 'current' : ''}" data-index="${i}">${q.id}</button>`).join('');
+  miniList.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.index = Number(btn.dataset.index);
+      render();
+      window.scrollTo({top: document.querySelector('.question-card').offsetTop - 15, behavior: 'smooth'});
+    });
+  });
+}
+
+function render() {
+  const list = filteredQuestions();
+  if (state.index < 0) state.index = 0;
+  if (state.index >= list.length) state.index = list.length - 1;
+  renderTabs();
+  renderProgress(list);
+  renderQuestion(list);
+  renderMiniList(list);
+}
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+  state.index = Math.max(0, state.index - 1);
+  render();
+});
+
+document.getElementById('nextBtn').addEventListener('click', () => {
+  const list = filteredQuestions();
+  state.index = Math.min(list.length - 1, state.index + 1);
+  render();
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  state.answered = {};
+  state.correct = {};
+  state.index = 0;
+  render();
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+render();
+</script>
+
+<script>
+(function() {
+  var VISITOR_API = 'https://script.google.com/macros/s/AKfycbydwR3nD5BpVPD5iKqPXtVQnhikBriLrshk3iIiKlBWWHooio6hDBfYbAdO-T_3nptVLg/exec';
+  var todayKey = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Seoul' });
+  var storageKey = 'meomurum_visit_counted_' + todayKey;
+  var shouldCount = false;
+
+  try {
+    shouldCount = localStorage.getItem(storageKey) !== '1';
+  } catch (e) {
+    shouldCount = true;
+  }
+
+  var action = shouldCount ? 'count' : 'get';
+  var url = VISITOR_API + '?action=' + action + '&t=' + Date.now();
+
+  function renderCounts(data) {
+    var todayEl = document.getElementById('visitorToday');
+    var totalEl = document.getElementById('visitorTotal');
+    if (!todayEl || !totalEl || !data || data.ok !== true) return;
+
+    todayEl.textContent = Number(data.today || 0).toLocaleString('ko-KR');
+    totalEl.textContent = Number(data.total || 0).toLocaleString('ko-KR');
+
+    if (shouldCount) {
+      try { localStorage.setItem(storageKey, '1'); } catch (e) {}
+    }
+  }
+
+  function showError() {
+    var counter = document.getElementById('visitorCounter');
+    if (counter) counter.classList.add('visitor-counter-muted');
+  }
+
+  fetch(url, { method: 'GET', cache: 'no-store' })
+    .then(function(res) { return res.json(); })
+    .then(renderCounts)
+    .catch(showError);
+})();
+</script>
+</body>
+</html>
