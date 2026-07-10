@@ -50,7 +50,7 @@
       <h2>입주자분들이 남겨주신 후기</h2>
       <p class="review-section-desc">
         유튜브 댓글과 홈페이지 후기 폼을 통해 남겨주신 내용을 바탕으로 정리했습니다.
-        카드의 <strong>후기 원문보기</strong>를 누르면 첨부된 원문 캡처 이미지를 확인할 수 있습니다.
+        자세한 후기 흐름은 아래 대표 버튼을 통해 유튜브 후기 영상에서 확인하실 수 있습니다.
       </p>
       <div class="review-button-row">
         <a class="button" href="https://forms.gle/FWZgjprEhS3FU2gj8" target="_blank" rel="noopener">홈페이지 후기 남기기</a>
@@ -79,15 +79,19 @@
     <section class="youtube-review-section">
       <h2>유튜브 댓글 후기</h2>
       <p class="review-section-desc">
-        실제 댓글 후기를 읽기 쉽게 카드형으로 정리했습니다. 원문은 각 카드의 버튼으로 확인할 수 있습니다.
+        실제 댓글 후기를 읽기 쉽게 카드형으로 정리했습니다. 각 후기 카드 아래의 개별 원문보기 버튼은 없애고,
+        유튜브 후기 영상으로 이동하는 대표 버튼만 남겼습니다.
       </p>
+      <div class="review-button-row">
+        <a class="button" href="https://www.youtube.com/shorts/Mneu5h9rhG8" target="_blank" rel="noopener">유튜브 후기글 보기</a>
+      </div>
       <div class="youtube-review-grid" id="youtubeReviewGrid"></div>
     </section>
 
     <section class="youtube-capture-section">
       <h2>후기 원문 캡처 모아보기</h2>
       <p class="review-section-desc">
-        유튜브 댓글 후기 원문 캡처입니다. 이미지를 누르면 크게 볼 수 있습니다.
+        유튜브 댓글 후기 원문 캡처는 참고용으로 모아두었습니다. 유튜브 후기 영상은 위 대표 버튼에서 확인할 수 있습니다.
       </p>
       <div class="youtube-capture-grid" id="youtubeCaptureGrid"></div>
     </section>
@@ -132,10 +136,6 @@
         var tags = (item.tags || []).map(function(tag) {
           return '<span>#' + escapeHtml(tag) + '</span>';
         }).join('');
-        var originalButton = item.image
-          ? '<a class="button sub" href="' + encodeURI(item.image) + '" target="_blank" rel="noopener">후기 원문보기</a>'
-          : '';
-
         return '' +
           '<article class="youtube-review-card">' +
             '<span class="youtube-review-source">' + escapeHtml(item.date || 'YouTube 댓글 후기') + '</span>' +
@@ -143,7 +143,6 @@
             '<p class="youtube-review-summary">' + escapeHtml(item.summary) + '</p>' +
             '<blockquote>“' + escapeHtml(item.quote) + '”</blockquote>' +
             '<div class="youtube-review-tags">' + tags + '</div>' +
-            '<div class="review-button-row">' + originalButton + '</div>' +
           '</article>';
       }).join('');
 
