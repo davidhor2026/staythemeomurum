@@ -277,7 +277,9 @@
 .reviews-page-wrap{max-width:1120px;margin:0 auto;padding:0 14px 58px}
 .reviews-hero-section,.review-summary-section,.youtube-review-section,.youtube-capture-section,.review-notice-section{max-width:1120px}
 .review-eyebrow{display:inline-block;margin-bottom:12px;padding:7px 13px;border-radius:999px;background:#eef4ea;color:#2f3b2f;font-size:13px;font-weight:800}
-.review-button-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.review-button-row{display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px;margin-top:18px}
+.review-homepage-buttons{display:flex;flex-direction:column;gap:10px}
+.review-homepage-buttons .button{margin:0}
 .review-keyword-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
 .review-keyword-grid div{background:#faf7f1;border:1px solid #eadfd1;border-radius:16px;padding:17px}
 .review-keyword-grid strong{display:block;color:#2f3b2f;font-size:17px;margin-bottom:5px}
@@ -299,7 +301,7 @@
 @media(max-width:800px){
   .review-keyword-grid,.youtube-review-grid,.youtube-capture-grid{grid-template-columns:1fr}
   .youtube-capture-card img{height:auto}
-  .review-button-row .button{width:100%}
+  .review-button-row .button,.review-homepage-buttons{width:100%}
 }
 
 
