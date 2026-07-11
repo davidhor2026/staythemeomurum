@@ -440,3 +440,31 @@
   .hero-notice-actions{flex-direction:column;}
   .hero-notice-actions a{width:100%;}
 }
+
+
+/* compact cloud-style homepage notice */
+.hero-notice-board{top:126px;right:max(18px, calc((100vw - 1120px) / 2 + 24px));width:min(300px, calc(100% - 34px));padding:0;background:transparent;border:none;box-shadow:none;backdrop-filter:none;}
+.hero-notice-board::after{display:none;}
+.hero-notice-board--single{width:min(300px, calc(100% - 34px));padding:0;}
+.hero-notice-title{position:absolute;top:-12px;left:26px;z-index:3;padding:6px 13px;border-radius:999px;background:#314631;color:#fff;box-shadow:0 8px 18px rgba(47,59,47,.18);}
+.hero-notice-main{position:relative;margin-top:16px;padding:18px 16px 14px;background:rgba(255,252,247,.95);border:1px solid #eadfd1;border-radius:38px;text-align:center;box-shadow:0 14px 28px rgba(0,0,0,.12);overflow:visible;}
+.hero-notice-main::before,.hero-notice-main::after{content:"";position:absolute;background:rgba(255,252,247,.95);border:1px solid #eadfd1;border-radius:50%;z-index:-1;}
+.hero-notice-main::before{width:54px;height:54px;top:-14px;left:22px;}
+.hero-notice-main::after{width:38px;height:38px;top:-10px;right:28px;}
+.hero-notice-main strong{font-size:21px;line-height:1.32;}
+.hero-notice-main p{margin:8px 0 0;font-size:13.5px;line-height:1.68;}
+.hero-notice-actions{gap:8px;margin-top:12px;}
+.hero-notice-actions a{min-width:92px;padding:9px 13px;font-size:13px;box-shadow:0 6px 14px rgba(47,59,47,.10);}
+@media(max-width:980px){
+  .hero-notice-board,.hero-notice-board--single{top:auto;right:18px;left:auto;bottom:22px;width:min(290px, calc(100% - 36px));}
+  .hero-notice-title{top:-10px;left:18px;}
+}
+@media(max-width:700px){
+  .hero-notice-board,.hero-notice-board--single{position:relative;right:auto;left:auto;bottom:auto;top:auto;width:min(86%, 320px);margin:16px auto 0;}
+  .hero-notice-title{position:absolute;top:-10px;left:18px;}
+  .hero-notice-main{padding:16px 14px 14px;}
+  .hero-notice-main strong{font-size:19px;}
+  .hero-notice-main p{font-size:13px;}
+  .hero-notice-actions{flex-direction:row;}
+  .hero-notice-actions a{width:auto;flex:1;min-width:0;}
+}
