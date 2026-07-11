@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>내 후기 확인·수정 | 스테이The머무름</title>
+  <meta name="description" content="스테이The머무름 홈페이지에서 작성한 후기를 닉네임과 후기 확인번호(PIN)로 확인하고 수정하는 페이지입니다.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .review-access-wrap{max-width:760px;margin:28px auto 64px;padding:0 16px}
+    .review-access-card{background:#fff;border:1px solid #eadfd1;border-radius:22px;padding:28px;box-shadow:0 8px 24px rgba(0,0,0,.055);text-align:center}
+    .review-access-card h2{margin-bottom:10px}
+    .review-access-card p{color:#555;line-height:1.8}
+    .review-access-note{margin:18px 0;padding:16px;border-radius:14px;background:#fff8e8;color:#5c4a2d;text-align:left;font-size:14px}
+    .review-access-button{display:inline-flex;align-items:center;justify-content:center;margin-top:8px;padding:14px 22px;border-radius:999px;background:#2f3b2f;color:#fff;text-decoration:none;font-weight:800}
+    .review-access-button.disabled{background:#aaa;pointer-events:none}
+    .setup-warning{display:none;margin-top:14px;color:#a33;font-weight:700}
+  </style>
+</head>
+<body>
+  <header class="sub-header sub-header--reviews">
+    <h1>내 후기 확인·수정</h1>
+    <p>후기 작성 시 입력한 닉네임과 후기 확인번호(PIN)로 본인의 후기를 확인할 수 있습니다.</p>
+    <div class="button-wrap"><a class="button sub" href="reviews.html">후기 페이지로 돌아가기</a></div>
+  </header>
+
+  <nav>
+    <a href="index.html">메인페이지</a><a href="rooms.html">방타입</a><a href="facilities.html">시설</a>
+    <a href="reviews.html">후기</a><a href="faq.html">FAQ</a><a href="quiz.html">시험대비 퀴즈</a>
+    <a href="exam-insight.html">시험분석</a><a href="exam-schedule.html">시험 일정</a>
+    <a href="games.html">머무름 게임</a><a href="fortune.html">오늘의 운세</a>
+    <a href="knowledge.html">지식노트</a><a href="word-roots.html">어원 영단어</a>
+    <a href="career-benefits.html">임금·복지</a><a href="rent-support.html">월세 지원 정책</a>
+    <a href="gift.html">응원글 이벤트</a><a href="index.html#contact">문의</a>
+  </nav>
+
+  <main class="review-access-wrap">
+    <section class="review-access-card">
+      <h2>본인이 작성한 후기 보기</h2>
+      <p>아래 버튼을 누르면 안전한 후기 확인 화면으로 이동합니다.</p>
+      <div class="review-access-note">
+        <strong>준비할 정보</strong><br>
+        ① 후기 작성 시 입력한 닉네임<br>
+        ② 후기 확인번호(PIN) 숫자 4~12자리
+      </div>
+      <a id="openReviewApp" class="review-access-button" href="#" target="_blank" rel="noopener">내 후기 확인하기</a>
+      <p id="setupWarning" class="setup-warning">관리자가 아직 후기 조회 주소를 연결하지 않았습니다.</p>
+    </section>
+  </main>
+
+  <footer><p>© <span id="year"></span> 스테이The머무름. All rights reserved.</p></footer>
+  <script>
+    // Apps Script를 웹 앱으로 배포한 뒤 아래 주소만 교체하세요.
+    var REVIEW_WEB_APP_URL = 'PASTE_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    var button = document.getElementById('openReviewApp');
+    var warning = document.getElementById('setupWarning');
+    if (!/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec$/.test(REVIEW_WEB_APP_URL)) {
+      button.classList.add('disabled');
+      warning.style.display = 'block';
+    } else {
+      button.href = REVIEW_WEB_APP_URL;
+    }
+  </script>
+</body>
+</html>
