@@ -23,13 +23,17 @@
 <a class="button light" href="https://naver.me/xv3o4qD1" rel="noopener" target="_blank">위치 보기</a>
 </div>
 </div>
-<div class="hero-notice-board hero-notice-board--single" aria-label="홈페이지 공지사항">
-<div class="hero-notice-title">공지사항</div>
-<div class="hero-notice-main">
+<div class="hero-notice-board hero-notice-board--toggle" id="heroNoticeBoard" aria-label="홈페이지 공지사항">
+<button class="hero-notice-toggle" id="heroNoticeToggle" type="button" aria-expanded="false" aria-controls="heroNoticePanel">
+<span>공지사항</span>
+<span class="hero-notice-toggle-icon" aria-hidden="true">＋</span>
+</button>
+<div class="hero-notice-panel" id="heroNoticePanel" hidden>
+<button class="hero-notice-close" id="heroNoticeClose" type="button" aria-label="공지사항 닫기">×</button>
 <strong>현재 만실입니다</strong>
 <p>당일 입실 기준으로는 만실입니다. 문의 페이지에서 입주 상담 신청을 해주세요.</p>
-
-</div></div>
+</div>
+</div>
 </header>
 <!-- 공통 상단 메뉴 -->
 <nav>
@@ -330,6 +334,30 @@
     .then(function(res) { return res.json(); })
     .then(renderCounts)
     .catch(showError);
+})();
+</script>
+
+<script>
+(function(){
+  var board=document.getElementById('heroNoticeBoard');
+  var toggle=document.getElementById('heroNoticeToggle');
+  var panel=document.getElementById('heroNoticePanel');
+  var close=document.getElementById('heroNoticeClose');
+  if(!board||!toggle||!panel||!close) return;
+
+  function setOpen(open){
+    board.classList.toggle('is-open',open);
+    toggle.setAttribute('aria-expanded',open?'true':'false');
+    panel.hidden=!open;
+    var icon=toggle.querySelector('.hero-notice-toggle-icon');
+    if(icon) icon.textContent=open?'−':'＋';
+  }
+
+  toggle.addEventListener('click',function(){
+    setOpen(toggle.getAttribute('aria-expanded')!=='true');
+  });
+  close.addEventListener('click',function(){setOpen(false);toggle.focus();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') setOpen(false);});
 })();
 </script>
 </body>
