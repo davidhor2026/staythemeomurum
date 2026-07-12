@@ -1153,3 +1153,34 @@
   .exam-home-toggle{grid-template-columns:minmax(0,1fr) auto;}
   .exam-home-toggle-hint{display:inline-flex;min-width:58px;padding:7px 11px;font-size:12px;}
 }
+
+
+/* exam cutline cards and search-friendly exam brief */
+.exam-cutline-panel{margin-top:16px;padding:16px;background:#fffdf9;border:1px solid #eadfd1;border-radius:16px;}
+.exam-cutline-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px;}
+.exam-cutline-item{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:112px;padding:14px 12px;background:#f8f4ed;border:1px solid #eadfd1;border-radius:14px;text-align:center;}
+.exam-cutline-item span{color:#5f574e;font-size:13px;font-weight:800;}
+.exam-cutline-item strong{margin-top:4px;color:#314631;font-size:25px;line-height:1.2;}
+.exam-cutline-item small{margin-top:6px;color:#847a70;font-size:11px;line-height:1.45;}
+.exam-cutline-caption{margin:10px 2px 0;color:#847a70;font-size:11.5px;line-height:1.55;}
+@media(max-width:700px){
+  .exam-cutline-panel{padding:14px;}
+  .exam-cutline-list{grid-template-columns:1fr;}
+  .exam-cutline-item{min-height:88px;flex-direction:row;justify-content:space-between;gap:12px;text-align:left;}
+  .exam-cutline-item strong{margin:0;font-size:22px;}
+  .exam-cutline-item small{margin:0 0 0 auto;max-width:110px;text-align:right;}
+}
+
+
+/* seven-day page update badge */
+.site-update-link{position:relative;overflow:visible!important;}
+.site-new-badge{display:inline-flex;align-items:center;justify-content:center;margin-left:5px;padding:2px 6px;border-radius:999px;background:#d75c45;color:#fff;font-size:9px;font-weight:900;line-height:1.35;letter-spacing:.04em;vertical-align:top;box-shadow:0 3px 8px rgba(160,60,43,.22);animation:siteNewPulse 1.2s ease-in-out infinite;transform-origin:center;}
+.site-new-badge--seen{animation:none;opacity:.78;}
+@keyframes siteNewPulse{0%,100%{transform:scale(1);opacity:.82}50%{transform:scale(1.13);opacity:1}}
+@media(prefers-reduced-motion:reduce){.site-new-badge{animation:none}}
+@media(max-width:700px){.site-new-badge{font-size:8px;padding:2px 5px;margin-left:3px}}
+
+/* five recent cutline cards on desktop */
+.exam-cutline-list{grid-template-columns:repeat(5,minmax(0,1fr));}
+@media(max-width:980px){.exam-cutline-list{grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media(max-width:700px){.exam-cutline-list{grid-template-columns:1fr;}}

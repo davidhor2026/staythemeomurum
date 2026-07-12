@@ -1,5 +1,5 @@
 window.EXAM_HOME_DATA = {
-  updatedLabel: '7월 12일 기준',
+  updatedLabel: '2026년 7월 12일 기준',
   countdowns: [
     { category: '국가직 9급·검찰직', title: '2026 최종합격자 발표', date: '2026-06-19', status: '발표 완료', keepVisible: true },
     { category: '법원직', title: '인성검사', date: '2026-07-14' },
@@ -12,8 +12,16 @@ window.EXAM_HOME_DATA = {
     { category: '국가직 7급', title: '2차시험', date: '2026-09-19' },
     { category: '지방직 7급', title: '필기시험', date: '2026-10-31' }
   ],
+  cutlineUpdatedLabel: '2026 국가직 9급·법원직 9급 기준',
+  cutlines: [
+    { category: '법원사무', score: '70점', note: '법원직 9급 전국 일반' },
+    { category: '등기사무', score: '60점', note: '법원직 9급 일반' },
+    { category: '교육행정', score: '96점', note: '국가직 9급 일반모집' },
+    { category: '검찰직', score: '91점', note: '국가직 9급 일반모집' },
+    { category: '일반행정', score: '90점', note: '국가직 9급 전국 일반모집' }
+  ],
   news: [
-    { category: '법원직', title: '필기합격 발표 완료', summary: '7월 14일 인성검사 후 직렬별 면접이 이어집니다.' },
+    { category: '법원직', title: '필기합격 574명·합격선 공개', summary: '법원사무 전국 일반 70점, 등기사무 일반 60점입니다. 7월 14일 인성검사 후 직렬별 면접이 이어집니다.' },
     { category: '국가직 7급', title: '1차시험 7월 18일', summary: '시험장소와 응시 유의사항을 국가공무원채용시스템에서 확인하세요.' },
     { category: '지방직 7급', title: '원서접수 7월 20~24일', summary: '전국 동시 시행 시험은 한 지방자치단체에만 접수할 수 있습니다.' },
     { category: '경찰', title: '2차 순경 필기 8월 22일', summary: '채용 분야와 시도청별 세부 일정은 경찰 채용 공고를 확인하세요.' },

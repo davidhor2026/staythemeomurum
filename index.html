@@ -4,9 +4,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>노량진 여성전용 고시원 | 스테이The머무름</title>
-<meta content="스테이The머무름은 노량진역 근처 여성전용 고시원입니다. 공무원, 법원직, 경찰, 소방, 임용 수험생을 위한 깨끗하고 안전한 생활공간입니다." name="description"/>
-<meta content="노량진고시원, 노량진 여성전용 고시원, 노량진역 고시원, 노량진 수험생 고시원, 여성전용 고시원, 스테이The머무름, 공무원 수험생 고시원, 수험생 학습자료, 법원직 퀴즈" name="keywords"/>
+<title>2026 공무원 시험일정·합격선 안내 | 노량진 여성전용 고시원 스테이The머무름</title>
+<meta content="스테이The머무름은 노량진역 근처 여성전용 고시원으로, 2026 국가직·지방직 7급·9급, 법원직, 검찰직, 경찰, 소방, 교육행정, 임용 시험일정과 합격자 발표, 필기 합격선 정보를 함께 제공합니다." name="description"/>
+<meta content="노량진고시원, 노량진 여성전용 고시원, 노량진역 고시원, 공무원 시험일정, 2026 공무원 시험, 국가직 9급 합격선, 검찰직 커트라인, 법원직 시험일정, 경찰 시험일정, 소방공무원 시험, 교육행정 시험, 임용시험 일정, 스테이The머무름" name="keywords"/>
 <meta content="노량진 여성전용 고시원 | 스테이The머무름" property="og:title"/><meta content="스테이The머무름은 노량진역 근처 여성전용 고시원입니다. 깨끗하고 안전한 수험생 생활공간입니다." property="og:description"/><meta content="https://davidhor2026.github.io/staythemeomurum/main.png" property="og:image"/><meta content="https://davidhor2026.github.io/staythemeomurum/" property="og:url"/><meta content="website" property="og:type"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://davidhor2026.github.io/staythemeomurum/main.png" name="twitter:image"/><link href="style.css" rel="stylesheet"/>
 </head>
 <body>
@@ -30,8 +30,8 @@
 </button>
 <div class="hero-notice-panel" id="heroNoticePanel" hidden>
 <button class="hero-notice-close" id="heroNoticeClose" type="button" aria-label="공지사항 닫기">×</button>
-<strong>공실 현황</strong>
-<p>7월14일부터 스탠다드룸 입주 가능합니다. 문의 페이지에서 입주 상담 신청을 해주세요.</p>
+<strong>현재 만실입니다</strong>
+<p>현재 즉시 입실 가능한 방은 없습니다. 문의 페이지에서 입주 상담 신청을 해주세요.</p>
 </div>
 </div>
 </header>
@@ -82,7 +82,7 @@
 
   <div class="exam-home-content" id="examHomeContent" hidden>
     <div class="exam-home-content-head">
-      <p>다가오는 시험과 발표 일정을 짧게 확인하세요.</p>
+      <p>2026 국가직·지방직·법원직·검찰직·경찰·소방·교육행정·임용 시험일정, 합격자 발표와 최근 필기 합격선(커트라인)을 한눈에 확인하세요.</p>
       <a class="exam-home-more" href="exam-schedule.html">시험일정 전체보기 →</a>
     </div>
 
@@ -104,7 +104,16 @@
       </div>
     </div>
 
-    <p class="exam-home-note">교육행정·교원임용·지방직 합격 발표와 면접 일정은 지역별로 다를 수 있으므로 해당 기관 공고를 함께 확인해 주세요.</p>
+    <div class="exam-cutline-panel" aria-labelledby="examCutlineTitle">
+      <div class="exam-panel-title">
+        <strong id="examCutlineTitle">최근 공개 필기 합격선</strong>
+        <span id="examCutlineUpdated"></span>
+      </div>
+      <div class="exam-cutline-list" id="examCutlineList"></div>
+      <p class="exam-cutline-caption">합격선은 일반모집 기준이며 직렬·지역·성별·구분모집에 따라 달라질 수 있습니다.</p>
+    </div>
+
+    <p class="exam-home-note">교육행정·교원임용·지방직·경찰·소방 합격선과 면접 일정은 지역 및 모집단위별로 다를 수 있으므로 반드시 해당 기관의 공식 공고를 함께 확인해 주세요.</p>
   </div>
 </section>
 <section id="intro">
@@ -433,7 +442,8 @@
   var data=window.EXAM_HOME_DATA;
   var countdownList=document.getElementById('examCountdownList');
   var newsList=document.getElementById('examNewsList');
-  if(!data||!countdownList||!newsList) return;
+  var cutlineList=document.getElementById('examCutlineList');
+  if(!data||!countdownList||!newsList||!cutlineList) return;
 
   function startOfSeoulToday(){
     var parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
@@ -478,10 +488,22 @@
     '</article>';
   }).join('');
 
+  cutlineList.innerHTML=(data.cutlines||[]).map(function(item){
+    return '<article class="exam-cutline-item">'+
+      '<span>'+escapeHtml(item.category)+'</span>'+ 
+      '<strong>'+escapeHtml(item.score)+'</strong>'+ 
+      '<small>'+escapeHtml(item.note||'')+'</small>'+ 
+    '</article>';
+  }).join('');
+
+  var cutlineUpdated=document.getElementById('examCutlineUpdated');
+  if(cutlineUpdated) cutlineUpdated.textContent=data.cutlineUpdatedLabel||data.updatedLabel||'';
+
   var updated=document.getElementById('examNewsUpdated');
   if(updated) updated.textContent=data.updatedLabel||'';
 })();
 </script>
 
+<script src="site-updates.js"></script>
 </body>
 </html>
