@@ -26,7 +26,7 @@
 <div class="hero-notice-board hero-notice-board--toggle" id="heroNoticeBoard" aria-label="홈페이지 공지사항">
 <button class="hero-notice-toggle" id="heroNoticeToggle" type="button" aria-expanded="false" aria-controls="heroNoticePanel">
 <span>공지사항</span>
-<span class="hero-notice-toggle-icon" aria-hidden="true">＋</span>
+<span class="hero-notice-toggle-icon" aria-hidden="true">👆</span>
 </button>
 <div class="hero-notice-panel" id="heroNoticePanel" hidden>
 <button class="hero-notice-close" id="heroNoticeClose" type="button" aria-label="공지사항 닫기">×</button>
@@ -67,7 +67,7 @@
     <span class="congrats-bulb congrats-bulb--3" aria-hidden="true"></span>
     <span class="congrats-bulb congrats-bulb--4" aria-hidden="true"></span>
     <div class="congrats-ribbon">2026 법원직 필기시험</div>
-    <strong>법원직 필기 합격하신 분들<br>모두 축하드립니다!</strong>
+    <strong>법원직 필기 합격하신 분들 모두 축하드립니다!</strong>
     <p>조O희 · 정O영 · 이O원 필기 합격</p>
   </div>
 </section>
@@ -361,7 +361,7 @@
     toggle.setAttribute('aria-expanded',open?'true':'false');
     panel.hidden=!open;
     var icon=toggle.querySelector('.hero-notice-toggle-icon');
-    if(icon) icon.textContent=open?'−':'＋';
+    if(icon) icon.textContent=open?'×':'👆';
   }
 
   toggle.addEventListener('click',function(){
