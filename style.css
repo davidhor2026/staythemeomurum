@@ -1117,3 +1117,28 @@
   .exam-countdown-list{grid-template-columns:1fr;}
   .exam-countdown-item:nth-child(n+5){display:none;}
 }
+
+
+/* collapsible exam brief on homepage */
+.exam-home-widget--collapsible{padding:0;overflow:hidden;margin-top:18px;margin-bottom:8px;}
+.exam-home-toggle{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:12px;padding:16px 18px;border:0;background:linear-gradient(180deg,#fffdf9,#faf7f1);color:#2f3b2f;text-align:left;cursor:pointer;font:inherit;}
+.exam-home-toggle:hover{background:#f8f4ed;}
+.exam-home-toggle-copy{display:flex;align-items:center;gap:12px;min-width:0;}
+.exam-home-toggle-copy strong{font-size:19px;line-height:1.35;color:#2f3b2f;}
+.exam-home-toggle-hint{font-size:12px;color:#7a7067;white-space:nowrap;}
+.exam-home-toggle-icon{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#314631;color:#fff;font-size:20px;font-weight:700;line-height:1;}
+.exam-home-content{padding:0 20px 20px;border-top:1px solid #eadfd1;animation:examHomeOpen .22s ease;}
+.exam-home-content-head{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 2px 12px;}
+.exam-home-content-head p{margin:0;color:#6b635b;font-size:14px;}
+@keyframes examHomeOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){
+  .exam-home-widget--collapsible{margin:14px 12px 4px;}
+  .exam-home-toggle{grid-template-columns:minmax(0,1fr) auto;padding:14px 15px;gap:9px;}
+  .exam-home-toggle-copy{gap:8px;align-items:flex-start;flex-direction:column;}
+  .exam-home-toggle-copy strong{font-size:17px;}
+  .exam-home-toggle-hint{display:none;}
+  .exam-home-toggle-icon{width:28px;height:28px;font-size:18px;}
+  .exam-home-content{padding:0 14px 16px;}
+  .exam-home-content-head{display:block;padding-top:14px;}
+  .exam-home-content-head .exam-home-more{margin-top:8px;}
+}

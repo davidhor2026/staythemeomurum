@@ -71,35 +71,42 @@
     <p>조O희 · 정O영 · 이O원 필기 합격</p>
   </div>
 </section>
-<section class="exam-home-widget" id="exam-home" aria-labelledby="examHomeTitle">
-  <div class="exam-home-head">
-    <div>
+<section class="exam-home-widget exam-home-widget--collapsible" id="exam-home" aria-labelledby="examHomeTitle">
+  <button class="exam-home-toggle" id="examHomeToggle" type="button" aria-expanded="false" aria-controls="examHomeContent">
+    <span class="exam-home-toggle-copy">
       <span class="exam-home-eyebrow">EXAM BRIEF</span>
-      <h2 id="examHomeTitle">수험생 일정 한눈에 보기</h2>
+      <strong id="examHomeTitle">수험생 일정 한눈에 보기</strong>
+    </span>
+    <span class="exam-home-toggle-hint">클릭해서 보기</span>
+    <span class="exam-home-toggle-icon" aria-hidden="true">＋</span>
+  </button>
+
+  <div class="exam-home-content" id="examHomeContent" hidden>
+    <div class="exam-home-content-head">
       <p>다가오는 시험과 발표 일정을 짧게 확인하세요.</p>
+      <a class="exam-home-more" href="exam-schedule.html">시험일정 전체보기 →</a>
     </div>
-    <a class="exam-home-more" href="exam-schedule.html">시험일정 전체보기 →</a>
-  </div>
 
-  <div class="exam-home-layout">
-    <div class="exam-countdown-panel">
-      <div class="exam-panel-title">
-        <strong>시험 카운트다운</strong>
-        <span id="examCountdownUpdated">자동 계산</span>
+    <div class="exam-home-layout">
+      <div class="exam-countdown-panel">
+        <div class="exam-panel-title">
+          <strong>시험 카운트다운</strong>
+          <span id="examCountdownUpdated">자동 계산</span>
+        </div>
+        <div class="exam-countdown-list" id="examCountdownList" aria-live="polite"></div>
       </div>
-      <div class="exam-countdown-list" id="examCountdownList" aria-live="polite"></div>
-    </div>
 
-    <div class="exam-news-panel">
-      <div class="exam-panel-title">
-        <strong>오늘의 시험 소식</strong>
-        <span id="examNewsUpdated"></span>
+      <div class="exam-news-panel">
+        <div class="exam-panel-title">
+          <strong>오늘의 시험 소식</strong>
+          <span id="examNewsUpdated"></span>
+        </div>
+        <div class="exam-news-list" id="examNewsList"></div>
       </div>
-      <div class="exam-news-list" id="examNewsList"></div>
     </div>
-  </div>
 
-  <p class="exam-home-note">교육행정·교원임용·지방직 합격 발표와 면접 일정은 지역별로 다를 수 있으므로 해당 기관 공고를 함께 확인해 주세요.</p>
+    <p class="exam-home-note">교육행정·교원임용·지방직 합격 발표와 면접 일정은 지역별로 다를 수 있으므로 해당 기관 공고를 함께 확인해 주세요.</p>
+  </div>
 </section>
 <section id="intro">
 <h2>스테이The머무름 소개</h2>
@@ -400,6 +407,27 @@
   });
   close.addEventListener('click',function(){setOpen(false);toggle.focus();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape') setOpen(false);});
+})();
+</script>
+
+<script>
+(function(){
+  var toggle=document.getElementById('examHomeToggle');
+  var content=document.getElementById('examHomeContent');
+  if(!toggle||!content) return;
+
+  function setOpen(open){
+    toggle.setAttribute('aria-expanded',open?'true':'false');
+    content.hidden=!open;
+    var hint=toggle.querySelector('.exam-home-toggle-hint');
+    var icon=toggle.querySelector('.exam-home-toggle-icon');
+    if(hint) hint.textContent=open?'접기':'클릭해서 보기';
+    if(icon) icon.textContent=open?'−':'＋';
+  }
+
+  toggle.addEventListener('click',function(){
+    setOpen(toggle.getAttribute('aria-expanded')!=='true');
+  });
 })();
 </script>
 
