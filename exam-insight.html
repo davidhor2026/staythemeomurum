@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2026 법원직 9급 시험분석 | 합격선·커트라인·경쟁률·민법 난이도</title>
 <meta name="description" content="2026 법원직 9급 필기시험 합격선과 경쟁률, 법원사무 전국 일반 및 춘천·대전청주·대구·부산울산창원·광주전주·제주 권역의 최근 3년 커트라인 추이, 민법 과락과 과목별 난이도, 면접 일정 및 2027 준비전략을 정리했습니다.">
-<meta name="keywords" content="2026 법원직 9급, 법원직 합격선, 법원직 커트라인, 법원사무직 지역별 합격선, 춘천 법원직, 대전 청주 법원직, 대구 법원직, 부산 울산 창원 법원직, 광주 전주 법원직, 제주 법원직, 법원직 민법 난이도, 법원직 경쟁률, 법원직 면접 일정, 노량진 수험생 고시원">
+<meta name="keywords" content="2026 법원직 9급, 법원직 합격선, 법원직 커트라인, 법원사무직 지역별 합격선, 법원직 최근 3년 합격선, 지역구분모집 2025 2026 합격선, 춘천 법원직, 대전 청주 법원직, 대구 법원직, 부산 울산 창원 법원직, 광주 전주 법원직, 제주 법원직, 법원직 민법 난이도, 법원직 경쟁률, 법원직 면접 일정, 노량진 수험생 고시원">
 <meta property="og:title" content="2026 법원직 9급 합격선·난이도 분석 | 스테이The머무름">
 <meta property="og:description" content="법원사무 전국 일반과 6개 지역구분모집 권역의 커트라인 추이, 민법 과락, 과목별 난이도와 면접 일정을 한눈에 확인하세요.">
 <link rel="stylesheet" href="style.css">
@@ -110,19 +110,27 @@
   </section>
 
   <section id="court-cutline-trend">
-    <span class="exam-eyebrow">2024~2026 연도별 비교</span>
-    <h2>법원사무직 최근 3년 합격선 추이</h2>
-    <p class="portal-note"><strong>전국 일반모집은 2024~2026년 3년치, 6개 지역구분모집 권역은 제도가 시작된 2025년부터 2년치 자료가 있습니다.</strong> 2024년에는 지역구분모집 자체가 없었으므로 모든 지역 권역을 ‘해당 없음’으로 표시했습니다.</p>
-    <div class="cutline-trend-grid" id="courtCutlineCharts" aria-live="polite"></div>
+    <span class="exam-eyebrow">전국 3년 · 지역 2년 비교</span>
+    <h2>법원사무직 합격선 추이</h2>
+    <p class="portal-note"><strong>전국 일반모집은 2024~2026년 최근 3년 추이를 그래프와 표로 보여주고, 지역구분모집은 제도가 시작된 2025년과 2026년 두 해만 비교합니다.</strong> 존재하지 않는 2024년 지역 데이터를 반복 표시하지 않아 실제 비교가 더 명확하도록 구성했습니다.</p>
+
+    <div class="cutline-section-label"><strong>전국 일반모집 최근 3년</strong><span>2024~2026</span></div>
+    <div class="cutline-trend-grid cutline-trend-grid--single" id="courtNationalCutlineChart" aria-live="polite"></div>
     <div class="exam-table-wrap">
       <table class="exam-table cutline-history-table">
-        <thead>
-          <tr><th>모집구분</th><th>2024</th><th>2025</th><th>2026</th><th>3년 해석</th></tr>
-        </thead>
-        <tbody id="courtCutlineTableBody"></tbody>
+        <thead><tr><th>모집구분</th><th>2024</th><th>2025</th><th>2026</th><th>3년 해석</th></tr></thead>
+        <tbody id="courtNationalCutlineTableBody"></tbody>
       </table>
     </div>
-    <p class="exam-small-note">※ 지역구분모집은 춘천, 대전·청주, 대구, 부산·울산·창원, 광주·전주, 제주 등 6개 권역입니다. 2024년까지는 지역구분모집이 없었고 2025년부터 권역별 합격선이 별도로 발표됐습니다.</p>
+
+    <div class="cutline-section-label cutline-section-label--regional"><strong>지역구분모집 최근 2년</strong><span>2025~2026</span></div>
+    <div class="exam-table-wrap">
+      <table class="exam-table cutline-history-table cutline-region-table">
+        <thead><tr><th>권역</th><th>2025</th><th>2026</th><th>증감</th><th>해석</th></tr></thead>
+        <tbody id="courtRegionalCutlineTableBody"></tbody>
+      </table>
+    </div>
+    <p class="exam-small-note">※ 지역구분모집은 춘천, 대전·청주, 대구, 부산·울산·창원, 광주·전주, 제주 등 6개 권역이며 2025년부터 시행되었습니다. 합격선 변화는 시험 난이도뿐 아니라 권역별 선발인원·경쟁률·응시자 분포의 영향도 함께 받습니다.</p>
   </section>
 
   <section id="court-difficulty-analysis">
@@ -346,18 +354,13 @@
 <script src="exam-analysis-data.js"></script>
 <script>
 (function(){
-  var data = window.COURT_CUTOFF_TRENDS || [];
-  var chartRoot = document.getElementById('courtCutlineCharts');
-  var tableBody = document.getElementById('courtCutlineTableBody');
-  if (!chartRoot || !tableBody || !data.length) return;
-
-  var allScores = [];
-  data.forEach(function(group){
-    group.values.forEach(function(item){ if (typeof item.score === 'number') allScores.push(item.score); });
-  });
-  var minScore = Math.min.apply(null, allScores.concat([45]));
-  var maxScore = Math.max.apply(null, allScores.concat([85]));
-  var span = Math.max(1, maxScore - minScore);
+  var data = window.COURT_CUTOFF_TRENDS || {};
+  var national = data.national;
+  var regions = data.regions || [];
+  var chartRoot = document.getElementById('courtNationalCutlineChart');
+  var nationalBody = document.getElementById('courtNationalCutlineTableBody');
+  var regionalBody = document.getElementById('courtRegionalCutlineTableBody');
+  if (!national || !chartRoot || !nationalBody || !regionalBody) return;
 
   function esc(value){
     return String(value == null ? '' : value)
@@ -365,27 +368,33 @@
       .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
   }
 
-  chartRoot.innerHTML = data.map(function(group){
-    var bars = group.values.map(function(item){
-      if (typeof item.score !== 'number') {
-        return '<div class="cutline-bar-item is-empty"><div class="cutline-bar-empty">해당 없음</div><strong>'+esc(item.year)+'</strong></div>';
-      }
-      var height = 30 + ((item.score - minScore) / span) * 120;
-      return '<div class="cutline-bar-item">'+
-        '<div class="cutline-bar-value">'+item.score+'점</div>'+
-        '<div class="cutline-bar" style="height:'+height.toFixed(1)+'px" aria-label="'+esc(item.year)+' '+item.score+'점"></div>'+
-        '<strong>'+esc(item.year)+'</strong>'+
-      '</div>';
-    }).join('');
-    return '<article class="cutline-trend-card">'+
-      '<div class="cutline-trend-head"><h3>'+esc(group.label)+'</h3><span>'+esc(group.note)+'</span></div>'+
-      '<div class="cutline-bar-chart">'+bars+'</div>'+
-    '</article>';
+  var scores = national.values.map(function(item){ return item.score; });
+  var minScore = Math.min.apply(null, scores.concat([65]));
+  var maxScore = Math.max.apply(null, scores.concat([82]));
+  var span = Math.max(1, maxScore - minScore);
+  var bars = national.values.map(function(item){
+    var height = 42 + ((item.score - minScore) / span) * 116;
+    return '<div class="cutline-bar-item">'+
+      '<div class="cutline-bar-value">'+item.score+'점</div>'+
+      '<div class="cutline-bar" style="height:'+height.toFixed(1)+'px" aria-label="'+esc(item.year)+' '+item.score+'점"></div>'+
+      '<strong>'+esc(item.year)+'</strong>'+
+    '</div>';
   }).join('');
+  chartRoot.innerHTML = '<article class="cutline-trend-card">'+
+    '<div class="cutline-trend-head"><h3>'+esc(national.label)+'</h3><span>'+esc(national.note)+'</span></div>'+
+    '<div class="cutline-bar-chart">'+bars+'</div>'+
+  '</article>';
 
-  tableBody.innerHTML = data.map(function(group){
-    var vals = group.values.map(function(item){ return typeof item.score === 'number' ? item.score+'점' : '해당 없음'; });
-    return '<tr><td>'+esc(group.label)+'</td><td>'+esc(vals[0])+'</td><td>'+esc(vals[1])+'</td><td>'+esc(vals[2])+'</td><td>'+esc(group.summary)+'</td></tr>';
+  nationalBody.innerHTML = '<tr><td>'+esc(national.label)+'</td>'+
+    national.values.map(function(item){ return '<td>'+item.score+'점</td>'; }).join('')+
+    '<td>'+esc(national.summary)+'</td></tr>';
+
+  regionalBody.innerHTML = regions.map(function(region){
+    var cls = region.change > 0 ? 'is-up' : (region.change < 0 ? 'is-down' : 'is-flat');
+    var sign = region.change > 0 ? '▲' : (region.change < 0 ? '▼' : '—');
+    var amount = Math.abs(region.change);
+    return '<tr><td>'+esc(region.label)+'</td><td>'+region.score2025+'점</td><td>'+region.score2026+'점</td>'+
+      '<td><span class="cutline-change '+cls+'">'+sign+' '+amount+'점</span></td><td>'+esc(region.summary)+'</td></tr>';
   }).join('');
 })();
 </script>
