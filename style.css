@@ -1184,3 +1184,31 @@
 .exam-cutline-list{grid-template-columns:repeat(5,minmax(0,1fr));}
 @media(max-width:980px){.exam-cutline-list{grid-template-columns:repeat(3,minmax(0,1fr));}}
 @media(max-width:700px){.exam-cutline-list{grid-template-columns:1fr;}}
+
+
+/* court cutline three-year trend */
+.cutline-trend-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px;}
+.cutline-trend-card{background:#fffdf9;border:1px solid #eadfd1;border-radius:18px;padding:20px;box-shadow:0 5px 16px rgba(47,59,47,.05);}
+.cutline-trend-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;}
+.cutline-trend-head h3{margin:0;color:#2f3b2f;font-size:19px;}
+.cutline-trend-head span{display:inline-block;padding:5px 9px;border-radius:999px;background:#f4ebe5;color:#6b543b;font-size:11px;font-weight:800;}
+.cutline-bar-chart{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:end;gap:14px;min-height:210px;margin-top:18px;padding:10px 8px 0;border-bottom:1px solid #d8cec1;}
+.cutline-bar-item{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;min-width:0;height:190px;}
+.cutline-bar-item strong{margin-top:8px;color:#5f574e;font-size:13px;}
+.cutline-bar{width:min(58px,72%);min-height:24px;border-radius:12px 12px 4px 4px;background:linear-gradient(180deg,#7e9278,#405640);box-shadow:0 6px 12px rgba(47,59,47,.14);transition:transform .18s ease;}
+.cutline-bar-item:hover .cutline-bar{transform:translateY(-3px);}
+.cutline-bar-value{margin-bottom:7px;color:#314631;font-size:14px;font-weight:900;}
+.cutline-bar-empty{display:flex;align-items:center;justify-content:center;width:min(76px,90%);height:74px;margin-bottom:1px;padding:8px;border:1px dashed #cdbfac;border-radius:12px;color:#847a70;background:#faf7f1;font-size:11px;text-align:center;line-height:1.35;}
+.cutline-history-table td:nth-child(2),.cutline-history-table td:nth-child(3),.cutline-history-table td:nth-child(4){font-weight:800;text-align:center;white-space:nowrap;}
+@media(max-width:800px){
+  .cutline-trend-grid{grid-template-columns:1fr;}
+  .cutline-trend-card{padding:17px;}
+  .cutline-bar-chart{min-height:195px;}
+  .cutline-bar-item{height:175px;}
+}
+@media(max-width:520px){
+  .cutline-trend-head{display:block;}
+  .cutline-trend-head span{margin-top:8px;}
+  .cutline-bar-chart{gap:8px;padding-left:2px;padding-right:2px;}
+  .cutline-bar{width:min(48px,78%);}
+}
