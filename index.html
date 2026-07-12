@@ -71,6 +71,36 @@
     <p>조O희 · 정O영 · 이O원 필기 합격</p>
   </div>
 </section>
+<section class="exam-home-widget" id="exam-home" aria-labelledby="examHomeTitle">
+  <div class="exam-home-head">
+    <div>
+      <span class="exam-home-eyebrow">EXAM BRIEF</span>
+      <h2 id="examHomeTitle">수험생 일정 한눈에 보기</h2>
+      <p>다가오는 시험과 발표 일정을 짧게 확인하세요.</p>
+    </div>
+    <a class="exam-home-more" href="exam-schedule.html">시험일정 전체보기 →</a>
+  </div>
+
+  <div class="exam-home-layout">
+    <div class="exam-countdown-panel">
+      <div class="exam-panel-title">
+        <strong>시험 카운트다운</strong>
+        <span id="examCountdownUpdated">자동 계산</span>
+      </div>
+      <div class="exam-countdown-list" id="examCountdownList" aria-live="polite"></div>
+    </div>
+
+    <div class="exam-news-panel">
+      <div class="exam-panel-title">
+        <strong>오늘의 시험 소식</strong>
+        <span id="examNewsUpdated"></span>
+      </div>
+      <div class="exam-news-list" id="examNewsList"></div>
+    </div>
+  </div>
+
+  <p class="exam-home-note">교육행정·교원임용·지방직 합격 발표와 면접 일정은 지역별로 다를 수 있으므로 해당 기관 공고를 함께 확인해 주세요.</p>
+</section>
 <section id="intro">
 <h2>스테이The머무름 소개</h2>
 <p>
@@ -304,6 +334,7 @@
 <p>© <span id="year"></span> 스테이The머무름. All rights reserved.</p>
 <p>노량진 여성전용 고시원</p>
 </footer>
+<script src="exam-home-data.js"></script>
 <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
@@ -371,5 +402,57 @@
   document.addEventListener('keydown',function(e){if(e.key==='Escape') setOpen(false);});
 })();
 </script>
+
+<script>
+(function(){
+  var data=window.EXAM_HOME_DATA;
+  var countdownList=document.getElementById('examCountdownList');
+  var newsList=document.getElementById('examNewsList');
+  if(!data||!countdownList||!newsList) return;
+
+  function startOfSeoulToday(){
+    var parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+    var values={};
+    parts.forEach(function(part){values[part.type]=part.value;});
+    return new Date(values.year+'-'+values.month+'-'+values.day+'T00:00:00+09:00');
+  }
+  function eventDate(value){return new Date(value+'T00:00:00+09:00');}
+  function dday(value){return Math.ceil((eventDate(value)-startOfSeoulToday())/86400000);}
+  function dateLabel(value){
+    var p=value.split('-');
+    return Number(p[1])+'월 '+Number(p[2])+'일';
+  }
+  function escapeHtml(value){
+    return String(value||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+  }
+
+  var future=(data.countdowns||[]).map(function(item){
+    return Object.assign({},item,{days:dday(item.date)});
+  }).filter(function(item){return item.days>=0;}).sort(function(a,b){return a.days-b.days;}).slice(0,6);
+
+  if(!future.length){
+    countdownList.innerHTML='<p class="exam-empty">현재 등록된 다가오는 일정이 없습니다.</p>';
+  }else{
+    countdownList.innerHTML=future.map(function(item){
+      var dayText=item.days===0?'D-DAY':'D-'+item.days;
+      return '<article class="exam-countdown-item">'+
+        '<div class="exam-dday">'+dayText+'</div>'+
+        '<div class="exam-countdown-copy"><span>'+escapeHtml(item.category)+'</span><strong>'+escapeHtml(item.title)+'</strong><small>'+dateLabel(item.date)+'</small></div>'+
+      '</article>';
+    }).join('');
+  }
+
+  newsList.innerHTML=(data.news||[]).slice(0,5).map(function(item){
+    return '<article class="exam-news-item">'+
+      '<span class="exam-news-tag">'+escapeHtml(item.category)+'</span>'+
+      '<div><strong>'+escapeHtml(item.title)+'</strong><p>'+escapeHtml(item.summary)+'</p></div>'+
+    '</article>';
+  }).join('');
+
+  var updated=document.getElementById('examNewsUpdated');
+  if(updated) updated.textContent=data.updatedLabel||'';
+})();
+</script>
+
 </body>
 </html>
