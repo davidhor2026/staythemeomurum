@@ -77,8 +77,7 @@
       <span class="exam-home-eyebrow">EXAM BRIEF</span>
       <strong id="examHomeTitle">수험생 일정 한눈에 보기</strong>
     </span>
-    <span class="exam-home-toggle-hint">클릭해서 보기</span>
-    <span class="exam-home-toggle-icon" aria-hidden="true">＋</span>
+    <span class="exam-home-toggle-hint" aria-hidden="true">펼치기</span>
   </button>
 
   <div class="exam-home-content" id="examHomeContent" hidden>
@@ -420,9 +419,7 @@
     toggle.setAttribute('aria-expanded',open?'true':'false');
     content.hidden=!open;
     var hint=toggle.querySelector('.exam-home-toggle-hint');
-    var icon=toggle.querySelector('.exam-home-toggle-icon');
-    if(hint) hint.textContent=open?'접기':'클릭해서 보기';
-    if(icon) icon.textContent=open?'−':'＋';
+    if(hint) hint.textContent=open?'닫기':'펼치기';
   }
 
   toggle.addEventListener('click',function(){
@@ -456,14 +453,18 @@
 
   var future=(data.countdowns||[]).map(function(item){
     return Object.assign({},item,{days:dday(item.date)});
-  }).filter(function(item){return item.days>=0;}).sort(function(a,b){return a.days-b.days;}).slice(0,6);
+  }).filter(function(item){return item.days>=0||item.keepVisible===true;}).sort(function(a,b){
+    if(a.keepVisible===true&&b.keepVisible!==true) return 1;
+    if(a.keepVisible!==true&&b.keepVisible===true) return -1;
+    return a.days-b.days;
+  }).slice(0,7);
 
   if(!future.length){
     countdownList.innerHTML='<p class="exam-empty">현재 등록된 다가오는 일정이 없습니다.</p>';
   }else{
     countdownList.innerHTML=future.map(function(item){
-      var dayText=item.days===0?'D-DAY':'D-'+item.days;
-      return '<article class="exam-countdown-item">'+
+      var dayText=item.status?item.status:(item.days===0?'D-DAY':'D-'+item.days);
+      return '<article class="exam-countdown-item'+(item.status?' exam-countdown-item--status':'')+'">'+
         '<div class="exam-dday">'+dayText+'</div>'+
         '<div class="exam-countdown-copy"><span>'+escapeHtml(item.category)+'</span><strong>'+escapeHtml(item.title)+'</strong><small>'+dateLabel(item.date)+'</small></div>'+
       '</article>';

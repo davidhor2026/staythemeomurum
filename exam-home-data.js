@@ -1,6 +1,7 @@
 window.EXAM_HOME_DATA = {
   updatedLabel: '7월 12일 기준',
   countdowns: [
+    { category: '국가직 9급·검찰직', title: '2026 최종합격자 발표', date: '2026-06-19', status: '발표 완료', keepVisible: true },
     { category: '법원직', title: '인성검사', date: '2026-07-14' },
     { category: '국가직 7급', title: '1차시험(PSAT)', date: '2026-07-18' },
     { category: '지방직 7급', title: '원서접수 시작', date: '2026-07-20' },
@@ -17,7 +18,7 @@ window.EXAM_HOME_DATA = {
     { category: '지방직 7급', title: '원서접수 7월 20~24일', summary: '전국 동시 시행 시험은 한 지방자치단체에만 접수할 수 있습니다.' },
     { category: '경찰', title: '2차 순경 필기 8월 22일', summary: '채용 분야와 시도청별 세부 일정은 경찰 채용 공고를 확인하세요.' },
     { category: '교육행정·임용', title: '지역별 발표 일정 확인', summary: '교육행정 합격 발표와 교원임용 시행계획은 시·도교육청별로 다릅니다.' },
-    { category: '검찰직', title: '국가직 9급 일정 적용', summary: '검찰직 9급은 국가직 9급 공채 일정에 따라 진행됩니다.' },
+    { category: '국가직 9급·검찰직', title: '2026 최종합격 발표 완료', summary: '검찰직 9급은 국가직 9급 공채 일정으로 진행되며, 올해 최종합격자는 6월 19일 발표됐습니다.' },
     { category: '소방', title: '공채 주요 전형 종료', summary: '항공·법무 등 별도 분야 일정은 119고시 공고를 확인하세요.' }
   ]
 };

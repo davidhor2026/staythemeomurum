@@ -1142,3 +1142,14 @@
   .exam-home-content-head{display:block;padding-top:14px;}
   .exam-home-content-head .exam-home-more{margin-top:8px;}
 }
+
+
+/* exam schedule toggle text labels */
+.exam-home-toggle{grid-template-columns:minmax(0,1fr) auto;}
+.exam-home-toggle-hint{display:inline-flex;align-items:center;justify-content:center;min-width:66px;padding:8px 13px;border-radius:999px;background:#314631;color:#fff;font-size:13px;font-weight:800;line-height:1;white-space:nowrap;box-shadow:0 5px 12px rgba(49,70,49,.12);}
+.exam-home-toggle[aria-expanded="true"] .exam-home-toggle-hint{background:#7a6a4f;}
+.exam-home-toggle-icon{display:none!important;}
+@media(max-width:700px){
+  .exam-home-toggle{grid-template-columns:minmax(0,1fr) auto;}
+  .exam-home-toggle-hint{display:inline-flex;min-width:58px;padding:7px 11px;font-size:12px;}
+}
