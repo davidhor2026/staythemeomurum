@@ -165,4 +165,6 @@ document.getElementById('nextSpeaking').onclick=()=>{speakingIdx=speakingIdx===s
 document.querySelectorAll('.interview-mode-button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.interview-mode-button').forEach(b=>b.classList.toggle('active',b===btn));document.querySelectorAll('.interview-mode-content').forEach(c=>c.classList.remove('active'));document.getElementById(btn.dataset.mode+'Mode').classList.add('active');}));
 document.getElementById('year').textContent=new Date().getFullYear();render();renderSpeaking();
 </script>
+
+<script src="site-updates.js?v=20260715-2"></script>
 </body></html>
