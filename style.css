@@ -1235,14 +1235,16 @@
   .cutline-region-table{min-width:680px;}
 }
 
-
-/* 7급 외무영사직 일정·분석 */
-.exam-card--foreign{border-color:#d8dfd0;background:linear-gradient(180deg,#fff,#fbfdf8);}
-.foreign-service-note{margin:14px 0 0;padding:14px 16px;border-radius:15px;background:#eef4ea;border:1px solid #dbe7d4;color:#485044;line-height:1.7;font-size:.94rem;}
-.foreign-service-analysis{scroll-margin-top:110px;}
-.foreign-service-stats{margin-top:18px;}
-.foreign-service-guide{margin-top:18px;}
-.foreign-service-guide .analysis-card p{margin:0;color:#514b43;line-height:1.78;}
-@media(max-width:700px){
-  .foreign-service-stats{grid-template-columns:repeat(2,minmax(0,1fr));}
-}
+/* Exam insight data center v2 */
+.insight-category-hub{background:linear-gradient(135deg,#fffdf9,#f2f5ee);border:1px solid #dfe7d9;scroll-margin-top:92px}
+.insight-hub-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px}.insight-hub-head h2,.insight-section-heading h2{margin:5px 0 4px}.insight-hub-head p,.insight-section-heading p{margin:0;color:#675f57}
+.exam-recent-highlight{display:flex;align-items:center;gap:14px;margin:18px 0 14px;padding:14px 16px;border-radius:15px;background:#314631;color:#fff;box-shadow:0 8px 20px rgba(47,70,49,.15)}
+.recent-highlight-label{flex:0 0 auto;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.16);font-size:12px;font-weight:900}.recent-highlight-content{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.recent-highlight-content strong{font-size:17px}.recent-highlight-content span{font-size:13px;opacity:.86}
+.exam-category-nav{display:flex;gap:9px;overflow-x:auto;padding:10px 2px 6px;scrollbar-width:thin}.exam-category-nav-button{position:relative;flex:0 0 auto;min-width:104px;padding:13px 15px;border:1px solid #d9cfbf;border-radius:14px;background:#fff;color:#314631;font:inherit;font-weight:900;cursor:pointer;box-shadow:0 5px 13px rgba(47,59,47,.05)}.exam-category-nav-button:hover{transform:translateY(-1px);border-color:#9cab91}
+.exam-recent-badge,.exam-category-new{position:absolute;top:-9px;right:7px;display:inline-flex;align-items:center;justify-content:center;padding:3px 7px;border-radius:999px;color:#fff;font-size:9px;font-weight:900;line-height:1.2;box-shadow:0 4px 9px rgba(0,0,0,.14)}.exam-recent-badge{background:#4d7251;animation:recentExamPulse 1.45s ease-in-out infinite}.exam-category-new{right:auto;left:7px;background:#d75c45;animation:siteNewPulse 1.2s ease-in-out infinite}@keyframes recentExamPulse{0%,100%{transform:scale(1);opacity:.88}50%{transform:scale(1.08);opacity:1}}
+.insight-category-section{scroll-margin-top:92px}.exam-category-cards{display:grid;gap:14px;margin-top:17px}.exam-category-card{border:1px solid #e6dbcd;border-radius:19px;background:#fffdf9;padding:19px;scroll-margin-top:94px;box-shadow:0 6px 17px rgba(47,59,47,.045)}.exam-category-card.is-recent{border-color:#96ad8d;box-shadow:0 9px 23px rgba(70,105,71,.10)}
+.exam-category-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}.exam-category-card-head>div{position:relative;min-width:0;padding-top:5px}.exam-category-card-head h3{margin:3px 0 6px;font-size:21px}.exam-category-card-head p{margin:0;color:#655e56;line-height:1.7}.exam-recent-badge--inline,.exam-category-new--inline{position:static;margin:0 5px 5px 0;vertical-align:middle}.exam-detail-toggle{flex:0 0 auto;border:1px solid #cfc3b5;border-radius:999px;padding:9px 13px;background:#fff;color:#314631;font-weight:900;cursor:pointer}.exam-detail-toggle:hover{background:#eef4ea}
+.exam-category-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}.exam-category-metrics div{padding:11px 12px;border-radius:13px;background:#f5f2ec;border:1px solid #e9dfd3}.exam-category-metrics span{display:block;color:#776e65;font-size:11px;font-weight:800}.exam-category-metrics strong{display:block;margin-top:3px;color:#2f3b2f;font-size:15px}
+.exam-category-detail{display:none;margin-top:15px;padding-top:15px;border-top:1px dashed #d9cfbf}.exam-category-detail.is-open{display:block;animation:examDetailOpen .22s ease both}@keyframes examDetailOpen{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}.exam-category-status{display:flex;gap:10px;align-items:center;padding:11px 13px;border-radius:12px;background:#eef4ea;color:#334934}.exam-category-status strong{font-size:12px}.exam-category-status span{font-size:13px}.exam-category-detail ul{margin:13px 0 0;padding-left:20px}.exam-category-detail li{margin:8px 0;color:#504a44;line-height:1.72}.exam-deep-link{display:inline-block;margin-top:10px;color:#2f5a36;font-weight:900;text-decoration:none}.exam-deep-link:hover{text-decoration:underline}
+@media(max-width:760px){.insight-hub-head{display:block}.insight-hub-head .button{margin-top:12px}.exam-recent-highlight{align-items:flex-start}.recent-highlight-content{display:block}.recent-highlight-content span{display:block;margin-top:3px}.exam-category-card-head{display:block}.exam-detail-toggle{width:100%;margin-top:12px}.exam-category-metrics{grid-template-columns:1fr}.exam-category-card{padding:16px}.exam-category-nav-button{min-width:96px;padding:12px 13px}}
+@media(prefers-reduced-motion:reduce){.exam-recent-badge,.exam-category-new{animation:none}.exam-category-detail.is-open{animation:none}}
