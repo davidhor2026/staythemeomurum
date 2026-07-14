@@ -1234,3 +1234,15 @@
   .cutline-section-label{align-items:flex-start;flex-direction:column;gap:2px;}
   .cutline-region-table{min-width:680px;}
 }
+
+
+/* 7급 외무영사직 일정·분석 */
+.exam-card--foreign{border-color:#d8dfd0;background:linear-gradient(180deg,#fff,#fbfdf8);}
+.foreign-service-note{margin:14px 0 0;padding:14px 16px;border-radius:15px;background:#eef4ea;border:1px solid #dbe7d4;color:#485044;line-height:1.7;font-size:.94rem;}
+.foreign-service-analysis{scroll-margin-top:110px;}
+.foreign-service-stats{margin-top:18px;}
+.foreign-service-guide{margin-top:18px;}
+.foreign-service-guide .analysis-card p{margin:0;color:#514b43;line-height:1.78;}
+@media(max-width:700px){
+  .foreign-service-stats{grid-template-columns:repeat(2,minmax(0,1fr));}
+}

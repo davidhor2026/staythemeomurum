@@ -5,13 +5,13 @@ window.SITE_UPDATES = {
       key: 'examSchedule',
       href: 'exam-schedule.html',
       label: 'NEW',
-      updated: '2026-07-12'
+      updated: '2026-07-14'
     },
     {
       key: 'examInsight',
       href: 'exam-insight.html',
       label: 'NEW',
-      updated: '2026-07-12'
+      updated: '2026-07-14'
     }
   ]
 };
