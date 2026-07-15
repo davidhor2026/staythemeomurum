@@ -188,38 +188,33 @@ next.onclick=()=>{if(idx<activeQuestions.length-1){idx++;render();host.scrollInt
 restart.onclick=resetQuizState;
 document.querySelectorAll('[data-level]').forEach(b=>b.onclick=()=>setQuizLevel(b.dataset.level));
 let timerHandle=null;
-let mediaRecorder=null;
-let mediaStream=null;
-let audioContext=null;
-let audioSourceNode=null;
-let audioProcessorNode=null;
-let wavBuffers=[];
-let wavSampleRate=44100;
-let wavRecording=false;
-let recordingTimerHandle=null;
-let recordingSeconds=0;
-let recordingUrl='';
-let speechRecognition=null;
-let recognitionFinalText='';
-let recognitionActive=false;
+let activeRecordingSession=null;
 let recordingSessionId=0;
+
+function stopSession(session, discard=false){
+  if(!session)return;
+  session.discard=discard;
+  if(session.timer){clearInterval(session.timer);session.timer=null;}
+  if(session.recognition){
+    try{session.recognition.onresult=null;session.recognition.onerror=null;session.recognition.onend=null;session.recognition.abort();}catch(e){}
+    session.recognition=null;
+  }
+  if(session.recorder&&session.recorder.state!=='inactive'){
+    try{session.recorder.stop();}catch(e){}
+  }
+  if(session.stream){session.stream.getTracks().forEach(t=>t.stop());session.stream=null;}
+}
 
 function cleanupSpeakingMedia(){
   recordingSessionId++;
   if(timerHandle){clearInterval(timerHandle);timerHandle=null;}
-  if(recordingTimerHandle){clearInterval(recordingTimerHandle);recordingTimerHandle=null;}
-  wavRecording=false;
-  if(audioProcessorNode){try{audioProcessorNode.disconnect();}catch(e){} audioProcessorNode.onaudioprocess=null;audioProcessorNode=null;}
-  if(audioSourceNode){try{audioSourceNode.disconnect();}catch(e){} audioSourceNode=null;}
-  if(audioContext){try{audioContext.close();}catch(e){} audioContext=null;}
-  wavBuffers=[];
-  mediaRecorder=null;
-  if(speechRecognition&&recognitionActive){try{speechRecognition.abort();}catch(e){}}
-  speechRecognition=null;recognitionActive=false;recognitionFinalText='';
-  if(mediaStream){mediaStream.getTracks().forEach(t=>t.stop());mediaStream=null;}
+  if(activeRecordingSession){
+    stopSession(activeRecordingSession,true);
+    if(activeRecordingSession.url){URL.revokeObjectURL(activeRecordingSession.url);activeRecordingSession.url='';}
+    activeRecordingSession=null;
+  }
   const audio=document.getElementById('recordedAudio');
-  if(audio){try{audio.pause();}catch(e){} audio.removeAttribute('src');while(audio.firstChild)audio.removeChild(audio.firstChild);try{audio.load();}catch(e){} audio.hidden=true;}
-  if(recordingUrl){URL.revokeObjectURL(recordingUrl);recordingUrl='';}
+  if(audio){try{audio.pause();}catch(e){} audio.removeAttribute('src');try{audio.load();}catch(e){} audio.hidden=true;}
 }
 
 function formatClock(total){
@@ -243,13 +238,13 @@ function renderSpeaking(){
         <button type="button" id="resetRecording" class="button record-reset-btn" disabled>다시 녹음</button>
         <strong id="recordTime" class="record-time">00:00</strong>
       </div>
-      <audio id="recordedAudio" class="record-audio" controls hidden></audio>
+      <audio id="recordedAudio" class="record-audio" controls playsinline hidden></audio>
       <div id="recordMessage" class="record-message" hidden></div>
       <p class="record-help">녹음은 서버로 전송되지 않고 현재 브라우저에서만 임시 재생됩니다. 페이지를 새로 열거나 다른 질문으로 이동하면 녹음이 사라집니다. 처음 사용할 때 브라우저의 마이크 권한을 허용해 주세요.</p>
     </div>
     <label for="speakingAnswer" class="speaking-answer-label">음성 자동 변환·텍스트 답변 <small>(인식 후 직접 수정 가능)</small></label>
     <textarea id="speakingAnswer" placeholder="녹음을 시작하면 지원 브라우저에서 답변이 자동으로 텍스트로 변환됩니다. 직접 핵심 메모를 입력하거나 인식된 문장을 수정할 수도 있습니다."></textarea>
-    <p id="speechRecognitionHelp" class="record-help">음성 자동 변환은 Chrome·Edge 등 일부 브라우저에서 지원됩니다. 인터넷 연결과 브라우저 음성인식 서비스 상태에 따라 일부 문장이 다르게 인식될 수 있으므로 녹음 재생과 함께 확인해 주세요.</p>
+    <p id="speechRecognitionHelp" class="record-help">음성 자동 변환은 Chrome·Edge 등 일부 브라우저에서 지원됩니다. 모바일 Safari에서는 음성 자동 변환이 제한될 수 있지만 녹음과 재생은 사용할 수 있습니다.</p>
     <div class="speaking-tools"><button type="button" id="startTimer" class="button light">90초 답변 타이머</button><strong id="timerDisplay">01:30</strong></div>
     <div class="speaking-checklist speaking-self-review"><h3>녹음 후 자기평가</h3>${x.points.map(p=>'<label><input type="checkbox"> '+esc(p)+'</label>').join('')}</div>
     <button type="button" id="showModel" class="button sub">모범 답변 흐름 보기</button>
@@ -280,89 +275,55 @@ function setRecordMessage(message){
   box.hidden=!message;box.textContent=message||'';
 }
 
-function stopSpeechRecognition(){
-  if(speechRecognition&&recognitionActive){
-    try{speechRecognition.stop();}catch(e){}
+function chooseRecorderOptions(){
+  const candidates=[
+    'audio/mp4;codecs=mp4a.40.2',
+    'audio/mp4',
+    'audio/webm;codecs=opus',
+    'audio/webm',
+    'audio/ogg;codecs=opus'
+  ];
+  if(typeof MediaRecorder==='undefined')return null;
+  for(const mimeType of candidates){
+    try{if(MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(mimeType))return {mimeType};}catch(e){}
   }
-  recognitionActive=false;
+  return {};
 }
 
-function startSpeechRecognition(){
+function startRecognitionForSession(session){
   const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
   const answer=document.getElementById('speakingAnswer');
   if(!Recognition||!answer){
-    setRecordMessage('녹음은 정상적으로 진행됩니다. 다만 이 브라우저는 음성의 자동 텍스트 변환을 지원하지 않아 아래 칸에 직접 입력해야 합니다.');
-    return false;
+    setRecordMessage('녹음은 정상적으로 진행됩니다. 이 브라우저는 음성 자동 변환을 지원하지 않아 텍스트는 직접 입력해 주세요.');
+    return;
   }
-  recognitionFinalText='';
-  answer.value='';
-  speechRecognition=new Recognition();
-  speechRecognition.lang='ko-KR';
-  speechRecognition.continuous=true;
-  speechRecognition.interimResults=true;
-  speechRecognition.maxAlternatives=1;
-  speechRecognition.onstart=()=>{recognitionActive=true;};
-  speechRecognition.onresult=e=>{
+  const recognition=new Recognition();
+  session.recognition=recognition;
+  session.finalText='';
+  recognition.lang='ko-KR';
+  recognition.continuous=true;
+  recognition.interimResults=true;
+  recognition.maxAlternatives=1;
+  recognition.onresult=e=>{
+    if(activeRecordingSession!==session||session.discard)return;
     let interim='';
     for(let i=e.resultIndex;i<e.results.length;i++){
-      const text=e.results[i][0].transcript;
-      if(e.results[i].isFinal) recognitionFinalText+=(recognitionFinalText?' ':'')+text.trim();
-      else interim+=text;
+      const text=e.results[i][0].transcript.trim();
+      if(e.results[i].isFinal)session.finalText+=(session.finalText?' ':'')+text;
+      else interim+=(interim?' ':'')+text;
     }
-    answer.value=(recognitionFinalText+(interim?' '+interim:'')).trim();
+    answer.value=(session.finalText+(interim?' '+interim:'')).trim();
     answer.scrollTop=answer.scrollHeight;
   };
-  speechRecognition.onerror=e=>{
-    recognitionActive=false;
-    if(e.error!=='aborted'&&e.error!=='no-speech'){
-      setRecordMessage('녹음은 저장되었지만 음성 자동 변환이 중단되었습니다. 녹음 재생을 들으며 텍스트를 직접 보완해 주세요.');
-    }
+  recognition.onerror=e=>{
+    if(activeRecordingSession!==session||session.discard)return;
+    if(e.error!=='aborted'&&e.error!=='no-speech')setRecordMessage('녹음은 계속되지만 음성 자동 변환이 중단되었습니다. 녹음 재생을 들으며 텍스트를 직접 보완해 주세요.');
   };
-  speechRecognition.onend=()=>{
-    recognitionActive=false;
-    if(answer&&recognitionFinalText)answer.value=recognitionFinalText.trim();
+  recognition.onend=()=>{
+    if(activeRecordingSession!==session||session.discard)return;
+    if(answer&&session.finalText)answer.value=session.finalText.trim();
   };
-  try{speechRecognition.start();return true;}catch(e){return false;}
-}
-
-function createFreshPlaybackAudio(){
-  const oldAudio=document.getElementById('recordedAudio');
-  if(!oldAudio)return null;
-  try{oldAudio.pause();}catch(e){}
-  oldAudio.removeAttribute('src');
-  while(oldAudio.firstChild)oldAudio.removeChild(oldAudio.firstChild);
-  try{oldAudio.load();}catch(e){}
-  const fresh=document.createElement('audio');
-  fresh.id='recordedAudio';
-  fresh.className='record-audio';
-  fresh.controls=true;
-  fresh.hidden=true;
-  oldAudio.replaceWith(fresh);
-  return fresh;
-}
-
-function mergeFloat32Buffers(parts){
-  const length=parts.reduce((sum,part)=>sum+part.length,0);
-  const result=new Float32Array(length);
-  let offset=0;
-  parts.forEach(part=>{result.set(part,offset);offset+=part.length;});
-  return result;
-}
-
-function encodeWav(samples,sampleRate){
-  const buffer=new ArrayBuffer(44+samples.length*2);
-  const view=new DataView(buffer);
-  const write=(offset,text)=>{for(let i=0;i<text.length;i++)view.setUint8(offset+i,text.charCodeAt(i));};
-  write(0,'RIFF');view.setUint32(4,36+samples.length*2,true);write(8,'WAVE');write(12,'fmt ');
-  view.setUint32(16,16,true);view.setUint16(20,1,true);view.setUint16(22,1,true);
-  view.setUint32(24,sampleRate,true);view.setUint32(28,sampleRate*2,true);
-  view.setUint16(32,2,true);view.setUint16(34,16,true);write(36,'data');view.setUint32(40,samples.length*2,true);
-  let offset=44;
-  for(let i=0;i<samples.length;i++){
-    const value=Math.max(-1,Math.min(1,samples[i]));
-    view.setInt16(offset,value<0?value*0x8000:value*0x7fff,true);offset+=2;
-  }
-  return new Blob([view],{type:'audio/wav'});
+  try{recognition.start();}catch(e){session.recognition=null;}
 }
 
 function bindRecorder(){
@@ -371,79 +332,76 @@ function bindRecorder(){
   const resetBtn=document.getElementById('resetRecording');
   const status=document.getElementById('recordStatus');
   const time=document.getElementById('recordTime');
-  const AudioContextClass=window.AudioContext||window.webkitAudioContext;
-  const supported=!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&AudioContextClass);
-  if(!supported){startBtn.disabled=true;setRecordMessage('이 브라우저에서는 음성 녹음을 지원하지 않습니다. 최신 모바일 Chrome 또는 Safari에서 열거나 텍스트 입력을 이용해 주세요.');return;}
+  const audio=document.getElementById('recordedAudio');
+  const supported=!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&typeof MediaRecorder!=='undefined');
+  if(!supported){startBtn.disabled=true;setRecordMessage('이 브라우저에서는 음성 녹음을 지원하지 않습니다. 최신 모바일 Chrome·Samsung Internet·Safari에서 열거나 텍스트 입력을 이용해 주세요.');return;}
 
-  function finishRecording(mySession){
-    if(mySession!==recordingSessionId||!wavRecording)return;
-    wavRecording=false;
-    if(recordingTimerHandle){clearInterval(recordingTimerHandle);recordingTimerHandle=null;}
-    stopSpeechRecognition();
-    if(audioProcessorNode){try{audioProcessorNode.disconnect();}catch(e){} audioProcessorNode.onaudioprocess=null;audioProcessorNode=null;}
-    if(audioSourceNode){try{audioSourceNode.disconnect();}catch(e){} audioSourceNode=null;}
-    if(mediaStream){mediaStream.getTracks().forEach(t=>t.stop());mediaStream=null;}
-    const currentContext=audioContext;audioContext=null;
-    if(currentContext){try{currentContext.close();}catch(e){}}
-    const samples=mergeFloat32Buffers(wavBuffers);wavBuffers=[];
-    if(samples.length>0){
-      const blob=encodeWav(samples,wavSampleRate);
-      if(recordingUrl)URL.revokeObjectURL(recordingUrl);
-      recordingUrl=URL.createObjectURL(blob);
-      const audio=createFreshPlaybackAudio();
-      audio.src=recordingUrl;audio.type='audio/wav';audio.hidden=false;
-      audio.onloadedmetadata=()=>setRecordMessage('');
-      audio.onerror=()=>setRecordMessage('녹음 파일을 불러오지 못했습니다. 페이지를 새로고침한 뒤 다시 시도해 주세요.');
-      audio.load();
-      status.textContent='녹음 완료 · 재생해 보세요';status.classList.remove('recording');resetBtn.disabled=false;
-    }else{
+  function finalizeSession(session){
+    if(activeRecordingSession!==session||session.discard)return;
+    if(session.timer){clearInterval(session.timer);session.timer=null;}
+    if(session.recognition){try{session.recognition.stop();}catch(e){} session.recognition=null;}
+    if(session.stream){session.stream.getTracks().forEach(t=>t.stop());session.stream=null;}
+    const blob=new Blob(session.chunks,{type:session.mimeType||'audio/webm'});
+    if(!blob.size){
       status.textContent='녹음 데이터 없음';status.classList.remove('recording');
-      setRecordMessage('녹음 데이터가 생성되지 않았습니다. 마이크 권한을 확인하고 1초 이상 말한 뒤 다시 종료해 주세요.');resetBtn.disabled=false;
+      setRecordMessage('녹음 데이터가 생성되지 않았습니다. 마이크 권한을 확인하고 1초 이상 말한 뒤 다시 시도해 주세요.');
+      startBtn.disabled=false;stopBtn.disabled=true;resetBtn.disabled=false;return;
     }
-    startBtn.disabled=false;stopBtn.disabled=true;
+    if(session.url)URL.revokeObjectURL(session.url);
+    session.url=URL.createObjectURL(blob);
+    audio.pause();audio.removeAttribute('src');audio.src=session.url;audio.hidden=false;
+    audio.onloadedmetadata=()=>setRecordMessage('');
+    audio.onerror=()=>setRecordMessage('녹음은 생성되었지만 이 모바일 브라우저에서 재생하지 못했습니다. 브라우저를 최신 버전으로 업데이트하거나 다른 브라우저에서 확인해 주세요.');
+    audio.load();
+    status.textContent='녹음 완료 · 재생해 보세요';status.classList.remove('recording');
+    startBtn.disabled=false;stopBtn.disabled=true;resetBtn.disabled=false;
   }
 
   async function beginRecording(){
-    const mySession=++recordingSessionId;
+    if(activeRecordingSession){stopSession(activeRecordingSession,true);if(activeRecordingSession.url)URL.revokeObjectURL(activeRecordingSession.url);}
+    const session={id:++recordingSessionId,chunks:[],stream:null,recorder:null,recognition:null,finalText:'',timer:null,seconds:0,url:'',discard:false,mimeType:''};
+    activeRecordingSession=session;
     try{
-      setRecordMessage('');createFreshPlaybackAudio();
-      if(recordingUrl){URL.revokeObjectURL(recordingUrl);recordingUrl='';}
-      wavBuffers=[];
-      if(mediaStream){mediaStream.getTracks().forEach(t=>t.stop());mediaStream=null;}
+      setRecordMessage('');audio.pause();audio.removeAttribute('src');audio.hidden=true;audio.load();
+      const answer=document.getElementById('speakingAnswer');if(answer)answer.value='';
       const stream=await navigator.mediaDevices.getUserMedia({audio:{channelCount:1,echoCancellation:true,noiseSuppression:true,autoGainControl:true}});
-      if(mySession!==recordingSessionId){stream.getTracks().forEach(t=>t.stop());return;}
-      mediaStream=stream;
-      const context=new AudioContextClass();audioContext=context;
-      if(context.state==='suspended'){try{await context.resume();}catch(e){}}
-      wavSampleRate=context.sampleRate||44100;
-      const source=context.createMediaStreamSource(stream);audioSourceNode=source;
-      const processor=context.createScriptProcessor(4096,1,1);audioProcessorNode=processor;
-      processor.onaudioprocess=e=>{
-        if(mySession!==recordingSessionId||!wavRecording)return;
-        const input=e.inputBuffer.getChannelData(0);
-        wavBuffers.push(new Float32Array(input));
-      };
-      source.connect(processor);processor.connect(context.destination);
-      wavRecording=true;startSpeechRecognition();
-      recordingSeconds=0;time.textContent='00:00';status.textContent='녹음 중';status.classList.add('recording');
+      if(activeRecordingSession!==session||session.discard){stream.getTracks().forEach(t=>t.stop());return;}
+      session.stream=stream;
+      const options=chooseRecorderOptions();
+      const recorder=new MediaRecorder(stream,options||undefined);
+      session.recorder=recorder;session.mimeType=recorder.mimeType||(options&&options.mimeType)||'';
+      recorder.ondataavailable=e=>{if(activeRecordingSession===session&&!session.discard&&e.data&&e.data.size>0)session.chunks.push(e.data);};
+      recorder.onerror=()=>{if(activeRecordingSession===session&&!session.discard)setRecordMessage('녹음 중 브라우저 오류가 발생했습니다. 다시 녹음해 주세요.');};
+      recorder.onstop=()=>finalizeSession(session);
+      recorder.start(500);
+      startRecognitionForSession(session);
+      session.seconds=0;time.textContent='00:00';status.textContent='녹음 중';status.classList.add('recording');
       startBtn.disabled=true;stopBtn.disabled=false;resetBtn.disabled=true;
-      recordingTimerHandle=setInterval(()=>{
-        if(mySession!==recordingSessionId)return;
-        recordingSeconds++;time.textContent=formatClock(recordingSeconds);
-        if(recordingSeconds>=90){finishRecording(mySession);setRecordMessage('권장 답변 시간 90초가 되어 녹음을 자동 종료했습니다.');}
+      session.timer=setInterval(()=>{
+        if(activeRecordingSession!==session||session.discard)return;
+        session.seconds++;time.textContent=formatClock(session.seconds);
+        if(session.seconds>=90){try{recorder.requestData();}catch(e){} try{recorder.stop();}catch(e){} setRecordMessage('권장 답변 시간 90초가 되어 녹음을 자동 종료했습니다.');}
       },1000);
     }catch(err){
-      if(mySession!==recordingSessionId)return;
-      wavRecording=false;status.textContent='마이크 사용 불가';status.classList.remove('recording');startBtn.disabled=false;stopBtn.disabled=true;
+      if(activeRecordingSession!==session)return;
+      session.discard=true;if(session.stream)session.stream.getTracks().forEach(t=>t.stop());
+      status.textContent='마이크 사용 불가';status.classList.remove('recording');startBtn.disabled=false;stopBtn.disabled=true;
       const denied=err&&(['NotAllowedError','PermissionDeniedError'].includes(err.name));
       setRecordMessage(denied?'주소창 또는 브라우저 설정에서 이 사이트의 마이크 사용을 허용한 뒤 다시 시도해 주세요.':'마이크를 시작하지 못했습니다. 다른 앱이 마이크를 사용 중인지 확인해 주세요.');
     }
   }
 
   startBtn.onclick=beginRecording;
-  stopBtn.onclick=()=>{finishRecording(recordingSessionId);};
+  stopBtn.onclick=()=>{
+    const session=activeRecordingSession;
+    if(!session||!session.recorder||session.recorder.state==='inactive')return;
+    stopBtn.disabled=true;
+    try{session.recorder.requestData();}catch(e){}
+    setTimeout(()=>{try{if(session.recorder&&session.recorder.state!=='inactive')session.recorder.stop();}catch(e){}},80);
+  };
   resetBtn.onclick=()=>{
-    cleanupSpeakingMedia();
+    if(activeRecordingSession){stopSession(activeRecordingSession,true);if(activeRecordingSession.url)URL.revokeObjectURL(activeRecordingSession.url);activeRecordingSession=null;}
+    audio.pause();audio.removeAttribute('src');audio.hidden=true;audio.load();
     time.textContent='00:00';status.textContent='다시 녹음할 수 있습니다';status.classList.remove('recording');
     const answer=document.getElementById('speakingAnswer');if(answer)answer.value='';
     resetBtn.disabled=true;startBtn.disabled=false;stopBtn.disabled=true;setRecordMessage('');
