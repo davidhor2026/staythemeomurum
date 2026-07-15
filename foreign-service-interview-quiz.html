@@ -198,12 +198,17 @@ let recordedChunks=[];
 let recordingTimerHandle=null;
 let recordingSeconds=0;
 let recordingUrl='';
+let speechRecognition=null;
+let recognitionFinalText='';
+let recognitionActive=false;
 
 function cleanupSpeakingMedia(){
   if(timerHandle){clearInterval(timerHandle);timerHandle=null;}
   if(prepTimerHandle){clearInterval(prepTimerHandle);prepTimerHandle=null;}
   if(recordingTimerHandle){clearInterval(recordingTimerHandle);recordingTimerHandle=null;}
   if(mediaRecorder&&mediaRecorder.state!=='inactive'){try{mediaRecorder.stop();}catch(e){}}
+  if(speechRecognition&&recognitionActive){try{speechRecognition.stop();}catch(e){}}
+  speechRecognition=null;recognitionActive=false;recognitionFinalText='';
   if(mediaStream){mediaStream.getTracks().forEach(t=>t.stop());mediaStream=null;}
   mediaRecorder=null;
   if(recordingUrl){URL.revokeObjectURL(recordingUrl);recordingUrl='';}
@@ -235,8 +240,9 @@ function renderSpeaking(){
       <div id="recordMessage" class="record-message" hidden></div>
       <p class="record-help">녹음은 서버로 전송되지 않고 현재 브라우저에서만 임시 재생됩니다. 페이지를 새로 열거나 다른 질문으로 이동하면 녹음이 사라집니다. 처음 사용할 때 브라우저의 마이크 권한을 허용해 주세요.</p>
     </div>
-    <label for="speakingAnswer" class="speaking-answer-label">텍스트 답변·핵심 메모 <small>(선택)</small></label>
-    <textarea id="speakingAnswer" placeholder="말하기 전 핵심어를 적거나, 녹음 후 답변을 글로 정리해 보세요. 결론 → 사실확인 → 원칙 → 조치 → 소통 → 사후관리 순서가 좋습니다."></textarea>
+    <label for="speakingAnswer" class="speaking-answer-label">음성 자동 변환·텍스트 답변 <small>(인식 후 직접 수정 가능)</small></label>
+    <textarea id="speakingAnswer" placeholder="녹음을 시작하면 지원 브라우저에서 답변이 자동으로 텍스트로 변환됩니다. 직접 핵심 메모를 입력하거나 인식된 문장을 수정할 수도 있습니다."></textarea>
+    <p id="speechRecognitionHelp" class="record-help">음성 자동 변환은 Chrome·Edge 등 일부 브라우저에서 지원됩니다. 인터넷 연결과 브라우저 음성인식 서비스 상태에 따라 일부 문장이 다르게 인식될 수 있으므로 녹음 재생과 함께 확인해 주세요.</p>
     <div class="speaking-tools"><button type="button" id="startTimer" class="button light">90초 답변 타이머</button><strong id="timerDisplay">01:30</strong></div>
     <div class="speaking-checklist speaking-self-review"><h3>녹음 후 자기평가</h3>${x.points.map(p=>'<label><input type="checkbox"> '+esc(p)+'</label>').join('')}</div>
     <button type="button" id="showModel" class="button sub">모범 답변 흐름 보기</button>
@@ -280,6 +286,51 @@ function setRecordMessage(message){
   box.hidden=!message;box.textContent=message||'';
 }
 
+function stopSpeechRecognition(){
+  if(speechRecognition&&recognitionActive){
+    try{speechRecognition.stop();}catch(e){}
+  }
+  recognitionActive=false;
+}
+
+function startSpeechRecognition(){
+  const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+  const answer=document.getElementById('speakingAnswer');
+  if(!Recognition||!answer){
+    setRecordMessage('녹음은 정상적으로 진행됩니다. 다만 이 브라우저는 음성의 자동 텍스트 변환을 지원하지 않아 아래 칸에 직접 입력해야 합니다.');
+    return false;
+  }
+  recognitionFinalText='';
+  answer.value='';
+  speechRecognition=new Recognition();
+  speechRecognition.lang='ko-KR';
+  speechRecognition.continuous=true;
+  speechRecognition.interimResults=true;
+  speechRecognition.maxAlternatives=1;
+  speechRecognition.onstart=()=>{recognitionActive=true;};
+  speechRecognition.onresult=e=>{
+    let interim='';
+    for(let i=e.resultIndex;i<e.results.length;i++){
+      const text=e.results[i][0].transcript;
+      if(e.results[i].isFinal) recognitionFinalText+=(recognitionFinalText?' ':'')+text.trim();
+      else interim+=text;
+    }
+    answer.value=(recognitionFinalText+(interim?' '+interim:'')).trim();
+    answer.scrollTop=answer.scrollHeight;
+  };
+  speechRecognition.onerror=e=>{
+    recognitionActive=false;
+    if(e.error!=='aborted'&&e.error!=='no-speech'){
+      setRecordMessage('녹음은 저장되었지만 음성 자동 변환이 중단되었습니다. 녹음 재생을 들으며 텍스트를 직접 보완해 주세요.');
+    }
+  };
+  speechRecognition.onend=()=>{
+    recognitionActive=false;
+    if(answer&&recognitionFinalText)answer.value=recognitionFinalText.trim();
+  };
+  try{speechRecognition.start();return true;}catch(e){return false;}
+}
+
 function bindRecorder(){
   const startBtn=document.getElementById('startRecording');
   const stopBtn=document.getElementById('stopRecording');
@@ -307,6 +358,7 @@ function bindRecorder(){
       mediaRecorder.onstop=()=>{
         if(recordingTimerHandle){clearInterval(recordingTimerHandle);recordingTimerHandle=null;}
         if(mediaStream){mediaStream.getTracks().forEach(t=>t.stop());mediaStream=null;}
+        stopSpeechRecognition();
         if(recordedChunks.length){
           const blob=new Blob(recordedChunks,{type:mediaRecorder.mimeType||'audio/webm'});
           recordingUrl=URL.createObjectURL(blob);audio.src=recordingUrl;audio.hidden=false;
@@ -314,6 +366,7 @@ function bindRecorder(){
         }
       };
       mediaRecorder.start();
+      const recognitionStarted=startSpeechRecognition();
       recordingSeconds=0;time.textContent='00:00';status.textContent='녹음 중';status.classList.add('recording');
       startBtn.disabled=true;stopBtn.disabled=false;resetBtn.disabled=true;
       recordingTimerHandle=setInterval(()=>{
@@ -330,11 +383,14 @@ function bindRecorder(){
   };
   stopBtn.onclick=()=>{
     if(mediaRecorder&&mediaRecorder.state==='recording')mediaRecorder.stop();
+    stopSpeechRecognition();
     stopBtn.disabled=true;startBtn.disabled=false;
   };
   resetBtn.onclick=()=>{
     if(recordingUrl){URL.revokeObjectURL(recordingUrl);recordingUrl='';}
+    stopSpeechRecognition();speechRecognition=null;recognitionFinalText='';
     recordedChunks=[];audio.hidden=true;audio.removeAttribute('src');time.textContent='00:00';status.textContent='다시 녹음할 수 있습니다';status.classList.remove('recording');
+    const answer=document.getElementById('speakingAnswer');if(answer)answer.value='';
     resetBtn.disabled=true;startBtn.disabled=false;stopBtn.disabled=true;setRecordMessage('');
   };
 }
