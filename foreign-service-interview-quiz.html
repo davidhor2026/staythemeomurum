@@ -191,8 +191,7 @@ let timerHandle=null;
 let persistentMicStream=null;
 let activeRecorderSession=null;
 let recorderSessionId=0;
-let activeDictation=null;
-let dictationFinalText='';
+let recordingCooldownTimer=null;
 
 function stopTracks(stream){
   if(!stream)return;
@@ -241,29 +240,6 @@ function setRecordMessage(message){
   box.textContent=message||'';
 }
 
-function setDictationMessage(message){
-  const box=document.getElementById('dictationMessage');
-  if(!box)return;
-  box.hidden=!message;
-  box.textContent=message||'';
-}
-
-function stopDictation(clearHandlers=true){
-  const recognition=activeDictation;
-  activeDictation=null;
-  if(!recognition)return;
-  try{
-    if(clearHandlers){recognition.onresult=null;recognition.onerror=null;recognition.onend=null;}
-    recognition.stop();
-  }catch(e){
-    try{recognition.abort();}catch(ignore){}
-  }
-  const start=document.getElementById('startDictation');
-  const stop=document.getElementById('stopDictation');
-  if(start)start.disabled=false;
-  if(stop)stop.disabled=true;
-}
-
 function discardActiveRecording(){
   const session=activeRecorderSession;
   activeRecorderSession=null;
@@ -279,8 +255,10 @@ function discardActiveRecording(){
 function cleanupSpeakingMedia(){
   recorderSessionId++;
   if(timerHandle){clearInterval(timerHandle);timerHandle=null;}
-  stopDictation();
+  if(recordingCooldownTimer){clearInterval(recordingCooldownTimer);recordingCooldownTimer=null;}
   discardActiveRecording();
+  stopTracks(persistentMicStream);
+  persistentMicStream=null;
   const audio=document.getElementById('recordedAudio');
   if(audio){
     try{audio.pause();}catch(e){}
@@ -308,16 +286,11 @@ function renderSpeaking(){
       </div>
       <audio id="recordedAudio" class="record-audio" controls playsinline preload="metadata" hidden></audio>
       <div id="recordMessage" class="record-message" hidden></div>
-      <p class="record-help">모바일 반복 녹음의 안정성을 위해 녹음 중에는 텍스트 음성입력을 동시에 실행하지 않습니다. 녹음을 마친 뒤 아래의 텍스트 음성입력을 사용하거나 직접 수정해 주세요.</p>
+      <p class="record-help">모바일에서는 질문을 바꾼 직후 마이크가 완전히 해제되는 데 시간이 필요할 수 있습니다. 다음 질문으로 이동하면 약 3초 후 녹음 버튼이 자동으로 활성화됩니다.</p>
     </div>
-    <label for="speakingAnswer" class="speaking-answer-label">텍스트 답변 <small>(직접 입력 또는 별도 음성입력)</small></label>
-    <div class="speaking-record-controls">
-      <button type="button" id="startDictation" class="button light">🎤 텍스트 음성입력 시작</button>
-      <button type="button" id="stopDictation" class="button light" disabled>텍스트 음성입력 종료</button>
-    </div>
-    <div id="dictationMessage" class="record-message" hidden></div>
-    <textarea id="speakingAnswer" placeholder="녹음한 답변의 핵심 내용을 직접 입력하거나, 녹음 종료 후 텍스트 음성입력 버튼을 눌러 말한 내용을 받아 적을 수 있습니다."></textarea>
-    <p class="record-help">브라우저만으로 녹음 파일 자체를 안정적으로 자동 변환하는 기능은 모바일 지원 차이가 큽니다. 따라서 녹음과 텍스트 음성입력을 분리해 두 기능이 서로 마이크를 방해하지 않도록 했습니다.</p>
+    <label for="speakingAnswer" class="speaking-answer-label">텍스트 답변 <small>(직접 입력)</small></label>
+    <textarea id="speakingAnswer" placeholder="답변 내용을 텍스트로도 연습하려면 여기에 직접 입력해 주세요."></textarea>
+    <p class="record-help">음성의 자동 텍스트 변환 기능은 모바일 반복 녹음 안정화를 위해 임시로 제거했습니다.</p>
     <div class="speaking-tools"><button type="button" id="startTimer" class="button light">90초 답변 타이머</button><strong id="timerDisplay">01:30</strong></div>
     <div class="speaking-checklist speaking-self-review"><h3>녹음 후 자기평가</h3>${x.points.map(p=>'<label><input type="checkbox"> '+esc(p)+'</label>').join('')}</div>
     <button type="button" id="showModel" class="button sub">모범 답변 흐름 보기</button>
@@ -326,7 +299,7 @@ function renderSpeaking(){
   document.getElementById('showModel').onclick=()=>{document.getElementById('modelAnswer').hidden=false;};
   bindTimer();
   bindRecorder();
-  bindDictation();
+  startRecordingCooldown();
   document.getElementById('prevSpeaking').disabled=speakingIdx===0;
   document.getElementById('nextSpeaking').textContent=speakingIdx===speakingQuestions.length-1?'처음으로':'다음 질문';
 }
@@ -384,7 +357,6 @@ function bindRecorder(){
   }
 
   async function beginRecording(){
-    stopDictation();
     discardActiveRecording();
     const session={id:++recorderSessionId,chunks:[],recorder:null,timer:null,seconds:0,url:'',discard:false,mimeType:''};
     activeRecorderSession=session;
@@ -445,62 +417,30 @@ function bindRecorder(){
   };
 }
 
-function bindDictation(){
-  const startBtn=document.getElementById('startDictation');
-  const stopBtn=document.getElementById('stopDictation');
-  const answer=document.getElementById('speakingAnswer');
-  const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!Recognition){
-    startBtn.disabled=true;
-    setDictationMessage('이 브라우저는 텍스트 음성입력을 지원하지 않습니다. 답변을 직접 입력해 주세요.');
-    return;
-  }
-  startBtn.onclick=()=>{
-    if(activeRecorderSession&&activeRecorderSession.recorder&&activeRecorderSession.recorder.state==='recording'){
-      setDictationMessage('녹음을 먼저 종료한 뒤 텍스트 음성입력을 시작해 주세요.');
+function startRecordingCooldown(){
+  const startBtn=document.getElementById('startRecording');
+  const status=document.getElementById('recordStatus');
+  if(!startBtn||!status)return;
+  let remain=3;
+  startBtn.disabled=true;
+  status.textContent='마이크 안정화 중 · '+remain+'초';
+  setRecordMessage('이전 질문의 마이크를 완전히 해제하고 있습니다. 잠시 후 녹음을 시작해 주세요.');
+  if(recordingCooldownTimer)clearInterval(recordingCooldownTimer);
+  recordingCooldownTimer=setInterval(()=>{
+    remain--;
+    if(remain>0){
+      status.textContent='마이크 안정화 중 · '+remain+'초';
       return;
     }
-    stopDictation();
-    dictationFinalText=answer.value.trim();
-    const recognition=new Recognition();
-    activeDictation=recognition;
-    recognition.lang='ko-KR';
-    recognition.continuous=true;
-    recognition.interimResults=true;
-    recognition.maxAlternatives=1;
-    recognition.onresult=e=>{
-      if(activeDictation!==recognition)return;
-      let interim='';
-      for(let i=e.resultIndex;i<e.results.length;i++){
-        const text=e.results[i][0].transcript.trim();
-        if(e.results[i].isFinal)dictationFinalText+=(dictationFinalText?' ':'')+text;
-        else interim+=(interim?' ':'')+text;
-      }
-      answer.value=(dictationFinalText+(interim?' '+interim:'')).trim();
-      answer.scrollTop=answer.scrollHeight;
-    };
-    recognition.onerror=e=>{
-      if(activeDictation!==recognition)return;
-      if(e.error!=='aborted'&&e.error!=='no-speech')setDictationMessage('음성입력이 중단되었습니다. 직접 입력하거나 다시 시작해 주세요.');
-    };
-    recognition.onend=()=>{
-      if(activeDictation===recognition){activeDictation=null;startBtn.disabled=false;stopBtn.disabled=true;}
-    };
-    try{
-      recognition.start();
-      startBtn.disabled=true;stopBtn.disabled=false;
-      setDictationMessage('텍스트 음성입력 중입니다. 녹음한 답변을 다시 말하거나 핵심 내용을 말해 주세요.');
-    }catch(e){
-      activeDictation=null;
-      startBtn.disabled=false;stopBtn.disabled=true;
-      setDictationMessage('음성입력을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.');
-    }
-  };
-  stopBtn.onclick=()=>{stopDictation(false);setDictationMessage('텍스트 음성입력을 종료했습니다. 인식된 문장을 직접 수정할 수 있습니다.');};
+    clearInterval(recordingCooldownTimer);
+    recordingCooldownTimer=null;
+    status.textContent='녹음 대기';
+    startBtn.disabled=false;
+    setRecordMessage('');
+  },1000);
 }
 
 window.addEventListener('pagehide',()=>{
-  stopDictation();
   discardActiveRecording();
   stopTracks(persistentMicStream);
   persistentMicStream=null;
@@ -513,5 +453,5 @@ document.querySelectorAll('.interview-mode-button').forEach(btn=>btn.addEventLis
 document.getElementById('year').textContent=new Date().getFullYear();render();renderSpeaking();
 </script>
 
-<script src="site-updates.js?v=20260715-2"></script>
+<script src="site-updates.js?v=20260715-3"></script>
 </body></html>
