@@ -191,7 +191,6 @@ next.onclick=()=>{if(idx<activeQuestions.length-1){idx++;render();host.scrollInt
 restart.onclick=resetQuizState;
 document.querySelectorAll('[data-level]').forEach(b=>b.onclick=()=>setQuizLevel(b.dataset.level));
 let timerHandle=null;
-let prepTimerHandle=null;
 let mediaRecorder=null;
 let mediaStream=null;
 let recordedChunks=[];
@@ -204,13 +203,14 @@ let recognitionActive=false;
 
 function cleanupSpeakingMedia(){
   if(timerHandle){clearInterval(timerHandle);timerHandle=null;}
-  if(prepTimerHandle){clearInterval(prepTimerHandle);prepTimerHandle=null;}
   if(recordingTimerHandle){clearInterval(recordingTimerHandle);recordingTimerHandle=null;}
   if(mediaRecorder&&mediaRecorder.state!=='inactive'){try{mediaRecorder.stop();}catch(e){}}
   if(speechRecognition&&recognitionActive){try{speechRecognition.stop();}catch(e){}}
   speechRecognition=null;recognitionActive=false;recognitionFinalText='';
   if(mediaStream){mediaStream.getTracks().forEach(t=>t.stop());mediaStream=null;}
   mediaRecorder=null;
+  const audio=document.getElementById('recordedAudio');
+  if(audio){try{audio.pause();}catch(e){} audio.removeAttribute('src');audio.load();audio.hidden=true;}
   if(recordingUrl){URL.revokeObjectURL(recordingUrl);recordingUrl='';}
 }
 
@@ -227,7 +227,6 @@ function renderSpeaking(){
   document.getElementById('speakingHost').innerHTML=`<article class="speaking-question-card">
     <div class="interview-question-labels"><span class="quiz-tag">${esc(x.tag)}</span><span class="evidence-type evidence-inline ${evidenceClass(x.sourceType)}">${esc(x.sourceType)}</span></div>
     <p class="speaking-prompt">${esc(x.prompt)}</p>
-    <div class="speaking-prep-box"><button type="button" id="startPrepTimer" class="button light">30초 준비 시작</button><strong id="prepTimerDisplay">00:30</strong></div>
     <div class="speaking-record-box">
       <div class="speaking-record-head"><h3>마이크 답변 녹음</h3><span id="recordStatus" class="record-status">녹음 대기</span></div>
       <div class="speaking-record-controls">
@@ -249,23 +248,10 @@ function renderSpeaking(){
     <div id="modelAnswer" class="model-answer" hidden><h3>모범 답변 흐름</h3><p>${esc(x.model)}</p><h3>예상 꼬리질문</h3><ul>${x.follow.map(q=>'<li>'+esc(q)+'</li>').join('')}</ul></div>
   </article>`;
   document.getElementById('showModel').onclick=()=>{document.getElementById('modelAnswer').hidden=false;};
-  bindPrepTimer();
   bindTimer();
   bindRecorder();
   document.getElementById('prevSpeaking').disabled=speakingIdx===0;
   document.getElementById('nextSpeaking').textContent=speakingIdx===speakingQuestions.length-1?'처음으로':'다음 질문';
-}
-
-function bindPrepTimer(){
-  const btn=document.getElementById('startPrepTimer'),display=document.getElementById('prepTimerDisplay');
-  btn.onclick=()=>{
-    if(prepTimerHandle)clearInterval(prepTimerHandle);
-    let remain=30;display.textContent='00:30';btn.textContent='준비 다시 시작';
-    prepTimerHandle=setInterval(()=>{
-      remain--;display.textContent=formatClock(remain);
-      if(remain<=0){clearInterval(prepTimerHandle);prepTimerHandle=null;display.textContent='답변 시작';document.getElementById('startRecording').focus();}
-    },1000);
-  };
 }
 
 function bindTimer(){
@@ -347,23 +333,37 @@ function bindRecorder(){
   startBtn.onclick=async()=>{
     try{
       setRecordMessage('');
+      try{audio.pause();}catch(e){}
+      audio.removeAttribute('src');audio.load();audio.hidden=true;
       if(recordingUrl){URL.revokeObjectURL(recordingUrl);recordingUrl='';}
-      audio.hidden=true;audio.removeAttribute('src');
+      if(mediaStream){mediaStream.getTracks().forEach(t=>t.stop());mediaStream=null;}
+      mediaRecorder=null;
       mediaStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});
       recordedChunks=[];
       const preferred=['audio/webm;codecs=opus','audio/webm','audio/mp4'];
       const mimeType=preferred.find(t=>MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t));
       mediaRecorder=mimeType?new MediaRecorder(mediaStream,{mimeType}):new MediaRecorder(mediaStream);
       mediaRecorder.ondataavailable=e=>{if(e.data&&e.data.size>0)recordedChunks.push(e.data);};
-      mediaRecorder.onstop=()=>{
+      const currentRecorder=mediaRecorder;
+      currentRecorder.onstop=()=>{
         if(recordingTimerHandle){clearInterval(recordingTimerHandle);recordingTimerHandle=null;}
         if(mediaStream){mediaStream.getTracks().forEach(t=>t.stop());mediaStream=null;}
         stopSpeechRecognition();
-        if(recordedChunks.length){
-          const blob=new Blob(recordedChunks,{type:mediaRecorder.mimeType||'audio/webm'});
-          recordingUrl=URL.createObjectURL(blob);audio.src=recordingUrl;audio.hidden=false;
+        const chunks=recordedChunks.slice();
+        recordedChunks=[];
+        if(chunks.length){
+          const recorderType=currentRecorder.mimeType||chunks[0].type||'audio/webm';
+          const blob=new Blob(chunks,{type:recorderType});
+          recordingUrl=URL.createObjectURL(blob);
+          audio.src=recordingUrl;audio.hidden=false;audio.load();
+          audio.onerror=()=>setRecordMessage('재생 파일을 불러오지 못했습니다. 다시 녹음해 주세요. Chrome 또는 Edge 최신 버전 사용을 권장합니다.');
           status.textContent='녹음 완료 · 재생해 보세요';status.classList.remove('recording');resetBtn.disabled=false;
+        }else{
+          status.textContent='녹음 데이터 없음';status.classList.remove('recording');
+          setRecordMessage('녹음 데이터가 생성되지 않았습니다. 마이크 연결을 확인한 뒤 다시 녹음해 주세요.');
+          resetBtn.disabled=false;
         }
+        if(mediaRecorder===currentRecorder)mediaRecorder=null;
       };
       mediaRecorder.start();
       const recognitionStarted=startSpeechRecognition();
@@ -387,9 +387,13 @@ function bindRecorder(){
     stopBtn.disabled=true;startBtn.disabled=false;
   };
   resetBtn.onclick=()=>{
+    try{audio.pause();}catch(e){}
+    audio.removeAttribute('src');audio.load();audio.hidden=true;
     if(recordingUrl){URL.revokeObjectURL(recordingUrl);recordingUrl='';}
+    if(mediaStream){mediaStream.getTracks().forEach(t=>t.stop());mediaStream=null;}
+    mediaRecorder=null;
     stopSpeechRecognition();speechRecognition=null;recognitionFinalText='';
-    recordedChunks=[];audio.hidden=true;audio.removeAttribute('src');time.textContent='00:00';status.textContent='다시 녹음할 수 있습니다';status.classList.remove('recording');
+    recordedChunks=[];time.textContent='00:00';status.textContent='다시 녹음할 수 있습니다';status.classList.remove('recording');
     const answer=document.getElementById('speakingAnswer');if(answer)answer.value='';
     resetBtn.disabled=true;startBtn.disabled=false;stopBtn.disabled=true;setRecordMessage('');
   };
