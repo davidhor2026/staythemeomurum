@@ -6,24 +6,24 @@ window.SITE_UPDATES = {
    * 하위 페이지가 갱신되면 groups의 상위 메뉴에도 NEW가 자동 전파됩니다.
    */
   pages: {
-    'index.html': { key: 'home', updated: '' },
+    'index.html': { key: 'home', updated: '2026-07-15', expires: '2026-07-28' },
     'rooms.html': { key: 'rooms', updated: '' },
     'facilities.html': { key: 'facilities', updated: '' },
     'reviews.html': { key: 'reviews', updated: '' },
     'review-check.html': { key: 'reviewCheck', updated: '' },
-    'faq.html': { key: 'faq', updated: '' },
+    'faq.html': { key: 'faq', updated: '2026-07-15', expires: '2026-07-23' },
     'quiz.html': { key: 'quizHub', updated: '2026-07-15' },
     'psat-ncs-quiz.html': { key: 'psatNcsQuiz', updated: '2026-07-15' },
     'korean-history-advanced-quiz.html': { key: 'historyQuiz', updated: '2026-07-15' },
     'foreign-service-interview-quiz.html': { key: 'foreignInterviewQuiz', updated: '2026-07-15' },
-    'exam-insight.html': { key: 'examInsight', updated: '2026-07-15' },
-    'exam-schedule.html': { key: 'examSchedule', updated: '2026-07-14' },
+    'exam-insight.html': { key: 'examInsight', updated: '2026-07-15', expires: '2026-07-23' },
+    'exam-schedule.html': { key: 'examSchedule', updated: '2026-07-15', expires: '2026-07-28' },
     'games.html': { key: 'games', updated: '' },
     'fortune.html': { key: 'fortune', updated: '' },
     'knowledge.html': { key: 'knowledge', updated: '' },
     'word-roots.html': { key: 'wordRoots', updated: '' },
     'career-benefits.html': { key: 'careerBenefits', updated: '' },
-    'rent-support.html': { key: 'rentSupport', updated: '' },
+    'rent-support.html': { key: 'rentSupport', updated: '2026-07-15', expires: '2026-07-23' },
     'gift.html': { key: 'gift', updated: '' },
     'checkin-guide.html': { key: 'checkinGuide', updated: '' },
     'checkout-guide.html': { key: 'checkoutGuide', updated: '' }
@@ -74,7 +74,13 @@ window.SITE_UPDATES = {
     if (!item || !item.updated) return null;
     var updated = new Date(item.updated + 'T00:00:00+09:00');
     var age = Math.floor((today - updated) / 86400000);
-    if (isNaN(age) || age < 0 || age >= displayDays) return null;
+    if (isNaN(age) || age < 0) return null;
+    if (item.expires) {
+      var expires = new Date(item.expires + 'T00:00:00+09:00');
+      if (isNaN(expires.getTime()) || today >= expires) return null;
+    } else if (age >= displayDays) {
+      return null;
+    }
     return { href: href, key: item.key || href, updated: item.updated, age: age };
   }
 
