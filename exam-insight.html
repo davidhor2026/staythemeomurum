@@ -80,9 +80,25 @@
 @media (max-width:360px){
   .exam-category-nav{grid-template-columns:1fr;}
 }
+
+.exam-progress-board{margin:16px 0 14px;padding:16px;border:1px solid #dce7d7;border-radius:15px;background:#f8fbf6}
+.exam-progress-board>strong,.exam-pending-board>strong{display:block;margin-bottom:10px;color:#2f3b2f;font-size:15px}
+.exam-progress-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.exam-progress-item{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:10px;background:#fff;border:1px solid #e4eadf;font-size:13px}
+.exam-progress-state{flex:0 0 auto;min-width:38px;padding:3px 7px;border-radius:999px;text-align:center;font-size:10px;font-weight:800;background:#eef3eb;color:#42503d}
+.exam-progress-state.is-complete,.exam-progress-state.is-public{background:#e4f3e8;color:#23643a}
+.exam-progress-state.is-active{background:#fff1d8;color:#8a5a00}
+.exam-progress-state.is-wait{background:#edf3fb;color:#315e8b}
+.exam-pending-board{margin:14px 0;padding:15px;border-radius:14px;background:#f7f9fc;border:1px solid #dce5f0}
+.exam-pending-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.exam-pending-item{padding:10px;border-radius:10px;background:#fff;border:1px solid #e2e8f0}
+.exam-pending-item strong{display:block;color:#274d73;font-size:13px}.exam-pending-item span{display:block;margin-top:2px;color:#6a7480;font-size:12px}
+.exam-analysis-notice{margin:12px 0 0;padding:12px 14px;border-left:4px solid #6b8064;border-radius:8px;background:#f3f6f1;color:#465043;font-size:13px;line-height:1.65}
+@media(max-width:640px){.exam-progress-list,.exam-pending-grid{grid-template-columns:1fr}.exam-progress-board,.exam-pending-board{padding:13px}}
+
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"2026 법원직 9급 시험분석: 합격선·커트라인·경쟁률·민법 난이도","description":"2026 법원직 9급 필기 합격선과 최근 3년 추이, 과목별 난이도, 면접 일정을 정리한 수험생용 분석 자료","dateModified":"2026-07-14","author":{"@type":"Organization","name":"스테이The머무름"},"publisher":{"@type":"Organization","name":"스테이The머무름"},"mainEntityOfPage":"https://davidhor2026.github.io/staythemeomurum/exam-insight.html"}
+{"@context":"https://schema.org","@type":"Article","headline":"2026 법원직 9급 시험분석: 합격선·커트라인·경쟁률·민법 난이도","description":"2026 법원직 9급 필기 합격선과 최근 3년 추이, 과목별 난이도, 면접 일정을 정리한 수험생용 분석 자료","dateModified":"2026-07-18","author":{"@type":"Organization","name":"스테이The머무름"},"publisher":{"@type":"Organization","name":"스테이The머무름"},"mainEntityOfPage":"https://davidhor2026.github.io/staythemeomurum/exam-insight.html"}
 </script>
 </head>
 <body>
@@ -116,17 +132,18 @@
     <p>이 페이지는 <strong>2026 공무원 경쟁률, 국가직 9급 난이도, 지방직 9급 난이도, 경찰공무원 시험 난이도, 소방공무원 시험 난이도, 법원직 시험 난이도, 임용고시 경쟁률, 2027 공무원 시험 전망</strong>을 중심으로 정리했습니다. 공식 경쟁률은 공개자료를 기준으로, 난이도와 합격선 전망은 학원가·수험 포털·커뮤니티 반응을 종합한 <strong>수험생용 분석</strong>입니다.</p>
   </section>
 
-  <section class="analysis-update-box" aria-label="지방직 9급 최신 발표 안내">
-    <span class="exam-eyebrow">LATEST UPDATE</span>
-    <h2>2026 지방직 9급 지역별 필기 합격자·면접 일정 발표 중</h2>
-    <p>광주·전남·부산·울산·경남·강원 등에서 필기 합격자와 면접 시행계획이 순차 발표되고 있습니다. 면접 등록, 서류 제출, 인성검사 일정은 지역마다 다르므로 지원 지역의 공식 공고를 먼저 확인해야 합니다.</p>
-    <p class="exam-small-note">※ 합격선과 직렬별 경쟁률은 지역별 첨부 공고를 직접 확인한 뒤 이 페이지에 순차적으로 누적합니다.</p>
-    <a class="exam-deep-link" href="exam-schedule.html#local9">지방직 9급 일정 확인</a>
+  <section class="analysis-update-box" aria-label="국가직 7급 외무영사직 최신 시험분석 안내">
+    <span class="exam-eyebrow">LATEST UPDATE · 2026. 7. 18.</span>
+    <h2>국가직 7급·외무영사직 제1차 PSAT 시행 완료</h2>
+    <p>7월 18일 제1차시험이 시행됐으며 공식 문제와 정답가안이 공개됐습니다. 현재는 가채점과 정답 이의제기 단계이며, 최종정답 확정 뒤 제1차시험 합격자는 8월 19일 발표될 예정입니다.</p>
+    <p class="exam-small-note">※ 시험 직후의 체감 난도나 예상 합격선은 아직 자료가 충분하지 않습니다. 언어논리·자료해석·상황판단 영역별 분석과 예상 합격선은 신뢰할 수 있는 자료가 모이는 순서대로 업데이트합니다.</p>
+    <a class="exam-deep-link" href="#exam-card-national7">국가직 7급 진행 현황 보기</a>
+    <a class="exam-deep-link" href="#exam-card-foreign7">외무영사직 진행 현황 보기</a>
   </section>
 
   <section class="insight-category-hub" id="exam-category-hub">
     <div class="insight-hub-head">
-      <div><span class="exam-eyebrow">직렬별 시험분석 바로가기</span><h2>관심 있는 시험을 바로 확인하세요</h2><p>가장 최근에 치른 시험에는 <strong>최근 시험</strong>, 최근 7일 안에 내용이 갱신된 직렬에는 <strong>NEW</strong>가 표시됩니다.</p></div>
+      <div><span class="exam-eyebrow">직렬별 시험분석 바로가기</span><h2>관심 있는 시험을 바로 확인하세요</h2><p>가장 최근에 치른 시험과 실제 분석 내용이 갱신된 직렬을 먼저 배치합니다. 직렬 버튼에는 필요한 표시만 한 번씩 보여 줍니다.</p></div>
       <a class="button light" href="exam-schedule.html">시험일정 보기</a>
     </div>
     <div id="examRecentHighlight" class="exam-recent-highlight" aria-live="polite"></div>
@@ -444,7 +461,7 @@
   노량진 여성전용 고시원 · 수험생을 위한 생활과 학습 콘텐츠
 </footer>
 
-<script src="exam-insight-nav-data.js"></script>
+<script src="exam-insight-nav-data.js?v=20260718-2"></script>
 <script src="cutoff-data.js"></script>
 <script src="exam-analysis-data.js"></script>
 <script>
@@ -517,7 +534,22 @@
   var recent=list.filter(function(x){return recentIds[x.id];});
   recentRoot.innerHTML='<div class="recent-highlight-label">최근 실시 시험</div><div class="recent-highlight-content"><strong>'+recent.map(function(x){return esc(x.label);}).join(' · ')+'</strong><span>'+esc(recent[0].examDate.replace(/-/g,'. '))+'. 시행 · 최신 분석을 먼저 배치했습니다.</span></div>';
   nav.innerHTML=list.map(function(x){var target='exam-card-'+esc(x.id);return '<a class="exam-category-nav-button" href="#'+target+'" data-target="'+target+'">'+(recentIds[x.id]?'<span class="exam-recent-badge">최근 시험</span>':'')+(isNew(x)?'<span class="exam-category-new">NEW</span>':'')+'<span>'+esc(x.label)+'</span></a>';}).join('');
-  cards.innerHTML=list.map(function(x,i){var metrics=(x.metrics||[]).map(function(m){return '<div><span>'+esc(m[0])+'</span><strong>'+esc(m[1])+'</strong></div>';}).join('');var details=(x.details||[]).map(function(d){return '<li>'+esc(d)+'</li>';}).join('');return '<article class="exam-category-card '+(recentIds[x.id]?'is-recent':'')+'" id="exam-card-'+esc(x.id)+'"><div class="exam-category-card-head"><div>'+(recentIds[x.id]?'<span class="exam-recent-badge exam-recent-badge--inline">최근 시험</span>':'')+(isNew(x)?'<span class="exam-category-new exam-category-new--inline">NEW</span>':'')+'<h3>'+esc(x.headline)+'</h3><p>'+esc(x.summary)+'</p></div><button type="button" class="exam-detail-toggle" aria-expanded="'+(i===0?'true':'false')+'" aria-controls="exam-detail-'+esc(x.id)+'">'+(i===0?'닫기':'상세 분석 펼치기')+'</button></div><div class="exam-category-metrics">'+metrics+'</div><div class="exam-category-detail '+(i===0?'is-open':'')+'" id="exam-detail-'+esc(x.id)+'"><div class="exam-category-status"><strong>현재 상태</strong><span>'+esc(x.status)+'</span></div><ul>'+details+'</ul><a class="exam-deep-link" href="'+esc(x.link||'#')+'">관련 심층자료로 이동</a></div></article>';}).join('');
+  function progressClass(state){
+    if(state==='완료')return 'is-complete';
+    if(state==='공개')return 'is-public';
+    if(state==='진행')return 'is-active';
+    return 'is-wait';
+  }
+  cards.innerHTML=list.map(function(x,i){
+    var metrics=(x.metrics||[]).map(function(m){return '<div><span>'+esc(m[0])+'</span><strong>'+esc(m[1])+'</strong></div>';}).join('');
+    var details=(x.details||[]).map(function(d){return '<li>'+esc(d)+'</li>';}).join('');
+    var progress=(x.progress||[]).map(function(p){return '<div class="exam-progress-item"><span class="exam-progress-state '+progressClass(p[0])+'">'+esc(p[0])+'</span><span>'+esc(p[1])+'</span></div>';}).join('');
+    var pending=(x.analysisPending||[]).map(function(p){return '<div class="exam-pending-item"><strong>'+esc(p[0])+'</strong><span>'+esc(p[1])+'</span></div>';}).join('');
+    var dashboard=progress?'<div class="exam-progress-board"><strong>시험 진행 현황</strong><div class="exam-progress-list">'+progress+'</div></div>':'';
+    var pendingBoard=pending?'<div class="exam-pending-board"><strong>앞으로 추가할 시험분석</strong><div class="exam-pending-grid">'+pending+'</div></div>':'';
+    var notice=x.analysisNotice?'<p class="exam-analysis-notice">'+esc(x.analysisNotice)+'</p>':'';
+    return '<article class="exam-category-card '+(recentIds[x.id]?'is-recent':'')+'" id="exam-card-'+esc(x.id)+'"><div class="exam-category-card-head"><div>'+(recentIds[x.id]?'<span class="exam-recent-badge exam-recent-badge--inline">최근 시험</span>':'')+(isNew(x)?'<span class="exam-category-new exam-category-new--inline">NEW</span>':'')+'<h3>'+esc(x.headline)+'</h3><p>'+esc(x.summary)+'</p></div><button type="button" class="exam-detail-toggle" aria-expanded="'+(i===0?'true':'false')+'" aria-controls="exam-detail-'+esc(x.id)+'">'+(i===0?'닫기':'상세 분석 펼치기')+'</button></div><div class="exam-category-metrics">'+metrics+'</div><div class="exam-category-detail '+(i===0?'is-open':'')+'" id="exam-detail-'+esc(x.id)+'"><div class="exam-category-status"><strong>현재 상태</strong><span>'+esc(x.status)+'</span></div>'+dashboard+pendingBoard+notice+'<ul>'+details+'</ul><a class="exam-deep-link" href="'+esc(x.link||'#')+'">관련 심층자료로 이동</a></div></article>';
+  }).join('');
   function openCard(id){var card=document.getElementById(id);if(!card)return;var detail=card.querySelector('.exam-category-detail');var btn=card.querySelector('.exam-detail-toggle');if(detail&&!detail.classList.contains('is-open')){detail.classList.add('is-open');if(btn){btn.setAttribute('aria-expanded','true');btn.textContent='닫기';}}card.scrollIntoView({behavior:'smooth',block:'start'});}
   nav.addEventListener('click',function(e){var b=e.target.closest?e.target.closest('a[data-target]'):null;if(!b)return;e.preventDefault();var target=b.getAttribute('data-target');openCard(target);if(history.replaceState)history.replaceState(null,'','#'+target);else location.hash=target;});
   if(location.hash&&location.hash.indexOf('#exam-card-')===0){setTimeout(function(){openCard(location.hash.slice(1));},0);}
@@ -526,6 +558,6 @@
 </script>
 
 
-<script src="site-updates.js?v=20260715-3"></script>
+<script src="site-updates.js?v=20260718-2"></script>
 </body>
 </html>
