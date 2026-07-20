@@ -461,7 +461,7 @@
   노량진 여성전용 고시원 · 수험생을 위한 생활과 학습 콘텐츠
 </footer>
 
-<script src="exam-insight-nav-data.js?v=20260718-2"></script>
+<script src="exam-insight-nav-data.js?v=20260720-1"></script>
 <script src="cutoff-data.js"></script>
 <script src="exam-analysis-data.js"></script>
 <script>
@@ -530,7 +530,18 @@
   var latestTime=Math.max.apply(null,past.map(function(x){return dayStart(x.examDate).getTime();}));
   var recentIds={};past.forEach(function(x){if(dayStart(x.examDate).getTime()===latestTime)recentIds[x.id]=true;});
   function isNew(x){var d=dayStart(x.updatedAt);if(!d)return false;var diff=Math.floor((today-d)/86400000);return diff>=0&&diff<(x.newDays||7);}
-  list.sort(function(a,b){var ar=recentIds[a.id]?1:0,br=recentIds[b.id]?1:0;if(ar!==br)return br-ar;var ad=dayStart(a.examDate),bd=dayStart(b.examDate);return (bd?bd.getTime():0)-(ad?ad.getTime():0);});
+  list.sort(function(a,b){
+    var an=isNew(a)?1:0,bn=isNew(b)?1:0;
+    if(an!==bn)return bn-an;
+    if(an&&bn){var au=dayStart(a.updatedAt),bu=dayStart(b.updatedAt);if(au&&bu&&au.getTime()!==bu.getTime())return bu-au;}
+    var ar=recentIds[a.id]?1:0,br=recentIds[b.id]?1:0;
+    if(ar!==br)return br-ar;
+    var ad=dayStart(a.examDate),bd=dayStart(b.examDate);
+    var af=ad&&ad>=today,bf=bd&&bd>=today;
+    if(af!==bf)return af?-1:1;
+    if(af&&bf)return ad-bd;
+    return (bd?bd.getTime():0)-(ad?ad.getTime():0);
+  });
   var recent=list.filter(function(x){return recentIds[x.id];});
   recentRoot.innerHTML='<div class="recent-highlight-label">최근 실시 시험</div><div class="recent-highlight-content"><strong>'+recent.map(function(x){return esc(x.label);}).join(' · ')+'</strong><span>'+esc(recent[0].examDate.replace(/-/g,'. '))+'. 시행 · 최신 분석을 먼저 배치했습니다.</span></div>';
   nav.innerHTML=list.map(function(x){var target='exam-card-'+esc(x.id);return '<a class="exam-category-nav-button" href="#'+target+'" data-target="'+target+'">'+(recentIds[x.id]?'<span class="exam-recent-badge">최근 시험</span>':'')+(isNew(x)?'<span class="exam-category-new">NEW</span>':'')+'<span>'+esc(x.label)+'</span></a>';}).join('');
@@ -558,6 +569,6 @@
 </script>
 
 
-<script src="site-updates.js?v=20260718-2"></script>
+<script src="site-updates.js?v=20260720-1"></script>
 </body>
 </html>

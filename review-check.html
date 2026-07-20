@@ -16,5 +16,5 @@ var area=document.getElementById('appArea');
 if(REVIEW_WEB_APP_URL.indexOf('PASTE_')===0){area.innerHTML='<div class="setup-box"><strong>후기 시스템 연결 전입니다.</strong><p>Apps Script를 웹 앱으로 배포한 뒤 이 파일의 REVIEW_WEB_APP_URL에 /exec 주소를 입력해 주세요.</p></div>';}else{var mode=new URLSearchParams(location.search).get('mode')||'write';var iframe=document.createElement('iframe');iframe.className='review-app-frame';iframe.title='스테이The머무름 후기 시스템';iframe.src=REVIEW_WEB_APP_URL+'?mode='+encodeURIComponent(mode);area.appendChild(iframe);}document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 
-<script src="site-updates.js?v=20260715-3"></script>
+<script src="site-updates.js?v=20260720-1"></script>
 </body></html>

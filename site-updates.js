@@ -6,7 +6,7 @@ window.SITE_UPDATES = {
    * 하위 페이지가 갱신되면 groups의 상위 메뉴에도 NEW가 자동 전파됩니다.
    */
   pages: {
-    'index.html': { key: 'home', updated: '2026-07-18', expires: '2026-07-26' },
+    'index.html': { key: 'home', updated: '2026-07-20', expires: '2026-07-28' },
     'rooms.html': { key: 'rooms', updated: '' },
     'facilities.html': { key: 'facilities', updated: '' },
     'reviews.html': { key: 'reviews', updated: '' },
@@ -16,8 +16,8 @@ window.SITE_UPDATES = {
     'psat-ncs-quiz.html': { key: 'psatNcsQuiz', updated: '2026-07-15' },
     'korean-history-advanced-quiz.html': { key: 'historyQuiz', updated: '2026-07-15' },
     'foreign-service-interview-quiz.html': { key: 'foreignInterviewQuiz', updated: '2026-07-15' },
-    'exam-insight.html': { key: 'examInsight', updated: '2026-07-18', expires: '2026-07-26' },
-    'exam-schedule.html': { key: 'examSchedule', updated: '2026-07-18', expires: '2026-07-26' },
+    'exam-insight.html': { key: 'examInsight', updated: '2026-07-20', expires: '2026-07-28' },
+    'exam-schedule.html': { key: 'examSchedule', updated: '2026-07-20', expires: '2026-07-28' },
     'games.html': { key: 'games', updated: '' },
     'fortune.html': { key: 'fortune', updated: '' },
     'knowledge.html': { key: 'knowledge', updated: '' },
@@ -146,4 +146,4 @@ window.SITE_UPDATES = {
   observer.observe(document.documentElement, { childList: true, subtree: true });
 })();
 
-// dashboard-final-20260718
+// local7-registration-20260720
