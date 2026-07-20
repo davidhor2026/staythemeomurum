@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>2026 공무원 시험일정·7급 외무영사직·법원직 면접 일정 | 스테이The머무름</title>
 <meta name="description" content="2026 국가직·지방직 7급·9급, 7급 외무영사직, 법원직 9급 인성검사·면접·최종합격 발표, 검찰직·경찰·소방·교육행정·교원임용 시험일정을 정리했습니다.">
 <meta name="keywords" content="2026 공무원 시험일정, 7급 외무영사직 시험일정, 외무영사직 PSAT, 외무영사직 2차시험, 법원직 9급 면접 일정, 법원직 최종합격 발표, 국가직 9급, 검찰직, 국가직 7급, 지방직 9급, 지방직 7급, 경찰공무원, 소방공무원, 교육행정, 교원임용, 노량진 시험일정">
@@ -105,7 +108,7 @@ body{background:#f7f5f0;color:#2f332d;}
 
 <main class="exam-wrap">
   <section class="notice">
-    <strong>검토 기준일: 2026년 7월 20일</strong><br>
+    <strong id="exam-review-date">검토 기준일: 2026년 7월 20일</strong><br>
     이 페이지는 수험생 편의를 위한 요약 안내입니다. 공식 기관 공고에 공개된 날짜는 최대한 세부 전형까지 반영했고, 지역·분야별로 달라지는 일정은 “공고 확인”으로 표시했습니다.
   </section>
 
@@ -483,8 +486,10 @@ body{background:#f7f5f0;color:#2f332d;}
 </footer>
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
+const examReviewDate = document.getElementById('exam-review-date');
+if (examReviewDate) examReviewDate.textContent = '검토 기준일: 2026년 7월 20일';
 </script>
 
-<script src="site-updates.js?v=20260720-1"></script>
+<script src="site-updates.js?v=20260720-2"></script>
 </body>
 </html>
