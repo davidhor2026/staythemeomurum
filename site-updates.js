@@ -22,8 +22,8 @@ window.SITE_UPDATES = {
     'fortune.html': { key: 'fortune', updated: '' },
     'knowledge.html': { key: 'knowledge', updated: '' },
     'word-roots.html': { key: 'wordRoots', updated: '' },
-    'career-benefits.html': { key: 'careerBenefits', updated: '' },
-    'rent-support.html': { key: 'rentSupport', updated: '2026-07-18', expires: '2026-07-26' },
+    'career-benefits.html': { key: 'careerBenefits', updated: '2026-07-23', expires: '2026-08-12' },
+    'rent-support.html': { key: 'rentSupport', updated: '2026-07-23', expires: '2026-07-31' },
     'gift.html': { key: 'gift', updated: '' },
     'checkin-guide.html': { key: 'checkinGuide', updated: '' },
     'checkout-guide.html': { key: 'checkoutGuide', updated: '' }
@@ -151,3 +151,5 @@ window.SITE_UPDATES = {
 // police-superintendent-76-exam-venue-20260721
 
 // seoul-education-9-pass-interview-20260722
+
+// student-support-and-seoul-rent-status-20260723
