@@ -241,7 +241,7 @@
 </div>
 </section>
 <section class="home-issues-preview" id="current-issues-preview" aria-labelledby="homeIssuesTitle">
-  <div class="home-issues-heading"><div><span>시사·상식</span><h2 id="homeIssuesTitle">최근 이슈를 원리부터 쉽게</h2><p>사회·경제·국제·과학기술 이슈를 3분 요약과 핵심 용어로 정리했습니다.</p></div><a href="current-issues.html">전체 글 보기 →</a></div>
+  <div class="home-issues-heading"><div><span>오늘의 시사 브리핑</span><h2 id="homeIssuesTitle">최근 발표와 정책, 무엇이 달라졌을까요?</h2><p>실제로 일어난 사건을 바탕으로 핵심 내용과 생활·경제 영향을 정리했습니다.</p></div><a href="current-issues.html">전체 이슈 보기 →</a></div>
   <div class="home-issues-grid" id="homeIssuesGrid"></div>
 </section>
 <section id="games-summary">
@@ -512,10 +512,10 @@
 })();
 </script>
 
-<script src="current-issues-data.js?v=20260724-1"></script>
+<script src="current-issues-data.js?v=20260724-2"></script>
 <script>
-(function(){var data=window.CURRENT_ISSUES_DATA,el=document.getElementById('homeIssuesGrid');if(!data||!el)return;function e(v){return String(v||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];});}el.innerHTML=(data.issues||[]).slice(0,4).map(function(x){return '<a class="home-issue-card" href="current-issues.html#'+e(x.id)+'"><span class="home-issue-meta"><b>'+e(x.category)+'</b><em>NEW</em></span><strong>'+e(x.icon)+' '+e(x.title)+'</strong><p>'+e(x.summary)+'</p><small>3분 요약 읽기 →</small></a>';}).join('');})();
+(function(){var data=window.CURRENT_ISSUES_DATA,el=document.getElementById('homeIssuesGrid');if(!data||!el)return;function e(v){return String(v||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];});}el.innerHTML=(data.issues||[]).slice(0,4).map(function(x){return '<a class="home-issue-card" href="current-issues.html#'+e(x.id)+'"><span class="home-issue-meta"><b>'+e(x.category)+'</b><em>'+e(x.status||'최근 이슈')+'</em></span><time class="home-issue-date" datetime="'+e(x.published)+'">'+e(x.published)+'</time><strong>'+e(x.icon)+' '+e(x.title)+'</strong><p>'+e(x.headline||x.summary)+'</p><small>이슈 해설 읽기 →</small></a>';}).join('');})();
 </script>
-<script src="site-updates.js?v=20260724-1"></script>
+<script src="site-updates.js?v=20260724-2"></script>
 </body>
 </html>

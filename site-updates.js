@@ -6,7 +6,7 @@ window.SITE_UPDATES = {
    * 하위 페이지가 갱신되면 groups의 상위 메뉴에도 NEW가 자동 전파됩니다.
    */
   pages: {
-    'index.html': { key: 'home', updated: '2026-07-22', expires: '2026-08-16' },
+    'index.html': { key: 'home', updated: '2026-07-24', expires: '2026-08-16' },
     'rooms.html': { key: 'rooms', updated: '' },
     'facilities.html': { key: 'facilities', updated: '' },
     'reviews.html': { key: 'reviews', updated: '' },
@@ -155,4 +155,4 @@ window.SITE_UPDATES = {
 
 // student-support-and-seoul-rent-status-20260723
 
-// current-issues-launch-20260724
+// current-issues-news-briefing-redesign-20260724
