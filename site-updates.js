@@ -21,6 +21,7 @@ window.SITE_UPDATES = {
     'games.html': { key: 'games', updated: '' },
     'fortune.html': { key: 'fortune', updated: '' },
     'knowledge.html': { key: 'knowledge', updated: '' },
+    'current-issues.html': { key: 'currentIssues', updated: '2026-07-24', expires: '2026-08-15' },
     'word-roots.html': { key: 'wordRoots', updated: '' },
     'career-benefits.html': { key: 'careerBenefits', updated: '2026-07-23', expires: '2026-08-12' },
     'rent-support.html': { key: 'rentSupport', updated: '2026-07-23', expires: '2026-07-31' },
@@ -153,3 +154,5 @@ window.SITE_UPDATES = {
 // seoul-education-9-pass-interview-20260722
 
 // student-support-and-seoul-rent-status-20260723
+
+// current-issues-launch-20260724

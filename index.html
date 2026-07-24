@@ -51,6 +51,7 @@
   <a href="games.html">머무름 게임</a>
   <a href="fortune.html">오늘의 운세</a>
   <a href="knowledge.html">지식노트</a>
+  <a href="current-issues.html">시사·상식</a>
   <a href="word-roots.html">어원 영단어</a>
   <a href="career-benefits.html">임금·복지</a>
   <a href="rent-support.html">월세 지원 정책</a>
@@ -238,6 +239,10 @@
 <div class="button-wrap">
 <a class="button" href="quiz.html">퀴즈 전체 보기</a>
 </div>
+</section>
+<section class="home-issues-preview" id="current-issues-preview" aria-labelledby="homeIssuesTitle">
+  <div class="home-issues-heading"><div><span>시사·상식</span><h2 id="homeIssuesTitle">최근 이슈를 원리부터 쉽게</h2><p>사회·경제·국제·과학기술 이슈를 3분 요약과 핵심 용어로 정리했습니다.</p></div><a href="current-issues.html">전체 글 보기 →</a></div>
+  <div class="home-issues-grid" id="homeIssuesGrid"></div>
 </section>
 <section id="games-summary">
 <h2>머무름 게임</h2>
@@ -507,6 +512,10 @@
 })();
 </script>
 
-<script src="site-updates.js?v=20260722-1"></script>
+<script src="current-issues-data.js?v=20260724-1"></script>
+<script>
+(function(){var data=window.CURRENT_ISSUES_DATA,el=document.getElementById('homeIssuesGrid');if(!data||!el)return;function e(v){return String(v||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];});}el.innerHTML=(data.issues||[]).slice(0,4).map(function(x){return '<a class="home-issue-card" href="current-issues.html#'+e(x.id)+'"><span class="home-issue-meta"><b>'+e(x.category)+'</b><em>NEW</em></span><strong>'+e(x.icon)+' '+e(x.title)+'</strong><p>'+e(x.summary)+'</p><small>3분 요약 읽기 →</small></a>';}).join('');})();
+</script>
+<script src="site-updates.js?v=20260724-1"></script>
 </body>
 </html>
