@@ -6,7 +6,7 @@ window.SITE_UPDATES = {
    * 하위 페이지가 갱신되면 groups의 상위 메뉴에도 NEW가 자동 전파됩니다.
    */
   pages: {
-    'index.html': { key: 'home', updated: '2026-07-24', expires: '2026-08-16' },
+    'index.html': { key: 'home', updated: '2026-07-25', expires: '2026-08-16' },
     'rooms.html': { key: 'rooms', updated: '' },
     'facilities.html': { key: 'facilities', updated: '' },
     'reviews.html': { key: 'reviews', updated: '' },
@@ -16,8 +16,8 @@ window.SITE_UPDATES = {
     'psat-ncs-quiz.html': { key: 'psatNcsQuiz', updated: '2026-07-15' },
     'korean-history-advanced-quiz.html': { key: 'historyQuiz', updated: '2026-07-15' },
     'foreign-service-interview-quiz.html': { key: 'foreignInterviewQuiz', updated: '2026-07-15' },
-    'exam-insight.html': { key: 'examInsight', updated: '2026-07-23', expires: '2026-08-16' },
-    'exam-schedule.html': { key: 'examSchedule', updated: '2026-07-22', expires: '2026-08-16' },
+    'exam-insight.html': { key: 'examInsight', updated: '2026-07-25', expires: '2026-08-16' },
+    'exam-schedule.html': { key: 'examSchedule', updated: '2026-07-25', expires: '2026-07-31' },
     'games.html': { key: 'games', updated: '' },
     'fortune.html': { key: 'fortune', updated: '' },
     'knowledge.html': { key: 'knowledge', updated: '' },
@@ -156,3 +156,5 @@ window.SITE_UPDATES = {
 // student-support-and-seoul-rent-status-20260723
 
 // current-issues-news-briefing-redesign-20260724
+
+// national7-psat-review-and-local7-registration-closed-20260725
