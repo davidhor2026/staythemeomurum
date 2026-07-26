@@ -33,3 +33,10 @@ GitHub 저장소 루트에서 같은 이름의 기존 파일을 이 파일들로
 - exam-schedule.html: 지방직 7급 원서접수 상태를 ‘원서접수 마감’으로 변경하고 필기시험일 10월 31일 안내
 - exam-home-data.js, index.html: 메인 공지 및 시험 소식 갱신
 - site-updates.js: 시험분석과 시험일정 NEW 표시 갱신, 시험일정 NEW는 7월 31일까지 표시
+
+
+[2026-07-26] 경기도교육청 9급 필기합격자 발표 반영
+- exam-schedule.html: 경기도교육청 제2회 지방공무원 9급 필기합격자·합격선 발표 공지 추가
+- exam-schedule.html: 인성검사 8월 1일, 면접시험 9월 5일, 최종합격자 발표 9월 15일 일정 추가
+- exam-home-data.js, index.html: 메인 시험 소식과 공지사항을 최신 내용으로 갱신
+- site-updates.js: 시험일정 및 메인페이지 NEW 표시를 8월 1일까지 유지
