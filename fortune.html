@@ -52,6 +52,10 @@
     .period-card p{margin:0;color:#59493b;line-height:1.65;font-size:.95rem;}
     .today-list{margin:10px 0 0;padding-left:18px;}
     .today-list li{margin:6px 0;line-height:1.75;}
+    .lucky-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px;}
+    .lucky-item{background:#fff;border:1px solid #ead7c0;border-radius:16px;padding:12px;text-align:center;}
+    .lucky-item strong{display:block;color:#5b3412;margin-bottom:4px;}
+    .lucky-item span{font-size:.92rem;color:#6b5b4d;line-height:1.45;}
 
     .today-main{border:2px solid #f0d8ae;background:linear-gradient(180deg,#fffdf8,#fff7ea);}
     .today-action-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:14px 0 18px;}
@@ -109,7 +113,7 @@
     details.fold-card .fold-inner{padding:0 16px 14px;}
 
     @media(max-width:860px){.quick-guide{grid-template-columns:repeat(2,minmax(0,1fr));}.toon-strip,.compact-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
-    @media(max-width:720px){.form-row,.grid,.quick-guide,.period-grid,.mini-grid,.compact-grid,.toon-strip{grid-template-columns:1fr;}.date-selects{grid-template-columns:1fr 1fr 1fr;}.fortune-hero h1{font-size:1.62rem;}.fortune-wrap{padding-left:12px;padding-right:12px;}.fortune-hero{padding:24px 18px;}}
+    @media(max-width:720px){.form-row,.grid,.quick-guide,.period-grid,.mini-grid,.compact-grid,.toon-strip{grid-template-columns:1fr;}.lucky-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.date-selects{grid-template-columns:1fr 1fr 1fr;}.fortune-hero h1{font-size:1.62rem;}.fortune-wrap{padding-left:12px;padding-right:12px;}.fortune-hero{padding:24px 18px;}}
   </style>
 </head>
 <body class="fortune-page">
@@ -189,7 +193,7 @@
     </div>
 
     <section id="result" class="result">
-      <div class="card today-main"><h2 id="helloTitle">오늘의 운세</h2><div class="pill-list" id="summaryPills"></div><p class="big-message" id="todayMsg"></p><div id="todayScores"></div></div>
+      <div class="card today-main"><h2 id="helloTitle">오늘의 운세</h2><div class="pill-list" id="summaryPills"></div><p class="big-message" id="todayMsg"></p><div class="lucky-grid" id="luckyGrid"></div><div id="todayScores"></div></div>
 
       <div class="today-action-grid" id="todayActionCards"></div>
       <div class="toon-strip" id="todayToonStrip"></div>
@@ -492,10 +496,12 @@
     const bioP=biorhythm(birth,today,23), bioE=biorhythm(birth,today,28), bioI=biorhythm(birth,today,33);
     const base=seedNum(bd,hour,today.toISOString().slice(0,10)); const rel=relation(dp.branch,tdp.branch,dayE,todayE); const study=50+((base+bal[gen[dayE]]*7)%45)|0; const life=50+((base>>3)+bal[weakest]*6)%45|0; const relationBonus=(combos.some(c=>c.includes(dp.branch)&&c.includes(tdp.branch))?18:0)-(clash[dp.branch]===tdp.branch?10:0); const people=50+((base>>5)+relationBonus)%45|0; const condition=Math.round((bioP.pct+bioE.pct+bioI.pct)/3);
     const openers=['차분하게 실속을 챙기기 좋은 날입니다.','작은 성취가 다음 흐름을 여는 날입니다.','새로운 일을 많이 늘리기보다 정리와 집중이 잘 맞는 날입니다.','사람의 도움과 정보가 운을 키우는 날입니다.','계획을 다시 정리하면 막혔던 부분이 풀리기 쉬운 날입니다.'];
-    const focusMsg={study:'공부·시험운은 오늘 한꺼번에 많이 하기보다 오답, 암기카드, 짧은 회독처럼 반복형 공부가 좋습니다.',money:'금전·생활운은 큰 지출보다 필요한 것과 미뤄도 되는 것을 구분하는 쪽이 유리합니다.',relation:'인간관계운은 먼저 부드럽게 말하면 상대 반응이 좋아지는 흐름입니다.',health:'컨디션운은 몸의 신호를 무시하지 말고 수면·식사·가벼운 스트레칭을 챙기면 회복이 빠릅니다.'};
+    const focusMsg={study:'공부·시험운은 공부량을 무작정 늘리기보다 오전에는 새 범위를, 오후에는 기출과 오답을 배치하는 편이 좋습니다. 막히는 문제는 15분 이상 붙들지 말고 표시해 두었다가 두 번째 회독에서 다시 보세요.',money:'금전·생활운은 단순히 지출을 줄이는 날이 아니라, 앞으로 반복될 비용과 한 번으로 끝나는 비용을 구분하기 좋은 날입니다. 정기결제·식비·교통비 중 하나만 골라 실제 사용 빈도를 확인해 보세요.',relation:'인간관계운은 상대의 말뜻을 미리 단정하지 않는 것이 중요합니다. 답장을 급히 보내기보다 한 번 읽고, 부탁이나 거절은 이유를 짧게 덧붙이면 오해를 줄일 수 있습니다.',health:'컨디션운은 피곤함을 카페인으로 덮기보다 목·어깨를 3분 정도 풀고, 식사 간격과 수면 시간을 일정하게 맞추는 쪽이 좋습니다. 오늘은 몸이 보내는 작은 불편을 미루지 마세요.'};
     document.getElementById('helloTitle').textContent='오늘의 운세';
     document.getElementById('summaryPills').innerHTML=[`${yp.animal}띠`, `나의 중심 기운 ${dp.elem}`, `오늘의 분위기 ${moodLabel[todayE]}`, `보완 포인트 ${weakest}`].map(x=>`<span class="pill">${x}</span>`).join('');
     document.getElementById('todayMsg').innerHTML=`<strong>${pick(openers,base)}</strong><ul class="today-list"><li><strong>오늘의 핵심:</strong> ${focusMsg[focus]}</li><li><strong>오늘 주의할 점:</strong> ${rel || '오늘은 큰 무리 없이 기본 루틴을 지키기 좋은 흐름입니다. 정해 둔 계획을 차분히 진행해 보세요.'}</li><li><strong>오늘의 보완 포인트:</strong> ${elemEmoji[weakest]} <strong>${weakest}</strong> 기운입니다. 쉽게 말해 ${elemCare[weakest].easy}을 조금 더 채워 주면 좋다는 뜻입니다.</li></ul>`;
+    const luckyNumber=1+(base%9); const luckyHour=9+((base>>4)%9); const luckyMinute=((base>>8)%6)*10;
+    document.getElementById('luckyGrid').innerHTML=`<div class="lucky-item"><strong>행운의 색</strong><span>${colorExamples[weakest]}</span></div><div class="lucky-item"><strong>행운의 숫자</strong><span>${luckyNumber}</span></div><div class="lucky-item"><strong>좋은 시간</strong><span>${luckyHour}시 ${String(luckyMinute).padStart(2,'0')}분 전후</span></div><div class="lucky-item"><strong>좋은 방향</strong><span>${directions[weakest]}</span></div>`;
     document.getElementById('todayScores').innerHTML=scoreBar('공부운',Math.min(95,study))+scoreBar('생활운',Math.min(95,life))+scoreBar('관계운',Math.min(95,people))+scoreBar('컨디션',condition);
     const guide=studyCare[weakest];
     document.getElementById('todayActionCards').innerHTML=todayActionCardsHtml(weakest,strongest,rel,guide);
