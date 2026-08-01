@@ -24,7 +24,7 @@ window.SITE_UPDATES = {
     'current-issues.html': { key: 'currentIssues', updated: '2026-07-24', expires: '2026-08-15' },
     'word-roots.html': { key: 'wordRoots', updated: '' },
     'career-benefits.html': { key: 'careerBenefits', updated: '2026-07-23', expires: '2026-08-12' },
-    'rent-support.html': { key: 'rentSupport', updated: '2026-07-23', expires: '2026-07-31' },
+    'rent-support.html': { key: 'rentSupport', updated: '2026-08-01', expires: '2026-08-09' },
     'gift.html': { key: 'gift', updated: '' },
     'checkin-guide.html': { key: 'checkinGuide', updated: '' },
     'checkout-guide.html': { key: 'checkoutGuide', updated: '' }
@@ -158,3 +158,5 @@ window.SITE_UPDATES = {
 // current-issues-news-briefing-redesign-20260724
 
 // national7-psat-review-and-local7-registration-closed-20260725
+
+// seoul-rent-result-delay-20260801

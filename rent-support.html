@@ -1,4 +1,3 @@
-<p><strong>공지</strong> 2026 서울시 청년월세지원 최종 선정결과 발표가 자격심사 지연으로 8월 초로 변경되었습니다. 자세한 일정은 서울주거포털 공지사항을 확인하세요. <span class="new">NEW</span></p>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -32,6 +31,54 @@
     .faq-list summary{cursor:pointer;font-weight:800;color:#2f3b2f;padding:13px 15px;}
     .faq-list p{padding:0 15px 15px;margin:0;}
     .mini-warning{font-size:.92rem;color:#7a5a34;line-height:1.65;margin-top:10px;}
+
+    .rent-update-banner{
+      max-width:1000px;
+      margin:16px auto 0;
+      padding:0 16px;
+    }
+    .rent-update-banner__inner{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:14px 16px;
+      border:1px solid #efb39f;
+      border-radius:16px;
+      background:#fff8f3;
+      color:#3f3a34;
+      box-shadow:0 5px 14px rgba(65,45,35,.06);
+      line-height:1.55;
+    }
+    .rent-update-banner__label{
+      flex:0 0 auto;
+      color:#d94b3d;
+      font-weight:900;
+    }
+    .rent-update-banner__text{
+      flex:1 1 auto;
+      min-width:0;
+    }
+    .rent-update-banner__text strong{color:#d94b3d;}
+    .rent-update-banner__new{
+      flex:0 0 auto;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:48px;
+      padding:5px 9px;
+      border-radius:999px;
+      background:#ea6d61;
+      color:#fff;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.03em;
+    }
+    @media(max-width:720px){
+      .rent-update-banner{margin-top:12px;padding:0 10px;}
+      .rent-update-banner__inner{align-items:flex-start;gap:8px;padding:12px 13px;}
+      .rent-update-banner__new{min-width:42px;padding:4px 7px;font-size:11px;}
+    }
+
     @media(max-width:720px){.policy-grid{grid-template-columns:1fr;}.policy-wrap{padding:0 12px;}.policy-hero{padding:24px 18px;}.policy-hero h2{font-size:1.48rem;}.doc-table th,.doc-table td{display:block;width:auto;}.doc-table th{border-bottom:0;padding-bottom:4px;}.doc-table td{padding-top:0;}}
   </style>
   <script type="application/ld+json">
@@ -53,6 +100,17 @@
   
     <a class="header-home-button" href="index.html">메인페이지로 돌아가기</a>
 </header>
+
+  <aside class="rent-update-banner" aria-label="서울시 청년월세지원 일정 변경 공지">
+    <div class="rent-update-banner__inner">
+      <span class="rent-update-banner__label">📢 공지</span>
+      <span class="rent-update-banner__text">
+        2026 서울시 청년월세지원 최종 선정결과 발표가 자격심사 지연으로
+        <strong>8월 초로 변경</strong>되었습니다. 자세한 일정은 서울주거포털 공지사항을 확인하세요.
+      </span>
+      <span class="rent-update-banner__new">NEW</span>
+    </div>
+  </aside>
 
   <nav>
   <a href="index.html">메인페이지</a>
@@ -99,8 +157,8 @@
 
     <section class="policy-card policy-card--update" style="margin-top:18px">
       <span class="policy-update-label">2026 서울시 청년월세지원</span>
-      <h2>[NEW] 모집 종료·최종 선정 결과 7월 말 예정</h2>
-      <p>2026 서울시 청년월세지원 신규 접수는 종료되었으며, 지원자격 심사결과 통보와 보완·이의신청 절차가 진행 중입니다. 최종 선정 결과는 7월 말, 지원금은 8월 말 지급 예정입니다. 현재 별도의 추가모집이나 접수 연장 공고는 확인되지 않았습니다.</p>
+      <h2>[NEW] 모집 종료·최종 선정 결과 8월 초 발표 예정</h2>
+      <p>2026 서울시 청년월세지원 신규 접수는 종료되었으며, 지원자격 심사결과 통보와 보완·이의신청 절차가 진행 중입니다. 최종 선정 결과는 자격심사 지연으로 8월 초 발표 예정이며, 정확한 발표일은 서울주거포털 공지사항을 확인해야 합니다. 현재 별도의 추가모집이나 접수 연장 공고는 확인되지 않았습니다.</p>
       <ul>
         <li><strong>주요 대상</strong>: 서울 거주 만 19~39세 무주택 청년</li>
         <li><strong>주거 기준</strong>: 임차보증금 8천만 원 이하, 월세 60만 원 이하</li>
@@ -247,6 +305,6 @@
 </script>
 
 
-<script src="site-updates.js?v=20260720-1"></script>
+<script src="site-updates.js?v=20260801-1"></script>
 </body>
 </html>
