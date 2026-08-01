@@ -6,7 +6,7 @@ window.SITE_UPDATES = {
    * 하위 페이지가 갱신되면 groups의 상위 메뉴에도 NEW가 자동 전파됩니다.
    */
   pages: {
-    'index.html': { key: 'home', updated: '2026-07-31', expires: '2026-08-01' },
+    'index.html': { key: 'home', updated: '2026-08-01', expires: '2026-08-08' },
     'rooms.html': { key: 'rooms', updated: '' },
     'facilities.html': { key: 'facilities', updated: '' },
     'reviews.html': { key: 'reviews', updated: '' },
@@ -16,7 +16,7 @@ window.SITE_UPDATES = {
     'psat-ncs-quiz.html': { key: 'psatNcsQuiz', updated: '2026-07-15' },
     'korean-history-advanced-quiz.html': { key: 'historyQuiz', updated: '2026-07-15' },
     'foreign-service-interview-quiz.html': { key: 'foreignInterviewQuiz', updated: '2026-07-15' },
-    'exam-insight.html': { key: 'examInsight', updated: '2026-07-25', expires: '2026-08-16' },
+    'exam-insight.html': { key: 'examInsight', updated: '2026-08-01', expires: '2026-08-08' },
     'exam-schedule.html': { key: 'examSchedule', updated: '2026-07-31', expires: '2026-08-01' },
     'games.html': { key: 'games', updated: '' },
     'fortune.html': { key: 'fortune', updated: '' },
