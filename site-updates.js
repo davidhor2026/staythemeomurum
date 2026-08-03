@@ -21,7 +21,7 @@ window.SITE_UPDATES = {
     'games.html': { key: 'games', updated: '' },
     'fortune.html': { key: 'fortune', updated: '' },
     'knowledge.html': { key: 'knowledge', updated: '' },
-    'current-issues.html': { key: 'currentIssues', updated: '2026-07-24', expires: '2026-08-15' },
+    'current-issues.html': { key: 'currentIssues', updated: '2026-08-03', expires: '2026-08-10' },
     'word-roots.html': { key: 'wordRoots', updated: '' },
     'career-benefits.html': { key: 'careerBenefits', updated: '2026-07-23', expires: '2026-08-09' },
     'rent-support.html': { key: 'rentSupport', updated: '2026-08-01', expires: '2026-08-09' },
@@ -160,3 +160,5 @@ window.SITE_UPDATES = {
 // national7-psat-review-and-local7-registration-closed-20260725
 
 // seoul-rent-result-delay-20260801
+
+// current-issues-20260803
