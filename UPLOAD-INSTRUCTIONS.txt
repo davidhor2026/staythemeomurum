@@ -1,0 +1,8 @@
+Upload international.html to the root of the GitHub repository and overwrite the existing file.
+The existing international-hero.jpg does not need to be uploaded again.
+
+Change made:
+- Removed the dark gradient embedded in the English header background.
+- Overrode the common .sub-header::before overlay from style.css.
+- Kept only an 8% mobile tint and a very light desktop gradient.
+- Strengthened text shadow so the image can remain bright while the title stays readable.
