@@ -23,18 +23,33 @@
     /* style.css adds a common dark overlay to every sub-page header.
        Override it here so the English-page room image remains clearly visible. */
     .international-header::before {
-      background: linear-gradient(90deg, rgba(24,39,29,.14) 0%, rgba(24,39,29,.07) 48%, rgba(24,39,29,0) 100%) !important;
+      background: rgba(24,39,29,.18) !important;
     }
     .international-header h1,
     .international-header p,
     .international-header .eyebrow {
-      text-shadow: 0 3px 12px rgba(0,0,0,.78), 0 1px 2px rgba(0,0,0,.92);
+      text-shadow: 0 2px 6px rgba(0,0,0,.46), 0 1px 1px rgba(0,0,0,.38);
     }
     @media (max-width:700px) {
       .international-header::before {
-        background: rgba(24,39,29,.08) !important;
+        background: rgba(24,39,29,.16) !important;
       }
     }
+
+    .international-header .button-wrap { margin-top:24px; }
+    .international-header .hero-korean-button {
+      width:min(250px,72vw);
+      min-height:76px;
+      padding:14px 24px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      line-height:1.25;
+      text-align:center;
+      border-radius:999px;
+      font-size:18px;
+    }
+    .international-header .hero-korean-button .new-badge { margin-left:12px; }
     .international-header .eyebrow { display:inline-block; margin-bottom:8px; font-size:13px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; opacity:.9; }
     .international-lead { font-size:17px; color:#465047; }
     .important-card { padding:20px; border:1px solid #dfd6c6; border-left:5px solid #7a6a4f; border-radius:15px; background:#f7f2e9; }
@@ -62,11 +77,11 @@
 </head>
 <body>
   <header class="sub-header international-header">
-    <span class="eyebrow">English Information</span>
+    <span class="eyebrow">International Visitors</span>
     <h1>Stay The Meomurum</h1>
     <p>A women-only goshiwon in Noryangjin, Seoul</p>
     <div class="button-wrap">
-      <a class="button sub" href="index.html">View Korean Website</a>
+      <a class="button sub hero-korean-button" href="index.html"><span>View Korean<br>Website</span></a>
     </div>
   </header>
 
