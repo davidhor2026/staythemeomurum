@@ -1,22 +1,18 @@
 window.EXAM_HOME_DATA = {
   updatedLabel: '2026년 8월 8일 기준',
   countdowns: [
-    { category: '경기도교육청 상업계고 우수인재 9급', title: '오늘 원서접수 마감', date: '2026-07-31', status: '오늘 접수 마감 · 마감시간 확인 필수 · 필기 8월 29일 · 최종발표 12월 22일', keepVisible: true },
-    { category: '경기도교육청 9급', title: '필기합격자·합격선 발표', date: '2026-07-26', status: '인성검사 8월 1일 · 면접 9월 5일 · 최종 9월 15일', keepVisible: true },
-    { category: '서울시교육청 9급', title: '필기합격자 발표 완료·면접 준비', date: '2026-07-21', status: '면접 8월 15일 · 최종발표 8월 25일', keepVisible: true },
-    { category: '국가직 9급·검찰직', title: '2026 최종합격자 발표', date: '2026-06-19', status: '발표 완료', keepVisible: true },
-    { category: '법원직', title: '인성검사', date: '2026-07-14' },
-    { category: '국가직 7급·외무영사직', title: '1차시험(PSAT) 시행 완료', date: '2026-07-18', status: '문제·정답가안 공개', keepVisible: true },
-    { category: '지방직 7급', title: '원서접수 마감', date: '2026-07-24', status: '필기시험 10월 31일', keepVisible: true },
-    { category: '법원직', title: '법원·등기사무 일반면접', date: '2026-07-31' },
-    { category: '경찰·경위 공채', title: '제76기 필기시험', date: '2026-08-01', status: '시험장·응시자 유의사항 공개' },
-    { category: '경찰·경위 공채', title: '제76기 필기 합격자 발표', date: '2026-08-06' },
-    { category: '법원직', title: '법원·등기사무 최종발표', date: '2026-08-07' },
-    { category: '국가직 7급', title: '1차 합격자 발표', date: '2026-08-19' },
+    { category: '서울시교육청 9급', title: '면접시험', date: '2026-08-15' },
+    { category: '국가직 7급·외무영사직', title: '1차 합격자 발표', date: '2026-08-19' },
     { category: '경찰', title: '2차 순경 필기시험', date: '2026-08-22' },
-    { category: '공인노무사', title: '제35회 2차 시험', date: '2026-08-29', status: '8월 29일~30일 시행 · 2차 합격자 발표 11월 18일', keepVisible: true },
-    { category: '국가직 7급', title: '2차시험', date: '2026-09-19' },
-    { category: '지방직 7급', title: '필기시험', date: '2026-10-31' }
+    { category: '경기도교육청 상업계고 우수인재 9급', title: '필기시험', date: '2026-08-29' },
+    { category: '공인노무사', title: '제35회 2차 시험', date: '2026-08-29', status: '8월 29~30일 시행' },
+    { category: '경찰·경위 공채', title: '신체·체력·적성검사 시작', date: '2026-08-31', status: '8월 31일~9월 11일' },
+    { category: '경기도교육청 9급', title: '면접시험', date: '2026-09-05' },
+    { category: '국가직 7급·외무영사직', title: '2차시험', date: '2026-09-19' },
+    { category: '지방직 7급', title: '필기시험', date: '2026-10-31' },
+    { category: '공인노무사', title: '2차 합격자 발표', date: '2026-11-18' },
+    { category: '공인노무사', title: '3차 면접시험', date: '2026-11-27' },
+    { category: '공인노무사', title: '최종합격자 발표', date: '2026-12-09' }
   ],
   cutlineUpdatedLabel: '2026 국가직 9급·법원직 9급 기준',
   cutlines: [
