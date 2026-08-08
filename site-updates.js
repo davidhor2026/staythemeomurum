@@ -2,7 +2,7 @@ window.SITE_UPDATES = {
   displayDays: 7,
 
   /*
-   * 업데이트된 실제 페이지의 날짜만 바꾸면 됩니다.
+   * 업데이트된 실제 페이지의 날짜만 바꾸면 됩니다. NEW는 displayDays 기준으로 자동 표시됩니다.
    * 하위 페이지가 갱신되면 groups의 상위 메뉴에도 NEW가 자동 전파됩니다.
    */
   pages: {
@@ -16,8 +16,8 @@ window.SITE_UPDATES = {
     'psat-ncs-quiz.html': { key: 'psatNcsQuiz', updated: '2026-07-15' },
     'korean-history-advanced-quiz.html': { key: 'historyQuiz', updated: '2026-07-15' },
     'foreign-service-interview-quiz.html': { key: 'foreignInterviewQuiz', updated: '2026-07-15' },
-    'exam-insight.html': { key: 'examInsight', updated: '2026-08-02', expires: '2026-08-09' },
-    'exam-schedule.html': { key: 'examSchedule', updated: '2026-08-02', expires: '2026-08-06' },
+    'exam-insight.html': { key: 'examInsight', updated: '2026-08-09' },
+    'exam-schedule.html': { key: 'examSchedule', updated: '2026-08-09' },
     'games.html': { key: 'games', updated: '' },
     'fortune.html': { key: 'fortune', updated: '' },
     'knowledge.html': { key: 'knowledge', updated: '' },
