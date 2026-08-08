@@ -528,6 +528,6 @@
 <script>
 (function(){var data=window.CURRENT_ISSUES_DATA,el=document.getElementById('homeIssuesGrid');if(!data||!el)return;function e(v){return String(v||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];});}el.innerHTML=(data.issues||[]).slice(0,4).map(function(x){return '<a class="home-issue-card" href="current-issues.html#'+e(x.id)+'"><span class="home-issue-meta"><b>'+e(x.category)+'</b><em>'+e(x.status||'최근 이슈')+'</em></span><time class="home-issue-date" datetime="'+e(x.published)+'">'+e(x.published)+'</time><strong>'+e(x.icon)+' '+e(x.title)+'</strong><p>'+e(x.headline||x.summary)+'</p><small>이슈 해설 읽기 →</small></a>';}).join('');})();
 </script>
-<script src="site-updates.js?v=20260809-2"></script>
+<script src="site-updates.js?v=20260809-3"></script>
 </body>
 </html>

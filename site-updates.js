@@ -39,6 +39,15 @@ window.SITE_UPDATES = {
     ],
     'exam-insight.html': ['exam-insight.html'],
     'exam-schedule.html': ['exam-schedule.html']
+  },
+
+  /*
+   * 페이지 내부 바로가기의 NEW는 페이지 전체 NEW와 별도로 관리합니다.
+   * 실제 해당 직렬/섹션에 새 소식이 있을 때만 날짜를 넣습니다.
+   */
+  sections: {
+    'exam-schedule.html#teacher': { key: 'examScheduleTeacher', updated: '2026-08-09' },
+    'exam-schedule.html#court': { key: 'examScheduleCourt', updated: '2026-08-07' }
   }
 };
 
@@ -70,8 +79,7 @@ window.SITE_UPDATES = {
   var today = seoulDateOnly();
   var displayDays = Number(config.displayDays || 7);
 
-  function activeUpdate(href) {
-    var item = config.pages[href];
+  function activeItem(item, key) {
     if (!item || !item.updated) return null;
     var updated = new Date(item.updated + 'T00:00:00+09:00');
     var age = Math.floor((today - updated) / 86400000);
@@ -82,7 +90,23 @@ window.SITE_UPDATES = {
     } else if (age >= displayDays) {
       return null;
     }
-    return { href: href, key: item.key || href, updated: item.updated, age: age };
+    return { key: item.key || key, updated: item.updated, age: age };
+  }
+
+  function activeSection(sectionKey) {
+    var item = config.sections && config.sections[sectionKey];
+    var active = activeItem(item, sectionKey);
+    if (!active) return null;
+    active.href = sectionKey;
+    return active;
+  }
+
+  function activeUpdate(href) {
+    var item = config.pages[href];
+    var active = activeItem(item, href);
+    if (!active) return null;
+    active.href = href;
+    return active;
   }
 
   function newestForLink(href) {
@@ -129,7 +153,14 @@ window.SITE_UPDATES = {
        * 해당 페이지 전체의 업데이트 상태를 상속하지 않습니다.
        * 직렬별 NEW는 각 페이지의 개별 직렬/섹션 업데이트 날짜가 판단합니다.
        */
-      if (!rawHref || rawHref.charAt(0) === '#') return;
+      if (!rawHref) return;
+
+      if (rawHref.charAt(0) === '#') {
+        var currentPage = normalizeHref(window.location.href);
+        var sectionKey = currentPage + rawHref.toLowerCase();
+        addBadge(link, activeSection(sectionKey));
+        return;
+      }
 
       var href = normalizeHref(rawHref);
       if (!href) return;
@@ -137,7 +168,11 @@ window.SITE_UPDATES = {
       // 같은 페이지를 가리키면서 해시만 붙은 절대/상대 링크도 페이지 NEW 전파 대상에서 제외
       try {
         var url = new URL(rawHref, window.location.href);
-        if (url.hash && url.pathname === window.location.pathname) return;
+        if (url.hash && url.pathname === window.location.pathname) {
+          var samePageKey = href + url.hash.toLowerCase();
+          addBadge(link, activeSection(samePageKey));
+          return;
+        }
       } catch (e) {}
 
       addBadge(link, newestForLink(href));
