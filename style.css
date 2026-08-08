@@ -1115,7 +1115,7 @@
   .exam-home-head h2{font-size:21px;}
   .exam-home-more{display:inline-block;margin-top:10px;}
   .exam-countdown-list{grid-template-columns:1fr;}
-  .exam-countdown-item:nth-child(n+5){display:none;}
+  .exam-countdown-item:nth-child(n+6){display:none;}
 }
 
 
