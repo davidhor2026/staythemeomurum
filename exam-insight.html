@@ -155,6 +155,12 @@
  .exam-category-card .exam-pass-rate-strip{align-items:flex-start;flex-direction:column;gap:2px}
 }
 
+
+.exam-latest-board{margin-top:0;margin-bottom:14px}
+.exam-latest-item{display:flex;flex-direction:column;gap:4px;padding:10px 0;border-bottom:1px solid rgba(52,72,56,.12)}
+.exam-latest-item:last-child{border-bottom:0}
+.exam-latest-item strong{color:#174f82;font-size:13px}
+.exam-latest-item span{color:#4e5b50;font-size:12px;line-height:1.55}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"2026 법원직 9급 시험분석: 합격선·커트라인·경쟁률·민법 난이도","description":"2026 법원직 9급 필기 합격선과 최근 3년 추이, 과목별 난이도, 면접 일정을 정리한 수험생용 분석 자료","dateModified":"2026-08-08","author":{"@type":"Organization","name":"스테이The머무름"},"publisher":{"@type":"Organization","name":"스테이The머무름"},"mainEntityOfPage":"https://davidhor2026.github.io/staythemeomurum/exam-insight.html"}
@@ -199,6 +205,15 @@
 <div class="insight-section-heading insight-section-heading--top"><span class="exam-eyebrow">직렬별 최근 시험분석 · 합격률 포함</span><h2>직렬별 분석 한눈에 보기</h2><p>각 직렬의 최근 시험 요약과 합격률을 먼저 확인하고, 필요한 항목만 상세 분석을 펼쳐 볼 수 있습니다.</p></div>
 <div class="exam-category-cards" id="examCategoryCards"></div>
 </section>
+<section aria-label="2026 법원직 9급 최종합격 결과" class="analysis-update-box" id="court-final-update">
+<div class="latest-update-label">가장 최근 업데이트 · 2026년 8월 7일</div>
+<span class="exam-eyebrow">법원직 9급 최종합격 결과</span>
+<h2>2026 법원직 9급 최종합격 501명 확정 <span class="exam-category-new">NEW</span></h2>
+<p>법원·등기사무직렬 최종합격자는 <strong>총 501명</strong>입니다. 법원사무 <strong>456명</strong>, 등기사무 <strong>45명</strong>이 최종 합격했습니다.</p>
+<p class="exam-small-note">필기합격자 553명 대비 면접단계 합격률은 약 <strong>90.6%</strong>이며, 선발예정인원 502명 대비 최종 충원율은 약 <strong>99.8%</strong>입니다.</p>
+<a class="exam-deep-link" href="#exam-card-court9">법원직 최신 분석 바로 보기</a>
+<a class="exam-deep-link" href="#court-data-center">법원직 상세 데이터 보기</a>
+</section>
 <article class="news-card new-badge">
 <h3>2026 국가직 7급 1차 시험 응시현황 공개…응시율 61.1%</h3>
 <p>인사혁신처가 2026년도 국가공무원 7급 공개경쟁채용 제1차 필기시험 응시현황을 공개했습니다. 올해 국가직 7급은 668명 선발에 2만 5,650명이 지원했으며, 제1차 시험의 잠정 응시율은 61.1%로 전년보다 1.2%p 상승했습니다. 제1차 합격자 발표와 제2차 시험장소 공고는 8월 19일 예정입니다.</p>
@@ -230,7 +245,7 @@
 <strong>전화 연락이 없으면 합격 가능성이 높은가?</strong><br/>
     수험가와 응시생 커뮤니티에서는 심층면접 대상자에게 개별 전화 연락이 이루어지는 것으로 알려져 있습니다. 따라서 일반면접 후 별도 연락을 받지 않은 응시자는 <strong>심층면접 대상이 아닐 가능성이 크고, 실무적으로는 최종합격 가능성이 높은 편</strong>으로 받아들이는 분위기가 있습니다.
   </div>
-<p class="court-interview-caution"><strong>주의:</strong> “전화가 없으면 합격 확정” 또는 “심층면접 대상이 아니면 반드시 합격”이라는 공식 기준이 발표된 것은 아닙니다. 연락 시점·방법에는 예외가 있을 수 있으므로, 최종합격 여부는 법원행정처의 <strong>8월 7일 공식 최종합격자 발표</strong>로 확인해야 합니다.</p>
+<p class="court-interview-caution"><strong>주의:</strong> “전화가 없으면 합격 확정” 또는 “심층면접 대상이 아니면 반드시 합격”이라는 공식 기준이 발표된 것은 아닙니다. 연락 시점·방법에는 예외가 있을 수 있으므로, 최종합격 결과는 <strong>8월 7일 공식 발표가 완료</strong>됐으며, 최신 결과는 위의 최종합격 업데이트를 확인하면 됩니다.</p>
 </section>
 <section class="exam-hero-note">
 <span class="exam-eyebrow">2026년 8월 기준 · 공식 발표 + 수험가 총평 + 사용자 제공 자료 반영</span>
@@ -695,15 +710,12 @@
   var recentIds={};past.forEach(function(x){if(dayStart(x.examDate).getTime()===latestTime)recentIds[x.id]=true;});
   function isNew(x){var d=dayStart(x.updatedAt);if(!d)return false;var diff=Math.floor((today-d)/86400000);return diff>=0&&diff<(x.newDays||7);}
   list.sort(function(a,b){
-    var an=isNew(a)?1:0,bn=isNew(b)?1:0;
-    if(an!==bn)return bn-an;
-    if(an&&bn){var au=dayStart(a.updatedAt),bu=dayStart(b.updatedAt);if(au&&bu&&au.getTime()!==bu.getTime())return bu-au;}
-    var ar=recentIds[a.id]?1:0,br=recentIds[b.id]?1:0;
-    if(ar!==br)return br-ar;
+    /* 공통 원칙: 직렬별 바로가기와 분석 카드는 NEW 표시 여부와 관계없이 최신 업데이트일(updatedAt) 순으로 정렬 */
+    var au=dayStart(a.updatedAt),bu=dayStart(b.updatedAt);
+    if(au&&bu&&au.getTime()!==bu.getTime())return bu-au;
+    if(bu&&!au)return 1;
+    if(au&&!bu)return -1;
     var ad=dayStart(a.examDate),bd=dayStart(b.examDate);
-    var af=ad&&ad>=today,bf=bd&&bd>=today;
-    if(af!==bf)return af?-1:1;
-    if(af&&bf)return ad-bd;
     return (bd?bd.getTime():0)-(ad?ad.getTime():0);
   });
   var recent=list.filter(function(x){return recentIds[x.id];});
@@ -718,12 +730,14 @@
   cards.innerHTML=list.map(function(x,i){
     var metrics=(x.metrics||[]).map(function(m){return '<div><span>'+esc(m[0])+'</span><strong>'+esc(m[1])+'</strong></div>';}).join('');
     var details=(x.details||[]).map(function(d){return '<li>'+esc(d)+'</li>';}).join('');
+    var updates=(x.latestUpdates||[]).slice().sort(function(a,b){var ad=dayStart(a.date),bd=dayStart(b.date);return (bd?bd.getTime():0)-(ad?ad.getTime():0);}).map(function(u){return '<div class="exam-latest-item"><strong>'+esc((u.date||'').replace(/-/g,'. ')+' · '+u.title)+'</strong><span>'+esc(u.text)+'</span></div>';}).join('');
+    var latestBoard=updates?'<div class="exam-progress-board exam-latest-board"><strong>최신 업데이트</strong><div class="exam-progress-list">'+updates+'</div></div>':'';
     var progress=(x.progress||[]).map(function(p){return '<div class="exam-progress-item"><span class="exam-progress-state '+progressClass(p[0])+'">'+esc(p[0])+'</span><span>'+esc(p[1])+'</span></div>';}).join('');
     var pending=(x.analysisPending||[]).map(function(p){return '<div class="exam-pending-item"><strong>'+esc(p[0])+'</strong><span>'+esc(p[1])+'</span></div>';}).join('');
     var dashboard=progress?'<div class="exam-progress-board"><strong>시험 진행 현황</strong><div class="exam-progress-list">'+progress+'</div></div>':'';
     var pendingBoard=pending?'<div class="exam-pending-board"><strong>앞으로 추가할 시험분석</strong><div class="exam-pending-grid">'+pending+'</div></div>':'';
     var notice=x.analysisNotice?'<p class="exam-analysis-notice">'+esc(x.analysisNotice)+'</p>':'';
-    var rate=x.passRate||['합격률','확인 중'];return '<article class="exam-category-card '+(recentIds[x.id]?'is-recent':'')+'" id="exam-card-'+esc(x.id)+'"><div class="exam-category-card-head"><div>'+(recentIds[x.id]?'<span class="exam-recent-badge exam-recent-badge--inline">최근 시험</span>':'')+(isNew(x)?'<span class="exam-category-new exam-category-new--inline">NEW</span>':'')+'<h3>'+esc(x.headline)+'</h3><p>'+esc(x.summary)+'</p></div><button type="button" class="exam-detail-toggle" aria-expanded="false" aria-controls="exam-detail-'+esc(x.id)+'">상세 분석 펼치기</button></div><div class="exam-pass-rate-strip"><span>'+esc(rate[0])+'</span><strong>'+esc(rate[1])+'</strong></div><div class="exam-category-metrics">'+metrics+'</div><div class="exam-category-detail" id="exam-detail-'+esc(x.id)+'"><div class="exam-category-status"><strong>현재 상태</strong><span>'+esc(x.status)+'</span></div>'+dashboard+pendingBoard+notice+'<ul>'+details+'</ul><a class="exam-deep-link" href="'+esc(x.link||'#')+'">관련 심층자료로 이동</a></div></article>';
+    var rate=x.passRate||['합격률','확인 중'];return '<article class="exam-category-card '+(recentIds[x.id]?'is-recent':'')+'" id="exam-card-'+esc(x.id)+'"><div class="exam-category-card-head"><div>'+(recentIds[x.id]?'<span class="exam-recent-badge exam-recent-badge--inline">최근 시험</span>':'')+(isNew(x)?'<span class="exam-category-new exam-category-new--inline">NEW</span>':'')+'<h3>'+esc(x.headline)+'</h3><p>'+esc(x.summary)+'</p></div><button type="button" class="exam-detail-toggle" aria-expanded="false" aria-controls="exam-detail-'+esc(x.id)+'">상세 분석 펼치기</button></div><div class="exam-pass-rate-strip"><span>'+esc(rate[0])+'</span><strong>'+esc(rate[1])+'</strong></div><div class="exam-category-metrics">'+metrics+'</div><div class="exam-category-detail" id="exam-detail-'+esc(x.id)+'">'+latestBoard+'<div class="exam-category-status"><strong>현재 상태</strong><span>'+esc(x.status)+'</span></div>'+dashboard+pendingBoard+notice+'<ul>'+details+'</ul><a class="exam-deep-link" href="'+esc(x.link||'#')+'">관련 심층자료로 이동</a></div></article>';
   }).join('');
   function openCard(id){var card=document.getElementById(id);if(!card)return;var detail=card.querySelector('.exam-category-detail');var btn=card.querySelector('.exam-detail-toggle');if(detail&&!detail.classList.contains('is-open')){detail.classList.add('is-open');if(btn){btn.setAttribute('aria-expanded','true');btn.textContent='닫기';}}card.scrollIntoView({behavior:'smooth',block:'start'});}
   nav.addEventListener('click',function(e){var b=e.target.closest?e.target.closest('a[data-target]'):null;if(!b)return;e.preventDefault();var target=b.getAttribute('data-target');openCard(target);if(history.replaceState)history.replaceState(null,'','#'+target);else location.hash=target;});
