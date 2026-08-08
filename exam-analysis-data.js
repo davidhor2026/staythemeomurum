@@ -11,9 +11,9 @@ window.COURT_EXAM_ANALYSIS = {
       "note": "전년 대비 3.5점 하락"
     },
     {
-      "label": "필기 합격자",
-      "value": "574명",
-      "note": "법원사무 503명 포함"
+      "label": "최종 합격자",
+      "value": "501명",
+      "note": "법원사무 456명·등기사무 45명"
     },
     {
       "label": "전체 경쟁률",
