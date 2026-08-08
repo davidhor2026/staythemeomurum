@@ -122,8 +122,24 @@ window.SITE_UPDATES = {
   function applyBadges(scope) {
     var links = (scope || document).querySelectorAll('a[href]');
     links.forEach(function (link) {
-      var href = normalizeHref(link.getAttribute('href'));
+      var rawHref = String(link.getAttribute('href') || '').trim();
+
+      /*
+       * 페이지 내부 바로가기(#court, #teacher, #exam-card-court9 등)는
+       * 해당 페이지 전체의 업데이트 상태를 상속하지 않습니다.
+       * 직렬별 NEW는 각 페이지의 개별 직렬/섹션 업데이트 날짜가 판단합니다.
+       */
+      if (!rawHref || rawHref.charAt(0) === '#') return;
+
+      var href = normalizeHref(rawHref);
       if (!href) return;
+
+      // 같은 페이지를 가리키면서 해시만 붙은 절대/상대 링크도 페이지 NEW 전파 대상에서 제외
+      try {
+        var url = new URL(rawHref, window.location.href);
+        if (url.hash && url.pathname === window.location.pathname) return;
+      } catch (e) {}
+
       addBadge(link, newestForLink(href));
     });
   }
