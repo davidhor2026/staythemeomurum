@@ -47,6 +47,7 @@ window.SITE_UPDATES = {
    */
   sections: {
     'exam-schedule.html#teacher': { key: 'examScheduleTeacher', updated: '2026-08-09' },
+    'exam-schedule.html#police': { key: 'examSchedulePolice', updated: '2026-08-10' },
     'exam-schedule.html#court': { key: 'examScheduleCourt', updated: '2026-08-07' }
   }
 };
