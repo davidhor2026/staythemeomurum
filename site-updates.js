@@ -17,7 +17,7 @@ window.SITE_UPDATES = {
     'korean-history-advanced-quiz.html': { key: 'historyQuiz', updated: '2026-07-15' },
     'foreign-service-interview-quiz.html': { key: 'foreignInterviewQuiz', updated: '2026-07-15' },
     'exam-insight.html': { key: 'examInsight', updated: '2026-08-09' },
-    'exam-schedule.html': { key: 'examSchedule', updated: '2026-08-12' },
+    'exam-schedule.html': { key: 'examSchedule', updated: '2026-08-14' },
     'games.html': { key: 'games', updated: '' },
     'fortune.html': { key: 'fortune', updated: '' },
     'knowledge.html': { key: 'knowledge', updated: '' },
@@ -48,7 +48,7 @@ window.SITE_UPDATES = {
   sections: {
     'exam-schedule.html#education-gyeonggi-talent': { key: 'examScheduleGyeonggiTalent', updated: '2026-08-12', expires: '2026-08-30' },
     'exam-schedule.html#teacher': { key: 'examScheduleTeacher', updated: '2026-08-09' },
-    'exam-schedule.html#police': { key: 'examSchedulePolice', updated: '2026-08-10' },
+    'exam-schedule.html#police': { key: 'examSchedulePolice', updated: '2026-08-14', expires: '2026-08-23' },
     'exam-schedule.html#court': { key: 'examScheduleCourt', updated: '2026-08-07' }
   }
 };
