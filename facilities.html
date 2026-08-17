@@ -70,6 +70,33 @@
         grid-template-columns: 1fr;
       }
     }
+  
+    /* 시설 안내 이미지 모바일 표시 안정화 */
+    .facility-card img {
+      width: 100% !important;
+      height: auto !important;
+      max-height: none !important;
+      object-fit: contain !important;
+      object-position: center top !important;
+      display: block;
+      background: #fff;
+    }
+
+    @media (max-width: 700px) {
+      .facility-card {
+        overflow: visible !important;
+      }
+
+      .facility-card img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        aspect-ratio: auto !important;
+        object-fit: contain !important;
+        object-position: center top !important;
+      }
+    }
+
   </style>
 </head>
 
@@ -144,25 +171,25 @@
 
     <div class="facility-card-grid">
       <div class="facility-card">
-        <img src="coffee-ice-maker-guide.png" alt="커피머신과 아이스메이커 안내 이미지">
+        <img src="coffee-ice-maker-guide.png?v=20260817-2" alt="커피머신과 아이스메이커 안내 이미지">
         <strong>커피머신 · 아이스메이커</strong>
         <p>커피머신과 아이스메이커를 비치해 두어 따뜻한 커피와 시원한 아이스 음료를 편리하게 즐길 수 있습니다.</p>
       </div>
 
       <div class="facility-card">
-        <img src="rice-cooker-guide.png" alt="쌀과 전기밥솥 안내 이미지">
+        <img src="rice-cooker-guide.png?v=20260817-2" alt="쌀과 전기밥솥 안내 이미지">
         <strong>쌀 & 전기밥솥 비치</strong>
         <p>쌀과 전기밥솥을 비치해 두어 간편하게 따뜻한 한 끼를 준비할 수 있습니다.</p>
       </div>
 
       <div class="facility-card">
-        <img src="ramen-guide.png" alt="라면 무료 제공 안내 이미지">
+        <img src="ramen-guide.png?v=20260817-2" alt="라면 무료 제공 안내 이미지">
         <strong>라면 무료 제공</strong>
         <p>입주자분들을 위해 다양한 라면을 준비해 두었습니다. 종류와 수량은 상황에 따라 달라질 수 있습니다.</p>
       </div>
 
       <div class="facility-card">
-        <img src="home-roasting-guide.png" alt="집에서 하는 커피 로스팅 안내 이미지">
+        <img src="home-roasting-guide.png?v=20260817-2" alt="집에서 하는 커피 로스팅 안내 이미지">
         <strong>직접 하는 홈 로스팅</strong>
         <p>원두는 주로 시중에서 구입하지만, 가끔 집에서 직접 로스팅한 원두를 가져오기도 합니다.</p>
       </div>
@@ -177,13 +204,13 @@
 
     <div class="facility-card-grid">
       <div class="facility-card">
-        <img src="room-fridge-guide.png" alt="각 방 개별 냉장고 안내 이미지">
+        <img src="room-fridge-guide.png?v=20260817-2" alt="각 방 개별 냉장고 안내 이미지">
         <strong>각 방 개별 냉장고</strong>
         <p>객실마다 개별 냉장고가 구비되어 있어 음료와 간단한 식품을 방 안에서 보관할 수 있습니다.</p>
       </div>
 
       <div class="facility-card">
-        <img src="freezer-guide.png" alt="공용 냉동고 안내 이미지">
+        <img src="freezer-guide.png?v=20260817-2" alt="공용 냉동고 안내 이미지">
         <strong>공용 냉동전용고</strong>
         <p>냉동전용고는 요청 시 지정 칸을 배정해 드리며, 지정 가능한 칸이 모두 찬 경우에는 대기 후 이용 가능합니다. 반드시 사전에 사용 가능 여부 확인해 주세요</p>
       </div>
@@ -207,13 +234,13 @@
 
     <div class="facility-card-grid">
       <div class="facility-card">
-        <img src="laundry-guide.png" alt="세탁기와 건조기 안내 이미지">
+        <img src="laundry-guide.png?v=20260817-2" alt="세탁기와 건조기 안내 이미지">
         <strong>세탁기 2대 · 건조기 2대</strong>
         <p>세탁기와 건조기를 각각 2대씩 비치해 바쁜 시간대에도 조금 더 여유롭게 이용할 수 있습니다.</p>
       </div>
 
       <div class="facility-card">
-        <img src="bathroom-shower-guide.png" alt="층별 공용 샤워실과 화장실 안내 이미지">
+        <img src="bathroom-shower-guide.png?v=20260817-2" alt="층별 공용 샤워실과 화장실 안내 이미지">
         <strong>층별 공용 샤워실 · 화장실</strong>
         <p>층별로 편리하게 이용할 수 있도록 공용 샤워실과 화장실을 구성하고 청결하게 관리합니다.</p>
       </div>
@@ -228,7 +255,7 @@
 
     <div class="facility-card-grid">
       <div class="facility-card">
-        <img src="air-purifier-room-guide.png" alt="객실 공기청정기 안내 이미지">
+        <img src="air-purifier-room-guide.png?v=20260817-2" alt="객실 공기청정기 안내 이미지">
         <strong>객실 공기청정기</strong>
         <p>내창방인 스탠다드룸과 스위트룸에 구비해 놓았습니다.</p>
       </div>
