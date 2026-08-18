@@ -16,8 +16,8 @@ window.SITE_UPDATES = {
     'psat-ncs-quiz.html': { key: 'psatNcsQuiz', updated: '2026-07-15' },
     'korean-history-advanced-quiz.html': { key: 'historyQuiz', updated: '2026-07-15' },
     'foreign-service-interview-quiz.html': { key: 'foreignInterviewQuiz', updated: '2026-07-15' },
-    'exam-insight.html': { key: 'examInsight', updated: '2026-08-15', expires: '2026-08-20' },
-    'exam-schedule.html': { key: 'examSchedule', updated: '2026-08-14' },
+    'exam-insight.html': { key: 'examInsight', updated: '2026-08-18', expires: '2026-08-26' },
+    'exam-schedule.html': { key: 'examSchedule', updated: '2026-08-18', expires: '2026-08-26' },
     'games.html': { key: 'games', updated: '' },
     'fortune.html': { key: 'fortune', updated: '' },
     'knowledge.html': { key: 'knowledge', updated: '' },
@@ -46,6 +46,8 @@ window.SITE_UPDATES = {
    * 실제 해당 직렬/섹션에 새 소식이 있을 때만 날짜를 넣습니다.
    */
   sections: {
+    'exam-schedule.html#foreign-service7': { key: 'examScheduleForeign7', updated: '2026-08-18', expires: '2026-08-26' },
+    'exam-schedule.html#national7': { key: 'examScheduleNational7', updated: '2026-08-18', expires: '2026-08-26' },
     'exam-schedule.html#teacher': { key: 'examScheduleTeacher', updated: '2026-08-09' },
     'exam-schedule.html#police': { key: 'examSchedulePolice', updated: '2026-08-14', expires: '2026-08-23' },
     'exam-schedule.html#court': { key: 'examScheduleCourt', updated: '2026-08-07' }
