@@ -77,9 +77,8 @@
 </nav>
 <div aria-label="방문자수" class="visitor-counter" id="visitorCounter">
 <span class="visitor-counter-label">방문현황</span>
-<span>오늘 <strong id="visitorToday">-</strong>명</span>
-<span class="visitor-sep">·</span>
-<span>누적 <strong id="visitorTotal">-</strong>명</span>
+<span id="visitorLoadingText">방문현황 불러오는 중...</span>
+<span id="visitorCountText" hidden>오늘 <strong id="visitorToday">-</strong>명<span class="visitor-sep">·</span> 누적 <strong id="visitorTotal">-</strong>명</span>
 </div>
 <section aria-label="합격 축하 안내" class="congrats-banner-section">
 <div class="congrats-banner">
@@ -529,5 +528,40 @@
 (function(){var data=window.CURRENT_ISSUES_DATA,el=document.getElementById('homeIssuesGrid');if(!data||!el)return;function e(v){return String(v||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];});}el.innerHTML=(data.issues||[]).slice(0,4).map(function(x){return '<a class="home-issue-card" href="current-issues.html#'+e(x.id)+'"><span class="home-issue-meta"><b>'+e(x.category)+'</b><em>'+e(x.status||'최근 이슈')+'</em></span><time class="home-issue-date" datetime="'+e(x.published)+'">'+e(x.published)+'</time><strong>'+e(x.icon)+' '+e(x.title)+'</strong><p>'+e(x.headline||x.summary)+'</p><small>이슈 해설 읽기 →</small></a>';}).join('');})();
 </script>
 <script src="site-updates.js?v=20260819-n7cutline1"></script>
+
+<script>
+(function(){
+  var loading = document.getElementById('visitorLoadingText');
+  var counts = document.getElementById('visitorCountText');
+  var todayEl = document.getElementById('visitorToday');
+  var totalEl = document.getElementById('visitorTotal');
+  var started = Date.now();
+
+  function syncVisitorLoadingState(){
+    if(todayEl && totalEl && todayEl.textContent !== '-' && totalEl.textContent !== '-'){
+      if(loading) loading.hidden = true;
+      if(counts) counts.hidden = false;
+      return true;
+    }
+    if(loading && Date.now() - started > 12000){
+      loading.textContent = '방문현황을 불러오는 중입니다. 잠시만 기다려 주세요.';
+    }
+    return false;
+  }
+
+  if(!syncVisitorLoadingState()){
+    var timer = setInterval(function(){
+      if(syncVisitorLoadingState()){
+        clearInterval(timer);
+      }
+    }, 500);
+    setTimeout(function(){
+      clearInterval(timer);
+      syncVisitorLoadingState();
+    }, 60000);
+  }
+})();
+</script>
+
 </body>
 </html>
