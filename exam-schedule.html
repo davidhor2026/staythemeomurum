@@ -132,11 +132,9 @@ body{background:#f7f5f0;color:#2f332d;}
 <a href="#labor-attorney">공인노무사</a>
 <a href="#schedule-2027">2027년 일정</a>
 </section><section class="schedule-first-intro"><h2>시험일정 보기</h2><p>다가오는 핵심 일정과 시험별 전체 일정을 먼저 확인할 수 있습니다.</p></section><section aria-label="다가오는 핵심 일정" class="top-summary">
-<div><strong>8월 15일</strong><span>서울시교육청 9급 면접시험</span></div>
-<div><strong>8월 18일</strong><span>국가직 7급·외무영사직 1차 합격자 발표 완료</span></div>
-<div><strong>8월 22일</strong><span>경찰공무원 2차 순경 필기시험</span></div>
-<div><strong>8월 29~30일</strong><span>제35회 공인노무사 2차시험</span></div>
-<div><strong>8월 31일~9월 11일</strong><span>제76기 경위 공채 신체·체력·적성검사</span></div>
+<div data-schedule-end="2026-08-22"><strong>8월 22일</strong><span>경찰공무원 2차 순경 필기시험</span></div>
+<div data-schedule-end="2026-08-30"><strong>8월 29~30일</strong><span>제35회 공인노무사 2차시험</span></div>
+<div data-schedule-end="2026-09-11"><strong>8월 31일~9월 11일</strong><span>제76기 경위 공채 신체·체력·적성검사</span></div>
 <div><strong>9월 5일</strong><span>경기도교육청 9급 면접시험</span></div>
 <div><strong>9월 15일</strong><span>경기도교육청 9급 최종합격자 발표</span></div>
 <div><strong>9월 19일</strong><span>국가직 7급·외무영사직 2차시험</span></div>
@@ -522,6 +520,44 @@ document.getElementById('year').textContent = new Date().getFullYear();
 const examReviewDate = document.getElementById('exam-review-date');
 if (examReviewDate) examReviewDate.textContent = '검토 기준일: 2026년 8월 8일';
 </script>
-<script src="site-updates.js?v=20260819-latestdate1"></script>
+<script src="site-updates.js?v=20260819-autohide2"></script>
+
+<script>
+(function(){
+  function getKstToday(){
+    var parts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Asia/Seoul',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).formatToParts(new Date());
+    var y='', m='', d='';
+    parts.forEach(function(p){
+      if(p.type === 'year') y = p.value;
+      if(p.type === 'month') m = p.value;
+      if(p.type === 'day') d = p.value;
+    });
+    return y + '-' + m + '-' + d;
+  }
+
+  function hidePastSchedules(){
+    var today = getKstToday();
+    document.querySelectorAll('[data-schedule-end]').forEach(function(card){
+      var endDate = card.getAttribute('data-schedule-end');
+      if(endDate && endDate < today){
+        card.style.display = 'none';
+        card.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', hidePastSchedules);
+  } else {
+    hidePastSchedules();
+  }
+})();
+</script>
+
 </body>
 </html>
