@@ -205,6 +205,117 @@ document.addEventListener("DOMContentLoaded",render);
 }
 </style>
 
+
+<style id="mobile-availability-readability-fix-20260819">
+/* 상단 바로가기 3개: 모바일 한 줄 유지 + 글자 크기 축소 */
+.quick{
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:7px !important;
+}
+.quick a{
+  min-width:0 !important;
+  min-height:52px !important;
+  padding:7px 4px !important;
+  font-size:13px !important;
+  line-height:1.2 !important;
+  letter-spacing:-0.04em !important;
+  white-space:nowrap !important;
+  word-break:keep-all !important;
+  justify-content:center !important;
+  text-align:center !important;
+}
+.quick a:first-child{
+  font-size:12.5px !important;
+}
+
+/* 한눈에 보는 현황: 4개 카드 한 줄 유지, 과도한 줄바꿈 방지 */
+.overview{
+  padding:13px 10px !important;
+}
+.overview-head{
+  gap:7px !important;
+  align-items:flex-start !important;
+}
+.overview-head h3{
+  font-size:18px !important;
+  line-height:1.25 !important;
+  letter-spacing:-0.035em !important;
+}
+.overview-head small{
+  flex:0 0 auto !important;
+  font-size:11px !important;
+  line-height:1.25 !important;
+  white-space:nowrap !important;
+  padding-top:3px !important;
+}
+.summary{
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:5px !important;
+}
+.sum{
+  min-width:0 !important;
+  padding:10px 4px !important;
+  min-height:190px !important;
+  border-radius:13px !important;
+}
+.sum h4{
+  margin:0 0 8px !important;
+  font-size:13.5px !important;
+  line-height:1.2 !important;
+  letter-spacing:-0.04em !important;
+  word-break:keep-all !important;
+  white-space:nowrap !important;
+}
+.sum .icon{
+  font-size:21px !important;
+  line-height:1 !important;
+  margin:7px 0 9px !important;
+}
+.sum .main{
+  font-size:11.5px !important;
+  line-height:1.38 !important;
+  letter-spacing:-0.035em !important;
+  word-break:keep-all !important;
+}
+.sum .sub{
+  font-size:11px !important;
+  line-height:1.38 !important;
+  letter-spacing:-0.035em !important;
+  word-break:keep-all !important;
+}
+.sum hr{
+  width:72% !important;
+  margin:9px auto !important;
+}
+.notice{
+  margin-top:10px !important;
+  font-size:11px !important;
+  line-height:1.45 !important;
+  letter-spacing:-0.025em !important;
+}
+
+/* 상세 현황도 모바일에서 조금 더 정돈 */
+.roomrow h4{font-size:15px !important;}
+.roomrow p{
+  font-size:12px !important;
+  line-height:1.4 !important;
+}
+.roomrow a{
+  font-size:11.5px !important;
+  padding:7px 7px !important;
+}
+
+@media (min-width:700px){
+  .quick a{font-size:15px !important;}
+  .quick a:first-child{font-size:14.5px !important;}
+  .sum h4{font-size:16px !important;}
+  .sum .main{font-size:14px !important;}
+  .sum .sub{font-size:13px !important;}
+  .overview-head h3{font-size:21px !important;}
+  .overview-head small{font-size:13px !important;}
+}
+</style>
+
 </head><body><div class="page">
 <section class="brand">
  <img src="availability-logo.jpg" alt="스테이The머무름 로고">
