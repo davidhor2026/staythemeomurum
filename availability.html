@@ -57,7 +57,7 @@ function render(){
  document.querySelector('[data-sum="deluxe"]').innerHTML=summaryFull(d);
  document.querySelector('[data-sum="suite1"]').innerHTML=summaryFull(u1);
  document.querySelector('[data-sum="suite2"]').innerHTML=summaryFull(u2);
- document.querySelector('[data-detail="standard"]').innerHTML=`<p class="green">● 즉시 입실 가능 · ${s.rooms}</p><p class="orange">● 다음 ${s.nextDate} · ${s.nextRooms} 입실 가능 예정</p>`;
+ document.querySelector('[data-detail="standard"]').innerHTML=`<p class="green">● 입실 가능 · ${s.rooms}</p><p class="orange">● 다음 ${s.nextDate} · ${s.nextRooms} 입실 가능 예정</p>`;
  document.querySelector('[data-detail="deluxe"]').innerHTML=`<p class="gray">● 현재 만실</p><p class="orange">● 다음 ${d.nextDate} · ${d.nextRooms} 입실 가능 예정</p>`;
  document.querySelector('[data-detail="suite1"]').innerHTML=`<p class="gray">● 현재 만실</p><p class="gray">● 다음 ${u1.nextDate} 입실 가능 예정${u1.dateUnknown?" · 날짜 미정":""}</p>`;
  document.querySelector('[data-detail="suite2"]').innerHTML=`<p class="gray">● 현재 만실</p><p class="gray">● 다음 ${u2.nextDate} 입실 가능 예정${u2.dateUnknown?" · 날짜 미정":""}</p>`;
