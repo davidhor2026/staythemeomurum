@@ -1,131 +1,153 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>입실 가능 현황 | 스테이The머무름</title><meta name="description" content="스테이The머무름 스탠다드룸, 디럭스룸, 스위트룸의 현재 및 예정 입실 가능 현황입니다."><link rel="stylesheet" href="style.css"><style>
-.av-page{max-width:1180px;margin:0 auto;padding:24px 18px 60px}.av-brand{display:flex;align-items:center;gap:12px}.av-brand img{width:74px;height:74px;object-fit:contain}.av-brand strong{font-size:20px}.av-brand small{display:block;margin-top:4px}.av-layout{display:grid;grid-template-columns:210px 1fr;gap:28px}.av-side{position:sticky;top:14px;align-self:start}.av-side a,.av-contact{display:block;padding:15px 16px;margin-bottom:12px;border:1px solid #e5e8e3;border-radius:12px;background:#fff;color:#26372a;text-decoration:none;font-weight:800}.av-side .active{background:#eef4ed}.av-contact{font-weight:500;line-height:1.75;margin-top:40px}.av-contact strong{display:block;font-size:17px;margin-bottom:8px}.av-main h1{font-size:38px;color:#183d24;margin:8px 0}.av-lead{color:#555}.av-update{margin:20px 0;padding:14px 18px;background:#f4f7f3;border-radius:10px;color:#4b5d4e}.av-card{display:grid;grid-template-columns:300px 1fr;gap:28px;padding:18px;margin:18px 0;border:1px solid #e7e9e6;border-radius:18px;background:#fff;box-shadow:0 6px 20px rgba(40,55,42,.04)}.av-card img{width:100%;height:300px;object-fit:cover;border-radius:14px}.av-card h2{margin:10px 0 6px;color:#183d24}.av-desc{color:#555;margin:0 0 18px}.status{padding:15px 18px;border:1px solid #e7e9e6;border-radius:12px;margin:10px 0}.status strong{display:flex;justify-content:space-between;gap:12px}.green{color:#21843a}.orange{color:#e87500}.red{color:#d52020}.av-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.av-actions a{padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:800;background:#234d2c;color:#fff}.av-actions a.secondary{background:#f0f4ef;color:#234d2c}.av-note{font-size:13px;color:#777;margin-top:20px}.av-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;border-bottom:1px solid #eee;padding-bottom:15px}.av-top nav{display:flex;gap:15px;flex-wrap:wrap;background:none;padding:0;margin:0}.av-top nav a{color:#26372a;text-decoration:none;font-weight:700;padding:6px}
-@media(max-width:760px){.av-page{padding:12px}.av-top{display:block}.av-brand{margin-bottom:12px}.av-top nav{display:none}.av-layout{display:block}.av-side{position:static;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}.av-side a{margin:0;padding:12px;font-size:14px}.av-contact{grid-column:1/-1;margin:4px 0 0}.av-main h1{font-size:30px}.av-card{display:block;padding:14px}.av-card img{height:auto;max-height:430px}.av-card h2{margin-top:16px}}
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>입실 가능 현황 | 스테이The머무름</title><meta name="description" content="스테이The머무름 스탠다드룸, 디럭스룸, 스위트룸의 현재 및 예정 입실 가능 현황입니다."><link rel="stylesheet" href="style.css">
+<style>
+:root{--green:#183d24;--soft:#f4f7f3;--line:#e3e7e1;--orange:#e87500;--red:#d52020}
+*{box-sizing:border-box}.av-page{max-width:1180px;margin:0 auto;padding:18px 18px 60px;color:#26372a}
+.av-top{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:10px 0 18px;border-bottom:1px solid #eee;background:#fff}
+.av-brand{display:flex;align-items:center;gap:12px}.av-brand img{width:76px;height:76px;object-fit:contain;background:#fff}
+.av-brand strong{font-size:20px;color:var(--green)}.av-brand small{display:block;margin-top:4px;color:#4e5b51}
+.av-top nav{display:flex;gap:14px;flex-wrap:wrap}.av-top nav a{color:#26372a;text-decoration:none;font-weight:700;padding:6px}
+.av-layout{display:grid;grid-template-columns:210px 1fr;gap:28px;margin-top:22px}.av-side{position:sticky;top:14px;align-self:start}
+.av-side a{display:block;padding:15px 16px;margin-bottom:12px;border:1px solid var(--line);border-radius:12px;background:#fff;color:#26372a;text-decoration:none;font-weight:800}
+.av-main h1{font-size:38px;color:var(--green);margin:6px 0}.av-lead{color:#555;margin-bottom:18px}
+.av-summary{padding:18px;border:1px solid #dfe7dd;border-radius:18px;background:#f8fbf7;margin-bottom:24px}
+.av-summary h2{margin:0 0 6px;color:var(--green);font-size:24px}.av-summary-sub{margin:0 0 14px;color:#647067;font-size:14px}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.summary-item{padding:14px 15px;background:#fff;border:1px solid var(--line);border-radius:12px;line-height:1.55}
+.summary-item strong{display:block;margin-bottom:3px}.dot{font-size:13px;margin-right:6px}.available{color:#21843a}.upcoming{color:var(--orange)}.full{color:var(--red)}
+.av-update{margin:0 0 20px;padding:13px 16px;background:var(--soft);border-radius:10px;color:#4b5d4e;font-size:14px}
+.av-card{display:grid;grid-template-columns:300px 1fr;gap:28px;padding:18px;margin:18px 0;border:1px solid #e7e9e6;border-radius:18px;background:#fff;box-shadow:0 6px 20px rgba(40,55,42,.04)}
+.av-card img{width:100%;height:300px;object-fit:cover;border-radius:14px}.av-card h2{margin:10px 0 6px;color:var(--green)}.av-desc{color:#555;margin:0 0 18px}
+.status{padding:15px 18px;border:1px solid #e7e9e6;border-radius:12px;margin:10px 0}.status strong{display:flex;justify-content:space-between;gap:12px}.status small{display:block;margin-top:6px;color:#555}
+.av-contact-bottom{margin-top:30px;padding:20px;border:1px solid var(--line);border-radius:18px;background:#fff}.av-contact-bottom h2{margin:0 0 16px;color:var(--green)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.contact-box{padding:16px;border-radius:12px;background:#f8faf7;line-height:1.7}.contact-box strong{display:block;font-size:18px}
+.av-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.av-actions a{padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:800;background:#eef3ed;color:#234d2c}
+.av-note{font-size:13px;color:#777;margin-top:20px}
+@media(max-width:760px){
+ .av-page{padding:10px 12px 40px}.av-top{display:block}.av-brand{margin-bottom:10px}.av-brand img{width:62px;height:62px}.av-brand strong{font-size:18px}.av-top nav{display:none}
+ .av-layout{display:block;margin-top:14px}.av-side{position:static;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}.av-side a{margin:0;padding:12px;font-size:14px}
+ .av-main h1{font-size:30px}.summary-grid{grid-template-columns:1fr}.av-card{display:block;padding:14px}.av-card img{height:auto;max-height:430px}.av-card h2{margin-top:16px}
+ .contact-grid{grid-template-columns:1fr}
+}
 </style>
 <script>
 /* =========================================================
-   ★ 공실 현황 수정은 아래 ROOM_AVAILABILITY 내용만 바꾸세요.
-   - status: "available" = 즉시 입실 가능
-             "upcoming"  = 입실 가능 예정
-             "full"      = 만실
-   - date: 표시할 날짜/문구
-   - rooms: 방 개수 표시
-   - note: 추가 안내
+   ★ 공실 현황은 아래 ROOM_AVAILABILITY만 수정하세요.
+   날짜·객실 수를 바꾸면 상단 요약과 객실별 상세가 함께 바뀝니다.
    ========================================================= */
 const ROOM_AVAILABILITY = {
   standard: {
-    name: "스탠다드룸",
-    status: "available",
-    date: "즉시 입실 가능",
-    rooms: "1실",
-    nextDate: "9월 26일",
-    nextRooms: "1실",
-    nextLabel: "입실 가능 예정",
-    note: ""
+    name:"스탠다드룸", status:"available", rooms:"1실",
+    nextDate:"2026.09.26", nextRooms:"1실"
   },
   deluxe: {
-    name: "디럭스룸",
-    status: "upcoming",
-    date: "8월 31일",
-    rooms: "1실",
-    nextDate: "",
-    nextRooms: "",
-    nextLabel: "",
-    note: "입실 가능 예정"
+    name:"디럭스룸", status:"upcoming", date:"2026.08.31", rooms:"1실"
   },
   suite2: {
-    name: "스위트룸2",
-    status: "full",
-    date: "11월 중",
-    rooms: "",
-    nextDate: "",
-    nextRooms: "",
-    nextLabel: "",
-    note: "입실 가능 예정 · 정확한 날짜 미정"
+    name:"스위트룸2", status:"full", date:"2026년 11월 중", rooms:"", dateUnknown:true
   },
   suite1: {
-    name: "스위트룸1",
-    status: "full",
-    date: "11월 중",
-    rooms: "",
-    nextDate: "",
-    nextRooms: "",
-    nextLabel: "",
-    note: "입실 가능 예정 · 정확한 날짜 미정"
+    name:"스위트룸1", status:"full", date:"2026년 11월 중", rooms:"", dateUnknown:true
   }
 };
 
-function renderAvailability(){
-  Object.keys(ROOM_AVAILABILITY).forEach(function(key){
-    var d = ROOM_AVAILABILITY[key];
-    document.querySelectorAll('[data-room="'+key+'"]').forEach(function(card){
-      var status = card.querySelector('[data-field="status"]');
-      var primary = card.querySelector('[data-field="primary"]');
-      var secondary = card.querySelector('[data-field="secondary"]');
-      var note = card.querySelector('[data-field="note"]');
+function statusLabel(s){return s==="available"?"즉시 입실 가능":s==="upcoming"?"입실 가능 예정":"현재 만실";}
+function statusClass(s){return s==="available"?"available":s==="upcoming"?"upcoming":"full";}
 
-      var statusText = d.status === "available" ? "즉시 입실 가능" :
-                       d.status === "upcoming" ? "입실 가능 예정" : "현재 만실";
-      if(status){
-        status.textContent = statusText;
-        status.className = "availability-status status-" + d.status;
-      }
-      if(primary){
-        if(d.status === "available"){
-          primary.textContent = d.date + (d.rooms ? " · " + d.rooms : "");
-        }else{
-          primary.textContent = d.date + (d.rooms ? " · " + d.rooms : "") +
-            (d.note ? " " + d.note : "");
-        }
-      }
-      if(secondary){
-        if(d.nextDate){
-          secondary.textContent = "다음 " + d.nextDate +
-            (d.nextRooms ? " · " + d.nextRooms : "") +
-            (d.nextLabel ? " " + d.nextLabel : "");
-          secondary.hidden = false;
-        }else{
-          secondary.hidden = true;
-        }
-      }
-      if(note){
-        note.textContent = (d.status === "available" && d.note) ? d.note : "";
-        note.hidden = !note.textContent;
-      }
-    });
+function renderAvailability(){
+  const summary=document.getElementById("availabilitySummary");
+  summary.innerHTML="";
+  Object.entries(ROOM_AVAILABILITY).forEach(([key,d])=>{
+    const item=document.createElement("div"); item.className="summary-item";
+    let line="";
+    if(d.status==="available"){
+      line=`즉시 입실 가능${d.rooms?" · "+d.rooms:""}`;
+      if(d.nextDate) line+=`<br><span class="upcoming">다음 ${d.nextDate}${d.nextRooms?" · "+d.nextRooms:""} 입실 가능 예정</span>`;
+    }else if(d.status==="upcoming"){
+      line=`${d.date}${d.rooms?" · "+d.rooms:""} 입실 가능 예정`;
+    }else{
+      line=`현재 만실`;
+      if(d.date) line+=`<br><span class="upcoming">${d.date} 입실 가능 예정${d.dateUnknown?" · 정확한 날짜 미정":""}</span>`;
+    }
+    item.innerHTML=`<strong>${d.name}</strong><span class="${statusClass(d.status)}"><span class="dot">●</span>${line}</span>`;
+    summary.appendChild(item);
+
+    const card=document.querySelector(`[data-room="${key}"]`);
+    if(!card) return;
+    const box=card.querySelector(".dynamic-status"); box.innerHTML="";
+    const add=(cls,title,count,detail)=>{
+      const el=document.createElement("div"); el.className="status";
+      el.innerHTML=`<strong class="${cls}"><span>● ${title}</span><span>${count||"—"}</span></strong><small>${detail}</small>`;
+      box.appendChild(el);
+    };
+    if(d.status==="available"){
+      add("available","즉시 입실 가능",d.rooms,"지금 바로 입실하실 수 있는 객실입니다.");
+      if(d.nextDate) add("upcoming","입실 가능 예정",d.nextRooms,`${d.nextDate} 이후 입실 가능`);
+    }else if(d.status==="upcoming"){
+      add("upcoming","입실 가능 예정",d.rooms,`${d.date} 이후 입실 가능`);
+    }else{
+      add("full","현재 만실","","현재 입실 가능한 객실이 없습니다.");
+      if(d.date) add("upcoming","입실 가능 예정","",`${d.date} 예정${d.dateUnknown?" · 정확한 날짜 미정":""}`);
+    }
   });
 }
-document.addEventListener("DOMContentLoaded", renderAvailability);
+document.addEventListener("DOMContentLoaded",renderAvailability);
 </script>
+</head><body>
+<div class="av-page">
+<header class="av-top">
+  <div class="av-brand"><img src="availability-logo.jpg" alt="스테이The머무름 로고"><div><strong>스테이The머무름</strong><small>여성 전용 고시원</small></div></div>
+  <nav><a href="index.html">메인페이지</a><a href="facilities.html">시설 안내</a><a href="checkin-guide.html">입실 안내사항</a><a href="exam-schedule.html">시험일정</a><a href="exam-insight.html">시험분석</a><a href="faq.html">FAQ</a></nav>
+</header>
 
+<div class="av-layout">
+<aside class="av-side">
+  <a href="index.html">⌂ 메인 페이지 바로 가기</a>
+  <a href="index.html#contact">💬 방 문의하기</a>
+  <a href="faq.html">? FAQ</a>
+</aside>
 
-<style>
-.availability-live-data{margin-top:10px;padding:11px 13px;border-radius:12px;background:#f7faf7;line-height:1.6}
-.availability-status{display:inline-block;margin-bottom:4px;font-weight:800}
-.status-available{color:#16854b}.status-upcoming{color:#a96a13}.status-full{color:#7a7a7a}
-.availability-live-data [data-field="secondary"]{font-size:.92em;color:#4f6257}
-.availability-live-data [data-field="note"]{font-size:.9em;color:#6c6c6c}
-</style>
+<main class="av-main">
+  <h1>입실 가능 현황</h1>
+  <p class="av-lead">현재 및 예정된 입실 가능 객실을 한눈에 확인하세요.</p>
 
+  <section class="av-summary">
+    <h2>한눈에 보는 입실 가능 현황</h2>
+    <p class="av-summary-sub">아래 요약은 객실별 상세 현황과 자동으로 함께 업데이트됩니다.</p>
+    <div id="availabilitySummary" class="summary-grid"></div>
+  </section>
 
-<style>
-/* 2026-08-19: 상단 브랜드 이미지를 선명하게 표시 */
-.av-brand img{width:88px;height:88px;object-fit:contain;opacity:1!important;filter:none!important;mix-blend-mode:normal!important;background:#fff}
-.av-top,.av-brand{opacity:1!important;filter:none!important}
-</style>
+  <div class="av-update">● 공실 일정은 변동될 수 있으며, 예약 전 최종 확인을 부탁드립니다.</div>
 
-<style>
-/* 2026-08-19: 입실현황 상단을 배경사진이 아닌 선명한 브랜드 헤더로 변경 */
-.av-top{background:#fff!important;min-height:0!important;padding:12px 0 16px!important;opacity:1!important;filter:none!important}
-.av-brand{background:#fff!important;opacity:1!important;filter:none!important}
-.av-brand img{width:76px!important;height:76px!important;object-fit:contain!important;opacity:1!important;filter:none!important;background:#fff!important;border-radius:10px}
-.av-brand strong{color:#1d3324!important;font-size:20px!important;text-shadow:none!important}
-.av-brand small{color:#4e5b51!important;text-shadow:none!important}
-@media(max-width:760px){.av-top{padding:8px 2px 12px!important}.av-brand img{width:62px!important;height:62px!important}.av-brand strong{font-size:18px!important}}
-</style>
-</head><body><div class="av-page"><header class="av-top"><div class="av-brand"><img src="availability-logo.jpg" alt="스테이The머무름 로고"><div><strong>스테이The머무름</strong><small>여성 전용 고시원</small></div></div><nav><a href="index.html">메인페이지</a><a href="facilities.html">시설 안내</a><a href="checkin-guide.html">입실 안내사항</a><a href="exam-schedule.html">시험일정</a><a href="exam-insight.html">시험분석</a><a href="faq.html">FAQ</a></nav></header><div class="av-layout"><aside class="av-side"><a href="index.html">⌂ 메인 페이지 바로 가기</a><a class="active" href="availability.html">▣ 입실 가능 현황</a><a href="index.html#contact">💬 방 문의하기</a><a href="faq.html">? FAQ</a><div class="av-contact"><strong>🎧 상담 문의</strong>☎ 전화 문의<br><b>09:00 ~ 21:00 (매일)</b><br>아침 9시부터 밤 9시까지 가능<br><hr>💬 문자·톡 문의<br><b>24시간 가능</b><br>문의 확인 후 순차적으로 회신드리겠습니다.</div></aside><main class="av-main"><h1>입실 가능 현황</h1><p class="av-lead">현재 및 예정된 입실 가능 객실 정보를 확인하실 수 있습니다.</p><div class="av-update">● 공실 일정은 변동될 수 있으며, 예약 전 최종 확인을 부탁드립니다.</div>
-<article class="av-card"><img src="room-standard.png" alt="스탠다드룸"><div><h2>스탠다드룸</h2><p class="av-desc">합리적인 비용으로 생활할 수 있는 내창방이고 공기청정기가 들어가 있습니다.</p><div class="status"><strong class="green"><span>● 즉시 입실 가능</span><span>1실</span></strong><small>지금 바로 입실하실 수 있는 객실입니다.</small></div><div class="status"><strong class="orange"><span>● 입실 가능 예정</span><span>1실</span></strong><small>2026.09.26 이후 입실 가능</small></div></div></article>
-<article class="av-card"><img src="room-deluxe.png" alt="디럭스룸"><div><h2>디럭스룸</h2><div class="status"><strong class="orange"><span>● 입실 가능 예정</span><span>1실</span></strong><small>2026.08.31 이후 입실 가능</small></div></div></article>
-<article class="av-card"><img src="room-suite2.png" alt="스위트룸2"><div><h2>스위트룸2</h2><p class="av-desc">스위트룸1보다 약간 작은 내창방입니다.</p><div class="status"><strong class="red"><span>● 현재 만실</span><span>—</span></strong><small>현재 입실 가능한 객실이 없습니다.</small></div><div class="status"><strong class="orange"><span>● 입실 가능 예정</span><span>—</span></strong><small>2026년 11월 중 예정 · 정확한 날짜 미정</small></div></div></article>
-<article class="av-card"><img src="room-suite1.png" alt="스위트룸1"><div><h2>스위트룸1</h2><p class="av-desc">넓고 쾌적한 공간을 원하는 분께 적합한 내창방입니다.</p><div class="status"><strong class="red"><span>● 현재 만실</span><span>—</span></strong><small>현재 입실 가능한 객실이 없습니다.</small></div><div class="status"><strong class="orange"><span>● 입실 가능 예정</span><span>—</span></strong><small>2026년 11월 중 예정 · 정확한 날짜 미정</small></div></div></article>
-<div class="av-actions"><a class="secondary" href="index.html#contact">방 문의하기</a><a class="secondary" href="tel:0507-1372-9447">전화 문의</a><a class="secondary" href="sms:010-2877-9447">문자 문의</a></div><p class="av-note">※ 상기 일정은 변경될 수 있으며, 자세한 사항은 문의해 주세요.</p></main></div></div></body></html>
+  <article class="av-card" data-room="standard"><img src="room-standard.png" alt="스탠다드룸"><div>
+    <h2>스탠다드룸</h2><p class="av-desc">합리적인 비용으로 생활할 수 있는 내창방이고 공기청정기가 들어가 있습니다.</p>
+    <div class="dynamic-status"></div>
+  </div></article>
+
+  <article class="av-card" data-room="deluxe"><img src="room-deluxe.png" alt="디럭스룸"><div>
+    <h2>디럭스룸</h2><div class="dynamic-status"></div>
+  </div></article>
+
+  <article class="av-card" data-room="suite2"><img src="room-suite2.png" alt="스위트룸2"><div>
+    <h2>스위트룸2</h2><p class="av-desc">스위트룸1보다 약간 작은 내창방입니다.</p>
+    <div class="dynamic-status"></div>
+  </div></article>
+
+  <article class="av-card" data-room="suite1"><img src="room-suite1.png" alt="스위트룸1"><div>
+    <h2>스위트룸1</h2><p class="av-desc">넓고 쾌적한 공간을 원하는 분께 적합한 내창방입니다.</p>
+    <div class="dynamic-status"></div>
+  </div></article>
+
+  <section class="av-contact-bottom" id="contact">
+    <h2>상담 문의</h2>
+    <div class="contact-grid">
+      <div class="contact-box"><strong>☎ 전화 문의</strong><b>09:00 ~ 21:00 (매일)</b><br>아침 9시부터 밤 9시까지 가능합니다.</div>
+      <div class="contact-box"><strong>💬 문자·톡 문의</strong><b>24시간 가능</b><br>문의 확인 후 순차적으로 회신드리겠습니다.</div>
+    </div>
+    <div class="av-actions"><a href="index.html#contact">방 문의하기</a><a href="tel:0507-1372-9447">전화 문의</a><a href="sms:010-2877-9447">문자 문의</a></div>
+  </section>
+
+  <p class="av-note">※ 상기 일정은 변경될 수 있으며, 자세한 사항은 문의해 주세요.</p>
+</main>
+</div>
+</div>
+</body></html>
