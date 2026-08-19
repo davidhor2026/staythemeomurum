@@ -92,6 +92,48 @@ function renderAvailability(){
 }
 document.addEventListener("DOMContentLoaded",renderAvailability);
 </script>
+
+<style id="availability-compact-brand-20260819">
+/* 상단 브랜드 영역: 가운데 정렬 + 높이 축소 */
+.av-top{
+  justify-content:center !important;
+  text-align:center !important;
+  padding:8px 0 12px !important;
+  min-height:0 !important;
+}
+.av-brand{
+  width:100% !important;
+  justify-content:center !important;
+  flex-direction:column !important;
+  gap:2px !important;
+  text-align:center !important;
+}
+.av-brand img{
+  width:58px !important;
+  height:58px !important;
+  object-fit:contain !important;
+  margin:0 auto 2px !important;
+}
+.av-brand strong{
+  display:block !important;
+  font-size:20px !important;
+  line-height:1.2 !important;
+}
+.av-brand small{
+  display:block !important;
+  margin-top:2px !important;
+  font-size:14px !important;
+  line-height:1.3 !important;
+}
+.av-top nav{display:none !important;}
+@media(max-width:760px){
+  .av-top{padding:6px 0 10px !important;}
+  .av-brand img{width:52px !important;height:52px !important;}
+  .av-brand strong{font-size:19px !important;}
+  .av-brand small{font-size:13px !important;}
+}
+</style>
+
 </head><body>
 <div class="av-page">
 <header class="av-top">
