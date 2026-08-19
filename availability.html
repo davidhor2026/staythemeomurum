@@ -65,6 +65,146 @@ function render(){
 document.addEventListener("DOMContentLoaded",render);
 </script>
 
+
+<style id="availability-readability-fix-20260819">
+/* 모바일 가독성 보정: 4개 카드 유지, 글자 줄바꿈 최소화 */
+.overview{
+  padding:16px 14px !important;
+}
+.overview-head{
+  align-items:flex-start !important;
+}
+.overview-head h3{
+  font-size:21px !important;
+  line-height:1.3 !important;
+  letter-spacing:-0.02em !important;
+}
+.overview-head small{
+  font-size:13px !important;
+  line-height:1.35 !important;
+  white-space:nowrap !important;
+  padding-top:4px !important;
+}
+.summary{
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:8px !important;
+}
+.sum{
+  min-width:0 !important;
+  min-height:210px !important;
+  padding:14px 8px !important;
+  border-radius:14px !important;
+}
+.sum h4{
+  font-size:17px !important;
+  line-height:1.25 !important;
+  margin-bottom:10px !important;
+  word-break:keep-all !important;
+}
+.sum .icon{
+  font-size:25px !important;
+  margin-bottom:10px !important;
+}
+.sum .main{
+  font-size:15px !important;
+  line-height:1.45 !important;
+  word-break:keep-all !important;
+}
+.sum .sub{
+  font-size:14px !important;
+  line-height:1.45 !important;
+  word-break:keep-all !important;
+}
+.sum hr{
+  width:74% !important;
+  margin:11px auto !important;
+}
+.notice{
+  font-size:13px !important;
+  line-height:1.55 !important;
+}
+@media(max-width:700px){
+  .page{padding:10px 10px 34px !important;}
+  .brand img{width:58px !important;height:58px !important;}
+  .brand h1{font-size:23px !important;}
+  .brand p{font-size:15px !important;}
+
+  .quick{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:7px !important;
+  }
+  .quick a{
+    min-height:54px !important;
+    padding:8px 5px !important;
+    font-size:13px !important;
+    line-height:1.25 !important;
+    justify-content:center !important;
+    text-align:center !important;
+    word-break:keep-all !important;
+  }
+
+  .title h2{font-size:25px !important;}
+  .title p{font-size:14px !important;}
+
+  .overview{padding:13px 10px !important;}
+  .overview-head{gap:8px !important;}
+  .overview-head h3{
+    font-size:18px !important;
+    line-height:1.3 !important;
+  }
+  .overview-head small{
+    font-size:11px !important;
+    padding-top:3px !important;
+  }
+
+  .summary{
+    gap:6px !important;
+  }
+  .sum{
+    min-height:195px !important;
+    padding:11px 5px !important;
+  }
+  .sum h4{
+    font-size:14px !important;
+    line-height:1.22 !important;
+  }
+  .sum .icon{
+    font-size:22px !important;
+  }
+  .sum .main{
+    font-size:12.5px !important;
+    line-height:1.4 !important;
+  }
+  .sum .sub{
+    font-size:12px !important;
+    line-height:1.4 !important;
+  }
+  .notice{
+    font-size:12px !important;
+    margin-top:12px !important;
+  }
+
+  .details h3,.contact h3{
+    font-size:19px !important;
+  }
+  .roomrow{
+    grid-template-columns:40px minmax(0,1fr) auto !important;
+    gap:8px !important;
+  }
+  .roomrow h4{
+    font-size:15px !important;
+  }
+  .roomrow p{
+    font-size:12.5px !important;
+    line-height:1.42 !important;
+  }
+  .roomrow a{
+    font-size:12px !important;
+    padding:8px 8px !important;
+  }
+}
+</style>
+
 </head><body><div class="page">
 <section class="brand">
  <img src="availability-logo.jpg" alt="스테이The머무름 로고">
