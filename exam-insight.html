@@ -194,6 +194,19 @@
   cursor:pointer;
 }
 
+
+/* 국가직 7급 직류별 합격선 */
+.cutline-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0}
+.cutline-group{border:1px solid #dbe5ee;border-radius:16px;padding:14px;background:#fbfdff}
+.cutline-group h3{margin:0 0 10px;color:#174f82;font-size:16px}
+.cutline-table-wrap{overflow-x:auto}
+.cutline-table{width:100%;border-collapse:collapse;font-size:14px}
+.cutline-table th,.cutline-table td{padding:9px 10px;border-bottom:1px solid #e5ebf0;text-align:left}
+.cutline-table th{background:#f2f6fa;color:#42566b;font-size:13px}
+.cutline-table td:last-child,.cutline-table th:last-child{text-align:right;white-space:nowrap}
+.cutline-note{margin:14px 0;padding:13px 14px;border-radius:13px;background:#fff8ef;border:1px solid #ecd9c7;font-size:13px;line-height:1.65;color:#55483c}
+@media(max-width:640px){.cutline-groups{grid-template-columns:1fr}.cutline-group{padding:12px}.cutline-table{font-size:13px}}
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"2026 법원직 9급 시험분석: 합격선·커트라인·경쟁률·민법 난이도","description":"2026 법원직 9급 필기 합격선과 최근 3년 추이, 과목별 난이도, 면접 일정을 정리한 수험생용 분석 자료","dateModified":"2026-08-08","author":{"@type":"Organization","name":"스테이The머무름"},"publisher":{"@type":"Organization","name":"스테이The머무름"},"mainEntityOfPage":"https://davidhor2026.github.io/staythemeomurum/exam-insight.html"}
@@ -239,17 +252,53 @@
 <div class="exam-category-cards" id="examCategoryCards"></div>
 </section>
 <section aria-label="2026 국가직 7급 제1차시험 합격자 발표" class="analysis-update-box" id="national7-pass-update">
-<div class="latest-update-label">가장 최근 업데이트 · 2026년 8월 18일</div>
-<span class="exam-eyebrow">인사혁신처 공식 합격자 발표</span>
-<h2>2026 국가직 7급 1차 합격자 4,816명 발표 <span class="exam-category-new">NEW</span></h2>
-<p>인사혁신처가 8월 18일 국가공무원 채용시스템을 통해 2026년도 국가공무원 7급 공개경쟁채용 제1차시험 합격자를 발표했습니다. <strong>총 4,816명</strong>으로 행정직군 <strong>3,643명</strong>, 과학기술직군 <strong>1,173명</strong>입니다.</p>
+<div class="latest-update-label">가장 최근 업데이트 · 2026년 8월 19일</div>
+<span class="exam-eyebrow">2026 국가직 7급 1차 합격자·직류별 합격선</span>
+<h2>2026 국가직 7급 1차 합격자 4,816명 · 공개 합격선 상세 <span class="exam-category-new">NEW</span></h2>
+<p>2026년도 국가공무원 7급 공개경쟁채용 제1차시험 합격자는 <strong>총 4,816명</strong>입니다. 행정직군 <strong>3,643명</strong>, 과학기술직군 <strong>1,173명</strong>이며, 현재 공식 발표·보도자료에서 확인되는 주요 모집단위의 PSAT 합격선을 직군별로 정리했습니다.</p>
+
+<div class="cutline-groups">
+  <div class="cutline-group">
+    <h3>행정직군 주요 공개 합격선</h3>
+    <div class="cutline-table-wrap">
+      <table class="cutline-table">
+        <thead><tr><th>직류</th><th>1차 합격선</th></tr></thead>
+        <tbody>
+          <tr><td>재경</td><td><strong>93.33점</strong></td></tr>
+          <tr><td>교육행정</td><td><strong>92.00점</strong></td></tr>
+          <tr><td>외무영사</td><td><strong>91.33점</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="cutline-group">
+    <h3>과학기술직군 주요 공개 합격선</h3>
+    <div class="cutline-table-wrap">
+      <table class="cutline-table">
+        <thead><tr><th>직류</th><th>1차 합격선</th></tr></thead>
+        <tbody>
+          <tr><td>일반농업</td><td><strong>88.00점</strong></td></tr>
+          <tr><td>전기</td><td><strong>86.66점</strong></td></tr>
+          <tr><td>전산개발</td><td><strong>86.66점</strong></td></tr>
+          <tr><td>데이터</td><td><strong>86.66점</strong></td></tr>
+          <tr><td>일반환경</td><td><strong>85.33점</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="cutline-note">
+<strong>꼭 확인하세요.</strong> 현재 인사혁신처의 공개자료에서 확인되는 합격선은 위와 같은 주요 모집단위 중심입니다. <strong>일반행정·고용노동·세무·관세·감사·검찰 등 일부 직류의 실제 합격선은 현재 공개자료에서 확인되지 않아 임의의 예상점수를 공식 합격선처럼 표기하지 않았습니다.</strong> 추가 공식 통계가 공개되면 이 표를 갱신합니다.
+</div>
+
 <ul>
-<li><strong>주요 행정직 합격선</strong> : 재경 93.33점 · 교육행정 92.00점 · 외무영사 91.33점</li>
-<li><strong>주요 과학기술직 합격선</strong> : 일반농업 88.00점 · 전기·전산개발·데이터 86.66점 · 일반환경 85.33점</li>
-<li><strong>합격자 평균연령</strong> : 29.1세</li>
+<li><strong>합격자</strong> : 총 4,816명 · 행정직군 3,643명 · 과학기술직군 1,173명</li>
+<li><strong>행정직군 최고 공개 합격선</strong> : 재경 93.33점</li>
+<li><strong>과학기술직군 최고 공개 합격선</strong> : 일반농업 88.00점</li>
 <li><strong>제2차시험</strong> : 9월 19일 예정</li>
 </ul>
-<p class="exam-small-note">합격 여부와 개인 성적, 모집단위별 전체 합격선 및 제2차시험 세부사항은 국가공무원 채용시스템의 공식 공고를 최종 기준으로 확인하세요.</p>
 <a class="exam-deep-link" href="#exam-card-national7">국가직 7급 진행 현황 보기</a>
 <a class="exam-deep-link" href="#national7-psat-report">PSAT 심층분석 보기</a>
 <p class="exam-small-note"><a href="https://gongmuwon.gosi.kr/oprut/indexMain.do" rel="noopener noreferrer" target="_blank">국가공무원 채용시스템 공식 발표 확인 ↗</a></p>
@@ -809,6 +858,6 @@
   cards.addEventListener('click',function(e){var b=e.target.closest('.exam-detail-toggle');if(!b)return;var card=b.closest('.exam-category-card');var detail=card.querySelector('.exam-category-detail');var open=detail.classList.toggle('is-open');b.setAttribute('aria-expanded',String(open));b.textContent=open?'닫기':'상세 분석 펼치기';});
 })();
 </script>
-<script src="site-updates.js?v=20260818-national7-result1"></script>
+<script src="site-updates.js?v=20260819-n7cutline1"></script>
 </body>
 </html>
