@@ -9,14 +9,14 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
 .brand img{width:76px;height:76px;object-fit:contain;display:block;margin:0 auto 4px}
 .brand h1{font-size:30px;line-height:1.15;margin:0;color:var(--green)}
 .brand p{font-size:18px;margin:7px 0 0;color:#555}
-.quick{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
 .quick a{display:flex;align-items:center;min-height:74px;padding:16px 22px;background:#fff;border:1px solid var(--line);border-radius:14px;text-decoration:none;color:#173a24;font-size:19px;font-weight:800;box-shadow:0 2px 6px rgba(0,0,0,.02)}
-.quick a:last-child{grid-column:1/-1}
+.quick a:last-child{grid-column:auto}
 .title{margin:26px 0 14px}.title h2{font-size:32px;margin:0 0 6px;color:var(--green)}.title p{margin:0;color:#5d625f;font-size:17px}
 .overview{border:1px solid #dbe4dc;background:#f8fbf8;border-radius:16px;padding:18px 20px;margin-bottom:18px}
 .overview-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}
 .overview-head h3{font-size:22px;margin:0;color:var(--green)}.overview-head small{color:#707773}
-.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .sum{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;min-height:190px;display:flex;flex-direction:column;justify-content:center}
 .sum h4{font-size:19px;margin:0 0 10px;color:#183c25}.icon{font-size:28px;line-height:1;margin-bottom:9px}
 .green{color:#279247}.orange{color:var(--orange)}.gray{color:#656b67}
@@ -33,8 +33,8 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
 .contactbox strong{display:block;font-size:17px}.contactbox b{font-size:18px;color:#173d24}
 @media(max-width:700px){
  .page{padding:10px 12px 36px}.brand{padding:10px 12px 12px}.brand img{width:62px;height:62px}.brand h1{font-size:25px}.brand p{font-size:16px}
- .quick a{min-height:64px;padding:13px 15px;font-size:17px}.title{margin-top:20px}.title h2{font-size:28px}.title p{font-size:15px}
- .overview{padding:14px}.overview-head h3{font-size:20px}.summary{grid-template-columns:repeat(3,1fr);gap:7px}.sum{padding:11px 7px;min-height:175px}.sum h4{font-size:16px}.sum .main{font-size:14px}.sum .sub{font-size:13px}
+ .quick a{min-height:58px;padding:10px 7px;font-size:14px;justify-content:center;text-align:center}.title{margin-top:20px}.title h2{font-size:28px}.title p{font-size:15px}
+ .overview{padding:14px}.overview-head h3{font-size:20px}.summary{grid-template-columns:repeat(4,1fr);gap:6px}.sum{padding:11px 7px;min-height:175px}.sum h4{font-size:16px}.sum .main{font-size:14px}.sum .sub{font-size:13px}
  .details,.contact{padding:14px}.roomrow{grid-template-columns:44px 1fr auto;padding:10px}.roomicon{width:40px;height:40px;font-size:20px}.roomrow h4{font-size:16px}.roomrow p{font-size:13px}.roomrow a{font-size:13px;padding:8px 9px}
  .contactgrid{grid-template-columns:1fr}.contactbox{padding:12px 0;border-right:0;border-bottom:1px dashed #ccc}.contactbox:last-child{border-bottom:0}
 }
@@ -44,17 +44,23 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
 /* ★ 공실 변경 시 아래 값만 수정하면 상단 요약과 상세 현황이 함께 바뀝니다. */
 const ROOM_AVAILABILITY={
  standard:{name:"스탠다드룸",status:"available",rooms:"1실",nextDate:"2026.09.26",nextRooms:"1실"},
- deluxe:{name:"디럭스룸",status:"upcoming",date:"2026.08.31",rooms:"1실"},
- suite:{name:"스위트룸1·2",status:"full",date:"11월 중",dateUnknown:true}
+ deluxe:{name:"디럭스룸",status:"full",nextDate:"2026.08.31",nextRooms:"1실"},
+ suite1:{name:"스위트룸 1",status:"full",nextDate:"11월 중",dateUnknown:true},
+ suite2:{name:"스위트룸 2",status:"full",nextDate:"11월 중",dateUnknown:true}
 };
+function summaryFull(r){
+ return `<h4>${r.name}</h4><div class="icon gray">●</div><div class="main gray">현재 만실</div><hr><div class="sub ${r.nextDate.match(/^\d{4}/)?'orange':'gray'}">다음 ${r.nextDate}<br>입실 가능 예정${r.dateUnknown?" (날짜 미정)":""}</div>`;
+}
 function render(){
- const s=ROOM_AVAILABILITY.standard,d=ROOM_AVAILABILITY.deluxe,u=ROOM_AVAILABILITY.suite;
+ const s=ROOM_AVAILABILITY.standard,d=ROOM_AVAILABILITY.deluxe,u1=ROOM_AVAILABILITY.suite1,u2=ROOM_AVAILABILITY.suite2;
  document.querySelector('[data-sum="standard"]').innerHTML=`<h4>${s.name}</h4><div class="icon green">●</div><div class="main green">즉시 입실 가능<br>${s.rooms}</div><hr><div class="sub orange">다음 ${s.nextDate}<br>${s.nextRooms} 입실 가능 예정</div>`;
- document.querySelector('[data-sum="deluxe"]').innerHTML=`<h4>${d.name}</h4><div class="icon orange">●</div><div class="main orange">${d.date}<br>${d.rooms} 입실 가능 예정</div>`;
- document.querySelector('[data-sum="suite"]').innerHTML=`<h4>${u.name}</h4><div class="icon gray">●</div><div class="main gray">현재 만실</div><hr><div class="sub gray">${u.date}<br>입실 가능 예정${u.dateUnknown?" (날짜 미정)":""}</div>`;
+ document.querySelector('[data-sum="deluxe"]').innerHTML=summaryFull(d);
+ document.querySelector('[data-sum="suite1"]').innerHTML=summaryFull(u1);
+ document.querySelector('[data-sum="suite2"]').innerHTML=summaryFull(u2);
  document.querySelector('[data-detail="standard"]').innerHTML=`<p class="green">● 즉시 입실 가능 · ${s.rooms}</p><p class="orange">● 다음 ${s.nextDate} · ${s.nextRooms} 입실 가능 예정</p>`;
- document.querySelector('[data-detail="deluxe"]').innerHTML=`<p class="orange">● ${d.date} · ${d.rooms} 입실 가능 예정</p>`;
- document.querySelector('[data-detail="suite"]').innerHTML=`<p class="gray">● 현재 만실</p><p class="gray">● ${u.date} 입실 가능 예정${u.dateUnknown?" · 날짜 미정":""}</p>`;
+ document.querySelector('[data-detail="deluxe"]').innerHTML=`<p class="gray">● 현재 만실</p><p class="orange">● 다음 ${d.nextDate} · ${d.nextRooms} 입실 가능 예정</p>`;
+ document.querySelector('[data-detail="suite1"]').innerHTML=`<p class="gray">● 현재 만실</p><p class="gray">● 다음 ${u1.nextDate} 입실 가능 예정${u1.dateUnknown?" · 날짜 미정":""}</p>`;
+ document.querySelector('[data-detail="suite2"]').innerHTML=`<p class="gray">● 현재 만실</p><p class="gray">● 다음 ${u2.nextDate} 입실 가능 예정${u2.dateUnknown?" · 날짜 미정":""}</p>`;
 }
 document.addEventListener("DOMContentLoaded",render);
 </script>
@@ -81,7 +87,8 @@ document.addEventListener("DOMContentLoaded",render);
  <div class="summary">
    <div class="sum" data-sum="standard"></div>
    <div class="sum" data-sum="deluxe"></div>
-   <div class="sum" data-sum="suite"></div>
+   <div class="sum" data-sum="suite1"></div>
+   <div class="sum" data-sum="suite2"></div>
  </div>
  <p class="notice">※ 상기 일정은 변경될 수 있으며, 자세한 사항은 문의해 주세요.</p>
 </section>
@@ -90,7 +97,8 @@ document.addEventListener("DOMContentLoaded",render);
  <h3>🏢 객실별 상세 현황</h3>
  <div class="roomrow"><div class="roomicon">🛏</div><div><h4>스탠다드룸</h4><div data-detail="standard"></div></div><a href="rooms.html#standard">자세히 보기 ›</a></div>
  <div class="roomrow"><div class="roomicon">🛏</div><div><h4>디럭스룸</h4><div data-detail="deluxe"></div></div><a href="rooms.html#deluxe">자세히 보기 ›</a></div>
- <div class="roomrow"><div class="roomicon">🛋</div><div><h4>스위트룸1·2</h4><div data-detail="suite"></div></div><a href="rooms.html#suite">자세히 보기 ›</a></div>
+ <div class="roomrow"><div class="roomicon">🛋</div><div><h4>스위트룸 1</h4><div data-detail="suite1"></div></div><a href="rooms.html#suite1">자세히 보기 ›</a></div>
+ <div class="roomrow"><div class="roomicon">🛋</div><div><h4>스위트룸 2</h4><div data-detail="suite2"></div></div><a href="rooms.html#suite2">자세히 보기 ›</a></div>
 </section>
 
 <section class="contact">
