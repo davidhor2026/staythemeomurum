@@ -53,7 +53,7 @@ function summaryFull(r){
 }
 function render(){
  const s=ROOM_AVAILABILITY.standard,d=ROOM_AVAILABILITY.deluxe,u1=ROOM_AVAILABILITY.suite1,u2=ROOM_AVAILABILITY.suite2;
- document.querySelector('[data-sum="standard"]').innerHTML=`<h4>${s.name}</h4><div class="icon green">●</div><div class="main green">입실 가능<br>${s.rooms}</div><hr><div class="sub orange">다음 ${s.nextDate}<br>${s.nextRooms} 입실 가능 예정</div>`;
+ document.querySelector('[data-sum="standard"]').innerHTML=`<h4>${s.name}</h4><div class="icon green">●</div><div class="main green">입실 가능&nbsp;${s.rooms}</div><hr><div class="sub orange">다음 ${s.nextDate}<br>${s.nextRooms} 입실 가능 예정</div>`;
  document.querySelector('[data-sum="deluxe"]').innerHTML=summaryFull(d);
  document.querySelector('[data-sum="suite1"]').innerHTML=summaryFull(u1);
  document.querySelector('[data-sum="suite2"]').innerHTML=summaryFull(u2);
@@ -313,6 +313,22 @@ document.addEventListener("DOMContentLoaded",render);
   .sum .sub{font-size:13px !important;}
   .overview-head h3{font-size:21px !important;}
   .overview-head small{font-size:13px !important;}
+}
+</style>
+
+
+<style id="availability-one-line-status-20260819">
+/* 스탠다드룸 '입실 가능 1실' 한 줄 정렬 */
+.sum .main.green{
+  white-space:nowrap !important;
+  word-break:keep-all !important;
+  font-size:12px !important;
+  letter-spacing:-0.045em !important;
+}
+@media(min-width:700px){
+  .sum .main.green{
+    font-size:14px !important;
+  }
 }
 </style>
 
