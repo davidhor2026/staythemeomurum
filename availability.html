@@ -62,7 +62,7 @@ const VACANCY_MANAGER = {
     name: "스탠다드룸",
     now: 1,
     dates: [
-      "2026-08-26",
+      "2026-09-21",
       "2026-09-26"
     ],
     unknown: null
@@ -612,7 +612,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 }
 </style>
 
-</head><body><div class="page">
+<style>.vacancy-color-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:10px 0 14px;font-size:13px;color:#666}.vacancy-color-legend span{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block}.legend-green{background:#24a148}.legend-orange{background:#f57c00}.legend-gray{background:#747a76}@media(max-width:520px){.vacancy-color-legend{font-size:11.5px;gap:5px 10px}}</style></head><body><div class="page">
 <section class="brand">
  <img src="availability-logo.jpg" alt="스테이The머무름 로고">
  <h1>스테이The머무름</h1><p>여성 전용 고시원</p>
@@ -638,7 +638,7 @@ document.addEventListener("DOMContentLoaded",()=>{
    <div class="sum" data-sum="suite1"></div>
    <div class="sum" data-sum="suite2"></div>
  </div>
- <p class="notice">※ 상기 일정은 변경될 수 있으며, 자세한 사항은 문의해 주세요.</p>
+ <div class="vacancy-color-legend"><span><i class="legend-dot legend-green"></i>녹색 = 현재 입실 가능</span><span><i class="legend-dot legend-orange"></i>오렌지색 = 입실 가능 예정</span><span><i class="legend-dot legend-gray"></i>회색 = 현재 만실</span></div><p class="notice">※ 상기 일정은 변경될 수 있으며, 자세한 사항은 문의해 주세요.</p>
 </section>
 
 <section class="details" id="room-details">
