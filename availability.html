@@ -116,7 +116,7 @@ function formatDate(dateStr){
 function firstFutureText(room){
   if(room.events.length){
     const e=room.events.slice().sort((a,b)=>a.date.localeCompare(b.date))[0];
-    return `다음 ${formatDate(e.date)}<br>입실 가능 예정${room.reservable ? " · 예약 가능" : ""}`;
+    return `다음 ${formatDate(e.date)}<br>입실 가능 예정`;
   }
   if(room.unknown){
     return `${room.unknown.label}<br>입실 가능 예정 (${room.unknown.note})`;
@@ -138,7 +138,7 @@ function renderAvailability(){
         ? `<p class="green">● 입실 가능 · ${room.availableNow}실</p>`
         : `<p class="gray">● 현재 만실</p>`;
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
-        lines += `<p class="orange">● ${formatDate(e.date)} · 입실 가능 예정${room.reservable ? " · 예약 가능" : ""}</p>`;
+        lines += `<p class="orange">● ${formatDate(e.date)} · 입실 가능 예정</p>`;
       });
       if(room.unknown){
         lines += `<p class="gray">● ${room.unknown.label} 입실 가능 예정 · ${room.unknown.note}</p>`;
