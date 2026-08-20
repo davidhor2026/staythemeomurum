@@ -247,7 +247,7 @@ function renderVacancyCalendar(){
   const note=document.getElementById('calendarRoomNote');
   let noteHtml='';
   if(room.availableNow>0){
-    noteHtml += `<span class="legend-item"><b class="green">●</b> 현재 입실 가능 ${room.availableNow}실</span>`;
+    noteHtml += `<span class="legend-item"><b class="green">●</b> 즉시 입실 가능 ${room.availableNow}실</span>`;
   }
   if(room.events.length){
     noteHtml += `<span class="legend-item"><b class="orange">●</b> 입실 가능 예정일</span>`;
@@ -638,7 +638,7 @@ document.addEventListener("DOMContentLoaded",()=>{
    <div class="sum" data-sum="suite1"></div>
    <div class="sum" data-sum="suite2"></div>
  </div>
- <div class="vacancy-color-legend"><span><i class="legend-dot legend-green"></i>녹색 = 현재 입실 가능</span><span><i class="legend-dot legend-orange"></i>오렌지색 = 입실 가능 예정</span><span><i class="legend-dot legend-gray"></i>회색 = 현재 만실</span></div><p class="notice">※ 상기 일정은 변경될 수 있으며, 자세한 사항은 문의해 주세요.</p>
+ <div class="vacancy-color-legend"><span><i class="legend-dot legend-green"></i>녹색 = 즉시 입실 가능</span><span><i class="legend-dot legend-orange"></i>오렌지색 = 입실 가능 예정</span><span><i class="legend-dot legend-gray"></i>회색 = 현재 만실</span></div><p class="notice">※ 상기 일정은 변경될 수 있으며, 자세한 사항은 문의해 주세요.</p>
 </section>
 
 <section class="details" id="room-details">
