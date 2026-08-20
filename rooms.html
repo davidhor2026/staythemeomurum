@@ -10,6 +10,14 @@
 <meta content="스테이The머무름의 스탠다드룸, 디럭스룸, 스위트룸 방 안내 페이지입니다." name="description"/>
 <meta content="노량진고시원 방, 여성전용 고시원 방" name="keywords"/>
 <link href="style.css" rel="stylesheet"/>
+
+<style id="room-detail-anchor-fix-20260820">
+.room-detail-card{scroll-margin-top:24px}
+.detail-return-wrap{margin:12px 0 2px;text-align:left}
+.detail-return{display:inline-flex;align-items:center;gap:6px;padding:9px 13px;border-radius:12px;background:#f1f6ef;color:#174d31;text-decoration:none;font-weight:700;font-size:14px;border:1px solid #dbe7d8}
+.detail-return:hover{background:#e8f1e5}
+@media(max-width:600px){.room-detail-card{scroll-margin-top:12px}.detail-return{font-size:13px;padding:8px 11px}}
+</style>
 </head>
 <body>
 <header class="sub-header sub-header--rooms">
@@ -63,6 +71,7 @@
 <article class="room-detail-card featured" id="suite1">
 <div class="room-detail-media"><img alt="스위트룸1 상세 홍보 이미지" src="suite1-detail.png"></div>
 <div class="room-detail-body">
+<div class="detail-return-wrap"><a class="detail-return" href="availability.html#room-details">← 객실별 상세 현황</a></div>
 <div class="room-detail-head">
 <h3>스위트룸1</h3>
 <div class="room-price">월 49만원 / 보증금 20만원<small>금액은 변동될 수 있습니다</small></div>
@@ -75,6 +84,7 @@
 <article class="room-detail-card featured" id="suite2">
 <div class="room-detail-media"><img alt="스위트룸2 상세 홍보 이미지" src="suite2-detail.png"></div>
 <div class="room-detail-body">
+<div class="detail-return-wrap"><a class="detail-return" href="availability.html#room-details">← 객실별 상세 현황</a></div>
 <div class="room-detail-head">
 <h3>스위트룸2</h3>
 <div class="room-price">월 46만원 / 보증금 20만원<small>금액은 변동될 수 있습니다</small></div>
@@ -87,6 +97,7 @@
 <article class="room-detail-card" id="deluxe">
 <div class="room-detail-media"><img alt="디럭스룸 사진" src="room-deluxe.png"></div>
 <div class="room-detail-body">
+<div class="detail-return-wrap"><a class="detail-return" href="availability.html#room-details">← 객실별 상세 현황</a></div>
 <div class="room-detail-head">
 <h3>디럭스룸</h3>
 <div class="room-price">월 38만원 / 보증금 10만원<small>금액은 변동될 수 있습니다</small></div>
@@ -99,6 +110,7 @@
 <article class="room-detail-card" id="standard">
 <div class="room-detail-media"><img alt="스탠다드룸 사진" src="room-standard.png"></div>
 <div class="room-detail-body">
+<div class="detail-return-wrap"><a class="detail-return" href="availability.html#room-details">← 객실별 상세 현황</a></div>
 <div class="room-detail-head">
 <h3>스탠다드룸</h3>
 <div class="room-price">월 35만원 / 보증금 10만원<small>극히 일부 방은 월 33만원입니다</small></div>
@@ -169,6 +181,33 @@
     .then(function(res) { return res.json(); })
     .then(renderCounts)
     .catch(showError);
+})();
+</script>
+
+
+<script id="room-detail-anchor-fix-script-20260820">
+(function(){
+  function target(){
+    var id=decodeURIComponent(location.hash.slice(1));
+    return id ? document.getElementById(id) : null;
+  }
+  function alignTarget(){
+    var el=target(); if(!el) return;
+    el.scrollIntoView({block:'start',behavior:'auto'});
+  }
+  // 첫 방문에서 이미지/폰트 로딩으로 레이아웃 높이가 바뀌어도 최종 위치를 다시 맞춤
+  if(location.hash){
+    requestAnimationFrame(alignTarget);
+    window.addEventListener('load', function(){
+      alignTarget();
+      setTimeout(alignTarget,120);
+      setTimeout(alignTarget,450);
+    }, {once:true});
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(alignTarget);
+    document.querySelectorAll('.room-detail-media img').forEach(function(img){
+      if(!img.complete) img.addEventListener('load', alignTarget, {once:true});
+    });
+  }
 })();
 </script>
 
