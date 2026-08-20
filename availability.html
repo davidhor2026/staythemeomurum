@@ -107,6 +107,7 @@ Object.entries(VACANCY_MANAGER).forEach(([key, room]) => {
 
 function dotClass(room){
   if(room.availableNow > 0) return "green";
+  if(room.reservable === true && room.events.length > 0) return "orange";
   return "gray";
 }
 function formatDate(dateStr){
@@ -240,7 +241,7 @@ function renderVacancyCalendar(){
     }
     if(eventsByDate[iso]){
       cell.classList.add('has-upcoming');
-      cell.innerHTML += `<span class="calendar-mark orange">입실 가능 예정${room.reservable ? " · 예약 가능" : ""}</span>`;
+      cell.innerHTML += `<span class="calendar-mark orange">입실 가능 예정</span>`;
     }
     grid.appendChild(cell);
   }
@@ -638,7 +639,7 @@ document.addEventListener("DOMContentLoaded",()=>{
    <div class="sum" data-sum="suite1"></div>
    <div class="sum" data-sum="suite2"></div>
  </div>
- <div class="vacancy-color-legend"><span><i class="legend-dot legend-green"></i>녹색 = 즉시 입실 가능</span><span><i class="legend-dot legend-orange"></i>오렌지색 = 입실 가능 예정</span><span><i class="legend-dot legend-gray"></i>회색 = 현재 만실</span></div><p class="notice">※ 상기 일정은 변경될 수 있으며, 자세한 사항은 문의해 주세요.</p>
+ <div class="vacancy-color-legend"><span><i class="legend-dot legend-green"></i>녹색 = 즉시 입실 가능</span><span><i class="legend-dot legend-orange"></i>오렌지색 = 현재는 만실이나 예약 가능</span><span><i class="legend-dot legend-gray"></i>회색 = 현재 만실</span></div><p class="notice">※ 상기 일정은 변경될 수 있으며, 자세한 사항은 문의해 주세요.</p>
 </section>
 
 <section class="details" id="room-details">
