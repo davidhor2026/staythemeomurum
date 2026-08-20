@@ -74,6 +74,7 @@ const VACANCY_MANAGER = {
     dates: [
       "2026-08-31"
     ],
+    reservable: true,
     unknown: null
   },
 
@@ -99,13 +100,13 @@ Object.entries(VACANCY_MANAGER).forEach(([key, room]) => {
     name: room.name,
     availableNow: Number(room.now || 0),
     events: (room.dates || []).map(date => ({ date, rooms: 1 })),
+    reservable: room.reservable === true,
     unknown: room.unknown || null
   };
 });
 
 function dotClass(room){
   if(room.availableNow > 0) return "green";
-  if(room.events.length > 0) return "orange";
   return "gray";
 }
 function formatDate(dateStr){
@@ -114,7 +115,7 @@ function formatDate(dateStr){
 function firstFutureText(room){
   if(room.events.length){
     const e=room.events.slice().sort((a,b)=>a.date.localeCompare(b.date))[0];
-    return `다음 ${formatDate(e.date)}<br>입실 가능 예정`;
+    return `다음 ${formatDate(e.date)}<br>입실 가능 예정${room.reservable ? " · 예약 가능" : ""}`;
   }
   if(room.unknown){
     return `${room.unknown.label}<br>입실 가능 예정 (${room.unknown.note})`;
@@ -136,7 +137,7 @@ function renderAvailability(){
         ? `<p class="green">● 입실 가능 · ${room.availableNow}실</p>`
         : `<p class="gray">● 현재 만실</p>`;
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
-        lines += `<p class="orange">● ${formatDate(e.date)} · 입실 가능 예정</p>`;
+        lines += `<p class="orange">● ${formatDate(e.date)} · 입실 가능 예정${room.reservable ? " · 예약 가능" : ""}</p>`;
       });
       if(room.unknown){
         lines += `<p class="gray">● ${room.unknown.label} 입실 가능 예정 · ${room.unknown.note}</p>`;
@@ -239,7 +240,7 @@ function renderVacancyCalendar(){
     }
     if(eventsByDate[iso]){
       cell.classList.add('has-upcoming');
-      cell.innerHTML += `<span class="calendar-mark orange">입실 가능 예정${eventsByDate[iso].rooms?` ${eventsByDate[iso].rooms}실`:''}</span>`;
+      cell.innerHTML += `<span class="calendar-mark orange">입실 가능 예정${room.reservable ? " · 예약 가능" : ""}</span>`;
     }
     grid.appendChild(cell);
   }
@@ -631,8 +632,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 <section class="overview">
  <div class="overview-head"><h3>⌕ 한눈에 보는 입실 가능 현황</h3><small>(<span id="availabilityToday">2026.08.19</span> 기준)</small></div>
- <div class="availability-legend"><span class="legend-green">●</span> 녹색 = 즉시 입실 가능</div>
- <div class="summary">
+<div class="summary">
    <div class="sum" data-sum="standard"></div>
    <div class="sum" data-sum="deluxe"></div>
    <div class="sum" data-sum="suite1"></div>
