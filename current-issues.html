@@ -22,16 +22,11 @@
 </nav>
 <main class="current-issues-main">
   <section class="issues-intro issues-intro--news">
-    <div><span class="issues-label">최근 이슈 브리핑</span><h2>“무엇인가?”보다 “무슨 일이 있었나?”</h2><p>지식노트가 오래 유지되는 기초 개념을 설명한다면, 이 페이지는 최근 정책·통계·산업 발표를 사건 중심으로 해설합니다.</p></div>
+    <div><span class="issues-label">최근 이슈 브리핑</span><h2>2026년 8월 분야별 최신 시사·상식</h2><p>경제·고용·물가·과학기술·청년정책·금융·경제안보·환경 분야의 최근 발표를 한눈에 확인하세요.</p></div>
     <div class="issues-updated" id="issuesUpdated">기준일 불러오는 중</div>
   </section>
-  <section class="issues-difference" aria-label="지식노트와 시사상식의 차이">
-    <div><strong>📘 지식노트</strong><span>기준금리란 무엇인가?</span><small>변하지 않는 개념과 원리</small></div>
-    <b aria-hidden="true">→</b>
-    <div><strong>📰 시사·상식</strong><span>한국은행이 왜 지금 금리를 올렸나?</span><small>최근 사건과 생활 영향</small></div>
-  </section>
   <section class="issues-toolbar" aria-label="시사·상식 검색과 분야 필터">
-    <label class="issues-search"><span>이슈 검색</span><input id="issuesSearch" type="search" placeholder="예: 기준금리, 반도체, 공시" autocomplete="off"/></label>
+    <label class="issues-search"><span>이슈 검색</span><input id="issuesSearch" type="search" placeholder="예: 수출, 청년고용, AI, 재생에너지" autocomplete="off"/></label>
     <div class="issues-filters" id="issuesFilters"></div>
   </section>
   <section class="issues-grid issues-news-grid" id="issuesGrid" aria-live="polite"></section>
@@ -39,7 +34,7 @@
   <section class="issues-editorial-note"><h2>자료 이용 안내</h2><p id="issuesEditorial">정책과 통계는 발표 이후 수정될 수 있습니다. 실제 신청·투자·의사결정 전에는 연결된 공식 원문을 확인하세요.</p></section>
 </main>
 <footer><p>© 스테이The머무름 · 시사·상식은 최근 이슈를 이해하기 위한 정보 콘텐츠입니다.</p></footer>
-<script src="current-issues-data.js?v=20260822-2"></script>
+<script src="current-issues-data.js?v=20260822-3"></script>
 <script>
 (function(){
   'use strict';
@@ -61,6 +56,6 @@
   search.addEventListener('input',render);render();
 })();
 </script>
-<script src="site-updates.js?v=20260822-2"></script>
+<script src="site-updates.js?v=20260822-3"></script>
 </body>
 </html>
