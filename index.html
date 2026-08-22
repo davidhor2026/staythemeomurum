@@ -17,7 +17,6 @@
 </style>
 
 <style id="hero-vacancy-sync-style-20260822">
-.hero-vacancy-next{font-size:.92em;color:#a96316}
 </style>
 
 </head>
@@ -593,18 +592,6 @@
     return room.name + ' 현재 만실';
   }
 
-  function nextText(room){
-    if(!room) return '';
-    if(Array.isArray(room.dates) && room.dates.length){
-      var d = room.dates.slice().sort()[0];
-      return '다음 ' + fmtDate(d) + ' 입실 가능 예정';
-    }
-    if(room.unknown && room.unknown.label){
-      return room.unknown.label + ' 입실 가능 예정' + (room.unknown.note ? ' · ' + room.unknown.note : '');
-    }
-    return '';
-  }
-
   function renderHeroVacancy(){
     var el=document.getElementById('heroVacancySummary');
     if(!el || typeof VACANCY_MANAGER==='undefined') return;
@@ -613,12 +600,10 @@
     var d=VACANCY_MANAGER.deluxe;
 
     var first=[statusText(s),statusText(d)].filter(Boolean).join(' / ');
-    var next=[nextText(s),nextText(d)].filter(Boolean).join(' · ');
 
     el.innerHTML =
       first +
-      (next ? '<br><span class="hero-vacancy-next">'+next+'</span>' : '') +
-      '<br>아래 바로보기에서 확인해 주세요.';
+      '<br>입실 가능 예정일은 아래 바로보기에서 확인해 주세요.';
   }
 
   if(document.readyState==='loading'){
