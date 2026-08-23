@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>중등임용 지리 시험대비 퀴즈 | 스테이The머무름</title>
+<meta name="description" content="중등 지리 임용 기출의 출제 영역과 문항 구조를 참고해 새롭게 재구성한 실전형 연습문제입니다.">
+<link rel="stylesheet" href="style.css">
+<style>
+.quiz-shell{max-width:900px;margin:36px auto;padding:0 18px}.geo-note{background:#f7f5ed;border:1px solid #ddd7c7;border-radius:22px;padding:22px;line-height:1.75}.geo-controls{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.geo-controls button,.choice{border:1px solid #cfd8d2;background:#fff;border-radius:14px;padding:12px 15px;font:inherit;cursor:pointer}.geo-controls button.active{background:#174f3b;color:#fff}.qcard{background:#fff;border:1px solid #e0e4e1;border-radius:22px;padding:24px;margin:18px 0;box-shadow:0 8px 24px rgba(0,0,0,.04)}.qmeta{font-size:.9rem;color:#6b756f}.choices{display:grid;gap:9px;margin-top:16px}.choice{text-align:left}.choice.correct{background:#e9f6ed;border-color:#2c9a52}.choice.wrong{background:#fff0ec;border-color:#dd745c}.explain{display:none;margin-top:14px;padding:14px;background:#f5f7f6;border-radius:12px;line-height:1.65}.score{font-weight:700;margin:16px 0}.source-note{font-size:.88rem;color:#68736c;margin-top:28px}
+</style></head><body>
+<header class="sub-header sub-header--quiz"><h1>중등임용 지리 시험대비 퀴즈</h1><p>기출의 영역·사고과정을 참고하되 문장과 자료는 새롭게 재구성한 연습문제입니다.</p><div class="button-wrap"><a class="button sub" href="quiz.html">시험대비 퀴즈로 돌아가기</a></div></header>
+<nav><a href="index.html">메인페이지</a><a href="rooms.html">방타입</a><a href="facilities.html">시설</a><a href="reviews.html">후기</a><a href="faq.html">FAQ</a><a href="quiz.html">시험대비 퀴즈</a><a href="exam-insight.html">시험분석</a><a href="exam-schedule.html">시험 일정</a><a href="knowledge.html">지식노트</a><a href="current-issues.html">시사·상식</a></nav>
+<main class="quiz-shell">
+<div class="geo-note"><strong>문제 구성 원칙</strong><br>① 업로드된 지리 임용 기출에서 반복되는 영역과 사고 유형을 분석해 새 문항으로 재구성했습니다. ② 기출 문장·도표·정답을 그대로 복제하지 않았습니다. ③ 최근 교육과정의 강조점인 탐구, 디지털 소양, 생태전환·지속가능성도 연습 주제에 반영했습니다. ④ 실제 시험의 출제·정답을 예측하거나 보장하는 자료가 아닙니다.</div>
+<div class="geo-controls" id="filters"><button class="active" data-cat="전체">전체</button><button data-cat="지리교육">지리교육</button><button data-cat="자연지리">자연지리</button><button data-cat="인문지리">인문지리</button><button data-cat="GIS·지도">GIS·지도</button><button data-cat="최신교육과정">최신교육과정</button></div>
+<div class="score" id="score">푼 문제 0 / 정답 0</div><div id="quiz"></div>
+<p class="source-note">학습용 자체 제작 문제입니다. 실제 기출문제 원문이 필요하면 한국교육과정평가원 등 공식 공개 자료를 이용하세요.</p>
+</main>
+<footer><p>© <span id="year"></span> 스테이The머무름. All rights reserved.</p></footer>
+<script>
+const qs=[
+{c:'지리교육',q:'학생이 일상에서 형성한 장소 경험과 주관적 의미를 출발점으로 삼아 지리 개념을 확장하려는 수업 설계와 가장 가까운 관점은?',o:['개인의 생활세계와 장소 경험을 중시하는 관점','공간 법칙의 일반화만을 중시하는 관점','사실 암기량만으로 성취를 판단하는 관점','교과서의 제시 순서를 그대로 따르는 관점'],a:0,e:'학생의 경험과 장소에 부여한 의미를 수업의 출발점으로 삼는 접근은 생활세계와 주관적 장소 경험을 중시합니다.'},
+{c:'자연지리',q:'산을 넘는 습윤 공기가 상승하며 응결한 뒤, 반대편 사면에서 건조하게 하강할 때 기온이 빠르게 상승하는 주된 까닭은?',o:['하강 공기가 압축되며 건조단열적으로 가열되기 때문','하강 공기의 수증기가 계속 응결하기 때문','고도가 낮아질수록 태양 복사가 갑자기 증가하기 때문','산 정상에서 해수면 기압이 유지되기 때문'],a:0,e:'수분을 상당 부분 잃은 공기는 하강하면서 압축되고 건조단열률에 따라 가열되어 푄과 같은 고온·건조 현상이 나타납니다.'},
+{c:'인문지리',q:'성장한 선도지역이 주변의 노동력과 자본을 끌어들여 지역 간 격차를 더 키우는 현상을 설명하는 데 가장 적절한 개념은?',o:['역류 효과','확산 효과','거리 체감 효과','최소 요구치'],a:0,e:'선도지역의 성장이 낙후지역의 자원과 생산요소를 흡수해 격차를 확대하는 방향은 역류 효과로 설명합니다.'},
+{c:'GIS·지도',q:'행정구역별 통계값의 크기에 비례하도록 각 구역의 면적 자체를 변형해 표현한 지도는?',o:['카토그램','등치선도','유선도','점묘도'],a:0,e:'카토그램은 실제 면적 대신 특정 속성값의 크기에 비례하도록 공간 단위의 면적을 변형합니다.'},
+{c:'자연지리',q:'석회암 지역에서 토양을 통과한 물이 지표수보다 석회암을 더 잘 용식할 수 있는 핵심 이유는?',o:['토양 공극의 이산화탄소 농도가 상대적으로 높을 수 있어서','토양수가 항상 0℃ 이하이기 때문에','석회암이 물과 접촉하면 무조건 팽창하기 때문에','토양수가 염분을 완전히 제거하기 때문에'],a:0,e:'토양층의 높은 이산화탄소 농도는 물의 탄산 작용을 강화하여 탄산칼슘의 용식을 촉진할 수 있습니다.'},
+{c:'인문지리',q:'다국적기업이 연구·설계는 핵심 지역에 두고 노동집약적 생산은 비용이 낮은 지역에 배치하는 현상을 가장 잘 설명하는 것은?',o:['공간적 분업','생태 천이','중심지 포섭','등질지역화'],a:0,e:'기업 기능을 비용·기술·시장 조건에 따라 여러 지역에 나누어 배치하는 것은 공간적 분업의 전형적인 모습입니다.'},
+{c:'GIS·지도',q:'건물 경계나 도로처럼 위치와 형상을 점·선·면 및 좌표로 표현하는 데 적합한 GIS 데이터 모델은?',o:['벡터 모델','래스터 모델만 가능','서열척도 모델','비공간 표본 모델'],a:0,e:'벡터 모델은 점·선·면과 좌표를 이용하므로 경계와 위치를 정밀하게 표현하는 데 적합합니다.'},
+{c:'지리교육',q:'교사가 학문적 지식을 학생 수준과 수업 목적에 맞게 가르칠 지식으로 바꾸는 과정과 가장 직접적으로 관련된 것은?',o:['교수학적 변환','공간적 자기상관','누적적 인과','입지 배분'],a:0,e:'학문적 지식을 교육적 의도에 맞게 가르칠 지식으로 변환하는 과정은 교수학적 변환과 관련됩니다.'},
+{c:'최신교육과정',q:'2022 개정 교육과정의 방향과 가장 부합하는 지리 수업은?',o:['지역의 기후위기 자료를 디지털 지도로 분석하고 대안을 토론한다','교사가 지명을 읽고 학생은 그대로 받아 적는다','모든 평가를 단순 암기 문항으로만 구성한다','학생의 탐구 과정 없이 정답만 반복한다'],a:0,e:'2022 개정 교육과정은 디지털 기초소양, 생태전환, 비판적 사고와 탐구 중심 교수·학습을 강조합니다.'},
+{c:'최신교육과정',q:'지속가능한 도시를 주제로 한 수행평가에서 지리적 탐구 역량을 가장 잘 확인할 수 있는 과제는?',o:['교통·토지이용 자료를 비교해 문제를 진단하고 공간적 대안을 제안하기','도시 이름 50개를 순서대로 암기하기','교과서 문장을 그대로 필사하기','정답을 먼저 제시한 뒤 그대로 외우게 하기'],a:0,e:'자료를 수집·비교하고 공간적 관계를 해석하여 대안을 제시하는 과정이 지리적 탐구와 문제 해결을 직접적으로 평가합니다.'},
+{c:'인문지리',q:'중심지이론에서 소비자가 재화나 서비스를 이용하기 위해 감수하려는 최대 이동거리와 관련된 개념은?',o:['재화의 도달범위','최소 요구치','집적 불경제','인구 전이지수'],a:0,e:'재화의 도달범위는 소비자가 해당 재화나 서비스를 얻기 위해 이동하려는 최대 거리와 관련됩니다.'},
+{c:'자연지리',q:'현무암질 용암을 일반적인 유문암질 용암과 비교할 때 옳은 설명은?',o:['SiO₂ 함량과 점성이 대체로 더 낮다','SiO₂ 함량과 점성이 모두 더 높다','SiO₂ 함량은 높고 점성은 낮다','조성 차이가 점성과 무관하다'],a:0,e:'현무암질 용암은 일반적으로 유문암질 용암보다 SiO₂ 함량이 낮고 점성도 낮아 더 잘 흐릅니다.'}
+];
+let answered=0,correct=0,cat='전체';
+function render(){const root=document.getElementById('quiz');root.innerHTML='';qs.forEach((x,i)=>{if(cat!=='전체'&&x.c!==cat)return;const d=document.createElement('article');d.className='qcard';d.innerHTML=`<div class="qmeta">${x.c} · 자체 재구성</div><h3>${i+1}. ${x.q}</h3><div class="choices">${x.o.map((v,j)=>`<button class="choice" data-j="${j}">${v}</button>`).join('')}</div><div class="explain">${x.e}</div>`;let done=false;d.querySelectorAll('.choice').forEach(b=>b.onclick=()=>{if(done)return;done=true;answered++;const j=+b.dataset.j;if(j===x.a){correct++;b.classList.add('correct')}else{b.classList.add('wrong');d.querySelector(`[data-j="${x.a}"]`).classList.add('correct')}d.querySelector('.explain').style.display='block';document.getElementById('score').textContent=`푼 문제 ${answered} / 정답 ${correct}`});root.appendChild(d)})}
+document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');cat=b.dataset.cat;render()});document.getElementById('year').textContent=new Date().getFullYear();render();
+</script><script src="site-updates.js?v=20260823-geo1"></script></body></html>

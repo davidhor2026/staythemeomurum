@@ -12,7 +12,8 @@ window.SITE_UPDATES = {
     'reviews.html': { key: 'reviews', updated: '' },
     'review-check.html': { key: 'reviewCheck', updated: '' },
     'faq.html': { key: 'faq', updated: '2026-07-18', expires: '2026-07-26' },
-    'quiz.html': { key: 'quizHub', updated: '2026-07-15' },
+    'quiz.html': { key: 'quizHub', updated: '2026-08-23', expires: '2026-08-30' },
+    'geography-teacher-quiz.html': { key: 'geographyTeacherQuiz', updated: '2026-08-23', expires: '2026-08-30' },
     'psat-ncs-quiz.html': { key: 'psatNcsQuiz', updated: '2026-07-15' },
     'korean-history-advanced-quiz.html': { key: 'historyQuiz', updated: '2026-07-15' },
     'foreign-service-interview-quiz.html': { key: 'foreignInterviewQuiz', updated: '2026-07-15' },
@@ -35,7 +36,8 @@ window.SITE_UPDATES = {
       'quiz.html',
       'psat-ncs-quiz.html',
       'korean-history-advanced-quiz.html',
-      'foreign-service-interview-quiz.html'
+      'foreign-service-interview-quiz.html',
+      'geography-teacher-quiz.html'
     ],
     'exam-insight.html': ['exam-insight.html'],
     'exam-schedule.html': ['exam-schedule.html']
