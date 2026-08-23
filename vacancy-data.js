@@ -32,10 +32,8 @@ const VACANCY_MANAGER = {
   deluxe: {
     name: "디럭스룸",
     now: 0,
-    dates: [
-      "2026-08-31"
-    ],
-    reservable: true,
+    dates: [],
+    reservable: false,
     unknown: null
   },
 
