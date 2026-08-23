@@ -34,7 +34,11 @@ const VACANCY_MANAGER = {
     now: 0,
     dates: [],
     reservable: false,
-    unknown: null
+    unknown: {
+      month: "2026-09",
+      label: "9월",
+      note: "공실 여부 문의"
+    }
   },
 
   suite1: {
