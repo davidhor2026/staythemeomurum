@@ -81,7 +81,93 @@
     }
 
     @media(max-width:720px){.policy-grid{grid-template-columns:1fr;}.policy-wrap{padding:0 12px;}.policy-hero{padding:24px 18px;}.policy-hero h2{font-size:1.48rem;}.doc-table th,.doc-table td{display:block;width:auto;}.doc-table th{border-bottom:0;padding-bottom:4px;}.doc-table td{padding-top:0;}}
-  </style>
+  
+/* FINAL 2026-08-23: 서울형 주택바우처 + 월세지원 비교 모바일 최적화 */
+.policy-card, .soft-note, .voucher-process, .button-wrap, .doc-table {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.policy-card h2, .policy-card h3, .policy-card p, .policy-card li,
+.soft-note, .voucher-process {
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+.voucher-process {
+  margin-top:16px;
+  padding:16px;
+  background:#f7faf5;
+  border:1px solid #dce8d4;
+  border-radius:14px;
+}
+.support-compare-table {
+  width:100%;
+  min-width:0 !important;
+  table-layout:fixed;
+}
+.support-compare-table th, .support-compare-table td {
+  white-space:normal !important;
+  overflow-wrap:anywhere;
+  word-break:keep-all;
+}
+@media (max-width:700px) {
+  body { overflow-x:hidden !important; }
+  .policy-card {
+    width:auto !important;
+    max-width:calc(100vw - 28px) !important;
+    margin-left:14px !important;
+    margin-right:14px !important;
+    padding:20px 16px !important;
+    overflow:hidden;
+  }
+  .policy-card h2 {
+    font-size:clamp(23px, 6.5vw, 30px) !important;
+    line-height:1.35 !important;
+  }
+  .policy-card h3 { line-height:1.4 !important; }
+  .policy-card p, .policy-card li {
+    font-size:16px !important;
+    line-height:1.7 !important;
+  }
+  .soft-note, .voucher-process {
+    padding:14px !important;
+    font-size:15px !important;
+  }
+  .button-wrap {
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:10px !important;
+  }
+  .button-wrap .button {
+    width:100% !important;
+    margin:0 !important;
+    text-align:center;
+  }
+  .support-compare-table,
+  .support-compare-table tbody,
+  .support-compare-table tr,
+  .support-compare-table th,
+  .support-compare-table td {
+    display:block !important;
+    width:100% !important;
+  }
+  .support-compare-table tr {
+    margin:0 0 14px !important;
+    border:1px solid #e3e6df;
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .support-compare-table tr:first-child { display:none !important; }
+  .support-compare-table th, .support-compare-table td {
+    box-sizing:border-box;
+    padding:10px 12px !important;
+    border:0 !important;
+    border-bottom:1px solid #eef0eb !important;
+    font-size:14px !important;
+    line-height:1.55 !important;
+  }
+}
+
+</style>
 <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -180,6 +266,8 @@
 
 <div class="policy-grid">
 
+
+
 <section class="policy-card" style="margin-top:18px;border:2px solid #d6ad7b">
 <span class="tagline"><strong>NEW</strong> · 2026 핵심 주거지원</span>
 <h2>서울형 주택바우처 — 고시원 입주자도 꼭 확인해 보세요</h2>
@@ -193,6 +281,17 @@
 <li><strong>신청:</strong> 거주지 관할 동주민센터에서 자격과 제출서류를 확인한 뒤 신청</li>
 <li><strong>청년월세지원과의 관계:</strong> 서울형 주택바우처 수급자도 청년월세지원 요건을 충족하면 신청 가능한 경우가 있으며, 중복되는 지원액은 조정될 수 있습니다.</li>
 </ul>
+
+<div class="voucher-process">
+<h3>신청기간·심사·지급은 어떻게 진행되나요?</h3>
+<ul>
+<li><strong>신청기간:</strong> 서울시 청년월세지원처럼 정해진 연간 모집기간을 기다리는 방식으로 안내되는 사업이 아니라, 자격요건을 확인한 뒤 <strong>거주지 관할 동주민센터에서 신청</strong>하는 방식입니다.</li>
+<li><strong>신청 후:</strong> 제출서류와 함께 소득·재산·가구요건 등 지원자격 확인 절차를 거쳐 지원 여부가 결정됩니다.</li>
+<li><strong>심사기간:</strong> 공식 안내에는 신청 후 정확히 며칠 이내 심사가 완료된다고 일률적으로 명시되어 있지 않으므로 접수 시 관할 동주민센터에서 확인해 주세요.</li>
+<li><strong>최초 지급시기:</strong> 개인별 조사·결정 시점에 따라 달라질 수 있으므로 정확한 최초 지급일 역시 신청한 동주민센터에서 확인하는 것이 가장 정확합니다.</li>
+</ul>
+<p><strong>※ 서울시 청년월세지원과 서울형 주택바우처는 서로 다른 제도입니다.</strong> 청년월세지원은 별도의 모집기간이 있을 수 있으므로 공식 공고를 따로 확인해 주세요.</p>
+</div>
 <div class="soft-note">
 <strong>스테이The머무름 입주자 안내</strong><br/>
 주거지원 정책 신청 시 입실계약·거주 사실 및 월 이용료 납부와 관련해 필요한 증빙서류가 있는 경우 문의해 주세요.
@@ -209,7 +308,7 @@
 <h2>참고: 월세지원 3가지 한눈에 비교</h2>
 <p>제도마다 나이·소득 산정방식·모집기간·중복지원 기준이 다릅니다. 아래 표는 2026년 공식 안내를 기준으로 핵심만 비교한 내용입니다.</p>
 <div style="overflow-x:auto">
-<table class="doc-table" style="min-width:760px">
+<table class="doc-table support-compare-table">
 <tr><th>구분</th><th>국토교통부 청년월세 지원사업</th><th>서울시 청년월세지원</th><th>서울형 주택바우처</th></tr>
 <tr><th>누가?</th><td>19~34세, 부모와 별도 거주하는 무주택 청년</td><td>서울 거주 19~39세 청년 등 공고상 신청유형</td><td>서울의 저소득 민간 월세 주택·고시원 거주 가구</td></tr>
 <tr><th>소득</th><td>청년가구 중위소득 60% 이하 + 원가구 중위소득 100% 이하가 원칙</td><td>2026년 기준 중위소득 48% 초과~150% 이하</td><td>소득평가액 기준 중위소득 60% 이하</td></tr>
