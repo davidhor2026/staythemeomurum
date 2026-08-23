@@ -40,6 +40,60 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
  .details,.contact{padding:14px}.roomrow{grid-template-columns:44px 1fr auto;padding:10px}.roomicon{width:40px;height:40px;font-size:20px}.roomrow h4{font-size:16px}.roomrow p{font-size:13px}.roomrow a{font-size:13px;padding:8px 9px}
  .contactgrid{grid-template-columns:1fr}.contactbox{padding:12px 0;border-right:0;border-bottom:1px dashed #ccc}.contactbox:last-child{border-bottom:0}
 }
+
+/* 2026-08-23: 한눈에 보는 현황 - 객실 타입/상태 시작 위치 고정 */
+.summary .sum{
+  justify-content:flex-start !important;
+  min-height:240px;
+}
+.summary .sum h4{
+  min-height:52px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 0 10px !important;
+  line-height:1.3;
+}
+.summary .sum .icon{
+  height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:9px;
+}
+.summary .sum .main{
+  min-height:50px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.summary .sum hr{
+  flex:0 0 auto;
+}
+.summary .sum .sub{
+  min-height:66px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  width:100%;
+}
+@media(max-width:700px){
+  .summary .sum{
+    min-height:250px;
+    padding:12px 8px;
+  }
+  .summary .sum h4{
+    min-height:48px;
+    font-size:16px !important;
+  }
+  .summary .sum .main{
+    min-height:48px;
+  }
+  .summary .sum .sub{
+    min-height:70px;
+  }
+}
+
 </style>
 
 <script>
