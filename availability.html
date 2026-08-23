@@ -69,6 +69,9 @@ function firstFutureText(room){
     return `다음 ${formatDate(e.date)}<br>${DISPLAY_TEXT.upcoming}`;
   }
   if(room.unknown){
+    if(room.unknown.note === "공실 여부 문의"){
+      return `${room.unknown.label}<br>${room.unknown.note}`;
+    }
     return `${room.unknown.label}<br>입실 가능 예정 (${room.unknown.note})`;
   }
   return "현재 예정 없음";
@@ -91,7 +94,11 @@ function renderAvailability(){
         lines += `<p class="orange">● ${formatDate(e.date)} · ${DISPLAY_TEXT.upcoming}</p>`;
       });
       if(room.unknown){
-        lines += `<p class="gray">● ${room.unknown.label} 입실 가능 예정 · ${room.unknown.note}</p>`;
+        if(room.unknown.note === "공실 여부 문의"){
+          lines += `<p class="gray">● ${room.unknown.label} ${room.unknown.note}</p>`;
+        }else{
+          lines += `<p class="gray">● ${room.unknown.label} 입실 가능 예정 · ${room.unknown.note}</p>`;
+        }
       }
       detail.innerHTML=lines;
     }
