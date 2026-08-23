@@ -36,7 +36,7 @@ const VACANCY_MANAGER = {
     reservable: false,
     unknown: {
       month: "2026-09",
-      label: "9월",
+      label: "9월 중",
       note: "공실 여부 문의"
     }
   },
