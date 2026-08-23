@@ -186,6 +186,21 @@
  .nav-new-badge{font-size:10px;margin-left:4px;padding:2px 6px}
 }
 
+
+/* 월세지원 3가지 비교 - 제도별 카드형 */
+.rent-program-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.rent-program-card{background:#fff;border:1px solid #dfe5dc;border-radius:18px;padding:18px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
+.rent-program-card--voucher{border:2px solid #8fb38c;background:#fbfef9}
+.program-title{font-size:1.18rem;font-weight:900;color:#233b2a;margin-bottom:14px;line-height:1.45}
+.program-item{border-top:1px solid #edf0eb;padding:12px 0}
+.program-item:first-of-type{border-top:0}
+.program-item strong{display:block;color:#73512d;margin-bottom:5px;font-size:.93rem}
+.program-item span{display:block;color:#444;line-height:1.6;font-size:.95rem}
+.program-link{display:block!important;width:100%;box-sizing:border-box;margin-top:14px!important;text-align:center}
+.compare-intro{line-height:1.75}
+.compare-note{margin-top:18px}
+@media(max-width:800px){.rent-program-grid{grid-template-columns:1fr;gap:14px}.rent-program-card{padding:16px}.program-title{font-size:1.12rem}}
+
 </style>
 <script type="application/ld+json">
   {
@@ -263,31 +278,47 @@
 <a class="button light" href="https://housing.seoul.go.kr" rel="noopener" target="_blank">서울주거포털</a>
 </div>
 </section>
-<section class="policy-card" style="margin-top:18px">
+
+<section class="policy-card rent-compare-section" style="margin-top:18px">
 <span class="tagline">함께 보면 좋은 참고정보</span>
-<h2>참고: 월세지원 3가지 한눈에 비교</h2>
-<p>제도마다 나이·소득 산정방식·모집기간·중복지원 기준이 다릅니다. 아래 표는 2026년 공식 안내를 기준으로 핵심만 비교한 내용입니다.</p>
-<div style="overflow-x:auto">
-<table class="doc-table support-compare-table">
-<tr><th>구분</th><th>국토교통부 청년월세 지원사업</th><th>서울시 청년월세지원</th><th>서울형 주택바우처</th></tr>
-<tr><th>누가?</th><td>19~34세, 부모와 별도 거주하는 무주택 청년</td><td>서울 거주 19~39세 청년 등 공고상 신청유형</td><td>서울의 저소득 민간 월세 주택·고시원 거주 가구</td></tr>
-<tr><th>소득</th><td>청년가구 중위소득 60% 이하 + 원가구 중위소득 100% 이하가 원칙</td><td>2026년 기준 중위소득 48% 초과~150% 이하</td><td>소득평가액 기준 중위소득 60% 이하</td></tr>
-<tr><th>주요 재산·주거 조건</th><td>청년가구 총재산가액 1.22억원 이하 등 세부 재산기준 적용</td><td>무주택, 보증금 8천만원 이하·월세 60만원 이하가 기본. 월세 초과 시 환산액 포함 90만원 이하 조건 적용</td><td>재산가액 2억원 이하, 금융재산 8천만원 이하 등. 고시원 거주 가구도 요건 충족 시 가능</td></tr>
-<tr><th>지원한도</th><td><strong>월 최대 20만원 × 최대 24개월</strong><br>실제 월세 범위, 생애 1회</td><td><strong>월 최대 20만원 × 최대 12개월</strong><br>최대 240만원, 생애 1회</td><td><strong>1인 가구 월 12만원</strong><br>2인 13만원, 3인 14만원 등 가구원 수에 따라 차등</td></tr>
-<tr><th>2026 신청</th><td>3월 30일 09:00 ~ 5월 29일 16:00</td><td>2026년 신청접수 종료<br><small>선정자 1차 지원금: 8월 31일 지급 예정(7월분 최대 20만원)</small></td><td>거주지 관할 동주민센터에서 신청·자격 확인</td></tr>
-<tr><th>신청처</th><td>복지로 또는 주소지 관할 행정복지센터</td><td>서울주거포털</td><td>거주지 관할 동주민센터</td></tr>
-</table>
+<h2>월세지원 3가지 한눈에 비교</h2>
+<p class="compare-intro">국토교통부 청년월세 지원, 서울시 청년월세지원, 서울형 주택바우처는 대상과 소득기준, 지원기간이 서로 다릅니다. 아래에서 제도별로 나누어 확인해 보세요.</p>
+
+<div class="rent-program-grid">
+<article class="rent-program-card">
+<div class="program-title">① 국토교통부 청년월세 지원</div>
+<div class="program-item"><strong>지원대상</strong><span>19~34세, 부모와 별도 거주하는 무주택 청년</span></div>
+<div class="program-item"><strong>소득기준</strong><span>청년가구 중위소득 60% 이하 + 원가구 중위소득 100% 이하가 원칙</span></div>
+<div class="program-item"><strong>재산기준</strong><span>청년가구 총재산가액 1.22억원 이하 등 세부 기준 적용</span></div>
+<div class="program-item"><strong>지원한도</strong><span><b>월 최대 20만원 × 최대 24개월</b><br>실제 월세 범위, 생애 1회</span></div>
+<div class="program-item"><strong>신청</strong><span>복지로 또는 주소지 관할 행정복지센터</span></div>
+<a class="button program-link" href="https://www.bokjiro.go.kr" target="_blank" rel="noopener">국토부 지원 공식 안내</a>
+</article>
+
+<article class="rent-program-card">
+<div class="program-title">② 서울시 청년월세지원</div>
+<div class="program-item"><strong>지원대상</strong><span>서울 거주 19~39세 청년 등 공고상 신청유형</span></div>
+<div class="program-item"><strong>소득기준</strong><span>2026년 기준 중위소득 48% 초과~150% 이하</span></div>
+<div class="program-item"><strong>주거조건</strong><span>무주택, 보증금 8천만원 이하·월세 60만원 이하가 기본. 월세 초과 시 환산액 포함 90만원 이하 조건 적용</span></div>
+<div class="program-item"><strong>지원한도</strong><span><b>월 최대 20만원 × 최대 12개월</b><br>최대 240만원, 생애 1회</span></div>
+<div class="program-item"><strong>신청</strong><span>서울주거포털 모집기간에 온라인 신청</span></div>
+<a class="button program-link" href="https://housing.seoul.go.kr/site/main/content/sh01_060513" target="_blank" rel="noopener">서울시 청년월세 공식 안내</a>
+</article>
+
+<article class="rent-program-card rent-program-card--voucher">
+<div class="program-title">③ 서울형 주택바우처</div>
+<div class="program-item"><strong>지원대상</strong><span>서울의 저소득 민간 월세 주택·고시원 거주 가구</span></div>
+<div class="program-item"><strong>소득기준</strong><span>소득평가액 기준 중위소득 60% 이하</span></div>
+<div class="program-item"><strong>재산기준</strong><span>재산가액 2억원 이하, 금융재산 8천만원 이하 등 세부 요건 확인</span></div>
+<div class="program-item"><strong>지원한도</strong><span><b>1인 가구 월 12만원</b><br>2인 13만원, 3인 14만원 등 가구원 수에 따라 차등</span></div>
+<div class="program-item"><strong>신청</strong><span>거주지 관할 동주민센터에서 신청 및 자격 확인</span></div>
+<a class="button program-link" href="https://housing.seoul.go.kr/site/main/content/sh_061010" target="_blank" rel="noopener">서울형 주택바우처 공식 안내</a>
+</article>
 </div>
-<div class="soft-note">
-<strong>꼭 확인하세요</strong><br>
-세 제도를 동시에 월 지원한도만큼 모두 받는다는 의미는 아닙니다. 국토교통부·서울시 청년월세지원은 중복수혜 제한이 있으며, 서울형 주택바우처 수급자가 2026 서울시 청년월세지원 요건을 충족해 선정되는 경우에도 바우처 수령액을 제외한 차액이 지급됩니다. 개인별 가구구성·소득·재산·기존 수혜이력에 따라 결과가 달라지므로 신청 전 공식 자격확인이 필요합니다.
-</div>
-<div class="button-wrap">
-<a class="button" href="https://www.bokjiro.go.kr/ssis-tbu/ssis-tem/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00004661" target="_blank" rel="noopener">국토부 청년월세 공식 안내</a>
-<a class="button light" href="https://housing.seoul.go.kr/site/main/content/sh01_060513" target="_blank" rel="noopener">서울시 청년월세 공식 안내</a>
-<a class="button light" href="https://housing.seoul.go.kr/site/main/content/sh_061010" target="_blank" rel="noopener">서울형 주택바우처 공식 안내</a>
-</div>
+
+<div class="soft-note compare-note"><strong>중복지원 확인</strong><br>세 제도를 같은 기간에 각각 전액 중복해서 받는다는 의미는 아닙니다. 기존 지원 수혜 여부와 중복지원·차감 기준은 제도별로 다르므로 신청 전 공식 안내에서 본인 상황을 확인해 주세요.</div>
 </section>
+
 
 
 <section class="policy-hero">
