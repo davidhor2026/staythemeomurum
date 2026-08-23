@@ -14,7 +14,7 @@
 <div class="geo-note"><strong>문제 구성 원칙</strong><br>① 업로드된 지리 임용 기출에서 반복되는 영역과 사고 유형을 분석해 새 문항으로 재구성했습니다. ② 기출 문장·도표·정답을 그대로 복제하지 않았습니다. ③ 최근 교육과정의 강조점인 탐구, 디지털 소양, 생태전환·지속가능성도 연습 주제에 반영했습니다. ④ 실제 시험의 출제·정답을 예측하거나 보장하는 자료가 아닙니다.</div>
 <div class="geo-controls" id="filters"><button class="active" data-cat="전체">전체</button><button data-cat="지리교육">지리교육</button><button data-cat="자연지리">자연지리</button><button data-cat="인문지리">인문지리</button><button data-cat="GIS·지도">GIS·지도</button><button data-cat="최신교육과정">최신교육과정</button></div>
 <div class="score" id="score">푼 문제 0 / 정답 0</div><div id="quiz"></div>
-<p class="source-note">학습용 자체 제작 문제입니다. 실제 기출문제 원문이 필요하면 한국교육과정평가원 등 공식 공개 자료를 이용하세요.</p>
+<p class="source-note">학습용 자체 제작 문제입니다. 실제 기출의 출제 영역과 사고방식을 참고해 새롭게 구성했으며, 기출 원문·도표를 그대로 복제하지 않았습니다. 선택지는 페이지를 새로 열 때마다 무작위로 섞입니다.</p>
 </main>
 <footer><p>© <span id="year"></span> 스테이The머무름. All rights reserved.</p></footer>
 <script>
@@ -25,14 +25,84 @@ const qs=[
 {c:'GIS·지도',q:'행정구역별 통계값의 크기에 비례하도록 각 구역의 면적 자체를 변형해 표현한 지도는?',o:['카토그램','등치선도','유선도','점묘도'],a:0,e:'카토그램은 실제 면적 대신 특정 속성값의 크기에 비례하도록 공간 단위의 면적을 변형합니다.'},
 {c:'자연지리',q:'석회암 지역에서 토양을 통과한 물이 지표수보다 석회암을 더 잘 용식할 수 있는 핵심 이유는?',o:['토양 공극의 이산화탄소 농도가 상대적으로 높을 수 있어서','토양수가 항상 0℃ 이하이기 때문에','석회암이 물과 접촉하면 무조건 팽창하기 때문에','토양수가 염분을 완전히 제거하기 때문에'],a:0,e:'토양층의 높은 이산화탄소 농도는 물의 탄산 작용을 강화하여 탄산칼슘의 용식을 촉진할 수 있습니다.'},
 {c:'인문지리',q:'다국적기업이 연구·설계는 핵심 지역에 두고 노동집약적 생산은 비용이 낮은 지역에 배치하는 현상을 가장 잘 설명하는 것은?',o:['공간적 분업','생태 천이','중심지 포섭','등질지역화'],a:0,e:'기업 기능을 비용·기술·시장 조건에 따라 여러 지역에 나누어 배치하는 것은 공간적 분업의 전형적인 모습입니다.'},
-{c:'GIS·지도',q:'건물 경계나 도로처럼 위치와 형상을 점·선·면 및 좌표로 표현하는 데 적합한 GIS 데이터 모델은?',o:['벡터 모델','래스터 모델만 가능','서열척도 모델','비공간 표본 모델'],a:0,e:'벡터 모델은 점·선·면과 좌표를 이용하므로 경계와 위치를 정밀하게 표현하는 데 적합합니다.'},
+{c:'GIS·지도',q:'건물 경계나 도로처럼 위치와 형상을 점·선·면 및 좌표로 표현하는 데 적합한 GIS 데이터 모델은?',o:['벡터 모델','래스터 모델','TIN 모델','속성 테이블'],a:0,e:'벡터 모델은 점·선·면과 좌표를 이용하므로 건물 경계나 도로처럼 위치와 형상을 정밀하게 표현하는 데 적합합니다. 래스터는 격자 셀 기반, TIN은 불규칙 삼각망 기반의 표면 표현, 속성 테이블은 공간 객체의 특성값 저장에 사용됩니다.'},
 {c:'지리교육',q:'교사가 학문적 지식을 학생 수준과 수업 목적에 맞게 가르칠 지식으로 바꾸는 과정과 가장 직접적으로 관련된 것은?',o:['교수학적 변환','공간적 자기상관','누적적 인과','입지 배분'],a:0,e:'학문적 지식을 교육적 의도에 맞게 가르칠 지식으로 변환하는 과정은 교수학적 변환과 관련됩니다.'},
 {c:'최신교육과정',q:'2022 개정 교육과정의 방향과 가장 부합하는 지리 수업은?',o:['지역의 기후위기 자료를 디지털 지도로 분석하고 대안을 토론한다','교사가 지명을 읽고 학생은 그대로 받아 적는다','모든 평가를 단순 암기 문항으로만 구성한다','학생의 탐구 과정 없이 정답만 반복한다'],a:0,e:'2022 개정 교육과정은 디지털 기초소양, 생태전환, 비판적 사고와 탐구 중심 교수·학습을 강조합니다.'},
 {c:'최신교육과정',q:'지속가능한 도시를 주제로 한 수행평가에서 지리적 탐구 역량을 가장 잘 확인할 수 있는 과제는?',o:['교통·토지이용 자료를 비교해 문제를 진단하고 공간적 대안을 제안하기','도시 이름 50개를 순서대로 암기하기','교과서 문장을 그대로 필사하기','정답을 먼저 제시한 뒤 그대로 외우게 하기'],a:0,e:'자료를 수집·비교하고 공간적 관계를 해석하여 대안을 제시하는 과정이 지리적 탐구와 문제 해결을 직접적으로 평가합니다.'},
 {c:'인문지리',q:'중심지이론에서 소비자가 재화나 서비스를 이용하기 위해 감수하려는 최대 이동거리와 관련된 개념은?',o:['재화의 도달범위','최소 요구치','집적 불경제','인구 전이지수'],a:0,e:'재화의 도달범위는 소비자가 해당 재화나 서비스를 얻기 위해 이동하려는 최대 거리와 관련됩니다.'},
-{c:'자연지리',q:'현무암질 용암을 일반적인 유문암질 용암과 비교할 때 옳은 설명은?',o:['SiO₂ 함량과 점성이 대체로 더 낮다','SiO₂ 함량과 점성이 모두 더 높다','SiO₂ 함량은 높고 점성은 낮다','조성 차이가 점성과 무관하다'],a:0,e:'현무암질 용암은 일반적으로 유문암질 용암보다 SiO₂ 함량이 낮고 점성도 낮아 더 잘 흐릅니다.'}
+{c:'자연지리',q:'현무암질 용암을 일반적인 유문암질 용암과 비교할 때 옳은 설명은?',o:['SiO₂ 함량과 점성이 대체로 더 낮다','SiO₂ 함량과 점성이 모두 더 높다','SiO₂ 함량은 높고 점성은 낮다','조성 차이가 점성과 무관하다'],a:0,e:'현무암질 용암은 일반적으로 유문암질 용암보다 SiO₂ 함량이 낮고 점성도 낮아 더 잘 흐릅니다.'},
+{c:'GIS·지도',q:'같은 지역의 인구밀도 자료를 단계구분도로 표현할 때, 각 계급에 포함되는 사례 수를 같게 하되 계급 구간의 폭은 서로 달라질 수 있는 분류법은?',o:['등간격 분류법','자연적 단절 분류법','분위수 분류법','표준편차 분류법'],a:2,e:'분위수 분류법은 각 계급에 들어가는 사례 수를 비슷하거나 같게 나누므로 계급별 구간 폭은 서로 달라질 수 있습니다.'},
+{c:'인문지리',q:'수위도시 인구가 1,000만 명이고 2위 도시 인구가 250만 명일 때, 1위 도시 인구를 2위 도시 인구로 나눈 수위도시 지수는?',o:['2','3','4','5'],a:2,e:'1,000 ÷ 250 = 4이므로 수위도시 지수는 4입니다.'},
+{c:'자연지리',q:'북반구 영구동토 지역에서 최근 여름철 지온 상승으로 활동층이 이전보다 두꺼워졌다면, 일반적으로 예상되는 변화로 가장 적절한 것은?',o:['지표 안정성이 높아지고 융해침하 가능성이 감소한다','지표 안정성이 낮아지고 융해침하 가능성이 증가한다','영구동토 상한이 지표에 더 가까워져 활동층이 얇아진다','지표수 배수가 완전히 사라져 호소 형성이 불가능해진다'],a:1,e:'활동층이 두꺼워지면 더 깊은 부분까지 계절적으로 융해되어 얼음이 많은 지반의 침하 가능성이 커지고 지표 안정성은 낮아질 수 있습니다.'},
+{c:'지리교육',q:'지리 수업에서 학생이 실제 지역 문제를 조사하고, 자료를 수집·해석한 뒤, 여러 대안을 비교하여 자신의 판단을 정당화하게 하는 수업은 어떤 능력을 가장 직접적으로 함께 요구하는가?',o:['단순 회상과 기계적 암기','자료 해석과 의사결정','철자 정확성과 필사 능력','교사 설명의 재현'],a:1,e:'실제 지역 문제를 탐구하고 대안을 비교·정당화하는 활동은 자료 해석 능력과 의사결정 능력을 함께 요구합니다.'},
+{c:'인문지리',q:'글로벌 가치사슬에서 주도기업과 공급기업 사이의 정보 교환이 복잡하지만 상호 신뢰와 지리적·사회적 근접성이 중요하고 권력 비대칭이 비교적 낮은 유형은?',o:['시장형','관계형','전속형','위계형'],a:1,e:'관계형 가치사슬은 복잡한 정보 교환과 상호 신뢰가 중요하고, 전속형이나 위계형보다 권력 비대칭이 상대적으로 낮습니다.'},
+{c:'자연지리',q:'7월에 같은 위도의 대륙 서안과 동안을 비교했을 때, 대륙 서안의 해안 사막 형성에 가장 직접적으로 기여하는 조합은?',o:['한류와 하강기류','난류와 강한 상승기류','적도저압대와 태풍','온난전선과 지형성 강수'],a:0,e:'아열대고기압의 하강기류와 한류는 대기 안정과 수증기 공급 억제를 강화하여 대륙 서안의 해안 사막 형성에 기여합니다.'}
 ];
-let answered=0,correct=0,cat='전체';
-function render(){const root=document.getElementById('quiz');root.innerHTML='';qs.forEach((x,i)=>{if(cat!=='전체'&&x.c!==cat)return;const d=document.createElement('article');d.className='qcard';d.innerHTML=`<div class="qmeta">${x.c} · 자체 재구성</div><h3>${i+1}. ${x.q}</h3><div class="choices">${x.o.map((v,j)=>`<button class="choice" data-j="${j}">${v}</button>`).join('')}</div><div class="explain">${x.e}</div>`;let done=false;d.querySelectorAll('.choice').forEach(b=>b.onclick=()=>{if(done)return;done=true;answered++;const j=+b.dataset.j;if(j===x.a){correct++;b.classList.add('correct')}else{b.classList.add('wrong');d.querySelector(`[data-j="${x.a}"]`).classList.add('correct')}d.querySelector('.explain').style.display='block';document.getElementById('score').textContent=`푼 문제 ${answered} / 정답 ${correct}`});root.appendChild(d)})}
-document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');cat=b.dataset.cat;render()});document.getElementById('year').textContent=new Date().getFullYear();render();
+let cat='전체';
+
+function shuffleQuestion(x,idx){
+  const packed=x.o.map((label,originalIndex)=>({label,correct:originalIndex===x.a}));
+  for(let i=packed.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [packed[i],packed[j]]=[packed[j],packed[i]];
+  }
+  return {
+    ...x,
+    id:'q'+idx,
+    o:packed.map(v=>v.label),
+    a:packed.findIndex(v=>v.correct),
+    answered:false,
+    selected:null
+  };
+}
+
+const quizItems=qs.map(shuffleQuestion);
+
+function updateScore(){
+  const answered=quizItems.filter(x=>x.answered).length;
+  const correct=quizItems.filter(x=>x.answered && x.selected===x.a).length;
+  document.getElementById('score').textContent=`푼 문제 ${answered} / 정답 ${correct}`;
+}
+
+function render(){
+  const root=document.getElementById('quiz');
+  root.innerHTML='';
+  quizItems.forEach((x,i)=>{
+    if(cat!=='전체'&&x.c!==cat)return;
+    const d=document.createElement('article');
+    d.className='qcard';
+    d.innerHTML=`<div class="qmeta">${x.c} · 자체 재구성</div><h3>${i+1}. ${x.q}</h3><div class="choices">${x.o.map((v,j)=>`<button class="choice" data-j="${j}">${v}</button>`).join('')}</div><div class="explain">${x.e}</div>`;
+
+    const buttons=d.querySelectorAll('.choice');
+
+    if(x.answered){
+      buttons.forEach((b,j)=>{
+        b.disabled=true;
+        if(j===x.a)b.classList.add('correct');
+        if(j===x.selected && j!==x.a)b.classList.add('wrong');
+      });
+      d.querySelector('.explain').style.display='block';
+    }
+
+    buttons.forEach(b=>b.onclick=()=>{
+      if(x.answered)return;
+      x.answered=true;
+      x.selected=+b.dataset.j;
+      render();
+      updateScore();
+    });
+
+    root.appendChild(d);
+  });
+  updateScore();
+}
+
+document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  cat=b.dataset.cat;
+  render();
+});
+document.getElementById('year').textContent=new Date().getFullYear();
+render();
 </script><script src="site-updates.js?v=20260823-geo1"></script></body></html>
