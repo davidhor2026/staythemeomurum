@@ -1357,21 +1357,69 @@
 }
 
 
-/* 2026-08-24: 메인 시험 카운트다운 날짜/상태 한 줄 표시 */
-.exam-countdown-item .exam-dday{
-  flex:0 0 auto !important;
-  min-width:72px;
+/* 2026-08-24: 시험 카운트다운 D-day + 일정/시험명 정렬 */
+.exam-countdown-item{
+  display:grid !important;
+  grid-template-columns:72px minmax(0,1fr) !important;
+  align-items:center !important;
+  column-gap:16px !important;
+  padding:14px 16px !important;
+}
+.exam-dday{
+  width:72px !important;
+  min-width:72px !important;
+  text-align:center !important;
   white-space:nowrap !important;
   word-break:keep-all !important;
-  overflow-wrap:normal !important;
-  line-height:1.35;
+  font-size:16px !important;
+  font-weight:950 !important;
+  line-height:1.2 !important;
+}
+.exam-countdown-copy{
+  min-width:0 !important;
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:3px !important;
+}
+.exam-countdown-copy span{
+  display:block !important;
+  font-size:11px !important;
+  line-height:1.35 !important;
+}
+.exam-countdown-copy strong{
+  display:block !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+  white-space:normal !important;
+  word-break:keep-all !important;
+  font-size:14px !important;
+  line-height:1.4 !important;
+}
+.exam-countdown-copy small{
+  display:block !important;
+  margin-top:2px !important;
+  color:#8b5547 !important;
+  font-size:11.5px !important;
+  font-weight:800 !important;
+  line-height:1.35 !important;
+  white-space:nowrap !important;
+  word-break:keep-all !important;
 }
 @media(max-width:520px){
   .exam-countdown-item{
-    gap:12px;
+    grid-template-columns:70px minmax(0,1fr) !important;
+    column-gap:12px !important;
+    padding:13px 14px !important;
   }
-  .exam-countdown-item .exam-dday{
-    min-width:72px;
-    font-size:14px;
+  .exam-dday{
+    width:70px !important;
+    min-width:70px !important;
+    font-size:15px !important;
+  }
+  .exam-countdown-copy strong{
+    font-size:13.5px !important;
+  }
+  .exam-countdown-copy small{
+    font-size:11px !important;
   }
 }

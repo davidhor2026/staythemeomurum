@@ -519,10 +519,15 @@
     countdownList.innerHTML='<p class="exam-empty">현재 등록된 다가오는 일정이 없습니다.</p>';
   }else{
     countdownList.innerHTML=future.map(function(item){
-      var dayText=item.status?item.status:(item.days===0?'D-DAY':'D-'+item.days);
-      return '<article class="exam-countdown-item'+(item.status?' exam-countdown-item--status':'')+'">'+
+      var dayText=item.days===0?'D-DAY':'D-'+item.days;
+      var scheduleText=item.status?item.status:dateLabel(item.date);
+      return '<article class="exam-countdown-item">'+
         '<div class="exam-dday">'+dayText+'</div>'+
-        '<div class="exam-countdown-copy"><span>'+escapeHtml(item.category)+'</span><strong>'+escapeHtml(item.title)+'</strong><small>'+dateLabel(item.date)+'</small></div>'+
+        '<div class="exam-countdown-copy">'+
+          '<span>'+escapeHtml(item.category)+'</span>'+
+          '<strong>'+escapeHtml(item.title)+'</strong>'+
+          '<small>'+escapeHtml(scheduleText)+'</small>'+
+        '</div>'+
       '</article>';
     }).join('');
   }
