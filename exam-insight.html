@@ -257,6 +257,73 @@
 .page-role-note--analysis strong,.page-role-note--analysis a{color:#66532e}
 @media(max-width:700px){.page-role-note{margin:12px 0 16px;padding:14px 15px}}
 
+
+/* 2026-08-25 시험분석: 올해 시행된 시험 심층분석 바로가기 */
+.past-exam-analysis-hub .insight-hub-head{
+  margin-bottom:16px;
+}
+.past-exam-analysis-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+.past-exam-analysis-card{
+  display:flex;
+  flex-direction:column;
+  min-height:190px;
+  padding:17px;
+  border:1px solid #e2ded4;
+  border-radius:16px;
+  background:#fff;
+  box-shadow:0 5px 15px rgba(0,0,0,.035);
+}
+.past-exam-analysis-card.is-latest{
+  border:2px solid #d9a87d;
+  background:#fffaf5;
+}
+.past-exam-meta{
+  color:#87664a;
+  font-size:11px;
+  font-weight:900;
+}
+.past-exam-analysis-card h3{
+  margin:7px 0 7px;
+  color:#263c2c;
+  font-size:19px;
+}
+.past-exam-analysis-card p{
+  flex:1;
+  margin:0 0 13px;
+  color:#5b5d5a;
+  font-size:13.5px;
+  line-height:1.6;
+}
+.past-exam-analysis-card a{
+  display:block;
+  padding:10px 11px;
+  border-radius:10px;
+  background:#2f5138;
+  color:#fff;
+  text-align:center;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:900;
+}
+.past-exam-analysis-card a:hover{
+  filter:brightness(1.08);
+}
+#deep-national9,#deep-local9,#deep-police1,#deep-fire,
+#police-2026-2nd-review,#national7-deep-update,#court-data-center{
+  scroll-margin-top:18px;
+}
+@media(max-width:900px){
+  .past-exam-analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+  .past-exam-analysis-grid{grid-template-columns:1fr}
+  .past-exam-analysis-card{min-height:0}
+}
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"2026 법원직 9급 시험분석: 합격선·커트라인·경쟁률·민법 난이도","description":"2026 법원직 9급 필기 합격선과 최근 3년 추이, 과목별 난이도, 면접 일정을 정리한 수험생용 분석 자료","dateModified":"2026-08-08","author":{"@type":"Organization","name":"스테이The머무름"},"publisher":{"@type":"Organization","name":"스테이The머무름"},"mainEntityOfPage":"https://davidhor2026.github.io/staythemeomurum/exam-insight.html"}
@@ -289,19 +356,77 @@
 <a href="index.html#contact">문의</a>
 </nav>
 <main class="exam-page-wrap">
-<section class="insight-category-hub insight-category-hub--top" id="exam-category-hub">
-<div class="insight-hub-head">
-<div><span class="exam-eyebrow">직렬별 시험분석 바로가기</span><h2>관심 있는 시험을 바로 확인하세요</h2><p>직렬별 최근 시험의 난이도·합격선과 함께 합격률 공개 현황을 한눈에 확인할 수 있습니다. 원하는 직렬을 누르면 해당 분석 카드가 바로 열립니다.</p></div>
-<a class="button light" href="exam-schedule.html">시험일정 보기</a>
-</div>
-<p class="exam-passrate-guide"><strong>합격률 표기 기준:</strong> 응시인원 대비 필기 합격률을 우선 표시합니다. 전국 단일 수치가 없는 지방직·교육청·임용 등은 지역·직렬·교과별로 달라 별도 표기하며, 아직 결과 발표 전인 시험은 발표 예정일을 표시합니다.</p><div aria-live="polite" class="exam-recent-highlight" id="examRecentHighlight"></div>
-<div aria-label="직렬별 시험분석 바로가기" class="exam-category-nav" id="examCategoryNav"></div>
+
+<section class="insight-category-hub insight-category-hub--top past-exam-analysis-hub" id="exam-category-hub">
+  <div class="insight-hub-head">
+    <div>
+      <span class="exam-eyebrow">2026 이미 시행된 시험 · 직렬별 심층분석 바로가기</span>
+      <h2>올해 치른 시험의 최신 분석을 바로 확인하세요</h2>
+      <p>시험일정이 아니라 <strong>이미 시행된 시험의 난이도·총평·합격선·출제경향</strong>을 빠르게 찾는 영역입니다. 버튼을 누르면 해당 시험의 현재 가장 최근 심층분석으로 바로 이동합니다.</p>
+    </div>
+  </div>
+
+  <div class="past-exam-analysis-grid">
+    <article class="past-exam-analysis-card is-latest">
+      <span class="past-exam-meta">8월 22일 시행 · 최신 분석</span>
+      <h3>경찰 2차 순경</h3>
+      <p>경찰학·헌법·형사법 학원가 총평과 현재까지의 난도 분석</p>
+      <a href="#police-2026-2nd-review">심층분석 바로가기 →</a>
+    </article>
+
+    <article class="past-exam-analysis-card">
+      <span class="past-exam-meta">7월 18일 시행</span>
+      <h3>국가직 7급</h3>
+      <p>PSAT 문항별 복기, 영역별 난도, 합격선·합격자 통계 분석</p>
+      <a href="#national7-deep-update">최근 심층분석 바로가기 →</a>
+    </article>
+
+    <article class="past-exam-analysis-card">
+      <span class="past-exam-meta">6월 20일 시행</span>
+      <h3>법원직 9급</h3>
+      <p>필기 합격선, 과목별 난도, 민법 변별력과 최종 결과 분석</p>
+      <a href="#court-data-center">심층분석 바로가기 →</a>
+    </article>
+
+    <article class="past-exam-analysis-card">
+      <span class="past-exam-meta">6월 20일 시행</span>
+      <h3>지방직 9급</h3>
+      <p>국가직 대비 체감 난도, 지역·직렬별 합격선 변수와 출제경향</p>
+      <a href="#deep-local9">심층분석 바로가기 →</a>
+    </article>
+
+    <article class="past-exam-analysis-card">
+      <span class="past-exam-meta">4월 4일 시행</span>
+      <h3>국가직 9급</h3>
+      <p>국어·행정법 변별력, 합격선과 과목별 출제경향 분석</p>
+      <a href="#deep-national9">심층분석 바로가기 →</a>
+    </article>
+
+    <article class="past-exam-analysis-card">
+      <span class="past-exam-meta">3월 14일 시행</span>
+      <h3>경찰 1차 순경</h3>
+      <p>남녀통합채용 원년의 필기 체감 난도와 법과목 분석</p>
+      <a href="#deep-police1">심층분석 바로가기 →</a>
+    </article>
+
+    <article class="past-exam-analysis-card">
+      <span class="past-exam-meta">3월 7일 시행</span>
+      <h3>소방공무원</h3>
+      <p>소방학개론 계산형·응용형과 관계법규 체감 난도 분석</p>
+      <a href="#deep-fire">심층분석 바로가기 →</a>
+    </article>
+  </div>
+
+  <!-- 아래 동적 카드 렌더링을 위한 숨김 컨테이너 -->
+  <div id="examRecentHighlight" hidden></div>
+  <div id="examCategoryNav" hidden></div>
 </section>
+
 
 <section class="page-role-note page-role-note--analysis">
 <strong>시험분석 페이지</strong>
-<span>난이도 · 학원가/전문가 총평 · 합격선 · 응시현황 · 과목별 분석 중심으로 정리합니다.</span>
-<a href="exam-schedule.html">시험 날짜·접수·발표 일정은 시험일정 페이지에서 확인 →</a>
+<span>이 페이지는 난이도 · 학원가/전문가 총평 · 합격선 · 응시현황 · 과목별 분석만 중심으로 정리합니다.</span>
+<a href="exam-schedule.html">날짜와 접수·발표 일정이 필요할 때만 시험일정 페이지로 이동 →</a>
 </section>
 
 <section class="analysis-update-box police-latest-review" id="police-2026-2nd-review">
@@ -699,7 +824,7 @@
 <h2>2026년 이미 치른 시험 난이도·출제경향 분석</h2>
 <p class="portal-note">아래 분석은 사용자가 제공한 자료, 수험생 커뮤니티 반응, 학원가 총평, 공개 경쟁률 자료를 함께 검토해 정리한 것입니다. “역대급 불시험”, “평이한 회귀” 같은 표현은 공식 발표가 아니라 <strong>수험가 체감 평가</strong>입니다.</p>
 <div class="difficulty-detail-grid difficulty-detail-grid--wide">
-<article class="difficulty-detail-card">
+<article class="difficulty-detail-card" id="deep-national9">
 <span class="difficulty-badge fire">국가직 9급 · 4/4 시행</span>
 <h3>국어·행정법이 강한 변별력을 보인 시험</h3>
 <ul>
@@ -710,7 +835,7 @@
 <li><strong>대비 포인트</strong>: 국어는 지문 독해와 논리 추론, 행정법은 최신판례·개정법령·사례형 판단을 함께 훈련해야 합니다.</li>
 </ul>
 </article>
-<article class="difficulty-detail-card">
+<article class="difficulty-detail-card" id="deep-local9">
 <span class="difficulty-badge calm">지방직 9급 · 6/20 시행</span>
 <h3>국가직과 달리 평이하게 돌아온 흐름, 다만 직렬별 편차 큼</h3>
 <ul>
@@ -732,7 +857,7 @@
 <li><strong>대비 포인트</strong>: 민법·민소법은 조문 → 판례 → 사례 순서로 연결하고, 형법·형소법은 최신판례와 기출 선지 반복이 중요합니다.</li>
 </ul>
 </article>
-<article class="difficulty-detail-card">
+<article class="difficulty-detail-card" id="deep-police1">
 <span class="difficulty-badge police">경찰공무원 · 1차 3/14 시행</span>
 <h3>남녀통합채용 원년, 필기 체감 난도와 체력 변수 동시 확대</h3>
 <ul>
@@ -743,7 +868,7 @@
 <li><strong>대비 포인트</strong>: 필기와 체력을 분리하지 말고 주 3회 이상 체력 루틴을 유지하면서 법과목 오답선지를 분석해야 합니다.</li>
 </ul>
 </article>
-<article class="difficulty-detail-card">
+<article class="difficulty-detail-card" id="deep-fire">
 <span class="difficulty-badge fire">소방공무원 · 3/7 시행</span>
 <h3>소방학개론 체감난도 상승, 계산형·응용형 대비 필요</h3>
 <ul>
