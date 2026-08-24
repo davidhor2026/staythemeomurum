@@ -95,6 +95,18 @@ body{background:#f7f5f0;color:#2f332d;}
 .schedule-first-intro{margin:0 0 14px;padding:16px 18px;border-radius:18px;background:#fff8ef;border:1px solid #ead9c5;}
 .schedule-first-intro h2{margin:0 0 6px;font-size:24px;color:#5f4a34;}
 .schedule-first-intro p{margin:0;color:#7b6a58;font-size:14px;line-height:1.6;}
+
+/* 시험일정/시험분석 콘텐츠 역할 구분 */
+.page-role-note{margin:14px 0 18px;padding:15px 18px;border-radius:15px;display:grid;gap:5px;line-height:1.6}
+.page-role-note strong{font-size:17px}
+.page-role-note span{color:#555}
+.page-role-note a{font-weight:800;text-decoration:none}
+.page-role-note--schedule{background:#f4f8fb;border:1px solid #dbe7ef}
+.page-role-note--schedule strong,.page-role-note--schedule a{color:#315a70}
+.page-role-note--analysis{background:#f7f5ed;border:1px solid #e4ddc8}
+.page-role-note--analysis strong,.page-role-note--analysis a{color:#66532e}
+@media(max-width:700px){.page-role-note{margin:12px 0 16px;padding:14px 15px}}
+
 </style>
 </head>
 <body>
@@ -141,7 +153,14 @@ body{background:#f7f5f0;color:#2f332d;}
 <a href="#teacher">교원임용</a>
 <a href="#labor-attorney">공인노무사</a>
 <a href="#schedule-2027">2027년 일정</a>
-</section><section class="schedule-first-intro"><h2>시험일정 보기</h2><p>다가오는 핵심 일정과 시험별 전체 일정을 먼저 확인할 수 있습니다.</p></section><section aria-label="다가오는 핵심 일정" class="top-summary">
+</section>
+
+<section class="page-role-note page-role-note--schedule">
+<strong>시험일정 페이지</strong>
+<span>원서접수 · 시험일 · 합격자 발표일 · 면접 · 최종발표 등 날짜와 절차 중심으로 정리합니다.</span>
+<a href="exam-insight.html">난이도·총평·합격선 분석은 시험분석 페이지에서 확인 →</a>
+</section>
+<section class="schedule-first-intro"><h2>시험일정 보기</h2><p>다가오는 핵심 일정과 시험별 전체 일정을 먼저 확인할 수 있습니다.</p></section><section aria-label="다가오는 핵심 일정" class="top-summary">
 <div data-schedule-end="2026-08-28"><strong>8월 28일 17:00</strong><span>경찰공무원 2차 순경 필기합격자 발표</span></div>
 <div data-schedule-end="2026-08-30"><strong>8월 29~30일</strong><span>제35회 공인노무사 2차시험</span></div>
 <div data-schedule-end="2026-09-11"><strong>8월 31일~9월 11일</strong><span>제76기 경위 공채 신체·체력·적성검사</span></div>
@@ -153,7 +172,7 @@ body{background:#f7f5f0;color:#2f332d;}
 <div><strong>11월 27일</strong><span>제35회 공인노무사 3차 면접시험</span></div>
 <div><strong>12월 9일</strong><span>제35회 공인노무사 최종합격자 발표</span></div>
 </section><section class="overview">
-<h2>한눈에 보는 주요 일정</h2>
+<h2>한눈에 보는 주요 시험일정</h2>
 <table class="overview-table">
 <thead>
 <tr>
@@ -193,7 +212,7 @@ body{background:#f7f5f0;color:#2f332d;}
   </section>
 <section aria-label="2026 경기도교육청 지방공무원 9급 필기합격자 발표 안내" class="notice notice--urgent">
 <strong>[NEW] 2026 경기도교육청 지방공무원 9급 필기합격자 발표</strong><br/>
-    경기도교육청이 제2회 지방공무원 공개경쟁임용시험 필기합격자와 합격선을 발표했습니다. 인성검사는 8월 1일, 면접시험은 9월 5일, 최종합격자 발표는 9월 15일 예정입니다.
+    경기도교육청 제2회 지방공무원 공개경쟁임용시험의 필기합격자 발표가 완료됐습니다. 이후 일정은 인성검사 8월 1일, 면접시험 9월 5일, 최종합격자 발표 9월 15일입니다. 합격선과 결과 분석은 시험분석 페이지에서 확인하세요.
   </section>
 <section aria-label="2026 지방직 7급 원서접수 마감 안내" class="notice notice--urgent">
 <strong>[NEW] 2026 지방직 7급 원서접수 마감</strong><br/>
@@ -210,14 +229,12 @@ body{background:#f7f5f0;color:#2f332d;}
   </section>
 <section aria-label="2026 국가직 7급·외무영사직 제1차시험 시행 완료 안내" class="notice notice--urgent">
 <strong>2026 국가직 7급·외무영사직 1차시험 시행 완료</strong><br/>
-    7월 18일 제1차 PSAT이 시행됐으며 국가공무원 채용시스템에 공식 문제와 정답가안, 정답 이의제기 안내가 게시됐습니다. 이의제기 절차 후 최종정답이 확정되며 제1차시험 합격자 발표는 8월 19일 예정입니다.
+    7월 18일 제1차 PSAT이 시행됐고 1차 합격자 발표가 완료됐습니다. 다음 핵심 일정은 9월 19일 제2차시험입니다. 문제·정답·난이도·합격선 관련 내용은 시험분석 페이지에서 확인하세요.
     <a href="https://gongmuwon.gosi.kr/oprut/EvmArPrblmCransGdLst.do" rel="noopener noreferrer" target="_blank">공식 문제·정답 안내 확인</a>
 </section>
 <section aria-label="2026 법원직 최신 소식" class="notice">
 <strong>법원직 9급 최신 소식</strong><br/>
-    2026년 법원·등기사무직렬 최종합격자가 8월 7일 발표됐습니다. 최종합격자는 총 501명으로
-    법원사무 456명, 등기사무 45명입니다. 필기합격자 553명 대비 면접단계 합격률은 약 90.6%이며,
-    선발예정인원 502명 대비 최종 충원율은 약 99.8%입니다.
+    2026년 법원·등기사무직렬 최종합격자가 8월 7일 발표됐습니다. 시험일정 페이지에서는 발표일과 후속 절차만 안내하며, 합격자 수·합격률·결과 분석은 시험분석 페이지에서 확인할 수 있습니다.
     <a href="exam-insight.html#court-cutline">법원직 합격선 분석 보기</a>
 </section>
 <section class="exam-list">
@@ -240,7 +257,7 @@ body{background:#f7f5f0;color:#2f332d;}
 <article class="exam-card" id="national7">
 <span class="status">1차 합격 발표 완료 · 2차 9월 19일</span>
 <h3>국가직 7급 공개경쟁채용시험</h3>
-<div class="schedule-alert"><strong>1차 합격자 4,816명 발표 <span class="site-new-badge">NEW</span></strong><span>8월 18일 발표 · 행정직군 3,643명 · 과학기술직군 1,173명 · 2차시험 9월 19일</span></div>
+<div class="schedule-alert"><strong>1차 합격자 발표 완료 <span class="site-new-badge">NEW</span></strong><span>1차 합격자 발표 완료 · 2차시험 9월 19일</span></div>
 <p class="exam-sub">국가직 7급은 1차시험이 PSAT입니다. 지방직 7급의 2027년 PSAT 도입과 구분해 표기했습니다.</p>
 <div class="schedule-rows">
 <div class="schedule-row"><b>원서접수</b><span>5월 11일 09:00 ~ 5월 15일 21:00</span></div>
@@ -248,7 +265,7 @@ body{background:#f7f5f0;color:#2f332d;}
 <div class="schedule-row"><b>1차시험 장소공고</b><span>7월 10일</span></div>
 <div class="schedule-row"><b>1차시험(PSAT)</b><span>7월 18일 시행 완료</span></div>
 <div class="schedule-row"><b>문제·정답</b><span>공식 문제와 정답가안 공개 · 이의제기 후 최종정답 확정</span></div>
-<div class="schedule-row"><b>1차 합격자 발표</b><span><strong>8월 18일 발표 완료 · 총 4,816명</strong></span></div>
+<div class="schedule-row"><b>1차 합격자 발표</b><span><strong>8월 18일 발표 완료</strong></span></div>
 <div class="schedule-row"><b>2차시험 장소공고</b><span>8월 19일</span></div>
 <div class="schedule-row"><b>2차시험</b><span>9월 19일</span></div>
 <div class="schedule-row"><b>2차 합격자 발표</b><span>10월 29일</span></div>
@@ -265,7 +282,7 @@ body{background:#f7f5f0;color:#2f332d;}
 <div class="schedule-row"><b>1차시험 장소공고</b><span>7월 10일</span></div>
 <div class="schedule-row"><b>1차시험</b><span>7월 18일 시행 완료 · PSAT(언어논리·자료해석·상황판단)</span></div>
 <div class="schedule-row"><b>문제·정답</b><span>공식 문제와 정답가안 공개 · 이의제기 후 최종정답 확정</span></div>
-<div class="schedule-row"><b>1차 합격자 발표</b><span><strong>8월 18일 발표 완료 · 주요 합격선 91.33점</strong></span></div>
+<div class="schedule-row"><b>1차 합격자 발표</b><span><strong>8월 18일 발표 완료</strong></span></div>
 <div class="schedule-row"><b>2차시험</b><span>9월 19일 · 헌법·국제정치학·국제법 선택형 필기</span></div>
 <div class="schedule-row"><b>제2외국어</b><span>독어·불어·러시아어·중국어·일어·스페인어 중 인정되는 외국어능력검정시험 성적으로 대체</span></div>
 <div class="schedule-row"><b>2차 합격자 발표</b><span>10월 29일</span></div>

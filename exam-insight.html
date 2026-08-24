@@ -245,6 +245,18 @@
   .police-review-grid{grid-template-columns:1fr}
 }
 
+
+/* 시험일정/시험분석 콘텐츠 역할 구분 */
+.page-role-note{margin:14px 0 18px;padding:15px 18px;border-radius:15px;display:grid;gap:5px;line-height:1.6}
+.page-role-note strong{font-size:17px}
+.page-role-note span{color:#555}
+.page-role-note a{font-weight:800;text-decoration:none}
+.page-role-note--schedule{background:#f4f8fb;border:1px solid #dbe7ef}
+.page-role-note--schedule strong,.page-role-note--schedule a{color:#315a70}
+.page-role-note--analysis{background:#f7f5ed;border:1px solid #e4ddc8}
+.page-role-note--analysis strong,.page-role-note--analysis a{color:#66532e}
+@media(max-width:700px){.page-role-note{margin:12px 0 16px;padding:14px 15px}}
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"2026 법원직 9급 시험분석: 합격선·커트라인·경쟁률·민법 난이도","description":"2026 법원직 9급 필기 합격선과 최근 3년 추이, 과목별 난이도, 면접 일정을 정리한 수험생용 분석 자료","dateModified":"2026-08-08","author":{"@type":"Organization","name":"스테이The머무름"},"publisher":{"@type":"Organization","name":"스테이The머무름"},"mainEntityOfPage":"https://davidhor2026.github.io/staythemeomurum/exam-insight.html"}
@@ -277,6 +289,20 @@
 <a href="index.html#contact">문의</a>
 </nav>
 <main class="exam-page-wrap">
+<section class="insight-category-hub insight-category-hub--top" id="exam-category-hub">
+<div class="insight-hub-head">
+<div><span class="exam-eyebrow">직렬별 시험분석 바로가기</span><h2>관심 있는 시험을 바로 확인하세요</h2><p>직렬별 최근 시험의 난이도·합격선과 함께 합격률 공개 현황을 한눈에 확인할 수 있습니다. 원하는 직렬을 누르면 해당 분석 카드가 바로 열립니다.</p></div>
+<a class="button light" href="exam-schedule.html">시험일정 보기</a>
+</div>
+<p class="exam-passrate-guide"><strong>합격률 표기 기준:</strong> 응시인원 대비 필기 합격률을 우선 표시합니다. 전국 단일 수치가 없는 지방직·교육청·임용 등은 지역·직렬·교과별로 달라 별도 표기하며, 아직 결과 발표 전인 시험은 발표 예정일을 표시합니다.</p><div aria-live="polite" class="exam-recent-highlight" id="examRecentHighlight"></div>
+<div aria-label="직렬별 시험분석 바로가기" class="exam-category-nav" id="examCategoryNav"></div>
+</section>
+
+<section class="page-role-note page-role-note--analysis">
+<strong>시험분석 페이지</strong>
+<span>난이도 · 학원가/전문가 총평 · 합격선 · 응시현황 · 과목별 분석 중심으로 정리합니다.</span>
+<a href="exam-schedule.html">시험 날짜·접수·발표 일정은 시험일정 페이지에서 확인 →</a>
+</section>
 
 <section class="analysis-update-box police-latest-review" id="police-2026-2nd-review">
   <div class="latest-update-label">가장 최근 업데이트 · 2026년 8월 25일</div>
@@ -316,18 +342,11 @@
 </section>
 
 
-<section class="insight-category-hub insight-category-hub--top" id="exam-category-hub">
-<div class="insight-hub-head">
-<div><span class="exam-eyebrow">직렬별 시험분석 바로가기</span><h2>관심 있는 시험을 바로 확인하세요</h2><p>직렬별 최근 시험의 난이도·합격선과 함께 합격률 공개 현황을 한눈에 확인할 수 있습니다. 원하는 직렬을 누르면 해당 분석 카드가 바로 열립니다.</p></div>
-<a class="button light" href="exam-schedule.html">시험일정 보기</a>
-</div>
-<p class="exam-passrate-guide"><strong>합격률 표기 기준:</strong> 응시인원 대비 필기 합격률을 우선 표시합니다. 전국 단일 수치가 없는 지방직·교육청·임용 등은 지역·직렬·교과별로 달라 별도 표기하며, 아직 결과 발표 전인 시험은 발표 예정일을 표시합니다.</p><div aria-live="polite" class="exam-recent-highlight" id="examRecentHighlight"></div>
-<div aria-label="직렬별 시험분석 바로가기" class="exam-category-nav" id="examCategoryNav"></div>
-</section>
-<section class="insight-category-section" id="exam-category-analysis">
-<div class="insight-section-heading insight-section-heading--top"><span class="exam-eyebrow">직렬별 최근 시험분석 · 합격률 포함</span><h2>직렬별 분석 한눈에 보기</h2><p>각 직렬의 최근 시험 요약과 합격률을 먼저 확인하고, 필요한 항목만 상세 분석을 펼쳐 볼 수 있습니다.</p></div>
-<div class="exam-category-cards" id="examCategoryCards"></div>
-</section>
+
+
+
+
+
 <section aria-label="2026 국가직 7급 제1차시험 합격자 발표" class="analysis-update-box" id="national7-pass-update">
 <div class="latest-update-label">가장 최근 업데이트 · 2026년 8월 19일</div>
 <span class="exam-eyebrow">2026 국가직 7급 1차 합격선·합격자 공식 통계</span>
@@ -416,6 +435,11 @@
 <p class="exam-small-note">제1차 시험 합격자는 <strong>8월 18일</strong> 발표됐으며 제2차시험은 <strong>9월 19일</strong> 예정입니다. 최종 응시인원과 직렬별 세부 현황은 인사혁신처의 확정 공고를 기준으로 확인해야 합니다.</p>
 <a class="exam-deep-link" href="#national7-psat-report">국가직 7급 PSAT 분석 보기</a>
 <a class="exam-deep-link" href="#exam-card-national7">국가직 7급 진행 현황 보기</a>
+</section>
+
+<section class="insight-category-section" id="exam-category-analysis">
+<div class="insight-section-heading insight-section-heading--top"><span class="exam-eyebrow">직렬별 최근 시험분석 · 합격률 포함</span><h2>직렬별 분석 한눈에 보기</h2><p>각 직렬의 최근 시험 요약과 합격률을 먼저 확인하고, 필요한 항목만 상세 분석을 펼쳐 볼 수 있습니다.</p></div>
+<div class="exam-category-cards" id="examCategoryCards"></div>
 </section>
 <section class="court-interview-report" id="court-interview-analysis"><div class="latest-update-label">가장 최근 업데이트 · 2026년 8월 1일</div>
 <span class="exam-eyebrow">2026년 7월 31일 일반면접 이후 수험가 해석</span>
