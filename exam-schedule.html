@@ -67,6 +67,16 @@ body{background:#f7f5f0;color:#2f332d;}
 .source-box a{color:#375c32;font-weight:800;text-decoration:none;}
 .source-box li{margin:5px 0;}
 .footer-note{text-align:center;color:#777;font-size:13px;margin-top:16px;}
+.teacher-region-box{margin-top:16px;padding:17px;border:1px solid #e6dacb;border-radius:18px;background:#fcfaf6;}
+.teacher-region-box h4{margin:0 0 6px;color:#4b3d2c;font-size:1.08rem;}
+.teacher-region-box>p{margin:0 0 13px;color:#71675d;line-height:1.6;font-size:.93rem;}
+.teacher-region-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;}
+.teacher-region-grid a{display:flex;flex-direction:column;gap:3px;padding:11px 10px;border:1px solid #e3d7c8;border-radius:14px;background:#fff;color:#493b2c;text-decoration:none;min-width:0;}
+.teacher-region-grid a:hover{background:#f8f1e7;border-color:#ccb99f;}
+.teacher-region-grid strong{font-size:.98rem;}
+.teacher-region-grid span{font-size:.75rem;color:#7a7065;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+@media(max-width:860px){.teacher-region-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:480px){.teacher-region-grid{grid-template-columns:1fr 1fr;}.teacher-region-grid span{font-size:.72rem;}}
 @media(max-width:860px){.top-summary{grid-template-columns:repeat(2,minmax(0,1fr));}.future-grid{grid-template-columns:1fr;}}
 @media(max-width:640px){
   .exam-wrap{padding:22px 12px 54px;}
@@ -425,25 +435,41 @@ body{background:#f7f5f0;color:#2f332d;}
 <p><a href="https://www.q-net.or.kr/site/nomu" rel="noopener noreferrer" target="_blank">Q-Net 공인노무사 공식 홈페이지 ↗</a></p>
 </article>
 <article class="exam-card" id="teacher">
-<span class="status">사전예고 공개</span>
-<h3>2027학년도 교원임용시험</h3>
-<div class="notice notice--urgent" aria-label="2027학년도 공립 교사 임용시험 사전예고 안내">
-<strong>[NEW] 2027학년도 공립 교사 임용시험 사전예고 공개</strong><br/>
-교육부와 각 시·도교육청이 2027학년도 공립 유치원·초등·중등·특수·보건·영양·사서·전문상담교사 임용후보자 선정경쟁시험의 선발 예정 분야와 인원을 사전예고했습니다. 사전예고 인원은 향후 시행계획 본공고에서 변경될 수 있으므로, 응시자는 지원 예정 지역 교육청의 본시험 공고를 반드시 다시 확인해야 합니다.
+<span class="status">지역별 일정 공개</span>
+<h3>2027학년도 중등 교원임용시험 · 지역별 일정</h3>
+<div class="notice notice--urgent" aria-label="2027학년도 중등 교원임용 지역별 일정 안내">
+<strong>[NEW] 서울·경기 등 지원 지역 교육청별 공고를 확인하세요</strong><br/>
+중등 임용은 지원할 시·도교육청을 선택해 응시합니다. 2027학년도 중등 임용의 공통 핵심 일정은 <strong>시행계획 공고 9월 30일(예정) → 원서접수 10월 12~16일 → 1차시험 11월 28일</strong>입니다. 다만 선발 과목·인원과 2차 세부평가, 합격자 발표 등은 교육청별 공고가 기준입니다.
+</div>
+<p class="exam-sub">영어·지리·기술 등 중등교사 임용 준비생은 아래에서 지원 예정 지역을 선택해 공식 교육청 공고를 바로 확인할 수 있습니다. 현재는 사전예고 단계이므로 9월 30일 시행계획 본공고가 나오면 세부 일정과 선발인원을 다시 확인하세요.</p>
+<div class="schedule-rows">
+<div class="schedule-row"><b>시행계획 공고</b><span><strong>2026년 9월 30일(수) 예정</strong> · 지역별 최종 선발 과목·인원 확인</span></div>
+<div class="schedule-row"><b>원서접수</b><span><strong>10월 12일(월) ~ 10월 16일(금)</strong></span></div>
+<div class="schedule-row"><b>1차시험</b><span><strong>11월 28일(토)</strong> · 교육학·전공</span></div>
+<div class="schedule-row"><b>2차시험</b><span><strong>2027년 1월 20일(수) ~ 1월 21일(목)</strong> 중심 · 실기 과목은 지역·교과별 별도 일정 가능</span></div>
+<div class="schedule-row"><b>합격자 발표</b><span>1차·최종 발표일은 지원 시·도교육청 시행계획 및 후속 공고에서 확인</span></div>
+</div>
+<div class="teacher-region-box" aria-label="중등 교원임용 지역별 교육청 바로가기">
+<h4>지역별 공식 공고 바로가기</h4>
+<p>수험생이 많이 지원하는 수도권·충청·영남권을 앞쪽에 배치했습니다. 버튼을 누르면 해당 교육청의 교원 임용시험 안내로 이동합니다.</p>
+<div class="teacher-region-grid">
+<a href="https://www.sen.go.kr/www/eduinfo/exam/teacher.jsp" target="_blank" rel="noopener noreferrer"><strong>서울</strong><span>서울특별시교육청</span></a>
+<a href="https://www.goe.go.kr/goe/na/ntt/selectNttList.do?bbsId=2583&amp;mi=11038" target="_blank" rel="noopener noreferrer"><strong>경기</strong><span>경기도교육청</span></a>
+<a href="https://www.ice.go.kr/ice/na/ntt/selectNttList.do?mi=11620&amp;bbsId=1601" target="_blank" rel="noopener noreferrer"><strong>인천</strong><span>인천광역시교육청</span></a>
+<a href="https://www.cbe.go.kr/na/ntt/selectNttList.do?mi=11653&amp;bbsId=1271" target="_blank" rel="noopener noreferrer"><strong>충북</strong><span>충청북도교육청</span></a>
+<a href="https://www.cne.go.kr/boardCnts/list.do?boardID=104&amp;m=030201&amp;s=cne" target="_blank" rel="noopener noreferrer"><strong>충남</strong><span>충청남도교육청</span></a>
+<a href="https://www.gbe.kr/na/ntt/selectNttList.do?mi=10638&amp;bbsId=2273" target="_blank" rel="noopener noreferrer"><strong>경북</strong><span>경상북도교육청</span></a>
+<a href="https://www.gne.go.kr/board/list.gne?boardId=BBS_0000057&amp;menuCd=DOM_000000105001001000" target="_blank" rel="noopener noreferrer"><strong>경남</strong><span>경상남도교육청</span></a>
+<a href="https://www.pen.go.kr/board/list.pen?boardId=BBS_0000043&amp;menuCd=DOM_000000103003001000" target="_blank" rel="noopener noreferrer"><strong>부산</strong><span>부산광역시교육청</span></a>
+<a href="https://www.dge.go.kr/main/na/ntt/selectNttList.do?mi=3948&amp;bbsId=1619" target="_blank" rel="noopener noreferrer"><strong>대구</strong><span>대구광역시교육청</span></a>
+<a href="https://www.dje.go.kr/boardCnts/list.do?boardID=108&amp;m=040201&amp;s=dje" target="_blank" rel="noopener noreferrer"><strong>대전</strong><span>대전광역시교육청</span></a>
+</div>
+<p class="exam-small-note">※ 지역별 URL은 교육청 홈페이지 개편에 따라 변경될 수 있습니다. 연결이 되지 않을 경우 해당 교육청 홈페이지에서 ‘중등 임용’ 또는 ‘교원 임용시험’을 검색하세요.</p>
+</div>
 <div aria-label="2027학년도 교원임용 공식기관 바로가기" class="official-links">
 <a href="https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=294&amp;boardSeq=106853&amp;lev=0&amp;m=020402&amp;opType=N&amp;page=1&amp;s=moe&amp;searchType=null&amp;statusYN=W" rel="noopener noreferrer" target="_blank">교육부 전국 사전예고 보기 ↗</a>
-<a href="https://www.goe.go.kr/goe/na/ntt/selectNttList.do?bbsId=2583&amp;mi=11038" rel="noopener noreferrer" target="_blank">경기도교육청 교원시험 공고 보기 ↗</a>
-</div>
-</div>
-<p class="exam-sub">교육부와 각 시·도교육청이 2027학년도 공립 교사 임용시험의 선발 예정 분야와 인원을 사전예고했습니다. 사전예고 인원은 향후 시행계획 본공고에서 변경될 수 있으므로 최종 모집인원으로 단정하지 말고 지원 예정 지역 교육청의 공식 공고를 다시 확인해야 합니다.</p>
-<div class="schedule-rows">
-<div class="schedule-row"><b>사전예고</b><span>8월 초 공개 · 시·도교육청별 선발 예정 분야·인원 확인</span></div>
-<div class="schedule-row"><b>시행계획 공고</b><span>통상 9~10월경</span></div>
-<div class="schedule-row"><b>원서접수</b><span>통상 10월경</span></div>
-<div class="schedule-row"><b>1차시험</b><span>통상 11월 하순경</span></div>
-<div class="schedule-row"><b>1차 합격자 발표</b><span>통상 12월경</span></div>
-<div class="schedule-row"><b>2차시험</b><span>통상 다음 해 1월경</span></div>
-<div class="schedule-row"><b>최종합격 발표</b><span>통상 다음 해 2월경</span></div>
+<a href="https://www.sen.go.kr/user/bbs/BD_selectBbs.do?q_bbsDocNo=20260805095738461&amp;q_bbsSn=1094" rel="noopener noreferrer" target="_blank">서울 2027 중등 사전예고 ↗</a>
+<a href="https://www.goe.go.kr/goe/na/ntt/selectNttInfo.do?bbsId=2583&amp;mi=11038&amp;nttSn=2361847" rel="noopener noreferrer" target="_blank">경기 2027 중등 사전예고 ↗</a>
 </div>
 </article>
 </section>
