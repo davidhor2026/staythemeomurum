@@ -1355,3 +1355,23 @@
 @media (prefers-reduced-motion:reduce){
   .hero-vacancy-toggle[aria-expanded="false"] .hero-vacancy-toggle-icon{animation:none;}
 }
+
+
+/* 2026-08-24: 메인 시험 카운트다운 날짜/상태 한 줄 표시 */
+.exam-countdown-item .exam-dday{
+  flex:0 0 auto !important;
+  min-width:72px;
+  white-space:nowrap !important;
+  word-break:keep-all !important;
+  overflow-wrap:normal !important;
+  line-height:1.35;
+}
+@media(max-width:520px){
+  .exam-countdown-item{
+    gap:12px;
+  }
+  .exam-countdown-item .exam-dday{
+    min-width:72px;
+    font-size:14px;
+  }
+}
