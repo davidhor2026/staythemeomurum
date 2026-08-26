@@ -1,5 +1,5 @@
 <!doctype html><html lang="ko"><head>
-<script src="vacancy-data.js?v=20260822-1"></script>
+<script src="vacancy-data.js?v=20260826-2"></script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>입실 가능 현황 | 스테이The머무름</title><meta name="description" content="스테이The머무름 스탠다드룸, 디럭스룸, 스위트룸의 현재 및 예정 입실 가능 현황입니다."><link rel="stylesheet" href="style.css">
 
 <style>
@@ -105,6 +105,7 @@ Object.entries(VACANCY_MANAGER).forEach(([key, room]) => {
     availableNow: Number(room.now || 0),
     events: (room.dates || []).map(date => ({ date, rooms: 1 })),
     reservable: room.reservable === true,
+    fullLabel: room.fullLabel || DISPLAY_TEXT.fullNow,
     unknown: room.unknown || null
   };
 });
@@ -137,13 +138,13 @@ function renderAvailability(){
     if(sum){
       const now = room.availableNow > 0
         ? `<div class="main green">${DISPLAY_TEXT.availableNow}&nbsp;${room.availableNow}실</div>`
-        : `<div class="main gray">${DISPLAY_TEXT.fullNow}</div>`;
+        : `<div class="main gray">${room.fullLabel}</div>`;
       sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}<hr><div class="sub ${room.events.length?'orange':'gray'}">${firstFutureText(room)}</div>`;
     }
     if(detail){
       let lines = room.availableNow > 0
         ? `<p class="green">● ${DISPLAY_TEXT.availableNow} · ${room.availableNow}실</p>`
-        : `<p class="gray">● ${DISPLAY_TEXT.fullNow}</p>`;
+        : `<p class="gray">● ${room.fullLabel}</p>`;
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
         lines += `<p class="orange">● ${formatDate(e.date)} · ${DISPLAY_TEXT.upcoming}</p>`;
       });

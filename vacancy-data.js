@@ -13,6 +13,7 @@
    now        : 현재 바로 입실 가능한 방 수
    dates      : 앞으로 입실 가능 예정 날짜
    reservable : 현재 만실이어도 예약 가능하면 true
+   fullLabel  : 만실일 때 화면에 공통으로 표시할 문구 (예: "8월 만실")
    unknown    : 정확한 날짜가 미정이면 사용, 아니면 null
    ========================================================= */
 
@@ -27,6 +28,7 @@ const VACANCY_MANAGER = {
       /* 새 날짜 예: ,"2026-10-05" */
     ],
     reservable: true,
+    fullLabel: "8월 만실",
     unknown: null
   },
 
@@ -35,6 +37,7 @@ const VACANCY_MANAGER = {
     now: 0,
     dates: [],
     reservable: false,
+    fullLabel: "8월 만실",
     unknown: {
       month: "2026-09",
       label: "9월 중",
@@ -47,6 +50,7 @@ const VACANCY_MANAGER = {
     now: 0,
     dates: [],
     reservable: false,
+    fullLabel: "현재 만실",
     unknown: {
       month: "2026-11",
       label: "11월 중",
@@ -59,6 +63,7 @@ const VACANCY_MANAGER = {
     now: 0,
     dates: [],
     reservable: false,
+    fullLabel: "현재 만실",
     unknown: {
       month: "2026-11",
       label: "11월 중",
@@ -66,6 +71,21 @@ const VACANCY_MANAGER = {
     }
   }
 };
+
+/* 만실 문구도 이 파일에서만 관리합니다. */
+function vacancyFullLabel(room){
+  return (room && room.fullLabel) ? room.fullLabel : "현재 만실";
+}
+
+function vacancyStatusText(room){
+  if(!room) return "";
+  if(Number(room.now || 0) > 0){
+    return room.name + " " + Number(room.now) + "실 입실 가능";
+  }
+  var text = room.name + " " + vacancyFullLabel(room);
+  if(room.reservable === true) text += " · 예약 가능";
+  return text;
+}
 
 /* 화면 공통 문구 — 필요할 때 따옴표 안만 수정 */
 const DISPLAY_TEXT = {

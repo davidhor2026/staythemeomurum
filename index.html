@@ -595,21 +595,10 @@
 </script>
 
 
-<script src="vacancy-data.js?v=20260822-1"></script>
+<script src="vacancy-data.js?v=20260826-2"></script>
 <script id="hero-vacancy-sync-20260822">
 (function(){
   function fmtDate(s){ return String(s||'').replace(/-/g,'.'); }
-
-  function statusText(room){
-    if(!room) return '';
-    if(Number(room.now||0) > 0){
-      return room.name + ' ' + Number(room.now) + '실 입실 가능';
-    }
-    if(room.reservable === true){
-      return room.name + ' 현재 만실 · 예약 가능';
-    }
-    return room.name + ' 현재 만실';
-  }
 
   function renderHeroVacancy(){
     var el=document.getElementById('heroVacancySummary');
@@ -617,11 +606,18 @@
 
     var s=VACANCY_MANAGER.standard;
     var d=VACANCY_MANAGER.deluxe;
+    var s1=VACANCY_MANAGER.suite1;
+    var s2=VACANCY_MANAGER.suite2;
 
-    var first=[statusText(s),statusText(d)].filter(Boolean).join(' / ');
+    var lines=[
+      vacancyStatusText(s),
+      vacancyStatusText(d),
+      (vacancyFullLabel(s1) === vacancyFullLabel(s2) && Number(s1.now||0)===0 && Number(s2.now||0)===0)
+        ? '스위트룸 1, 2 ' + vacancyFullLabel(s1)
+        : [vacancyStatusText(s1), vacancyStatusText(s2)].filter(Boolean).join(' / ')
+    ].filter(Boolean);
 
-    el.innerHTML =
-      first +
+    el.innerHTML = lines.join('<br>') +
       '<br>입실 가능 예정일은 아래 바로보기에서 확인해 주세요.';
   }
 
