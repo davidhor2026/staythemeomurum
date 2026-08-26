@@ -52,9 +52,14 @@
     const token=bytesToB64(JSON.stringify(payload));
     const url=new URL('resident-event-draw.html',location.href);url.searchParams.set('d',token);
     if(!isTest){localStorage.setItem(PREFIX+'publicResultUrl',url.href);localStorage.setItem(PREFIX+'publicResultPayload',JSON.stringify(payload));}
-    $('drawResult').innerHTML='<div class="ok">'+(isTest?'테스트 사다리 링크':'실제 공개 추첨 링크')+'가 생성되었습니다.</div><div class="share" id="shareUrl">'+url.href+'</div><button class="secondary" id="copyLink" style="margin-top:10px">링크 복사</button><button id="openLink" style="margin-top:10px">공개 사다리 화면 열기</button>';
+    $('drawResult').innerHTML='<div class="ok">'+(isTest?'테스트 사다리 링크':'실제 공개 추첨 링크')+'가 생성되었습니다.</div><div class="share" id="shareUrl">'+url.href+'</div><button class="secondary" id="copyLink" style="margin-top:10px">링크 복사</button><button id="openLink" style="margin-top:10px">공개 사다리 화면 열기</button>'+(isTest?'':'<button id="downloadResultPage" style="margin-top:10px;background:#7a5a3e">입실자 공개용 결과파일 만들기</button><p class="notice" style="margin-top:8px">다운로드되는 resident-event-result.html 파일 하나를 GitHub의 같은 위치에 덮어쓰면, 입실자는 이벤트 페이지의 「추첨 결과 보기」에서 확인할 수 있습니다.</p>');
     $('copyLink').onclick=async()=>{try{await navigator.clipboard.writeText(url.href);alert('링크를 복사했습니다.')}catch(e){prompt('공개 추첨 링크',url.href)}};
     $('openLink').onclick=()=>window.open(url.href,'_blank');
+    if(!isTest){$('downloadResultPage').onclick=function(){
+      const target=url.href.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+      const html='<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>추첨 결과</title><meta http-equiv="refresh" content="0;url='+target+'"></head><body><p>추첨 결과로 이동합니다.</p><p><a href="'+target+'">결과가 자동으로 열리지 않으면 여기를 눌러주세요.</a></p><script>location.replace('+JSON.stringify(url.href)+')<\/script></body></html>';
+      const blob=new Blob([html],{type:'text/html;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='resident-event-result.html';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+    }}
   }
   $('makeDraw').onclick=function(){const real=list().filter(x=>!x.test);if(real.length<2){alert('실제 추첨은 입실자가 직접 응모한 실제 응모자만 대상으로 합니다. 현재 실제 응모자가 '+real.length+'명입니다. 테스트는 아래 \'테스트 추첨 · 실제+테스트 참가자 모두 포함\' 버튼을 눌러 주세요.');return}buildDraw(real,false)};
   $('makeTestDraw').onclick=function(){const all=list();if(all.length<2){alert('테스트 추첨을 하려면 실제 응모자와 테스트 참가자를 합쳐 최소 2명이 필요합니다.');return}buildDraw(all,true)};
