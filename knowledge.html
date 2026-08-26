@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <!-- Automatic freshness policy: HTML revalidation + local CSS/JS cache busting -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<script>
+  window.__STAY_CACHE_V = String(Date.now());
+</script>
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>머무름 지식노트 | 경제·시사·공기업 상식 | 스테이The머무름</title>
   <meta name="description" content="경제, 국제사회, 행정, 사회, 과학기술 이슈를 공기업·공무원 시험과 면접에 도움이 되도록 쉽게 풀어보는 스테이The머무름 지식노트입니다.">
   <meta name="keywords" content="공기업 상식, 시사상식, 경제상식, 면접 시사, 환율 무역수지, 디리스킹, CBAM, RE100, 플랫폼 노동, 규제 샌드박스, 생성형 AI">
-  <link rel="stylesheet" href="style.css">
+  <script>
+  document.write('<link rel="stylesheet" href="style.css?v=' + window.__STAY_CACHE_V + '">');
+</script>
+<noscript><link href="style.css" rel="stylesheet"/></noscript>
 </head>
 <body>
   <header class="sub-header sub-header--knowledge">
@@ -58,7 +68,9 @@
     <p>노량진 여성전용 고시원 · 수험생을 위한 생활과 지식 콘텐츠</p>
   </footer>
 
-  <script src="knowledge-data.js?v=20260822-6"></script>
+  <script>
+  document.write('<script src="knowledge-data.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
   <script>
     const listEl = document.getElementById('knowledgeList');
     const esc = (value='') => String(value)
@@ -256,6 +268,8 @@
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 
-<script src="site-updates.js?v=20260822-6"></script>
+<script>
+  document.write('<script src="site-updates.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
 </body>
 </html>

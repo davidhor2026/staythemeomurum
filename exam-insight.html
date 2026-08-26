@@ -2,6 +2,13 @@
 
 <html lang="ko">
 <head>
+<!-- Automatic freshness policy: HTML revalidation + local CSS/JS cache busting -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<script>
+  window.__STAY_CACHE_V = String(Date.now());
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>2026 공무원 시험분석·합격선 | 서울교육청 9급·국가직·경찰·법원직</title>
@@ -9,7 +16,10 @@
 <meta content="2026 서울교육청 9급 최종합격자, 서울시교육청 교육행정 9급, 교육행정 최종합격, 교육행정 합격선, 공무원 시험분석, 국가직 7급, 국가직 9급, 지방직 9급, 경찰 시험, 법원직 9급, 노량진 공무원 수험생" name="keywords"/>
 <meta content="2026 공무원 시험분석·합격선 | 서울교육청 9급 최종합격 업데이트" property="og:title"/>
 <meta content="서울교육청 9급 최종합격 495명·교육행정 386명 발표부터 국가직·지방직·경찰·법원직·임용 최신 시험분석까지 확인하세요." property="og:description"/>
-<link href="style.css" rel="stylesheet"/>
+<script>
+  document.write('<link rel="stylesheet" href="style.css?v=' + window.__STAY_CACHE_V + '">');
+</script>
+<noscript><link href="style.css" rel="stylesheet"/></noscript>
 <style>
 /* 직렬별 시험분석 바로가기 버튼 */
 .exam-category-nav{
@@ -1123,9 +1133,15 @@
   © 2026 스테이The머무름. All rights reserved.<br/>
   노량진 여성전용 고시원 · 수험생을 위한 생활과 학습 콘텐츠
 </footer>
-<script src="exam-insight-nav-data.js?v=20260825-1"></script>
-<script src="cutoff-data.js"></script>
-<script src="exam-analysis-data.js"></script>
+<script>
+  document.write('<script src="exam-insight-nav-data.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
+<script>
+  document.write('<script src="cutoff-data.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
+<script>
+  document.write('<script src="exam-analysis-data.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
 <script>
 (function(){
   var data = window.COURT_CUTOFF_TRENDS || {};
@@ -1227,6 +1243,8 @@
   cards.addEventListener('click',function(e){var b=e.target.closest('.exam-detail-toggle');if(!b)return;var card=b.closest('.exam-category-card');var detail=card.querySelector('.exam-category-detail');var open=detail.classList.toggle('is-open');b.setAttribute('aria-expanded',String(open));b.textContent=open?'닫기':'상세 분석 펼치기';});
 })();
 </script>
-<script src="site-updates.js?v=20260819-n7cutline1"></script>
+<script>
+  document.write('<script src="site-updates.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
 </body>
 </html>

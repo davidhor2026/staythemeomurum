@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <!-- Automatic freshness policy: HTML revalidation + local CSS/JS cache busting -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<script>
+  window.__STAY_CACHE_V = String(Date.now());
+</script>
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Women-Only Goshiwon in Noryangjin, Seoul | Stay The Meomurum</title>
   <meta name="description" content="English introduction to Stay The Meomurum, a women-only goshiwon near Noryangjin Station in Seoul for Korean exam students and international students studying in Korea.">
@@ -13,7 +20,10 @@
   <meta property="og:url" content="https://davidhor2026.github.io/staythemeomurum/international.html">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="style.css">
+  <script>
+  document.write('<link rel="stylesheet" href="style.css?v=' + window.__STAY_CACHE_V + '">');
+</script>
+<noscript><link href="style.css" rel="stylesheet"/></noscript>
   <style>
     .international-header {
       background-image: url('international-hero.jpg') !important;
@@ -236,6 +246,8 @@
   fetch(url, { method: 'GET', cache: 'no-store' }).then(function(res) { return res.json(); }).then(renderCounts).catch(showError);
 })();
 </script>
-  <script src="site-updates.js?v=20260720-1"></script>
+  <script>
+  document.write('<script src="site-updates.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
 </body>
 </html>

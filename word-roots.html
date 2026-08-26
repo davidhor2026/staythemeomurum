@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <!-- Automatic freshness policy: HTML revalidation + local CSS/JS cache busting -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<script>
+  window.__STAY_CACHE_V = String(Date.now());
+</script>
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>어원으로 외우는 영단어 | 공무원·임용·공기업 100단어 | 스테이The머무름</title>
   <meta name="description" content="공무원, 임용, 공기업 시험에 나올 법한 난이도 중상 이상의 영단어 100개를 어원으로 풀이한 학습 페이지입니다.">
   <meta name="keywords" content="어원 영단어, 공무원 영어단어, 공기업 영어단어, 임용 영어단어, 수능 영어 어원, 영어 어근">
-  <link rel="stylesheet" href="style.css">
+  <script>
+  document.write('<link rel="stylesheet" href="style.css?v=' + window.__STAY_CACHE_V + '">');
+</script>
+<noscript><link href="style.css" rel="stylesheet"/></noscript>
 </head>
 <body>
   <header class="sub-header sub-header--word-roots">
@@ -64,7 +74,9 @@
     노량진 여성전용 고시원 · 수험생을 위한 생활과 학습 콘텐츠
   </footer>
 
-  <script src="word-roots-data.js"></script>
+  <script>
+  document.write('<script src="word-roots-data.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
   <script>
     const roots = window.wordRootsData || [];
     const container = document.getElementById('rootsContainer');
@@ -132,6 +144,8 @@
     render(roots);
   </script>
 
-<script src="site-updates.js?v=20260720-1"></script>
+<script>
+  document.write('<script src="site-updates.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
 </body>
 </html>

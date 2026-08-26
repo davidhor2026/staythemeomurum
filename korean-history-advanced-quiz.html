@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<!-- Automatic freshness policy: HTML revalidation + local CSS/JS cache busting -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<script>
+  window.__STAY_CACHE_V = String(Date.now());
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>한국사능력검정시험 심화 랜덤 퀴즈 | 스테이The머무름</title>
 <meta name="description" content="한국사능력검정시험 심화 대비를 위한 시대별 랜덤 퀴즈입니다. 접속할 때마다 문제 순서가 섞여서 표시됩니다.">
 <meta name="keywords" content="한국사능력검정시험, 한능검 심화, 한국사 퀴즈, 랜덤 퀴즈, 스테이The머무름">
-<link rel="stylesheet" href="style.css">
+<script>
+  document.write('<link rel="stylesheet" href="style.css?v=' + window.__STAY_CACHE_V + '">');
+</script>
+<noscript><link href="style.css" rel="stylesheet"/></noscript>
 <style>
 body{background:#f7f5f0;color:#2f332d;}
 .quiz-hero{position:relative;padding:64px 18px 56px;text-align:center;color:#fff;background-image:linear-gradient(135deg,rgba(25,34,29,.60),rgba(79,55,35,.38)),url('header-bg-korean-history.svg');background-size:cover;background-position:center center;background-repeat:no-repeat;overflow:hidden;}
@@ -355,6 +365,8 @@ $('year').textContent = new Date().getFullYear();
 applyFilter('전체');
 </script>
 
-<script src="site-updates.js?v=20260720-1"></script>
+<script>
+  document.write('<script src="site-updates.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
 </body>
 </html>

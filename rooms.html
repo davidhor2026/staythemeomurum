@@ -2,6 +2,13 @@
 
 <html lang="ko">
 <head>
+<!-- Automatic freshness policy: HTML revalidation + local CSS/JS cache busting -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<script>
+  window.__STAY_CACHE_V = String(Date.now());
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>
@@ -9,7 +16,10 @@
   </title>
 <meta content="스테이The머무름의 스탠다드룸, 디럭스룸, 스위트룸 방 안내 페이지입니다." name="description"/>
 <meta content="노량진고시원 방, 여성전용 고시원 방" name="keywords"/>
-<link href="style.css" rel="stylesheet"/>
+<script>
+  document.write('<link rel="stylesheet" href="style.css?v=' + window.__STAY_CACHE_V + '">');
+</script>
+<noscript><link href="style.css" rel="stylesheet"/></noscript>
 
 <style id="room-detail-anchor-fix-20260820">
 .room-detail-card{scroll-margin-top:24px}
@@ -211,6 +221,8 @@
 })();
 </script>
 
-<script src="site-updates.js?v=20260720-1"></script>
+<script>
+  document.write('<script src="site-updates.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
 </body>
 </html>

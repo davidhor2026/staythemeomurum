@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<!-- Automatic freshness policy: HTML revalidation + local CSS/JS cache busting -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<script>
+  window.__STAY_CACHE_V = String(Date.now());
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PSAT·NCS 실전형 사고력 훈련 100문항 | 스테이The머무름</title>
 <meta name="description" content="국가직 7급 PSAT, 지방직 7급 PSAT, 공기업 NCS 대비에 도움이 되는 언어논리·자료해석·상황판단·NCS 사고력 훈련 100문항입니다.">
-<link rel="stylesheet" href="style.css">
+<script>
+  document.write('<link rel="stylesheet" href="style.css?v=' + window.__STAY_CACHE_V + '">');
+</script>
+<noscript><link href="style.css" rel="stylesheet"/></noscript>
 <style>
 body{background:#f7f5f0;color:#2f332d;}
 .quiz-hero{padding:54px 18px 48px;text-align:center;color:#fff;background:linear-gradient(135deg,rgba(34,45,35,.86),rgba(89,101,76,.66));}
@@ -143,6 +153,8 @@ $('prevBtn').onclick=()=>{if(index>0){index--;render();}}; $('nextBtn').onclick=
 $('year').textContent=new Date().getFullYear(); render();
 </script>
 
-<script src="site-updates.js?v=20260720-1"></script>
+<script>
+  document.write('<script src="site-updates.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
 </body>
 </html>

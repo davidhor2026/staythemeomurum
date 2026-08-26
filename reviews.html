@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <!-- Automatic freshness policy: HTML revalidation + local CSS/JS cache busting -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<script>
+  window.__STAY_CACHE_V = String(Date.now());
+</script>
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>이용 후기 | 스테이The머무름</title>
   <meta name="description" content="스테이The머무름 이용 후기와 유튜브 댓글 후기 원문, 홈페이지 후기 남기기 안내 페이지입니다.">
   <meta name="keywords" content="스테이The머무름 후기, 노량진 여성전용 고시원 후기, 노량진 고시원 유튜브 후기">
-  <link rel="stylesheet" href="style.css">
+  <script>
+  document.write('<link rel="stylesheet" href="style.css?v=' + window.__STAY_CACHE_V + '">');
+</script>
+<noscript><link href="style.css" rel="stylesheet"/></noscript>
 </head>
 <body>
   <header class="sub-header sub-header--reviews">
@@ -128,7 +138,9 @@
     <p>노량진 여성전용 고시원</p>
   </footer>
 
-  <script src="reviews-data.js"></script>
+  <script>
+  document.write('<script src="reviews-data.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
   <script>
     function escapeHtml(value) {
       return String(value || '')
@@ -216,6 +228,8 @@
   })();
   </script>
 
-<script src="site-updates.js?v=20260720-1"></script>
+<script>
+  document.write('<script src="site-updates.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
 </body>
 </html>
