@@ -36,7 +36,7 @@ const VACANCY_MANAGER = {
     now: 0,
     dates: [],
     reservable: false,
-    fullLabel: "현 만실",
+    fullLabel: "현재 만실",
     unknown: {
       month: "2026-09",
       label: "9월 중",
