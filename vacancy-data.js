@@ -23,7 +23,6 @@ const VACANCY_MANAGER = {
     now: 0,
     dates: [
       "2026-09-10",
-      "2026-09-21",
       "2026-09-26"
       /* 새 날짜 예: ,"2026-10-05" */
     ],
@@ -37,7 +36,7 @@ const VACANCY_MANAGER = {
     now: 0,
     dates: [],
     reservable: false,
-    fullLabel: "8월 만실",
+    fullLabel: "현 만실",
     unknown: {
       month: "2026-09",
       label: "9월 중",
