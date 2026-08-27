@@ -51,8 +51,8 @@ const VACANCY_MANAGER = {
     reservable: false,
     fullLabel: "현재 만실",
     unknown: {
-      month: "2026-11",
-      label: "11월 중",
+      month: "2026-12",
+      label: "12월 중",
       note: "날짜 미정"
     }
   },
@@ -64,8 +64,8 @@ const VACANCY_MANAGER = {
     reservable: false,
     fullLabel: "현재 만실",
     unknown: {
-      month: "2026-11",
-      label: "11월 중",
+      month: "2026-12",
+      label: "12월 중",
       note: "날짜 미정"
     }
   }
