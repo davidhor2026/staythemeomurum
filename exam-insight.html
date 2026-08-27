@@ -433,6 +433,13 @@
 
 /* 2026-08-26 경찰 2차 과목별 강사 3인+ 비교 */
 .police-subject-overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0 20px}.police-subject-overview>div{padding:13px 14px;border:1px solid #dfe7ef;border-radius:14px;background:#fff}.police-subject-overview strong{display:block;color:#173b5f;font-size:15px}.police-subject-overview span{display:block;margin-top:4px;color:#5b6670;font-size:13px}.police-subject-review-block{margin-top:20px;padding:18px;border:1px solid #dce5eb;border-radius:18px;background:#f9fbfc}.police-subject-review-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}.police-subject-review-head h3{margin:5px 0 0;font-size:20px;color:#26333d}.police-subject-tag{display:inline-flex;padding:5px 9px;border-radius:999px;background:#1f5d8a;color:#fff;font-size:12px;font-weight:800}.police-subject-score{white-space:nowrap;padding:7px 10px;border-radius:999px;background:#eef4f8;color:#35566f;font-size:12px;font-weight:800}.police-review-entry--prep{border-style:dashed;background:#fffdf8}.police-review-entry--prep .police-review-entry-title:after{content:'시험 전 대비';display:inline-flex;margin-left:7px;padding:3px 6px;border-radius:999px;background:#f3ead3;color:#7b5a17;font-size:10px;font-weight:800;vertical-align:2px}.police-data-note{margin:12px 0 0;padding:12px 14px;border-radius:12px;background:#edf5fb;color:#3d5669;font-size:13px;line-height:1.7}.police-source-panel{margin-top:18px;padding:15px 16px;border:1px solid #e5dfd1;border-radius:14px;background:#fffdf7}.police-source-panel>strong{color:#57451f}.police-source-panel p{margin:7px 0 10px;font-size:13px;line-height:1.7;color:#625d52}.police-source-links{display:flex;flex-wrap:wrap;gap:7px}.police-source-links a{display:inline-flex;padding:7px 9px;border-radius:9px;background:#f1f3f5;color:#35536a;text-decoration:none;font-size:12px;font-weight:700}@media(max-width:700px){.police-subject-overview{grid-template-columns:1fr}.police-subject-review-block{padding:14px}.police-subject-review-head{display:block}.police-subject-score{display:inline-flex;margin-top:8px}.police-subject-review-head h3{font-size:18px}}
+
+/* 2026-08-27 최근 3개년 합격선 빠른 비교 */
+.cutline-quick{margin:18px 0 22px;padding:20px;border:1px solid #dfe7e3;border-radius:18px;background:#fff;box-shadow:0 8px 24px rgba(31,55,45,.06)}
+.cutline-quick-head{display:flex;gap:14px;align-items:flex-end;justify-content:space-between;margin-bottom:14px}.cutline-quick-head h2{margin:3px 0 4px;font-size:1.35rem}.cutline-quick-head p{margin:0;color:#5d6964;font-size:.92rem}.cutline-quick-badge{white-space:nowrap;padding:6px 10px;border-radius:999px;background:#eef7f2;color:#246747;font-weight:800;font-size:.78rem}
+.cutline-quick-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.cutline-mini{border:1px solid #e5ebe8;border-radius:14px;padding:14px;background:#fbfdfc}.cutline-mini h3{margin:0 0 3px;font-size:.98rem}.cutline-mini .scope{display:block;color:#74807b;font-size:.75rem;margin-bottom:10px}.cutline-years{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.cutline-years span{display:block;text-align:center;padding:7px 3px;border-radius:9px;background:#f1f5f3;font-size:.73rem;color:#64706b}.cutline-years strong{display:block;margin-top:2px;color:#173f2d;font-size:.95rem}.cutline-mini .trend{margin:9px 0 0;font-size:.76rem;line-height:1.45;color:#53605a}.cutline-more{margin-top:12px;border-top:1px dashed #d8e1dc;padding-top:12px}.cutline-more summary{cursor:pointer;font-weight:800;color:#245b42;font-size:.88rem}.cutline-more p{margin:9px 0 0;color:#5d6964;font-size:.8rem;line-height:1.55}.cutline-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.cutline-links a{padding:7px 10px;border-radius:9px;background:#f3f6f4;color:#315d49;text-decoration:none;font-size:.78rem;font-weight:700}
+@media(max-width:900px){.cutline-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cutline-quick-head{align-items:flex-start;flex-direction:column}.cutline-quick-badge{align-self:flex-start}}
+@media(max-width:520px){.cutline-quick{padding:15px 12px;border-radius:15px}.cutline-quick-grid{grid-template-columns:1fr 1fr;gap:8px}.cutline-mini{padding:11px 9px}.cutline-mini h3{font-size:.9rem}.cutline-years{gap:3px}.cutline-years span{padding:6px 2px;font-size:.67rem}.cutline-years strong{font-size:.88rem}.cutline-mini:last-child{grid-column:1/-1}.cutline-links a{flex:1 1 45%;text-align:center}}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebPage","name":"2026 공무원 시험분석·합격선","description":"서울교육청 9급 교육행정 최종합격 결과와 주요 공무원·임용시험 합격선, 경쟁률, 시험일정을 최신순으로 제공","dateModified":"2026-08-26","publisher":{"@type":"Organization","name":"스테이The머무름"},"mainEntityOfPage":"https://davidhor2026.github.io/staythemeomurum/exam-insight.html"}
@@ -503,9 +510,25 @@
 
 
 
+<section class="cutline-quick" id="three-year-cutline">
+  <div class="cutline-quick-head">
+    <div><span class="exam-eyebrow">최근 3개년 필기 합격선</span><h2>주요 직렬 커트라인 한눈에 보기</h2><p>같은 모집단위끼리 2024 → 2025 → 2026 점수 흐름을 빠르게 비교하세요.</p></div>
+    <span class="cutline-quick-badge">2024 · 2025 · 2026</span>
+  </div>
+  <div class="cutline-quick-grid">
+    <article class="cutline-mini"><h3>국가직 9급 · 일반행정</h3><span class="scope">전국 · 일반모집</span><div class="cutline-years"><span>2024<strong>90</strong></span><span>2025<strong>93</strong></span><span>2026<strong>90</strong></span></div><p class="trend">전년 대비 3점 하락 · 2024 수준</p></article>
+    <article class="cutline-mini"><h3>국가직 9급 · 교육행정</h3><span class="scope">전국 · 일반모집</span><div class="cutline-years"><span>2024<strong>93</strong></span><span>2025<strong>97</strong></span><span>2026<strong>96</strong></span></div><p class="trend">3년 연속 높은 합격선 유지</p></article>
+    <article class="cutline-mini"><h3>국가직 9급 · 세무</h3><span class="scope">전국 · 일반모집</span><div class="cutline-years"><span>2024<strong>70</strong></span><span>2025<strong>80</strong></span><span>2026<strong>77</strong></span></div><p class="trend">2025 급등 후 2026년 3점 하락</p></article>
+    <article class="cutline-mini"><h3>국가직 9급 · 전산개발</h3><span class="scope">전국 · 일반모집</span><div class="cutline-years"><span>2024<strong>84</strong></span><span>2025<strong>93</strong></span><span>2026<strong>93</strong></span></div><p class="trend">2025년 상승 후 93점 유지</p></article>
+    <article class="cutline-mini"><h3>법원직 9급 · 법원사무</h3><span class="scope">전국 · 일반모집</span><div class="cutline-years"><span>2024<strong>75</strong></span><span>2025<strong>78.5</strong></span><span>2026<strong>70</strong></span></div><p class="trend">2026년 전년 대비 8.5점 하락</p></article>
+  </div>
+  <details class="cutline-more"><summary>지방직 · 교육청 · 경찰 · 소방은 왜 한 점수로 표시하지 않나요?</summary><p>이 시험들은 지역·모집구분에 따라 합격선이 서로 달라 하나의 대표점수로 표시하면 오해가 생길 수 있습니다. 특히 경찰은 지역청별 합격선과 선발체계 변화까지 함께 봐야 합니다. 아래 직렬별 분석에서 해당 지역·모집단위 기준으로 확인하세요.</p></details>
+  <div class="cutline-links"><a href="#deep-national9">국가직 9급 분석</a><a href="#deep-local9">지방직 9급 분석</a><a href="#police-2026-2nd-review">경찰 분석</a><a href="#deep-fire">소방 분석</a><a href="#court-data-center">법원직 분석</a></div>
+</section>
+
 <section class="page-role-note page-role-note--analysis">
 <strong>시험분석 페이지</strong>
-<span>이 페이지는 난이도 · 학원가/전문가 총평 · 합격선 · 응시현황 · 과목별 분석만 중심으로 정리합니다.</span>
+<span>이 페이지는 최근 3개년 합격선 · 최신 난이도 · 학원가/전문가 총평 · 응시현황 · 과목별 분석을 중심으로 정리합니다.</span>
 <a href="exam-schedule.html">날짜와 접수·발표 일정이 필요할 때만 시험일정 페이지로 이동 →</a>
 </section>
 
