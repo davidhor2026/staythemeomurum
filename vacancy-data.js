@@ -94,7 +94,7 @@ const DISPLAY_TEXT = {
 
   availableNow: "입실 가능",
   fullNow: "현재 만실",
-  upcoming: "입실 가능 예정",
+  upcoming: "예약 가능",
   unknownDate: "날짜 미정",
 
   calendarButton: "공실 캘린더",
