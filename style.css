@@ -908,6 +908,12 @@
   transform-origin:top right;
   animation:heroNoticeOpen .22s ease both;
   backdrop-filter:blur(2px);
+  max-height:min(46vh,340px);
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
 }
 .hero-notice-panel[hidden]{display:none!important;}
 .hero-notice-panel::before{
@@ -949,7 +955,7 @@
   .hero-notice-board--toggle::before{left:9px;width:11px;height:72px;}
   .hero-notice-board--toggle::after{left:4px;top:45px;width:21px;height:5px;}
   .hero-notice-toggle{min-width:118px;margin-left:14px;padding:8px 14px 8px 12px;font-size:11.5px;}
-  .hero-notice-panel{width:188px;margin-left:14px;padding:16px 14px 13px;}
+  .hero-notice-panel{width:188px;margin-left:14px;padding:16px 14px 13px;max-height:min(42vh,280px);}
   .hero-notice-panel strong{font-size:15px;}
   .hero-notice-panel p{font-size:10.8px;line-height:1.45;}
 }
