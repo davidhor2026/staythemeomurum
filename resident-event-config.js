@@ -1,6 +1,7 @@
 // 입실자 이벤트 공개 설정 파일
 // 원장님 모드에서 새 설정파일을 만들면 이 파일을 같은 이름으로 덮어써 주세요.
 window.STAY_EVENT_PUBLIC_CONFIG = {
+  eventId: "movie-ticket-202608",
   active: false,
   eventTitle: "영화관람권 이벤트",
   prizeLabel: "영화관람권 1매",
