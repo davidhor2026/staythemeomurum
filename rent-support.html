@@ -214,6 +214,38 @@
 .health-key{margin-top:12px;padding:14px;border-radius:14px;background:#fff8ef;border:1px solid #ecd0a8;line-height:1.7}.health-key strong{color:#8a5526}
 @media(max-width:760px){.eye-compare,.eye-compare tbody,.eye-compare tr,.eye-compare th,.eye-compare td{display:block;width:100%;box-sizing:border-box}.eye-compare thead{display:none}.eye-compare tr{border-bottom:8px solid #f4f5f2}.eye-compare td{border-right:0!important;padding:9px 12px}.eye-compare td:first-child{font-weight:900;background:#f6f9f4;color:#29402e;font-size:1rem}.eye-compare td::before{content:attr(data-label);display:block;font-size:.76rem;font-weight:800;color:#8a6a45;margin-bottom:3px}.eye-compare td:first-child::before{display:none}}
 
+
+/* 2026-08-28: 월세지원 상단 정책 카드 + 상세 바로가기 */
+.support-overview{margin:18px 0 22px}
+.support-overview-head{text-align:center;margin-bottom:15px}
+.support-overview-head h2{margin:5px 0 7px;font-size:1.55rem;color:#26382b}
+.support-overview-head p{margin:0;color:#667069;line-height:1.6}
+.support-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.support-summary-card{display:flex;flex-direction:column;min-height:270px;padding:17px;border:1px solid #dde5da;border-radius:18px;background:#fff;box-shadow:0 5px 18px rgba(46,67,50,.06)}
+.support-summary-card h3{margin:5px 0 10px;font-size:1.08rem;color:#263b2b}
+.support-summary-card .support-amount{font-weight:900;font-size:1.16rem;color:#35553a;margin-bottom:10px}
+.support-summary-card ul{margin:0 0 14px;padding-left:18px;line-height:1.62;font-size:.9rem;color:#4e5650}
+.support-summary-card li{margin:4px 0}
+.support-summary-card .support-btn{margin-top:auto;display:block;text-align:center;text-decoration:none;padding:10px 12px;border-radius:11px;background:#3d5d42;color:white;font-weight:800}
+.support-summary-card .support-btn:hover{filter:brightness(.96)}
+.support-badge{align-self:flex-start;display:inline-block;padding:4px 9px;border-radius:999px;font-size:.75rem;font-weight:900;background:#eef5eb;color:#3e6244}
+.support-badge.closed{background:#fff0ea;color:#a04d36}
+.support-badge.check{background:#eef3fb;color:#3e5c83}
+.detail-policy{scroll-margin-top:85px;border:1px solid #dde5da;border-radius:18px;background:#fff;padding:20px;margin:17px 0}
+.detail-policy h2{margin:6px 0 13px;color:#26382b}
+.detail-policy .detail-key{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:13px 0}
+.detail-policy .detail-key>div{padding:12px;border-radius:12px;background:#f6f8f4;line-height:1.55}
+.detail-policy .detail-key strong{display:block;color:#3a583f;font-size:.8rem;margin-bottom:3px}
+.detail-policy .detail-note{padding:13px 14px;border-radius:12px;background:#fff8ef;border:1px solid #ecd9b9;line-height:1.68}
+.back-overview{display:inline-block;margin-top:12px;color:#48614b;font-weight:800;text-decoration:none}
+@media(max-width:760px){
+ .support-grid{grid-template-columns:1fr}
+ .support-summary-card{min-height:0}
+ .support-overview-head{text-align:left}
+ .detail-policy{padding:16px}
+ .detail-policy .detail-key{grid-template-columns:1fr}
+}
+
 </style>
 <script type="application/ld+json">
   {
@@ -261,66 +293,109 @@
 <span>누적 <strong id="visitorTotal">-</strong>명</span>
 </div>
 <main class="policy-wrap">
-<section class="policy-card" style="margin-top:18px;border:2px solid #d6ad7b">
-<span class="tagline"><strong>NEW</strong> · 2026 핵심 주거지원</span>
-<h2>서울형 주택바우처 — 고시원 입주자도 꼭 확인해 보세요</h2>
-<p>
-서울형 주택바우처는 서울에 거주하는 저소득 월세 가구의 주거비 부담을 덜기 위한 제도입니다.
-<strong>고시원 거주 가구도 자격요건을 충족하면 대상이 될 수 있으며, 2026년 1인 가구 지원액은 월 12만원입니다.</strong>
-</p>
-<ul>
-<li><strong>소득 기준:</strong> 소득평가액 기준 중위소득 60% 이하. 2026년 1인 가구 기준 월 1,538,543원 이하</li>
-<li><strong>재산 기준:</strong> 재산가액 2억원 이하, 금융재산 8천만원 이하 등 세부 요건 확인 필요</li>
-<li><strong>신청:</strong> 거주지 관할 동주민센터에서 자격과 제출서류를 확인한 뒤 신청</li>
-<li><strong>가구원 수에 따라 소득기준이 달라집니다:</strong> 2026년 중위소득 60%는 1인 1,538,543원 · 2인 2,519,575원 · 3인 3,215,422원 · 4인 3,896,843원입니다. 단순 월급 합계가 아니라 소득평가액으로 심사합니다.</li>
-<li><strong>30세 미만 미혼 청년 주의:</strong> 주민센터의 보장가구 판정 과정에서 부모 등 가족이 함께 고려될 수 있습니다. 고시원에 혼자 거주하거나 전입신고를 했다는 이유만으로 반드시 1인 가구 기준이 적용되는 것은 아니므로 <strong>신청 전에 관할 동주민센터에서 본인의 보장가구 범위를 먼저 확인</strong>하세요.</li>
-<li><strong>청년월세지원과의 관계:</strong> 서울형 주택바우처와 국토부·서울시 청년월세지원은 서로 다른 사업입니다. 한 사업의 자격을 인정받았다고 다른 사업의 자격이 자동 인정되지는 않으며, 중복지원·차감 여부도 별도 확인이 필요합니다.</li>
-</ul>
+<section class="support-overview" id="support-overview">
+  <div class="support-overview-head">
+    <span class="tagline">고시원 입주자용 월세지원</span>
+    <h2>내가 확인할 정책을 먼저 골라보세요</h2>
+    <p>핵심 자격과 신청상태만 먼저 보고, 필요한 정책의 <strong>자세히 보기</strong>를 누르면 아래 상세내용으로 바로 이동합니다.</p>
+  </div>
 
-<div class="voucher-process">
-<h3>신청기간·심사·지급은 어떻게 진행되나요?</h3>
-<ul>
-<li><strong>신청기간:</strong> 서울시 청년월세지원처럼 정해진 연간 모집기간을 기다리는 방식으로 안내되는 사업이 아니라, 자격요건을 확인한 뒤 <strong>거주지 관할 동주민센터에서 신청</strong>하는 방식입니다.</li>
-<li><strong>신청 후:</strong> 제출서류와 함께 소득·재산·가구요건 등 지원자격 확인 절차를 거쳐 지원 여부가 결정됩니다.</li>
-<li><strong>심사기간:</strong> 공식 안내에는 신청 후 정확히 며칠 이내 심사가 완료된다고 일률적으로 명시되어 있지 않으므로 접수 시 관할 동주민센터에서 확인해 주세요.</li>
-<li><strong>최초 지급시기:</strong> 개인별 조사·결정 시점에 따라 달라질 수 있으므로 정확한 최초 지급일 역시 신청한 동주민센터에서 확인하는 것이 가장 정확합니다.</li>
-</ul>
-<p><strong>※ 서울시 청년월세지원과 서울형 주택바우처는 서로 다른 제도입니다.</strong> 청년월세지원은 별도의 모집기간이 있을 수 있으므로 공식 공고를 따로 확인해 주세요.</p>
-</div>
+  <div class="support-grid">
+    <article class="support-summary-card">
+      <span class="support-badge closed">2026 접수 종료</span>
+      <h3>국토부 청년월세</h3>
+      <div class="support-amount">월 최대 20만원 · 최대 24개월</div>
+      <ul>
+        <li>19~34세 · 부모와 별도 거주 · 무주택 청년</li>
+        <li>원칙적으로 청년가구 + 원가구 소득기준 확인</li>
+        <li>30세 이상·혼인 등은 원가구 기준 예외 가능</li>
+      </ul>
+      <a class="support-btn" href="#detail-molit">자세히 보기</a>
+    </article>
 
-<div class="button-wrap">
-<a class="button" href="https://housing.seoul.go.kr/site/main/content/sh_061010" rel="noopener" target="_blank">서울형 주택바우처 공식 안내</a>
-<a class="button light" href="https://housing.seoul.go.kr" rel="noopener" target="_blank">서울주거포털</a>
-</div>
+    <article class="support-summary-card">
+      <span class="support-badge closed">2026 접수 종료</span>
+      <h3>서울시 청년월세지원</h3>
+      <div class="support-amount">월 최대 20만원 · 최대 12개월</div>
+      <ul>
+        <li>서울 거주 19~39세 · 무주택 청년 등</li>
+        <li><strong>건강보험 가입관계가 소득심사에서 중요</strong></li>
+        <li>2027년 일정 미공고 · 4~5월경 공고 확인 권장</li>
+      </ul>
+      <a class="support-btn" href="#detail-seoul-youth">자세히 보기</a>
+    </article>
+
+    <article class="support-summary-card">
+      <span class="support-badge check">주민센터 확인·신청</span>
+      <h3>서울형 주택바우처</h3>
+      <div class="support-amount">1인 가구 월 12만원</div>
+      <ul>
+        <li><strong>고시원 거주 가구도 대상 가능</strong></li>
+        <li>중위소득 60% 이하 등 별도 자격심사</li>
+        <li>30세 미만 미혼은 부모 포함 보장가구 여부 주의</li>
+      </ul>
+      <a class="support-btn" href="#detail-voucher">자세히 보기</a>
+    </article>
+  </div>
 </section>
 
-<section class="policy-card rent-compare-section" style="margin-top:18px">
-<span class="tagline">고시원 입주자용 핵심 비교</span>
-<h2>나에게 맞는 월세지원, 한눈에 확인</h2>
-<p class="compare-intro">세 제도는 모두 주거비를 돕지만 <strong>부모 소득을 보는 방식과 신청시기</strong>가 다릅니다. 특히 20대 수험생이라면 아래 두 항목부터 확인하세요.</p>
-<div class="quick-judge"><h3>먼저 이것부터 확인하세요</h3>
-<p><strong>① 내 건강보험이 부모와 분리되어 있나요?</strong> → 서울시 청년월세지원의 소득심사에서 매우 중요합니다.</p>
-<p><strong>② 만 30세 미만 미혼인가요?</strong> → 국토부 청년월세와 서울형 주택바우처에서는 부모·보장가구 기준을 함께 확인해야 할 수 있습니다.</p></div>
-<table class="eye-compare" aria-label="고시원 거주자 월세지원 자격 비교"><thead><tr><th>정책</th><th>주요 대상</th><th>부모 소득·가구 판단 핵심</th><th>지원</th><th>현재 신청</th></tr></thead><tbody>
-<tr><td data-label="">국토부 청년월세</td><td data-label="주요 대상">19~34세 · 부모와 별도 거주 · 무주택 청년</td><td data-label="부모 소득·가구 판단"><strong>청년가구 60% 이하 + 원가구 100% 이하가 원칙</strong><br>다만 30세 이상, 혼인(이혼), 미혼부·모 등은 원가구 소득을 보지 않는 예외가 있습니다.</td><td data-label="지원">월 최대 20만원<br>최대 24개월</td><td data-label="현재 신청"><span class="policy-status closed">2026 접수 종료</span><br>3/30~5/29 접수</td></tr>
-<tr><td data-label="">서울시 청년월세지원</td><td data-label="주요 대상">서울 거주 19~39세 · 무주택 청년 등 공고 요건 충족자</td><td data-label="부모 소득·가구 판단"><strong>건강보험 가입관계가 핵심</strong><br>부모와 건강보험이 별도면 부모 소득 미포함. 부모 등의 피부양자면 주민등록이 분리돼 있어도 <strong>부양자 소득 + 건강보험상 가구원 수</strong> 기준으로 판단합니다.</td><td data-label="지원">월 최대 20만원<br>최대 12개월</td><td data-label="현재 신청"><span class="policy-status closed">2026 접수 종료</span><br>5/6~5/19 접수<br>2027 일정 미공고</td></tr>
-<tr><td data-label="">서울형 주택바우처</td><td data-label="주요 대상">서울 민간월세 주택·<strong>고시원</strong> 거주 저소득 가구</td><td data-label="부모 소득·가구 판단">중위소득 60% 이하의 <strong>보장가구</strong> 기준. 30세 미만 미혼 청년은 부모 등이 보장가구에 포함되는지 주민센터에서 먼저 확인하는 것이 안전합니다.</td><td data-label="지원">1인 가구 월 12만원<br>가구원 수별 차등</td><td data-label="현재 신청"><span class="policy-status anytime">주민센터 확인·신청</span><br>정기 연 1회 모집형이 아님</td></tr>
-</tbody></table>
-<div class="health-key"><strong>서울시 청년월세지원에서 건강보험이 왜 중요한가요?</strong><br>건강보험료 액수만으로 합격·탈락을 정한다는 뜻이 아닙니다. 2026년에는 최근 <strong>소득금액증명원의 월평균 소득</strong>을 기준으로 중위소득 48% 초과~150% 이하인지 확인하며, <strong>누구의 소득을 볼지 정할 때 건강보험 가입관계가 핵심</strong>입니다. 본인 건강보험이 부모와 별도라면 부모 소득은 포함하지 않고, 부모 등의 피부양자라면 부양자의 소득과 건강보험상 가구원 수를 기준으로 봅니다.</div>
-<div class="soft-note compare-note"><strong>고시원 입주자에게 중요한 점</strong><br>국토부 청년월세를 받았다고 서울형 주택바우처나 서울시 청년월세 자격이 자동으로 생기지는 않습니다. 또한 국토부 또는 지자체 청년월세 지원을 <strong>현재 수혜 중이면 서울시 청년월세지원 신청 제외 대상</strong>이며, 신청 전에 지원이 종료된 경우에는 서울시 사업의 다른 자격요건을 충족하는지 다시 확인할 수 있습니다.</div>
+<section class="detail-policy" id="detail-molit">
+  <span class="tagline">국토교통부</span>
+  <h2>국토부 청년월세 상세</h2>
+  <div class="detail-key">
+    <div><strong>대상 핵심</strong>19~34세 · 부모와 별도 거주 · 무주택 청년</div>
+    <div><strong>지원</strong>월 최대 20만원 · 최대 24개월</div>
+    <div><strong>2026 신청</strong>3월 30일~5월 29일 · 현재 종료</div>
+  </div>
+  <p><strong>소득심사:</strong> 청년가구 기준 중위소득 60% 이하와 원가구 기준 중위소득 100% 이하를 원칙적으로 함께 확인합니다.</p>
+  <div class="detail-note"><strong>30세 미만 미혼 청년 주의</strong><br>부모와 주소를 따로 두고 살아도 원가구 소득을 함께 볼 수 있습니다. 다만 30세 이상, 혼인(이혼), 미혼부·모 등은 원가구 소득을 보지 않는 예외가 있을 수 있으므로 해당 연도 공식 공고 기준을 확인하세요.</div>
+  <p><strong>다음 일정:</strong> 2027년 세부 소득요건·지원금액·접수일정은 공식 공고가 나온 뒤 확인하는 것이 안전합니다.</p>
+  <a class="back-overview" href="#support-overview">↑ 정책 한눈에 보기로</a>
 </section>
 
+<section class="detail-policy" id="detail-seoul-youth">
+  <span class="tagline">서울특별시</span>
+  <h2>서울시 청년월세지원 상세</h2>
+  <div class="detail-key">
+    <div><strong>대상 핵심</strong>서울 거주 19~39세 · 무주택 청년 등 공고요건 충족자</div>
+    <div><strong>지원</strong>월 최대 20만원 · 최대 12개월</div>
+    <div><strong>2026 신청</strong>5월 6일~5월 19일 · 현재 종료</div>
+  </div>
+  <p><strong>소득기준:</strong> 2026년 기준 중위소득 48% 초과~150% 이하 등 공고 기준을 확인합니다.</p>
+  <div class="detail-note"><strong>건강보험이 중요한 이유</strong><br>건강보험료 액수만으로 선정 여부를 정한다는 뜻은 아닙니다. <strong>누구의 소득을 심사할지 판단할 때 건강보험 가입관계가 핵심</strong>입니다. 본인이 부모와 건강보험이 별도라면 부모 소득을 포함하지 않고, 부모 등의 피부양자라면 주민등록이 분리돼 있어도 부양자의 소득과 건강보험상 가구원 수를 기준으로 판단합니다.</div>
+  <p><strong>다음 모집 예상:</strong> 2027년 일정은 아직 미공고입니다. 2026년에는 4월 30일 공고 후 5월 접수였으므로 <strong>2027년 4~5월경부터 서울주거포털 공고 확인을 권장</strong>합니다. 이는 예상이며 확정 일정이 아닙니다.</p>
+  <p><strong>중복지원:</strong> 국토부 또는 지자체 청년월세 지원을 현재 받고 있다면 서울시 사업의 제외 기준을 확인해야 합니다. 기존 지원이 신청 전에 종료됐다면 다른 자격요건을 다시 확인할 수 있습니다.</p>
+  <a class="back-overview" href="#support-overview">↑ 정책 한눈에 보기로</a>
+</section>
+
+<section class="detail-policy" id="detail-voucher">
+  <span class="tagline">서울형 주택바우처</span>
+  <h2>서울형 주택바우처 상세</h2>
+  <div class="detail-key">
+    <div><strong>대상 핵심</strong>서울 민간월세 주택·고시원 거주 저소득 가구</div>
+    <div><strong>지원</strong>2026년 1인 가구 월 12만원 · 가구원 수별 차등</div>
+    <div><strong>신청</strong>거주지 관할 동주민센터에서 확인·신청</div>
+  </div>
+  <p><strong>소득:</strong> 소득평가액 기준 중위소득 60% 이하. 2026년 1인 가구 기준 월 1,538,543원 이하이며, 실제 심사는 보장가구원 수에 따라 기준이 달라집니다.</p>
+  <p><strong>재산:</strong> 재산가액 2억원 이하, 금융재산 8천만원 이하 등 세부요건을 함께 확인합니다.</p>
+  <div class="detail-note"><strong>30세 미만 미혼 입주자는 특히 확인</strong><br>고시원으로 주소를 이전해 혼자 거주하더라도 부모 등이 보장가구에 포함되어 심사될 수 있습니다. 따라서 본인 소득만 보고 신청 가능하다고 판단하기보다 <strong>주민센터에 보장가구 범위를 먼저 확인</strong>하는 것이 좋습니다.</div>
+  <p><strong>신청시기:</strong> 서울시 청년월세지원처럼 연 1회 특정 모집기간을 기다리는 방식이 아니라, 자격요건을 확인해 거주지 관할 동주민센터에서 신청하는 제도입니다.</p>
+  <div class="button-wrap">
+    <a class="button" href="https://housing.seoul.go.kr/site/main/content/sh_061010" rel="noopener" target="_blank">서울형 주택바우처 공식 안내</a>
+    <a class="button light" href="https://housing.seoul.go.kr" rel="noopener" target="_blank">서울주거포털</a>
+  </div>
+  <a class="back-overview" href="#support-overview">↑ 정책 한눈에 보기로</a>
+</section>
 
 <section class="policy-card" style="margin-top:18px;border:2px solid #d6ad7b">
-<span class="tagline">다음 신청 시기 미리보기</span>
-<h2>지금 신청할 수 있나요?</h2>
-<ul>
-<li><strong>서울형 주택바우처:</strong> 연 1회 모집을 기다리는 방식이 아니라, 자격요건을 확인해 <strong>거주지 관할 동주민센터에서 신청</strong>하는 제도입니다.</li>
-<li><strong>서울시 청년월세지원:</strong> <strong>2026년 신청은 5월 6일~19일로 종료</strong>됐습니다. 2027년 일정은 아직 발표되지 않았습니다.</li>
-<li><strong>다음 서울시 모집 예상:</strong> 2026년에는 4월 30일 공고 후 5월에 접수했습니다. 따라서 <strong>2027년 4~5월경부터 서울주거포털 공고를 확인</strong>하는 것을 권합니다. 이는 전년도 일정에 따른 예상이며 확정 일정이 아닙니다.</li>
-<li><strong>국토부 청년월세:</strong> 2027년 세부 소득요건·지원금액 등은 현재 확정된 것으로 단정하지 않고, 향후 국토교통부·복지로의 공식 공고가 나오면 최신 내용으로 확인하는 것이 안전합니다.</li>
-</ul>
-<p class="policy-note">※ 고시원 거주자가 실제 신청할 수 있는 월세·주거비 지원을 중심으로 안내하며, 전세대출·청년안심주택 등 고시원 거주와 직접 관련성이 낮은 정책은 이 페이지에서 제외합니다.</p>
+  <span class="tagline">신청 시기 요약</span>
+  <h2>지금 신청할 수 있나요?</h2>
+  <ul>
+    <li><strong>서울형 주택바우처:</strong> 거주지 관할 동주민센터에서 자격요건 확인 후 신청</li>
+    <li><strong>서울시 청년월세지원:</strong> 2026년 접수 종료 · 2027년 일정 미공고 · 4~5월경부터 공고 확인 권장</li>
+    <li><strong>국토부 청년월세:</strong> 2026년 접수 종료 · 2027년 세부 공고 확인 필요</li>
+  </ul>
+  <p class="policy-note">※ 고시원 거주자가 실제 활용할 수 있는 월세·주거비 지원을 중심으로 안내합니다.</p>
 </section>
 
 <section class="policy-hero">
