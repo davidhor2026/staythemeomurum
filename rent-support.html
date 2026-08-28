@@ -201,6 +201,19 @@
 .compare-note{margin-top:18px}
 @media(max-width:800px){.rent-program-grid{grid-template-columns:1fr;gap:14px}.rent-program-card{padding:16px}.program-title{font-size:1.12rem}}
 
+
+/* 2026-08-28: 고시원 입주자용 자격조건 한눈에 비교 */
+.quick-judge{margin:14px 0 18px;padding:16px;border-radius:16px;background:#f7faf5;border:1px solid #d9e6d5}
+.quick-judge h3{margin:0 0 9px;color:#29402e;font-size:1.08rem}.quick-judge p{margin:5px 0;line-height:1.65}
+.policy-status{display:inline-block;padding:4px 9px;border-radius:999px;font-size:.78rem;font-weight:900;background:#eef4ea;color:#36513b;margin-bottom:8px}
+.policy-status.closed{background:#fff1eb;color:#a24d35}.policy-status.anytime{background:#eef3fb;color:#365a86}
+.eye-compare{width:100%;border-collapse:separate;border-spacing:0;margin-top:14px;border:1px solid #dde4d9;border-radius:14px;overflow:hidden}
+.eye-compare th,.eye-compare td{padding:12px 10px;border-bottom:1px solid #e9eee6;border-right:1px solid #e9eee6;vertical-align:top;line-height:1.55;text-align:left}
+.eye-compare th{background:#f6f9f4;color:#304535;font-size:.9rem}.eye-compare td{font-size:.91rem;color:#444}
+.eye-compare tr:last-child td{border-bottom:0}.eye-compare th:last-child,.eye-compare td:last-child{border-right:0}
+.health-key{margin-top:12px;padding:14px;border-radius:14px;background:#fff8ef;border:1px solid #ecd0a8;line-height:1.7}.health-key strong{color:#8a5526}
+@media(max-width:760px){.eye-compare,.eye-compare tbody,.eye-compare tr,.eye-compare th,.eye-compare td{display:block;width:100%;box-sizing:border-box}.eye-compare thead{display:none}.eye-compare tr{border-bottom:8px solid #f4f5f2}.eye-compare td{border-right:0!important;padding:9px 12px}.eye-compare td:first-child{font-weight:900;background:#f6f9f4;color:#29402e;font-size:1rem}.eye-compare td::before{content:attr(data-label);display:block;font-size:.76rem;font-weight:800;color:#8a6a45;margin-bottom:3px}.eye-compare td:first-child::before{display:none}}
+
 </style>
 <script type="application/ld+json">
   {
@@ -282,45 +295,20 @@
 </section>
 
 <section class="policy-card rent-compare-section" style="margin-top:18px">
-<span class="tagline">함께 보면 좋은 참고정보</span>
-<h2>월세지원 3가지 한눈에 비교</h2>
-<p class="compare-intro">국토교통부 청년월세 지원, 서울시 청년월세지원, 서울형 주택바우처는 대상과 소득기준, 지원기간이 서로 다릅니다. 아래에서 제도별로 나누어 확인해 보세요.</p>
-
-<div class="rent-program-grid">
-<article class="rent-program-card">
-<div class="program-title">① 국토교통부 청년월세 지원</div>
-<div class="program-item"><strong>지원대상</strong><span>19~34세, 부모와 별도 거주하는 무주택 청년</span></div>
-<div class="program-item"><strong>소득기준</strong><span>청년가구 중위소득 60% 이하 + 원가구 중위소득 100% 이하가 원칙</span></div>
-<div class="program-item"><strong>재산기준</strong><span>청년가구 총재산가액 1.22억원 이하 등 세부 기준 적용</span></div>
-<div class="program-item"><strong>지원한도</strong><span><b>월 최대 20만원 × 최대 24개월</b><br>실제 월세 범위, 생애 1회</span></div>
-<div class="program-item"><strong>신청</strong><span>복지로 또는 주소지 관할 행정복지센터</span></div>
-<a class="button program-link" href="https://www.bokjiro.go.kr" target="_blank" rel="noopener">국토부 지원 공식 안내</a>
-</article>
-
-<article class="rent-program-card">
-<div class="program-title">② 서울시 청년월세지원</div>
-<div class="program-item"><strong>지원대상</strong><span>서울 거주 19~39세 청년 등 공고상 신청유형</span></div>
-<div class="program-item"><strong>소득기준</strong><span>2026년 기준 중위소득 48% 초과~150% 이하</span></div>
-<div class="program-item"><strong>주거조건</strong><span>무주택, 보증금 8천만원 이하·월세 60만원 이하가 기본. 월세 초과 시 환산액 포함 90만원 이하 조건 적용</span></div>
-<div class="program-item"><strong>지원한도</strong><span><b>월 최대 20만원 × 최대 12개월</b><br>최대 240만원, 생애 1회</span></div>
-<div class="program-item"><strong>신청</strong><span><b>2026년 모집은 5월 6~19일로 종료</b><br>다음 모집은 아직 미공고. 2026년 공고가 4월 30일, 접수가 5월에 진행된 점을 참고해 <b>2027년 4~5월경부터 공고 확인 권장</b> (예상이며 확정 일정 아님)</span></div>
-<a class="button program-link" href="https://housing.seoul.go.kr/site/main/content/sh01_060513" target="_blank" rel="noopener">서울시 청년월세 공식 안내</a>
-</article>
-
-<article class="rent-program-card rent-program-card--voucher">
-<div class="program-title">③ 서울형 주택바우처</div>
-<div class="program-item"><strong>지원대상</strong><span>서울의 저소득 민간 월세 주택·고시원 거주 가구</span></div>
-<div class="program-item"><strong>소득기준</strong><span>소득평가액 기준 중위소득 60% 이하</span></div>
-<div class="program-item"><strong>재산기준</strong><span>재산가액 2억원 이하, 금융재산 8천만원 이하 등 세부 요건 확인</span></div>
-<div class="program-item"><strong>지원한도</strong><span><b>1인 가구 월 12만원</b><br>2인 13만원, 3인 14만원 등 가구원 수에 따라 차등</span></div>
-<div class="program-item"><strong>신청</strong><span>거주지 관할 동주민센터에서 신청 및 자격 확인</span></div>
-<a class="button program-link" href="https://housing.seoul.go.kr/site/main/content/sh_061010" target="_blank" rel="noopener">서울형 주택바우처 공식 안내</a>
-</article>
-</div>
-
-<div class="soft-note compare-note"><strong>고시원 입주자에게 중요한 점</strong><br>국토부 청년월세 지원을 받았거나 자격이 인정됐더라도 서울형 주택바우처 자격이 자동으로 생기는 것은 아닙니다. 반대로 국토부 지원이 종료된 경우에는 다음 서울시 청년월세지원 모집 때 별도 자격을 확인해 볼 수 있습니다. 세 제도의 중복·차감 기준은 신청 시점의 공식 공고를 최종 기준으로 확인하세요.</div>
+<span class="tagline">고시원 입주자용 핵심 비교</span>
+<h2>나에게 맞는 월세지원, 한눈에 확인</h2>
+<p class="compare-intro">세 제도는 모두 주거비를 돕지만 <strong>부모 소득을 보는 방식과 신청시기</strong>가 다릅니다. 특히 20대 수험생이라면 아래 두 항목부터 확인하세요.</p>
+<div class="quick-judge"><h3>먼저 이것부터 확인하세요</h3>
+<p><strong>① 내 건강보험이 부모와 분리되어 있나요?</strong> → 서울시 청년월세지원의 소득심사에서 매우 중요합니다.</p>
+<p><strong>② 만 30세 미만 미혼인가요?</strong> → 국토부 청년월세와 서울형 주택바우처에서는 부모·보장가구 기준을 함께 확인해야 할 수 있습니다.</p></div>
+<table class="eye-compare" aria-label="고시원 거주자 월세지원 자격 비교"><thead><tr><th>정책</th><th>주요 대상</th><th>부모 소득·가구 판단 핵심</th><th>지원</th><th>현재 신청</th></tr></thead><tbody>
+<tr><td data-label="">국토부 청년월세</td><td data-label="주요 대상">19~34세 · 부모와 별도 거주 · 무주택 청년</td><td data-label="부모 소득·가구 판단"><strong>청년가구 60% 이하 + 원가구 100% 이하가 원칙</strong><br>다만 30세 이상, 혼인(이혼), 미혼부·모 등은 원가구 소득을 보지 않는 예외가 있습니다.</td><td data-label="지원">월 최대 20만원<br>최대 24개월</td><td data-label="현재 신청"><span class="policy-status closed">2026 접수 종료</span><br>3/30~5/29 접수</td></tr>
+<tr><td data-label="">서울시 청년월세지원</td><td data-label="주요 대상">서울 거주 19~39세 · 무주택 청년 등 공고 요건 충족자</td><td data-label="부모 소득·가구 판단"><strong>건강보험 가입관계가 핵심</strong><br>부모와 건강보험이 별도면 부모 소득 미포함. 부모 등의 피부양자면 주민등록이 분리돼 있어도 <strong>부양자 소득 + 건강보험상 가구원 수</strong> 기준으로 판단합니다.</td><td data-label="지원">월 최대 20만원<br>최대 12개월</td><td data-label="현재 신청"><span class="policy-status closed">2026 접수 종료</span><br>5/6~5/19 접수<br>2027 일정 미공고</td></tr>
+<tr><td data-label="">서울형 주택바우처</td><td data-label="주요 대상">서울 민간월세 주택·<strong>고시원</strong> 거주 저소득 가구</td><td data-label="부모 소득·가구 판단">중위소득 60% 이하의 <strong>보장가구</strong> 기준. 30세 미만 미혼 청년은 부모 등이 보장가구에 포함되는지 주민센터에서 먼저 확인하는 것이 안전합니다.</td><td data-label="지원">1인 가구 월 12만원<br>가구원 수별 차등</td><td data-label="현재 신청"><span class="policy-status anytime">주민센터 확인·신청</span><br>정기 연 1회 모집형이 아님</td></tr>
+</tbody></table>
+<div class="health-key"><strong>서울시 청년월세지원에서 건강보험이 왜 중요한가요?</strong><br>건강보험료 액수만으로 합격·탈락을 정한다는 뜻이 아닙니다. 2026년에는 최근 <strong>소득금액증명원의 월평균 소득</strong>을 기준으로 중위소득 48% 초과~150% 이하인지 확인하며, <strong>누구의 소득을 볼지 정할 때 건강보험 가입관계가 핵심</strong>입니다. 본인 건강보험이 부모와 별도라면 부모 소득은 포함하지 않고, 부모 등의 피부양자라면 부양자의 소득과 건강보험상 가구원 수를 기준으로 봅니다.</div>
+<div class="soft-note compare-note"><strong>고시원 입주자에게 중요한 점</strong><br>국토부 청년월세를 받았다고 서울형 주택바우처나 서울시 청년월세 자격이 자동으로 생기지는 않습니다. 또한 국토부 또는 지자체 청년월세 지원을 <strong>현재 수혜 중이면 서울시 청년월세지원 신청 제외 대상</strong>이며, 신청 전에 지원이 종료된 경우에는 서울시 사업의 다른 자격요건을 충족하는지 다시 확인할 수 있습니다.</div>
 </section>
-
 
 
 <section class="policy-card" style="margin-top:18px;border:2px solid #d6ad7b">
