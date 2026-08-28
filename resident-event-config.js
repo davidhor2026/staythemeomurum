@@ -1,7 +1,7 @@
 // 입실자 이벤트 공개 설정 파일
 window.STAY_EVENT_PUBLIC_CONFIG = {
-  "status": "active",
-  "active": true,
+  "status": "preparing",
+  "active": false,
   "eventId": "movie-ticket-202608",
   "eventTitle": "영화관람권 이벤트",
   "prizeLabel": "영화관람권 1매",
