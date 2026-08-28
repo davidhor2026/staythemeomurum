@@ -35,6 +35,21 @@
   color:#fff;
   letter-spacing:.03em;
 }
+
+.police-congrats-image-section{padding:22px 16px 10px}
+.police-congrats-image-wrap{position:relative;max-width:1080px;margin:0 auto;border-radius:24px;overflow:hidden;box-shadow:0 10px 30px rgba(24,39,75,.18)}
+.police-congrats-image-wrap img{display:block;width:100%;height:auto}
+.police-passers-box{position:absolute;left:50%;bottom:4.5%;transform:translateX(-50%);width:min(58%,680px);box-sizing:border-box;padding:10px 18px 12px;border:2px solid rgba(235,199,96,.95);border-radius:16px;background:rgba(5,35,86,.92);text-align:center;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.2)}
+.police-passers-label{display:block;margin-bottom:4px;color:#f7d76e;font-size:clamp(12px,2vw,18px);font-weight:800}
+.police-passers-box strong{font-size:clamp(16px,3vw,28px);letter-spacing:.04em}
+@media(max-width:560px){
+  .police-congrats-image-section{padding:14px 10px 6px}
+  .police-congrats-image-wrap{border-radius:16px}
+  .police-passers-box{bottom:3.5%;width:68%;padding:7px 10px 8px;border-radius:12px}
+  .police-passers-label{font-size:11px}
+  .police-passers-box strong{font-size:15px}
+}
+
 </style>
 
 <style id="hero-vacancy-sync-style-20260822">
@@ -114,16 +129,9 @@
 <span id="visitorLoadingText">방문현황 불러오는 중...</span>
 <span id="visitorCountText" hidden>오늘 <strong id="visitorToday">-</strong>명<span class="visitor-sep">·</span> 누적 <strong id="visitorTotal">-</strong>명</span>
 </div>
-<section aria-label="합격 축하 안내" class="congrats-banner-section">
-<div class="congrats-banner">
-<span aria-hidden="true" class="congrats-bulb congrats-bulb--1"></span>
-<span aria-hidden="true" class="congrats-bulb congrats-bulb--2"></span>
-<span aria-hidden="true" class="congrats-bulb congrats-bulb--3"></span>
-<span aria-hidden="true" class="congrats-bulb congrats-bulb--4"></span>
-<div class="congrats-ribbon">2026 경찰공무원 채용시험</div>
-<strong>경찰 필기시험 합격을<br/>진심으로 축하합니다!</strong>
-<p>조O아 · 박O영 · 장O보 필기 합격</p>
-<p style="margin-top:10px;font-weight:800;">체력시험까지 힘내세요! 스테이The머무름이 응원합니다.</p>
+<section aria-label="경찰 필기시험 합격 축하 안내" class="congrats-banner-section police-congrats-image-section">
+  <div class="police-congrats-image-wrap">
+    <img src="police-written-pass-banner-2026.png" alt="2026 경찰공무원 채용시험 필기시험 합격 축하 배너"/>
 </div>
 </section>
 <section aria-labelledby="examHomeTitle" class="exam-home-widget exam-home-widget--collapsible" id="exam-home">
