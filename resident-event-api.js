@@ -1,7 +1,7 @@
 // 입실자 이벤트 중앙 응모 API 설정
 // 1) 함께 제공된 Code.gs를 Google Apps Script에 붙여넣고 웹 앱으로 배포합니다.
 // 2) 배포된 /exec 주소를 아래 따옴표 안에 넣습니다.
-window.STAY_EVENT_API_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+window.STAY_EVENT_API_URL = "https://script.google.com/macros/s/AKfycby7WaaxrzB2fVHdBHS_LdBZtyKB2zL6TEFHk0yNJkL3ixALdhR6DpoXQR3evSJfagTd/exec";
 
 window.StayEventApi = (function () {
   function configured() {
