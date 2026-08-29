@@ -12,7 +12,7 @@
   function normalize(x){return typeof x==='string'?{room:x,test:false}:Object.assign({test:false},x)}
   function testList(){try{return JSON.parse(localStorage.getItem(PREFIX+'testParticipants')||'[]').map(normalize)}catch(e){return []}}
   function setTestList(v){localStorage.setItem(PREFIX+'testParticipants',JSON.stringify(v))}
-  function allList(){const map=new Map();realParticipants.forEach(x=>map.set(String(x.room),{room:String(x.room),test:false,source:'server',createdAt:x.createdAt||''}));testList().forEach(x=>{if(!map.has(String(x.room)))map.set(String(x.room),Object.assign({},x,{test:true}))});return Array.from(map.values())}
+  function allList(){const map=new Map();realParticipants.forEach(x=>map.set(String(x.room),{room:String(x.room),name:String(x.name||''),test:false,source:'server',createdAt:x.createdAt||''}));testList().forEach(x=>{if(!map.has(String(x.room)))map.set(String(x.room),Object.assign({},x,{test:true}))});return Array.from(map.values())}
   function device(){try{return JSON.parse(localStorage.getItem(DEVICE_KEY)||'null')}catch(e){return null}}
   function draft(){try{return Object.assign({},PUB,JSON.parse(localStorage.getItem(PREFIX+'publicDraft')||'{}'))}catch(e){return {...PUB}}}
   function collect(){const status=$('active').value;return {status:status,active:status==='active',eventId:PUB.eventId||'movie-ticket-202608',eventTitle:$('eventTitle').value.trim()||'입실자 이벤트',prizeLabel:$('prizeLabel').value.trim()||'이벤트 상품',prizeCount:Math.max(1,parseInt($('prizeCount').value||'1',10)),start:$('startAt').value,end:$('endAt').value,activeMessage:$('activeMessage').value.trim()||'현재 이벤트가 진행 중입니다.',inactiveMessage:$('inactiveMessage').value.trim()||'현재 진행 중인 입실자 이벤트가 없습니다.',closedMessage:$('closedMessage').value.trim()||'응모가 마감되었습니다.',resultFile:'resident-event-result.html'}}
@@ -26,11 +26,11 @@
   async function refreshServerList(){
     if(!window.StayEventApi||!StayEventApi.configured()){realParticipants=[];$('serverStatus').textContent='⚠️ resident-event-api.js에 Google Apps Script 웹 앱 주소를 먼저 입력해 주세요.';render();return}
     $('serverStatus').textContent='서버 응모 명단을 불러오는 중입니다.';
-    try{const data=await StayEventApi.list(PUB.eventId||'movie-ticket-202608',MASTER_PASS);realParticipants=(data.participants||[]).map(x=>({room:String(x.room),test:false,createdAt:x.createdAt||''}));$('serverStatus').textContent='✅ 서버 연결 정상 · 실제 응모 '+realParticipants.length+'명';render()}
+    try{const data=await StayEventApi.list(PUB.eventId||'movie-ticket-202608',MASTER_PASS);realParticipants=(data.participants||[]).map(x=>({room:String(x.room),name:String(x.name||''),test:false,createdAt:x.createdAt||''}));$('serverStatus').textContent='✅ 서버 연결 정상 · 실제 응모 '+realParticipants.length+'명';render()}
     catch(err){realParticipants=[];$('serverStatus').textContent='⚠️ 서버 연결 실패: '+String(err.message||err);render()}
   }
 
-  function render(){const a=allList(),c=collect(),d=device();$('participantCount').textContent=a.length+'명';$('realCount').textContent=realParticipants.length+'명';$('testCount').textContent=testList().length+'명';$('winnerCount').textContent=c.prizeCount+'명';$('participants').innerHTML=a.length?a.map(x=>'<span class="chip">'+x.room+'호'+(x.test?' · 테스트':'')+'</span>').join(''):'<span class="notice">아직 응모자가 없습니다.</span>';$('deviceInfo').textContent=d?('현재 이 기기: '+d.room+'호로 등록됨'):'이 기기에 저장된 입실자 정보가 없습니다.'}
+  function render(){const a=allList(),c=collect(),d=device();$('participantCount').textContent=a.length+'명';$('realCount').textContent=realParticipants.length+'명';$('testCount').textContent=testList().length+'명';$('winnerCount').textContent=c.prizeCount+'명';$('participants').innerHTML=a.length?a.map(x=>'<span class="chip">'+x.room+'호'+(x.name?' · '+x.name:'')+(x.test?' · 테스트':'')+'</span>').join(''):'<span class="notice">아직 응모자가 없습니다.</span>';$('deviceInfo').textContent=d?('현재 이 기기: '+d.room+'호로 등록됨'):'이 기기에 저장된 입실자 정보가 없습니다.'}
 
   $('addRoom').onclick=function(){const r=$('manualRoom').value.trim();if(!/^\d{2,4}$/.test(r)){alert('호실을 확인해 주세요.');return}let a=testList();if(!a.some(x=>x.room===r)&&!realParticipants.some(x=>x.room===r)){a.push({room:r,test:true,source:'director-test',createdAt:new Date().toISOString()});setTestList(a)}$('manualRoom').value='';render()};
   $('clearTestDevice').onclick=function(){const d=device();if(!d){alert('이 기기에 저장된 입실자 등록정보가 없습니다.');return}if(!confirm(d.room+'호 기기 등록정보를 초기화할까요?'))return;localStorage.removeItem(DEVICE_KEY);sessionStorage.removeItem('stayEventRoom');alert('이 기기의 등록정보만 초기화했습니다. 서버 응모 명단은 변경되지 않습니다.');render()};

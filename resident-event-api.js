@@ -27,8 +27,8 @@ window.StayEventApi = (function () {
 
   return {
     configured: configured,
-    apply: function (eventId, room, residentPassword) {
-      return call({ action: 'apply', eventId: eventId, room: room, residentPassword: residentPassword });
+    apply: function (eventId, room, name, residentPassword) {
+      return call({ action: 'apply', eventId: eventId, room: room, name: name, residentPassword: residentPassword });
     },
     list: function (eventId, adminPassword) {
       return call({ action: 'list', eventId: eventId, adminPassword: adminPassword });

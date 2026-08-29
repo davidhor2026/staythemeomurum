@@ -4,12 +4,12 @@
 (function(){
   const RESIDENT_PASS='2026', PREFIX='stayResidentEvent:movie-ticket-202608:';
   const C=Object.assign({active:false,eventId:'movie-ticket-202608',eventTitle:'입실자 이벤트',prizeLabel:'이벤트 상품',prizeCount:2,start:'',end:'',activeMessage:'현재 이벤트가 진행 중입니다.',inactiveMessage:'현재 진행 중인 입실자 이벤트가 없습니다.',closedMessage:'응모가 마감되었습니다.',resultFile:'resident-event-result.html'},window.STAY_EVENT_PUBLIC_CONFIG||{});
-  const room=sessionStorage.getItem('stayEventRoom');
+  const room=sessionStorage.getItem('stayEventRoom'),name=sessionStorage.getItem('stayEventName')||'';
   if(!room){location.replace('resident-event.html');return}
   let device=null;try{device=JSON.parse(localStorage.getItem(PREFIX+'deviceIdentity')||'null')}catch(e){}
-  if(!device||device.room!==room){location.replace('resident-event.html');return}
+  if(!device||device.room!==room){location.replace('resident-event.html');return}const residentName=(name||device.name||'').trim();if(!residentName){location.replace('resident-event.html');return}
   const $=id=>document.getElementById(id);
-  $('identity').textContent=room+'호';$('title').textContent=C.eventTitle;$('prize').textContent=C.prizeLabel;$('count').textContent='당첨 인원 '+C.prizeCount+'명';
+  $('identity').textContent=residentName+'님 · '+room+'호';$('title').textContent=C.eventTitle;$('prize').textContent=C.prizeLabel;$('count').textContent='당첨 인원 '+C.prizeCount+'명';
   function state(){const status=C.status||(C.active?'active':'inactive');if(status==='preparing')return 'preparing';if(status==='testing')return 'testing';const n=new Date(),s=C.start?new Date(C.start):null,e=C.end?new Date(C.end):null;if(status!=='active')return 'inactive';if(s&&n<s)return 'before';if(e&&n>e)return 'closed';return 'open'}
   function render(){const st=state(),s=$('status'),cd=$('countdown'),b=$('apply');if(st==='preparing'){s.textContent='이벤트 준비 중입니다.';cd.textContent='';b.disabled=true;b.style.display='none'}else if(st==='testing'){s.textContent='이벤트 테스트 중입니다. 테스트 응모가 가능합니다.';cd.textContent='테스트 모드';b.disabled=false;b.style.display='block'}else if(st==='inactive'){s.textContent=C.inactiveMessage;cd.textContent='';b.disabled=true;b.style.display='none'}else if(st==='before'){s.textContent=C.activeMessage;cd.textContent='응모 시작 전';b.disabled=true;b.style.display='block'}else if(st==='closed'){s.textContent=C.closedMessage;cd.textContent='응모 마감';b.disabled=true;b.style.display='none'}else{s.textContent=C.activeMessage;const d=new Date(C.end)-new Date(),dd=Math.floor(d/86400000),h=Math.floor(d%86400000/3600000),m=Math.floor(d%3600000/60000);cd.textContent='마감까지 '+(dd?dd+'일 ':'')+h+'시간 '+m+'분';b.disabled=false;b.style.display='block'}}
   $('viewResult').onclick=()=>location.href=(C.resultFile||'resident-event-result.html')+'?v='+Date.now();
@@ -18,8 +18,8 @@
     if(!window.StayEventApi||!StayEventApi.configured()){$('msg').innerHTML='<div class="bad">응모 서버 연결 설정이 아직 완료되지 않았습니다. 원장님께 문의해 주세요.</div>';return}
     const b=$('apply');b.disabled=true;b.textContent='응모 확인 중...';
     try{
-      const data=await StayEventApi.apply(C.eventId||'movie-ticket-202608',room,RESIDENT_PASS);
-      if(data.accepted){$('msg').innerHTML='<div class="ok">🎉 '+room+'호 응모가 완료되었습니다.</div>';b.textContent='응모 완료';b.disabled=true}
+      const data=await StayEventApi.apply(C.eventId||'movie-ticket-202608',room,residentName,RESIDENT_PASS);
+      if(data.accepted){$('msg').innerHTML='<div class="ok">🎉 '+residentName+'님 · '+room+'호 응모가 완료되었습니다.</div>';b.textContent='응모 완료';b.disabled=true}
       else{$('msg').innerHTML='<div class="bad">'+(data.message||room+'호는 이미 응모했습니다.')+'</div>';b.textContent='이미 응모됨';b.disabled=true}
     }catch(err){$('msg').innerHTML='<div class="bad">응모 서버 연결에 실패했습니다.<br>'+String(err.message||err)+'</div>';b.textContent='다시 시도하기';b.disabled=false}
   };
