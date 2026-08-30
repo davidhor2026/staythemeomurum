@@ -43,8 +43,7 @@
 .police-passers-dynamic .police-passer-name{white-space:nowrap}
 .police-passers-dynamic .police-passer-name:not(:last-child)::after{content:' ·';margin-left:12px}
 @media(max-width:560px){
-  /* 모바일: 방문현황과 합격 축하 배너 사이 여백만 축소 */
-  .police-congrats-image-section{margin-top:5px;padding:7px 10px 6px}
+  .police-congrats-image-section{padding:14px 10px 6px}
   .police-congrats-image-wrap{border-radius:16px}
   .police-passers-dynamic{left:27%;right:27%;top:79%;height:12.7%;padding:2px 5px;gap:0 5px;font-size:clamp(9px,2.6vw,13px);line-height:1.08}
   .police-passers-dynamic .police-passer-name:not(:last-child)::after{margin-left:4px}
@@ -155,6 +154,35 @@
 </style>
 </style>
 
+
+<style id="mobile-hero-final-fit-20260830">
+/* 모바일 최종 조정: 좌우 꽉 채우고 상단 간판 유지, 캐릭터 하단만 더 줄임 */
+@media (max-width:700px){
+  .home-header .hero-image{
+    width:100% !important;
+    height:70vw !important;
+    max-height:70vw !important;
+    object-fit:cover !important;
+    object-position:center top !important;
+    margin:0 !important;
+    display:block !important;
+  }
+  .hero-vacancy-board.hero-vacancy-board--toggle{bottom:18px !important;}
+  .hero-notice-board.hero-notice-board--toggle{bottom:18px !important;}
+  .police-congrats-image-section{
+    margin-top:2px !important;
+    margin-bottom:8px !important;
+    padding-top:4px !important;
+  }
+}
+@media (max-width:430px){
+  .home-header .hero-image{
+    height:69vw !important;
+    max-height:69vw !important;
+  }
+  .police-congrats-image-section{margin-top:0 !important;padding-top:3px !important;}
+}
+</style>
 </head>
 <body>
 <header class="home-header">
