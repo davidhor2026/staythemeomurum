@@ -43,7 +43,8 @@
 .police-passers-dynamic .police-passer-name{white-space:nowrap}
 .police-passers-dynamic .police-passer-name:not(:last-child)::after{content:' ·';margin-left:12px}
 @media(max-width:560px){
-  .police-congrats-image-section{padding:14px 10px 6px}
+  /* 모바일: 방문현황과 합격 축하 배너 사이 여백만 축소 */
+  .police-congrats-image-section{margin-top:5px;padding:7px 10px 6px}
   .police-congrats-image-wrap{border-radius:16px}
   .police-passers-dynamic{left:27%;right:27%;top:79%;height:12.7%;padding:2px 5px;gap:0 5px;font-size:clamp(9px,2.6vw,13px);line-height:1.08}
   .police-passers-dynamic .police-passer-name:not(:last-child)::after{margin-left:4px}
