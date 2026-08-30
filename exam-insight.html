@@ -445,11 +445,12 @@
 .cutline-region-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;margin-bottom:10px}.cutline-region-head h3{margin:0;font-size:1.05rem;color:#1f4936}.cutline-region-head p{margin:3px 0 0;font-size:.8rem;color:#66736d}.cutline-region-year{font-size:.72rem;font-weight:800;color:#2d6a4b;background:#eef7f2;border-radius:999px;padding:5px 9px;white-space:nowrap}
 .cutline-region-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}.region-gap-card{border:1px solid #e1e9e5;border-radius:13px;background:#fbfdfc;padding:12px}.region-gap-card h4{margin:0 0 8px;font-size:.9rem;color:#263c31}.region-gap-metric{display:flex;align-items:baseline;gap:5px;margin-bottom:7px}.region-gap-metric strong{font-size:1.28rem;color:#174e35}.region-gap-metric span{font-size:.72rem;color:#6d7772}.region-gap-range{font-size:.75rem;line-height:1.5;color:#53615a}.region-gap-card details{margin-top:8px;padding-top:8px;border-top:1px dashed #dce5e0}.region-gap-card summary{cursor:pointer;font-size:.75rem;font-weight:800;color:#2c6348}.region-gap-card details p{margin:7px 0 0;font-size:.72rem;line-height:1.55;color:#59675f}.region-gap-card a{color:#315f4a}.cutline-region-note{margin:10px 0 0;padding:10px 11px;border-radius:10px;background:#fff9ef;border:1px solid #eee0c7;font-size:.74rem;line-height:1.55;color:#655744}
 .cutline-guide{display:flex;flex-wrap:wrap;gap:7px;margin:13px 0 0}.cutline-guide a{padding:7px 10px;border-radius:9px;background:#eef4f1;color:#315d49;text-decoration:none;font-size:.76rem;font-weight:800}.cutline-guide a:first-child{background:#2f6a4d;color:#fff}
+.regional-status-banner{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:10px 0 12px;padding:10px 12px;border-radius:12px;background:#f4f8f6;border:1px solid #dfe8e3;font-size:.75rem;color:#4d5f55}.regional-status-banner strong{color:#194d35}.regional-status-banner span{padding:4px 7px;border-radius:7px;background:#fff}.regional-status-banner .is-prediction{background:#fff7e8;color:#7b5a17}.cutline-region-grid--yearly{align-items:stretch}.region-gap-card--yearly{display:flex;flex-direction:column}.region-card-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:9px}.region-card-head h4{margin:0}.region-card-head>span{font-size:.68rem;font-weight:800;color:#65736b;background:#eef3f0;border-radius:999px;padding:4px 7px;white-space:nowrap}.region-year-row{display:grid;grid-template-columns:46px 1fr;gap:8px;padding:9px 0;border-top:1px solid #edf1ef}.region-year-row:first-of-type{border-top:0}.region-year-row>b{align-self:start;display:inline-flex;justify-content:center;padding:5px 4px;border-radius:8px;background:#eef3f0;color:#416151;font-size:.72rem}.region-year-row>div strong{display:block;font-size:.84rem;color:#274737}.region-year-row>div span{display:block;margin-top:3px;font-size:.7rem;line-height:1.45;color:#66736d}.region-year-row.is-latest{margin:0 -5px;padding:9px 5px;border-radius:10px;background:#f1f8f4}.region-year-row.is-latest>b{background:#2f6a4d;color:#fff}.region-year-row.is-prediction{background:#fff8eb}.region-year-row.is-prediction>b{background:#9a6a18}.region-year-row.is-prediction>div strong{color:#765014}.region-gap-card--yearly details{margin-top:auto}.region-gap-card--police{border-color:#eadfca}.region-gap-card--police .region-card-head>span{background:#fff5e3;color:#815b1d}@media(max-width:520px){.regional-status-banner{align-items:flex-start}.regional-status-banner span{width:100%}.region-year-row{grid-template-columns:42px 1fr}.region-year-row>div strong{font-size:.8rem}}
 @media(max-width:900px){.cutline-region-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.cutline-region-head{align-items:flex-start;flex-direction:column}.cutline-region-grid{grid-template-columns:1fr}.region-gap-card{padding:11px}.cutline-guide a{flex:1 1 44%;text-align:center}}
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","name":"2026 공무원 시험분석·합격선","description":"서울교육청 9급 교육행정 최종합격 결과와 주요 공무원·임용시험 합격선, 경쟁률, 시험일정을 최신순으로 제공","dateModified":"2026-08-27","publisher":{"@type":"Organization","name":"스테이The머무름"},"mainEntityOfPage":"https://davidhor2026.github.io/staythemeomurum/exam-insight.html"}
+{"@context":"https://schema.org","@type":"WebPage","name":"2026 공무원 시험분석·합격선","description":"서울교육청 9급 교육행정 최종합격 결과와 주요 공무원·임용시험 합격선, 경쟁률, 시험일정을 최신순으로 제공","dateModified":"2026-08-30","publisher":{"@type":"Organization","name":"스테이The머무름"},"mainEntityOfPage":"https://davidhor2026.github.io/staythemeomurum/exam-insight.html"}
 </script>
 </head>
 <body>
@@ -537,34 +538,52 @@
 
   <div class="cutline-region-panel" id="regional-cutline-gap">
     <div class="cutline-region-head">
-      <div><h3>지역별 합격선은 얼마나 차이 날까?</h3><p>지역 선발 시험은 대표점수 하나보다 최고·최저 범위를 함께 보는 것이 정확합니다.</p></div>
-      <span class="cutline-region-year">2025 일반전형 사례</span>
+      <div><h3>지역별 합격선 · 2024~2026 비교</h3><p>최신 연도를 먼저 보여주고, 2025·2024는 같은 직렬의 비교자료로 이어서 확인할 수 있게 정리했습니다.</p></div>
+      <span class="cutline-region-year">최신 2026 · 과거 2개년 비교</span>
     </div>
-    <div class="cutline-region-grid">
-      <article class="region-gap-card">
-        <h4>지방직 9급 · 일반행정</h4><div class="region-gap-metric"><strong>19.6점</strong><span>지역 차이</span></div>
-        <div class="region-gap-range">최고 대구·부산 92점<br>최저 강원 72.4점</div>
-        <details><summary>자세히 보기</summary><p>서울 88점, 울산 90점, 광주 89.5점 등으로 지역별 선발인원·지원자 구성에 따라 차이가 큽니다. <a href="https://sg-gong.conects.com/exam_info/bbs/view_m/exam_info_strategy?document_idx=3045651" target="_blank" rel="noopener">자료 확인</a></p></details>
-      </article>
-      <article class="region-gap-card">
-        <h4>교육청 9급 · 교육행정</h4><div class="region-gap-metric"><strong>13점</strong><span>지역 차이</span></div>
-        <div class="region-gap-range">최고 서울·전북 95점<br>최저 전남 82점</div>
-        <details><summary>자세히 보기</summary><p>같은 교육행정이라도 시·도교육청별 모집 규모와 경쟁률에 따라 합격선 차이가 나타납니다. <a href="https://sg-gong.conects.com/exam_info/bbs/view_m/exam_info_strategy?document_idx=3045651" target="_blank" rel="noopener">자료 확인</a></p></details>
-      </article>
-      <article class="region-gap-card">
-        <h4>경찰 순경 · 2차</h4><div class="region-gap-metric"><strong>25점</strong><span>남·여 각각 최대 차이</span></div>
-        <div class="region-gap-range">남: 경남 197.5 ↔ 광주 172.5<br>여: 대전 227.5 ↔ 강원 202.5 <small>(250점 만점)</small></div>
-        <details><summary>자세히 보기</summary><p>서울 남 190·여 222.5, 경기남부 남 190·여 220 등 지역청별 차이가 뚜렷합니다. 2026년부터는 선발체계 변화도 함께 확인해야 합니다. <a href="https://gosiplan.tistory.com/1141" target="_blank" rel="noopener">자료 확인</a></p></details>
-      </article>
-      <article class="region-gap-card">
-        <h4>소방 공채</h4><div class="region-gap-metric"><strong>남 24 · 여 60점</strong><span>지역 차이</span></div>
-        <div class="region-gap-range">남: 경북 244 ↔ 세종 220<br>여: 전북 248 ↔ 세종 188 <small>(300점 만점)</small></div>
-        <details><summary>자세히 보기</summary><p>2025년 여성 공채는 광주 미선발입니다. 소방은 지역별 선발인원과 성별 모집에 따라 편차가 특히 크게 나타날 수 있습니다. <a href="https://sobang.conects.com/exam_info/bbs/view/exam_info_strategy/page/1/3037488?biz_code=SOBANG" target="_blank" rel="noopener">자료 확인</a></p></details>
-      </article>
-    </div>
-    <p class="cutline-region-note"><strong>읽는 법:</strong> 위 숫자는 ‘전국 대표 커트라인’이 아니라 2025년 지역별 공식·집계 합격선의 최고·최저 사례입니다. 지원 판단에서는 반드시 같은 연도·같은 직렬·같은 모집구분·같은 지역끼리 비교하세요.</p>
-  </div>
 
+    <div class="regional-status-banner">
+      <strong>2026 자료 상태</strong>
+      <span>지방직 일반행정 · 교육청 교육행정 · 소방 공채는 2026 필기합격선 반영</span>
+      <span class="is-prediction">경찰 2차는 공식 지역별 합격선 미발표 → 학원 1배수 예측을 별도 표시</span>
+    </div>
+
+    <div class="cutline-region-grid cutline-region-grid--yearly">
+      <article class="region-gap-card region-gap-card--yearly">
+        <div class="region-card-head"><h4>지방직 9급 · 일반행정</h4><span>일반모집</span></div>
+        <div class="region-year-row is-latest"><b>2026</b><div><strong>26점 차이</strong><span>최고 세종 92 ↔ 최저 인천 66</span></div></div>
+        <div class="region-year-row"><b>2025</b><div><strong>19.6점 차이</strong><span>최고 부산·대구 92 ↔ 최저 강원 72.4</span></div></div>
+        <div class="region-year-row"><b>2024</b><div><strong>최고 90 · 최저 66</strong><span>광역시 최고 대구·광주 90 / 분할모집 확인 최저 전남 구례 66</span></div></div>
+        <details><summary>자료 기준 · 출처</summary><p>2026 공단기 지역별 분석에서 일반행정 최고 세종 92점, 최저 인천 66점으로 집계됐습니다. 2024는 광역시 일괄모집과 분할모집이 섞여 있어 모집단위를 함께 표기했습니다. <a href="https://gong.conects.com/exam_info/bbs/view/exam_info_strategy/page/1/3375964?biz_code=GONG" target="_blank" rel="noopener">2026 분석</a> · <a href="https://gong.conects.com/exam_info/exam-results?biz_code=GONG&year=2024" target="_blank" rel="noopener">2024 결과</a></p></details>
+      </article>
+
+      <article class="region-gap-card region-gap-card--yearly">
+        <div class="region-card-head"><h4>교육청 9급 · 교육행정</h4><span>일반모집</span></div>
+        <div class="region-year-row is-latest"><b>2026</b><div><strong>13점 차이</strong><span>최고 울산 96 ↔ 최저 충남·전남 83</span></div></div>
+        <div class="region-year-row"><b>2025</b><div><strong>13점 차이</strong><span>최고 서울·전북 95 ↔ 최저 전남 82</span></div></div>
+        <div class="region-year-row"><b>2024</b><div><strong>11점 차이</strong><span>최고 전북 91 ↔ 최저 충남 2권역 80</span></div></div>
+        <details><summary>자료 기준 · 출처</summary><p>2024·2025의 500점 만점 표기는 비교가 쉽도록 5로 나눈 100점 환산값으로 표시했습니다. 2026은 울산 96점이 최고, 충남·전남 83점이 최저입니다. <a href="https://gosi.moamoang.co.kr/guide/9geup-education-admin-cutoff/" target="_blank" rel="noopener">2026 지역별</a> · <a href="https://lab.megagong.net/l/gong/statistic/pass.asp?exam_gbn=9&exam_gbn_2=3" target="_blank" rel="noopener">2025·2024 비교</a></p></details>
+      </article>
+
+      <article class="region-gap-card region-gap-card--yearly region-gap-card--police">
+        <div class="region-card-head"><h4>경찰 순경 · 2차</h4><span>250점 만점</span></div>
+        <div class="region-year-row is-latest is-prediction"><b>2026</b><div><strong>공식 합격선 미발표</strong><span>해커스 주요지역 1배수 예측: 부산 197.5 · 경남 195 · 서울 192.5 · 경기남부/경북 190</span></div></div>
+        <div class="region-year-row"><b>2025</b><div><strong>남·여 모두 최대 25점 차이</strong><span>남 경남 197.5 ↔ 광주 172.5 / 여 대전 227.5 ↔ 강원 202.5</span></div></div>
+        <div class="region-year-row"><b>2024</b><div><strong>남 27.5 · 여 12.5점 차이</strong><span>남 부산 182.5 ↔ 세종 155 / 여 부산·대구·광주·대전 205 ↔ 세종 192.5</span></div></div>
+        <details><summary>자료 기준 · 출처</summary><p><strong>2026 숫자는 공식 필기합격선이 아니라 학원 참여자 기반 1배수 예측치</strong>입니다. 2025·2024는 발표된 지역별 필기합격선입니다. 2026년부터 남녀 통합선발이므로 이전 성별 분리선발과 단순 비교하지 마세요. <a href="https://gyung.conects.com/exam_info/bbs/view_m/exam_info_strategy?document_idx=3357303" target="_blank" rel="noopener">2025 공식 분석</a> · <a href="https://www.lec.co.kr/news/articleView.html?idxno=749142" target="_blank" rel="noopener">2024 합격선</a></p></details>
+      </article>
+
+      <article class="region-gap-card region-gap-card--yearly">
+        <div class="region-card-head"><h4>소방 공채</h4><span>300점 만점</span></div>
+        <div class="region-year-row is-latest"><b>2026</b><div><strong>남 24 · 여 60점 차이</strong><span>남 대구 204 ↔ 다수 지역 180 / 여 광주 240 ↔ 충북 180</span></div></div>
+        <div class="region-year-row"><b>2025</b><div><strong>남 24 · 여 60점 차이</strong><span>남 경북 244 ↔ 세종 220 / 여 전북 248 ↔ 세종 188</span></div></div>
+        <div class="region-year-row"><b>2024</b><div><strong>남 20 · 여 36점 차이</strong><span>남 최고 280 ↔ 최저 260 / 여 서울·경기 288 ↔ 충북 252</span></div></div>
+        <details><summary>자료 기준 · 출처</summary><p>소방은 지역과 성별 모집단위를 반드시 맞춰 비교해야 합니다. 2024년 여자는 세종 미선발, 2025년 여자는 광주 미선발입니다. <a href="https://gosi.moamoang.co.kr/fire/" target="_blank" rel="noopener">2026 지역별</a> · <a href="https://sobang.megagong.net/l/sobang/statistic/pass.asp" target="_blank" rel="noopener">2025·2024 비교</a></p></details>
+      </article>
+    </div>
+
+    <p class="cutline-region-note"><strong>읽는 법:</strong> 각 연도는 같은 시험·직렬 안에서 지역별 최고와 최저를 비교한 값입니다. <strong>2026 경찰 2차만 예측자료</strong>이고 나머지 2026 지방직·교육청·소방과 2025·2024 자료는 발표된 합격선 기준입니다. 지역 내 시·군·구 분할모집이 있는 지방직은 모집단위에 따라 더 큰 차이가 날 수 있습니다.</p>
+  </div>
   <details class="cutline-more"><summary>왜 지방직 · 교육청 · 경찰 · 소방은 3개년 한 줄 점수로 표시하지 않나요?</summary><p>이 시험들은 지역·성별·모집구분에 따라 합격선이 크게 달라 하나의 대표점수로 묶으면 실제 지원 판단에 오해가 생길 수 있습니다. 그래서 전국 단위로 동일 모집을 비교할 수 있는 시험은 3개년 점수로, 지역 선발 시험은 지역 간 편차와 상세분석으로 분리했습니다.</p></details>
   <div class="cutline-links"><a href="#deep-national9">국가직 9급 분석</a><a href="#deep-local9">지방직 9급 분석</a><a href="#police-2026-2nd-review">경찰 분석</a><a href="#deep-fire">소방 분석</a><a href="#court-data-center">법원직 분석</a></div>
 </section>
