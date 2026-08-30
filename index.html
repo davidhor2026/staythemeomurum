@@ -49,6 +49,57 @@
   .police-passers-dynamic .police-passer-name:not(:last-child)::after{margin-left:4px}
 }
 
+
+/* 경찰 필기 합격 축하 배너: 접속 시 3초간 은은한 축하 효과 */
+.police-congrats-image-wrap{
+  isolation:isolate;
+  transform-origin:center center;
+}
+.police-congrats-image-wrap.police-congrats-enter{
+  animation:policeCongratsEnter 1.05s cubic-bezier(.2,.8,.2,1) both,
+            policeCongratsBorderGlow 1.35s ease-out .18s 2;
+}
+.police-congrats-confetti{
+  position:absolute;
+  inset:0;
+  z-index:4;
+  overflow:hidden;
+  pointer-events:none;
+  border-radius:inherit;
+}
+.police-confetti-piece{
+  position:absolute;
+  top:-12%;
+  width:7px;
+  height:11px;
+  border-radius:1px;
+  opacity:0;
+  background:var(--confetti-color,#f2d77b);
+  transform:translate3d(0,-20px,0) rotate(0deg);
+  animation:policeConfettiFall var(--fall-duration,2.6s) ease-in var(--fall-delay,0s) forwards;
+}
+@keyframes policeCongratsEnter{
+  0%{opacity:.84;transform:scale(.97)}
+  70%{opacity:1;transform:scale(1.006)}
+  100%{opacity:1;transform:scale(1)}
+}
+@keyframes policeCongratsBorderGlow{
+  0%,100%{box-shadow:0 10px 30px rgba(24,39,75,.18),0 0 0 0 rgba(237,196,85,0)}
+  50%{box-shadow:0 12px 32px rgba(24,39,75,.2),0 0 0 3px rgba(237,196,85,.22),0 0 18px rgba(237,196,85,.22)}
+}
+@keyframes policeConfettiFall{
+  0%{opacity:0;transform:translate3d(0,-20px,0) rotate(0deg)}
+  10%{opacity:.9}
+  100%{opacity:0;transform:translate3d(var(--drift,18px),115%,0) rotate(var(--spin,240deg))}
+}
+@media(max-width:560px){
+  .police-confetti-piece{width:5px;height:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  .police-congrats-image-wrap.police-congrats-enter{animation:none}
+  .police-confetti-piece{display:none}
+}
+
 </style>
 
 <style id="hero-vacancy-sync-style-20260822">
@@ -129,9 +180,10 @@
 <span id="visitorCountText" hidden>오늘 <strong id="visitorToday">-</strong>명<span class="visitor-sep">·</span> 누적 <strong id="visitorTotal">-</strong>명</span>
 </div>
 <section aria-label="경찰 필기시험 합격 축하 안내" class="congrats-banner-section police-congrats-image-section">
-  <div class="police-congrats-image-wrap">
+  <div class="police-congrats-image-wrap" id="policeCongratsWrap" role="button" tabindex="0" aria-label="2026 경찰 필기시험 합격 축하 배너. 누르면 축하 효과를 다시 볼 수 있습니다.">
     <img src="police-written-pass-banner-2026-v3.png" alt="2026 경찰공무원 채용시험 필기시험 합격 축하 배너"/>
     <div class="police-passers-dynamic" id="policePassersDynamic" aria-label="경찰 필기 합격자 명단"></div>
+    <div class="police-congrats-confetti" id="policeCongratsConfetti" aria-hidden="true"></div>
   </div>
 </section>
 <script>
@@ -150,6 +202,43 @@
     span.className='police-passer-name';
     span.textContent=String(name);
     wrap.appendChild(span);
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var wrap=document.getElementById('policeCongratsWrap');
+  var layer=document.getElementById('policeCongratsConfetti');
+  if(!wrap || !layer) return;
+  var reduceMotion=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var colors=['#f2d77b','#fff4cf','#e8c55d','#fffdf4'];
+
+  function celebrate(){
+    if(reduceMotion) return;
+    layer.innerHTML='';
+    wrap.classList.remove('police-congrats-enter');
+    void wrap.offsetWidth;
+    wrap.classList.add('police-congrats-enter');
+
+    for(var i=0;i<14;i++){
+      var piece=document.createElement('span');
+      piece.className='police-confetti-piece';
+      piece.style.left=(5+Math.random()*90)+'%';
+      piece.style.setProperty('--confetti-color',colors[i%colors.length]);
+      piece.style.setProperty('--fall-delay',(Math.random()*.65).toFixed(2)+'s');
+      piece.style.setProperty('--fall-duration',(2.15+Math.random()*.85).toFixed(2)+'s');
+      piece.style.setProperty('--drift',(-25+Math.random()*50).toFixed(0)+'px');
+      piece.style.setProperty('--spin',((Math.random()>.5?1:-1)*(160+Math.random()*260)).toFixed(0)+'deg');
+      layer.appendChild(piece);
+    }
+    window.setTimeout(function(){ layer.innerHTML=''; wrap.classList.remove('police-congrats-enter'); },3300);
+  }
+
+  window.setTimeout(celebrate,180);
+  wrap.addEventListener('click',celebrate);
+  wrap.addEventListener('keydown',function(e){
+    if(e.key==='Enter' || e.key===' '){e.preventDefault();celebrate();}
   });
 })();
 </script>
