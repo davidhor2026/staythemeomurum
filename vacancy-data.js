@@ -40,7 +40,7 @@ const VACANCY_MANAGER = {
     fullLabel: "현재 만실",
     unknown: {
       month: "2026-09",
-      label: "9월 중",
+      label: "10월 중",
       note: "공실 여부 문의"
     }
   },
