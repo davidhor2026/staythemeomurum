@@ -39,15 +39,14 @@
 .police-congrats-image-section{padding:22px 16px 10px}
 .police-congrats-image-wrap{position:relative;max-width:1080px;margin:0 auto;border-radius:24px;overflow:hidden;box-shadow:0 10px 30px rgba(24,39,75,.18)}
 .police-congrats-image-wrap img{display:block;width:100%;height:auto}
-.police-passers-box{position:absolute;left:50%;bottom:4.5%;transform:translateX(-50%);width:min(58%,680px);box-sizing:border-box;padding:10px 18px 12px;border:2px solid rgba(235,199,96,.95);border-radius:16px;background:rgba(5,35,86,.92);text-align:center;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.2)}
-.police-passers-label{display:block;margin-bottom:4px;color:#f7d76e;font-size:clamp(12px,2vw,18px);font-weight:800}
-.police-passers-box strong{font-size:clamp(16px,3vw,28px);letter-spacing:.04em}
+.police-passers-dynamic{position:absolute;left:27.1%;right:27.1%;top:79.0%;height:12.5%;box-sizing:border-box;padding:4px 14px;display:flex;align-items:center;align-content:center;justify-content:center;flex-wrap:wrap;gap:2px 14px;background:linear-gradient(90deg,rgba(255,248,222,.99),rgba(255,242,194,.99),rgba(255,248,222,.99));color:#082b69;font-size:clamp(15px,2.15vw,29px);font-weight:900;letter-spacing:.02em;line-height:1.18;text-align:center;text-shadow:0 1px 0 rgba(255,255,255,.8)}
+.police-passers-dynamic .police-passer-name{white-space:nowrap}
+.police-passers-dynamic .police-passer-name:not(:last-child)::after{content:' ·';margin-left:12px}
 @media(max-width:560px){
   .police-congrats-image-section{padding:14px 10px 6px}
   .police-congrats-image-wrap{border-radius:16px}
-  .police-passers-box{bottom:3.5%;width:68%;padding:7px 10px 8px;border-radius:12px}
-  .police-passers-label{font-size:11px}
-  .police-passers-box strong{font-size:15px}
+  .police-passers-dynamic{left:27%;right:27%;top:79%;height:12.7%;padding:2px 5px;gap:0 5px;font-size:clamp(9px,2.6vw,13px);line-height:1.08}
+  .police-passers-dynamic .police-passer-name:not(:last-child)::after{margin-left:4px}
 }
 
 </style>
@@ -132,8 +131,28 @@
 <section aria-label="경찰 필기시험 합격 축하 안내" class="congrats-banner-section police-congrats-image-section">
   <div class="police-congrats-image-wrap">
     <img src="police-written-pass-banner-2026-v3.png" alt="2026 경찰공무원 채용시험 필기시험 합격 축하 배너"/>
-</div>
+    <div class="police-passers-dynamic" id="policePassersDynamic" aria-label="경찰 필기 합격자 명단"></div>
+  </div>
 </section>
+<script>
+  document.write('<script src="police-passers.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
+<script>
+(function(){
+  var wrap=document.getElementById('policePassersDynamic');
+  if(!wrap) return;
+  var names=(window.STAY_POLICE_PASSERS && Array.isArray(window.STAY_POLICE_PASSERS.names))
+    ? window.STAY_POLICE_PASSERS.names
+    : ['박O영','장O보','이O름','조O서'];
+  wrap.innerHTML='';
+  names.forEach(function(name){
+    var span=document.createElement('span');
+    span.className='police-passer-name';
+    span.textContent=String(name);
+    wrap.appendChild(span);
+  });
+})();
+</script>
 <section aria-labelledby="examHomeTitle" class="exam-home-widget exam-home-widget--collapsible" id="exam-home">
 <button aria-controls="examHomeContent" aria-expanded="false" class="exam-home-toggle" id="examHomeToggle" type="button">
 <span class="exam-home-toggle-copy">
