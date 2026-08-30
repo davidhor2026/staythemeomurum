@@ -126,6 +126,32 @@
     line-height:1.7;
   }
 }
+
+<style id="mobile-hero-bottom-trim-20260830">
+/* 모바일: 간판/상단은 유지하고 캐릭터 하단만 소폭 잘라 전체 높이 축소 */
+@media (max-width:700px){
+  .home-header .hero-image{
+    width:92%;
+    height:84vw;
+    max-height:84vw;
+    object-fit:cover;
+    object-position:center top;
+    margin:0 auto;
+    display:block;
+  }
+  /* 공실현황/공지사항 탭을 기존보다 조금 위로 */
+  .hero-vacancy-board.hero-vacancy-board--toggle{bottom:26px !important;}
+  .hero-notice-board.hero-notice-board--toggle{bottom:26px !important;}
+}
+@media (max-width:430px){
+  .home-header .hero-image{
+    height:83vw;
+    max-height:83vw;
+  }
+  .hero-vacancy-board.hero-vacancy-board--toggle{bottom:24px !important;}
+  .hero-notice-board.hero-notice-board--toggle{bottom:24px !important;}
+}
+</style>
 </style>
 
 </head>
