@@ -28,7 +28,7 @@ const VACANCY_MANAGER = {
       /* 새 날짜 예: ,"2026-10-05" */
     ],
     reservable: true,
-    fullLabel: "8월 만실",
+    fullLabel: "예약 가능",
     unknown: null
   },
 
