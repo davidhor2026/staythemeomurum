@@ -489,7 +489,10 @@
   </div>
 
   <div class="compact-analysis-grid">
-    <a class="compact-analysis-item is-latest" href="#police-2026-2nd-review">
+    <a class="compact-analysis-item is-latest" href="#exam-card-labor">
+      <span>8.29~30</span><strong>공인노무사 2차</strong><small>최신 시험분석</small>
+    </a>
+    <a class="compact-analysis-item" href="#police-2026-2nd-review">
       <span>8.22</span><strong>경찰 2차</strong><small>최신 총평</small>
     </a>
     <a class="compact-analysis-item" href="#national7-deep-update">
@@ -1385,6 +1388,8 @@
   }).join('');
   function openCard(id){var card=document.getElementById(id);if(!card)return;var detail=card.querySelector('.exam-category-detail');var btn=card.querySelector('.exam-detail-toggle');if(detail&&!detail.classList.contains('is-open')){detail.classList.add('is-open');if(btn){btn.setAttribute('aria-expanded','true');btn.textContent='닫기';}}card.scrollIntoView({behavior:'smooth',block:'start'});}
   nav.addEventListener('click',function(e){var b=e.target.closest?e.target.closest('a[data-target]'):null;if(!b)return;e.preventDefault();var target=b.getAttribute('data-target');openCard(target);if(history.replaceState)history.replaceState(null,'','#'+target);else location.hash=target;});
+  var compactGrid=document.querySelector('.compact-analysis-grid');
+  if(compactGrid){compactGrid.addEventListener('click',function(e){var a=e.target.closest?e.target.closest('a[href^="#exam-card-"]'):null;if(!a)return;e.preventDefault();var target=a.getAttribute('href').slice(1);openCard(target);if(history.replaceState)history.replaceState(null,'','#'+target);else location.hash=target;});}
   if(location.hash&&location.hash.indexOf('#exam-card-')===0){setTimeout(function(){openCard(location.hash.slice(1));},0);}
   cards.addEventListener('click',function(e){var b=e.target.closest('.exam-detail-toggle');if(!b)return;var card=b.closest('.exam-category-card');var detail=card.querySelector('.exam-category-detail');var open=detail.classList.toggle('is-open');b.setAttribute('aria-expanded',String(open));b.textContent=open?'닫기':'상세 분석 펼치기';});
 })();
