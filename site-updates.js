@@ -17,7 +17,7 @@ window.SITE_UPDATES = {
     'psat-ncs-quiz.html': { key: 'psatNcsQuiz', updated: '2026-07-15' },
     'korean-history-advanced-quiz.html': { key: 'historyQuiz', updated: '2026-07-15' },
     'foreign-service-interview-quiz.html': { key: 'foreignInterviewQuiz', updated: '2026-07-15' },
-    'exam-insight.html': { key: 'examInsight', updated: '2026-08-26' },
+    'exam-insight.html': { key: 'examInsight', updated: '2026-08-31', expires: '2026-09-07' },
     'exam-schedule.html': { key: 'examSchedule', updated: '2026-08-19' },
     'games.html': { key: 'games', updated: '' },
     'fortune.html': { key: 'fortune', updated: '' },
