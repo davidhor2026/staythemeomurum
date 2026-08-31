@@ -452,6 +452,15 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebPage","name":"2026 공무원 시험분석·합격선","description":"서울교육청 9급 교육행정 최종합격 결과와 주요 공무원·임용시험 합격선, 경쟁률, 시험일정을 최신순으로 제공","dateModified":"2026-08-30","publisher":{"@type":"Organization","name":"스테이The머무름"},"mainEntityOfPage":"https://davidhor2026.github.io/staythemeomurum/exam-insight.html"}
 </script>
+
+<style>
+.deep-analysis-section{scroll-margin-top:90px;margin:28px auto;padding:20px;border:1px solid #e5e7eb;border-radius:18px;background:#fff}
+.deep-analysis-head{margin-bottom:14px}.deep-analysis-head h2{margin:4px 0 8px}.deep-analysis-head p{margin:0;color:#555}
+.deep-analysis-kicker{display:inline-block;font-size:.8rem;font-weight:700;padding:4px 8px;border-radius:999px;background:#f3f4f6}
+.deep-analysis-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.deep-analysis-card{padding:14px;border:1px solid #eceff3;border-radius:14px;background:#fafafa}.deep-analysis-card h3{margin:0 0 8px}.deep-analysis-card p{margin:0;line-height:1.65}
+@media(max-width:760px){.deep-analysis-grid{grid-template-columns:1fr}}
+</style>
+
 </head>
 <body>
 <header class="sub-header sub-header--exam-insight">
@@ -489,10 +498,7 @@
   </div>
 
   <div class="compact-analysis-grid">
-    <a class="compact-analysis-item is-latest" href="#exam-card-labor">
-      <span>8.29~30</span><strong>공인노무사 2차</strong><small>최신 시험분석</small>
-    </a>
-    <a class="compact-analysis-item" href="#police-2026-2nd-review">
+    <a class="compact-analysis-item is-latest" href="#police-2026-2nd-review">
       <span>8.22</span><strong>경찰 2차</strong><small>최신 총평</small>
     </a>
     <a class="compact-analysis-item" href="#national7-deep-update">
@@ -1277,6 +1283,49 @@
 <li><a href="https://www.lec.co.kr/news/articleView.html?idxno=751807" rel="noopener" target="_blank">법률저널 2026 법원직 경쟁률·선발인원 분석</a></li>
 </ul>
 </section>
+
+
+<section class="deep-analysis-section" id="labor-2026-2nd-review">
+  <div class="deep-analysis-head">
+    <span class="deep-analysis-kicker">공인노무사 2차 총평</span>
+    <h2>2026 제35회 공인노무사 2차 시험 총평</h2>
+    <p>8월 29~30일 실시된 제35회 공인노무사 2차 시험의 출제경향을 시험 직후 공개된 전문강사 총평을 바탕으로 정리했습니다.</p>
+  </div>
+  <div class="deep-analysis-grid">
+    <article class="deep-analysis-card">
+      <h3>노동법</h3>
+      <p>근로자성, 임금 직접지급 원칙, 사업부 폐지와 해고, 공정대표의무 등 최근 중요 판례와 핵심 쟁점을 사례에 적용하는 능력이 중요했다는 평가가 나왔습니다.</p>
+    </article>
+    <article class="deep-analysis-card">
+      <h3>민사소송법</h3>
+      <p>소송계속 중 당사자 사망과 상속인의 지위 등 주요 쟁점을 중심으로 답안 구조와 논점 누락 여부가 중요했다는 분석이 공개됐습니다.</p>
+    </article>
+    <article class="deep-analysis-card">
+      <h3>현재 판단</h3>
+      <p>전체 체감난도는 응시생 조사와 다른 과목 총평이 더 축적된 뒤 판단하는 것이 적절해, 현재는 과목별 출제경향 중심으로 정리합니다.</p>
+    </article>
+  </div>
+</section>
+
+
+<section class="deep-analysis-section" id="teacher-analysis">
+  <div class="deep-analysis-head">
+    <span class="deep-analysis-kicker">초등·중등 임용 분석</span>
+    <h2>교원임용 시험분석 핵심</h2>
+    <p>교원임용은 지역·교과별 선발인원과 경쟁률 차이가 커 평균 수치보다 지원 지역과 전공별 데이터를 기준으로 보는 것이 중요합니다.</p>
+  </div>
+  <div class="deep-analysis-grid">
+    <article class="deep-analysis-card">
+      <h3>1차</h3>
+      <p>교육학은 논리적 답안 구조, 전공은 최근 기출의 단원별 재구성과 출제의도 분석이 핵심입니다.</p>
+    </article>
+    <article class="deep-analysis-card">
+      <h3>2차</h3>
+      <p>수업실연과 면접 비중이 크므로 지역별 평가요소와 전년도 기출·복기자료를 함께 확인해야 합니다.</p>
+    </article>
+  </div>
+</section>
+
 </main>
 <footer>
   © 2026 스테이The머무름. All rights reserved.<br/>
@@ -1388,8 +1437,6 @@
   }).join('');
   function openCard(id){var card=document.getElementById(id);if(!card)return;var detail=card.querySelector('.exam-category-detail');var btn=card.querySelector('.exam-detail-toggle');if(detail&&!detail.classList.contains('is-open')){detail.classList.add('is-open');if(btn){btn.setAttribute('aria-expanded','true');btn.textContent='닫기';}}card.scrollIntoView({behavior:'smooth',block:'start'});}
   nav.addEventListener('click',function(e){var b=e.target.closest?e.target.closest('a[data-target]'):null;if(!b)return;e.preventDefault();var target=b.getAttribute('data-target');openCard(target);if(history.replaceState)history.replaceState(null,'','#'+target);else location.hash=target;});
-  var compactGrid=document.querySelector('.compact-analysis-grid');
-  if(compactGrid){compactGrid.addEventListener('click',function(e){var a=e.target.closest?e.target.closest('a[href^="#exam-card-"]'):null;if(!a)return;e.preventDefault();var target=a.getAttribute('href').slice(1);openCard(target);if(history.replaceState)history.replaceState(null,'','#'+target);else location.hash=target;});}
   if(location.hash&&location.hash.indexOf('#exam-card-')===0){setTimeout(function(){openCard(location.hash.slice(1));},0);}
   cards.addEventListener('click',function(e){var b=e.target.closest('.exam-detail-toggle');if(!b)return;var card=b.closest('.exam-category-card');var detail=card.querySelector('.exam-category-detail');var open=detail.classList.toggle('is-open');b.setAttribute('aria-expanded',String(open));b.textContent=open?'닫기':'상세 분석 펼치기';});
 })();

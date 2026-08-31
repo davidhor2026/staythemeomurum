@@ -26,7 +26,7 @@ window.EXAM_INSIGHT_CATEGORIES = [
       ['지역별 합격선','공식 발표 후 누적']
     ],
     analysisNotice:'현재는 원서접수 단계입니다. 지역별 경쟁률과 지원 현황은 접수 종료 후 공식 자료가 공개되는 순서대로 업데이트됩니다.',
-    link:'exam-schedule.html#local7'
+    link:'#exam-card-local7'
   },
   {
     id:'local9', label:'지방직 9급', examDate:'2026-06-20', updatedAt:'2026-08-31', newDays:8,
@@ -258,7 +258,7 @@ window.EXAM_INSIGHT_CATEGORIES = [
       ['예정','12월 9일 최종합격자 발표']
     ],
     analysisNotice:'공식 시험일정·최소합격인원과 시험 직후 공개된 전문강사 총평을 구분해 정리했습니다. 전체 난이도는 추가 응시생 조사 결과가 확인되기 전까지 단정하지 않습니다.',
-    link:'exam-schedule.html#labor-attorney'
+    link:'#labor-2026-2nd-review'
   },
   {
     id:'teacher', label:'임용', examDate:null, updatedAt:'2026-06-25', newDays:7,
@@ -273,6 +273,6 @@ window.EXAM_INSIGHT_CATEGORIES = [
       '2차 수업실연·면접·지도안은 단기간 완성이 어려워 1차 준비 중에도 기본 틀을 잡는 편이 좋습니다.',
       '초등과 중등은 일정과 평가방식이 다르므로 각 시·도교육청 시행계획을 기준으로 확인해야 합니다.'
     ],
-    link:'#difficulty-by-exam'
+    link:'#teacher-analysis'
   }
 ];
