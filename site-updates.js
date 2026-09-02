@@ -17,20 +17,25 @@ window.SITE_UPDATES = {
     'psat-ncs-quiz.html': { key: 'psatNcsQuiz', updated: '2026-07-15' },
     'korean-history-advanced-quiz.html': { key: 'historyQuiz', updated: '2026-07-15' },
     'foreign-service-interview-quiz.html': { key: 'foreignInterviewQuiz', updated: '2026-07-15' },
-    'exam-insight.html': { key: 'examInsight', updated: '2026-08-31', expires: '2026-09-07' },
-    'exam-schedule.html': { key: 'examSchedule', updated: '2026-08-19' },
+    'exam-insight.html': { key: 'examInsight', updated: '2026-09-02', expires: '2026-09-09' },
+    'exam-schedule.html': { key: 'examSchedule', updated: '2026-09-02', expires: '2026-09-09' },
     'games.html': { key: 'games', updated: '' },
     'fortune.html': { key: 'fortune', updated: '' },
     'knowledge.html': { key: 'knowledge', updated: '' },
     'current-issues.html': { key: 'currentIssues', updated: '2026-08-22', expires: '2026-08-29' },
     'word-roots.html': { key: 'wordRoots', updated: '' },
-    'career-benefits.html': { key: 'careerBenefits', updated: '2026-08-26', expires: '2026-09-02' },
+    'career-benefits.html': { key: 'careerBenefits', updated: '2026-09-02', expires: '2026-09-09' },
     'rent-support.html': { key: 'rentSupport', updated: '2026-08-18', expires: '2026-08-19' },
     'gift.html': { key: 'gift', updated: '' },
     'checkin-guide.html': { key: 'checkinGuide', updated: '' },
     'checkout-guide.html': { key: 'checkoutGuide', updated: '' }
   },
 
+  /*
+   * NEW 운영 원칙:
+   * 새 소식을 반영해 페이지를 업로드할 때 해당 pages/sections의 updated를 배포일로 갱신합니다.
+   * expires를 생략하면 displayDays 기준으로 자동 노출됩니다.
+   */
   groups: {
     'quiz.html': [
       'quiz.html',
@@ -50,7 +55,7 @@ window.SITE_UPDATES = {
   sections: {
     'exam-schedule.html#foreign-service7': { key: 'examScheduleForeign7', updated: '2026-08-18', expires: '2026-08-26' },
     'exam-schedule.html#national7': { key: 'examScheduleNational7', updated: '2026-08-18', expires: '2026-08-26' },
-    'exam-schedule.html#teacher': { key: 'examScheduleTeacher', updated: '2026-08-09' },
+    'exam-schedule.html#teacher': { key: 'examScheduleTeacher', updated: '2026-09-02', expires: '2026-09-09' },
     'exam-schedule.html#police': { key: 'examSchedulePolice', updated: '2026-08-14', expires: '2026-08-23' },
     'exam-schedule.html#court': { key: 'examScheduleCourt', updated: '2026-08-07' }
   }
