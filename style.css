@@ -1180,11 +1180,15 @@
 
 /* seven-day page update badge */
 .site-update-link{position:relative;overflow:visible!important;}
-.site-new-badge{display:inline-flex;align-items:center;justify-content:center;margin-left:5px;padding:2px 6px;border-radius:999px;background:#d75c45;color:#fff;font-size:9px;font-weight:900;line-height:1.35;letter-spacing:.04em;vertical-align:top;box-shadow:0 3px 8px rgba(160,60,43,.22);animation:siteNewPulse 1.2s ease-in-out infinite;transform-origin:center;}
+.site-new-badge{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-width:38px;height:21px;margin-left:5px;padding:0 8px;border-radius:999px;background:#df684f;color:#fff;font-size:10px;font-weight:900;line-height:1;letter-spacing:.025em;vertical-align:middle;box-shadow:0 2px 6px rgba(160,60,43,.18);animation:siteNewPulse 1.35s ease-in-out infinite;transform-origin:center;box-sizing:border-box;}
 .site-new-badge--seen{animation:none;opacity:.78;}
-@keyframes siteNewPulse{0%,100%{transform:scale(1);opacity:.82}50%{transform:scale(1.13);opacity:1}}
+.site-new-badge--static{animation:siteNewPulse 1.35s ease-in-out infinite;}
+@keyframes siteNewPulse{0%,100%{transform:scale(1);opacity:.88}50%{transform:scale(1.06);opacity:1}}
 @media(prefers-reduced-motion:reduce){.site-new-badge{animation:none}}
-@media(max-width:700px){.site-new-badge{font-size:8px;padding:2px 5px;margin-left:3px}}
+/* Main navigation: keep every page NEW badge identical and vertically aligned. */
+nav a{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;}
+nav .site-new-badge{min-width:39px;height:22px;margin-left:6px;padding:0 8px;font-size:10px;}
+@media(max-width:700px){nav .site-new-badge{min-width:37px;height:21px;margin-left:5px;padding:0 7px;font-size:9px}}
 
 /* five recent cutline cards on desktop */
 .exam-cutline-list{grid-template-columns:repeat(5,minmax(0,1fr));}
