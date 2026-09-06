@@ -41,6 +41,12 @@ window.StayEventApi = (function () {
     reset: function (eventId, adminPassword) {
       return call({ action: 'reset', eventId: eventId, adminPassword: adminPassword });
     },
+    saveResult: function (eventId, resultUrl, adminPassword) {
+      return call({ action: 'saveResult', eventId: eventId, resultUrl: resultUrl, adminPassword: adminPassword });
+    },
+    getResult: function (eventId) {
+      return call({ action: 'getResult', eventId: eventId });
+    },
     ping: function () { return call({ action: 'ping' }); }
   };
 })();
