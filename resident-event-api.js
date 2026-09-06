@@ -17,8 +17,10 @@ window.StayEventApi = (function () {
       if (params[key] !== undefined && params[key] !== null) url.searchParams.set(key, String(params[key]));
     });
     url.searchParams.set('_t', Date.now());
-    return fetch(url.toString(), { method: 'GET', cache: 'no-store', redirect: 'follow' })
-      .then(function (res) { return res.json(); })
+    var controller = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    var timer = controller ? setTimeout(function(){ controller.abort(); }, 12000) : null;
+    return fetch(url.toString(), { method: 'GET', cache: 'no-store', redirect: 'follow', signal: controller ? controller.signal : undefined })
+      .then(function (res) { if (timer) clearTimeout(timer); return res.json(); }, function(err){ if (timer) clearTimeout(timer); throw err; })
       .then(function (data) {
         if (!data || data.ok !== true) throw new Error((data && data.message) || '이벤트 서버 요청에 실패했습니다.');
         return data;
@@ -29,6 +31,9 @@ window.StayEventApi = (function () {
     configured: configured,
     apply: function (eventId, room, name, residentPassword) {
       return call({ action: 'apply', eventId: eventId, room: room, name: name, residentPassword: residentPassword });
+    },
+    check: function (eventId, room, name, residentPassword) {
+      return call({ action: 'check', eventId: eventId, room: room, name: name, residentPassword: residentPassword });
     },
     list: function (eventId, adminPassword) {
       return call({ action: 'list', eventId: eventId, adminPassword: adminPassword });
