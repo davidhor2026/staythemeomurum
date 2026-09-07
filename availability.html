@@ -149,13 +149,13 @@ function renderAvailability(){
     const detail=document.querySelector(`[data-detail="${key}"]`);
     if(sum){
       const now = room.availableNow > 0
-        ? `<div class="main green">${DISPLAY_TEXT.availableNow}&nbsp;${room.availableNow}실</div>`
+        ? `<div class="main green">${DISPLAY_TEXT.availableNow}</div>`
         : `<div class="main gray">${room.fullLabel}</div>`;
       sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}<hr><div class="sub ${room.events.length?'orange':'gray'}">${firstFutureText(room)}</div>`;
     }
     if(detail){
       let lines = room.availableNow > 0
-        ? `<p class="green">● ${DISPLAY_TEXT.availableNow} · ${room.availableNow}실</p>`
+        ? `<p class="green">● ${DISPLAY_TEXT.availableNow}</p>`
         : `<p class="gray">● ${room.fullLabel}</p>`;
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
         lines += `<p class="orange">● ${formatDate(e.date)} · ${DISPLAY_TEXT.upcoming}</p>`;
@@ -261,7 +261,7 @@ function renderVacancyCalendar(){
 
     if(room.availableNow>0 && iso===today){
       cell.classList.add('has-available');
-      cell.innerHTML += `<span class="calendar-mark green">입실 가능 ${room.availableNow}실</span>`;
+      cell.innerHTML += `<span class="calendar-mark green">입실 가능</span>`;
     }
     if(eventsByDate[iso]){
       cell.classList.add('has-upcoming');
@@ -273,7 +273,7 @@ function renderVacancyCalendar(){
   const note=document.getElementById('calendarRoomNote');
   let noteHtml='';
   if(room.availableNow>0){
-    noteHtml += `<span class="legend-item"><b class="green">●</b> 즉시 입실 가능 ${room.availableNow}실</span>`;
+    noteHtml += `<span class="legend-item"><b class="green">●</b> 즉시 입실 가능</span>`;
   }
   if(room.events.length){
     noteHtml += `<span class="legend-item"><b class="orange">●</b> 입실 가능 예정일</span>`;
