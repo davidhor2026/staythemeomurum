@@ -20,7 +20,7 @@
 const VACANCY_MANAGER = {
   standard: {
     name: "스탠다드룸",
-    now: 0,
+    now: 1,
     dates: [
       "2026-09-10",
       "2026-09-21",
@@ -80,7 +80,7 @@ function vacancyFullLabel(room){
 function vacancyStatusText(room){
   if(!room) return "";
   if(Number(room.now || 0) > 0){
-    return room.name + " " + Number(room.now) + "실 입실 가능";
+    return room.name + " 즉시 입실 가능";
   }
   var text = room.name + " " + vacancyFullLabel(room);
   if(room.reservable === true) text += " · 예약 가능";
@@ -93,7 +93,7 @@ const DISPLAY_TEXT = {
   orangeLegend: "오렌지색 = 현재는 만실이나 예약 가능",
   grayLegend: "회색 = 현재 만실",
 
-  availableNow: "입실 가능",
+  availableNow: "즉시 입실 가능",
   fullNow: "현재 만실",
   upcoming: "예약 가능",
   unknownDate: "날짜 미정",
