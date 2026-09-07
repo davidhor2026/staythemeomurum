@@ -22,14 +22,13 @@ const VACANCY_MANAGER = {
     name: "스탠다드룸",
     now: 0,
     dates: [
-      "2026-09-08",
       "2026-09-10",
       "2026-09-21",
       "2026-09-28"
       /* 새 날짜 예: ,"2026-10-05" */
     ],
     reservable: true,
-    fullLabel: "예약 가능",
+    fullLabel: "즉시 입실 가능",
     unknown: null
   },
 
