@@ -1,12 +1,47 @@
 window.ADMIN_INVESTMENT_DATA = {
-  updatedAt: '2026.09.08 09:05 KST',
+  updatedAt: '2026.09.09 10:18 KST',
   signals: [
-    {label:'AI·메모리 수요', value:'강함 ↑', tone:'up'},
-    {label:'HBM 경쟁', value:'증설 가속 ↑', tone:'up'},
+    {label:'AI·메모리 수요', value:'강함 ↑↑', tone:'up'},
+    {label:'AI 인프라', value:'계약·증설 확대 ↑', tone:'up'},
     {label:'식량·농업', value:'정책·마진 엇갈림', tone:'watch'},
     {label:'물·인프라', value:'신규 대형 신호 없음', tone:'watch'}
   ],
   highlights: [
+    {
+      date:'2026-09-09', category:'AI·반도체', kind:'컴퓨트 계약', importance:'핵심',
+      title:'OpenAI, 아시아 AI 데이터센터 컴퓨트 용량 추가 확보',
+      summary:'OpenAI의 컴퓨트 인프라 확보 움직임이 이어지면서 AI 모델 학습·추론에 필요한 GPU·HBM·서버 DRAM·네트워크·전력·냉각 수요가 계속 확대되는 흐름이 확인되고 있습니다.',
+      impact:'삼성전자·SK하이닉스에는 HBM뿐 아니라 서버 DRAM 수요 지속 측면에서 긍정적입니다. 다만 대규모 데이터센터의 전력 확보와 투자수익성이 향후 CAPEX 속도를 좌우할 위험요인입니다.',
+      sourceName:'글로벌 경제매체·기업 발표 종합', sourceUrl:'https://openai.com/index/stargate-advances-with-4-5-gigawatts-partnership-oracle/'
+    },
+    {
+      date:'2026-09-09', category:'AI·반도체', kind:'커스텀 AI칩', importance:'핵심',
+      title:'빅테크 AI 인프라, GPU에서 커스텀 칩·광통신까지 투자 범위 확대',
+      summary:'대형 클라우드 사업자들의 AI 인프라 투자가 범용 GPU에만 머물지 않고 자체·커스텀 AI 가속기와 고속 광연결까지 확대되는 흐름입니다. AI 추론 시장 확대가 전체 데이터센터 반도체 수요를 넓히는 신호입니다.',
+      impact:'칩 종류가 다양해져도 고대역폭·고용량 메모리 수요는 유지될 가능성이 높아 삼성전자·SK하이닉스에는 전반적으로 긍정적입니다. 반면 장기적으로 NVIDIA 의존도 하락은 GPU 생태계 내 경쟁구도를 바꿀 수 있습니다.',
+      sourceName:'글로벌 기업 발표·경제매체 종합', sourceUrl:'https://aws.amazon.com/machine-learning/trainium/'
+    },
+    {
+      date:'2026-09-09', category:'AI·반도체', kind:'첨단장비', importance:'중요',
+      title:'첨단 반도체 장비 투자 확대 — AI 수요의 중장기 선행 신호',
+      summary:'AI용 대형 칩과 차세대 메모리 미세공정에 필요한 EUV·High-NA EUV 등 첨단 장비 투자가 이어지고 있습니다. 장비 생산능력 확대는 고객사들의 첨단공정 투자계획이 단기에 끝나지 않을 가능성을 보여줍니다.',
+      impact:'삼성전자에는 파운드리와 메모리 첨단공정, SK하이닉스에는 차세대 DRAM 공정 경쟁력 측면에서 중요합니다. 다만 첨단 장비 도입은 막대한 CAPEX 부담을 동반합니다.',
+      sourceName:'ASML', sourceUrl:'https://www.asml.com/en/news'
+    },
+    {
+      date:'2026-09-09', category:'식량·농업', kind:'원가 신호', importance:'중요',
+      title:'에너지 가격 변동, 비료·농업 생산비에 다시 중요한 변수',
+      summary:'에너지 가격 상승 압력은 질소비료 생산비와 농가 투입비용을 높일 수 있어 식량 밸류체인 안에서도 수혜와 부담이 갈릴 수 있습니다.',
+      impact:'비료 생산기업은 가격 전가가 가능하면 수혜를 볼 수 있지만 농가·가공식품 기업에는 비용 부담입니다. MOO·VEGI의 편입기업과 DBA 같은 농산물 가격형 상품을 동일하게 해석하면 안 됩니다.',
+      sourceName:'글로벌 원자재 시장 점검', sourceUrl:'https://www.reuters.com/markets/commodities/'
+    },
+    {
+      date:'2026-09-09', category:'물·인프라', kind:'오늘 점검', importance:'관찰',
+      title:'물·수자원 — 신규 대형 수주·CAPEX 신호는 아직 제한적',
+      summary:'오늘 확인 기준 미국 주요 물 인프라·수처리 기업에서 투자 판단을 바꿀 정도의 신규 대형 수주나 CAPEX 상향은 제한적입니다.',
+      impact:'오래된 뉴스를 반복하기보다 미국 노후 수도망 교체와 AI 데이터센터 냉각·수처리 관련 실제 수주·매출 가이던스가 새로 나오는지를 계속 추적하는 편이 효율적입니다.',
+      sourceName:'주요 기업 IR·ETF 운용사 점검', sourceUrl:'https://www.invesco.com/us/financial-products/etfs/product-detail?productId=ETF-PHO'
+    },
     {
       date:'2026-09-08', category:'AI·반도체', kind:'공급능력', importance:'핵심',
       title:'Micron HBM 생산능력 확대 추진 — 수요 강세의 또 다른 신호',
@@ -82,6 +117,9 @@ window.ADMIN_INVESTMENT_DATA = {
     ai: {
       title:'AI · 반도체',
       items:[
+        {date:'2026-09-09', badge:'컴퓨트 계약', title:'OpenAI, AI 컴퓨트 용량 추가 확보 흐름', text:'AI 학습·추론용 데이터센터 확보가 계속되며 GPU·HBM·서버 DRAM·전력·냉각 수요의 실물 기반이 확대되고 있습니다.', view:'긍정', source:'OpenAI / 글로벌 매체', url:'https://openai.com/index/stargate-advances-with-4-5-gigawatts-partnership-oracle/'},
+        {date:'2026-09-09', badge:'커스텀 AI칩', title:'빅테크 AI 투자가 커스텀 칩·광통신으로 확대', text:'GPU뿐 아니라 자체·커스텀 가속기와 고속 네트워크까지 투자가 확대되는 흐름. 메모리 수요의 저변 확대 여부를 관찰합니다.', view:'긍정', source:'AWS / 글로벌 매체', url:'https://aws.amazon.com/machine-learning/trainium/'},
+        {date:'2026-09-09', badge:'첨단장비', title:'EUV·High-NA 투자, 중장기 AI 반도체 수요 선행 신호', text:'첨단공정 장비 투자 확대는 AI 칩과 차세대 DRAM 미세화 경쟁이 지속될 가능성을 보여줍니다. CAPEX 부담도 함께 체크합니다.', view:'중장기 긍정', source:'ASML', url:'https://www.asml.com/en/news'},
         {date:'2026-09-08', badge:'HBM 증설', title:'Micron HBM 생산능력 확대 추진', text:'경쟁사까지 HBM 생산능력을 공격적으로 늘리는 흐름은 AI 메모리 수요의 지속성을 뒷받침합니다. 다만 2027년 이후 경쟁 심화·가격 압력 가능성도 함께 체크.', view:'긍정 + 경쟁주의', source:'Micron / 업계 보도', url:'https://www.micron.com/about/blog'},
         {date:'2026-09-07', badge:'산업 데이터', title:'TrendForce: 2Q26 DRAM 매출 +59.5% QoQ', text:'AI 서버와 에이전트형 AI 수요가 HBM·고용량 RDIMM 수요를 끌어올리고 공급 확대는 수요 증가에 못 미치는 상황. 3분기 일반 DRAM 계약가격 상승률은 13~18% QoQ로 전망.', view:'긍정', source:'TrendForce', url:'https://www.trendforce.com/presscenter/news/20260907-13219.html'},
         {date:'2026-09-07', badge:'AI 인프라', title:'IREN: AI 컴퓨팅 수요는 계속 공급을 웃돌 가능성', text:'최대 300억달러 AI 인프라 투자 계획. 데이터센터 용량 확대가 HBM·서버메모리·전력·냉각 수요의 실물 근거가 되는지 추적.', view:'긍정', source:'Financial Times', url:'https://www.ft.com/content/27c07fd7-dc7d-42ec-9b89-38bb14cc1676'},
@@ -93,6 +131,7 @@ window.ADMIN_INVESTMENT_DATA = {
     food: {
       title:'미국 식량 · 농업',
       items:[
+        {date:'2026-09-09', badge:'원가 신호', title:'에너지 가격 변동이 비료·농가 비용에 다시 변수', text:'질소비료 생산비와 농가 투입비가 에너지 가격에 민감해 식량 밸류체인 내 수혜·피해가 갈릴 수 있습니다. 비료·농기계·가공식품을 분리해 봅니다.', view:'주의·관찰', source:'글로벌 원자재 시장', url:'https://www.reuters.com/markets/commodities/'},
         {date:'2026-09-08', badge:'정책·투자', title:'중국, 식량안보·농촌 현대화 금융지원 확대', text:'종자·곡물·농업 인프라·보험·생산성 향상 투자가 확대되는 흐름. VEGI·MOO에는 관련 기업 수요 측면에서 긍정적일 수 있지만 DBA는 공급 확대 시 가격 상승이 제한될 수 있어 구분해서 봐야 합니다.', view:'중장기 관찰', source:'글로벌 정책·경제매체 종합', url:'https://www.reuters.com/markets/commodities/'},
         {date:'2026-09-03', badge:'신규 투자', title:'Vylor, 농업 혁신 투자 플랫폼 Vylor Edge 출범', text:'Corteva 분리 과정에서 종자·유전기술과 농업 혁신 투자가 강화되는 흐름. 9월 15일 Investor Day에서 장기 성장목표 확인 예정.', view:'관찰', source:'Corteva', url:'https://investors.corteva.com/news-events/news-releases'},
         {date:'2026-09-03', badge:'기업 전망', title:'Tyson, 소 공급 부족으로 이익 전망 하향', text:'미국 쇠고기 공급 부족이 높은 판매가격보다 조달비 부담을 더 키우는 상황. 식량 가격 상승의 수혜·피해 기업을 분리해서 볼 필요.', view:'주의', source:'Reuters', url:'https://www.reuters.com/business/retail-consumer/tyson-foods-cuts-annual-sales-profit-forecasts-beef-pressure-weighs-2026-09-03/'},
@@ -104,6 +143,7 @@ window.ADMIN_INVESTMENT_DATA = {
     water: {
       title:'미국 물 · 수자원',
       items:[
+        {date:'2026-09-09', badge:'오늘 점검', title:'신규 대형 수주·CAPEX 신호는 아직 제한적', text:'오늘은 시장 판단을 바꿀 정도의 새 대형 발표가 뚜렷하지 않습니다. AI 데이터센터 냉각·수처리와 미국 수도망 교체의 실제 수주·가이던스를 계속 추적합니다.', view:'관찰 유지', source:'주요 기업 IR·ETF 운용사', url:'https://www.invesco.com/us/financial-products/etfs/product-detail?productId=ETF-PHO'},
         {date:'2026-09-08', badge:'오늘 점검', title:'신규 대형 CAPEX·수주 신호는 제한적', text:'오늘은 시장 판단을 바꿀 정도의 신규 대형 발표가 뚜렷하지 않습니다. 미국 노후 수도망 교체와 AI 데이터센터 냉각·수처리 수요의 실제 수주·CAPEX 상향 여부를 계속 추적합니다.', view:'관찰 유지', source:'주요 기업 IR·ETF 운용사 점검', url:'https://www.invesco.com/us/financial-products/etfs/product-detail?productId=ETF-PHO'},
         {date:'2026-09-03', badge:'실제 CAPEX', title:'California American Water, 860만달러 인프라 개선 착수', text:'노후 수도관 교체와 서비스 신뢰성 개선을 위한 실제 지역 투자. 물 테마에서는 이런 누적 CAPEX가 장기 실적 기반.', view:'긍정', source:'American Water', url:'https://newsroom.amwater.com/press-releases?category=783&l=100'},
         {date:'2026-08-25', badge:'예정 일정', title:'Ecolab, SC26에서 2026 Investor Day 개최 예정', text:'AI 데이터센터 냉각·수처리 사업 전략이 핵심 확인 포인트. CoolIT 인수 이후 AI 냉각 플랫폼의 매출 목표와 수주 추이를 볼 필요.', view:'관찰', source:'Ecolab IR', url:'https://investor.ecolab.com/news/default.aspx'},
