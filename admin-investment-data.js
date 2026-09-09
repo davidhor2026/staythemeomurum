@@ -1,12 +1,55 @@
 window.ADMIN_INVESTMENT_DATA = {
-  updatedAt: '2026.09.09 10:18 KST',
+  updatedAt: '2026.09.10 08:23 KST',
   signals: [
-    {label:'AI·메모리 수요', value:'강함 ↑↑', tone:'up'},
-    {label:'AI 인프라', value:'계약·증설 확대 ↑', tone:'up'},
-    {label:'식량·농업', value:'정책·마진 엇갈림', tone:'watch'},
-    {label:'물·인프라', value:'신규 대형 신호 없음', tone:'watch'}
+    {label:'AI·메모리 수요', value:'매우 강함 ↑↑', tone:'up'},
+    {label:'AI 인프라', value:'대규모 CAPEX 확대 ↑↑', tone:'up'},
+    {label:'식량·농업', value:'유가·원가 변수 주의', tone:'watch'},
+    {label:'물·인프라', value:'신규 대형 신호 제한적', tone:'watch'}
   ],
   highlights: [
+
+    {
+      date:'2026-09-10', category:'AI·반도체', kind:'대형 CAPEX', importance:'핵심',
+      title:'Google, 핀란드 AI 인프라에 약 151억달러 투자',
+      summary:'Google이 향후 2년간 핀란드에 약 130억유로를 투자해 AI 데이터센터 3곳을 추가 건설하고 장기 전력계약도 체결했습니다. 실제 대형 CAPEX 집행이 계속된다는 강한 신호입니다.',
+      impact:'GPU·HBM·서버 DRAM·SSD·전력·냉각 수요 전반에 긍정적이며 삼성전자·SK하이닉스의 메모리 수요 지속 가능성을 높입니다. 위험요인은 데이터센터 투자수익률과 전력·지역 규제입니다.',
+      sourceName:'글로벌 경제매체·Google 발표 종합', sourceUrl:'https://blog.google/inside-google/infrastructure/'
+    },
+    {
+      date:'2026-09-10', category:'AI·반도체', kind:'전략 협력', importance:'핵심',
+      title:'OpenAI·삼성전자, 차세대 반도체 협력 진전',
+      summary:'OpenAI와 삼성전자의 차세대 반도체 협력이 진전되고 있다는 소식이 확인됐습니다. 세부 물량과 양산 시점은 공개되지 않았지만 단순 구매관계를 넘어 개발 협력 가능성을 시사합니다.',
+      impact:'삼성전자에는 HBM·첨단 메모리와 파운드리/패키징 협력 기대를 동시에 높이는 긍정적 신호입니다. 다만 실제 대규모 공급계약과는 구분해 봐야 합니다.',
+      sourceName:'OpenAI·삼성 관련 최신 보도 종합', sourceUrl:'https://openai.com/news/'
+    },
+    {
+      date:'2026-09-10', category:'AI·반도체', kind:'서버 DRAM', importance:'핵심',
+      title:'서버 DRAM 공급부족, 2027년까지 이어질 가능성',
+      summary:'AI 서버의 고용량 RDIMM·DDR5 수요가 크게 늘고 공급사 재고가 낮은 가운데, 서버 DRAM의 공급부족과 가격상승 압력이 2027년까지 이어질 수 있다는 전망이 나왔습니다.',
+      impact:'HBM뿐 아니라 일반 서버 DRAM까지 동시 강세가 이어질 경우 삼성전자·SK하이닉스의 메모리 수익성에 매우 긍정적입니다. 이후 계약가격과 재고 정상화 속도를 함께 봐야 합니다.',
+      sourceName:'TrendForce', sourceUrl:'https://www.trendforce.com/presscenter/'
+    },
+    {
+      date:'2026-09-10', category:'AI·반도체', kind:'파운드리', importance:'중요',
+      title:'파운드리 시장 사상 최대 매출 — 삼성은 성장과 경쟁을 함께 점검',
+      summary:'AI/HPC와 전력반도체 수요로 상위 파운드리 매출이 사상 최대 수준으로 확대되는 흐름이 이어지고 있습니다. 동시에 중국 SMIC가 삼성전자와 점유율 격차를 좁히는 경쟁 압력도 확인됩니다.',
+      impact:'삼성전자에는 파운드리 시장 성장 자체는 긍정적이지만, 메모리 호황과 별개로 파운드리 경쟁력·수율·점유율을 따로 평가해야 합니다.',
+      sourceName:'TrendForce', sourceUrl:'https://www.trendforce.com/presscenter/'
+    },
+    {
+      date:'2026-09-10', category:'식량·농업', kind:'원가 신호', importance:'중요',
+      title:'유가 100달러선 — 비료·운송·농가 생산비 상승 압력',
+      summary:'브렌트유가 배럴당 100달러선을 넘나들며 비료 생산비와 농업 운송비·투입비 상승 우려가 커졌습니다.',
+      impact:'DBA에는 농산물 가격 상승 압력이 긍정적일 수 있지만 MOO·VEGI 내부에서는 비료기업과 농기계·식품가공 기업의 영향이 엇갈릴 수 있습니다. 유가 상승을 농업 ETF 전체 호재로 단순화하면 안 됩니다.',
+      sourceName:'글로벌 원자재 시장 점검', sourceUrl:'https://www.reuters.com/markets/commodities/'
+    },
+    {
+      date:'2026-09-10', category:'물·인프라', kind:'오늘 점검', importance:'관찰',
+      title:'물·수자원 — 신규 대형 수주·CAPEX 신호는 제한적',
+      summary:'오늘 확인 기준 PHO·FIW·CGW 및 미국 주요 물 기업에서 투자판단을 바꿀 정도의 신규 대형 수주·CAPEX 상향은 제한적입니다.',
+      impact:'AI 데이터센터의 전력·냉각·물 효율이 중요해지는 구조는 유지되지만, 실제 수주와 실적 가이던스가 확인될 때 투자 신호의 강도를 높여 보는 편이 적절합니다.',
+      sourceName:'주요 기업 IR·ETF 운용사 점검', sourceUrl:'https://www.invesco.com/us/financial-products/etfs/product-detail?productId=ETF-PHO'
+    },
     {
       date:'2026-09-09', category:'AI·반도체', kind:'컴퓨트 계약', importance:'핵심',
       title:'OpenAI, 아시아 AI 데이터센터 컴퓨트 용량 추가 확보',
@@ -117,6 +160,10 @@ window.ADMIN_INVESTMENT_DATA = {
     ai: {
       title:'AI · 반도체',
       items:[
+        {date:'2026-09-10', badge:'대형 CAPEX', title:'Google, 핀란드 AI 인프라에 약 151억달러 투자', text:'AI 데이터센터 3곳 추가와 장기 전력계약을 포함한 실제 대형 투자. HBM·서버 DRAM·SSD·전력·냉각 수요 전반에 긍정적.', view:'매우 긍정', source:'Google / 글로벌 매체', url:'https://blog.google/inside-google/infrastructure/'},
+        {date:'2026-09-10', badge:'전략 협력', title:'OpenAI·삼성전자, 차세대 반도체 협력 진전', text:'단순 메모리 구매를 넘어 개발 협력 가능성을 시사. 실제 물량·양산 시점 공개 여부를 다음 확인 포인트로 봅니다.', view:'긍정', source:'OpenAI / 최신 보도', url:'https://openai.com/news/'},
+        {date:'2026-09-10', badge:'서버 DRAM', title:'서버 DRAM 공급부족, 2027년까지 이어질 가능성', text:'AI 서버의 고용량 RDIMM·DDR5 수요와 낮은 공급사 재고가 가격상승 압력을 유지. HBM과 일반 서버 DRAM 동시 강세 여부가 핵심.', view:'매우 긍정', source:'TrendForce', url:'https://www.trendforce.com/presscenter/'},
+        {date:'2026-09-10', badge:'파운드리', title:'파운드리 시장 성장 지속 — 삼성은 경쟁력 점검 필요', text:'AI/HPC 수요로 시장은 성장하지만 SMIC와의 점유율 경쟁은 별도 리스크. 삼성은 메모리와 파운드리를 분리해 평가해야 합니다.', view:'성장 + 경쟁주의', source:'TrendForce', url:'https://www.trendforce.com/presscenter/'},
         {date:'2026-09-09', badge:'컴퓨트 계약', title:'OpenAI, AI 컴퓨트 용량 추가 확보 흐름', text:'AI 학습·추론용 데이터센터 확보가 계속되며 GPU·HBM·서버 DRAM·전력·냉각 수요의 실물 기반이 확대되고 있습니다.', view:'긍정', source:'OpenAI / 글로벌 매체', url:'https://openai.com/index/stargate-advances-with-4-5-gigawatts-partnership-oracle/'},
         {date:'2026-09-09', badge:'커스텀 AI칩', title:'빅테크 AI 투자가 커스텀 칩·광통신으로 확대', text:'GPU뿐 아니라 자체·커스텀 가속기와 고속 네트워크까지 투자가 확대되는 흐름. 메모리 수요의 저변 확대 여부를 관찰합니다.', view:'긍정', source:'AWS / 글로벌 매체', url:'https://aws.amazon.com/machine-learning/trainium/'},
         {date:'2026-09-09', badge:'첨단장비', title:'EUV·High-NA 투자, 중장기 AI 반도체 수요 선행 신호', text:'첨단공정 장비 투자 확대는 AI 칩과 차세대 DRAM 미세화 경쟁이 지속될 가능성을 보여줍니다. CAPEX 부담도 함께 체크합니다.', view:'중장기 긍정', source:'ASML', url:'https://www.asml.com/en/news'},
@@ -131,6 +178,10 @@ window.ADMIN_INVESTMENT_DATA = {
     food: {
       title:'미국 식량 · 농업',
       items:[
+        {date:'2026-09-10', badge:'대형 CAPEX', title:'Google, 핀란드 AI 인프라에 약 151억달러 투자', text:'AI 데이터센터 3곳 추가와 장기 전력계약을 포함한 실제 대형 투자. HBM·서버 DRAM·SSD·전력·냉각 수요 전반에 긍정적.', view:'매우 긍정', source:'Google / 글로벌 매체', url:'https://blog.google/inside-google/infrastructure/'},
+        {date:'2026-09-10', badge:'전략 협력', title:'OpenAI·삼성전자, 차세대 반도체 협력 진전', text:'단순 메모리 구매를 넘어 개발 협력 가능성을 시사. 실제 물량·양산 시점 공개 여부를 다음 확인 포인트로 봅니다.', view:'긍정', source:'OpenAI / 최신 보도', url:'https://openai.com/news/'},
+        {date:'2026-09-10', badge:'서버 DRAM', title:'서버 DRAM 공급부족, 2027년까지 이어질 가능성', text:'AI 서버의 고용량 RDIMM·DDR5 수요와 낮은 공급사 재고가 가격상승 압력을 유지. HBM과 일반 서버 DRAM 동시 강세 여부가 핵심.', view:'매우 긍정', source:'TrendForce', url:'https://www.trendforce.com/presscenter/'},
+        {date:'2026-09-10', badge:'파운드리', title:'파운드리 시장 성장 지속 — 삼성은 경쟁력 점검 필요', text:'AI/HPC 수요로 시장은 성장하지만 SMIC와의 점유율 경쟁은 별도 리스크. 삼성은 메모리와 파운드리를 분리해 평가해야 합니다.', view:'성장 + 경쟁주의', source:'TrendForce', url:'https://www.trendforce.com/presscenter/'},
         {date:'2026-09-09', badge:'원가 신호', title:'에너지 가격 변동이 비료·농가 비용에 다시 변수', text:'질소비료 생산비와 농가 투입비가 에너지 가격에 민감해 식량 밸류체인 내 수혜·피해가 갈릴 수 있습니다. 비료·농기계·가공식품을 분리해 봅니다.', view:'주의·관찰', source:'글로벌 원자재 시장', url:'https://www.reuters.com/markets/commodities/'},
         {date:'2026-09-08', badge:'정책·투자', title:'중국, 식량안보·농촌 현대화 금융지원 확대', text:'종자·곡물·농업 인프라·보험·생산성 향상 투자가 확대되는 흐름. VEGI·MOO에는 관련 기업 수요 측면에서 긍정적일 수 있지만 DBA는 공급 확대 시 가격 상승이 제한될 수 있어 구분해서 봐야 합니다.', view:'중장기 관찰', source:'글로벌 정책·경제매체 종합', url:'https://www.reuters.com/markets/commodities/'},
         {date:'2026-09-03', badge:'신규 투자', title:'Vylor, 농업 혁신 투자 플랫폼 Vylor Edge 출범', text:'Corteva 분리 과정에서 종자·유전기술과 농업 혁신 투자가 강화되는 흐름. 9월 15일 Investor Day에서 장기 성장목표 확인 예정.', view:'관찰', source:'Corteva', url:'https://investors.corteva.com/news-events/news-releases'},
@@ -143,6 +194,10 @@ window.ADMIN_INVESTMENT_DATA = {
     water: {
       title:'미국 물 · 수자원',
       items:[
+        {date:'2026-09-10', badge:'대형 CAPEX', title:'Google, 핀란드 AI 인프라에 약 151억달러 투자', text:'AI 데이터센터 3곳 추가와 장기 전력계약을 포함한 실제 대형 투자. HBM·서버 DRAM·SSD·전력·냉각 수요 전반에 긍정적.', view:'매우 긍정', source:'Google / 글로벌 매체', url:'https://blog.google/inside-google/infrastructure/'},
+        {date:'2026-09-10', badge:'전략 협력', title:'OpenAI·삼성전자, 차세대 반도체 협력 진전', text:'단순 메모리 구매를 넘어 개발 협력 가능성을 시사. 실제 물량·양산 시점 공개 여부를 다음 확인 포인트로 봅니다.', view:'긍정', source:'OpenAI / 최신 보도', url:'https://openai.com/news/'},
+        {date:'2026-09-10', badge:'서버 DRAM', title:'서버 DRAM 공급부족, 2027년까지 이어질 가능성', text:'AI 서버의 고용량 RDIMM·DDR5 수요와 낮은 공급사 재고가 가격상승 압력을 유지. HBM과 일반 서버 DRAM 동시 강세 여부가 핵심.', view:'매우 긍정', source:'TrendForce', url:'https://www.trendforce.com/presscenter/'},
+        {date:'2026-09-10', badge:'파운드리', title:'파운드리 시장 성장 지속 — 삼성은 경쟁력 점검 필요', text:'AI/HPC 수요로 시장은 성장하지만 SMIC와의 점유율 경쟁은 별도 리스크. 삼성은 메모리와 파운드리를 분리해 평가해야 합니다.', view:'성장 + 경쟁주의', source:'TrendForce', url:'https://www.trendforce.com/presscenter/'},
         {date:'2026-09-09', badge:'오늘 점검', title:'신규 대형 수주·CAPEX 신호는 아직 제한적', text:'오늘은 시장 판단을 바꿀 정도의 새 대형 발표가 뚜렷하지 않습니다. AI 데이터센터 냉각·수처리와 미국 수도망 교체의 실제 수주·가이던스를 계속 추적합니다.', view:'관찰 유지', source:'주요 기업 IR·ETF 운용사', url:'https://www.invesco.com/us/financial-products/etfs/product-detail?productId=ETF-PHO'},
         {date:'2026-09-08', badge:'오늘 점검', title:'신규 대형 CAPEX·수주 신호는 제한적', text:'오늘은 시장 판단을 바꿀 정도의 신규 대형 발표가 뚜렷하지 않습니다. 미국 노후 수도망 교체와 AI 데이터센터 냉각·수처리 수요의 실제 수주·CAPEX 상향 여부를 계속 추적합니다.', view:'관찰 유지', source:'주요 기업 IR·ETF 운용사 점검', url:'https://www.invesco.com/us/financial-products/etfs/product-detail?productId=ETF-PHO'},
         {date:'2026-09-03', badge:'실제 CAPEX', title:'California American Water, 860만달러 인프라 개선 착수', text:'노후 수도관 교체와 서비스 신뢰성 개선을 위한 실제 지역 투자. 물 테마에서는 이런 누적 CAPEX가 장기 실적 기반.', view:'긍정', source:'American Water', url:'https://newsroom.amwater.com/press-releases?category=783&l=100'},
