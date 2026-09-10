@@ -82,8 +82,9 @@ function vacancyStatusText(room){
   if(Number(room.now || 0) > 0){
     return room.name + " 즉시 입실 가능";
   }
-  var text = room.name + " " + vacancyFullLabel(room);
-  if(room.reservable === true) text += " · 예약 가능";
+  var statusLabel = vacancyFullLabel(room);
+  var text = room.name + " " + statusLabel;
+  if(room.reservable === true && statusLabel.indexOf("예약 가능") === -1) text += " · 예약 가능";
   return text;
 }
 
