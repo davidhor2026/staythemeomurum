@@ -23,7 +23,6 @@ const VACANCY_MANAGER = {
     now: 1,
     dates: [
       "2026-09-21",
-      "2026-09-28"
       /* 새 날짜 예: ,"2026-10-05" */
     ],
     reservable: true,
