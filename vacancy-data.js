@@ -12,6 +12,7 @@
    [수정 방법]
    now        : 현재 바로 입실 가능한 방 수
    dates      : 앞으로 입실 가능 예정 날짜
+   bookedDates: 예약이 완료된 입실 예정일과 예약 완료일
    reservable : 현재 만실이어도 예약 가능하면 true
    fullLabel  : 만실일 때 화면에 공통으로 표시할 문구 (예: "8월 만실")
    unknown    : 정확한 날짜가 미정이면 사용, 아니면 null
@@ -25,6 +26,9 @@ const VACANCY_MANAGER = {
       "2026-09-21",
       /* 새 날짜 예: ,"2026-10-05" */
     ],
+    bookedDates: [
+      { date: "2026-09-28", bookedOn: "2026-09-11" }
+    ],
     reservable: true,
     fullLabel: "즉시 입실 가능",
     unknown: null
@@ -34,6 +38,7 @@ const VACANCY_MANAGER = {
     name: "디럭스룸",
     now: 0,
     dates: [],
+    bookedDates: [],
     reservable: false,
     fullLabel: "현재 만실",
     unknown: {
@@ -47,6 +52,7 @@ const VACANCY_MANAGER = {
     name: "스위트룸 1",
     now: 0,
     dates: [],
+    bookedDates: [],
     reservable: false,
     fullLabel: "현재 만실",
     unknown: {
@@ -60,6 +66,7 @@ const VACANCY_MANAGER = {
     name: "스위트룸 2",
     now: 0,
     dates: [],
+    bookedDates: [],
     reservable: false,
     fullLabel: "현재 만실",
     unknown: {
@@ -90,11 +97,13 @@ function vacancyStatusText(room){
 const DISPLAY_TEXT = {
   greenLegend: "녹색 = 즉시 입실 가능",
   orangeLegend: "오렌지색 = 현재는 만실이나 예약 가능",
+  blueLegend: "파란색 = 예약 완료",
   grayLegend: "회색 = 현재 만실",
 
   availableNow: "즉시 입실 가능",
   fullNow: "현재 만실",
   upcoming: "예약 가능",
+  booked: "예약 완료",
   unknownDate: "날짜 미정",
 
   calendarButton: "공실 캘린더",

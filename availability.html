@@ -15,7 +15,7 @@
 <noscript><link href="style.css" rel="stylesheet"/></noscript>
 
 <style>
-:root{--green:#153f25;--orange:#ef7200;--gray:#686d69;--line:#e2e5e1;--cream:#faf9f4;--soft:#f7faf7}
+:root{--green:#153f25;--orange:#ef7200;--blue:#286aa6;--gray:#686d69;--line:#e2e5e1;--cream:#faf9f4;--soft:#f7faf7}
 *{box-sizing:border-box}
 body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR","Apple SD Gothic Neo",sans-serif}
 .page{max-width:980px;margin:auto;padding:16px 22px 48px}
@@ -33,7 +33,7 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
 .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .sum{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;min-height:190px;display:flex;flex-direction:column;justify-content:center}
 .sum h4{font-size:19px;margin:0 0 10px;color:#183c25}.icon{font-size:28px;line-height:1;margin-bottom:9px}
-.green{color:#279247}.orange{color:var(--orange)}.gray{color:#656b67}
+.green{color:#279247}.orange{color:var(--orange)}.blue{color:var(--blue)}.gray{color:#656b67}
 .sum .main{font-size:17px;line-height:1.45}.sum hr{width:72%;border:0;border-top:1px solid #ddd;margin:12px auto}.sum .sub{font-size:15px;line-height:1.45}
 .notice{font-size:14px;color:#666;margin:14px 0 0}
 .details{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-top:16px}
@@ -116,6 +116,7 @@ Object.entries(VACANCY_MANAGER).forEach(([key, room]) => {
     name: room.name,
     availableNow: Number(room.now || 0),
     events: (room.dates || []).map(date => ({ date, rooms: 1 })),
+    bookedEvents: (room.bookedDates || []).map(item => typeof item === 'string' ? { date:item, bookedOn:null } : item),
     reservable: room.reservable === true,
     fullLabel: room.fullLabel || DISPLAY_TEXT.fullNow,
     unknown: room.unknown || null
@@ -129,6 +130,12 @@ function dotClass(room){
 }
 function formatDate(dateStr){
   return dateStr.replace(/-/g,'.');
+}
+function activeBookedEvents(room){
+  const today=kstTodayISO();
+  return (room.bookedEvents || [])
+    .filter(e=>e && e.date && e.date>=today)
+    .sort((a,b)=>(b.bookedOn||'').localeCompare(a.bookedOn||'') || a.date.localeCompare(b.date));
 }
 function firstFutureText(room){
   if(room.events.length){
@@ -160,6 +167,9 @@ function renderAvailability(){
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
         lines += `<p class="orange">● ${formatDate(e.date)} · ${DISPLAY_TEXT.upcoming}</p>`;
       });
+      activeBookedEvents(room).forEach(e=>{
+        lines += `<p class="blue">● ${formatDate(e.date)} 입실분 · ${DISPLAY_TEXT.booked}</p>`;
+      });
       if(room.unknown){
         if(room.unknown.note === "공실 여부 문의"){
           lines += `<p class="gray">● ${room.unknown.label} ${room.unknown.note}</p>`;
@@ -170,6 +180,21 @@ function renderAvailability(){
       detail.innerHTML=lines;
     }
   });
+  renderRecentBookings();
+}
+function renderRecentBookings(){
+  const box=document.getElementById('recentBookings');
+  if(!box) return;
+  const items=[];
+  Object.values(ROOM_AVAILABILITY).forEach(room=>{
+    activeBookedEvents(room).forEach(e=>items.push({room:room.name,date:e.date,bookedOn:e.bookedOn||''}));
+  });
+  items.sort((a,b)=>b.bookedOn.localeCompare(a.bookedOn) || a.date.localeCompare(b.date));
+  if(!items.length){ box.hidden=true; box.innerHTML=''; return; }
+  box.hidden=false;
+  box.innerHTML='<strong>최근 예약 완료</strong>'+items.slice(0,3).map(x=>
+    `<span>${x.room} ${formatDate(x.date)} 입실분</span>`
+  ).join('');
 }
 
 /* ===== 타입별 공실 캘린더 ===== */
@@ -197,6 +222,11 @@ function selectInitialCalendarMonth(room){
   }
   if(room.events.length){
     const [y,m]=room.events.slice().sort((a,b)=>a.date.localeCompare(b.date))[0].date.split('-').map(Number);
+    return [y,m];
+  }
+  const booked=activeBookedEvents(room);
+  if(booked.length){
+    const [y,m]=booked[0].date.split('-').map(Number);
     return [y,m];
   }
   if(room.unknown && room.unknown.month){
@@ -249,6 +279,8 @@ function renderVacancyCalendar(){
   const today=kstTodayISO();
   const eventsByDate={};
   room.events.forEach(e=>{eventsByDate[e.date]=e;});
+  const bookedByDate={};
+  activeBookedEvents(room).forEach(e=>{bookedByDate[e.date]=e;});
 
   for(let day=1;day<=days;day++){
     const mm=String(calendarMonth).padStart(2,'0');
@@ -263,7 +295,10 @@ function renderVacancyCalendar(){
       cell.classList.add('has-available');
       cell.innerHTML += `<span class="calendar-mark green">입실 가능</span>`;
     }
-    if(eventsByDate[iso]){
+    if(bookedByDate[iso]){
+      cell.classList.add('has-booked');
+      cell.innerHTML += `<span class="calendar-mark blue">${DISPLAY_TEXT.booked}</span>`;
+    }else if(eventsByDate[iso]){
       cell.classList.add('has-upcoming');
       cell.innerHTML += `<span class="calendar-mark orange">${DISPLAY_TEXT.upcoming}</span>`;
     }
@@ -277,6 +312,9 @@ function renderVacancyCalendar(){
   }
   if(room.events.length){
     noteHtml += `<span class="legend-item"><b class="orange">●</b> 입실 가능 예정일</span>`;
+  }
+  if(activeBookedEvents(room).length){
+    noteHtml += `<span class="legend-item"><b class="blue">●</b> 예약 완료</span>`;
   }
   if(room.unknown){
     noteHtml += `<span class="calendar-unknown">※ ${room.unknown.label} 입실 가능 예정 · ${room.unknown.note}</span>`;
@@ -618,8 +656,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 .calendar-day.today{outline:2px solid #b8d8bf}
 .calendar-day.has-available{background:#f1f9f2;border-color:#b8dabc}
 .calendar-day.has-upcoming{background:#fff8ef;border-color:#ecd3b5}
+.calendar-day.has-booked{background:#f1f6fb;border-color:#b9cfe2}
 .calendar-mark{display:block;font-size:9.5px;line-height:1.3;font-weight:800;word-break:keep-all}
-.calendar-mark.green{color:#228341}.calendar-mark.orange{color:#df7100}
+.calendar-mark.green{color:#228341}.calendar-mark.orange{color:#df7100}.calendar-mark.blue{color:#286aa6}
 .calendar-room-note{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;font-size:11.5px;color:#5d655e}
 .legend-item,.calendar-unknown{display:inline-block}
 .calendar-unknown{width:100%;padding-top:2px}
@@ -638,7 +677,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 }
 </style>
 
-<style>.vacancy-color-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:10px 0 14px;font-size:13px;color:#666}.vacancy-color-legend span{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block}.legend-green{background:#24a148}.legend-orange{background:#f57c00}.legend-gray{background:#747a76}@media(max-width:520px){.vacancy-color-legend{font-size:11.5px;gap:5px 10px}}</style></head><body><div class="page">
+<style>.recent-bookings{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0 4px;padding:10px 12px;border:1px solid #c8d9e8;border-radius:10px;background:#f4f8fc;color:#245f94;font-size:13px}.recent-bookings strong{color:#174f7f}.recent-bookings span{padding-left:8px;border-left:1px solid #b8cde0}.vacancy-color-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:10px 0 14px;font-size:13px;color:#666}.vacancy-color-legend span{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block}.legend-green{background:#24a148}.legend-orange{background:#f57c00}.legend-blue{background:#286aa6}.legend-gray{background:#747a76}@media(max-width:520px){.recent-bookings{font-size:12px;gap:6px}.vacancy-color-legend{font-size:11.5px;gap:5px 10px}}</style></head><body><div class="page">
 <section class="brand">
  <img src="availability-logo.jpg" alt="스테이The머무름 로고">
  <h1>스테이The머무름</h1><p>여성 전용 고시원</p>
@@ -657,15 +696,17 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 <section class="overview">
  <div class="overview-head"><h3>⌕ 한눈에 보는 입실 가능 현황</h3><small>(<span id="availabilityToday">2026.08.19</span> 기준)</small></div>
-<div class="summary">
+ <div class="summary">
    <div class="sum" data-sum="standard"></div>
    <div class="sum" data-sum="deluxe"></div>
    <div class="sum" data-sum="suite1"></div>
    <div class="sum" data-sum="suite2"></div>
  </div>
+ <div class="recent-bookings" id="recentBookings" hidden></div>
  <div class="vacancy-color-legend">
 <span><i class="legend-dot legend-green"></i><span id="greenLegendText"></span></span>
 <span><i class="legend-dot legend-orange"></i><span id="orangeLegendText"></span></span>
+<span><i class="legend-dot legend-blue"></i><span id="blueLegendText"></span></span>
 <span><i class="legend-dot legend-gray"></i><span id="grayLegendText"></span></span>
 </div><p class="notice" id="scheduleNotice"></p>
 </section>
@@ -688,7 +729,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   <div class="calendar-panel-head">
     <div>
       <strong id="calendarRoomTitle">공실 캘린더</strong>
-      <small>입실 가능일과 예정일을 월별로 확인하세요.</small>
+      <small>입실 가능일과 예약 현황을 월별로 확인하세요.</small>
     </div>
     <button type="button" class="calendar-close-btn" onclick="document.getElementById('vacancyCalendarPanel').hidden=true">닫기</button>
   </div>
@@ -748,6 +789,7 @@ document.addEventListener("DOMContentLoaded", function(){
   const setText=(id,text)=>{ const el=document.getElementById(id); if(el) el.textContent=text; };
   setText("greenLegendText", DISPLAY_TEXT.greenLegend);
   setText("orangeLegendText", DISPLAY_TEXT.orangeLegend);
+  setText("blueLegendText", DISPLAY_TEXT.blueLegend);
   setText("grayLegendText", DISPLAY_TEXT.grayLegend);
   setText("roomSectionTitle", DISPLAY_TEXT.roomSectionTitle);
   setText("scheduleNotice", DISPLAY_TEXT.scheduleNotice);
