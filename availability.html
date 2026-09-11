@@ -168,7 +168,7 @@ function renderAvailability(){
         lines += `<p class="orange">● ${formatDate(e.date)} · ${DISPLAY_TEXT.upcoming}</p>`;
       });
       activeBookedEvents(room).forEach(e=>{
-        lines += `<p class="blue">● ${formatDate(e.date)} 입실분 · ${DISPLAY_TEXT.booked}</p>`;
+        lines += `<p class="blue">● ${formatDate(e.date)} · ${DISPLAY_TEXT.booked}</p>`;
       });
       if(room.unknown){
         if(room.unknown.note === "공실 여부 문의"){
@@ -193,7 +193,7 @@ function renderRecentBookings(){
   if(!items.length){ box.hidden=true; box.innerHTML=''; return; }
   box.hidden=false;
   box.innerHTML='<strong>최근 예약 완료</strong>'+items.slice(0,3).map(x=>
-    `<span>${x.room} ${formatDate(x.date)} 입실분</span>`
+    `<span>${x.room} ${formatDate(x.date)} 예약 완료</span>`
   ).join('');
 }
 
