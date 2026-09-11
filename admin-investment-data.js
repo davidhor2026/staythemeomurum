@@ -1,13 +1,63 @@
 window.ADMIN_INVESTMENT_DATA = {
-  updatedAt: '2026.09.10 08:23 KST',
+  updatedAt: '2026.09.11 09:08 KST',
   signals: [
     {label:'AI·메모리 수요', value:'매우 강함 ↑↑', tone:'up'},
-    {label:'AI 인프라', value:'대규모 CAPEX 확대 ↑↑', tone:'up'},
-    {label:'식량·농업', value:'유가·원가 변수 주의', tone:'watch'},
-    {label:'물·인프라', value:'신규 대형 신호 제한적', tone:'watch'}
+    {label:'AI 인프라', value:'글로벌 증설 지속 ↑↑', tone:'up'},
+    {label:'식량·농업', value:'WASDE·유가 변수 확인', tone:'watch'},
+    {label:'물·인프라', value:'AI 냉각·물 사용 관찰', tone:'watch'}
   ],
   highlights: [
 
+
+    {
+      date:'2026-09-11', category:'AI·반도체', kind:'HBM 공급부족', importance:'핵심',
+      title:'HBM 부족이 중국 AI칩 가격을 20~50% 끌어올림',
+      summary:'Reuters는 Huawei·Cambricon 등 중국 AI칩 업체들이 글로벌 HBM 부족과 높은 조달비 때문에 차세대 AI 가속기 가격을 크게 올렸다고 보도했습니다. 공급부족이 완제품 가격에 직접 반영되는 단계입니다.',
+      impact:'SK하이닉스·삼성전자·Micron 중심의 첨단 HBM 공급이 빠듯하다는 실물 신호로, 한국 메모리 업체의 계약가격과 수익성에는 긍정적입니다. 다만 중국은 수출규제와 비정상 조달비가 섞여 있어 글로벌 가격과 1:1로 해석하면 안 됩니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/world/asia-pacific/chinas-ai-chipmakers-raise-prices-high-bandwidth-memory-shortage-bites-2026-09-10/'
+    },
+    {
+      date:'2026-09-11', category:'AI·반도체', kind:'클라우드 실적', importance:'핵심',
+      title:'Oracle, AI 수요로 매출 30% 증가·계약잔고 6640억달러',
+      summary:'Oracle의 분기 매출은 193억달러로 전년 대비 30% 증가했고 계약잔고는 6640억달러까지 확대됐습니다. 회사는 한 분기에 850MW의 데이터센터 용량을 추가했습니다.',
+      impact:'대규모 AI 데이터센터 투자가 실제 클라우드 매출과 수주로 연결되고 있다는 긍정적 확인 신호입니다. 삼성전자·SK하이닉스에는 HBM·서버 DRAM·SSD 수요 측면에서 우호적이지만, Oracle의 높은 CAPEX와 현금흐름 부담은 리스크입니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/technology/oracles-quarterly-revenue-beats-estimates-ai-boom-drives-cloud-demand-2026-09-10/'
+    },
+    {
+      date:'2026-09-11', category:'AI·반도체', kind:'글로벌 인프라', importance:'핵심',
+      title:'NVIDIA, 호주에서 2027년까지 최대 2GW AI 데이터센터 생태계 추진',
+      summary:'NVIDIA는 Firmus·CDC·NEXTDC·AirTrunk 등과 협력해 호주에서 최대 2GW의 AI 관련 데이터센터 용량 구축을 추진합니다. 현재 호주 전체 데이터센터 용량을 웃도는 수준의 대형 계획입니다.',
+      impact:'AI 컴퓨트 수요가 미국을 넘어 글로벌 인프라 사이클로 확산되고 있다는 신호입니다. GPU·HBM·서버 DRAM·광통신·전력·냉각 수요에 긍정적이며, 동시에 전력과 물 사용 규제가 장기 변수로 부상합니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/world/asia-pacific/nvidia-teams-up-with-australian-partners-build-ai-factory-capacity-2026-09-10/'
+    },
+    {
+      date:'2026-09-11', category:'AI·반도체', kind:'AI 추론', importance:'중요',
+      title:'d-Matrix, NVIDIA NVLink Fusion 채택 — AI 추론 생태계 확대',
+      summary:'AI 추론칩 업체 d-Matrix가 Raptor 칩을 NVIDIA 데이터센터 시스템과 연결하기 위해 NVLink Fusion을 채택했습니다. 호환 시스템은 2027년 공급을 목표로 합니다.',
+      impact:'AI 시장이 학습 중심에서 추론 중심으로 넓어지며 커스텀 칩도 NVIDIA 인프라 안으로 들어오는 흐름입니다. 고대역폭·고용량 메모리와 고속 연결 수요 확대에 긍정적입니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/business/media-telecom/chip-startup-d-matrix-use-nvidia-chip-linking-tech-ai-servers-2026-09-10/'
+    },
+    {
+      date:'2026-09-11', category:'AI·반도체', kind:'금융 리스크', importance:'주의',
+      title:'빅테크 AI 투자 확대의 반대편 — 최근 1년 회사채 약 2200억달러',
+      summary:'Reuters 분석은 Alphabet·Amazon·Meta·Microsoft·Oracle 등 하이퍼스케일러의 최근 1년 회사채 발행이 약 2200억달러에 이르며 AI 데이터센터 투자 자금조달이 채권시장에도 영향을 주고 있다고 지적했습니다.',
+      impact:'AI CAPEX 확대는 반도체 수요에 긍정적이지만 부채·금리비용·투자수익률 악화가 향후 CAPEX 감속의 선행 신호가 될 수 있습니다. 빅테크 현금흐름과 부채 증가율을 함께 추적해야 합니다.',
+      sourceName:'Reuters Breakingviews', sourceUrl:'https://www.reuters.com/commentary/reuters-open-interest/ai-debt-splurge-is-warping-credit-spreads-marty-fridson-2026-09-10/'
+    },
+    {
+      date:'2026-09-11', category:'식량·농업', kind:'시장 전망', importance:'관찰',
+      title:'USDA WASDE 발표 전 — 옥수수·대두 재고 하향 여부가 핵심',
+      summary:'9월 WASDE 발표를 앞두고 시장은 미국 옥수수·대두 기말재고가 이전 USDA 전망보다 낮아질 가능성을 보고 있습니다. 아직 공식 발표 전이므로 확정치가 아닌 시장 전망으로만 봐야 합니다.',
+      impact:'실제 재고가 예상보다 더 줄면 DBA에는 직접적인 가격 상승 신호가 될 수 있습니다. MOO·VEGI는 비료·종자·농기계·가공식품 비중에 따라 영향이 엇갈리므로 단순 동조 해석은 피해야 합니다.',
+      sourceName:'USDA WASDE', sourceUrl:'https://www.usda.gov/oce/commodity/wasde'
+    },
+    {
+      date:'2026-09-11', category:'물·인프라', kind:'AI 연결', importance:'관찰',
+      title:'호주 2GW AI 데이터센터 계획, 전력·물 사용 규제 이슈도 확대',
+      summary:'NVIDIA의 호주 AI 데이터센터 확대 계획과 함께 대규모 시설의 전력·물 소비에 대한 규제 우려도 부각됐습니다.',
+      impact:'PHO·FIW·CGW의 즉각적인 매수 신호는 아니지만, AI 데이터센터가 늘수록 냉각·수처리·재이용·효율화 투자가 구조적으로 중요해질 수 있습니다. 실제 관련 기업 수주와 가이던스 확인이 다음 단계입니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/world/asia-pacific/nvidia-teams-up-with-australian-partners-build-ai-factory-capacity-2026-09-10/'
+    },
     {
       date:'2026-09-10', category:'AI·반도체', kind:'대형 CAPEX', importance:'핵심',
       title:'Google, 핀란드 AI 인프라에 약 151억달러 투자',
@@ -160,6 +210,12 @@ window.ADMIN_INVESTMENT_DATA = {
     ai: {
       title:'AI · 반도체',
       items:[
+
+        {date:'2026-09-11', badge:'HBM 공급부족', title:'HBM 부족이 중국 AI칩 가격을 20~50% 끌어올림', text:'Huawei·Cambricon 등의 AI칩 가격 인상에 HBM 조달비가 직접 반영. 한국 HBM 업체의 가격·수익성에는 긍정적이지만 중국 수출규제 영향은 별도 구분.', view:'매우 긍정', source:'Reuters', url:'https://www.reuters.com/world/asia-pacific/chinas-ai-chipmakers-raise-prices-high-bandwidth-memory-shortage-bites-2026-09-10/'},
+        {date:'2026-09-11', badge:'클라우드 실적', title:'Oracle, 매출 +30%·계약잔고 6640억달러', text:'AI 클라우드 수요가 실제 매출과 계약잔고로 전환. 분기 중 데이터센터 850MW 추가로 HBM·서버 DRAM·SSD 수요 기반이 확대.', view:'매우 긍정', source:'Reuters', url:'https://www.reuters.com/technology/oracles-quarterly-revenue-beats-estimates-ai-boom-drives-cloud-demand-2026-09-10/'},
+        {date:'2026-09-11', badge:'글로벌 인프라', title:'NVIDIA, 호주 최대 2GW AI 데이터센터 생태계 추진', text:'Firmus·CDC·NEXTDC·AirTrunk 등과 2027년까지 최대 2GW 구축 추진. AI 컴퓨트 수요가 글로벌 인프라 사이클로 확산되는 신호.', view:'매우 긍정', source:'Reuters', url:'https://www.reuters.com/world/asia-pacific/nvidia-teams-up-with-australian-partners-build-ai-factory-capacity-2026-09-10/'},
+        {date:'2026-09-11', badge:'AI 추론', title:'d-Matrix, NVIDIA NVLink Fusion 채택', text:'추론용 Raptor 칩을 NVIDIA 데이터센터 시스템과 연결. AI 수요가 학습에서 추론으로 확대되며 커스텀 칩·메모리·연결 수요의 저변이 넓어지는 흐름.', view:'긍정', source:'Reuters', url:'https://www.reuters.com/business/media-telecom/chip-startup-d-matrix-use-nvidia-chip-linking-tech-ai-servers-2026-09-10/'},
+        {date:'2026-09-11', badge:'금융 리스크', title:'빅테크 AI 투자 확대와 회사채 증가를 함께 점검', text:'최근 1년 하이퍼스케일러 회사채 발행이 약 2200억달러. AI CAPEX 확대는 반도체 수요에 긍정적이지만 부채·금리·현금흐름 부담이 향후 투자 감속 신호가 될 수 있음.', view:'주의·관찰', source:'Reuters Breakingviews', url:'https://www.reuters.com/commentary/reuters-open-interest/ai-debt-splurge-is-warping-credit-spreads-marty-fridson-2026-09-10/'},
         {date:'2026-09-10', badge:'대형 CAPEX', title:'Google, 핀란드 AI 인프라에 약 151억달러 투자', text:'AI 데이터센터 3곳 추가와 장기 전력계약을 포함한 실제 대형 투자. HBM·서버 DRAM·SSD·전력·냉각 수요 전반에 긍정적.', view:'매우 긍정', source:'Google / 글로벌 매체', url:'https://blog.google/inside-google/infrastructure/'},
         {date:'2026-09-10', badge:'전략 협력', title:'OpenAI·삼성전자, 차세대 반도체 협력 진전', text:'단순 메모리 구매를 넘어 개발 협력 가능성을 시사. 실제 물량·양산 시점 공개 여부를 다음 확인 포인트로 봅니다.', view:'긍정', source:'OpenAI / 최신 보도', url:'https://openai.com/news/'},
         {date:'2026-09-10', badge:'서버 DRAM', title:'서버 DRAM 공급부족, 2027년까지 이어질 가능성', text:'AI 서버의 고용량 RDIMM·DDR5 수요와 낮은 공급사 재고가 가격상승 압력을 유지. HBM과 일반 서버 DRAM 동시 강세 여부가 핵심.', view:'매우 긍정', source:'TrendForce', url:'https://www.trendforce.com/presscenter/'},
@@ -178,10 +234,7 @@ window.ADMIN_INVESTMENT_DATA = {
     food: {
       title:'미국 식량 · 농업',
       items:[
-        {date:'2026-09-10', badge:'대형 CAPEX', title:'Google, 핀란드 AI 인프라에 약 151억달러 투자', text:'AI 데이터센터 3곳 추가와 장기 전력계약을 포함한 실제 대형 투자. HBM·서버 DRAM·SSD·전력·냉각 수요 전반에 긍정적.', view:'매우 긍정', source:'Google / 글로벌 매체', url:'https://blog.google/inside-google/infrastructure/'},
-        {date:'2026-09-10', badge:'전략 협력', title:'OpenAI·삼성전자, 차세대 반도체 협력 진전', text:'단순 메모리 구매를 넘어 개발 협력 가능성을 시사. 실제 물량·양산 시점 공개 여부를 다음 확인 포인트로 봅니다.', view:'긍정', source:'OpenAI / 최신 보도', url:'https://openai.com/news/'},
-        {date:'2026-09-10', badge:'서버 DRAM', title:'서버 DRAM 공급부족, 2027년까지 이어질 가능성', text:'AI 서버의 고용량 RDIMM·DDR5 수요와 낮은 공급사 재고가 가격상승 압력을 유지. HBM과 일반 서버 DRAM 동시 강세 여부가 핵심.', view:'매우 긍정', source:'TrendForce', url:'https://www.trendforce.com/presscenter/'},
-        {date:'2026-09-10', badge:'파운드리', title:'파운드리 시장 성장 지속 — 삼성은 경쟁력 점검 필요', text:'AI/HPC 수요로 시장은 성장하지만 SMIC와의 점유율 경쟁은 별도 리스크. 삼성은 메모리와 파운드리를 분리해 평가해야 합니다.', view:'성장 + 경쟁주의', source:'TrendForce', url:'https://www.trendforce.com/presscenter/'},
+        {date:'2026-09-11', badge:'WASDE 대기', title:'옥수수·대두 재고 하향 여부가 오늘 핵심', text:'9월 WASDE 공식 발표 전 시장은 미국 옥수수·대두 기말재고 하향 가능성을 보고 있습니다. 확정치가 아닌 전망이므로 발표 후 예상치와 실제치를 비교해야 합니다.', view:'관찰', source:'USDA WASDE', url:'https://www.usda.gov/oce/commodity/wasde'},
         {date:'2026-09-09', badge:'원가 신호', title:'에너지 가격 변동이 비료·농가 비용에 다시 변수', text:'질소비료 생산비와 농가 투입비가 에너지 가격에 민감해 식량 밸류체인 내 수혜·피해가 갈릴 수 있습니다. 비료·농기계·가공식품을 분리해 봅니다.', view:'주의·관찰', source:'글로벌 원자재 시장', url:'https://www.reuters.com/markets/commodities/'},
         {date:'2026-09-08', badge:'정책·투자', title:'중국, 식량안보·농촌 현대화 금융지원 확대', text:'종자·곡물·농업 인프라·보험·생산성 향상 투자가 확대되는 흐름. VEGI·MOO에는 관련 기업 수요 측면에서 긍정적일 수 있지만 DBA는 공급 확대 시 가격 상승이 제한될 수 있어 구분해서 봐야 합니다.', view:'중장기 관찰', source:'글로벌 정책·경제매체 종합', url:'https://www.reuters.com/markets/commodities/'},
         {date:'2026-09-03', badge:'신규 투자', title:'Vylor, 농업 혁신 투자 플랫폼 Vylor Edge 출범', text:'Corteva 분리 과정에서 종자·유전기술과 농업 혁신 투자가 강화되는 흐름. 9월 15일 Investor Day에서 장기 성장목표 확인 예정.', view:'관찰', source:'Corteva', url:'https://investors.corteva.com/news-events/news-releases'},
@@ -194,10 +247,7 @@ window.ADMIN_INVESTMENT_DATA = {
     water: {
       title:'미국 물 · 수자원',
       items:[
-        {date:'2026-09-10', badge:'대형 CAPEX', title:'Google, 핀란드 AI 인프라에 약 151억달러 투자', text:'AI 데이터센터 3곳 추가와 장기 전력계약을 포함한 실제 대형 투자. HBM·서버 DRAM·SSD·전력·냉각 수요 전반에 긍정적.', view:'매우 긍정', source:'Google / 글로벌 매체', url:'https://blog.google/inside-google/infrastructure/'},
-        {date:'2026-09-10', badge:'전략 협력', title:'OpenAI·삼성전자, 차세대 반도체 협력 진전', text:'단순 메모리 구매를 넘어 개발 협력 가능성을 시사. 실제 물량·양산 시점 공개 여부를 다음 확인 포인트로 봅니다.', view:'긍정', source:'OpenAI / 최신 보도', url:'https://openai.com/news/'},
-        {date:'2026-09-10', badge:'서버 DRAM', title:'서버 DRAM 공급부족, 2027년까지 이어질 가능성', text:'AI 서버의 고용량 RDIMM·DDR5 수요와 낮은 공급사 재고가 가격상승 압력을 유지. HBM과 일반 서버 DRAM 동시 강세 여부가 핵심.', view:'매우 긍정', source:'TrendForce', url:'https://www.trendforce.com/presscenter/'},
-        {date:'2026-09-10', badge:'파운드리', title:'파운드리 시장 성장 지속 — 삼성은 경쟁력 점검 필요', text:'AI/HPC 수요로 시장은 성장하지만 SMIC와의 점유율 경쟁은 별도 리스크. 삼성은 메모리와 파운드리를 분리해 평가해야 합니다.', view:'성장 + 경쟁주의', source:'TrendForce', url:'https://www.trendforce.com/presscenter/'},
+        {date:'2026-09-11', badge:'AI 냉각·물', title:'호주 2GW AI 데이터센터 계획, 전력·물 사용 이슈 확대', text:'NVIDIA의 대규모 호주 데이터센터 계획과 함께 전력·물 소비 규제 우려도 부각. PHO·FIW·CGW의 즉각적 매수 신호라기보다 냉각·수처리·재이용 기업의 실제 수주와 가이던스를 확인할 단계.', view:'중장기 관찰', source:'Reuters', url:'https://www.reuters.com/world/asia-pacific/nvidia-teams-up-with-australian-partners-build-ai-factory-capacity-2026-09-10/'},
         {date:'2026-09-09', badge:'오늘 점검', title:'신규 대형 수주·CAPEX 신호는 아직 제한적', text:'오늘은 시장 판단을 바꿀 정도의 새 대형 발표가 뚜렷하지 않습니다. AI 데이터센터 냉각·수처리와 미국 수도망 교체의 실제 수주·가이던스를 계속 추적합니다.', view:'관찰 유지', source:'주요 기업 IR·ETF 운용사', url:'https://www.invesco.com/us/financial-products/etfs/product-detail?productId=ETF-PHO'},
         {date:'2026-09-08', badge:'오늘 점검', title:'신규 대형 CAPEX·수주 신호는 제한적', text:'오늘은 시장 판단을 바꿀 정도의 신규 대형 발표가 뚜렷하지 않습니다. 미국 노후 수도망 교체와 AI 데이터센터 냉각·수처리 수요의 실제 수주·CAPEX 상향 여부를 계속 추적합니다.', view:'관찰 유지', source:'주요 기업 IR·ETF 운용사 점검', url:'https://www.invesco.com/us/financial-products/etfs/product-detail?productId=ETF-PHO'},
         {date:'2026-09-03', badge:'실제 CAPEX', title:'California American Water, 860만달러 인프라 개선 착수', text:'노후 수도관 교체와 서비스 신뢰성 개선을 위한 실제 지역 투자. 물 테마에서는 이런 누적 CAPEX가 장기 실적 기반.', view:'긍정', source:'American Water', url:'https://newsroom.amwater.com/press-releases?category=783&l=100'},
