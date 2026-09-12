@@ -25,7 +25,7 @@ window.SITE_UPDATES = {
     'current-issues.html': { key: 'currentIssues', updated: '2026-08-22', expires: '2026-08-29' },
     'word-roots.html': { key: 'wordRoots', updated: '' },
     'career-benefits.html': { key: 'careerBenefits', updated: '2026-09-06', expires: '2026-09-13' },
-    'rent-support.html': { key: 'rentSupport', updated: '2026-09-07', expires: '2026-09-15' },
+    'rent-support.html': { key: 'rentSupport', updated: '2026-09-12', expires: '2026-09-19' },
     'gift.html': { key: 'gift', updated: '' },
     'checkin-guide.html': { key: 'checkinGuide', updated: '' },
     'checkout-guide.html': { key: 'checkoutGuide', updated: '' }
@@ -189,10 +189,22 @@ window.SITE_UPDATES = {
     });
   }
 
+  function applyTimedBadges(scope) {
+    var badges = (scope || document).querySelectorAll('.timed-new[data-new-until]');
+    badges.forEach(function (badge) {
+      var until = new Date(String(badge.getAttribute('data-new-until')) + 'T00:00:00+09:00');
+      badge.hidden = isNaN(until.getTime()) || today >= until;
+    });
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { applyBadges(document); });
+    document.addEventListener('DOMContentLoaded', function () {
+      applyBadges(document);
+      applyTimedBadges(document);
+    });
   } else {
     applyBadges(document);
+    applyTimedBadges(document);
   }
 
   /* 동적으로 생성되는 링크에도 NEW를 적용합니다. */
@@ -203,6 +215,7 @@ window.SITE_UPDATES = {
     window.requestAnimationFrame(function () {
       scheduled = false;
       applyBadges(document);
+      applyTimedBadges(document);
     });
   });
   observer.observe(document.documentElement, { childList: true, subtree: true });
