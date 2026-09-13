@@ -192,7 +192,7 @@ function renderRecentBookings(){
   items.sort((a,b)=>b.bookedOn.localeCompare(a.bookedOn) || a.date.localeCompare(b.date));
   if(!items.length){ box.hidden=true; box.innerHTML=''; return; }
   box.hidden=false;
-  box.innerHTML='<strong>최근 예약 완료</strong>'+items.slice(0,3).map(x=>
+  box.innerHTML='<strong>최근 예약 완료</strong>'+items.slice(0,1).map(x=>
     `<span>${x.room} ${formatDate(x.date)} 예약 완료</span>`
   ).join('');
 }
