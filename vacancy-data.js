@@ -28,10 +28,11 @@ const VACANCY_MANAGER = {
       /* 새 날짜 예: ,"2026-10-05" */
     ],
     bookedDates: [
+      { date: "2026-09-13", bookedOn: "2026-09-13" },
       { date: "2026-09-28", bookedOn: "2026-09-11" }
     ],
     reservable: true,
-    fullLabel: "예약 가능",
+    fullLabel: "현재 만실",
     unknown: null
   },
 
