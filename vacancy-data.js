@@ -32,7 +32,7 @@ const VACANCY_MANAGER = {
       { date: "2026-09-28", bookedOn: "2026-09-11" }
     ],
     reservable: true,
-    fullLabel: "현재 만실",
+    fullLabel: "예약 가능",
     unknown: null
   },
 
