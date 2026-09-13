@@ -20,6 +20,7 @@ window.INVESTMENT_GLOSSARY = {
   '컨센서스': {title:'컨센서스', desc:'여러 증권사·애널리스트 전망치를 평균하거나 종합한 시장 예상치입니다. 실적이 컨센서스를 웃도는지 밑도는지가 중요한 평가 기준입니다.', url:'https://www.investopedia.com/terms/c/consensus-estimate.asp'},
   '밸류에이션': {title:'밸류에이션', desc:'기업이나 자산의 적정 가치를 평가하는 과정입니다. PER·PBR·현금흐름 등 다양한 지표를 사용해 현재 주가가 비싼지 싼지 판단합니다.', url:'https://www.investopedia.com/terms/v/valuation.asp'},
   'ETF': {title:'ETF (상장지수펀드)', desc:'주식처럼 거래소에서 사고팔 수 있는 펀드입니다. 특정 지수·산업·원자재 등을 묶어 투자할 수 있어 개별 종목 위험을 분산하는 데 활용됩니다.', url:'https://www.investopedia.com/terms/e/etf.asp'},
+  'IPO': {title:'IPO (기업공개)', desc:'비상장 기업이 주식을 일반 투자자에게 처음 공개하고 증권시장에 상장하는 과정입니다. 대규모 IPO는 기업의 자금조달 능력과 시장이 평가하는 기업가치를 보여주는 중요한 이벤트입니다.', url:'https://www.investor.gov/introduction-investing/investing-basics/glossary/initial-public-offering-ipo'},
   'NAV': {title:'NAV (순자산가치)', desc:'펀드가 보유한 자산에서 부채를 뺀 순자산을 좌수로 나눈 값입니다. ETF 시장가격이 NAV와 얼마나 차이 나는지 확인할 때 사용합니다.', url:'https://www.investopedia.com/terms/n/nav.asp'},
   'YTD': {title:'YTD (연초 이후)', desc:'해당 연도 1월 1일부터 현재까지의 기간을 뜻합니다. YTD 수익률은 연초 이후 누적 성과를 보여줍니다.', url:'https://www.investopedia.com/terms/y/ytd.asp'},
   'QoQ': {title:'QoQ (전분기 대비)', desc:'직전 분기와 비교한 증감률입니다. 예: 매출 +10% QoQ는 바로 전 분기보다 10% 증가했다는 뜻입니다.', url:'https://en.wikipedia.org/wiki/Quarter_(unit)'},

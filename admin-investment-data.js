@@ -1,12 +1,34 @@
 window.ADMIN_INVESTMENT_DATA = {
-  updatedAt: '2026.09.11 09:08 KST',
+  updatedAt: '2026.09.13 10:04 KST',
   signals: [
-    {label:'AI·메모리 수요', value:'매우 강함 ↑↑', tone:'up'},
-    {label:'AI 인프라', value:'글로벌 증설 지속 ↑↑', tone:'up'},
-    {label:'식량·농업', value:'WASDE·유가 변수 확인', tone:'watch'},
-    {label:'물·인프라', value:'AI 냉각·물 사용 관찰', tone:'watch'}
+    {label:'AI·메모리 수요', value:'강함 ↑ · 안전변수 관찰', tone:'up'},
+    {label:'AI 인프라', value:'확대 지속 · 자금조달 변수', tone:'watch'},
+    {label:'식량·농업', value:'에너지 원가 압력 ↑', tone:'watch'},
+    {label:'물·인프라', value:'직접 신규 신호 제한', tone:'watch'}
   ],
   highlights: [
+
+    {
+      date:'2026-09-12', category:'AI·반도체', kind:'AI 자금조달', importance:'핵심',
+      title:'NVIDIA, Anthropic IPO에 최대 100억달러 투자 검토',
+      summary:'Reuters는 Anthropic이 최대 1000억달러를 조달할 수 있는 초대형 IPO를 준비하면서 NVIDIA를 핵심 투자자로 참여시키는 방안을 논의 중이며, NVIDIA가 최대 100억달러 투자를 검토하고 있다고 보도했습니다. 아직 협의 단계로 확정 계약은 아닙니다.',
+      impact:'Anthropic이 NVIDIA GPU를 대규모로 사용하는 핵심 AI 수요처라는 점에서 AI 컴퓨트 수요의 장기 확대 신호로 볼 수 있습니다. 삼성전자·SK하이닉스에는 HBM·서버 DRAM 수요에 우호적이지만, 이번 보도 자체가 신규 GPU·HBM 공급계약을 확정한 것은 아닙니다. AI 기업 밸류에이션 과열과 자체 ASIC 확대는 위험요인입니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/legal/transactional/nvidia-talks-invest-anthropics-mega-ipo-sources-say-2026-09-11/'
+    },
+    {
+      date:'2026-09-12', category:'AI·반도체', kind:'AI 안전·전략', importance:'주의',
+      title:'OpenAI·Anthropic, 최첨단 AI 개발 속도 조절론 부각',
+      summary:'Anthropic CEO Dario Amodei는 강력한 AI 모델 개발 속도를 늦추고 독립 평가와 업계 공통 안전기준을 강화해야 한다고 제안했습니다. Reuters는 Sam Altman도 안전 우려가 커지면 개발 속도를 조절할 수 있다는 입장과 함께 OpenAI의 2026년 IPO를 추진하지 않겠다고 밝혔다고 전했습니다.',
+      impact:'현재 확인된 실제 CAPEX 삭감이나 GPU 주문 취소는 아닙니다. 다만 안전·규제가 AI 모델 개발 속도와 데이터센터 투자 속도에 영향을 줄 수 있는 새로운 변수로 부각된 만큼 삼성전자·SK하이닉스의 HBM 수요를 볼 때 빅테크·AI랩의 CAPEX와 컴퓨트 계약을 함께 추적해야 합니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/business/anthropic-ceo-urges-ai-companies-slow-model-development-2026-09-12/'
+    },
+    {
+      date:'2026-09-12', category:'식량·농업', kind:'에너지 원가', importance:'핵심',
+      title:'사우디 East-West 송유관 일시 중단 — 농업 원가 리스크 확대',
+      summary:'Reuters는 사우디아라비아가 드론 공격 이후 East-West 송유관을 일시 중단했다고 보도했습니다. 중동의 원유 운송 리스크가 다시 커지면서 유가와 운송비 상승 압력이 확대될 수 있습니다.',
+      impact:'농업 밸류체인에서는 비료·디젤·곡물 운송·식품가공 비용 상승 위험이 커집니다. 원자재 가격 상승은 DBA에 상대적으로 우호적일 수 있지만, MOO·VEGI는 비료·농기계·식품업체별 원가 전가 능력에 따라 영향이 엇갈릴 수 있습니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/business/energy/saudis-shut-down-oil-pipeline-houthis-tighten-grip-red-sea-shipping-2026-09-12/'
+    },
 
 
     {
@@ -211,6 +233,8 @@ window.ADMIN_INVESTMENT_DATA = {
       title:'AI · 반도체',
       items:[
 
+        {date:'2026-09-12', badge:'AI 자금조달', title:'NVIDIA, Anthropic IPO에 최대 100억달러 투자 검토', text:'Anthropic의 대형 IPO에 NVIDIA가 핵심 투자자로 참여하는 방안이 논의 중. AI 컴퓨트 수요의 장기 확대 신호지만 아직 확정 투자·반도체 공급계약은 아닙니다.', view:'긍정 + 밸류에이션 주의', source:'Reuters', url:'https://www.reuters.com/legal/transactional/nvidia-talks-invest-anthropics-mega-ipo-sources-say-2026-09-11/'},
+        {date:'2026-09-12', badge:'AI 안전·전략', title:'OpenAI·Anthropic, AI 개발 속도 조절론 부각', text:'안전 우려와 독립 평가·공통 기준 강화 논의가 확대. 당장 CAPEX 삭감 신호는 아니지만 향후 AI 모델 개발·데이터센터 투자 속도를 좌우할 규제·안전 변수를 점검해야 합니다.', view:'주의·관찰', source:'Reuters', url:'https://www.reuters.com/business/anthropic-ceo-urges-ai-companies-slow-model-development-2026-09-12/'},
         {date:'2026-09-11', badge:'HBM 공급부족', title:'HBM 부족이 중국 AI칩 가격을 20~50% 끌어올림', text:'Huawei·Cambricon 등의 AI칩 가격 인상에 HBM 조달비가 직접 반영. 한국 HBM 업체의 가격·수익성에는 긍정적이지만 중국 수출규제 영향은 별도 구분.', view:'매우 긍정', source:'Reuters', url:'https://www.reuters.com/world/asia-pacific/chinas-ai-chipmakers-raise-prices-high-bandwidth-memory-shortage-bites-2026-09-10/'},
         {date:'2026-09-11', badge:'클라우드 실적', title:'Oracle, 매출 +30%·계약잔고 6640억달러', text:'AI 클라우드 수요가 실제 매출과 계약잔고로 전환. 분기 중 데이터센터 850MW 추가로 HBM·서버 DRAM·SSD 수요 기반이 확대.', view:'매우 긍정', source:'Reuters', url:'https://www.reuters.com/technology/oracles-quarterly-revenue-beats-estimates-ai-boom-drives-cloud-demand-2026-09-10/'},
         {date:'2026-09-11', badge:'글로벌 인프라', title:'NVIDIA, 호주 최대 2GW AI 데이터센터 생태계 추진', text:'Firmus·CDC·NEXTDC·AirTrunk 등과 2027년까지 최대 2GW 구축 추진. AI 컴퓨트 수요가 글로벌 인프라 사이클로 확산되는 신호.', view:'매우 긍정', source:'Reuters', url:'https://www.reuters.com/world/asia-pacific/nvidia-teams-up-with-australian-partners-build-ai-factory-capacity-2026-09-10/'},
@@ -234,6 +258,7 @@ window.ADMIN_INVESTMENT_DATA = {
     food: {
       title:'미국 식량 · 농업',
       items:[
+        {date:'2026-09-12', badge:'에너지 원가', title:'사우디 East-West 송유관 일시 중단', text:'드론 공격 이후 핵심 송유관이 일시 중단되며 중동 원유 운송 리스크가 재확대. 비료·디젤·곡물 운송·식품가공 비용 상승 가능성 때문에 DBA와 농업기업 ETF를 구분해 봐야 합니다.', view:'DBA 우호 · MOO/VEGI 혼조', source:'Reuters', url:'https://www.reuters.com/business/energy/saudis-shut-down-oil-pipeline-houthis-tighten-grip-red-sea-shipping-2026-09-12/'},
         {date:'2026-09-11', badge:'WASDE 대기', title:'옥수수·대두 재고 하향 여부가 오늘 핵심', text:'9월 WASDE 공식 발표 전 시장은 미국 옥수수·대두 기말재고 하향 가능성을 보고 있습니다. 확정치가 아닌 전망이므로 발표 후 예상치와 실제치를 비교해야 합니다.', view:'관찰', source:'USDA WASDE', url:'https://www.usda.gov/oce/commodity/wasde'},
         {date:'2026-09-09', badge:'원가 신호', title:'에너지 가격 변동이 비료·농가 비용에 다시 변수', text:'질소비료 생산비와 농가 투입비가 에너지 가격에 민감해 식량 밸류체인 내 수혜·피해가 갈릴 수 있습니다. 비료·농기계·가공식품을 분리해 봅니다.', view:'주의·관찰', source:'글로벌 원자재 시장', url:'https://www.reuters.com/markets/commodities/'},
         {date:'2026-09-08', badge:'정책·투자', title:'중국, 식량안보·농촌 현대화 금융지원 확대', text:'종자·곡물·농업 인프라·보험·생산성 향상 투자가 확대되는 흐름. VEGI·MOO에는 관련 기업 수요 측면에서 긍정적일 수 있지만 DBA는 공급 확대 시 가격 상승이 제한될 수 있어 구분해서 봐야 합니다.', view:'중장기 관찰', source:'글로벌 정책·경제매체 종합', url:'https://www.reuters.com/markets/commodities/'},
