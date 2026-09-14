@@ -1,10 +1,45 @@
 window.ADMIN_INVESTMENT_DATA = {
-  updatedAt: '2026.09.13 10:04 KST',
+  updatedAt: '2026.09.14 09:07 KST',
   signals: [
     {label:'AI·메모리 수요', value:'강함 ↑ · 안전변수 관찰', tone:'up'},
     {label:'AI 인프라', value:'확대 지속 · 자금조달 변수', tone:'watch'},
     {label:'식량·농업', value:'에너지 원가 압력 ↑', tone:'watch'},
     {label:'물·인프라', value:'직접 신규 신호 제한', tone:'watch'}
+  ],
+  charts: [
+    {
+      category:'AI·반도체', asOf:'2026.09.14', title:'HBM 생산능력 배정 확대 — AI 메모리 수요 압력',
+      subtitle:'HBM이 전체 DRAM 웨이퍼 투입·비트 공급에서 차지하는 비중. 수요 자체가 아니라 공급사가 HBM에 얼마나 생산능력을 우선 배정하는지 보여주는 선행지표입니다.',
+      unit:'%', max:32, sourceName:'TrendForce', sourceUrl:'https://www.trendforce.com/presscenter/news/20260602-13074.html',
+      rows:[
+        {label:'2025',values:[{name:'웨이퍼 투입 비중',value:18,display:'18%'},{name:'비트 공급 비중',value:8,display:'8%'}]},
+        {label:'2026',values:[{name:'웨이퍼 투입 비중',value:22,display:'22%'},{name:'비트 공급 비중',value:9,display:'9%'}]},
+        {label:'2027 전망',values:[{name:'웨이퍼 투입 비중',value:30,display:'30%'},{name:'비트 공급 비중',value:13,display:'13%'}]}
+      ],
+      interpretation:'HBM 비중이 계속 높아지는 가운데 TrendForce는 2027년 HBM 비트 출하가 전년 대비 50~60% 늘어도 수요 증가를 따라가기 어렵다고 봅니다. 삼성전자·SK하이닉스에는 HBM 가격·출하와 일반 서버 DRAM 공급부족을 함께 보는 핵심 지표입니다.'
+    },
+    {
+      category:'식량·농업', asOf:'2026.09.14', title:'미국 식품 물가 전망 — 2026 vs 2027',
+      subtitle:'USDA ERS의 연간 식품가격 상승률 전망. 식량·농업 투자에서는 소비자 가격 압력과 식품기업 마진을 함께 보는 보조지표입니다.',
+      unit:'%', max:4, sourceName:'USDA ERS Food Price Outlook', sourceUrl:'https://www.ers.usda.gov/data-products/food-price-outlook/summary-findings',
+      rows:[
+        {label:'전체 식품',values:[{name:'2026',value:3.0,display:'+3.0%'},{name:'2027 전망',value:2.4,display:'+2.4%'}]},
+        {label:'가정 내 식품',values:[{name:'2026',value:2.5,display:'+2.5%'},{name:'2027 전망',value:2.1,display:'+2.1%'}]},
+        {label:'외식',values:[{name:'2026',value:3.6,display:'+3.6%'},{name:'2027 전망',value:2.7,display:'+2.7%'}]}
+      ],
+      interpretation:'전체 물가 압력은 2027년에 둔화 전망이지만 외식 물가는 상대적으로 높습니다. 최신 9월 WASDE에서는 2026/27 미국 기말재고가 옥수수 16.53억→15.67억 부셸, 대두 3.20억→3.10억 부셸로 낮아져 DBA에는 별도의 공급 긴축 신호가 있습니다.'
+    },
+    {
+      category:'물·인프라', asOf:'2026.09.14', title:'미국 데이터센터 직접 물 사용 — AI 확장 시나리오',
+      subtitle:'미국 데이터센터의 직접 물 사용량. 2028년은 시나리오 범위이며 실제 사용량은 냉각방식·입지·운영효율에 따라 크게 달라질 수 있습니다.',
+      unit:'십억 L/년', max:300, sourceName:'Lawrence Berkeley National Laboratory', sourceUrl:'https://datacenters.lbl.gov/publications/avoiding-waste-heat-through-ai',
+      rows:[
+        {label:'2023 추정',values:[{name:'직접 물 사용',value:65,display:'약 65십억 L'}]},
+        {label:'2028 낮은 시나리오',values:[{name:'직접 물 사용',value:140,display:'약 140십억 L'}]},
+        {label:'2028 높은 시나리오',values:[{name:'직접 물 사용',value:280,display:'약 280십억 L'}]}
+      ],
+      interpretation:'AI 데이터센터 확대가 물·냉각 인프라 수요를 구조적으로 키울 가능성을 보여줍니다. PHO·FIW·CGW는 단순 물 사용 증가보다 실제 수도망 CAPEX, 재이용·수처리·액체냉각 수주가 매출로 연결되는지를 확인해야 합니다.'
+    }
   ],
   highlights: [
 
