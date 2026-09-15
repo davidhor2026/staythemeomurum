@@ -1,11 +1,11 @@
 window.ADMIN_INVESTMENT_DATA = {
-  updatedAt: '2026.09.15 11:20 KST',
+  updatedAt: '2026.09.15 15:40 KST',
   signals: [
     {label:'AI·메모리 수요', value:'강함 ↑ · 안전변수 관찰', tone:'up'},
     {label:'AI 인프라', value:'확대 지속 · 자금조달 변수', tone:'watch'},
     {label:'식량·농업', value:'에너지 원가 압력 ↑', tone:'watch'},
     {label:'물·인프라', value:'규제·효율투자 ↑', tone:'watch'},
-    {label:'Schwab ETF', value:'SCHD 방어 · SCHF 분산', tone:'up'}
+    {label:'Schwab ETF', value:'SCHD 핵심 · 비교전망 병행', tone:'up'}
   ],
   charts: [
     {
@@ -42,16 +42,49 @@ window.ADMIN_INVESTMENT_DATA = {
       interpretation:'AI 데이터센터 확대가 물·냉각 인프라 수요를 구조적으로 키울 가능성을 보여줍니다. PHO·FIW·CGW는 단순 물 사용 증가보다 실제 수도망 CAPEX, 재이용·수처리·액체냉각 수주가 매출로 연결되는지를 확인해야 합니다.'
     },
     {
-      category:'Schwab ETF', asOf:'2026.08.31', title:'Schwab 주요 ETF 2026 YTD 수익률 비교',
-      subtitle:'Schwab Asset Management 공식 월간 성과의 시장가격 기준. ETF 성격이 서로 달라 단순 수익률 순위보다 성장·배당·분산 역할을 함께 비교합니다.',
+      category:'Schwab ETF · 성과', asOf:'2026.08.31', title:'SCHD 중심 — Schwab 주요 ETF 2026 YTD 수익률 비교',
+      subtitle:'사용자가 투자 중인 SCHD를 기준축으로 두고 SCHG·SCHB·SCHF는 비교용으로 표시합니다. Schwab 공식 시장가격 총수익률 기준입니다.',
       unit:'%', max:32, sourceName:'Schwab Asset Management', sourceUrl:'https://www.schwabassetmanagement.com/products/etfs',
       rows:[
-        {label:'SCHD 배당·퀄리티',values:[{name:'YTD 시장가격 수익률',value:29.29,display:'+29.29%'}]},
-        {label:'SCHF 해외 선진국',values:[{name:'YTD 시장가격 수익률',value:18.10,display:'+18.10%'}]},
-        {label:'SCHB 미국 전체시장',values:[{name:'YTD 시장가격 수익률',value:13.46,display:'+13.46%'}]},
-        {label:'SCHG 미국 대형 성장',values:[{name:'YTD 시장가격 수익률',value:9.57,display:'+9.57%'}]}
+        {label:'SCHD ★ 핵심 투자',values:[{name:'YTD 시장가격 총수익률',value:29.29,display:'+29.29%'}]},
+        {label:'SCHF 해외 선진국',values:[{name:'YTD 시장가격 총수익률',value:18.10,display:'+18.10%'}]},
+        {label:'SCHB 미국 전체시장',values:[{name:'YTD 시장가격 총수익률',value:13.46,display:'+13.46%'}]},
+        {label:'SCHG 미국 대형 성장',values:[{name:'YTD 시장가격 총수익률',value:9.57,display:'+9.57%'}]}
       ],
-      interpretation:'2026년에는 SCHD가 강한 배당·가치주 흐름을 보였고 SCHF도 미국 외 선진국 분산 효과가 컸습니다. SCHG는 장기 성장성이 높지만 AI 대형 기술주와 금리 변화에 더 민감합니다. 과거 수익률은 미래 성과를 보장하지 않습니다.'
+      interpretation:'SCHD가 2026년 들어 강한 배당·가치주 흐름을 보이고 있습니다. 다만 이 그래프는 과거 성과이며 미래 수익률 예측이 아닙니다. SCHG는 AI 성장주, SCHB는 미국시장 전체, SCHF는 해외 선진국·한국 반도체 노출을 비교하는 보조지표로 봅니다.'
+    },
+    {
+      category:'Schwab ETF · 밸류에이션', asOf:'2026.08.31', title:'SCHD vs 비교 ETF — P/E 밸류에이션',
+      subtitle:'같은 Schwab ETF라도 투자 스타일에 따라 현재 이익 대비 가격 수준이 크게 다릅니다. P/E가 낮다고 반드시 저평가를 뜻하지는 않습니다.',
+      unit:'배', max:32, sourceName:'Schwab Asset Management', sourceUrl:'https://www.schwabassetmanagement.com/products/schd',
+      rows:[
+        {label:'SCHF 해외 선진국',values:[{name:'P/E',value:16.58,display:'16.58배'}]},
+        {label:'SCHD ★ 핵심 투자',values:[{name:'P/E',value:19.57,display:'19.57배'}]},
+        {label:'SCHB 미국 전체시장',values:[{name:'P/E',value:24.73,display:'24.73배'}]},
+        {label:'SCHG 미국 대형 성장',values:[{name:'P/E',value:30.48,display:'30.48배'}]}
+      ],
+      sourceLinks:[
+        {name:'SCHD',url:'https://www.schwabassetmanagement.com/products/schd'},
+        {name:'SCHG',url:'https://www.schwabassetmanagement.com/products/schg'},
+        {name:'SCHB',url:'https://www.schwabassetmanagement.com/products/schb'},
+        {name:'SCHF',url:'https://www.schwabassetmanagement.com/products/schf'}
+      ],
+      interpretation:'SCHD는 SCHG보다 밸류에이션 부담이 낮고 30일 SEC yield도 3.23%로 배당 현금흐름이 상대적으로 큽니다. 반대로 AI·대형 성장주 강세가 다시 집중될 때에는 SCHG가 더 민감하게 반응할 수 있습니다.'
+    },
+    {
+      category:'SCHD · 6~12개월 전망', asOf:'2026.09.04', title:'Schwab 섹터 전망을 SCHD 구성에 대입한 상대 환경',
+      subtitle:'Schwab Center for Financial Research의 6~12개월 섹터 등급과 SCHD의 2026년 6월 말 섹터 비중을 단순 매칭한 참고 그래프입니다. ETF 가격 수익률 예측이 아닙니다.',
+      unit:'%', max:100, sourceName:'Charles Schwab / Schwab Asset Management', sourceUrl:'https://www.schwab.com/learn/story/stock-sector-outlook',
+      sourceLinks:[
+        {name:'Schwab 6~12개월 섹터 전망',url:'https://www.schwab.com/learn/story/stock-sector-outlook'},
+        {name:'SCHD 공식 포트폴리오',url:'https://www.schwabassetmanagement.com/products/schd'}
+      ],
+      rows:[
+        {label:'상대적으로 우호적 섹터 노출',values:[{name:'헬스케어·금융·산업재',value:42.32,display:'42.32%'}]},
+        {label:'중립 섹터 노출',values:[{name:'필수소비재·에너지·IT·통신',value:49.83,display:'49.83%'}]},
+        {label:'비우호적 섹터 노출',values:[{name:'경기소비재·유틸리티 등',value:7.85,display:'7.85%'}]}
+      ],
+      interpretation:'Schwab은 9월 4일 기준 향후 6~12개월에 헬스케어·금융·산업재를 More Favored로 보고 있습니다. SCHD는 이 세 섹터에 약 42.32% 노출되어 있어 현재 Schwab 섹터 전망과 구조적으로 맞는 부분이 있습니다. 다만 이는 섹터 전망을 현재 비중에 매칭한 시나리오 분석이며 SCHD의 예상 수익률을 뜻하지 않습니다.'
     }
   ],
   highlights: [
@@ -347,14 +380,15 @@ window.ADMIN_INVESTMENT_DATA = {
       etf:{title:'ETF 빠른 관찰', text:'VEGI는 9월 4일 기준 YTD NAV 수익률이 약 28.0%로 올라와 있습니다. 이미 상당한 상승이 있었기 때문에 신규 접근 시 곡물가격보다 편입기업의 이익 전망과 밸류에이션을 함께 확인해야 합니다.', source:'iShares VEGI', url:'https://www.ishares.com/us/products/239652/ishares-msci-global-agriculture-producers-etf'}
     },
     schwab: {
-      title:'Schwab ETF 투자 분석',
+      title:'SCHD 중심 · Schwab ETF 비교 전망',
       items:[
-        {date:'2026-09-15', badge:'SCHD', title:'배당·퀄리티 — 2026년 강한 방어·가치 흐름', text:'8월 말 기준 시장가격 YTD +29.29%, 30일 SEC yield 3.23%, 총보수 0.06%, P/E 19.57. 헬스케어·필수소비재·에너지 비중이 높아 대형 성장주 조정 시 상대적 방어력이 있지만 에너지 가격과 배당 지속성을 함께 봐야 합니다.', view:'배당·방어 핵심', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schd'},
-        {date:'2026-09-15', badge:'SCHG', title:'미국 대형 성장 — AI·기술주 민감도 가장 큼', text:'8월 말 기준 시장가격 YTD +9.57%, 30일 SEC yield 0.37%, 총보수 0.04%, P/E 30.48. 성장 프리미엄이 높은 만큼 AI CAPEX 지속 시 수혜가 크지만 금리 상승·AI 투자 감속 우려에는 변동성이 커질 수 있습니다.', view:'성장성 높음 · 변동성 주의', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schg'},
-        {date:'2026-09-15', badge:'SCHB', title:'미국 전체시장 — 코어 분산용', text:'8월 말 기준 시장가격 YTD +13.46%, 30일 SEC yield 1.01%, 총보수 0.03%, P/E 24.73. 약 2,380개 종목으로 미국 대·중·소형주를 폭넓게 담아 특정 스타일 베팅보다 미국시장 전체 흐름을 추적하는 데 적합합니다.', view:'코어·분산', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schb'},
-        {date:'2026-09-15', badge:'SCHF', title:'미국 제외 선진국 — 삼성전자·SK하이닉스 직접 편입', text:'8월 말 기준 시장가격 YTD +18.10%, 30일 SEC yield 2.12%, 총보수 0.03%, P/E 16.58. 9월 11일 보유내역에서 삼성전자 2.96%, SK하이닉스 2.48%, ASML 2.20%로 상위권에 있어 한국 AI 반도체 강세와 해외 선진국 분산을 함께 반영합니다.', view:'해외 분산 + 한국 반도체 노출', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schf'}
+        {date:'2026-09-15', badge:'SCHD ★ 핵심', title:'내 투자 핵심 — 배당·퀄리티 + 현재 섹터 환경', text:'Schwab 공식 기준 SCHD는 8월 말 시장가격 YTD +29.29%, P/E 19.57배, 9월 11일 30일 SEC yield 3.23%, 총보수 0.06%입니다. 9월 14일 순자산은 약 1,119억달러입니다. Schwab의 6~12개월 섹터 전망에서 More Favored인 헬스케어·금융·산업재가 SCHD의 6월 말 비중 기준 약 42.32%를 차지합니다.', view:'핵심 보유 · 배당과 섹터 회전 동시 추적', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schd'},
+        {date:'2026-09-15', badge:'SCHD 전망', title:'향후 관찰 — 고금리·유가·배당 지속성이 핵심', text:'Schwab은 최근 높은 국채수익률과 금리인상 위험을 경계하면서도 헬스케어·금융·산업재를 상대적으로 선호합니다. SCHD에는 우호적인 부분이 있지만 에너지 비중 14.07%와 경기민감 산업재·금융 노출 때문에 유가 급변, 경기 둔화, 배당 삭감은 위험요인입니다. 가격 목표가가 아니라 6~12개월 환경 분석으로 봅니다.', view:'중립 이상 · 금리/경기 확인', source:'Charles Schwab Sector Views', url:'https://www.schwab.com/learn/story/stock-sector-outlook'},
+        {date:'2026-09-15', badge:'SCHG 비교', title:'AI 강세 재가속 시 비교용 — 성장 탄력은 SCHG', text:'SCHG는 P/E 30.48배, 30일 SEC yield 0.37%이며 NVIDIA 비중이 약 11%로 가장 큽니다. AI CAPEX와 대형 기술주 실적이 다시 시장을 주도하면 SCHD보다 상승 탄력이 클 수 있지만, 높은 밸류에이션과 금리 상승에는 더 민감합니다.', view:'AI 강세 시 상대 우위 가능 · 변동성 큼', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schg'},
+        {date:'2026-09-15', badge:'SCHB 비교', title:'미국 전체시장 기준점 — SCHD 성과 비교용', text:'SCHB는 P/E 24.73배, 30일 SEC yield 1.01%, 약 2,380개 종목을 보유합니다. NVIDIA·Apple·Microsoft 등 대형 기술주 영향도 크기 때문에 SCHD가 미국 전체시장 대비 얼마나 방어·초과성과를 내는지 확인하는 기준점으로 활용합니다.', view:'시장 기준점 · 코어 비교', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schb'},
+        {date:'2026-09-15', badge:'SCHF 비교', title:'해외 분산·한국 반도체 — SCHD와 다른 수익원', text:'SCHF는 P/E 16.58배, 30일 SEC yield 2.12%이며 9월 11일 보유내역에서 삼성전자 2.96%, SK하이닉스 2.48%, ASML 2.20%가 상위권입니다. 미국 배당주 중심 SCHD와 달리 해외시장·AI 반도체 공급망이 강할 때 비교할 보조 ETF입니다.', view:'해외·반도체 분산 비교', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schf'}
       ],
-      etf:{title:'Schwab ETF 선택 기준', text:'배당·가치 방어는 SCHD, 미국 대형 성장·AI 민감도는 SCHG, 미국시장 전체 코어는 SCHB, 미국 외 선진국 및 한국 반도체 노출은 SCHF로 역할이 다릅니다. 수익률만 비교하지 말고 금리·밸류에이션·배당수익률·지역/섹터 집중도를 함께 확인합니다.', source:'Schwab Asset Management ETF', url:'https://www.schwabassetmanagement.com/products/etfs'}
+      etf:{title:'앞으로의 분석 기준', text:'SCHD를 1순위로 추적합니다. 배당금·SEC yield·배당성장·P/E·섹터 비중·주요 편입종목·금리/국채수익률을 핵심으로 보고, SCHG는 AI 성장주 강도, SCHB는 미국시장 전체 기준점, SCHF는 해외·한국 반도체 분산을 비교할 때만 함께 봅니다. 전망 그래프는 공식 수치와 Schwab의 6~12개월 섹터 전망을 활용하며 임의의 ETF 목표가격이나 예상수익률은 만들지 않습니다.', source:'Schwab Asset Management / Charles Schwab Research', url:'https://www.schwab.com/learn/story/stock-sector-outlook'}
     },
     water: {
       title:'미국 물 · 수자원',
