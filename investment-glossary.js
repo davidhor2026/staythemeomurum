@@ -22,6 +22,8 @@ window.INVESTMENT_GLOSSARY = {
   'ETF': {title:'ETF (상장지수펀드)', desc:'주식처럼 거래소에서 사고팔 수 있는 펀드입니다. 특정 지수·산업·원자재 등을 묶어 투자할 수 있어 개별 종목 위험을 분산하는 데 활용됩니다.', url:'https://www.investopedia.com/terms/e/etf.asp'},
   'IPO': {title:'IPO (기업공개)', desc:'비상장 기업이 주식을 일반 투자자에게 처음 공개하고 증권시장에 상장하는 과정입니다. 대규모 IPO는 기업의 자금조달 능력과 시장이 평가하는 기업가치를 보여주는 중요한 이벤트입니다.', url:'https://www.investor.gov/introduction-investing/investing-basics/glossary/initial-public-offering-ipo'},
   'NAV': {title:'NAV (순자산가치)', desc:'펀드가 보유한 자산에서 부채를 뺀 순자산을 좌수로 나눈 값입니다. ETF 시장가격이 NAV와 얼마나 차이 나는지 확인할 때 사용합니다.', url:'https://www.investopedia.com/terms/n/nav.asp'},
+  'SEC yield': {title:'SEC Yield (30일)', desc:'미국 SEC 표준 방식으로 최근 30일의 펀드 수익을 연율화한 수익률입니다. ETF의 현재 이자·배당 수익 수준을 비교하는 참고지표이며 실제 분배금과는 다를 수 있습니다.', url:'https://www.investor.gov/introduction-investing/investing-basics/glossary/yield'},
+  'P/E': {title:'P/E (주가수익비율)', desc:'주가를 주당이익으로 나눈 밸류에이션 지표입니다. 수치가 높을수록 시장이 더 높은 성장 기대를 가격에 반영하고 있을 가능성이 있지만 업종별 차이가 큽니다.', url:'https://www.investor.gov/introduction-investing/investing-basics/glossary/price-earnings-pe-ratio'},
   'YTD': {title:'YTD (연초 이후)', desc:'해당 연도 1월 1일부터 현재까지의 기간을 뜻합니다. YTD 수익률은 연초 이후 누적 성과를 보여줍니다.', url:'https://www.investopedia.com/terms/y/ytd.asp'},
   'QoQ': {title:'QoQ (전분기 대비)', desc:'직전 분기와 비교한 증감률입니다. 예: 매출 +10% QoQ는 바로 전 분기보다 10% 증가했다는 뜻입니다.', url:'https://en.wikipedia.org/wiki/Quarter_(unit)'},
   'EPS': {title:'EPS (주당순이익)', desc:'기업 순이익을 발행주식 수로 나눈 값입니다. 기업이 주식 1주당 얼마의 이익을 냈는지 보여주는 대표적인 수익성 지표입니다.', url:'https://www.investopedia.com/terms/e/eps.asp'},

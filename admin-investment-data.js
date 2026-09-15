@@ -1,10 +1,11 @@
 window.ADMIN_INVESTMENT_DATA = {
-  updatedAt: '2026.09.14 09:07 KST',
+  updatedAt: '2026.09.15 11:20 KST',
   signals: [
     {label:'AI·메모리 수요', value:'강함 ↑ · 안전변수 관찰', tone:'up'},
     {label:'AI 인프라', value:'확대 지속 · 자금조달 변수', tone:'watch'},
     {label:'식량·농업', value:'에너지 원가 압력 ↑', tone:'watch'},
-    {label:'물·인프라', value:'직접 신규 신호 제한', tone:'watch'}
+    {label:'물·인프라', value:'규제·효율투자 ↑', tone:'watch'},
+    {label:'Schwab ETF', value:'SCHD 방어 · SCHF 분산', tone:'up'}
   ],
   charts: [
     {
@@ -39,9 +40,49 @@ window.ADMIN_INVESTMENT_DATA = {
         {label:'2028 높은 시나리오',values:[{name:'직접 물 사용',value:280,display:'약 280십억 L'}]}
       ],
       interpretation:'AI 데이터센터 확대가 물·냉각 인프라 수요를 구조적으로 키울 가능성을 보여줍니다. PHO·FIW·CGW는 단순 물 사용 증가보다 실제 수도망 CAPEX, 재이용·수처리·액체냉각 수주가 매출로 연결되는지를 확인해야 합니다.'
+    },
+    {
+      category:'Schwab ETF', asOf:'2026.08.31', title:'Schwab 주요 ETF 2026 YTD 수익률 비교',
+      subtitle:'Schwab Asset Management 공식 월간 성과의 시장가격 기준. ETF 성격이 서로 달라 단순 수익률 순위보다 성장·배당·분산 역할을 함께 비교합니다.',
+      unit:'%', max:32, sourceName:'Schwab Asset Management', sourceUrl:'https://www.schwabassetmanagement.com/products/etfs',
+      rows:[
+        {label:'SCHD 배당·퀄리티',values:[{name:'YTD 시장가격 수익률',value:29.29,display:'+29.29%'}]},
+        {label:'SCHF 해외 선진국',values:[{name:'YTD 시장가격 수익률',value:18.10,display:'+18.10%'}]},
+        {label:'SCHB 미국 전체시장',values:[{name:'YTD 시장가격 수익률',value:13.46,display:'+13.46%'}]},
+        {label:'SCHG 미국 대형 성장',values:[{name:'YTD 시장가격 수익률',value:9.57,display:'+9.57%'}]}
+      ],
+      interpretation:'2026년에는 SCHD가 강한 배당·가치주 흐름을 보였고 SCHF도 미국 외 선진국 분산 효과가 컸습니다. SCHG는 장기 성장성이 높지만 AI 대형 기술주와 금리 변화에 더 민감합니다. 과거 수익률은 미래 성과를 보장하지 않습니다.'
     }
   ],
   highlights: [
+    {
+      date:'2026-09-15', category:'AI·인프라', kind:'자금조달·데이터센터', importance:'핵심',
+      title:'SB Energy 미국 IPO 추진 — NVIDIA 15억달러 투자 약정',
+      summary:'Reuters는 SoftBank가 지원하는 데이터센터 개발사 SB Energy가 미국 IPO 과정에서 일본 투자자에게 최대 5억달러 규모 주식을 판매할 계획이며, NVIDIA가 IPO 가격으로 15억달러를 투자하기로 했다고 보도했습니다. 신규 자금은 데이터센터·발전·관련 인프라 개발 등에 사용될 예정입니다.',
+      impact:'AI 컴퓨트 수요가 GPU 구매를 넘어 데이터센터와 전력 인프라 자금조달로 이어지는 실물 신호입니다. 삼성전자·SK하이닉스에는 중장기 HBM·서버 DRAM 수요에 긍정적이지만, IPO 밸류에이션과 실제 시설 가동·GPU 발주 시점은 별도로 확인해야 합니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/business/energy/sb-energy-sell-up-500-million-shares-japan-investors-part-us-ipo-2026-09-15/'
+    },
+    {
+      date:'2026-09-14', category:'AI·반도체', kind:'시장 위험', importance:'주의',
+      title:'AI 개발 속도조절론에 글로벌 반도체주 급락',
+      summary:'Reuters에 따르면 AI 안전 우려와 개발 속도조절론이 부각되며 필라델피아 반도체지수가 5.9% 하락했고 NVIDIA·Micron·Broadcom·AMD 등 AI 연관 종목이 약세를 보였습니다.',
+      impact:'현재는 실제 hyperscaler CAPEX 축소나 HBM 주문 취소가 확인된 단계가 아닙니다. 삼성전자·SK하이닉스는 단기 주가 변동성 확대 요인이지만 실적 판단은 GPU 발주·HBM 계약가격·데이터센터 CAPEX 변화로 확인해야 합니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/business/ai-warnings-knock-nasdaq-futures-pressure-tech-stocks-2026-09-14/'
+    },
+    {
+      date:'2026-09-14', category:'식량·농업', kind:'운송 원가', importance:'핵심',
+      title:'미국 곡물 철도 연료할증료 1년 새 153% 급등',
+      summary:'Reuters는 USDA 자료를 인용해 미국 곡물 철도 연료할증료가 1년 전보다 153% 상승해 열차 1량·마일당 48센트가 됐고, 곡물 철도운송비에서 차지하는 비중도 5%에서 11%로 높아졌다고 보도했습니다.',
+      impact:'수확기 옥수수·대두 농가의 실수취가격과 마진에 부담입니다. DBA는 곡물 가격 상승의 수혜 가능성이 있지만 MOO·VEGI 내 농기계·식품가공·유통 기업은 원가 전가 능력에 따라 영향이 갈립니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/business/retail-consumer/us-rail-fuel-surcharges-grain-hit-record-highs-squeezing-farmers-harvest-season-2026-09-14/'
+    },
+    {
+      date:'2026-09-14', category:'물·인프라', kind:'데이터센터 규제', importance:'핵심',
+      title:'텍사스, 데이터센터 물 사용 보고 위반 제재 강화',
+      summary:'Reuters는 텍사스 주지사가 데이터센터 등 대규모 물 사용자의 의무 보고 위반에 법적 제재를 강화하도록 지시했다고 보도했습니다. 미제출 시설은 환경허가 유지·갱신에도 영향을 받을 수 있습니다.',
+      impact:'데이터센터에는 인허가·CAPEX 상승 위험이지만 물 효율화·재이용·수처리·폐쇄형 냉각 설비에는 구조적 수요 촉진 요인이 될 수 있습니다. PHO·FIW·CGW는 실제 편입기업의 신규 수주와 가이던스를 확인해야 합니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/legal/litigation/texas-moves-penalize-data-centers-water-violations-2026-09-14/'
+    },
 
     {
       date:'2026-09-12', category:'AI·반도체', kind:'AI 자금조달', importance:'핵심',
@@ -293,6 +334,7 @@ window.ADMIN_INVESTMENT_DATA = {
     food: {
       title:'미국 식량 · 농업',
       items:[
+        {date:'2026-09-14', badge:'운송 원가', title:'미국 곡물 철도 연료할증료 +153% YoY', text:'열차 1량·마일당 48센트로 상승했고 곡물 철도운송비 내 비중도 5%에서 11%로 확대. 수확기 농가 마진과 basis에 부담이 커졌습니다.', view:'DBA 가격수혜 가능 · 생산자 마진 주의', source:'Reuters', url:'https://www.reuters.com/business/retail-consumer/us-rail-fuel-surcharges-grain-hit-record-highs-squeezing-farmers-harvest-season-2026-09-14/'},
         {date:'2026-09-12', badge:'에너지 원가', title:'사우디 East-West 송유관 일시 중단', text:'드론 공격 이후 핵심 송유관이 일시 중단되며 중동 원유 운송 리스크가 재확대. 비료·디젤·곡물 운송·식품가공 비용 상승 가능성 때문에 DBA와 농업기업 ETF를 구분해 봐야 합니다.', view:'DBA 우호 · MOO/VEGI 혼조', source:'Reuters', url:'https://www.reuters.com/business/energy/saudis-shut-down-oil-pipeline-houthis-tighten-grip-red-sea-shipping-2026-09-12/'},
         {date:'2026-09-11', badge:'WASDE 대기', title:'옥수수·대두 재고 하향 여부가 오늘 핵심', text:'9월 WASDE 공식 발표 전 시장은 미국 옥수수·대두 기말재고 하향 가능성을 보고 있습니다. 확정치가 아닌 전망이므로 발표 후 예상치와 실제치를 비교해야 합니다.', view:'관찰', source:'USDA WASDE', url:'https://www.usda.gov/oce/commodity/wasde'},
         {date:'2026-09-09', badge:'원가 신호', title:'에너지 가격 변동이 비료·농가 비용에 다시 변수', text:'질소비료 생산비와 농가 투입비가 에너지 가격에 민감해 식량 밸류체인 내 수혜·피해가 갈릴 수 있습니다. 비료·농기계·가공식품을 분리해 봅니다.', view:'주의·관찰', source:'글로벌 원자재 시장', url:'https://www.reuters.com/markets/commodities/'},
@@ -304,9 +346,20 @@ window.ADMIN_INVESTMENT_DATA = {
       ],
       etf:{title:'ETF 빠른 관찰', text:'VEGI는 9월 4일 기준 YTD NAV 수익률이 약 28.0%로 올라와 있습니다. 이미 상당한 상승이 있었기 때문에 신규 접근 시 곡물가격보다 편입기업의 이익 전망과 밸류에이션을 함께 확인해야 합니다.', source:'iShares VEGI', url:'https://www.ishares.com/us/products/239652/ishares-msci-global-agriculture-producers-etf'}
     },
+    schwab: {
+      title:'Schwab ETF 투자 분석',
+      items:[
+        {date:'2026-09-15', badge:'SCHD', title:'배당·퀄리티 — 2026년 강한 방어·가치 흐름', text:'8월 말 기준 시장가격 YTD +29.29%, 30일 SEC yield 3.23%, 총보수 0.06%, P/E 19.57. 헬스케어·필수소비재·에너지 비중이 높아 대형 성장주 조정 시 상대적 방어력이 있지만 에너지 가격과 배당 지속성을 함께 봐야 합니다.', view:'배당·방어 핵심', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schd'},
+        {date:'2026-09-15', badge:'SCHG', title:'미국 대형 성장 — AI·기술주 민감도 가장 큼', text:'8월 말 기준 시장가격 YTD +9.57%, 30일 SEC yield 0.37%, 총보수 0.04%, P/E 30.48. 성장 프리미엄이 높은 만큼 AI CAPEX 지속 시 수혜가 크지만 금리 상승·AI 투자 감속 우려에는 변동성이 커질 수 있습니다.', view:'성장성 높음 · 변동성 주의', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schg'},
+        {date:'2026-09-15', badge:'SCHB', title:'미국 전체시장 — 코어 분산용', text:'8월 말 기준 시장가격 YTD +13.46%, 30일 SEC yield 1.01%, 총보수 0.03%, P/E 24.73. 약 2,380개 종목으로 미국 대·중·소형주를 폭넓게 담아 특정 스타일 베팅보다 미국시장 전체 흐름을 추적하는 데 적합합니다.', view:'코어·분산', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schb'},
+        {date:'2026-09-15', badge:'SCHF', title:'미국 제외 선진국 — 삼성전자·SK하이닉스 직접 편입', text:'8월 말 기준 시장가격 YTD +18.10%, 30일 SEC yield 2.12%, 총보수 0.03%, P/E 16.58. 9월 11일 보유내역에서 삼성전자 2.96%, SK하이닉스 2.48%, ASML 2.20%로 상위권에 있어 한국 AI 반도체 강세와 해외 선진국 분산을 함께 반영합니다.', view:'해외 분산 + 한국 반도체 노출', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schf'}
+      ],
+      etf:{title:'Schwab ETF 선택 기준', text:'배당·가치 방어는 SCHD, 미국 대형 성장·AI 민감도는 SCHG, 미국시장 전체 코어는 SCHB, 미국 외 선진국 및 한국 반도체 노출은 SCHF로 역할이 다릅니다. 수익률만 비교하지 말고 금리·밸류에이션·배당수익률·지역/섹터 집중도를 함께 확인합니다.', source:'Schwab Asset Management ETF', url:'https://www.schwabassetmanagement.com/products/etfs'}
+    },
     water: {
       title:'미국 물 · 수자원',
       items:[
+        {date:'2026-09-14', badge:'규제·물 효율', title:'텍사스, 데이터센터 물 사용 보고 위반 제재 강화', text:'대규모 물 사용 데이터센터의 보고·허가 규제가 강화되는 흐름. 프로젝트에는 비용·지연 위험이지만 재이용·수처리·고효율 냉각 설비에는 수요 촉진 요인이 될 수 있습니다.', view:'효율·수처리 수요 긍정', source:'Reuters', url:'https://www.reuters.com/legal/litigation/texas-moves-penalize-data-centers-water-violations-2026-09-14/'},
         {date:'2026-09-11', badge:'AI 냉각·물', title:'호주 2GW AI 데이터센터 계획, 전력·물 사용 이슈 확대', text:'NVIDIA의 대규모 호주 데이터센터 계획과 함께 전력·물 소비 규제 우려도 부각. PHO·FIW·CGW의 즉각적 매수 신호라기보다 냉각·수처리·재이용 기업의 실제 수주와 가이던스를 확인할 단계.', view:'중장기 관찰', source:'Reuters', url:'https://www.reuters.com/world/asia-pacific/nvidia-teams-up-with-australian-partners-build-ai-factory-capacity-2026-09-10/'},
         {date:'2026-09-09', badge:'오늘 점검', title:'신규 대형 수주·CAPEX 신호는 아직 제한적', text:'오늘은 시장 판단을 바꿀 정도의 새 대형 발표가 뚜렷하지 않습니다. AI 데이터센터 냉각·수처리와 미국 수도망 교체의 실제 수주·가이던스를 계속 추적합니다.', view:'관찰 유지', source:'주요 기업 IR·ETF 운용사', url:'https://www.invesco.com/us/financial-products/etfs/product-detail?productId=ETF-PHO'},
         {date:'2026-09-08', badge:'오늘 점검', title:'신규 대형 CAPEX·수주 신호는 제한적', text:'오늘은 시장 판단을 바꿀 정도의 신규 대형 발표가 뚜렷하지 않습니다. 미국 노후 수도망 교체와 AI 데이터센터 냉각·수처리 수요의 실제 수주·CAPEX 상향 여부를 계속 추적합니다.', view:'관찰 유지', source:'주요 기업 IR·ETF 운용사 점검', url:'https://www.invesco.com/us/financial-products/etfs/product-detail?productId=ETF-PHO'},
@@ -324,6 +377,7 @@ window.ADMIN_INVESTMENT_DATA = {
     '삼성전자·SK하이닉스 HBM 인증·공급량·가격·CAPEX',
     'DRAM·NAND 계약가격과 고객 재고 변화',
     '미국 농가소득·곡물/비료 가격·농기계 주문',
-    '미국 수도망 CAPEX·수처리 수주·AI 데이터센터 냉각 투자'
+    '미국 수도망 CAPEX·수처리 수주·AI 데이터센터 냉각 투자',
+    'Schwab SCHD·SCHG·SCHB·SCHF의 YTD·SEC yield·P/E·편입종목/섹터 변화'
   ]
 };
