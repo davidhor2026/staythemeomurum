@@ -1,11 +1,11 @@
 window.ADMIN_INVESTMENT_DATA = {
-  updatedAt: '2026.09.15 15:40 KST',
+  updatedAt: '2026.09.17 09:38 KST',
   signals: [
     {label:'AI·메모리 수요', value:'강함 ↑ · 안전변수 관찰', tone:'up'},
     {label:'AI 인프라', value:'확대 지속 · 자금조달 변수', tone:'watch'},
     {label:'식량·농업', value:'에너지 원가 압력 ↑', tone:'watch'},
     {label:'물·인프라', value:'규제·효율투자 ↑', tone:'watch'},
-    {label:'Schwab ETF', value:'SCHD 핵심 · 비교전망 병행', tone:'up'}
+    {label:'Schwab ETF', value:'SCHD 핵심 · 美 금리인상 영향 추적', tone:'watch'}
   ],
   charts: [
     {
@@ -85,9 +85,34 @@ window.ADMIN_INVESTMENT_DATA = {
         {label:'비우호적 섹터 노출',values:[{name:'경기소비재·유틸리티 등',value:7.85,display:'7.85%'}]}
       ],
       interpretation:'Schwab은 9월 4일 기준 향후 6~12개월에 헬스케어·금융·산업재를 More Favored로 보고 있습니다. SCHD는 이 세 섹터에 약 42.32% 노출되어 있어 현재 Schwab 섹터 전망과 구조적으로 맞는 부분이 있습니다. 다만 이는 섹터 전망을 현재 비중에 매칭한 시나리오 분석이며 SCHD의 예상 수익률을 뜻하지 않습니다.'
+    },
+    {
+      category:'SCHD · 금리환경', asOf:'2026.09.16', title:'미국 기준금리 인상 — SCHD 투자환경 변화',
+      subtitle:'9월 FOMC에서 연방기금금리 목표범위가 0.25%p 인상됐습니다. 아래 수치는 ETF 가격 전망이 아니라 SCHD와 성장주·채권의 상대 투자환경을 판단하기 위한 정책금리 지표입니다.',
+      unit:'%', max:4.5, sourceName:'Federal Reserve', sourceUrl:'https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm',
+      rows:[
+        {label:'인상 전',values:[{name:'목표범위 상단',value:3.75,display:'3.50~3.75%'}]},
+        {label:'9월 16일 결정',values:[{name:'목표범위 상단',value:4.00,display:'3.75~4.00%'}]},
+        {label:'2026년 말 정책경로',values:[{name:'FOMC 참가자 중심 경로',value:4.25,display:'4.00~4.25%'}]}
+      ],
+      interpretation:'금리 인상은 국채·예금 등 안전자산 수익률의 경쟁력을 높여 배당 ETF의 상대 매력을 압박할 수 있습니다. 동시에 높은 할인율은 고밸류 성장주에 더 민감하게 작용할 수 있어 SCHG에는 부담이 커질 수 있습니다. SCHD는 금융·산업재·헬스케어 비중 덕분에 영향이 단순하지 않으며, 경기 둔화와 기업 배당 지속성이 핵심 위험요인입니다. 가격 예측이 아닙니다.'
     }
   ],
   highlights: [
+    {
+      date:'2026-09-16', category:'미국 금리·SCHD', kind:'FOMC 정책변화', importance:'핵심',
+      title:'연준, 기준금리 0.25%p 인상 — 3.75~4.00%',
+      summary:'미 연준은 9월 16일 만장일치로 연방기금금리 목표범위를 3.50~3.75%에서 3.75~4.00%로 올렸습니다. 연준은 경제활동이 견조하지만 인플레이션이 여전히 높다고 설명했고, 물가를 2% 목표로 더 빠르게 되돌리기 위한 조치라고 밝혔습니다.',
+      impact:'SCHD에는 양면적입니다. 높은 금리는 국채·현금성 자산의 경쟁력을 높여 배당주의 상대 매력을 낮출 수 있지만, 고밸류 성장주에는 할인율 상승 부담이 더 크게 작용할 수 있습니다. SCHG는 금리 민감도가 상대적으로 높고 SCHB도 시장 전체 밸류에이션 압력을 받습니다. SCHD는 금융주 수익성 개선 가능성과 경기둔화·대손·배당삭감 위험을 함께 봐야 합니다.',
+      sourceName:'Federal Reserve', sourceUrl:'https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm'
+    },
+    {
+      date:'2026-09-16', category:'미국 금리·시장', kind:'시장 영향', importance:'핵심',
+      title:'금리인상 뒤 주식 하락·채권금리 상승 — 자금조달비용 부담 확대',
+      summary:'Reuters에 따르면 첫 금리인상 이후 미국 증시는 하락했고 단기 국채금리는 상승했습니다. 높은 시장금리는 주택담보대출·자동차·기업대출 등 경제 전반의 차입비용을 높이는 방향으로 작용합니다.',
+      impact:'AI 데이터센터처럼 막대한 선행 CAPEX가 필요한 사업에는 자금조달비용 상승이 위험요인입니다. NVIDIA·빅테크의 최종 AI 수요가 강해도 부채 의존도가 높은 데이터센터 개발사는 프로젝트 수익성 기준이 높아질 수 있습니다. 삼성전자·SK하이닉스에는 당장 HBM 주문 감소를 뜻하지 않지만 향후 hyperscaler CAPEX와 데이터센터 금융조건을 함께 추적해야 합니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/business/wall-st-futures-edge-higher-countdown-fed-decision-2026-09-16/'
+    },
     {
       date:'2026-09-15', category:'AI·인프라', kind:'자금조달·데이터센터', importance:'핵심',
       title:'SB Energy 미국 IPO 추진 — NVIDIA 15억달러 투자 약정',
@@ -382,6 +407,8 @@ window.ADMIN_INVESTMENT_DATA = {
     schwab: {
       title:'SCHD 중심 · Schwab ETF 비교 전망',
       items:[
+        {date:'2026-09-16', badge:'FOMC 금리인상', title:'미국 기준금리 3.75~4.00% — SCHD에 양면 영향', text:'연준이 0.25%p 인상했습니다. 국채·현금성 자산 수익률 상승은 SCHD의 배당수익률과 경쟁하지만, 높은 할인율은 P/E가 더 높은 성장주에 상대적으로 더 큰 부담이 될 수 있습니다. SCHD는 금융·산업재 비중 때문에 금리상승 수혜와 경기둔화 위험이 동시에 존재합니다.', view:'SCHD 핵심 추적 · 국채수익률/배당 지속성 확인', source:'Federal Reserve', url:'https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm'},
+        {date:'2026-09-16', badge:'SCHG·SCHB 비교', title:'성장주에는 할인율 부담, 전체시장에는 차입비용 부담', text:'금리가 오래 높게 유지되면 미래 이익의 현재가치가 낮아져 고밸류 성장주인 SCHG가 상대적으로 민감할 수 있습니다. SCHB는 미국 전체시장의 기준점으로 소비·주택·기업 차입비용 상승에 따른 경기와 이익 둔화를 함께 반영합니다. 이는 가격 예측이 아니라 금리 전달경로 분석입니다.', view:'SCHG 금리민감도 ↑ · SCHB 경기민감도 관찰', source:'Federal Reserve / Reuters', url:'https://www.reuters.com/business/view-markets-steady-after-fed-raises-rates-points-another-hike-this-year-2026-09-16/'},
         {date:'2026-09-15', badge:'SCHD ★ 핵심', title:'내 투자 핵심 — 배당·퀄리티 + 현재 섹터 환경', text:'Schwab 공식 기준 SCHD는 8월 말 시장가격 YTD +29.29%, P/E 19.57배, 9월 11일 30일 SEC yield 3.23%, 총보수 0.06%입니다. 9월 14일 순자산은 약 1,119억달러입니다. Schwab의 6~12개월 섹터 전망에서 More Favored인 헬스케어·금융·산업재가 SCHD의 6월 말 비중 기준 약 42.32%를 차지합니다.', view:'핵심 보유 · 배당과 섹터 회전 동시 추적', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schd'},
         {date:'2026-09-15', badge:'SCHD 전망', title:'향후 관찰 — 고금리·유가·배당 지속성이 핵심', text:'Schwab은 최근 높은 국채수익률과 금리인상 위험을 경계하면서도 헬스케어·금융·산업재를 상대적으로 선호합니다. SCHD에는 우호적인 부분이 있지만 에너지 비중 14.07%와 경기민감 산업재·금융 노출 때문에 유가 급변, 경기 둔화, 배당 삭감은 위험요인입니다. 가격 목표가가 아니라 6~12개월 환경 분석으로 봅니다.', view:'중립 이상 · 금리/경기 확인', source:'Charles Schwab Sector Views', url:'https://www.schwab.com/learn/story/stock-sector-outlook'},
         {date:'2026-09-15', badge:'SCHG 비교', title:'AI 강세 재가속 시 비교용 — 성장 탄력은 SCHG', text:'SCHG는 P/E 30.48배, 30일 SEC yield 0.37%이며 NVIDIA 비중이 약 11%로 가장 큽니다. AI CAPEX와 대형 기술주 실적이 다시 시장을 주도하면 SCHD보다 상승 탄력이 클 수 있지만, 높은 밸류에이션과 금리 상승에는 더 민감합니다.', view:'AI 강세 시 상대 우위 가능 · 변동성 큼', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schg'},
