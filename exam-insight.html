@@ -458,6 +458,17 @@
 .deep-analysis-kicker{display:inline-block;font-size:.8rem;font-weight:700;padding:4px 8px;border-radius:999px;background:#f3f4f6}
 .deep-analysis-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.deep-analysis-card{padding:14px;border:1px solid #eceff3;border-radius:14px;background:#fafafa}.deep-analysis-card h3{margin:0 0 8px}.deep-analysis-card p{margin:0;line-height:1.65}
 @media(max-width:760px){.deep-analysis-grid{grid-template-columns:1fr}}
+.teacher-analysis-summary{margin:15px 0;padding:15px 16px;border:1px solid #dce7df;border-radius:14px;background:#f6faf7;color:#3f5145;line-height:1.72}
+.teacher-analysis-summary strong{color:#244b32}.teacher-subject-list{display:grid;gap:10px;margin-top:16px}
+.teacher-subject-review{border:1px solid #dfe6e1;border-radius:14px;background:#fff;overflow:hidden}
+.teacher-subject-review summary{position:relative;cursor:pointer;list-style:none;padding:15px 42px 15px 16px;color:#244b32;font-weight:900}
+.teacher-subject-review summary::-webkit-details-marker{display:none}.teacher-subject-review summary:after{content:'＋';position:absolute;right:16px;top:14px;color:#52705d;font-size:20px}
+.teacher-subject-review[open] summary:after{content:'−'}.teacher-subject-review[open] summary{border-bottom:1px solid #e8ece9;background:#f7faf8}
+.teacher-subject-body{padding:15px 16px}.teacher-subject-body p{margin:0 0 9px;line-height:1.72;color:#4f5952}.teacher-subject-body p:last-child{margin-bottom:0}
+.teacher-review-label{display:inline-flex;margin-right:6px;padding:3px 7px;border-radius:999px;background:#eaf2ed;color:#315f43;font-size:11px;font-weight:900;vertical-align:1px}
+.teacher-review-label.is-review{background:#fff0e1;color:#8b571e}.teacher-review-label.is-guide{background:#edf3fa;color:#315c84}
+.teacher-source-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}.teacher-source-links a{display:inline-flex;padding:7px 9px;border-radius:9px;background:#f1f4f2;color:#315c45;text-decoration:none;font-size:12px;font-weight:800}
+.anchor-alias{display:block;position:relative;top:-90px;visibility:hidden}
 </style>
 </head>
 <body>
@@ -524,10 +535,10 @@
       <span>2026.3.7</span><strong>소방공무원</strong><small>난도 분석</small>
     </a>
     <a class="compact-analysis-item" href="#middle-2026-review">
-      <span>2025.11.22</span><strong>2026학년도 중등 임용</strong><small>지난 시험분석</small>
+      <span>2025.11.22</span><strong>2026학년도 중등 임용</strong><small>과목별 통합분석</small>
     </a>
     <a class="compact-analysis-item" href="#elementary-2026-review">
-      <span>2025.11.8</span><strong>2026학년도 초등 임용</strong><small>지난 시험분석</small>
+      <span>2025.11.8</span><strong>2026학년도 초등 임용</strong><small>과목별 통합분석</small>
     </a>
   </div>
 
@@ -1362,23 +1373,44 @@
 </section>
 
 <section class="deep-analysis-section" id="elementary-2026-review">
-  <div class="deep-analysis-head"><span class="deep-analysis-kicker">2025년 하반기 실시</span><h2>2026학년도 초등 교원임용 시험분석</h2><p>제1차 시험은 2025년 11월 8일, 제2차 시험은 2026년 1월 7~9일 중심으로 시행됐고 최종합격자는 1월 28일 발표됐습니다. 현재 준비 중인 2027학년도 시험과 구분해 지난 시험의 구조와 의미를 정리했습니다.</p></div>
+  <span class="anchor-alias" id="elementary-teacher-analysis" aria-hidden="true"></span>
+  <div class="deep-analysis-head"><span class="deep-analysis-kicker">공식 결과 + 과목별 총평 통합</span><h2>2026학년도 초등 교원임용 통합분석</h2><p>별도로 나뉘어 있던 ‘지난 시험분석’과 ‘분석핵심’을 한곳에 합쳤습니다. 제1차는 2025년 11월 8일, 제2차는 2026년 1월 7~9일 중심으로 시행됐고 최종합격자는 1월 28일 발표됐습니다.</p></div>
   <div class="deep-analysis-grid">
-    <article class="deep-analysis-card"><h3>올해 결과</h3><p>1차는 교직논술과 교육과정, 2차는 교직적성 심층면접·수업능력평가와 초등 영어수업 실연·영어면접 등을 중심으로 진행됐습니다. 지역에 따라 2차 일정과 평가항목·배점이 달라 지원 교육청 공고가 최종 기준입니다.</p></article>
-    <article class="deep-analysis-card"><h3>지역별 차이</h3><p>초등 임용에는 전국 공통의 단일 합격선이 없습니다. 서울·경기 등 시·도별 선발인원, 일반·장애 모집구분, 1차 합격선과 2차 평가방식이 다르므로 전국 평균보다 본인이 지원할 지역의 결과를 비교해야 합니다.</p></article>
-    <article class="deep-analysis-card"><h3>수험생에게 의미하는 점</h3><p>1차 서답형 작성 능력만으로 최종합격이 결정되지 않습니다. 1차 기출에서 취약한 교육과정 영역을 확인하면서 수업실연·면접의 기본 틀도 미리 준비하는 것이 다음 시험 대비에 유리합니다.</p></article>
+    <article class="deep-analysis-card"><h3>1차 구성</h3><p><strong>교직논술 20점 + 교육과정 80점</strong>입니다. 교육과정은 A형 70분·B형 70분으로 나뉘므로 과목 지식과 함께 시간 안배와 서답형 표현이 중요합니다.</p></article>
+    <article class="deep-analysis-card"><h3>2차 구성</h3><p>교직적성 심층면접·수업능력평가와 영어수업 실연·영어면접 등이 중심입니다. 일정·평가항목·배점은 시·도별로 다르므로 지원 교육청 공고가 최종 기준입니다.</p></article>
+    <article class="deep-analysis-card"><h3>결과 해석</h3><p>전국 공통 단일 합격선은 없습니다. 시·도별 선발인원, 일반·장애 모집구분, 1차 합격선과 2차 평가방식을 나눠 비교해야 합니다.</p></article>
   </div>
-  <p class="exam-source-note">공식 확인: <a href="https://goe.go.kr/goe/na/ntt/selectNttList.do?bbsId=2583&amp;mi=11038" target="_blank" rel="noopener noreferrer">경기도교육청 교원시험 공고</a> · <a href="https://www.sen.go.kr/user/bbs/BD_selectBbsList.do?q_bbsSn=1094" target="_blank" rel="noopener noreferrer">서울특별시교육청 교원임용 공고</a></p>
+  <div class="teacher-analysis-summary"><strong>한 줄 총평</strong> · 1차는 단순 암기량보다 제시문과 요구조건을 빠짐없이 답안에 연결하는 힘이 중요했고, 교육과정 A·B는 어느 한 과목을 버리기보다 전 교과의 성취기준·수업·평가를 연결해 설명하는 준비가 필요합니다.</div>
+  <div class="teacher-subject-list">
+    <details class="teacher-subject-review" open><summary>교직논술 · 단원 설계와 평가를 하나의 논리로 연결</summary><div class="teacher-subject-body"><p><span class="teacher-review-label is-review">기출 분석</span>공개된 2026학년도 문항·예시답안에서는 단원 설계의 목적, 학습 내용의 선정·조직, 평가 타당도, 문항 유형, 루브릭의 역할을 한 답안 안에서 연결하는 구성이 확인됩니다.</p><p><span class="teacher-review-label">변별 포인트</span>교육학 용어를 나열하는 것보다 제시문 속 교사 발언과 논점별 요구 개수를 정확히 대응시키고, 근거와 효과를 짝지어 쓰는 답안이 유리한 유형입니다.</p><p><span class="teacher-review-label is-guide">다음 대비</span>‘요구사항 체크 → 근거 표시 → 항목별 한 문장 결론’ 틀을 만들고 60분 안에 완성하는 연습이 필요합니다.</p></div></details>
+    <details class="teacher-subject-review"><summary>교육과정 A · 국어·영어·음악·사회·도덕·바른 생활·실과</summary><div class="teacher-subject-body"><p><span class="teacher-review-label">시험 구조</span>A형은 70분, 총 41점이며 국어·영어·음악·사회·도덕·바른 생활·실과를 평가합니다.</p><p><span class="teacher-review-label">과목별 총평</span>여러 교과를 짧은 시간에 오가므로 성취기준 문구의 단순 암기만으로는 부족합니다. 제시된 수업 상황에서 어떤 교수·학습 원리와 평가 방법을 적용할지 정확한 교육과정 용어로 짧게 답하는 능력이 핵심입니다.</p><p><span class="teacher-review-label is-guide">다음 대비</span>교과별로 ‘성취기준–수업활동–평가’ 3열 표를 만들고, 교과 간 유사한 교수·학습 모형과 평가 용어를 비교해 복습하는 편이 효과적입니다.</p></div></details>
+    <details class="teacher-subject-review"><summary>교육과정 B · 수학·미술·즐거운 생활·총론/창체·과학·슬기로운 생활·체육</summary><div class="teacher-subject-body"><p><span class="teacher-review-label">시험 구조</span>B형은 70분, 총 39점이며 수학·미술·즐거운 생활·총론 및 창의적 체험활동·과학·슬기로운 생활·체육을 평가합니다.</p><p><span class="teacher-review-label">과목별 총평</span>개념 설명뿐 아니라 자료·수업 장면을 해석해 발문, 활동, 오류 교정, 평가 기준을 제시하는 형태에 대비해야 합니다. 계산·탐구·표현 활동이 섞여 있어 답을 아는 것과 답안지에 정확히 표현하는 것이 별개입니다.</p><p><span class="teacher-review-label is-guide">다음 대비</span>수학·과학은 풀이와 탐구과정의 근거를, 예체능·통합교과는 활동 단계와 유의점을 제한시간 안에 쓰고 총론·창체를 학교 운영 사례에 연결하는 훈련이 필요합니다.</p></div></details>
+    <details class="teacher-subject-review"><summary>2차 · 심층면접·수업실연·영어수업/면접</summary><div class="teacher-subject-body"><p><span class="teacher-review-label">공식 범위</span>지역별로 심층면접, 수업실연 또는 수업능력평가, 영어수업 실연·영어면접 등이 운영되며 세부 구성과 배점은 다를 수 있습니다.</p><p><span class="teacher-review-label is-guide">다음 대비</span>도입–활동–정리의 수업 틀, 학생 반응에 대한 후속 발문, 안전·생활지도·학부모 소통 사례 답변을 주 1회라도 말로 연습하는 편이 안전합니다.</p></div></details>
+  </div>
+  <div class="teacher-source-links"><a href="https://goe.go.kr/goe/na/ntt/selectNttList.do?bbsId=2583&amp;mi=11038" target="_blank" rel="noopener noreferrer">경기도교육청 교원시험 공고</a><a href="https://www.sen.go.kr/user/bbs/BD_selectBbsList.do?q_bbsSn=1094" target="_blank" rel="noopener noreferrer">서울교육청 교원임용 공고</a><a href="https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&amp;boardSeq=93458&amp;lev=0&amp;m=0404&amp;opType=N&amp;s=moe&amp;statusYN=W" target="_blank" rel="noopener noreferrer">교육부 2022 개정 교육과정</a></div>
+  <p class="exam-source-note">구분 안내: 일정·시험구조는 공식 공고와 공개 자료, 난도·학습 포인트는 공개 기출 및 전문 분석을 바탕으로 정리했습니다. 지역별 합격선은 지원 시·도교육청 공고를 확인해야 합니다.</p>
 </section>
 
 <section class="deep-analysis-section" id="middle-2026-review">
-  <div class="deep-analysis-head"><span class="deep-analysis-kicker">2025년 하반기 실시</span><h2>2026학년도 중등 교원임용 시험분석</h2><p>제1차 시험은 2025년 11월 22일, 제2차는 2026년 1월 14일 실기평가와 1월 20~21일 수업실연·심층면접 중심으로 진행됐으며 최종합격자는 2월 5일 발표됐습니다.</p></div>
+  <span class="anchor-alias" id="teacher-analysis" aria-hidden="true"></span>
+  <div class="deep-analysis-head"><span class="deep-analysis-kicker">공식 결과 + 과목별 총평 통합</span><h2>2026학년도 중등 교원임용 통합분석</h2><p>별도로 나뉘어 있던 ‘지난 시험분석’과 ‘분석핵심’을 한곳에 합쳤습니다. 제1차는 2025년 11월 22일, 제2차는 2026년 1월 14일 실기평가와 1월 20~21일 수업실연·심층면접 중심으로 진행됐고 최종합격자는 2월 5일 발표됐습니다.</p></div>
   <div class="deep-analysis-grid">
     <article class="deep-analysis-card"><h3>경기 1차 결과</h3><p>경기도 공립 기준 일반 모집은 선발예정 2,303명에 1차 합격자 3,528명, 장애 모집은 선발예정 195명에 1차 합격자 21명이었습니다. 일반 모집은 약 1.5배수를 선발했지만 장애 모집은 지원·합격 상황이 달라 모집구분을 나눠 봐야 합니다.</p></article>
-    <article class="deep-analysis-card"><h3>과목별 해석</h3><p>중등 임용은 같은 지역에서도 국어·영어·수학·사회·과학·예체능 등 교과별 선발인원과 합격선 차이가 큽니다. 전체 평균 경쟁률보다 본인의 지역·교과·모집구분 결과를 기준으로 비교해야 합니다.</p></article>
-    <article class="deep-analysis-card"><h3>수험생에게 의미하는 점</h3><p>1차 교육학·전공 점수와 2차 수업실연·심층면접은 준비방식이 다릅니다. 전년도 합격선만 목표점수로 삼기보다 선발인원 변화와 과목별 기출을 함께 보고, 1차 준비 중에도 2차 답변·수업 구조를 만들어 두는 편이 안전합니다.</p></article>
+    <article class="deep-analysis-card"><h3>1차 총평</h3><p>교육학은 기출 핵심 개념을 직접 묻는 문항이 많아 비교적 평이했다는 전문강사 평가가 있었습니다. 반면 전공물리는 계산과 자료 해석 때문에 체감난도가 높아 과목별 편차가 컸습니다.</p></article>
+    <article class="deep-analysis-card"><h3>합격선 해석</h3><p>같은 지역에서도 교과별 선발인원과 합격선이 크게 다릅니다. 전체 평균 경쟁률보다 본인의 지역·교과·모집구분 결과와 1차 합격배수를 함께 봐야 합니다.</p></article>
   </div>
-  <p class="exam-source-note">공식 확인: <a href="https://www.goe.go.kr/goe/na/ntt/selectNttInfo.do?mi=10102&amp;nttSn=2335692" target="_blank" rel="noopener noreferrer">경기도교육청 2026학년도 중등 임용 1차 합격자 발표</a> · <a href="https://enews.sen.go.kr/news/view.do?bbsSn=189897&amp;step1=3&amp;step2=1" target="_blank" rel="noopener noreferrer">서울특별시교육청 2026학년도 중등 임용 시행계획</a></p>
+  <div class="teacher-analysis-summary"><strong>한 줄 총평</strong> · 공통 교육학이 비교적 평이해 전공의 실수 한두 개와 과목별 난도 차이가 더 중요해진 시험이었습니다. ‘교육학 고득점’만으로 안정권을 판단하지 말고 전공 A·B의 시간 손실 구간을 따로 분석해야 합니다.</div>
+  <div class="teacher-subject-list">
+    <details class="teacher-subject-review" open><summary>공통 교육학 · 평이했지만 요구사항 누락이 점수 차이</summary><div class="teacher-subject-body"><p><span class="teacher-review-label is-review">전문강사 총평</span>학교수준 교육과정의 장점, 워커의 교육과정 개발모형, 성장참조평가와 자기평가, 학습자 분석, 조직문화 변화, 교사 전문성 개발 지원 등 기출에서 다뤄진 핵심 개념이 중심이어서 전반적으로 어렵지 않았다는 평가입니다.</p><p><span class="teacher-review-label">변별 포인트</span>개념 자체보다 제시문과 배점이 요구한 항목 수를 맞추고, 개념–근거–적용을 짧게 연결했는지가 점수 차이를 만들 수 있습니다.</p><p><span class="teacher-review-label is-guide">다음 대비</span>전 영역을 얕게 줄이기보다 기출 개념을 정확히 설명하고 사례에 적용하는 논술형 연습을 유지해야 합니다.</p></div></details>
+    <details class="teacher-subject-review"><summary>전공물리 · A형 고난도, B형 일반물리 시간 압박</summary><div class="teacher-subject-body"><p><span class="teacher-review-label is-review">전문강사 총평</span>A형은 계산 문항 비중과 덜 익숙한 영역, 자료 해석 요구로 체감난도가 높았고 B형 일반물리도 계산에 시간이 많이 걸렸다는 평가가 공개됐습니다.</p><p><span class="teacher-review-label">변별 포인트</span>어려운 계산에 오래 머물면 뒤의 상대적으로 무난한 전공 문항을 놓칠 수 있어 문제 선별과 시간 배분이 핵심이었습니다.</p><p><span class="teacher-review-label is-guide">다음 대비</span>일반물리는 풀이시간 상한을 정한 실전 세트를 반복하고, 미기출·저빈도 영역도 개념 확인 수준에서 버리지 않는 전략이 필요합니다.</p></div></details>
+    <details class="teacher-subject-review"><summary>전공수학 · 계산뿐 아니라 수학교육론 적용 확인</summary><div class="teacher-subject-body"><p><span class="teacher-review-label">기출 확인</span>공개된 전공 B 문항 분석에서 폴리아의 문제해결 4단계와 발견술을 수업 발문에 연결하는 문제가 확인됩니다. 전공 내용학과 수학교육론을 분리해 암기하는 방식만으로는 대응하기 어렵습니다.</p><p><span class="teacher-review-label">변별 포인트</span>정답 개념을 알아도 각 단계에 맞는 교사 발문과 교육적 의미를 정확한 용어로 쓰지 못하면 점수를 잃을 수 있습니다.</p><p><span class="teacher-review-label is-guide">다음 대비</span>내용학 풀이 뒤 ‘학생 오류–교사 발문–지도 원리’를 한 줄씩 덧붙이는 방식으로 교육론 적용 연습을 병행해야 합니다.</p></div></details>
+    <details class="teacher-subject-review"><summary>전공영어 · 네 영역을 A·B 시간 안에 균형 있게 처리</summary><div class="teacher-subject-body"><p><span class="teacher-review-label">공개 기출</span>2026학년도 전공영어 A·B 문제는 공개되어 있으며 영어교육론, 영어학, 영미문학, 일반영어 영역을 함께 점검해야 하는 구조입니다.</p><p><span class="teacher-review-label">분석 주의</span>전체 난도를 단정할 신뢰도 높은 과목 총평은 충분히 교차확인되지 않아 ‘평이/어려움’으로 표시하지 않았습니다. 실제 기출을 영역별로 재분류해 본인의 시간 손실과 답안 누락을 확인하는 것이 더 정확합니다.</p><p><span class="teacher-review-label is-guide">다음 대비</span>A·B형을 각각 시간제한으로 풀고, 영어학 용어의 정확성·문학 텍스트 근거·영어교육론의 교수학습 적용을 별도 오답표로 관리하는 편이 좋습니다.</p></div></details>
+    <details class="teacher-subject-review"><summary>전공지리 · 접근성과 세부 개념 정확성 함께 점검</summary><div class="teacher-subject-body"><p><span class="teacher-review-label is-review">공개 총평</span>전문강사 예상답안·총평에서는 전체적으로 접근 가능한 문제 구성이었다는 평가가 확인됩니다. 다만 지리교육론, 인문·자연지리의 세부 개념과 자료 판독을 정확히 서술해야 하므로 ‘쉬운 시험’으로 단순화해서는 안 됩니다.</p><p><span class="teacher-review-label">변별 포인트</span>도표·지도·제시문에서 근거를 읽고 개념명을 정확히 쓰는 과정에서 점수 차이가 생길 수 있습니다.</p><p><span class="teacher-review-label is-guide">다음 대비</span>기출을 자료 유형별로 재분류해 ‘근거 찾기–개념명–한 문장 설명’을 반복하는 방식이 효과적입니다.</p></div></details>
+    <details class="teacher-subject-review"><summary>국어·일반사회·역사·기타 과학/예체능 · 확인 기준</summary><div class="teacher-subject-body"><p><span class="teacher-review-label">과목별 판단</span>각 전공은 출제범위와 답안 방식이 달라 중등 전체 총평을 그대로 적용하면 안 됩니다. 공개 기출을 전공 A·B, 교과교육론·내용학, 계산·자료해석·서술 유형으로 나눠 분석해야 합니다.</p><p><span class="teacher-review-label">데이터 원칙</span>공식 합격선도 지역·교과·모집구분별 수치이며 전국 단일 컷이 아닙니다. 전문강사 예상답안은 공식 정답이 아니므로 서로 다른 해설이 있는 문항은 단정하지 않습니다.</p><p><span class="teacher-review-label is-guide">다음 대비</span>지원 지역의 선발인원과 1차 합격선을 확인한 뒤, 실제로 잃은 점수를 교육론·내용학·시간부족·표현오류로 구분해 보완해야 합니다.</p></div></details>
+    <details class="teacher-subject-review"><summary>2차 · 실기·수업실연·심층면접</summary><div class="teacher-subject-body"><p><span class="teacher-review-label">공식 일정</span>실기평가는 2026년 1월 14일, 수업실연·심층면접은 1월 20~21일 중심으로 진행됐지만 과목과 지역에 따라 평가요소가 다릅니다.</p><p><span class="teacher-review-label is-guide">다음 대비</span>전공 지식을 학생 수준의 목표·활동·평가로 변환하는 수업 설계와 돌발 질문에 근거를 들어 답하는 연습을 1차 공부 중에도 병행해야 합니다.</p></div></details>
+  </div>
+  <div class="teacher-source-links"><a href="https://www.goe.go.kr/goe/na/ntt/selectNttInfo.do?mi=10102&amp;nttSn=2335692" target="_blank" rel="noopener noreferrer">경기도교육청 1차 합격자 발표</a><a href="https://enews.sen.go.kr/news/view.do?bbsSn=189897&amp;step1=3&amp;step2=1" target="_blank" rel="noopener noreferrer">서울교육청 시행계획</a><a href="https://gosiplan.tistory.com/1110" target="_blank" rel="noopener noreferrer">고시기획 과목별 총평</a><a href="https://engedu.silla.ac.kr/engedu/index.php?pCode=SUB4400002" target="_blank" rel="noopener noreferrer">2026 전공영어 기출 목록</a><a href="https://engedu.silla.ac.kr/engedu/index.php?pCode=SUB4400003" target="_blank" rel="noopener noreferrer">2026 교육학 기출 목록</a></div>
+  <p class="exam-source-note">구분 안내: 선발·합격 수치는 교육청 공식자료, 난도 평가는 전문강사 총평입니다. 예상답안은 공식 정답이 아니며, 과목별 합격선은 지원 시·도교육청 공고가 최종 기준입니다.</p>
 </section>
 
 <section class="deep-analysis-section" id="customs-analysis">
@@ -1391,23 +1423,6 @@
   <p class="exam-source-note">공식 확인: <a href="https://www.q-net.or.kr/site/customs" target="_blank" rel="noopener noreferrer">Q-Net 관세사 홈페이지</a></p>
 </section>
 
-<section class="deep-analysis-section" id="elementary-teacher-analysis">
-  <div class="deep-analysis-head"><span class="deep-analysis-kicker">초등 임용 분석</span><h2>초등 교원임용 시험분석 핵심</h2><p>초등 임용은 중등 임용과 일정·시험과목·2차 평가방식이 다릅니다. 지역별 선발인원과 평가요소를 분리해서 확인해야 합니다.</p></div>
-  <div class="deep-analysis-grid">
-    <article class="deep-analysis-card"><h3>1차</h3><p>교직논술과 교육과정을 중심으로 평가하므로 교육과정 이해뿐 아니라 제한시간 안에 핵심 근거를 서답형으로 구성하는 연습이 필요합니다.</p></article>
-    <article class="deep-analysis-card"><h3>2차</h3><p>심층면접·수업능력평가·영어수업 실연 및 영어면접 등은 시·도별 평가항목과 배점이 다를 수 있으므로 지원 지역 공고를 기준으로 준비해야 합니다.</p></article>
-    <article class="deep-analysis-card"><h3>지원 판단</h3><p>전국 평균 경쟁률보다 지원 시·도의 초등 모집인원, 지역구분, 일반·장애 모집을 구분해서 비교하는 것이 중요합니다.</p></article>
-  </div>
-  <p class="exam-source-note">공식 확인: <a href="https://goe.go.kr/goe/na/ntt/selectNttList.do?bbsId=2583&amp;mi=11038" target="_blank" rel="noopener noreferrer">경기도교육청 교원시험 공고</a></p>
-</section>
-
-<section class="deep-analysis-section" id="teacher-analysis">
-  <div class="deep-analysis-head"><span class="deep-analysis-kicker">중등 임용 분석</span><h2>중등 교원임용 시험분석 핵심</h2><p>중등 임용은 지역·교과별 선발인원과 경쟁률 차이가 커 평균 수치보다 지원 지역과 전공별 데이터를 기준으로 보는 것이 중요합니다.</p></div>
-  <div class="deep-analysis-grid">
-    <article class="deep-analysis-card"><h3>1차</h3><p>교육학은 논리적 답안 구조, 전공은 최근 기출의 단원별 재구성과 출제의도 분석이 핵심입니다.</p></article>
-    <article class="deep-analysis-card"><h3>2차</h3><p>수업실연과 면접 비중이 크므로 지역별 평가요소와 전년도 기출·복기자료를 함께 확인해야 합니다.</p></article>
-  </div>
-</section>
 </main>
 <footer>
   © 2026 스테이The머무름. All rights reserved.<br/>
