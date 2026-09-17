@@ -1,11 +1,11 @@
 window.ADMIN_INVESTMENT_DATA = {
-  updatedAt: '2026.09.17 09:38 KST',
+  updatedAt: '2026.09.18 08:16 KST',
   signals: [
     {label:'AI·메모리 수요', value:'강함 ↑ · 안전변수 관찰', tone:'up'},
-    {label:'AI 인프라', value:'확대 지속 · 자금조달 변수', tone:'watch'},
-    {label:'식량·농업', value:'에너지 원가 압력 ↑', tone:'watch'},
+    {label:'AI 인프라', value:'광통신·전력망 CAPEX 확대 ↑', tone:'up'},
+    {label:'식량·농업', value:'글로벌 옥수수 수급 긴축 ↑', tone:'watch'},
     {label:'물·인프라', value:'규제·효율투자 ↑', tone:'watch'},
-    {label:'Schwab ETF', value:'SCHD 핵심 · 美 금리인상 영향 추적', tone:'watch'}
+    {label:'Schwab ETF', value:'SCHD 핵심 · 10년물 4.949% 추적', tone:'watch'}
   ],
   charts: [
     {
@@ -87,6 +87,35 @@ window.ADMIN_INVESTMENT_DATA = {
       interpretation:'Schwab은 9월 4일 기준 향후 6~12개월에 헬스케어·금융·산업재를 More Favored로 보고 있습니다. SCHD는 이 세 섹터에 약 42.32% 노출되어 있어 현재 Schwab 섹터 전망과 구조적으로 맞는 부분이 있습니다. 다만 이는 섹터 전망을 현재 비중에 매칭한 시나리오 분석이며 SCHD의 예상 수익률을 뜻하지 않습니다.'
     },
     {
+      category:'AI 인프라 · 전력', asOf:'2026.09.16', title:'스페인 송전망 투자 확대 — 데이터센터 전력수요 대응',
+      subtitle:'스페인 정부의 2030년까지 송전망 투자계획. AI 데이터센터를 포함한 전력수요 확대가 국가 전력망 CAPEX로 이어지는 정량 신호입니다.',
+      unit:'€bn', max:18, sourceName:'Reuters / Spain Energy Ministry', sourceUrl:'https://www.reuters.com/business/energy/spain-ups-planned-power-grid-investment-over-17-bln-through-2030-2026-09-16/',
+      rows:[
+        {label:'기존 계획',values:[{name:'송전망 투자',value:13.1,display:'약 €13.1bn'}]},
+        {label:'신규 계획',values:[{name:'2030년까지 투자',value:17.0,display:'€17bn 이상'}]}
+      ],
+      interpretation:'신규 계획은 기존 대비 약 30% 확대입니다. GPU·HBM 수요를 넘어 전력망이 AI 데이터센터 확장의 핵심 병목이 되고 있음을 보여줍니다. 삼성전자·SK하이닉스에는 직접 주문 수치가 아니므로 HBM 출하 전망과 구분해 봐야 합니다.'
+    },
+    {
+      category:'식량·농업', asOf:'2026.09.17', title:'2026/27 세계 옥수수 — 소비가 생산을 약 3천만톤 초과',
+      subtitle:'USDA 전망을 Reuters가 분석한 글로벌 옥수수 수급 격차입니다. 전망치이며 실제 작황·수출·에탄올 수요에 따라 달라질 수 있습니다.',
+      unit:'백만톤', max:35, sourceName:'Reuters / USDA', sourceUrl:'https://www.reuters.com/commentary/reuters-open-interest/whats-really-behind-global-grain-rally-karen-braun-2026-09-17/',
+      rows:[
+        {label:'2026/27 공급부족 전망',values:[{name:'소비-생산 격차',value:30,display:'약 30Mt'}]}
+      ],
+      interpretation:'30여 년 만의 큰 수급 부족 전망은 DBA의 곡물가격 민감도에는 우호적일 수 있지만, MOO·VEGI 내 축산·식품가공 기업에는 사료·원재료 비용 부담이 될 수 있습니다. 가격 예측이 아닌 수급 전망입니다.'
+    },
+    {
+      category:'SCHD · 금리환경', asOf:'2026.09.17', title:'금리인상 다음 날 — 미국 10년물 5% 아래로 진정',
+      subtitle:'연준 금리인상 직후 장기금리의 후속 움직임입니다. SCHD 배당 매력과 SCHG 성장주 할인율을 함께 판단하기 위한 시장금리 지표이며 ETF 가격 예측이 아닙니다.',
+      unit:'%', max:5.2, sourceName:'Reuters', sourceUrl:'https://www.reuters.com/world/china/global-markets-global-markets-2026-09-17/',
+      rows:[
+        {label:'9월 16일 부근',values:[{name:'10년물',value:5.00,display:'약 5.00%'}]},
+        {label:'9월 17일',values:[{name:'10년물',value:4.949,display:'4.949%'}]}
+      ],
+      interpretation:'장기금리가 5% 아래로 내려오며 기술주가 반등했습니다. SCHD에는 국채와의 배당수익률 경쟁이 여전히 부담이지만, 금리의 추가 급등이 멈추면 밸류에이션 압력은 완화될 수 있습니다. SCHG는 장기금리 하락에 더 민감하게 반응할 수 있습니다.'
+    },
+    {
       category:'SCHD · 금리환경', asOf:'2026.09.16', title:'미국 기준금리 인상 — SCHD 투자환경 변화',
       subtitle:'9월 FOMC에서 연방기금금리 목표범위가 0.25%p 인상됐습니다. 아래 수치는 ETF 가격 전망이 아니라 SCHD와 성장주·채권의 상대 투자환경을 판단하기 위한 정책금리 지표입니다.',
       unit:'%', max:4.5, sourceName:'Federal Reserve', sourceUrl:'https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm',
@@ -99,6 +128,34 @@ window.ADMIN_INVESTMENT_DATA = {
     }
   ],
   highlights: [
+    {
+      date:'2026-09-17', category:'AI·반도체', kind:'공급계약·광통신', importance:'핵심',
+      title:'Marvell·GlobalFoundries, AI 데이터센터 광통신 칩 생산능력 확대',
+      summary:'양사는 AI 데이터센터의 고속 광연결에 쓰이는 SiGe 반도체 생산능력을 늘리는 다년 협력을 확대했습니다. 발표 당일 GlobalFoundries와 Marvell 주가도 강세를 보였습니다.',
+      impact:'AI CAPEX가 GPU·HBM에서 네트워킹·광통신으로 확산되는 실물 신호입니다. 삼성전자·SK하이닉스에는 직접 계약은 아니지만 AI 서버 규모 확대와 HBM·서버 DRAM 수요 지속에 우호적인 간접 신호입니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/business/globalfoundries-marvell-expand-chip-capacity-deal-ai-data-center-connectivity-2026-09-17/'
+    },
+    {
+      date:'2026-09-17', category:'식량·농업', kind:'글로벌 수급', importance:'핵심',
+      title:'세계 옥수수 2026/27 소비-생산 격차 약 3천만톤 전망',
+      summary:'Reuters의 USDA 수급 분석에 따르면 2026/27 세계 옥수수 소비가 생산을 약 3천만톤 웃돌 전망으로, 30여 년 만의 큰 공급부족 폭입니다.',
+      impact:'DBA에는 곡물가격 상승 압력 측면에서 우호적일 수 있습니다. 반면 MOO·VEGI 내 축산·식품가공은 사료·원재료 비용 부담이 커질 수 있어 밸류체인별로 구분해야 합니다.',
+      sourceName:'Reuters / USDA', sourceUrl:'https://www.reuters.com/commentary/reuters-open-interest/whats-really-behind-global-grain-rally-karen-braun-2026-09-17/'
+    },
+    {
+      date:'2026-09-17', category:'미국 금리·SCHD', kind:'금리인상 후속', importance:'핵심',
+      title:'10년물 4.949%로 하락·기술주 반등 — 금리인상 후 시장 안정',
+      summary:'연준의 25bp 인상 다음 날 미국 10년물 국채수익률은 4.949%로 내려왔고 S&P 500은 1.1%, Nasdaq은 1.6% 상승했습니다.',
+      impact:'SCHD는 높은 국채수익률과의 경쟁이 계속되지만 장기금리 추가 급등이 진정되면 밸류에이션 부담이 완화될 수 있습니다. SCHG는 장기금리 하락에 상대적으로 더 민감합니다. 가격 예측이 아닌 금리환경 분석입니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/world/china/global-markets-global-markets-2026-09-17/'
+    },
+    {
+      date:'2026-09-16', category:'AI·전력인프라', kind:'정부 CAPEX 계획', importance:'핵심',
+      title:'스페인, 2030년까지 송전망 투자 €17bn 이상으로 약 30% 확대',
+      summary:'스페인 정부가 데이터센터 등 전력수요 증가에 대응해 송전망 투자계획을 기존보다 약 30% 늘려 2030년까지 170억유로 이상으로 확대했습니다.',
+      impact:'AI 인프라 병목이 반도체에서 전력망으로 확대되고 있음을 보여줍니다. AI 데이터센터 건설 지속성에는 긍정적이지만 전력 연결 지연과 비용 상승은 프로젝트 수익성의 위험요인입니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/business/energy/spain-ups-planned-power-grid-investment-over-17-bln-through-2030-2026-09-16/'
+    },
     {
       date:'2026-09-16', category:'미국 금리·SCHD', kind:'FOMC 정책변화', importance:'핵심',
       title:'연준, 기준금리 0.25%p 인상 — 3.75~4.00%',
@@ -392,6 +449,7 @@ window.ADMIN_INVESTMENT_DATA = {
     food: {
       title:'미국 식량 · 농업',
       items:[
+        {date:'2026-09-17', badge:'글로벌 수급', title:'세계 옥수수 소비가 생산을 약 3천만톤 초과 전망', text:'USDA 2026/27 전망을 Reuters가 분석한 결과로 30여 년 만의 큰 공급부족 폭입니다. DBA에는 가격 압력 측면에서 우호적일 수 있지만 축산·식품가공에는 원가 부담입니다.', view:'DBA 우호 가능 · MOO/VEGI 밸류체인별 혼조', source:'Reuters / USDA', url:'https://www.reuters.com/commentary/reuters-open-interest/whats-really-behind-global-grain-rally-karen-braun-2026-09-17/'},
         {date:'2026-09-14', badge:'운송 원가', title:'미국 곡물 철도 연료할증료 +153% YoY', text:'열차 1량·마일당 48센트로 상승했고 곡물 철도운송비 내 비중도 5%에서 11%로 확대. 수확기 농가 마진과 basis에 부담이 커졌습니다.', view:'DBA 가격수혜 가능 · 생산자 마진 주의', source:'Reuters', url:'https://www.reuters.com/business/retail-consumer/us-rail-fuel-surcharges-grain-hit-record-highs-squeezing-farmers-harvest-season-2026-09-14/'},
         {date:'2026-09-12', badge:'에너지 원가', title:'사우디 East-West 송유관 일시 중단', text:'드론 공격 이후 핵심 송유관이 일시 중단되며 중동 원유 운송 리스크가 재확대. 비료·디젤·곡물 운송·식품가공 비용 상승 가능성 때문에 DBA와 농업기업 ETF를 구분해 봐야 합니다.', view:'DBA 우호 · MOO/VEGI 혼조', source:'Reuters', url:'https://www.reuters.com/business/energy/saudis-shut-down-oil-pipeline-houthis-tighten-grip-red-sea-shipping-2026-09-12/'},
         {date:'2026-09-11', badge:'WASDE 대기', title:'옥수수·대두 재고 하향 여부가 오늘 핵심', text:'9월 WASDE 공식 발표 전 시장은 미국 옥수수·대두 기말재고 하향 가능성을 보고 있습니다. 확정치가 아닌 전망이므로 발표 후 예상치와 실제치를 비교해야 합니다.', view:'관찰', source:'USDA WASDE', url:'https://www.usda.gov/oce/commodity/wasde'},
@@ -407,6 +465,7 @@ window.ADMIN_INVESTMENT_DATA = {
     schwab: {
       title:'SCHD 중심 · Schwab ETF 비교 전망',
       items:[
+        {date:'2026-09-17', badge:'금리인상 후속', title:'10년물 4.949%로 진정 — SCHD·SCHG 상대환경 재점검', text:'연준 인상 다음 날 10년물은 4.949%로 내려왔고 S&P 500 +1.1%, Nasdaq +1.6%로 반등했습니다. SCHD에는 국채와의 수익률 경쟁이 계속되지만 장기금리 급등 진정은 부담 완화 요인입니다. SCHG는 금리 하락에 더 민감할 수 있습니다.', view:'SCHD 핵심 · 10년물 5% 안착 여부 추적', source:'Reuters', url:'https://www.reuters.com/world/china/global-markets-global-markets-2026-09-17/'},
         {date:'2026-09-16', badge:'FOMC 금리인상', title:'미국 기준금리 3.75~4.00% — SCHD에 양면 영향', text:'연준이 0.25%p 인상했습니다. 국채·현금성 자산 수익률 상승은 SCHD의 배당수익률과 경쟁하지만, 높은 할인율은 P/E가 더 높은 성장주에 상대적으로 더 큰 부담이 될 수 있습니다. SCHD는 금융·산업재 비중 때문에 금리상승 수혜와 경기둔화 위험이 동시에 존재합니다.', view:'SCHD 핵심 추적 · 국채수익률/배당 지속성 확인', source:'Federal Reserve', url:'https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm'},
         {date:'2026-09-16', badge:'SCHG·SCHB 비교', title:'성장주에는 할인율 부담, 전체시장에는 차입비용 부담', text:'금리가 오래 높게 유지되면 미래 이익의 현재가치가 낮아져 고밸류 성장주인 SCHG가 상대적으로 민감할 수 있습니다. SCHB는 미국 전체시장의 기준점으로 소비·주택·기업 차입비용 상승에 따른 경기와 이익 둔화를 함께 반영합니다. 이는 가격 예측이 아니라 금리 전달경로 분석입니다.', view:'SCHG 금리민감도 ↑ · SCHB 경기민감도 관찰', source:'Federal Reserve / Reuters', url:'https://www.reuters.com/business/view-markets-steady-after-fed-raises-rates-points-another-hike-this-year-2026-09-16/'},
         {date:'2026-09-15', badge:'SCHD ★ 핵심', title:'내 투자 핵심 — 배당·퀄리티 + 현재 섹터 환경', text:'Schwab 공식 기준 SCHD는 8월 말 시장가격 YTD +29.29%, P/E 19.57배, 9월 11일 30일 SEC yield 3.23%, 총보수 0.06%입니다. 9월 14일 순자산은 약 1,119억달러입니다. Schwab의 6~12개월 섹터 전망에서 More Favored인 헬스케어·금융·산업재가 SCHD의 6월 말 비중 기준 약 42.32%를 차지합니다.', view:'핵심 보유 · 배당과 섹터 회전 동시 추적', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schd'},
