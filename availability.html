@@ -150,7 +150,7 @@ function firstFutureText(room){
   if(room.events.length){
     const e=room.events.slice().sort((a,b)=>a.date.localeCompare(b.date))[0];
     const tour=activeTourEvents(room).find(item=>!item.forDate || item.forDate===e.date);
-    const tourLine=tour ? `<span class="tour-inline">${formatDate(tour.date).slice(5)} ${DISPLAY_TEXT.roomTour} · 예약 확정 전</span>` : '';
+    const tourLine=tour ? `<span class="tour-inline">${formatDate(tour.date).slice(5)} ${DISPLAY_TEXT.roomTour}</span>` : '';
     return `다음 ${formatDate(e.date)}<br>${DISPLAY_TEXT.upcoming}${tourLine}`;
   }
   if(room.unknown){
@@ -177,7 +177,7 @@ function renderAvailability(){
         : `<p class="gray">● ${room.fullLabel}</p>`;
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
         const tour=activeTourEvents(room).find(item=>item.forDate===e.date);
-        const tourText=tour ? ` <span class="purple">· ${formatDate(tour.date).slice(5)} ${DISPLAY_TEXT.roomTour} · 예약 확정 전</span>` : '';
+        const tourText=tour ? ` <span class="purple">· ${formatDate(tour.date).slice(5)} ${DISPLAY_TEXT.roomTour}</span>` : '';
         lines += `<p class="orange">● ${formatDate(e.date)} · ${DISPLAY_TEXT.upcoming}${tourText}</p>`;
       });
       activeBookedEvents(room).forEach(e=>{
@@ -336,7 +336,7 @@ function renderVacancyCalendar(){
     noteHtml += `<span class="legend-item"><b class="blue">●</b> 예약 완료</span>`;
   }
   if(activeTourEvents(room).length){
-    noteHtml += `<span class="legend-item"><b class="purple">●</b> 룸투어 예정 · 예약 확정 전</span>`;
+    noteHtml += `<span class="legend-item"><b class="purple">●</b> 룸투어 예정(예약 확정 전)</span>`;
   }
   if(room.unknown){
     noteHtml += `<span class="calendar-unknown">※ ${room.unknown.label} 입실 가능 예정 · ${room.unknown.note}</span>`;
@@ -700,7 +700,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 }
 </style>
 
-<style>.recent-bookings{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0 4px;padding:10px 12px;border:1px solid #c8d9e8;border-radius:10px;background:#f4f8fc;color:#245f94;font-size:13px}.recent-bookings strong{color:#174f7f}.recent-bookings span{padding-left:8px;border-left:1px solid #b8cde0}.vacancy-color-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:10px 0 14px;font-size:13px;color:#666}.vacancy-color-legend span{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block}.legend-green{background:#24a148}.legend-orange{background:#f57c00}.legend-blue{background:#286aa6}.legend-gray{background:#747a76}@media(max-width:520px){.recent-bookings{font-size:12px;gap:6px}.vacancy-color-legend{font-size:11.5px;gap:5px 10px}}</style></head><body><div class="page">
+<style>.recent-bookings{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0 4px;padding:10px 12px;border:1px solid #c8d9e8;border-radius:10px;background:#f4f8fc;color:#245f94;font-size:13px}.recent-bookings strong{color:#174f7f}.recent-bookings span{padding-left:8px;border-left:1px solid #b8cde0}.vacancy-color-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:10px 0 14px;font-size:13px;color:#666}.vacancy-color-legend span{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block}.legend-green{background:#24a148}.legend-orange{background:#f57c00}.legend-blue{background:#286aa6}.legend-purple{background:#7952a3}.legend-gray{background:#747a76}@media(max-width:520px){.recent-bookings{font-size:12px;gap:6px}.vacancy-color-legend{font-size:11.5px;gap:5px 10px}}</style></head><body><div class="page">
 <section class="brand">
  <img src="availability-logo.jpg" alt="스테이The머무름 로고">
  <h1>스테이The머무름</h1><p>여성 전용 고시원</p>
@@ -730,6 +730,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 <span><i class="legend-dot legend-green"></i><span id="greenLegendText"></span></span>
 <span><i class="legend-dot legend-orange"></i><span id="orangeLegendText"></span></span>
 <span><i class="legend-dot legend-blue"></i><span id="blueLegendText"></span></span>
+<span><i class="legend-dot legend-purple"></i>보라색 = 룸투어 예정(예약 확정 전)</span>
 <span><i class="legend-dot legend-gray"></i><span id="grayLegendText"></span></span>
 </div><p class="notice" id="scheduleNotice"></p>
 </section>
