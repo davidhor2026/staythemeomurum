@@ -150,7 +150,7 @@ function firstFutureText(room){
   if(room.events.length){
     const e=room.events.slice().sort((a,b)=>a.date.localeCompare(b.date))[0];
     const tour=activeTourEvents(room).find(item=>!item.forDate || item.forDate===e.date);
-    const tourLine=tour ? `<span class="tour-inline">${formatDate(tour.date).slice(5)} ${DISPLAY_TEXT.roomTour}</span>` : '';
+    const tourLine=tour ? `<span class="tour-inline">${DISPLAY_TEXT.roomTour}</span>` : '';
     return `다음 ${formatDate(e.date)}<br>${DISPLAY_TEXT.upcoming}${tourLine}`;
   }
   if(room.unknown){
@@ -177,7 +177,7 @@ function renderAvailability(){
         : `<p class="gray">● ${room.fullLabel}</p>`;
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
         const tour=activeTourEvents(room).find(item=>item.forDate===e.date);
-        const tourText=tour ? ` <span class="purple">· ${formatDate(tour.date).slice(5)} ${DISPLAY_TEXT.roomTour}</span>` : '';
+        const tourText=tour ? ` <span class="purple">· ${DISPLAY_TEXT.roomTour}</span>` : '';
         lines += `<p class="orange">● ${formatDate(e.date)} · ${DISPLAY_TEXT.upcoming}${tourText}</p>`;
       });
       activeBookedEvents(room).forEach(e=>{
@@ -319,7 +319,7 @@ function renderVacancyCalendar(){
     }
     if(toursByDate[iso]){
       cell.classList.add('has-tour');
-      cell.innerHTML += `<span class="calendar-mark purple">${formatDate(toursByDate[iso].date).slice(5)} ${DISPLAY_TEXT.roomTour}</span>`;
+      cell.innerHTML += `<span class="calendar-mark purple">${DISPLAY_TEXT.roomTour}</span>`;
     }
     grid.appendChild(cell);
   }
