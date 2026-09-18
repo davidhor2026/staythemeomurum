@@ -86,9 +86,10 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
   min-height:88px;
   display:flex;
   flex-direction:column;
-  align-items:flex-start;
+  align-items:center;
   justify-content:center;
   width:100%;
+  text-align:center;
 }
 @media(max-width:700px){
   .summary .sum{
@@ -106,7 +107,8 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
     min-height:94px;
   }
 }
-.tour-inline{display:block;margin-top:5px;color:#7952a3;font-size:.86em;font-weight:800;line-height:1.35}
+.availability-date,.availability-label{display:block;width:100%}
+.tour-inline{display:block;width:100%;margin-top:5px;color:#7952a3;font-size:.86em;font-weight:800;line-height:1.35;text-align:center}
 
 </style>
 
@@ -151,7 +153,7 @@ function firstFutureText(room){
     const e=room.events.slice().sort((a,b)=>a.date.localeCompare(b.date))[0];
     const tour=activeTourEvents(room).find(item=>!item.forDate || item.forDate===e.date);
     const tourLine=tour ? `<span class="tour-inline">${DISPLAY_TEXT.roomTour}</span>` : '';
-    return `다음 ${formatDate(e.date)}<br>${DISPLAY_TEXT.upcoming}${tourLine}`;
+    return `<span class="availability-date">${formatDate(e.date)}</span><span class="availability-label">${DISPLAY_TEXT.upcoming}</span>${tourLine}`;
   }
   if(room.unknown){
     if(room.unknown.note === "공실 여부 문의"){
