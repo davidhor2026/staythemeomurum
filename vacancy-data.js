@@ -13,6 +13,7 @@
    now        : 현재 바로 입실 가능한 방 수
    dates      : 앞으로 입실 가능 예정 날짜
    bookedDates: 예약이 완료된 입실 예정일과 예약 완료일
+   tourDates  : 룸투어 예정일과 확인할 입실 가능일
    reservable : 현재 만실이어도 예약 가능하면 true
    fullLabel  : 만실일 때 화면에 공통으로 표시할 문구 (예: "8월 만실")
    unknown    : 정확한 날짜가 미정이면 사용, 아니면 null
@@ -31,6 +32,9 @@ const VACANCY_MANAGER = {
       { date: "2026-09-13", bookedOn: "2026-09-13" },
       { date: "2026-09-28", bookedOn: "2026-09-11" }
     ],
+    tourDates: [
+      { date: "2026-09-19", forDate: "2026-09-21" }
+    ],
     reservable: true,
     fullLabel: "예약 가능",
     unknown: null
@@ -41,6 +45,7 @@ const VACANCY_MANAGER = {
     now: 0,
     dates: [],
     bookedDates: [],
+    tourDates: [],
     reservable: false,
     fullLabel: "현재 만실",
     unknown: {
@@ -55,6 +60,7 @@ const VACANCY_MANAGER = {
     now: 0,
     dates: [],
     bookedDates: [],
+    tourDates: [],
     reservable: false,
     fullLabel: "현재 만실",
     unknown: {
@@ -69,6 +75,7 @@ const VACANCY_MANAGER = {
     now: 0,
     dates: [],
     bookedDates: [],
+    tourDates: [],
     reservable: false,
     fullLabel: "현재 만실",
     unknown: {
@@ -106,6 +113,7 @@ const DISPLAY_TEXT = {
   fullNow: "현재 만실",
   upcoming: "예약 가능",
   booked: "예약 완료",
+  roomTour: "룸투어 예정",
   unknownDate: "날짜 미정",
 
   calendarButton: "공실 캘린더",

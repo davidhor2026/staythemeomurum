@@ -33,7 +33,7 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
 .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .sum{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;min-height:190px;display:flex;flex-direction:column;justify-content:center}
 .sum h4{font-size:19px;margin:0 0 10px;color:#183c25}.icon{font-size:28px;line-height:1;margin-bottom:9px}
-.green{color:#279247}.orange{color:var(--orange)}.blue{color:var(--blue)}.gray{color:#656b67}
+.green{color:#279247}.orange{color:var(--orange)}.blue{color:var(--blue)}.purple{color:#7952a3}.gray{color:#656b67}
 .sum .main{font-size:17px;line-height:1.45}.sum hr{width:72%;border:0;border-top:1px solid #ddd;margin:12px auto}.sum .sub{font-size:15px;line-height:1.45}
 .notice{font-size:14px;color:#666;margin:14px 0 0}
 .details{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-top:16px}
@@ -83,8 +83,9 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
   flex:0 0 auto;
 }
 .summary .sum .sub{
-  min-height:66px;
+  min-height:88px;
   display:flex;
+  flex-direction:column;
   align-items:flex-start;
   justify-content:center;
   width:100%;
@@ -102,9 +103,10 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
     min-height:48px;
   }
   .summary .sum .sub{
-    min-height:70px;
+    min-height:94px;
   }
 }
+.tour-inline{display:block;margin-top:5px;color:#7952a3;font-size:.86em;font-weight:800;line-height:1.35}
 
 </style>
 
@@ -117,6 +119,7 @@ Object.entries(VACANCY_MANAGER).forEach(([key, room]) => {
     availableNow: Number(room.now || 0),
     events: (room.dates || []).map(date => ({ date, rooms: 1 })),
     bookedEvents: (room.bookedDates || []).map(item => typeof item === 'string' ? { date:item, bookedOn:null } : item),
+    tourEvents: (room.tourDates || []).map(item => typeof item === 'string' ? { date:item, forDate:null } : item),
     reservable: room.reservable === true,
     fullLabel: room.fullLabel || DISPLAY_TEXT.fullNow,
     unknown: room.unknown || null
@@ -137,10 +140,18 @@ function activeBookedEvents(room){
     .filter(e=>e && e.date && e.date>=today)
     .sort((a,b)=>(b.bookedOn||'').localeCompare(a.bookedOn||'') || a.date.localeCompare(b.date));
 }
+function activeTourEvents(room){
+  const today=kstTodayISO();
+  return (room.tourEvents || [])
+    .filter(e=>e && e.date && e.date>=today)
+    .sort((a,b)=>a.date.localeCompare(b.date));
+}
 function firstFutureText(room){
   if(room.events.length){
     const e=room.events.slice().sort((a,b)=>a.date.localeCompare(b.date))[0];
-    return `다음 ${formatDate(e.date)}<br>${DISPLAY_TEXT.upcoming}`;
+    const tour=activeTourEvents(room).find(item=>!item.forDate || item.forDate===e.date);
+    const tourLine=tour ? `<span class="tour-inline">${formatDate(tour.date).slice(5)} ${DISPLAY_TEXT.roomTour} · 예약 확정 전</span>` : '';
+    return `다음 ${formatDate(e.date)}<br>${DISPLAY_TEXT.upcoming}${tourLine}`;
   }
   if(room.unknown){
     if(room.unknown.note === "공실 여부 문의"){
@@ -165,7 +176,9 @@ function renderAvailability(){
         ? `<p class="green">● ${DISPLAY_TEXT.availableNow}</p>`
         : `<p class="gray">● ${room.fullLabel}</p>`;
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
-        lines += `<p class="orange">● ${formatDate(e.date)} · ${DISPLAY_TEXT.upcoming}</p>`;
+        const tour=activeTourEvents(room).find(item=>item.forDate===e.date);
+        const tourText=tour ? ` <span class="purple">· ${formatDate(tour.date).slice(5)} ${DISPLAY_TEXT.roomTour} · 예약 확정 전</span>` : '';
+        lines += `<p class="orange">● ${formatDate(e.date)} · ${DISPLAY_TEXT.upcoming}${tourText}</p>`;
       });
       activeBookedEvents(room).forEach(e=>{
         lines += `<p class="blue">● ${formatDate(e.date)} · ${DISPLAY_TEXT.booked}</p>`;
@@ -281,6 +294,8 @@ function renderVacancyCalendar(){
   room.events.forEach(e=>{eventsByDate[e.date]=e;});
   const bookedByDate={};
   activeBookedEvents(room).forEach(e=>{bookedByDate[e.date]=e;});
+  const toursByDate={};
+  activeTourEvents(room).forEach(e=>{toursByDate[e.forDate || e.date]=e;});
 
   for(let day=1;day<=days;day++){
     const mm=String(calendarMonth).padStart(2,'0');
@@ -302,6 +317,10 @@ function renderVacancyCalendar(){
       cell.classList.add('has-upcoming');
       cell.innerHTML += `<span class="calendar-mark orange">${DISPLAY_TEXT.upcoming}</span>`;
     }
+    if(toursByDate[iso]){
+      cell.classList.add('has-tour');
+      cell.innerHTML += `<span class="calendar-mark purple">${formatDate(toursByDate[iso].date).slice(5)} ${DISPLAY_TEXT.roomTour}</span>`;
+    }
     grid.appendChild(cell);
   }
 
@@ -315,6 +334,9 @@ function renderVacancyCalendar(){
   }
   if(activeBookedEvents(room).length){
     noteHtml += `<span class="legend-item"><b class="blue">●</b> 예약 완료</span>`;
+  }
+  if(activeTourEvents(room).length){
+    noteHtml += `<span class="legend-item"><b class="purple">●</b> 룸투어 예정 · 예약 확정 전</span>`;
   }
   if(room.unknown){
     noteHtml += `<span class="calendar-unknown">※ ${room.unknown.label} 입실 가능 예정 · ${room.unknown.note}</span>`;
@@ -657,8 +679,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 .calendar-day.has-available{background:#f1f9f2;border-color:#b8dabc}
 .calendar-day.has-upcoming{background:#fff8ef;border-color:#ecd3b5}
 .calendar-day.has-booked{background:#f1f6fb;border-color:#b9cfe2}
+.calendar-day.has-tour{box-shadow:inset 0 -3px 0 #bca5d5}
 .calendar-mark{display:block;font-size:9.5px;line-height:1.3;font-weight:800;word-break:keep-all}
-.calendar-mark.green{color:#228341}.calendar-mark.orange{color:#df7100}.calendar-mark.blue{color:#286aa6}
+.calendar-mark.green{color:#228341}.calendar-mark.orange{color:#df7100}.calendar-mark.blue{color:#286aa6}.calendar-mark.purple{color:#7952a3}
 .calendar-room-note{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;font-size:11.5px;color:#5d655e}
 .legend-item,.calendar-unknown{display:inline-block}
 .calendar-unknown{width:100%;padding-top:2px}
