@@ -1,11 +1,11 @@
 window.ADMIN_INVESTMENT_DATA = {
-  updatedAt: '2026.09.18 08:16 KST',
+  updatedAt: '2026.09.19 09:20 KST',
   signals: [
     {label:'AI·메모리 수요', value:'강함 ↑ · 안전변수 관찰', tone:'up'},
     {label:'AI 인프라', value:'광통신·전력망 CAPEX 확대 ↑', tone:'up'},
     {label:'식량·농업', value:'글로벌 옥수수 수급 긴축 ↑', tone:'watch'},
     {label:'물·인프라', value:'규제·효율투자 ↑', tone:'watch'},
-    {label:'Schwab ETF', value:'SCHD 핵심 · 10년물 4.949% 추적', tone:'watch'}
+    {label:'보유 ETF', value:'SCHD 핵심 · FLIN 인도 추가 추적', tone:'watch'}
   ],
   charts: [
     {
@@ -106,6 +106,19 @@ window.ADMIN_INVESTMENT_DATA = {
       interpretation:'30여 년 만의 큰 수급 부족 전망은 DBA의 곡물가격 민감도에는 우호적일 수 있지만, MOO·VEGI 내 축산·식품가공 기업에는 사료·원재료 비용 부담이 될 수 있습니다. 가격 예측이 아닌 수급 전망입니다.'
     },
     {
+      category:'보유 ETF · FLIN', asOf:'2026.08.21', title:'FLIN — 인도 대형·중형주 저비용 분산투자',
+      subtitle:'Franklin FTSE India ETF 공식 자료 기준. 사용자가 실제 투자한 ETF로 추가 추적합니다. 과거 수익률은 미래 성과를 보장하지 않습니다.',
+      unit:'%', max:30, sourceName:'Franklin Templeton', sourceUrl:'https://www.franklintempleton.com/investments/options/exchange-traded-funds/products/26348/SINGLCLASS/franklin-ftse-india-etf/FLIN',
+      rows:[
+        {label:'금융',values:[{name:'섹터 비중',value:28.76,display:'28.76%'}]},
+        {label:'경기소비재',values:[{name:'섹터 비중',value:12.94,display:'12.94%'}]},
+        {label:'산업재',values:[{name:'섹터 비중',value:11.24,display:'11.24%'}]},
+        {label:'소재',values:[{name:'섹터 비중',value:9.08,display:'9.08%'}]},
+        {label:'에너지',values:[{name:'섹터 비중',value:7.73,display:'7.73%'}]}
+      ],
+      interpretation:'FLIN은 FTSE India RIC Capped Index를 추종하며 총보수 0.19%, 280개 종목, P/E 25.50배(8월 20~21일 공식 자료)입니다. 금융 비중이 약 29%로 가장 커 인도 내수·신용사이클과 RBI 정책에 민감하며, 미국 금리 상승은 달러 강세·루피 약세와 외국인 자금흐름을 통해 부담이 될 수 있습니다. 가격 예측이 아닙니다.'
+    },
+    {
       category:'SCHD · 금리환경', asOf:'2026.09.17', title:'금리인상 다음 날 — 미국 10년물 5% 아래로 진정',
       subtitle:'연준 금리인상 직후 장기금리의 후속 움직임입니다. SCHD 배당 매력과 SCHG 성장주 할인율을 함께 판단하기 위한 시장금리 지표이며 ETF 가격 예측이 아닙니다.',
       unit:'%', max:5.2, sourceName:'Reuters', sourceUrl:'https://www.reuters.com/world/china/global-markets-global-markets-2026-09-17/',
@@ -128,6 +141,34 @@ window.ADMIN_INVESTMENT_DATA = {
     }
   ],
   highlights: [
+    {
+      date:'2026-09-19', category:'AI·인프라', kind:'실적·계약잔고', importance:'핵심',
+      title:'Nscale, 상반기 매출 +1,252%·계약가치 1,030억달러 — AI 인프라 수요 지속',
+      summary:'NVIDIA가 투자한 AI 클라우드 업체 Nscale은 미국 IPO 서류에서 2026년 상반기 매출 1억4060만달러와 100억달러가 넘는 전력 파이프라인, 총 계약가치 1,030억달러 이상을 공개했습니다. 다만 상반기 순손실은 10.2억달러였습니다.',
+      impact:'AI 컴퓨트·데이터센터 수요가 실제 계약으로 이어지는 신호지만 높은 손실과 고객 집중은 위험요인입니다. 삼성전자·SK하이닉스에는 HBM·서버 DRAM·SSD 수요 지속의 간접 긍정 신호이며, 수익성 악화로 AI CAPEX가 감속하는지는 계속 확인해야 합니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/technology/ai-cloud-firm-nscale-files-us-ipo-2026-09-18/'
+    },
+    {
+      date:'2026-09-18', category:'AI·메모리', kind:'공급망 경쟁', importance:'핵심',
+      title:'CXMT, NAND R&D 라인 추진 — AI 서버발 공급부족 속 중국 경쟁 확대',
+      summary:'중국 CXMT가 베이징 신규 시설에 NAND R&D 생산라인을 준비하고 잠재 고객과 협의를 시작한 것으로 Reuters가 보도했습니다.',
+      impact:'단기적으로는 AI 서버용 메모리 공급부족을 확인하는 신호지만, 중장기적으로 삼성전자·SK하이닉스·Micron의 NAND 경쟁 심화 위험입니다. 생산능력 수치가 확정되지 않아 그래프 생산량 값은 갱신하지 않습니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/world/asia-pacific/chinas-cxmt-eyes-flash-memory-push-amid-global-shortage-firm-take-samsung-ymtc-2026-09-18/'
+    },
+    {
+      date:'2026-09-18', category:'식량·농업', kind:'농가 원가', importance:'핵심',
+      title:'미국 디젤 $6.29/갤런·전년 대비 +68% — 수확·운송비 압박',
+      summary:'미국 평균 디젤 가격이 갤런당 6.29달러로 전년 3.74달러 대비 68% 상승해 수확기 농가와 운송업체의 비용 부담이 크게 높아졌습니다.',
+      impact:'DBA에는 곡물 가격 상승 압력으로 작용할 수 있지만 MOO·VEGI 내 농기계·축산·식품가공 기업에는 비용 부담이 될 수 있습니다. 높은 연료비가 지속되면 종자·비료 등 다음 시즌 투입비에도 영향을 줄 수 있습니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/business/energy/record-us-diesel-prices-squeeze-farmers-food-prices-may-rise-2026-09-18/'
+    },
+    {
+      date:'2026-09-17', category:'보유 ETF · FLIN', kind:'환율·금리', importance:'핵심',
+      title:'FLIN 추가 추적 — 연준 인상 뒤 루피 95.93/USD, 96선 방어',
+      summary:'연준 금리 인상 뒤 인도 루피는 장중 달러당 96을 넘겼다가 RBI 개입 추정과 포트폴리오 유입으로 95.93에 마감했습니다. FLIN은 인도 주식의 달러 표시 ETF여서 인도 기업 실적뿐 아니라 루피/달러도 달러 기준 수익률에 영향을 줍니다.',
+      impact:'FLIN은 금융 비중 28.76%로 인도 내수·은행 업황 영향이 크고, 미국 고금리·달러 강세가 지속되면 루피와 외국인 자금흐름이 부담이 될 수 있습니다. 반대로 RBI의 환율 안정과 자금 유입은 완충요인입니다. 가격 예측이 아닙니다.',
+      sourceName:'Reuters / Franklin Templeton', sourceUrl:'https://www.reuters.com/world/india/hawkish-fed-adds-rupees-troubles-traders-watch-96usd-hurdle-2026-09-17/'
+    },
     {
       date:'2026-09-17', category:'AI·반도체', kind:'공급계약·광통신', importance:'핵심',
       title:'Marvell·GlobalFoundries, AI 데이터센터 광통신 칩 생산능력 확대',
@@ -476,6 +517,14 @@ window.ADMIN_INVESTMENT_DATA = {
       ],
       etf:{title:'앞으로의 분석 기준', text:'SCHD를 1순위로 추적합니다. 배당금·SEC yield·배당성장·P/E·섹터 비중·주요 편입종목·금리/국채수익률을 핵심으로 보고, SCHG는 AI 성장주 강도, SCHB는 미국시장 전체 기준점, SCHF는 해외·한국 반도체 분산을 비교할 때만 함께 봅니다. 전망 그래프는 공식 수치와 Schwab의 6~12개월 섹터 전망을 활용하며 임의의 ETF 목표가격이나 예상수익률은 만들지 않습니다.', source:'Schwab Asset Management / Charles Schwab Research', url:'https://www.schwab.com/learn/story/stock-sector-outlook'}
     },
+    flin: {
+      title:'FLIN · 인도 ETF (실제 보유)',
+      items:[
+        {date:'2026-09-17', badge:'환율·미국 금리', title:'연준 인상 뒤 루피 95.93/USD — 96선이 단기 관찰선', text:'루피가 장중 96을 넘겼지만 RBI 개입 추정과 글로벌 지수 리밸런싱 관련 포트폴리오 유입으로 95.93에 마감했습니다. FLIN은 달러 표시 ETF이므로 루피 약세는 인도 현지 주가가 같아도 달러 기준 성과에 부담이 될 수 있습니다.', view:'실제 보유 · 루피/외국인 자금 추적', source:'Reuters', url:'https://www.reuters.com/world/india/hawkish-fed-adds-rupees-troubles-traders-watch-96usd-hurdle-2026-09-17/'},
+        {date:'2026-08-21', badge:'FLIN 공식', title:'총보수 0.19%·280종목·P/E 25.50배', text:'Franklin Templeton 공식 기준 FLIN은 FTSE India RIC Capped Index를 추종합니다. 금융 28.76%, 경기소비재 12.94%, 산업재 11.24%, 소재 9.08%, 에너지 7.73%이며 주요 종목은 Reliance Industries, HDFC Bank, ICICI Bank입니다.', view:'인도 핵심 보유 ETF로 추가 추적', source:'Franklin Templeton', url:'https://www.franklintempleton.com/investments/options/exchange-traded-funds/products/26348/SINGLCLASS/franklin-ftse-india-etf/FLIN'}
+      ],
+      etf:{title:'앞으로의 분석 기준', text:'FLIN을 실제 보유 ETF로 추적합니다. 인도 기업이익·금융/내수 경기·P/E·루피/달러·RBI 금리와 유동성·외국인 포트폴리오 흐름·유가를 핵심 변수로 봅니다. 미국 금리는 달러와 글로벌 자금흐름을 통해 FLIN에 간접 영향을 줄 수 있습니다. 임의 목표가격이나 예상수익률은 만들지 않습니다.', source:'Franklin Templeton / Reuters / RBI', url:'https://www.franklintempleton.com/investments/options/exchange-traded-funds/products/26348/SINGLCLASS/franklin-ftse-india-etf/FLIN'}
+    },
     water: {
       title:'미국 물 · 수자원',
       items:[
@@ -498,6 +547,7 @@ window.ADMIN_INVESTMENT_DATA = {
     'DRAM·NAND 계약가격과 고객 재고 변화',
     '미국 농가소득·곡물/비료 가격·농기계 주문',
     '미국 수도망 CAPEX·수처리 수주·AI 데이터센터 냉각 투자',
-    'Schwab SCHD·SCHG·SCHB·SCHF의 YTD·SEC yield·P/E·편입종목/섹터 변화'
+    'Schwab SCHD·SCHG·SCHB·SCHF의 YTD·SEC yield·P/E·편입종목/섹터 변화',
+    'FLIN의 인도 기업이익·P/E·루피/달러·RBI 정책·외국인 자금흐름·유가 변화'
   ]
 };
