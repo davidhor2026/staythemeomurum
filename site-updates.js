@@ -250,12 +250,12 @@ window.SITE_UPDATES = {
     var style = document.createElement("style");
     style.id = STYLE_ID;
     style.textContent = [
-      ".stay-scroll-cue{position:fixed;right:max(10px,calc(env(safe-area-inset-right) + 10px));bottom:max(18px,calc(env(safe-area-inset-bottom) + 12px));z-index:40;display:flex;min-width:92px;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:7px 14px 6px;border:1px solid rgba(21,63,37,.15);border-radius:999px;background:rgba(255,255,255,.82);box-shadow:0 5px 18px rgba(18,45,28,.11);color:#153f25;font-family:inherit;opacity:0;visibility:hidden;transform:translateX(8px);transition:opacity .22s ease,transform .22s ease,visibility 0s linear .22s;pointer-events:none;user-select:none;-webkit-user-select:none;backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}",
-      ".stay-scroll-cue.is-visible{opacity:.88;visibility:visible;transform:translateX(0);transition-delay:0s}",
+      ".stay-scroll-cue{position:fixed;left:50%;bottom:max(18px,calc(env(safe-area-inset-bottom) + 12px));z-index:40;display:flex;min-width:92px;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:7px 14px 6px;border:1px solid rgba(21,63,37,.15);border-radius:999px;background:rgba(255,255,255,.76);box-shadow:0 5px 18px rgba(18,45,28,.11);color:#153f25;font-family:inherit;opacity:0;visibility:hidden;transform:translate(-50%,10px);transition:opacity .22s ease,transform .22s ease,visibility 0s linear .22s;pointer-events:none;user-select:none;-webkit-user-select:none;backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}",
+      ".stay-scroll-cue.is-visible{opacity:.85;visibility:visible;transform:translate(-50%,0);transition-delay:0s}",
       ".stay-scroll-cue__text{font-size:11px;font-weight:800;line-height:1.15;letter-spacing:-.02em;white-space:nowrap}",
       ".stay-scroll-cue__arrow{font-family:Arial,sans-serif;font-size:27px;font-weight:700;line-height:.9;animation:stayScrollArrow 1.35s ease-in-out infinite}",
       "@keyframes stayScrollArrow{0%,100%{transform:translateY(-1px)}50%{transform:translateY(4px)}}",
-      "@media(max-width:520px){.stay-scroll-cue{right:max(8px,calc(env(safe-area-inset-right) + 8px));min-width:84px;padding:6px 12px 5px}.stay-scroll-cue__arrow{font-size:25px}}",
+      "@media(max-width:520px){.stay-scroll-cue{min-width:84px;padding:6px 12px 5px}.stay-scroll-cue__arrow{font-size:25px}}",
       "@media(prefers-reduced-motion:reduce){.stay-scroll-cue,.stay-scroll-cue.is-visible{transition:none}.stay-scroll-cue__arrow{animation:none}}",
       "@media print{.stay-scroll-cue{display:none!important}}"
     ].join("");
