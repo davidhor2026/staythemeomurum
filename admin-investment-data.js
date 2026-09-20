@@ -1,13 +1,22 @@
 window.ADMIN_INVESTMENT_DATA = {
-  updatedAt: '2026.09.19 09:20 KST',
+  updatedAt: '2026.09.20 12:25 KST',
   signals: [
     {label:'AI·메모리 수요', value:'강함 ↑ · 안전변수 관찰', tone:'up'},
-    {label:'AI 인프라', value:'광통신·전력망 CAPEX 확대 ↑', tone:'up'},
+    {label:'AI 인프라', value:'금융자본 유입 ↑ · 전력망/지역규제 병목', tone:'up'},
     {label:'식량·농업', value:'글로벌 옥수수 수급 긴축 ↑', tone:'watch'},
     {label:'물·인프라', value:'규제·효율투자 ↑', tone:'watch'},
     {label:'보유 ETF', value:'SCHD 핵심 · FLIN 인도 추가 추적', tone:'watch'}
   ],
   charts: [
+    {
+      category:'AI 인프라 · 금융', asOf:'2026.09.19', title:'미국 데이터센터 금융 — 장기자본 유입 확대',
+      subtitle:'Nippon Life가 계획한 인프라 금융 총액. 상당 부분을 미국 데이터센터 건설에 배정할 계획입니다. 실제 집행액이 아니라 회사 계획치입니다.',
+      unit:'$bn', max:14, sourceName:'Reuters / Nikkei Asia', sourceUrl:'https://www.reuters.com/world/asia-pacific/japans-nippon-life-plans-13-billion-data-center-financing-us-nikkei-asia-reports-2026-09-19/',
+      rows:[
+        {label:'Nippon Life 계획',values:[{name:'인프라 금융',value:12.75,display:'약 $12.75bn'}]}
+      ],
+      interpretation:'보험사·은행 등 장기 금융자본이 AI 데이터센터 건설에 유입되는 것은 GPU·HBM·서버 DRAM·SSD·전력·냉각 수요의 중기 기반에 긍정적입니다. 다만 실제 GPU/HBM 발주액이 아니라 금융 계획이므로 메모리 매출 전망과 직접 연결하지 않습니다.'
+    },
     {
       category:'AI·반도체', asOf:'2026.09.14', title:'HBM 생산능력 배정 확대 — AI 메모리 수요 압력',
       subtitle:'HBM이 전체 DRAM 웨이퍼 투입·비트 공급에서 차지하는 비중. 수요 자체가 아니라 공급사가 HBM에 얼마나 생산능력을 우선 배정하는지 보여주는 선행지표입니다.',
@@ -141,6 +150,27 @@ window.ADMIN_INVESTMENT_DATA = {
     }
   ],
   highlights: [
+    {
+      date:'2026-09-19', category:'AI·인프라', kind:'데이터센터 금융', importance:'핵심',
+      title:'Nippon Life, 약 127.5억달러 인프라 금융 계획 — 미국 데이터센터가 주요 대상',
+      summary:'Nippon Life가 약 2조엔(약 127.5억달러)의 인프라 금융을 계획하고 있으며 상당 부분을 미국 데이터센터 건설에 투입할 예정이라고 Reuters가 보도했습니다.',
+      impact:'AI 컴퓨트 수요가 반도체 구매를 넘어 장기 금융자본의 데이터센터 건설 자금으로 연결되는 신호입니다. 삼성전자·SK하이닉스에는 HBM·서버 DRAM·SSD 수요 지속의 간접 긍정 신호지만 실제 메모리 주문계약과는 구분해야 합니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/world/asia-pacific/japans-nippon-life-plans-13-billion-data-center-financing-us-nikkei-asia-reports-2026-09-19/'
+    },
+    {
+      date:'2026-09-19', category:'AI·전력인프라', kind:'IMF 분석', importance:'핵심',
+      title:'IMF: 유럽 AI 생산성 +1% 가능성, 전력망 부담은 핵심 병목',
+      summary:'IMF 분석은 AI가 향후 5년 유럽 생산성을 약 1% 높일 수 있다고 보는 동시에 전력 인프라 부담을 주요 위험으로 지적했습니다. 프랑크푸르트·런던·암스테르담·파리·더블린 등의 데이터센터는 이미 전력소비의 약 3%를 차지합니다.',
+      impact:'AI 투자 사이클이 GPU·HBM에서 전력망·냉각 인프라로 확장되는 흐름입니다. 반도체 수요에는 중기적으로 긍정적이지만 전력 연결 지연과 비용 상승은 데이터센터 가동 속도를 늦출 수 있습니다.',
+      sourceName:'Reuters / IMF', sourceUrl:'https://www.reuters.com/business/imf-tells-eu-ministers-ai-could-boost-growth-increase-economic-strains-2026-09-19/'
+    },
+    {
+      date:'2026-09-19', category:'AI·데이터센터', kind:'규제·지역비용', importance:'중요',
+      title:'오하이오 데이터센터 반발 확대 — 세제혜택·전력·농지 비용 논쟁',
+      summary:'오하이오에서 Amazon·Meta 등의 데이터센터 확대를 둘러싸고 농지, 전력수요, 세제혜택에 대한 지역 반발이 커지고 있습니다. Reuters는 2024~2025년 데이터센터 관련 주정부 세제혜택이 20억달러를 넘었다고 보도했습니다.',
+      impact:'AI 수요 감소 신호라기보다 데이터센터 건설의 사회적·규제 비용이 커지는 위험입니다. GPU/HBM 수요의 장기 성장에는 제약요인이 될 수 있고 전력망·냉각·수처리 효율 투자 필요성은 커질 수 있습니다.',
+      sourceName:'Reuters', sourceUrl:'https://www.reuters.com/legal/government/democrats-try-ride-data-center-backlash-election-victory-rural-us-midwest-2026-09-19/'
+    },
     {
       date:'2026-09-19', category:'AI·인프라', kind:'실적·계약잔고', importance:'핵심',
       title:'Nscale, 상반기 매출 +1,252%·계약가치 1,030억달러 — AI 인프라 수요 지속',
@@ -464,6 +494,9 @@ window.ADMIN_INVESTMENT_DATA = {
     ai: {
       title:'AI · 반도체',
       items:[
+        {date:'2026-09-19', badge:'데이터센터 금융', title:'Nippon Life, 약 $12.75bn 인프라 금융 계획', text:'약 2조엔 규모 인프라 금융의 상당 부분을 미국 데이터센터 건설에 배정할 계획. AI CAPEX에 보험사 장기자본까지 유입되는 신호이며 HBM·서버 DRAM·SSD·전력·냉각 수요의 중기 기반을 지지합니다.', view:'긍정 · 실제 발주액과 구분', source:'Reuters', url:'https://www.reuters.com/world/asia-pacific/japans-nippon-life-plans-13-billion-data-center-financing-us-nikkei-asia-reports-2026-09-19/'},
+        {date:'2026-09-19', badge:'전력망 병목', title:'IMF: 유럽 AI 생산성 +1% 가능, 전력망 부담 확대', text:'향후 5년 생산성 효과 약 +1% 전망과 함께 주요 유럽 데이터센터 도시의 전력소비 비중 약 3%가 제시됐습니다. AI 확장 속도를 전력망이 제한할 수 있는지 추적합니다.', view:'AI 수요 긍정 · 인프라 병목 주의', source:'Reuters / IMF', url:'https://www.reuters.com/business/imf-tells-eu-ministers-ai-could-boost-growth-increase-economic-strains-2026-09-19/'},
+        {date:'2026-09-19', badge:'지역규제', title:'오하이오 데이터센터 반발 — 건설비용·인허가 리스크 확대', text:'농지·전력·세제혜택 논쟁이 커지고 있습니다. AI 수요 감소가 아니라 데이터센터의 사회적 비용과 프로젝트 지연 가능성이 커지는 신호로 봅니다.', view:'주의 · 전력/냉각 효율투자 수요', source:'Reuters', url:'https://www.reuters.com/legal/government/democrats-try-ride-data-center-backlash-election-victory-rural-us-midwest-2026-09-19/'},
 
         {date:'2026-09-12', badge:'AI 자금조달', title:'NVIDIA, Anthropic IPO에 최대 100억달러 투자 검토', text:'Anthropic의 대형 IPO에 NVIDIA가 핵심 투자자로 참여하는 방안이 논의 중. AI 컴퓨트 수요의 장기 확대 신호지만 아직 확정 투자·반도체 공급계약은 아닙니다.', view:'긍정 + 밸류에이션 주의', source:'Reuters', url:'https://www.reuters.com/legal/transactional/nvidia-talks-invest-anthropics-mega-ipo-sources-say-2026-09-11/'},
         {date:'2026-09-12', badge:'AI 안전·전략', title:'OpenAI·Anthropic, AI 개발 속도 조절론 부각', text:'안전 우려와 독립 평가·공통 기준 강화 논의가 확대. 당장 CAPEX 삭감 신호는 아니지만 향후 AI 모델 개발·데이터센터 투자 속도를 좌우할 규제·안전 변수를 점검해야 합니다.', view:'주의·관찰', source:'Reuters', url:'https://www.reuters.com/business/anthropic-ceo-urges-ai-companies-slow-model-development-2026-09-12/'},
@@ -490,6 +523,7 @@ window.ADMIN_INVESTMENT_DATA = {
     food: {
       title:'미국 식량 · 농업',
       items:[
+        {date:'2026-09-20', badge:'그래프 갱신 없음', title:'새 USDA 정량 수급치 없음 — 기존 옥수수 긴축·연료비 압력 유지', text:'전날 이후 DBA·MOO·VEGI 판단을 바꿀 새 USDA 생산·재고 전망치는 확인되지 않았습니다. 기존 2026/27 세계 옥수수 공급부족 전망과 높은 농가·운송 연료비를 계속 추적합니다.', view:'관찰 유지', source:'USDA / Reuters', url:'https://www.usda.gov/oce/commodity/wasde'},
         {date:'2026-09-17', badge:'글로벌 수급', title:'세계 옥수수 소비가 생산을 약 3천만톤 초과 전망', text:'USDA 2026/27 전망을 Reuters가 분석한 결과로 30여 년 만의 큰 공급부족 폭입니다. DBA에는 가격 압력 측면에서 우호적일 수 있지만 축산·식품가공에는 원가 부담입니다.', view:'DBA 우호 가능 · MOO/VEGI 밸류체인별 혼조', source:'Reuters / USDA', url:'https://www.reuters.com/commentary/reuters-open-interest/whats-really-behind-global-grain-rally-karen-braun-2026-09-17/'},
         {date:'2026-09-14', badge:'운송 원가', title:'미국 곡물 철도 연료할증료 +153% YoY', text:'열차 1량·마일당 48센트로 상승했고 곡물 철도운송비 내 비중도 5%에서 11%로 확대. 수확기 농가 마진과 basis에 부담이 커졌습니다.', view:'DBA 가격수혜 가능 · 생산자 마진 주의', source:'Reuters', url:'https://www.reuters.com/business/retail-consumer/us-rail-fuel-surcharges-grain-hit-record-highs-squeezing-farmers-harvest-season-2026-09-14/'},
         {date:'2026-09-12', badge:'에너지 원가', title:'사우디 East-West 송유관 일시 중단', text:'드론 공격 이후 핵심 송유관이 일시 중단되며 중동 원유 운송 리스크가 재확대. 비료·디젤·곡물 운송·식품가공 비용 상승 가능성 때문에 DBA와 농업기업 ETF를 구분해 봐야 합니다.', view:'DBA 우호 · MOO/VEGI 혼조', source:'Reuters', url:'https://www.reuters.com/business/energy/saudis-shut-down-oil-pipeline-houthis-tighten-grip-red-sea-shipping-2026-09-12/'},
@@ -506,6 +540,7 @@ window.ADMIN_INVESTMENT_DATA = {
     schwab: {
       title:'SCHD 중심 · Schwab ETF 비교 전망',
       items:[
+        {date:'2026-09-20', badge:'그래프 갱신 없음', title:'새 Schwab 공식 지표 없음 — 10년물·추가 인상 경로 추적', text:'전날 이후 SCHD 배당금·30일 SEC yield·P/E·섹터 비중을 바꿀 새 Schwab 공식 수치는 확인되지 않았습니다. 5% 부근 장기금리와 추가 금리인상 경로가 SCHD의 국채 대비 매력과 SCHG의 성장주 할인율에 미치는 영향을 계속 봅니다.', view:'SCHD 1순위 핵심 추적', source:'Schwab Asset Management', url:'https://www.schwabassetmanagement.com/products/schd'},
         {date:'2026-09-17', badge:'금리인상 후속', title:'10년물 4.949%로 진정 — SCHD·SCHG 상대환경 재점검', text:'연준 인상 다음 날 10년물은 4.949%로 내려왔고 S&P 500 +1.1%, Nasdaq +1.6%로 반등했습니다. SCHD에는 국채와의 수익률 경쟁이 계속되지만 장기금리 급등 진정은 부담 완화 요인입니다. SCHG는 금리 하락에 더 민감할 수 있습니다.', view:'SCHD 핵심 · 10년물 5% 안착 여부 추적', source:'Reuters', url:'https://www.reuters.com/world/china/global-markets-global-markets-2026-09-17/'},
         {date:'2026-09-16', badge:'FOMC 금리인상', title:'미국 기준금리 3.75~4.00% — SCHD에 양면 영향', text:'연준이 0.25%p 인상했습니다. 국채·현금성 자산 수익률 상승은 SCHD의 배당수익률과 경쟁하지만, 높은 할인율은 P/E가 더 높은 성장주에 상대적으로 더 큰 부담이 될 수 있습니다. SCHD는 금융·산업재 비중 때문에 금리상승 수혜와 경기둔화 위험이 동시에 존재합니다.', view:'SCHD 핵심 추적 · 국채수익률/배당 지속성 확인', source:'Federal Reserve', url:'https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm'},
         {date:'2026-09-16', badge:'SCHG·SCHB 비교', title:'성장주에는 할인율 부담, 전체시장에는 차입비용 부담', text:'금리가 오래 높게 유지되면 미래 이익의 현재가치가 낮아져 고밸류 성장주인 SCHG가 상대적으로 민감할 수 있습니다. SCHB는 미국 전체시장의 기준점으로 소비·주택·기업 차입비용 상승에 따른 경기와 이익 둔화를 함께 반영합니다. 이는 가격 예측이 아니라 금리 전달경로 분석입니다.', view:'SCHG 금리민감도 ↑ · SCHB 경기민감도 관찰', source:'Federal Reserve / Reuters', url:'https://www.reuters.com/business/view-markets-steady-after-fed-raises-rates-points-another-hike-this-year-2026-09-16/'},
@@ -520,6 +555,7 @@ window.ADMIN_INVESTMENT_DATA = {
     flin: {
       title:'FLIN · 인도 ETF (실제 보유)',
       items:[
+        {date:'2026-09-20', badge:'최근 저점 원인', title:'고유가·루피 약세·미국 고금리·외국인 자금이 동시 압박', text:'최근 FLIN 약세는 인도 장기 성장 스토리 훼손 하나로 설명하기보다 원유 수입 의존도가 높은 인도에 불리한 고유가, USD/INR 96선 부근의 루피 약세, 미국 금리 상승과 높은 인도 주식 밸류에이션, 외국인 자금 유출 위험이 겹친 결과로 봅니다.', view:'실제 보유 · 유가/루피/외국인 흐름 우선 추적', source:'Reuters / Franklin Templeton', url:'https://www.reuters.com/world/india/hawkish-fed-adds-rupees-troubles-traders-watch-96usd-hurdle-2026-09-17/'},
         {date:'2026-09-17', badge:'환율·미국 금리', title:'연준 인상 뒤 루피 95.93/USD — 96선이 단기 관찰선', text:'루피가 장중 96을 넘겼지만 RBI 개입 추정과 글로벌 지수 리밸런싱 관련 포트폴리오 유입으로 95.93에 마감했습니다. FLIN은 달러 표시 ETF이므로 루피 약세는 인도 현지 주가가 같아도 달러 기준 성과에 부담이 될 수 있습니다.', view:'실제 보유 · 루피/외국인 자금 추적', source:'Reuters', url:'https://www.reuters.com/world/india/hawkish-fed-adds-rupees-troubles-traders-watch-96usd-hurdle-2026-09-17/'},
         {date:'2026-08-21', badge:'FLIN 공식', title:'총보수 0.19%·280종목·P/E 25.50배', text:'Franklin Templeton 공식 기준 FLIN은 FTSE India RIC Capped Index를 추종합니다. 금융 28.76%, 경기소비재 12.94%, 산업재 11.24%, 소재 9.08%, 에너지 7.73%이며 주요 종목은 Reliance Industries, HDFC Bank, ICICI Bank입니다.', view:'인도 핵심 보유 ETF로 추가 추적', source:'Franklin Templeton', url:'https://www.franklintempleton.com/investments/options/exchange-traded-funds/products/26348/SINGLCLASS/franklin-ftse-india-etf/FLIN'}
       ],
@@ -528,6 +564,7 @@ window.ADMIN_INVESTMENT_DATA = {
     water: {
       title:'미국 물 · 수자원',
       items:[
+        {date:'2026-09-20', badge:'그래프 갱신 없음', title:'새 정량 CAPEX·실적 수치 없음 — AI 냉각·재이용 수요는 계속 추적', text:'PHO·FIW·CGW 및 주요 물 기업에서 전날 이후 그래프를 바꿀 새 공식 수치는 확인되지 않았습니다. 데이터센터 금융 확대와 전력망 병목이 냉각·수처리·물 재이용의 실제 수주로 연결되는지 확인합니다.', view:'관찰 유지', source:'주요 기업 IR·ETF 운용사', url:'https://www.invesco.com/us/financial-products/etfs/product-detail?productId=ETF-PHO'},
         {date:'2026-09-14', badge:'규제·물 효율', title:'텍사스, 데이터센터 물 사용 보고 위반 제재 강화', text:'대규모 물 사용 데이터센터의 보고·허가 규제가 강화되는 흐름. 프로젝트에는 비용·지연 위험이지만 재이용·수처리·고효율 냉각 설비에는 수요 촉진 요인이 될 수 있습니다.', view:'효율·수처리 수요 긍정', source:'Reuters', url:'https://www.reuters.com/legal/litigation/texas-moves-penalize-data-centers-water-violations-2026-09-14/'},
         {date:'2026-09-11', badge:'AI 냉각·물', title:'호주 2GW AI 데이터센터 계획, 전력·물 사용 이슈 확대', text:'NVIDIA의 대규모 호주 데이터센터 계획과 함께 전력·물 소비 규제 우려도 부각. PHO·FIW·CGW의 즉각적 매수 신호라기보다 냉각·수처리·재이용 기업의 실제 수주와 가이던스를 확인할 단계.', view:'중장기 관찰', source:'Reuters', url:'https://www.reuters.com/world/asia-pacific/nvidia-teams-up-with-australian-partners-build-ai-factory-capacity-2026-09-10/'},
         {date:'2026-09-09', badge:'오늘 점검', title:'신규 대형 수주·CAPEX 신호는 아직 제한적', text:'오늘은 시장 판단을 바꿀 정도의 새 대형 발표가 뚜렷하지 않습니다. AI 데이터센터 냉각·수처리와 미국 수도망 교체의 실제 수주·가이던스를 계속 추적합니다.', view:'관찰 유지', source:'주요 기업 IR·ETF 운용사', url:'https://www.invesco.com/us/financial-products/etfs/product-detail?productId=ETF-PHO'},
