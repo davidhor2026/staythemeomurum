@@ -236,3 +236,79 @@ window.SITE_UPDATES = {
 // seoul-rent-result-delay-20260801
 
 // current-issues-20260803
+
+/* 첫 화면 스크롤 안내: 스크롤 가능한 페이지의 맨 위에서만 표시됩니다. */
+(function () {
+  "use strict";
+
+  var CUE_ID = "stayScrollCue";
+  var STYLE_ID = "stayScrollCueStyle";
+
+  function addStyle() {
+    if (document.getElementById(STYLE_ID)) return;
+
+    var style = document.createElement("style");
+    style.id = STYLE_ID;
+    style.textContent = [
+      ".stay-scroll-cue{position:fixed;left:50%;bottom:max(18px,calc(env(safe-area-inset-bottom) + 12px));z-index:40;display:flex;min-width:92px;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:7px 14px 6px;border:1px solid rgba(21,63,37,.18);border-radius:999px;background:rgba(255,255,255,.9);box-shadow:0 5px 18px rgba(18,45,28,.14);color:#153f25;font-family:inherit;opacity:0;visibility:hidden;transform:translate(-50%,10px);transition:opacity .22s ease,transform .22s ease,visibility 0s linear .22s;pointer-events:none;user-select:none;-webkit-user-select:none;backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}",
+      ".stay-scroll-cue.is-visible{opacity:.9;visibility:visible;transform:translate(-50%,0);transition-delay:0s}",
+      ".stay-scroll-cue__text{font-size:11px;font-weight:800;line-height:1.15;letter-spacing:-.02em;white-space:nowrap}",
+      ".stay-scroll-cue__arrow{font-family:Arial,sans-serif;font-size:27px;font-weight:700;line-height:.9;animation:stayScrollArrow 1.35s ease-in-out infinite}",
+      "@keyframes stayScrollArrow{0%,100%{transform:translateY(-1px)}50%{transform:translateY(4px)}}",
+      "@media(max-width:520px){.stay-scroll-cue{min-width:84px;padding:6px 12px 5px}.stay-scroll-cue__arrow{font-size:25px}}",
+      "@media(prefers-reduced-motion:reduce){.stay-scroll-cue,.stay-scroll-cue.is-visible{transition:none}.stay-scroll-cue__arrow{animation:none}}",
+      "@media print{.stay-scroll-cue{display:none!important}}"
+    ].join("");
+    document.head.appendChild(style);
+  }
+
+  function boot() {
+    if (!document.body || document.getElementById(CUE_ID)) return;
+    addStyle();
+
+    var cue = document.createElement("div");
+    cue.id = CUE_ID;
+    cue.className = "stay-scroll-cue";
+    cue.setAttribute("aria-hidden", "true");
+    cue.innerHTML = '<span class="stay-scroll-cue__text">아래로 스크롤</span><span class="stay-scroll-cue__arrow">↓</span>';
+    document.body.appendChild(cue);
+
+    var scheduled = false;
+    function sync() {
+      scheduled = false;
+      var doc = document.documentElement;
+      var scrollTop = window.pageYOffset || doc.scrollTop || 0;
+      var scrollable = doc.scrollHeight > window.innerHeight + 80;
+      cue.classList.toggle("is-visible", scrollable && scrollTop <= 12);
+    }
+
+    function scheduleSync() {
+      if (scheduled) return;
+      scheduled = true;
+      window.requestAnimationFrame(sync);
+    }
+
+    window.addEventListener("scroll", scheduleSync, { passive: true });
+    window.addEventListener("resize", scheduleSync, { passive: true });
+    window.addEventListener("load", scheduleSync);
+
+    if (window.MutationObserver) {
+      var observer = new MutationObserver(scheduleSync);
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["hidden", "style"]
+      });
+    }
+
+    sync();
+    window.setTimeout(scheduleSync, 350);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot, { once: true });
+  } else {
+    boot();
+  }
+})();
