@@ -153,7 +153,7 @@ function firstFutureText(room){
     const e=room.events.slice().sort((a,b)=>a.date.localeCompare(b.date))[0];
     const tour=activeTourEvents(room).find(item=>!item.forDate || item.forDate===e.date);
     const tourLine=tour ? `<span class="tour-inline">${DISPLAY_TEXT.roomTour}</span>` : '';
-    return `<span class="availability-date">${formatDate(e.date)}</span><span class="availability-label">${DISPLAY_TEXT.upcoming}</span>${tourLine}`;
+    return `<span class="availability-date">${formatDate(e.date)}</span><span class="availability-label">부터 입실 가능</span>${tourLine}`;
   }
   if(room.unknown){
     if(room.unknown.note === "공실 여부 문의"){
