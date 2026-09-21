@@ -86,6 +86,10 @@ const VACANCY_MANAGER = {
 
 /* 만실 문구도 이 파일에서만 관리합니다. */
 function vacancyFullLabel(room){
+  /* 즉시 입실은 불가능해도 확정된 입실 가능일이 있으면 '현재 만실' 대신 '예약 가능'으로 표시 */
+  if(room && Number(room.now || 0) === 0 && Array.isArray(room.dates) && room.dates.length > 0){
+    return "예약 가능";
+  }
   return (room && room.fullLabel) ? room.fullLabel : "현재 만실";
 }
 

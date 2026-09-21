@@ -122,8 +122,8 @@ Object.entries(VACANCY_MANAGER).forEach(([key, room]) => {
     events: (room.dates || []).map(date => ({ date, rooms: 1 })),
     bookedEvents: (room.bookedDates || []).map(item => typeof item === 'string' ? { date:item, bookedOn:null } : item),
     tourEvents: (room.tourDates || []).map(item => typeof item === 'string' ? { date:item, forDate:null } : item),
-    reservable: room.reservable === true,
-    fullLabel: room.fullLabel || DISPLAY_TEXT.fullNow,
+    reservable: room.reservable === true || (room.dates || []).length > 0,
+    fullLabel: vacancyFullLabel(room),
     unknown: room.unknown || null
   };
 });
@@ -170,13 +170,13 @@ function renderAvailability(){
     if(sum){
       const now = room.availableNow > 0
         ? `<div class="main green">${DISPLAY_TEXT.availableNow}</div>`
-        : `<div class="main gray">${room.fullLabel}</div>`;
+        : `<div class="main ${room.events.length?'orange':'gray'}">${room.fullLabel}</div>`;
       sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}<hr><div class="sub ${room.events.length?'orange':'gray'}">${firstFutureText(room)}</div>`;
     }
     if(detail){
       let lines = room.availableNow > 0
         ? `<p class="green">● ${DISPLAY_TEXT.availableNow}</p>`
-        : `<p class="gray">● ${room.fullLabel}</p>`;
+        : `<p class="${room.events.length?'orange':'gray'}">● ${room.fullLabel}</p>`;
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
         const tour=activeTourEvents(room).find(item=>item.forDate===e.date);
         const tourText=tour ? ` <span class="purple">· ${DISPLAY_TEXT.roomTour}</span>` : '';
