@@ -24,8 +24,7 @@ const VACANCY_MANAGER = {
     name: "스탠다드룸",
     now: 0,
     dates: [
-      "2026-10-13",
-      "2026-10-16"
+      "2026-10-13"
     ],
     bookedDates: [
       { date: "2026-09-21", bookedOn: "2026-09-19" },
