@@ -25,6 +25,7 @@ const VACANCY_MANAGER = {
     now: 0,
     dates: [
       "2026-10-13",
+      "2026-10-27",
       "2026-11-16"
     ],
     bookedDates: [
