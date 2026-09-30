@@ -42,16 +42,14 @@ const VACANCY_MANAGER = {
   deluxe: {
     name: "디럭스룸",
     now: 0,
-    dates: [],
+    dates: [
+      "2026-10-30"
+    ],
     bookedDates: [],
     tourDates: [],
-    reservable: false,
+    reservable: true,
     fullLabel: "현재 만실",
-    unknown: {
-      month: "2026-09",
-      label: "10월 중",
-      note: "공실 여부 문의"
-    }
+    unknown: null
   },
 
   suite1: {
