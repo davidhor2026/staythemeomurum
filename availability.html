@@ -41,6 +41,8 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
 .roomrow{display:grid;grid-template-columns:58px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0}
 .roomicon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#edf5ed;font-size:24px}
 .roomrow h4{margin:0 0 3px;font-size:18px}.roomrow p{margin:1px 0;font-size:15px;line-height:1.45}
+.availability-row{display:grid;grid-template-columns:14px 82px minmax(0,1fr);column-gap:3px;align-items:baseline;white-space:nowrap}
+.availability-dot,.availability-row-date,.availability-row-status{display:block}
 .roomrow a{padding:10px 13px;border-radius:10px;background:#f2f7f1;color:#245a32;text-decoration:none;font-weight:800;white-space:nowrap}
 .contact{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-top:16px}
 .contactgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}.contactbox{padding:6px 18px;border-right:1px dashed #ccc;line-height:1.6}.contactbox:first-child{padding-left:0}.contactbox:last-child{border-right:0}
@@ -178,11 +180,11 @@ function renderAvailability(){
     if(detail){
       let lines = room.availableNow > 0
         ? `<p class="green">● ${DISPLAY_TEXT.availableNow}</p>`
-        : `<p class="${room.events.length?'orange':'gray'}">● ${room.fullLabel}</p>`;
+        : (room.events.length ? '' : `<p class="gray">● ${room.fullLabel}</p>`);
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
         const tour=activeTourEvents(room).find(item=>item.forDate===e.date);
         const tourText=tour ? ` <span class="purple">· ${DISPLAY_TEXT.roomTour}</span>` : '';
-        lines += `<p class="orange">● ${formatDate(e.date)} · ${DISPLAY_TEXT.upcoming}${tourText}</p>`;
+        lines += `<p class="orange availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.upcoming}${tourText}</span></p>`;
       });
       activeBookedEvents(room).forEach(e=>{
         lines += `<p class="blue">● ${formatDate(e.date)} · ${DISPLAY_TEXT.booked}</p>`;
