@@ -148,6 +148,10 @@ function activeTourEvents(room){
     .filter(e=>e && e.date && e.date>=today)
     .sort((a,b)=>a.date.localeCompare(b.date));
 }
+function unknownInquiryText(room){
+  const label=String(room.unknown?.label || '').replace(/\s*중$/, '');
+  return `${label} 입실 가능 여부 문의`.trim();
+}
 function firstFutureText(room){
   if(room.events.length){
     const e=room.events.slice().sort((a,b)=>a.date.localeCompare(b.date))[0];
@@ -156,10 +160,7 @@ function firstFutureText(room){
     return `<span class="availability-date">${formatDate(e.date)}</span><span class="availability-label">부터 입실 가능</span>${tourLine}`;
   }
   if(room.unknown){
-    if(room.unknown.note.includes("문의")){
-      return `${room.unknown.label}<br>${room.unknown.note}`;
-    }
-    return `${room.unknown.label}<br>입실 가능 예정 (${room.unknown.note})`;
+    return unknownInquiryText(room).replace(' ', '<br>');
   }
   return "현재 예정 없음";
 }
@@ -186,11 +187,7 @@ function renderAvailability(){
         lines += `<p class="blue">● ${formatDate(e.date)} · ${DISPLAY_TEXT.booked}</p>`;
       });
       if(room.unknown){
-        if(room.unknown.note.includes("문의")){
-          lines += `<p class="gray">● ${room.unknown.label} ${room.unknown.note}</p>`;
-        }else{
-          lines += `<p class="gray">● ${room.unknown.label} 입실 가능 예정 · ${room.unknown.note}</p>`;
-        }
+        lines += `<p class="gray">● ${unknownInquiryText(room)}</p>`;
       }
       detail.innerHTML=lines;
     }
@@ -341,10 +338,7 @@ function renderVacancyCalendar(){
     noteHtml += `<span class="legend-item"><b class="purple">●</b> 룸투어 예정(예약 확정 전)</span>`;
   }
   if(room.unknown){
-    const unknownText = room.unknown.note.includes("문의")
-      ? `${room.unknown.label} ${room.unknown.note}`
-      : `${room.unknown.label} 입실 가능 예정 · ${room.unknown.note}`;
-    noteHtml += `<span class="calendar-unknown">※ ${unknownText}</span>`;
+    noteHtml += `<span class="calendar-unknown">※ ${unknownInquiryText(room)}</span>`;
   }
   if(!noteHtml){
     noteHtml='<span class="calendar-unknown">현재 등록된 공실 예정이 없습니다.</span>';
