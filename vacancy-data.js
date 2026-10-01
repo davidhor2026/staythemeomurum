@@ -66,8 +66,8 @@ const VACANCY_MANAGER = {
     fullLabel: "현재 만실",
     unknown: {
       month: "2026-12",
-      label: "12월 중",
-      note: "날짜 미정"
+      label: "12월",
+      note: "입실 가능 여부 문의"
     }
   },
 
@@ -81,8 +81,8 @@ const VACANCY_MANAGER = {
     fullLabel: "현재 만실",
     unknown: {
       month: "2026-12",
-      label: "12월 중",
-      note: "날짜 미정"
+      label: "12월",
+      note: "입실 가능 여부 문의"
     }
   }
 };
@@ -116,7 +116,7 @@ const DISPLAY_TEXT = {
 
   availableNow: "즉시 입실 가능",
   fullNow: "현재 만실",
-  upcoming: "예약 가능",
+  upcoming: "입실 가능 여부 문의",
   booked: "예약 완료",
   roomTour: "룸투어 예정",
   unknownDate: "날짜 미정",

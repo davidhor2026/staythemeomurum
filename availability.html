@@ -156,7 +156,7 @@ function firstFutureText(room){
     return `<span class="availability-date">${formatDate(e.date)}</span><span class="availability-label">부터 입실 가능</span>${tourLine}`;
   }
   if(room.unknown){
-    if(room.unknown.note === "공실 여부 문의"){
+    if(room.unknown.note.includes("문의")){
       return `${room.unknown.label}<br>${room.unknown.note}`;
     }
     return `${room.unknown.label}<br>입실 가능 예정 (${room.unknown.note})`;
@@ -186,7 +186,7 @@ function renderAvailability(){
         lines += `<p class="blue">● ${formatDate(e.date)} · ${DISPLAY_TEXT.booked}</p>`;
       });
       if(room.unknown){
-        if(room.unknown.note === "공실 여부 문의"){
+        if(room.unknown.note.includes("문의")){
           lines += `<p class="gray">● ${room.unknown.label} ${room.unknown.note}</p>`;
         }else{
           lines += `<p class="gray">● ${room.unknown.label} 입실 가능 예정 · ${room.unknown.note}</p>`;
@@ -341,7 +341,10 @@ function renderVacancyCalendar(){
     noteHtml += `<span class="legend-item"><b class="purple">●</b> 룸투어 예정(예약 확정 전)</span>`;
   }
   if(room.unknown){
-    noteHtml += `<span class="calendar-unknown">※ ${room.unknown.label} 입실 가능 예정 · ${room.unknown.note}</span>`;
+    const unknownText = room.unknown.note.includes("문의")
+      ? `${room.unknown.label} ${room.unknown.note}`
+      : `${room.unknown.label} 입실 가능 예정 · ${room.unknown.note}`;
+    noteHtml += `<span class="calendar-unknown">※ ${unknownText}</span>`;
   }
   if(!noteHtml){
     noteHtml='<span class="calendar-unknown">현재 등록된 공실 예정이 없습니다.</span>';
