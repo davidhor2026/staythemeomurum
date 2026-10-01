@@ -66,8 +66,8 @@ const VACANCY_MANAGER = {
     fullLabel: "현재 만실",
     unknown: {
       month: "2026-12",
-      label: "12월",
-      note: "입실 가능 여부 문의"
+      label: "12월 중",
+      note: "예약 가능 여부 문의"
     }
   },
 
@@ -81,8 +81,8 @@ const VACANCY_MANAGER = {
     fullLabel: "현재 만실",
     unknown: {
       month: "2026-12",
-      label: "12월",
-      note: "입실 가능 여부 문의"
+      label: "12월 중",
+      note: "예약 가능 여부 문의"
     }
   }
 };

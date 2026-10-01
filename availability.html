@@ -149,8 +149,9 @@ function activeTourEvents(room){
     .sort((a,b)=>a.date.localeCompare(b.date));
 }
 function unknownInquiryText(room){
-  const label=String(room.unknown?.label || '').replace(/\s*중$/, '');
-  return `${label} 입실 가능 여부 문의`.trim();
+  const label=String(room.unknown?.label || '').trim();
+  const note=String(room.unknown?.note || '예약 가능 여부 문의').trim();
+  return `${label} ${note}`.trim();
 }
 function firstFutureText(room){
   if(room.events.length){
@@ -160,7 +161,7 @@ function firstFutureText(room){
     return `<span class="availability-date">${formatDate(e.date)}</span><span class="availability-label">부터 입실 가능</span>${tourLine}`;
   }
   if(room.unknown){
-    return unknownInquiryText(room).replace(' ', '<br>');
+    return `${room.unknown.label}<br>${room.unknown.note}`;
   }
   return "현재 예정 없음";
 }
