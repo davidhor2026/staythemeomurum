@@ -116,7 +116,7 @@ const DISPLAY_TEXT = {
 
   availableNow: "즉시 입실 가능",
   fullNow: "현재 만실",
-  upcoming: "입실 가능 여부 문의",
+  upcoming: "예약 가능",
   booked: "예약 완료",
   roomTour: "룸투어 예정",
   unknownDate: "날짜 미정",
