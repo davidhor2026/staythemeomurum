@@ -323,6 +323,17 @@ function renderVacancyCalendar(){
       cell.classList.add('has-tour');
       cell.innerHTML += `<span class="calendar-mark purple">${DISPLAY_TEXT.roomTour}</span>`;
     }
+    if(!bookedByDate[iso] && iso>=today && (eventsByDate[iso] || (room.availableNow>0 && iso===today))){
+      cell.tabIndex=0;
+      cell.setAttribute('role','button');
+      cell.setAttribute('aria-label',`${room.name} ${formatDate(iso)} 입주·예약 문의하기`);
+      cell.classList.add('booking-date');
+      cell.innerHTML += '<span class="calendar-mark">문의하기 ›</span>';
+      cell.addEventListener('click',()=>openBookingInquiry(calendarRoomKey,iso,cell));
+      cell.addEventListener('keydown',event=>{
+        if(event.key==='Enter' || event.key===' '){event.preventDefault();openBookingInquiry(calendarRoomKey,iso,cell);}
+      });
+    }
     grid.appendChild(cell);
   }
 
@@ -828,4 +839,66 @@ document.addEventListener("DOMContentLoaded", function(){
   document.write('<script src="site-updates.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
 </script>
 
+<style>
+.booking-date{cursor:pointer}.booking-date:hover,.booking-date:focus-visible{outline:2px solid #245f44;outline-offset:1px}
+#bookingInquiry{width:min(480px,calc(100% - 28px));max-height:85dvh;box-sizing:border-box;overflow:auto;border:0;border-radius:18px;padding:22px;color:#25382d;background:#fff}
+#bookingInquiry::backdrop{background:rgba(0,0,0,.4)}
+.booking-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.booking-head h2{font-size:21px;margin:0}.booking-head button{border:0;background:#f1f4f1;border-radius:8px;padding:10px;cursor:pointer}
+#bookingInquiry label{display:block;margin:14px 0 5px;font-weight:700;font-size:14px}
+#bookingInquiry input{width:100%;box-sizing:border-box;border:1px solid #cbd5ce;border-radius:8px;padding:12px;font:inherit;font-size:16px}
+.booking-note{background:#f3f7f3;border-radius:10px;padding:12px;font-size:13px;line-height:1.65}.booking-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.booking-actions button{flex:1;border:0;border-radius:9px;padding:13px;font:inherit;font-weight:700;cursor:pointer;background:#eaf1eb;color:#234c32}.booking-actions button[type=submit]{background:#245f44;color:white}
+#bookingPreview{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.6}#bookingStatus{font-size:13px;line-height:1.6}
+</style>
+<dialog id="bookingInquiry" aria-labelledby="bookingTitle">
+ <div class="booking-head"><h2 id="bookingTitle">입주·예약 문의하기</h2><button type="button" id="bookingClose" aria-label="신청서 닫기">닫기</button></div>
+ <p id="bookingSelection"></p>
+ <p class="booking-note">객실 타입, 입실일까지 남은 기간, 희망 입주기간에 따라 예약 가능 여부가 달라질 수 있습니다. 원장이 내용을 확인한 후 개별 문자로 예약 가능 여부와 계약금 입금 계좌를 안내합니다. <strong>계약금 입금 확인 후 예약이 확정됩니다.</strong></p>
+ <form id="bookingForm">
+  <label for="bookingName">입주자 이름</label><input id="bookingName" name="residentName" autocomplete="name" required maxlength="40">
+  <label for="bookingAge">나이 (만 나이)</label><input id="bookingAge" name="age" type="number" min="1" max="120" inputmode="numeric" required>
+  <label for="bookingExam">준비하는 시험</label><input id="bookingExam" name="exam" required maxlength="100" placeholder="예: 초등 임용 / 해당 없으면 ‘없음’">
+  <label for="bookingPeriod">희망 입주기간</label><input id="bookingPeriod" name="period" required maxlength="120" placeholder="예: 10월 13일부터 3개월">
+  <p style="font-size:12px;line-height:1.6">입력한 내용은 문자에 포함됩니다. 홈페이지에는 저장되지 않습니다. 전송한 휴대전화 번호로 원장이 회신합니다.</p>
+  <div class="booking-actions"><button type="submit">예약 신청 문자 보내기</button><button type="button" id="bookingCopy">내용 복사</button></div>
+  <p id="bookingStatus" role="status">문자 앱이 열리면 내용을 확인하고 전송 버튼을 눌러 주세요. 앱을 여는 것만으로 신청이 전달되지는 않습니다.</p>
+  <details><summary>전송할 내용 확인</summary><pre id="bookingPreview"></pre></details>
+ </form>
+</dialog>
+<script>
+const bookingDialog=document.getElementById('bookingInquiry');
+const bookingForm=document.getElementById('bookingForm');
+let bookingSelected=null,bookingReturnFocus=null;
+function openBookingInquiry(key,date,trigger){
+ const room=ROOM_AVAILABILITY[key];
+ if(!room || date<kstTodayISO() || activeBookedEvents(room).some(e=>e.date===date) || !(room.events.some(e=>e.date===date) || (room.availableNow>0 && date===kstTodayISO())))return;
+ bookingSelected={key,date};bookingReturnFocus=trigger;bookingForm.reset();
+ document.getElementById('bookingSelection').textContent=room.name+' · '+formatDate(date)+' 입실 문의';
+ document.getElementById('bookingStatus').textContent='문자 앱이 열리면 내용을 확인하고 전송 버튼을 눌러 주세요. 앱을 여는 것만으로 신청이 전달되지는 않습니다.';
+ updateBookingPreview();bookingDialog.showModal();
+}
+function bookingMessage(){
+ if(!bookingSelected)return '';
+ return ['[스테이The머무름 입주·예약 신청]', '객실: '+ROOM_AVAILABILITY[bookingSelected.key].name,'선택한 입실 가능일: '+formatDate(bookingSelected.date),'이름: '+bookingForm.elements.residentName.value.trim(),'나이(만): '+bookingForm.elements.age.value.trim(),'준비하는 시험: '+bookingForm.elements.exam.value.trim(),'희망 입주기간: '+bookingForm.elements.period.value.trim(),'예약 가능 여부 확인 및 계약금 입금 계좌 안내를 부탁드립니다.','계약금 입금 확인 후 예약 확정 절차를 확인했습니다.'].join('\n');
+}
+function updateBookingPreview(){document.getElementById('bookingPreview').textContent=bookingMessage();}
+function validBookingForm(){
+ for(const name of ['residentName','exam','period']){const field=bookingForm.elements[name];field.setCustomValidity(field.value.trim()?'':'내용을 입력해 주세요.');}
+ return bookingForm.reportValidity();
+}
+bookingForm.addEventListener('input',()=>{for(const name of ['residentName','exam','period'])bookingForm.elements[name].setCustomValidity('');updateBookingPreview();});
+bookingForm.addEventListener('submit',event=>{
+ event.preventDefault();if(!validBookingForm() || !bookingSelected)return;
+ const ios=/iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
+ const url='sms:01028779447'+(ios?'&':'?')+'body='+encodeURIComponent(bookingMessage());
+ document.getElementById('bookingStatus').textContent='문자 앱에서 전송을 완료해 주세요. 앱이 열리지 않으면 ‘내용 복사’를 눌러 010-2877-9447로 직접 보내 주세요.';
+ window.location.href=url;
+});
+document.getElementById('bookingCopy').addEventListener('click',async()=>{
+ if(!validBookingForm())return;
+ try{await navigator.clipboard.writeText(bookingMessage());document.getElementById('bookingStatus').textContent='내용을 복사했습니다. 문자 앱에서 010-2877-9447로 보내 주세요.';}
+ catch(error){document.getElementById('bookingStatus').textContent='자동 복사가 지원되지 않습니다. 아래 ‘전송할 내용 확인’을 펼쳐 내용을 복사한 뒤 010-2877-9447로 보내 주세요.';document.getElementById('bookingPreview').parentElement.open=true;}
+});
+document.getElementById('bookingClose').addEventListener('click',()=>bookingDialog.close());
+bookingDialog.addEventListener('close',()=>{bookingForm.reset();bookingSelected=null;document.getElementById('bookingPreview').textContent='';if(bookingReturnFocus && bookingReturnFocus.isConnected)bookingReturnFocus.focus();});
+</script>
 </body></html>
