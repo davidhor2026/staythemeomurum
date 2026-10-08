@@ -207,7 +207,6 @@
 <p><strong>스위트룸 — 계약금 20만 원</strong></p>
 <table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 30일 이상 전</td><td>입주 20일 전까지</td></tr><tr><td>입주 20~29일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 15~19일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 14일 이내</td><td>환불 불가</td></tr></tbody></table>
 <p class="refund-note">※ 환불 가능 기한 당일까지 취소 시 계약금 전액 환불, 이후 취소 시 계약금 환불 불가를 원칙으로 합니다. 예약 확정일은 계약금 입금 확인일 기준입니다. 입주 후 이용료 환불과는 별개입니다.</p>
-<p class="refund-note">※ 위 내용은 고시원 운영 기준 안내이며, 관련 법령·소비자분쟁해결기준 등에 따라 실제 환불 처리가 달라질 수 있습니다.</p>
 </details></section>
   <section>
     <h2>추가 문의</h2>
@@ -291,7 +290,7 @@
  if(cutoff===null){msg+='운영 규정상 전액 환불 가능 기간이 없습니다.';}
  else{const deadline=m-cutoff;msg+='전액 환불 마감일: '+iso(deadline)+' (당일 포함)';if(Number.isFinite(c)){if(c<b||c>m){msg+='\n취소 신청일은 예약 확정일부터 입주 예정일까지 입력해 주세요.';}else{msg+='\n'+(c<=deadline?'입력한 취소일 기준: 계약금 100% 환불 가능':'입력한 취소일 기준: 운영 규정상 계약금 환불 불가');}}}
  if(cutoff===null&&Number.isFinite(c)&&c<b)msg+='\n취소 신청일을 확인해 주세요.';
- result.textContent=msg+'\n※ 최종 환불 여부는 확정된 계약 조건과 관계 법령에 따라 달라질 수 있습니다.';
+ result.textContent=msg;
  }
  [room,booked,move,cancel].forEach(el=>el.addEventListener('change',update));
  window.stayRefundSetSelection=function(roomKey,moveDate){room.value=/suite/i.test(roomKey)?'suite':'standard';if(moveDate)move.value=moveDate;update();};
