@@ -112,6 +112,8 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
 .availability-date,.availability-label{display:block;width:100%}
 .tour-inline{display:block;width:100%;margin-top:5px;color:#7952a3;font-size:.86em;font-weight:800;line-height:1.35;text-align:center}
 
+
+  #refund-calculator { scroll-margin-top: 22px; }
 </style><style>
 .refund-panel{margin:18px 0;padding:18px;background:#fff;border:1px solid #dbe5dc;border-radius:13px;color:#26362b;line-height:1.65}
 .refund-panel h3{margin:0 0 10px;font-size:19px}.refund-panel .refund-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
@@ -760,7 +762,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 </div><p class="notice" id="scheduleNotice"></p>
 </section>
 
-<section class="refund-panel" aria-label="예약 계약금 환불 안내 및 계산기">
+<section id="refund-calculator" class="refund-panel" aria-label="예약 계약금 환불 안내 및 계산기">
 <h3>예약 계약금 환불 계산기</h3>
 <p>예약 확정일(계약금 입금 확인일)과 입주 예정일을 입력하면 <strong>전액 환불 마감일</strong>을 확인할 수 있습니다. 취소 신청일도 입력하면 해당 날짜의 환불 가능 여부를 계산합니다.</p>
 <div class="refund-grid">
@@ -893,7 +895,7 @@ document.addEventListener("DOMContentLoaded", function(){
   <label for="bookingExam">준비하는 시험</label><input id="bookingExam" name="exam" required maxlength="100" placeholder="예: 초등 임용 / 해당 없으면 ‘없음’">
   <label for="bookingPeriod">희망 입주기간</label><input id="bookingPeriod" name="period" required maxlength="120" placeholder="예: 10월 13일부터 3개월">
   <p style="font-size:12px;line-height:1.6">입력한 내용은 문자에 포함됩니다. 홈페이지에는 저장되지 않습니다. 전송한 휴대전화 번호로 원장이 회신합니다.</p>
-<div class="booking-required-note"><strong>계약금 환불 안내</strong><br>예약 확정일(계약금 입금 확인일)과 입주 예정일에 따라 전액 환불 기한이 달라집니다. 이 페이지의 <strong>취소 규정 보기</strong> 및 환불 계산기를 확인해 주세요. 실제 환불 기한은 예약 확정 시 안내됩니다.</div>
+<div class="booking-required-note"><strong>계약금 환불 안내</strong><br>예약 확정일(계약금 입금 확인일)과 입주 예정일에 따라 전액 환불 기한이 달라집니다. 이 페이지의 <a href="#refund-calculator" class="refund-jump-link">취소 규정 및 환불 계산기 바로 보기</a>에서 확인해 주세요. 실제 환불 기한은 예약 확정 시 안내됩니다.</div>
   <label style="display:flex!important;align-items:flex-start;gap:8px;font-weight:500!important"><input type="checkbox" id="bookingRefundAgree" required style="width:auto!important;margin-top:4px"> <span>계약금 및 취소·환불 규정 안내를 확인했습니다.</span></label>
   <div class="booking-actions"><button type="submit">예약 신청 문자 보내기</button></div>
   <p id="bookingStatus" role="status">문자 앱이 열리면 내용을 확인하고 전송 버튼을 눌러 주세요. 앱을 여는 것만으로 신청이 전달되지는 않습니다.</p>
