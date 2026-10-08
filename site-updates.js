@@ -26,7 +26,7 @@ window.SITE_UPDATES = {
     'word-roots.html': { key: 'wordRoots', updated: '' },
     'career-benefits.html': { key: 'careerBenefits', updated: '2026-09-06', expires: '2026-09-13' },
     'rent-support.html': { key: 'rentSupport', updated: '2026-10-02', expires: '2026-10-09' },
-    'admin-investment.html': { key: 'adminInvestment', updated: '2026-10-07', expires: '2026-10-14' },
+    'admin-investment.html': { key: 'adminInvestment', updated: '2026-10-08', expires: '2026-10-15' },
     'resident-event.html': { key: 'residentEvent', updated: '' },
     'gift.html': { key: 'gift', updated: '' },
     'checkin-guide.html': { key: 'checkinGuide', updated: '' },
