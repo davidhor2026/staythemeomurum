@@ -189,7 +189,7 @@ function renderAvailability(){
         lines += `<p class="purple availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.roomTour} (예약 확정 전)</span></p>`;
       });
       activeBookedEvents(room).forEach(e=>{
-        lines += `<p class="blue">● ${formatDate(e.date)} · ${DISPLAY_TEXT.booked}</p>`;
+        lines += `<p class="blue availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.booked}</span></p>`;
       });
       if(room.unknown){
         lines += `<p class="gray">● ${unknownInquiryText(room)}</p>`;
