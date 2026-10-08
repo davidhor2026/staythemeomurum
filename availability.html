@@ -183,8 +183,8 @@ function renderAvailability(){
         : (room.events.length ? '' : `<p class="gray">● ${room.fullLabel}</p>`);
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
         const tour=activeTourEvents(room).find(item=>item.forDate===e.date);
-        const tourText=tour ? ` <span class="purple">· ${DISPLAY_TEXT.roomTour}</span>` : '';
-        lines += `<p class="orange availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.upcoming}${tourText}</span></p>`;
+        const tourText=tour ? ` <span class="purple">· 10월 9일 룸투어 예정(예약 확정 전)</span>` : '';
+        lines += `<p class="orange availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">${tour ? "· 룸투어 예정(10월 9일)" : "· " + DISPLAY_TEXT.upcoming}</span></p>`;
       });
       activeBookedEvents(room).forEach(e=>{
         lines += `<p class="blue">● ${formatDate(e.date)} · ${DISPLAY_TEXT.booked}</p>`;
@@ -317,13 +317,13 @@ function renderVacancyCalendar(){
       cell.innerHTML += `<span class="calendar-mark blue">${DISPLAY_TEXT.booked}</span>`;
     }else if(eventsByDate[iso]){
       cell.classList.add('has-upcoming');
-      cell.innerHTML += `<span class="calendar-mark orange">${DISPLAY_TEXT.upcoming}</span>`;
+      cell.innerHTML += `<span class="calendar-mark ${toursByDate[iso] ? "purple" : "orange"}">${toursByDate[iso] ? "룸투어 예정" : DISPLAY_TEXT.upcoming}</span>`;
     }
     if(toursByDate[iso]){
       cell.classList.add('has-tour');
       cell.innerHTML += `<span class="calendar-mark purple">${DISPLAY_TEXT.roomTour}</span>`;
     }
-    if(!bookedByDate[iso] && iso>=today && (eventsByDate[iso] || (room.availableNow>0 && iso===today))){
+    if(!bookedByDate[iso] && !toursByDate[iso] && iso>=today && (eventsByDate[iso] || (room.availableNow>0 && iso===today))){
       cell.tabIndex=0;
       cell.setAttribute('role','button');
       cell.setAttribute('aria-label',`${room.name} ${formatDate(iso)} 입주·예약 문의하기`);
