@@ -891,6 +891,7 @@ document.addEventListener("DOMContentLoaded", function(){
 .booking-required-note{margin:14px 0 2px;padding:10px 12px;border-left:4px solid #d67717;border-radius:6px;background:#fff8ef;color:#684019;font-size:13px;line-height:1.6}
 #bookingPreview{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.6}#bookingStatus{font-size:13px;line-height:1.6}
 </style>
+<style>#bookingInquiry [hidden]{display:none!important}</style>
 <dialog id="bookingInquiry" aria-labelledby="bookingTitle">
  <div class="booking-head"><h2 id="bookingTitle">입주·예약 문의하기</h2><button type="button" id="bookingClose" aria-label="신청서 닫기">닫기</button></div>
  <p id="bookingSelection"></p>
@@ -903,7 +904,7 @@ document.addEventListener("DOMContentLoaded", function(){
   <label for="bookingPeriod">희망 입주기간</label><input id="bookingPeriod" name="period" required maxlength="120" placeholder="예: 10월 13일부터 3개월">
   <p style="font-size:12px;line-height:1.6">입력한 내용은 문자에 포함됩니다. 홈페이지에는 저장되지 않습니다. 전송한 휴대전화 번호로 원장이 회신합니다.</p>
 <div id="bookingRefundNotice" class="booking-required-note"><strong>계약금 환불 안내</strong><br>예약 확정일(계약금 입금 확인일)과 입주 예정일에 따라 전액 환불 기한이 달라집니다. 이 페이지의 <a href="#refund-calculator" class="refund-jump-link">취소 규정 및 환불 계산기 바로 보기</a>에서 확인해 주세요. 실제 환불 기한은 예약 확정 시 안내됩니다.</div>
-  <label id="bookingRefundAgreement" style="display:flex!important;align-items:flex-start;gap:8px;font-weight:500!important"><input type="checkbox" id="bookingRefundAgree" required style="width:auto!important;margin-top:4px"> <span>계약금 및 취소·환불 규정 안내를 확인했습니다.</span></label>
+  <label id="bookingRefundAgreement" style="display:flex;align-items:flex-start;gap:8px;font-weight:500!important"><input type="checkbox" id="bookingRefundAgree" required style="width:auto!important;margin-top:4px"> <span>계약금 및 취소·환불 규정 안내를 확인했습니다.</span></label>
   <div id="bookingGeneralExtra" hidden><label for="bookingGeneralMovein">희망 입주일 (미정 가능)</label><input id="bookingGeneralMovein" name="generalMovein" maxlength="80" placeholder="예: 11월 중순 / 아직 미정"><label for="bookingGeneralRoom">희망 객실 (선택)</label><select id="bookingGeneralRoom" name="generalRoom"><option value="">미정</option><option>스탠다드룸</option><option>디럭스룸</option><option>스위트1</option><option>스위트2</option></select><label for="bookingGeneralQuestion">문의 내용 (선택)</label><textarea id="bookingGeneralQuestion" name="generalQuestion" rows="3" maxlength="600" placeholder="궁금한 내용을 자유롭게 입력해 주세요."></textarea></div>
   <div class="booking-actions"><button type="submit" id="bookingSubmitButton">예약 신청 문자 보내기</button></div>
   <p id="bookingStatus" role="status">문자 앱이 열리면 내용을 확인하고 전송 버튼을 눌러 주세요. 앱을 여는 것만으로 신청이 전달되지는 않습니다.</p>
