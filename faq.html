@@ -37,6 +37,16 @@
 .refund-calculator-toggle > summary::after{content:"⌄";position:absolute;right:0;top:0}
 .refund-calculator-toggle[open] > summary::after{content:"⌃"}
 .refund-calculator-toggle[open] > summary{margin-bottom:12px}
+/* FAQ 환불규정 안에 계산기를 2단계로 접어서 표시 */
+.refund-policy-toggle > summary{cursor:pointer;font-weight:800;font-size:19px;color:#215e40;list-style:none;position:relative;padding:3px 30px 3px 0}
+.refund-policy-toggle > summary::-webkit-details-marker{display:none}
+.refund-policy-toggle > summary::after{content:"⌄";position:absolute;right:0;top:0}
+.refund-policy-toggle[open] > summary::after{content:"⌃"}
+.refund-policy-content{padding:10px 0 8px}
+.refund-policy-content table{width:100%;border-collapse:collapse;font-size:13px}
+.refund-policy-content th,.refund-policy-content td{padding:9px 6px;border-bottom:1px solid #dfe5df;text-align:left;vertical-align:top}
+.refund-policy-content .refund-note{font-size:12px;color:#5c665e;margin:10px 0}
+.refund-policy-toggle > .refund-calculator-toggle{margin-top:14px;border:1px solid #dce6de;border-radius:9px;padding:10px 12px;background:#fbfdfb}
 </style></head>
 
 <body>
@@ -200,7 +210,19 @@
     </div>
   </section>
 
-<section id="refund-calculator" class="refund-panel" aria-label="계약금 환불계산기">
+<section id="refund-calculator" class="refund-panel refund-policy-section" aria-label="환불규정">
+<details class="refund-policy-toggle" id="refundPolicyToggle">
+<summary>환불규정</summary>
+<div class="refund-policy-content">
+
+<p><strong>스탠다드·디럭스룸 — 계약금 10만 원</strong></p>
+<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 30일 이상 전</td><td>입주 20일 전까지</td></tr><tr><td>입주 20~29일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 10~19일 전</td><td>입주 10일 전까지</td></tr><tr><td>입주 9일 이내</td><td>환불 불가</td></tr></tbody></table>
+<p><strong>스위트룸 — 계약금 20만 원</strong></p>
+<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 30일 이상 전</td><td>입주 20일 전까지</td></tr><tr><td>입주 20~29일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 15~19일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 14일 이내</td><td>환불 불가</td></tr></tbody></table>
+<p class="refund-note">※ 환불 가능 기한 당일까지 취소 시 계약금 전액 환불, 이후 취소 시 계약금 환불 불가를 원칙으로 합니다. 예약 확정일은 계약금 입금 확인일 기준입니다. 입주 후 이용료 환불과는 별개입니다.</p>
+
+
+</div>
 <details class="refund-calculator-toggle" id="refundCalculatorToggle"><summary>계약금 환불계산기</summary>
 <p>예약 확정일(계약금 입금 확인일)과 입주 예정일을 입력하면 <strong>전액 환불 마감일</strong>을 확인할 수 있습니다. 취소 신청일도 입력하면 해당 날짜의 환불 가능 여부를 계산합니다.</p>
 <div class="refund-grid">
@@ -210,13 +232,9 @@
 <div><label for="refundCancel">취소 신청일 (선택)</label><input type="date" id="refundCancel"></div>
 </div>
 <div class="refund-result" id="refundResult" role="status" aria-live="polite">객실 유형과 날짜를 입력해 주세요.</div>
-<details class="refund-rules"><summary>취소 규정 보기 ▾</summary>
-<p><strong>스탠다드·디럭스룸 — 계약금 10만 원</strong></p>
-<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 30일 이상 전</td><td>입주 20일 전까지</td></tr><tr><td>입주 20~29일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 10~19일 전</td><td>입주 10일 전까지</td></tr><tr><td>입주 9일 이내</td><td>환불 불가</td></tr></tbody></table>
-<p><strong>스위트룸 — 계약금 20만 원</strong></p>
-<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 30일 이상 전</td><td>입주 20일 전까지</td></tr><tr><td>입주 20~29일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 15~19일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 14일 이내</td><td>환불 불가</td></tr></tbody></table>
-<p class="refund-note">※ 환불 가능 기한 당일까지 취소 시 계약금 전액 환불, 이후 취소 시 계약금 환불 불가를 원칙으로 합니다. 예약 확정일은 계약금 입금 확인일 기준입니다. 입주 후 이용료 환불과는 별개입니다.</p>
-</details></details></section>
+</details>
+</details>
+</section>
   <section>
     <h2>추가 문의</h2>
     <p>
@@ -312,6 +330,8 @@
   if(location.hash !== '#refund-calculator')return;
   var toggle=document.getElementById('refundCalculatorToggle');
   var panel=document.getElementById('refund-calculator');
+  var policy=document.getElementById('refundPolicyToggle');
+  if(policy)policy.open=true;
   if(toggle)toggle.open=true;
   if(panel)requestAnimationFrame(function(){panel.scrollIntoView({block:'start'});});
  }

@@ -905,7 +905,7 @@ document.addEventListener("DOMContentLoaded", function(){
   <p style="font-size:12px;line-height:1.6">입력한 내용은 문자에 포함됩니다. 홈페이지에는 저장되지 않습니다. 전송한 휴대전화 번호로 원장이 회신합니다.</p>
 <div id="bookingRefundNotice" class="booking-required-note"><strong>계약금 환불 안내</strong><br>예약 확정일(계약금 입금 확인일)과 입주 예정일에 따라 전액 환불 기한이 달라집니다. <button type="button" id="bookingViewRefundRules" class="booking-rules-link">취소 규정 보기</button>를 눌러 확인해 주세요. 실제 환불 기한은 예약 확정 시 안내됩니다.</div>
   <label id="bookingRefundAgreement" style="display:flex;align-items:flex-start;gap:8px;font-weight:500!important"><input type="checkbox" id="bookingRefundAgree" required style="width:auto!important;margin-top:4px"> <span>계약금 및 취소·환불 규정 안내를 확인했습니다.</span></label>
-  <div id="bookingGeneralExtra" hidden><label for="bookingGeneralMovein">희망 입주일 (미정 가능)</label><input id="bookingGeneralMovein" name="generalMovein" maxlength="80" placeholder="예: 11월 중순 / 아직 미정"><label for="bookingGeneralRoom">희망 객실 (선택)</label><select id="bookingGeneralRoom" name="generalRoom"><option value="">미정</option><option>스탠다드룸</option><option>디럭스룸</option><option>스위트1</option><option>스위트2</option></select><label for="bookingGeneralQuestion">문의 내용 (선택)</label><textarea id="bookingGeneralQuestion" name="generalQuestion" rows="3" maxlength="600" placeholder="궁금한 내용을 자유롭게 입력해 주세요."></textarea></div>
+  <div id="bookingGeneralExtra" hidden><label for="bookingGeneralRoom">희망 객실 (선택)</label><select id="bookingGeneralRoom" name="generalRoom"><option value="">미정</option><option>스탠다드룸</option><option>디럭스룸</option><option>스위트1</option><option>스위트2</option></select><label for="bookingGeneralQuestion">문의 내용 (선택)</label><textarea id="bookingGeneralQuestion" name="generalQuestion" rows="3" maxlength="600" placeholder="궁금한 내용을 자유롭게 입력해 주세요."></textarea></div>
   <div class="booking-actions"><button type="submit" id="bookingSubmitButton">예약 신청 문자 보내기</button></div>
   <p id="bookingStatus" role="status">문자 앱이 열리면 내용을 확인하고 전송 버튼을 눌러 주세요. 앱을 여는 것만으로 신청이 전달되지는 않습니다.</p>
   <details><summary>전송할 내용 확인</summary><pre id="bookingPreview"></pre></details>
@@ -948,8 +948,7 @@ function bookingMessage(){
  if(!general)lines.push('객실: '+ROOM_AVAILABILITY[bookingSelected.key].name,'선택한 입실 가능일: '+formatDate(bookingSelected.date));
  lines.push('이름: '+bookingForm.elements.residentName.value.trim(),'나이(만): '+bookingForm.elements.age.value.trim(),'준비하는 시험: '+bookingForm.elements.exam.value.trim(),'희망 입주 기간: '+bookingForm.elements.period.value.trim());
  if(general){
-  const date=bookingForm.elements.generalMovein.value.trim(),room=bookingForm.elements.generalRoom.value,question=bookingForm.elements.generalQuestion.value.trim();
-  if(date)lines.push('희망 입주일: '+date);
+  const room=bookingForm.elements.generalRoom.value,question=bookingForm.elements.generalQuestion.value.trim();
   if(room)lines.push('희망 객실: '+room);
   if(question)lines.push('문의 내용: '+question);
   lines.push('입주 가능 여부 및 문의 사항 확인을 부탁드립니다.');
