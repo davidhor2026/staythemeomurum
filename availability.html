@@ -864,7 +864,7 @@ document.addEventListener("DOMContentLoaded", function(){
   <label for="bookingExam">준비하는 시험</label><input id="bookingExam" name="exam" required maxlength="100" placeholder="예: 초등 임용 / 해당 없으면 ‘없음’">
   <label for="bookingPeriod">희망 입주기간</label><input id="bookingPeriod" name="period" required maxlength="120" placeholder="예: 10월 13일부터 3개월">
   <p style="font-size:12px;line-height:1.6">입력한 내용은 문자에 포함됩니다. 홈페이지에는 저장되지 않습니다. 전송한 휴대전화 번호로 원장이 회신합니다.</p>
-  <div class="booking-actions"><button type="submit">예약 신청 문자 보내기</button><button type="button" id="bookingCopy">내용 복사</button></div>
+  <div class="booking-actions"><button type="submit">예약 신청 문자 보내기</button></div>
   <p id="bookingStatus" role="status">문자 앱이 열리면 내용을 확인하고 전송 버튼을 눌러 주세요. 앱을 여는 것만으로 신청이 전달되지는 않습니다.</p>
   <details><summary>전송할 내용 확인</summary><pre id="bookingPreview"></pre></details>
  </form>
@@ -905,13 +905,8 @@ bookingForm.addEventListener('submit',event=>{
  event.preventDefault();if(!validBookingForm() || !bookingSelected)return;
  const ios=/iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
  const url='sms:01028779447'+(ios?'&':'?')+'body='+encodeURIComponent(bookingMessage());
- document.getElementById('bookingStatus').textContent='문자 앱에서 전송을 완료해 주세요. 앱이 열리지 않으면 ‘내용 복사’를 눌러 010-2877-9447로 직접 보내 주세요.';
+ document.getElementById('bookingStatus').textContent='문자 앱에서 전송을 완료해 주세요. 앱이 열리지 않으면 휴대전화 문자 앱에서 010-2877-9447로 직접 문의해 주세요.';
  window.location.href=url;
-});
-document.getElementById('bookingCopy').addEventListener('click',async()=>{
- if(!validBookingForm())return;
- try{await navigator.clipboard.writeText(bookingMessage());document.getElementById('bookingStatus').textContent='내용을 복사했습니다. 문자 앱에서 010-2877-9447로 보내 주세요.';}
- catch(error){document.getElementById('bookingStatus').textContent='자동 복사가 지원되지 않습니다. 아래 ‘전송할 내용 확인’을 펼쳐 내용을 복사한 뒤 010-2877-9447로 보내 주세요.';document.getElementById('bookingPreview').parentElement.open=true;}
 });
 document.getElementById('bookingClose').addEventListener('click',()=>bookingDialog.close());
 bookingDialog.addEventListener('close',()=>{bookingForm.reset();bookingSelected=null;document.getElementById('bookingPreview').textContent='';if(bookingReturnFocus && bookingReturnFocus.isConnected)bookingReturnFocus.focus();});
