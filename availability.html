@@ -115,6 +115,7 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
 
   #refund-calculator { scroll-margin-top: 22px; }
 </style><style>
+.mustard{color:#956700!important}.icon.mustard{color:#bd8b19!important}
 #refund-calculator{scroll-margin-top:18px}
 .refund-calculator-toggle>summary{cursor:pointer;font-weight:800;font-size:19px;list-style:none;position:relative;padding-right:28px}
 .refund-calculator-toggle>summary::-webkit-details-marker{display:none}
@@ -147,9 +148,17 @@ Object.entries(VACANCY_MANAGER).forEach(([key, room]) => {
   };
 });
 
+// 한국 날짜 기준: 35일 이상 남은 등록 공실은 사전 문의만 받습니다.
+function vacancyDaysUntil(iso){
+  const toDay=x=>Date.UTC(...x.split('-').map((n,i)=>i===1?Number(n)-1:Number(n)));
+  return Math.round((toDay(iso)-toDay(kstTodayISO()))/86400000);
+}
+function isAdvanceVacancy(iso){return vacancyDaysUntil(iso)>=35;}
+function vacancyDateLabel(iso){return isAdvanceVacancy(iso)?'공실 예정':DISPLAY_TEXT.upcoming;}
+function vacancyDateColor(iso){return isAdvanceVacancy(iso)?'mustard':'orange';}
 function dotClass(room){
   if(room.availableNow > 0) return "green";
-  if(room.reservable === true && room.events.length > 0) return "orange";
+  if(room.reservable === true && room.events.length > 0) return room.events.some(e=>!isAdvanceVacancy(e.date))?"orange":"mustard";
   return "gray";
 }
 function formatDate(dateStr){
@@ -177,8 +186,8 @@ function firstFutureText(room){
   const tours=activeTourEvents(room).map(e=>({date:e.date,type:'tour'}));
   const first=[...upcoming,...tours].sort((a,b)=>a.date.localeCompare(b.date))[0];
   if(first){
-    const label=first.type==='tour' ? DISPLAY_TEXT.roomTour : DISPLAY_TEXT.upcoming;
-    return `<span class="availability-date">${formatDate(first.date)}</span><span class="availability-label ${first.type==='tour'?'purple':''}">${label}</span>${first.type==='tour'?' <span class="tour-inline">(예약 확정 전)</span>':''}`;
+    const label=first.type==='tour' ? DISPLAY_TEXT.roomTour : vacancyDateLabel(first.date);
+    return `<span class="availability-date">${formatDate(first.date)}</span><span class="availability-label ${first.type==='tour'?'purple':vacancyDateColor(first.date)}">${label}</span>${first.type==='tour'?' <span class="tour-inline">(예약 확정 전)</span>':''}`;
   }
   if(room.unknown) return `${room.unknown.label}<br>${room.unknown.note}`;
   return "현재 예정 없음";
@@ -190,8 +199,8 @@ function renderAvailability(){
     if(sum){
       const now = room.availableNow > 0
         ? `<div class="main green">${DISPLAY_TEXT.availableNow}</div>`
-        : `<div class="main ${(room.events.length||activeTourEvents(room).length)?'orange':'gray'}">${room.fullLabel}</div>`;
-      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}<hr><div class="sub ${(room.events.length||activeTourEvents(room).length)?'orange':'gray'}">${firstFutureText(room)}</div>`;
+        : `<div class="main ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${room.fullLabel}</div>`;
+      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}<hr><div class="sub ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${firstFutureText(room)}</div>`;
     }
     if(detail){
       let lines = room.availableNow > 0
@@ -200,7 +209,7 @@ function renderAvailability(){
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
         const tour=activeTourEvents(room).find(item=>item.forDate===e.date);
         const tourText=tour ? ` <span class="purple">· ${DISPLAY_TEXT.roomTour}</span>` : '';
-        lines += `<p class="orange availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.upcoming}${tourText}</span></p>`;
+        lines += `<p class="${vacancyDateColor(e.date)} availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${vacancyDateLabel(e.date)}${tourText}</span></p>`;
       });
       activeTourEvents(room).forEach(e=>{
         lines += `<p class="purple availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.roomTour} (예약 확정 전)</span></p>`;
@@ -335,20 +344,20 @@ function renderVacancyCalendar(){
       cell.classList.add('has-booked');
       cell.innerHTML += `<span class="calendar-mark blue">${DISPLAY_TEXT.booked}</span>`;
     }else if(eventsByDate[iso]){
-      cell.classList.add('has-upcoming');
-      cell.innerHTML += `<span class="calendar-mark orange">${DISPLAY_TEXT.upcoming}</span>`;
+      cell.classList.add(isAdvanceVacancy(iso)?'has-advance':'has-upcoming');
+      cell.innerHTML += `<span class="calendar-mark ${vacancyDateColor(iso)}">${vacancyDateLabel(iso)}</span>`;
     }
     if(toursByDate[iso]){
       cell.classList.add('has-tour');
       cell.innerHTML += `<span class="calendar-mark purple">${DISPLAY_TEXT.roomTour}</span>`;
-      cell.innerHTML += `<span class="calendar-mark orange">${DISPLAY_TEXT.upcoming}</span>`;
+      cell.innerHTML += `<span class="calendar-mark ${vacancyDateColor(iso)}">${vacancyDateLabel(iso)}</span>`;
     }
     if(!bookedByDate[iso] && iso>=today && (eventsByDate[iso] || toursByDate[iso] || (room.availableNow>0 && iso===today))){
       cell.tabIndex=0;
       cell.setAttribute('role','button');
-      cell.setAttribute('aria-label',`${room.name} ${formatDate(iso)} 입주·예약 문의하기`);
+      cell.setAttribute('aria-label',`${room.name} ${formatDate(iso)} ${isAdvanceVacancy(iso)?'입주 가능 여부 문의':'예약 신청'}`);
       cell.classList.add('booking-date');
-      cell.innerHTML += '<span class="calendar-mark">문의하기 ›</span>';
+      cell.innerHTML += `<span class="calendar-mark">${isAdvanceVacancy(iso)?'입주문의 ›':'예약 신청 ›'}</span>`;
       cell.addEventListener('click',()=>openBookingInquiry(calendarRoomKey,iso,cell));
       cell.addEventListener('keydown',event=>{
         if(event.key==='Enter' || event.key===' '){event.preventDefault();openBookingInquiry(calendarRoomKey,iso,cell);}
@@ -363,7 +372,7 @@ function renderVacancyCalendar(){
     noteHtml += `<span class="legend-item"><b class="green">●</b> 즉시 입실 가능</span>`;
   }
   if(room.events.length){
-    noteHtml += `<span class="legend-item"><b class="orange">●</b> 입실 가능 예정일</span>`;
+    noteHtml += `<span class="legend-item"><b class="orange">●</b> 예약 가능(34일 이내)</span><span class="legend-item"><b class="mustard">●</b> 공실 예정(35일 이상 · 입주문의)</span>`;
   }
   if(activeBookedEvents(room).length){
     noteHtml += `<span class="legend-item"><b class="blue">●</b> 예약 완료</span>`;
@@ -711,10 +720,11 @@ document.addEventListener("DOMContentLoaded",()=>{
 .calendar-day.today{outline:2px solid #b8d8bf}
 .calendar-day.has-available{background:#f1f9f2;border-color:#b8dabc}
 .calendar-day.has-upcoming{background:#fff8ef;border-color:#ecd3b5}
+.calendar-day.has-advance{background:#fff6cf;border-color:#d7ae3b}
 .calendar-day.has-booked{background:#f1f6fb;border-color:#b9cfe2}
 .calendar-day.has-tour{box-shadow:inset 0 -3px 0 #bca5d5}
 .calendar-mark{display:block;font-size:9.5px;line-height:1.3;font-weight:800;word-break:keep-all}
-.calendar-mark.green{color:#228341}.calendar-mark.orange{color:#df7100}.calendar-mark.blue{color:#286aa6}.calendar-mark.purple{color:#7952a3}
+.calendar-mark.mustard{color:#8a6000}.calendar-mark.green{color:#228341}.calendar-mark.orange{color:#df7100}.calendar-mark.blue{color:#286aa6}.calendar-mark.purple{color:#7952a3}
 .calendar-room-note{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;font-size:11.5px;color:#5d655e}
 .legend-item,.calendar-unknown{display:inline-block}
 .calendar-unknown{width:100%;padding-top:2px}
@@ -733,7 +743,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 }
 </style>
 
-<style>.recent-bookings{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0 4px;padding:10px 12px;border:1px solid #c8d9e8;border-radius:10px;background:#f4f8fc;color:#245f94;font-size:13px}.recent-bookings strong{color:#174f7f}.recent-bookings span{padding-left:8px;border-left:1px solid #b8cde0}.vacancy-color-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:10px 0 14px;font-size:13px;color:#666}.vacancy-color-legend span{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block}.legend-green{background:#24a148}.legend-orange{background:#f57c00}.legend-blue{background:#286aa6}.legend-purple{background:#7952a3}.legend-gray{background:#747a76}@media(max-width:520px){.recent-bookings{font-size:12px;gap:6px}.vacancy-color-legend{font-size:11.5px;gap:5px 10px}}</style></head><body><div class="page">
+<style>.recent-bookings{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0 4px;padding:10px 12px;border:1px solid #c8d9e8;border-radius:10px;background:#f4f8fc;color:#245f94;font-size:13px}.recent-bookings strong{color:#174f7f}.recent-bookings span{padding-left:8px;border-left:1px solid #b8cde0}.vacancy-color-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:10px 0 14px;font-size:13px;color:#666}.vacancy-color-legend span{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block}.legend-green{background:#24a148}.legend-orange{background:#f57c00}.legend-mustard{background:#d1a12c}.legend-blue{background:#286aa6}.legend-purple{background:#7952a3}.legend-gray{background:#747a76}@media(max-width:520px){.recent-bookings{font-size:12px;gap:6px}.vacancy-color-legend{font-size:11.5px;gap:5px 10px}}</style></head><body><div class="page">
 <section class="brand">
  <img src="availability-logo.jpg" alt="스테이The머무름 로고">
  <h1>스테이The머무름</h1><p>여성 전용 고시원</p>
@@ -762,6 +772,7 @@ document.addEventListener("DOMContentLoaded",()=>{
  <div class="vacancy-color-legend">
 <span><i class="legend-dot legend-green"></i><span id="greenLegendText"></span></span>
 <span><i class="legend-dot legend-orange"></i><span id="orangeLegendText"></span></span>
+<span><i class="legend-dot legend-mustard"></i>황금색 = 공실 예정(35일 이상 · 입주문의)</span>
 <span><i class="legend-dot legend-blue"></i><span id="blueLegendText"></span></span>
 <span><i class="legend-dot legend-purple"></i>보라색 = 룸투어 예정(예약 확정 전)</span>
 <span><i class="legend-dot legend-gray"></i><span id="grayLegendText"></span></span>
@@ -770,7 +781,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
 <section class="details" id="room-details">
- <p class="calendar-entry-guide"><strong>예약 신청 안내</strong><br>각 객실의 <b>공실 캘린더</b>에서 오렌지색 예약 가능 날짜를 누르면 예약 신청서를 작성할 수 있습니다.</p>
+ <p class="calendar-entry-guide"><strong>예약 신청 안내</strong><br>각 객실의 <b>공실 캘린더</b>에서 오렌지색(34일 이내)은 예약 신청, 황금색(35일 이상)은 입주 가능 여부를 문의할 수 있습니다.</p>
  <h3 id="roomSectionTitle"></h3>
  <div class="roomrow"><div class="roomicon">🛏</div><div><h4>스탠다드룸</h4><div data-detail="standard"></div></div><div class="room-actions"><button type="button" class="calendar-open-btn" onclick="openVacancyCalendar('standard')"><span class="calendar-button-label">공실 캘린더</span></button><a href="rooms.html?from=availability#standard"><span class="detail-button-label">자세히 보기 ›</span></a></div></div>
  <div class="roomrow"><div class="roomicon">🛏</div><div><h4>디럭스룸</h4><div data-detail="deluxe"></div></div><div class="room-actions"><button type="button" class="calendar-open-btn" onclick="openVacancyCalendar('deluxe')"><span class="calendar-button-label">공실 캘린더</span></button><a href="rooms.html?from=availability#deluxe"><span class="detail-button-label">자세히 보기 ›</span></a></div></div>
@@ -792,7 +803,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     </div>
     <button type="button" class="calendar-close-btn" onclick="document.getElementById('vacancyCalendarPanel').hidden=true">닫기</button>
   </div>
-  <p class="calendar-booking-guide" role="note"><strong>예약 신청 안내</strong><br>오렌지색 예약 가능 날짜를 누르면 입주·예약 신청서를 작성할 수 있습니다.</p>
+  <p class="calendar-booking-guide" role="note"><strong>예약 신청 안내</strong><br>오렌지색(34일 이내)은 예약 신청, 황금색(35일 이상)은 입주 가능 여부 문의로 연결됩니다.</p>
   <div class="calendar-nav">
     <button type="button" onclick="changeCalendarMonth(-1)" aria-label="이전 달">‹</button>
     <strong id="calendarMonthLabel"></strong>
@@ -921,23 +932,25 @@ document.addEventListener("DOMContentLoaded", function(){
 const bookingDialog=document.getElementById('bookingInquiry');
 const bookingForm=document.getElementById('bookingForm');
 let bookingSelected=null,bookingReturnFocus=null;
-function setBookingInquiryMode(isGeneral){
- document.getElementById('bookingTitle').textContent=isGeneral?'일반 입주 문의':'예약 신청 문의';
- document.getElementById('bookingReservationNote').hidden=isGeneral;
- document.getElementById('bookingRefundNotice').hidden=isGeneral;
- document.getElementById('bookingRefundAgreement').hidden=isGeneral;
- document.getElementById('bookingRefundAgree').required=!isGeneral;
+function setBookingInquiryMode(isGeneral,isAdvance=false){
+ const inquiryOnly=isGeneral||isAdvance;
+ document.getElementById('bookingTitle').textContent=isGeneral?'일반 입주 문의':(isAdvance?'사전 입주 가능 여부 문의':'예약 신청 문의');
+ document.getElementById('bookingReservationNote').hidden=inquiryOnly;
+ document.getElementById('bookingRefundNotice').hidden=inquiryOnly;
+ document.getElementById('bookingRefundAgreement').hidden=inquiryOnly;
+ document.getElementById('bookingRefundAgree').required=!inquiryOnly;
  document.getElementById('bookingRefundAgree').checked=false;
  document.getElementById('bookingGeneralExtra').hidden=!isGeneral;
  document.getElementById('bookingPeriodVacancyHint').hidden=!isGeneral;
- document.getElementById('bookingSmsReservationNote').hidden=isGeneral;
- document.getElementById('bookingSubmitButton').textContent=isGeneral?'일반 문의 문자 보내기':'예약 신청 문자 보내기';
+ document.getElementById('bookingSmsReservationNote').hidden=inquiryOnly;
+ document.getElementById('bookingSubmitButton').textContent=isGeneral?'일반 문의 문자 보내기':(isAdvance?'입주 가능 여부 문의 문자 보내기':'예약 신청 문자 보내기');
 }
 function openBookingInquiry(key,date,trigger){
  const room=ROOM_AVAILABILITY[key];
  if(!room || date<kstTodayISO() || activeBookedEvents(room).some(e=>e.date===date) || !(room.events.some(e=>e.date===date) || (room.availableNow>0 && date===kstTodayISO())))return;
- bookingSelected={key,date};bookingReturnFocus=trigger;bookingForm.reset();setBookingInquiryMode(false);
- document.getElementById('bookingSelection').textContent=room.name+' · '+formatDate(date)+' 입실 문의';
+ const advance=isAdvanceVacancy(date);
+ bookingSelected={key,date,advance};bookingReturnFocus=trigger;bookingForm.reset();setBookingInquiryMode(false,advance);
+ document.getElementById('bookingSelection').textContent=room.name+' · '+formatDate(date)+(advance?' 공실 예정 · 입주 가능 여부 문의':' 예약 신청');
  document.getElementById('bookingStatus').textContent='문자 앱이 열리면 내용을 확인하고 전송 버튼을 눌러 주세요. 앱을 여는 것만으로 신청이 전달되지는 않습니다.';
  if(window.stayRefundSetSelection)window.stayRefundSetSelection(key,date);
  updateBookingPreview();bookingDialog.showModal();
@@ -950,15 +963,17 @@ function openGeneralInquiry(){
 }
 function bookingMessage(){
  if(!bookingSelected)return '';
- const general=!!bookingSelected.general;
- const lines=[general?'[스테이The머무름 일반 입주 문의]':'[스테이The머무름 예약 신청]'];
- if(!general)lines.push('객실: '+ROOM_AVAILABILITY[bookingSelected.key].name,'선택한 입실 가능일: '+formatDate(bookingSelected.date));
+ const general=!!bookingSelected.general,advance=!!bookingSelected.advance;
+ const lines=[general?'[스테이The머무름 일반 입주 문의]':(advance?'[스테이The머무름 사전 입주 가능 여부 문의]':'[스테이The머무름 예약 신청]')];
+ if(!general)lines.push('객실: '+ROOM_AVAILABILITY[bookingSelected.key].name,'희망 입주일: '+formatDate(bookingSelected.date));
  lines.push('이름: '+bookingForm.elements.residentName.value.trim(),'나이(만): '+bookingForm.elements.age.value.trim(),'준비하는 시험: '+bookingForm.elements.exam.value.trim(),'희망 입주 기간: '+bookingForm.elements.period.value.trim());
  if(general){
   const room=bookingForm.elements.generalRoom.value,question=bookingForm.elements.generalQuestion.value.trim();
   if(room)lines.push('희망 객실: '+room);
   if(question)lines.push('문의 내용: '+question);
   lines.push('입주 가능 여부 및 문의 사항 확인을 부탁드립니다.');
+ }else if(advance){
+  lines.push('공실 예정일의 예약 가능 여부를 확인 부탁드립니다.','예약 확정 전 사전 문의입니다.');
  }else{
   lines.push('계약금 및 취소·환불 규정: 확인함','계약금 입금 확인 후 예약 확정 절차를 확인했습니다.','예약 가능 여부 확인을 부탁드립니다.');
  }

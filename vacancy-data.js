@@ -87,11 +87,21 @@ const VACANCY_MANAGER = {
   }
 };
 
+/* 한국시간 기준 35일 이상 남은 등록 공실은 예약 가능이 아닌 공실 예정입니다. */
+function vacancyKstToday(){
+  const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+  const p={};parts.forEach(x=>{if(x.type!=='literal')p[x.type]=x.value});
+  return `${p.year}-${p.month}-${p.day}`;
+}
+function vacancyIsAdvance(date){
+  const utc=x=>{const a=x.split('-').map(Number);return Date.UTC(a[0],a[1]-1,a[2]);};
+  return (utc(date)-utc(vacancyKstToday()))/86400000>=35;
+}
 /* 만실 문구도 이 파일에서만 관리합니다. */
 function vacancyFullLabel(room){
   /* 즉시 입실은 불가능해도 확정된 입실 가능일이 있으면 '현재 만실' 대신 '예약 가능'으로 표시 */
   if(room && Number(room.now || 0) === 0 && Array.isArray(room.dates) && room.dates.length > 0){
-    return "예약 가능";
+    return room.dates.some(d=>!vacancyIsAdvance(d)) ? "예약 가능" : "공실 예정";
   }
   return (room && room.fullLabel) ? room.fullLabel : "현재 만실";
 }
@@ -103,7 +113,7 @@ function vacancyStatusText(room){
   }
   var statusLabel = vacancyFullLabel(room);
   var text = room.name + " " + statusLabel;
-  if(room.reservable === true && statusLabel.indexOf("예약 가능") === -1) text += " · 예약 가능";
+  if(room.reservable === true && statusLabel.indexOf("예약 가능") === -1 && statusLabel.indexOf("공실 예정") === -1 && room.dates && room.dates.length) text += " · 예약 가능";
   return text;
 }
 
