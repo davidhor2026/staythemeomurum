@@ -30,6 +30,13 @@
 @media(max-width:540px){.refund-panel{padding:13px}.refund-panel .refund-grid{grid-template-columns:1fr}.refund-panel table{font-size:12px}}
 
   #refund-calculator { scroll-margin-top: 22px; }
+
+/* 계약금 환불계산기: 기본 접힘, 제목 클릭 시 펼침 */
+.refund-calculator-toggle > summary{cursor:pointer;font-weight:800;font-size:19px;list-style:none;position:relative;padding:3px 30px 3px 0;color:#215e40}
+.refund-calculator-toggle > summary::-webkit-details-marker{display:none}
+.refund-calculator-toggle > summary::after{content:"⌄";position:absolute;right:0;top:0}
+.refund-calculator-toggle[open] > summary::after{content:"⌃"}
+.refund-calculator-toggle[open] > summary{margin-bottom:12px}
 </style></head>
 
 <body>
@@ -193,8 +200,8 @@
     </div>
   </section>
 
-<section id="refund-calculator" class="refund-panel" aria-label="예약 계약금 환불 안내 및 계산기">
-<h3>예약 계약금 환불 계산기</h3>
+<section id="refund-calculator" class="refund-panel" aria-label="계약금 환불계산기">
+<details class="refund-calculator-toggle" id="refundCalculatorToggle"><summary>계약금 환불계산기</summary>
 <p>예약 확정일(계약금 입금 확인일)과 입주 예정일을 입력하면 <strong>전액 환불 마감일</strong>을 확인할 수 있습니다. 취소 신청일도 입력하면 해당 날짜의 환불 가능 여부를 계산합니다.</p>
 <div class="refund-grid">
 <div><label for="refundRoom">객실 유형</label><select id="refundRoom"><option value="standard">스탠다드·디럭스 (계약금 10만 원)</option><option value="suite">스위트 1·2 (계약금 20만 원)</option></select></div>
@@ -209,7 +216,7 @@
 <p><strong>스위트룸 — 계약금 20만 원</strong></p>
 <table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 30일 이상 전</td><td>입주 20일 전까지</td></tr><tr><td>입주 20~29일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 15~19일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 14일 이내</td><td>환불 불가</td></tr></tbody></table>
 <p class="refund-note">※ 환불 가능 기한 당일까지 취소 시 계약금 전액 환불, 이후 취소 시 계약금 환불 불가를 원칙으로 합니다. 예약 확정일은 계약금 입금 확인일 기준입니다. 입주 후 이용료 환불과는 별개입니다.</p>
-</details></section>
+</details></details></section>
   <section>
     <h2>추가 문의</h2>
     <p>
@@ -298,5 +305,20 @@
  window.stayRefundSetSelection=function(roomKey,moveDate){room.value=/suite/i.test(roomKey)?'suite':'standard';if(moveDate)move.value=moveDate;update();};
  update();
 })();
-</script></body>
+</script>
+<script id="refund-calculator-jump-open">
+(function(){
+ function showCalculator(){
+  if(location.hash !== '#refund-calculator')return;
+  var toggle=document.getElementById('refundCalculatorToggle');
+  var panel=document.getElementById('refund-calculator');
+  if(toggle)toggle.open=true;
+  if(panel)requestAnimationFrame(function(){panel.scrollIntoView({block:'start'});});
+ }
+ window.addEventListener('hashchange',showCalculator);
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',showCalculator);
+ else showCalculator();
+})();
+</script>
+</body>
 </html>
