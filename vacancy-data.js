@@ -24,7 +24,6 @@ const VACANCY_MANAGER = {
     name: "스탠다드룸",
     now: 0,
     dates: [
-      "2026-10-13",
       "2026-10-27",
       "2026-11-16",
       "2026-11-20"
@@ -35,7 +34,7 @@ const VACANCY_MANAGER = {
       { date: "2026-09-13", bookedOn: "2026-09-13" },
       { date: "2026-09-28", bookedOn: "2026-09-11" }
     ],
-    tourDates: [{ date: "2026-10-09", forDate: "2026-10-13" }],
+    tourDates: [{ date: "2026-10-09" }],
     reservable: true,
     fullLabel: "현재 만실",
     unknown: null

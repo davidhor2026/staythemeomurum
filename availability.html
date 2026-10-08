@@ -156,15 +156,14 @@ function unknownInquiryText(room){
   return `${label} ${note}`.trim();
 }
 function firstFutureText(room){
-  if(room.events.length){
-    const e=room.events.slice().sort((a,b)=>a.date.localeCompare(b.date))[0];
-    const tour=activeTourEvents(room).find(item=>!item.forDate || item.forDate===e.date);
-    const tourLine=tour ? `<span class="tour-inline">${DISPLAY_TEXT.roomTour}</span>` : '';
-    return `<span class="availability-date">${formatDate(e.date)}</span><span class="availability-label">${DISPLAY_TEXT.upcoming}</span>${tourLine}`;
+  const upcoming=(room.events || []).map(e=>({date:e.date,type:'upcoming'}));
+  const tours=activeTourEvents(room).map(e=>({date:e.date,type:'tour'}));
+  const first=[...upcoming,...tours].sort((a,b)=>a.date.localeCompare(b.date))[0];
+  if(first){
+    const label=first.type==='tour' ? DISPLAY_TEXT.roomTour : DISPLAY_TEXT.upcoming;
+    return `<span class="availability-date">${formatDate(first.date)}</span><span class="availability-label ${first.type==='tour'?'purple':''}">${label}</span>${first.type==='tour'?' <span class="tour-inline">(예약 확정 전)</span>':''}`;
   }
-  if(room.unknown){
-    return `${room.unknown.label}<br>${room.unknown.note}`;
-  }
+  if(room.unknown) return `${room.unknown.label}<br>${room.unknown.note}`;
   return "현재 예정 없음";
 }
 function renderAvailability(){
@@ -174,8 +173,8 @@ function renderAvailability(){
     if(sum){
       const now = room.availableNow > 0
         ? `<div class="main green">${DISPLAY_TEXT.availableNow}</div>`
-        : `<div class="main ${room.events.length?'orange':'gray'}">${room.fullLabel}</div>`;
-      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}<hr><div class="sub ${room.events.length?'orange':'gray'}">${firstFutureText(room)}</div>`;
+        : `<div class="main ${(room.events.length||activeTourEvents(room).length)?'orange':'gray'}">${room.fullLabel}</div>`;
+      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}<hr><div class="sub ${(room.events.length||activeTourEvents(room).length)?'orange':'gray'}">${firstFutureText(room)}</div>`;
     }
     if(detail){
       let lines = room.availableNow > 0
@@ -183,8 +182,11 @@ function renderAvailability(){
         : (room.events.length ? '' : `<p class="gray">● ${room.fullLabel}</p>`);
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
         const tour=activeTourEvents(room).find(item=>item.forDate===e.date);
-        const tourText=tour ? ` <span class="purple">· 10월 9일 룸투어 예정(예약 확정 전)</span>` : '';
-        lines += `<p class="orange availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">${tour ? "· 룸투어 예정(10월 9일)" : "· " + DISPLAY_TEXT.upcoming}</span></p>`;
+        const tourText=tour ? ` <span class="purple">· ${DISPLAY_TEXT.roomTour}</span>` : '';
+        lines += `<p class="orange availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.upcoming}${tourText}</span></p>`;
+      });
+      activeTourEvents(room).forEach(e=>{
+        lines += `<p class="purple availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.roomTour} (예약 확정 전)</span></p>`;
       });
       activeBookedEvents(room).forEach(e=>{
         lines += `<p class="blue">● ${formatDate(e.date)} · ${DISPLAY_TEXT.booked}</p>`;
@@ -317,13 +319,14 @@ function renderVacancyCalendar(){
       cell.innerHTML += `<span class="calendar-mark blue">${DISPLAY_TEXT.booked}</span>`;
     }else if(eventsByDate[iso]){
       cell.classList.add('has-upcoming');
-      cell.innerHTML += `<span class="calendar-mark ${toursByDate[iso] ? "purple" : "orange"}">${toursByDate[iso] ? "룸투어 예정" : DISPLAY_TEXT.upcoming}</span>`;
+      cell.innerHTML += `<span class="calendar-mark orange">${DISPLAY_TEXT.upcoming}</span>`;
     }
     if(toursByDate[iso]){
       cell.classList.add('has-tour');
       cell.innerHTML += `<span class="calendar-mark purple">${DISPLAY_TEXT.roomTour}</span>`;
+      cell.innerHTML += `<span class="calendar-mark orange">${DISPLAY_TEXT.upcoming}</span>`;
     }
-    if(!bookedByDate[iso] && !toursByDate[iso] && iso>=today && (eventsByDate[iso] || (room.availableNow>0 && iso===today))){
+    if(!bookedByDate[iso] && iso>=today && (eventsByDate[iso] || toursByDate[iso] || (room.availableNow>0 && iso===today))){
       cell.tabIndex=0;
       cell.setAttribute('role','button');
       cell.setAttribute('aria-label',`${room.name} ${formatDate(iso)} 입주·예약 문의하기`);
