@@ -112,6 +112,15 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
 .availability-date,.availability-label{display:block;width:100%}
 .tour-inline{display:block;width:100%;margin-top:5px;color:#7952a3;font-size:.86em;font-weight:800;line-height:1.35;text-align:center}
 
+</style><style>
+.refund-panel{margin:18px 0;padding:18px;background:#fff;border:1px solid #dbe5dc;border-radius:13px;color:#26362b;line-height:1.65}
+.refund-panel h3{margin:0 0 10px;font-size:19px}.refund-panel .refund-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.refund-panel label{display:block;font-weight:600;font-size:14px;margin-bottom:5px}.refund-panel input,.refund-panel select{width:100%;min-width:0;padding:10px;border:1px solid #aebdb0;border-radius:7px;font:inherit;background:white;color:#26362b}
+.refund-panel .refund-result{margin-top:12px;padding:12px;border-radius:9px;background:#f0f6f1;white-space:pre-line;font-weight:600}
+.refund-panel details{margin-top:14px;border:1px solid #dce6de;border-radius:9px;padding:10px 12px;background:#fbfdfb}
+.refund-panel summary{cursor:pointer;font-weight:700;color:#215e40;padding:5px 0}.refund-panel details[open] summary{margin-bottom:12px}
+.refund-panel table{width:100%;border-collapse:collapse;font-size:13px}.refund-panel th,.refund-panel td{padding:9px 6px;border-bottom:1px solid #dfe5df;text-align:left;vertical-align:top}.refund-panel .refund-note{font-size:12px;color:#5c665e;margin:10px 0 0}
+@media(max-width:540px){.refund-panel{padding:13px}.refund-panel .refund-grid{grid-template-columns:1fr}.refund-panel table{font-size:12px}}
 </style>
 
 <script>
@@ -751,6 +760,24 @@ document.addEventListener("DOMContentLoaded",()=>{
 </div><p class="notice" id="scheduleNotice"></p>
 </section>
 
+<section class="refund-panel" aria-label="예약 계약금 환불 안내 및 계산기">
+<h3>예약 계약금 환불 계산기</h3>
+<p>예약 확정일(계약금 입금 확인일)과 입주 예정일을 입력하면 <strong>전액 환불 마감일</strong>을 확인할 수 있습니다. 취소 신청일도 입력하면 해당 날짜의 환불 가능 여부를 계산합니다.</p>
+<div class="refund-grid">
+<div><label for="refundRoom">객실 유형</label><select id="refundRoom"><option value="standard">스탠다드·디럭스 (계약금 10만 원)</option><option value="suite">스위트 1·2 (계약금 20만 원)</option></select></div>
+<div><label for="refundBooked">예약 확정일</label><input type="date" id="refundBooked"></div>
+<div><label for="refundMovein">입주 예정일</label><input type="date" id="refundMovein"></div>
+<div><label for="refundCancel">취소 신청일 (선택)</label><input type="date" id="refundCancel"></div>
+</div>
+<div class="refund-result" id="refundResult" role="status" aria-live="polite">객실 유형과 날짜를 입력해 주세요.</div>
+<details class="refund-rules"><summary>취소 규정 보기 ▾</summary>
+<p><strong>스탠다드·디럭스룸 — 계약금 10만 원</strong></p>
+<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 30일 이상 전</td><td>입주 20일 전까지</td></tr><tr><td>입주 20~29일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 10~19일 전</td><td>입주 10일 전까지</td></tr><tr><td>입주 9일 이내</td><td>환불 불가</td></tr></tbody></table>
+<p><strong>스위트룸 — 계약금 20만 원</strong></p>
+<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 30일 이상 전</td><td>입주 20일 전까지</td></tr><tr><td>입주 20~29일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 15~19일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 14일 이내</td><td>환불 불가</td></tr></tbody></table>
+<p class="refund-note">※ 환불 가능 기한 당일까지 취소 시 계약금 전액 환불, 이후 취소 시 계약금 환불 불가를 원칙으로 합니다. 예약 확정일은 계약금 입금 확인일 기준입니다. 입주 후 이용료 환불과는 별개입니다.</p>
+<p class="refund-note">※ 위 내용은 고시원 운영 기준 안내이며, 관련 법령·소비자분쟁해결기준 등에 따라 실제 환불 처리가 달라질 수 있습니다.</p>
+</details></section>
 <section class="details" id="room-details">
  <p class="calendar-entry-guide"><strong>예약 신청 안내</strong><br>각 객실의 <b>공실 캘린더</b>에서 오렌지색 예약 가능 날짜를 누르면 예약 신청서를 작성할 수 있습니다.</p>
  <h3 id="roomSectionTitle"></h3>
@@ -867,6 +894,8 @@ document.addEventListener("DOMContentLoaded", function(){
   <label for="bookingExam">준비하는 시험</label><input id="bookingExam" name="exam" required maxlength="100" placeholder="예: 초등 임용 / 해당 없으면 ‘없음’">
   <label for="bookingPeriod">희망 입주기간</label><input id="bookingPeriod" name="period" required maxlength="120" placeholder="예: 10월 13일부터 3개월">
   <p style="font-size:12px;line-height:1.6">입력한 내용은 문자에 포함됩니다. 홈페이지에는 저장되지 않습니다. 전송한 휴대전화 번호로 원장이 회신합니다.</p>
+<div class="booking-required-note"><strong>계약금 환불 안내</strong><br>예약 확정일(계약금 입금 확인일)과 입주 예정일에 따라 전액 환불 기한이 달라집니다. 이 페이지의 <strong>취소 규정 보기</strong> 및 환불 계산기를 확인해 주세요. 실제 환불 기한은 예약 확정 시 안내됩니다.</div>
+  <label style="display:flex!important;align-items:flex-start;gap:8px;font-weight:500!important"><input type="checkbox" id="bookingRefundAgree" required style="width:auto!important;margin-top:4px"> <span>계약금 및 취소·환불 규정 안내를 확인했습니다.</span></label>
   <div class="booking-actions"><button type="submit">예약 신청 문자 보내기</button></div>
   <p id="bookingStatus" role="status">문자 앱이 열리면 내용을 확인하고 전송 버튼을 눌러 주세요. 앱을 여는 것만으로 신청이 전달되지는 않습니다.</p>
   <details><summary>전송할 내용 확인</summary><pre id="bookingPreview"></pre></details>
@@ -882,6 +911,7 @@ function openBookingInquiry(key,date,trigger){
  bookingSelected={key,date};bookingReturnFocus=trigger;bookingForm.reset();
  document.getElementById('bookingSelection').textContent=room.name+' · '+formatDate(date)+' 입실 문의';
  document.getElementById('bookingStatus').textContent='문자 앱이 열리면 내용을 확인하고 전송 버튼을 눌러 주세요. 앱을 여는 것만으로 신청이 전달되지는 않습니다.';
+ if(window.stayRefundSetSelection)window.stayRefundSetSelection(key,date);
  updateBookingPreview();bookingDialog.showModal();
 }
 function openGeneralInquiry(){
@@ -915,4 +945,25 @@ document.getElementById('bookingClose').addEventListener('click',()=>bookingDial
 bookingDialog.addEventListener('close',()=>{bookingForm.reset();bookingSelected=null;document.getElementById('bookingPreview').textContent='';if(bookingReturnFocus && bookingReturnFocus.isConnected)bookingReturnFocus.focus();});
 if(new URLSearchParams(location.search).get('inquiry')==='1'){openGeneralInquiry();}
 </script>
-</body></html>
+<script>
+(function(){
+ const root=document.querySelector('.refund-panel');if(!root)return;
+ const room=root.querySelector('#refundRoom'),booked=root.querySelector('#refundBooked'),move=root.querySelector('#refundMovein'),cancel=root.querySelector('#refundCancel'),result=root.querySelector('#refundResult');
+ const days=s=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(s))return NaN;const t=Date.parse(s+'T00:00:00Z');return Number.isFinite(t)?t/86400000:NaN};
+ const iso=n=>new Date(n*86400000).toISOString().slice(0,10);
+ function update(){const b=days(booked.value),m=days(move.value),c=days(cancel.value);
+ if(!Number.isFinite(b)||!Number.isFinite(m)){result.textContent='예약 확정일과 입주 예정일을 입력해 주세요.';return;}
+ const lead=m-b;if(lead<0){result.textContent='입주 예정일은 예약 확정일 이후여야 합니다.';return;}
+ let cutoff=null;if(room.value==='suite'){if(lead>=30)cutoff=20;else if(lead>=20)cutoff=15;else if(lead>=15)cutoff=15;}else{if(lead>=30)cutoff=20;else if(lead>=20)cutoff=15;else if(lead>=10)cutoff=10;}
+ const deposit=room.value==='suite'?'200,000원':'100,000원';
+ let msg='예약 시점: 입주 '+lead+'일 전\n계약금: '+deposit+'\n';
+ if(cutoff===null){msg+='운영 규정상 전액 환불 가능 기간이 없습니다.';}
+ else{const deadline=m-cutoff;msg+='전액 환불 마감일: '+iso(deadline)+' (당일 포함)';if(Number.isFinite(c)){if(c<b||c>m){msg+='\n취소 신청일은 예약 확정일부터 입주 예정일까지 입력해 주세요.';}else{msg+='\n'+(c<=deadline?'입력한 취소일 기준: 계약금 100% 환불 가능':'입력한 취소일 기준: 운영 규정상 계약금 환불 불가');}}}
+ if(cutoff===null&&Number.isFinite(c)&&c<b)msg+='\n취소 신청일을 확인해 주세요.';
+ result.textContent=msg+'\n※ 최종 환불 여부는 확정된 계약 조건과 관계 법령에 따라 달라질 수 있습니다.';
+ }
+ [room,booked,move,cancel].forEach(el=>el.addEventListener('change',update));
+ window.stayRefundSetSelection=function(roomKey,moveDate){room.value=/suite/i.test(roomKey)?'suite':'standard';if(moveDate)move.value=moveDate;update();};
+ update();
+})();
+</script></body></html>
