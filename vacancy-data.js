@@ -29,12 +29,13 @@ const VACANCY_MANAGER = {
       "2026-11-20"
     ],
     bookedDates: [
+      { date: "2026-10-13", bookedOn: "2026-10-08" },
       { date: "2026-09-21", bookedOn: "2026-09-19" },
       { date: "2026-09-17", bookedOn: "2026-09-16" },
       { date: "2026-09-13", bookedOn: "2026-09-13" },
       { date: "2026-09-28", bookedOn: "2026-09-11" }
     ],
-    tourDates: [{ date: "2026-10-09" }],
+    tourDates: [],
     reservable: true,
     fullLabel: "현재 만실",
     unknown: null
