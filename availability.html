@@ -894,7 +894,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <dialog id="bookingInquiry" aria-labelledby="bookingTitle">
  <div class="booking-head"><h2 id="bookingTitle">입주·예약 문의하기</h2><button type="button" id="bookingClose" aria-label="신청서 닫기">닫기</button></div>
  <p id="bookingSelection"></p>
- <p class="booking-note">객실 타입, 입실일까지 남은 기간, 희망 입주기간에 따라 예약 가능 여부가 달라질 수 있습니다. 원장이 내용을 확인한 후 개별 문자로 예약 가능 여부와 계약금 입금 계좌를 안내합니다. <strong>계약금 입금 확인 후 예약이 확정됩니다.</strong></p>
+ <p class="booking-note" id="bookingReservationNote">객실 타입, 입실일까지 남은 기간, 희망 입주기간에 따라 예약 가능 여부가 달라질 수 있습니다. 원장이 내용을 확인한 후 개별 문자로 예약 가능 여부와 계약금 입금 계좌를 안내합니다. <strong>계약금 입금 확인 후 예약이 확정됩니다.</strong></p>
  <form id="bookingForm">
   <label for="bookingName">입주자 이름</label><input id="bookingName" name="residentName" autocomplete="name" required maxlength="40">
   <p class="booking-required-note"><strong>필수 확인 안내</strong><br>스테이The머무름은 입주 기준과 제한이 있어 신청 내용을 확인합니다. 원활한 입주 가능 여부 확인을 위해 아래 모든 항목을 반드시 기입해 주세요.</p>
@@ -902,9 +902,10 @@ document.addEventListener("DOMContentLoaded", function(){
   <label for="bookingExam">준비하는 시험</label><input id="bookingExam" name="exam" required maxlength="100" placeholder="예: 초등 임용 / 해당 없으면 ‘없음’">
   <label for="bookingPeriod">희망 입주기간</label><input id="bookingPeriod" name="period" required maxlength="120" placeholder="예: 10월 13일부터 3개월">
   <p style="font-size:12px;line-height:1.6">입력한 내용은 문자에 포함됩니다. 홈페이지에는 저장되지 않습니다. 전송한 휴대전화 번호로 원장이 회신합니다.</p>
-<div class="booking-required-note"><strong>계약금 환불 안내</strong><br>예약 확정일(계약금 입금 확인일)과 입주 예정일에 따라 전액 환불 기한이 달라집니다. 이 페이지의 <a href="#refund-calculator" class="refund-jump-link">취소 규정 및 환불 계산기 바로 보기</a>에서 확인해 주세요. 실제 환불 기한은 예약 확정 시 안내됩니다.</div>
-  <label style="display:flex!important;align-items:flex-start;gap:8px;font-weight:500!important"><input type="checkbox" id="bookingRefundAgree" required style="width:auto!important;margin-top:4px"> <span>계약금 및 취소·환불 규정 안내를 확인했습니다.</span></label>
-  <div class="booking-actions"><button type="submit">예약 신청 문자 보내기</button></div>
+<div id="bookingRefundNotice" class="booking-required-note"><strong>계약금 환불 안내</strong><br>예약 확정일(계약금 입금 확인일)과 입주 예정일에 따라 전액 환불 기한이 달라집니다. 이 페이지의 <a href="#refund-calculator" class="refund-jump-link">취소 규정 및 환불 계산기 바로 보기</a>에서 확인해 주세요. 실제 환불 기한은 예약 확정 시 안내됩니다.</div>
+  <label id="bookingRefundAgreement" style="display:flex!important;align-items:flex-start;gap:8px;font-weight:500!important"><input type="checkbox" id="bookingRefundAgree" required style="width:auto!important;margin-top:4px"> <span>계약금 및 취소·환불 규정 안내를 확인했습니다.</span></label>
+  <div id="bookingGeneralExtra" hidden><label for="bookingGeneralMovein">희망 입주일 (미정 가능)</label><input id="bookingGeneralMovein" name="generalMovein" maxlength="80" placeholder="예: 11월 중순 / 아직 미정"><label for="bookingGeneralRoom">희망 객실 (선택)</label><select id="bookingGeneralRoom" name="generalRoom"><option value="">미정</option><option>스탠다드룸</option><option>디럭스룸</option><option>스위트1</option><option>스위트2</option></select><label for="bookingGeneralQuestion">문의 내용 (선택)</label><textarea id="bookingGeneralQuestion" name="generalQuestion" rows="3" maxlength="600" placeholder="궁금한 내용을 자유롭게 입력해 주세요."></textarea></div>
+  <div class="booking-actions"><button type="submit" id="bookingSubmitButton">예약 신청 문자 보내기</button></div>
   <p id="bookingStatus" role="status">문자 앱이 열리면 내용을 확인하고 전송 버튼을 눌러 주세요. 앱을 여는 것만으로 신청이 전달되지는 않습니다.</p>
   <details><summary>전송할 내용 확인</summary><pre id="bookingPreview"></pre></details>
  </form>
@@ -913,27 +914,46 @@ document.addEventListener("DOMContentLoaded", function(){
 const bookingDialog=document.getElementById('bookingInquiry');
 const bookingForm=document.getElementById('bookingForm');
 let bookingSelected=null,bookingReturnFocus=null;
+function setBookingInquiryMode(isGeneral){
+ document.getElementById('bookingTitle').textContent=isGeneral?'일반 입주 문의':'예약 신청 문의';
+ document.getElementById('bookingReservationNote').hidden=isGeneral;
+ document.getElementById('bookingRefundNotice').hidden=isGeneral;
+ document.getElementById('bookingRefundAgreement').hidden=isGeneral;
+ document.getElementById('bookingRefundAgree').required=!isGeneral;
+ document.getElementById('bookingRefundAgree').checked=false;
+ document.getElementById('bookingGeneralExtra').hidden=!isGeneral;
+ document.getElementById('bookingSubmitButton').textContent=isGeneral?'일반 문의 문자 보내기':'예약 신청 문자 보내기';
+}
 function openBookingInquiry(key,date,trigger){
  const room=ROOM_AVAILABILITY[key];
  if(!room || date<kstTodayISO() || activeBookedEvents(room).some(e=>e.date===date) || !(room.events.some(e=>e.date===date) || (room.availableNow>0 && date===kstTodayISO())))return;
- bookingSelected={key,date};bookingReturnFocus=trigger;bookingForm.reset();
+ bookingSelected={key,date};bookingReturnFocus=trigger;bookingForm.reset();setBookingInquiryMode(false);
  document.getElementById('bookingSelection').textContent=room.name+' · '+formatDate(date)+' 입실 문의';
  document.getElementById('bookingStatus').textContent='문자 앱이 열리면 내용을 확인하고 전송 버튼을 눌러 주세요. 앱을 여는 것만으로 신청이 전달되지는 않습니다.';
  if(window.stayRefundSetSelection)window.stayRefundSetSelection(key,date);
  updateBookingPreview();bookingDialog.showModal();
 }
 function openGeneralInquiry(){
- bookingSelected={general:true};bookingReturnFocus=null;bookingForm.reset();
- document.getElementById('bookingSelection').textContent='입주·예약 문자 문의';
+ bookingSelected={general:true};bookingReturnFocus=null;bookingForm.reset();setBookingInquiryMode(true);
+ document.getElementById('bookingSelection').textContent='일반 입주 문의 · 궁금한 내용을 문자로 보내주세요.';
  document.getElementById('bookingStatus').textContent='문자 앱이 열리면 내용을 확인하고 전송 버튼을 눌러 주세요. 앱을 여는 것만으로 문의가 전달되지는 않습니다.';
  updateBookingPreview();bookingDialog.showModal();
 }
 function bookingMessage(){
  if(!bookingSelected)return '';
- const lines=['[스테이The머무름 입주·예약 문의]'];
- if(!bookingSelected.general){lines.push('객실: '+ROOM_AVAILABILITY[bookingSelected.key].name,'선택한 입실 가능일: '+formatDate(bookingSelected.date));}
- lines.push('이름: '+bookingForm.elements.residentName.value.trim(),'나이(만): '+bookingForm.elements.age.value.trim(),'준비하는 시험: '+bookingForm.elements.exam.value.trim(),'희망 입주기간: '+bookingForm.elements.period.value.trim(),'예약 가능 여부 확인을 부탁드립니다.');
- if(!bookingSelected.general)lines.push('계약금 입금 확인 후 예약 확정 절차를 확인했습니다.');
+ const general=!!bookingSelected.general;
+ const lines=[general?'[스테이The머무름 일반 입주 문의]':'[스테이The머무름 예약 신청]'];
+ if(!general)lines.push('객실: '+ROOM_AVAILABILITY[bookingSelected.key].name,'선택한 입실 가능일: '+formatDate(bookingSelected.date));
+ lines.push('이름: '+bookingForm.elements.residentName.value.trim(),'나이(만): '+bookingForm.elements.age.value.trim(),'준비하는 시험: '+bookingForm.elements.exam.value.trim(),'희망 입주 기간: '+bookingForm.elements.period.value.trim());
+ if(general){
+  const date=bookingForm.elements.generalMovein.value.trim(),room=bookingForm.elements.generalRoom.value,question=bookingForm.elements.generalQuestion.value.trim();
+  if(date)lines.push('희망 입주일: '+date);
+  if(room)lines.push('희망 객실: '+room);
+  if(question)lines.push('문의 내용: '+question);
+  lines.push('입주 가능 여부 및 문의 사항 확인을 부탁드립니다.');
+ }else{
+  lines.push('계약금 및 취소·환불 규정: 확인함','계약금 입금 확인 후 예약 확정 절차를 확인했습니다.','예약 가능 여부 확인을 부탁드립니다.');
+ }
  return lines.join('\n');
 }
 function updateBookingPreview(){document.getElementById('bookingPreview').textContent=bookingMessage();}
