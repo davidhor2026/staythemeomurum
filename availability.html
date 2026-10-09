@@ -934,7 +934,7 @@ const bookingForm=document.getElementById('bookingForm');
 let bookingSelected=null,bookingReturnFocus=null;
 function setBookingInquiryMode(isGeneral,isAdvance=false){
  const inquiryOnly=isGeneral||isAdvance;
- document.getElementById('bookingTitle').textContent=isGeneral?'일반 입주 문의':(isAdvance?'사전 입주 가능 여부 문의':'예약 신청 문의');
+ document.getElementById('bookingTitle').textContent=isGeneral?'입주 문의':(isAdvance?'사전 입주 가능 여부 문의':'예약 신청 문의');
  document.getElementById('bookingReservationNote').hidden=inquiryOnly;
  document.getElementById('bookingRefundNotice').hidden=inquiryOnly;
  document.getElementById('bookingRefundAgreement').hidden=inquiryOnly;
@@ -957,14 +957,14 @@ function openBookingInquiry(key,date,trigger){
 }
 function openGeneralInquiry(){
  bookingSelected={general:true};bookingReturnFocus=null;bookingForm.reset();setBookingInquiryMode(true);
- document.getElementById('bookingSelection').textContent='일반 입주 문의 · 궁금한 내용을 문자로 보내주세요.';
+ document.getElementById('bookingSelection').textContent='입주 문의 · 궁금한 내용을 문자로 보내주세요.';
  document.getElementById('bookingStatus').textContent='문자 앱이 열리면 내용을 확인하고 전송 버튼을 눌러 주세요. 앱을 여는 것만으로 문의가 전달되지는 않습니다.';
  updateBookingPreview();bookingDialog.showModal();
 }
 function bookingMessage(){
  if(!bookingSelected)return '';
  const general=!!bookingSelected.general,advance=!!bookingSelected.advance;
- const lines=[general?'[스테이The머무름 일반 입주 문의]':(advance?'[스테이The머무름 사전 입주 가능 여부 문의]':'[스테이The머무름 예약 신청]')];
+ const lines=[general?'[스테이The머무름 입주 문의]':(advance?'[스테이The머무름 사전 입주 가능 여부 문의]':'[스테이The머무름 예약 신청]')];
  if(!general)lines.push('객실: '+ROOM_AVAILABILITY[bookingSelected.key].name,'희망 입주일: '+formatDate(bookingSelected.date));
  lines.push('이름: '+bookingForm.elements.residentName.value.trim(),'나이(만): '+bookingForm.elements.age.value.trim(),'준비하는 시험: '+bookingForm.elements.exam.value.trim(),'희망 입주 기간: '+bookingForm.elements.period.value.trim());
  if(general){
