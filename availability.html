@@ -916,7 +916,7 @@ document.addEventListener("DOMContentLoaded", function(){
   <label for="bookingPeriod">희망 입주기간 <span id="bookingPeriodVacancyHint" hidden style="font-size:12px;font-weight:400;color:#647469">(공실현황을 참고해 주세요)</span></label><input id="bookingPeriod" name="period" required maxlength="120" placeholder="예: 10월 13일부터 3개월">
   <p style="font-size:12px;line-height:1.6">입력한 내용은 문자에 포함됩니다. 홈페이지에는 저장되지 않습니다. 전송한 휴대전화 번호로 원장이 회신합니다.</p>
 <div id="bookingRefundNotice" class="booking-required-note"><strong>계약금 환불 안내</strong><br>예약 확정일(계약금 입금 확인일)과 입주 예정일에 따라 전액 환불 기한이 달라집니다. <button type="button" id="bookingViewRefundRules" class="booking-rules-link">취소 규정 보기</button>를 눌러 확인해 주세요. 실제 환불 기한은 예약 확정 시 안내됩니다.</div>
-  <label id="bookingRefundAgreement" style="display:flex;align-items:flex-start;gap:8px;font-weight:500!important"><input type="checkbox" id="bookingRefundAgree" required style="width:auto!important;margin-top:4px"> <span>계약금 및 취소·환불 규정 안내를 확인했습니다.</span></label>
+  <label id="bookingRefundAgreement" style="display:flex;align-items:flex-start;gap:8px;font-weight:500!important"><input type="checkbox" id="bookingRefundAgree" style="width:auto!important;margin-top:4px"> <span>계약금 및 취소·환불 규정을 확인했습니다.</span></label>
   <div id="bookingGeneralExtra" hidden><label for="bookingGeneralRoom">희망 객실 (선택)</label><select id="bookingGeneralRoom" name="generalRoom"><option value="">미정</option><option>스탠다드룸</option><option>디럭스룸</option><option>스위트1</option><option>스위트2</option></select><label for="bookingGeneralQuestion">문의 내용 (선택)</label><textarea id="bookingGeneralQuestion" name="generalQuestion" rows="3" maxlength="600" placeholder="궁금한 내용을 자유롭게 입력해 주세요."></textarea></div>
   <div class="booking-required-note" id="bookingSmsDeliveryNotice" role="note" style="background:#f2f7f3;border-left-color:#35634b;color:#254735">
     <strong>문자 전송 전 꼭 확인해 주세요.</strong><br>
@@ -937,9 +937,9 @@ function setBookingInquiryMode(isGeneral,isAdvance=false){
  const inquiryOnly=isGeneral||isAdvance;
  document.getElementById('bookingTitle').textContent=isGeneral?'입주 문의':(isAdvance?'사전 입주 가능 여부 문의':'예약 신청 문의');
  document.getElementById('bookingReservationNote').hidden=inquiryOnly;
- document.getElementById('bookingRefundNotice').hidden=inquiryOnly;
- document.getElementById('bookingRefundAgreement').hidden=inquiryOnly;
- document.getElementById('bookingRefundAgree').required=!inquiryOnly;
+ document.getElementById('bookingRefundNotice').hidden=false;
+ document.getElementById('bookingRefundAgreement').hidden=false;
+ document.getElementById('bookingRefundAgree').required=false;
  document.getElementById('bookingRefundAgree').checked=false;
  document.getElementById('bookingGeneralExtra').hidden=!isGeneral;
  document.getElementById('bookingPeriodVacancyHint').hidden=!isGeneral;
@@ -976,8 +976,9 @@ function bookingMessage(){
  }else if(advance){
   lines.push('공실 예정일의 예약 가능 여부를 확인 부탁드립니다.','예약 확정 전 사전 문의입니다.');
  }else{
-  lines.push('계약금 및 취소·환불 규정: 확인함','계약금 입금 확인 후 예약 확정 절차를 확인했습니다.','예약 가능 여부 확인을 부탁드립니다.');
+  lines.push('계약금 입금 확인 후 예약 확정 절차를 확인했습니다.','예약 가능 여부 확인을 부탁드립니다.');
  }
+ if(document.getElementById('bookingRefundAgree').checked)lines.push('계약금 및 취소·환불 규정: 확인함');
  return lines.join('\n');
 }
 function updateBookingPreview(){document.getElementById('bookingPreview').textContent=bookingMessage();}
