@@ -148,12 +148,12 @@ Object.entries(VACANCY_MANAGER).forEach(([key, room]) => {
   };
 });
 
-// 한국 날짜 기준: 35일 이상 남은 등록 공실은 사전 문의만 받습니다.
+// 입주 41일 이상 남은 등록 공실만 황금색 공실 예정(입주문의)으로 표시합니다.
 function vacancyDaysUntil(iso){
   const toDay=x=>Date.UTC(...x.split('-').map((n,i)=>i===1?Number(n)-1:Number(n)));
   return Math.round((toDay(iso)-toDay(kstTodayISO()))/86400000);
 }
-function isAdvanceVacancy(iso){return vacancyDaysUntil(iso)>=35;}
+function isAdvanceVacancy(iso){return vacancyDaysUntil(iso)>=41;}
 function vacancyDateLabel(iso){return isAdvanceVacancy(iso)?'공실 예정':DISPLAY_TEXT.upcoming;}
 function vacancyDateColor(iso){return isAdvanceVacancy(iso)?'mustard':'orange';}
 function dotClass(room){
@@ -355,7 +355,7 @@ function renderVacancyCalendar(){
     if(!bookedByDate[iso] && iso>=today && (eventsByDate[iso] || toursByDate[iso] || (room.availableNow>0 && iso===today))){
       cell.tabIndex=0;
       cell.setAttribute('role','button');
-      cell.setAttribute('aria-label',`${room.name} ${formatDate(iso)} ${isAdvanceVacancy(iso)?'입주 가능 여부 문의':'입주 문의'}`);
+      cell.setAttribute('aria-label',`${room.name} ${formatDate(iso)} ${isAdvanceVacancy(iso)?'공실 예정 · 입주 문의':'입주 문의'}`);
       cell.classList.add('booking-date');
       cell.innerHTML += `<span class="calendar-mark calendar-booking-link">입주문의 ›</span>`;
       cell.addEventListener('click',()=>openBookingInquiry(calendarRoomKey,iso,cell));
@@ -372,7 +372,7 @@ function renderVacancyCalendar(){
     noteHtml += `<span class="legend-item"><b class="green">●</b> 즉시 입실 가능</span>`;
   }
   if(room.events.length){
-    noteHtml += `<span class="legend-item"><b class="orange">●</b> 예약 가능(입주 34일 전부터)</span><span class="legend-item"><b class="mustard">●</b> 공실 예정(입주 35일 전까지 · 사전 문의)</span>`;
+    noteHtml += `<span class="legend-item"><b class="orange">●</b> 예약 가능(입주 40일 이내)</span><span class="legend-item"><b class="mustard">●</b> 공실 예정(입주 41일 이상 · 입주문의)</span>`;
   }
   if(activeBookedEvents(room).length){
     noteHtml += `<span class="legend-item"><b class="blue">●</b> 예약 완료</span>`;
@@ -773,7 +773,7 @@ document.addEventListener("DOMContentLoaded",()=>{
  <div class="vacancy-color-legend">
 <span><i class="legend-dot legend-green"></i><span id="greenLegendText"></span></span>
 <span><i class="legend-dot legend-orange"></i><span id="orangeLegendText"></span></span>
-<span><i class="legend-dot legend-mustard"></i>황금색 = 공실 예정(입주 35일 전까지 · 사전 문의)</span>
+<span><i class="legend-dot legend-mustard"></i>황금색 = 공실 예정(입주 41일 이상 · 입주문의)</span>
 <span><i class="legend-dot legend-blue"></i><span id="blueLegendText"></span></span>
 <span><i class="legend-dot legend-purple"></i>보라색 = 룸투어 예정(예약 확정 전)</span>
 <span><i class="legend-dot legend-gray"></i><span id="grayLegendText"></span></span>
@@ -782,7 +782,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
 <section class="details" id="room-details">
- <p class="calendar-entry-guide"><strong>입주 문의 안내</strong><br><b>황금색(공실 예정)</b>은 입주일까지 기간이 많이 남아 현재는 사전 입주 문의만 가능합니다. <b>오렌지색(예약 가능)</b>은 입주 제한 조건에 부합하면 바로 예약할 수 있습니다. 캘린더의 <b>입주문의</b>를 누르면 문자 보내기로 연결됩니다. 실제 예약 가능 여부는 객실 운영 상황에 따라 달라질 수 있습니다.</p>
+ <p class="calendar-entry-guide"><strong>입주 문의 안내</strong><br><b>황금색(공실 예정)</b>은 입주 41일 이상 남은 공실로, <b>입주문의</b>를 통해 사전 상담할 수 있으며 계약금 환불 조건은 별도 협의합니다. <b>오렌지색(예약 가능)</b>은 입주 40일 이내로, 입주 제한 조건과 운영 상황을 확인한 뒤 예약할 수 있습니다. 캘린더의 <b>입주문의</b>를 누르면 문자 보내기로 연결됩니다. 실제 예약 가능 여부는 객실 운영 상황에 따라 달라질 수 있습니다.</p>
  <h3 id="roomSectionTitle"></h3>
  <div class="roomrow"><div class="roomicon">🛏</div><div><h4>스탠다드룸</h4><div data-detail="standard"></div></div><div class="room-actions"><button type="button" class="calendar-open-btn" onclick="openVacancyCalendar('standard')"><span class="calendar-button-label">공실 캘린더</span></button><a href="rooms.html?from=availability#standard"><span class="detail-button-label">자세히 보기 ›</span></a></div></div>
  <div class="roomrow"><div class="roomicon">🛏</div><div><h4>디럭스룸</h4><div data-detail="deluxe"></div></div><div class="room-actions"><button type="button" class="calendar-open-btn" onclick="openVacancyCalendar('deluxe')"><span class="calendar-button-label">공실 캘린더</span></button><a href="rooms.html?from=availability#deluxe"><span class="detail-button-label">자세히 보기 ›</span></a></div></div>
@@ -804,7 +804,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     </div>
     <button type="button" class="calendar-close-btn" onclick="document.getElementById('vacancyCalendarPanel').hidden=true">닫기</button>
   </div>
-  <p class="calendar-booking-guide" role="note"><strong>입주 문의 안내</strong><br><b>황금색(공실 예정)</b>은 입주일까지 기간이 많이 남아 현재는 사전 입주 문의만 가능합니다. <b>오렌지색(예약 가능)</b>은 입주 제한 조건에 부합하면 바로 예약할 수 있습니다. 캘린더의 <b>입주문의</b>를 누르면 문자 보내기로 연결됩니다. 실제 예약 가능 여부는 객실 운영 상황에 따라 달라질 수 있습니다.</p>
+  <p class="calendar-booking-guide" role="note"><strong>입주 문의 안내</strong><br><b>황금색(공실 예정)</b>은 입주 41일 이상 남은 공실로, <b>입주문의</b>를 통해 사전 상담할 수 있으며 계약금 환불 조건은 별도 협의합니다. <b>오렌지색(예약 가능)</b>은 입주 40일 이내로, 입주 제한 조건과 운영 상황을 확인한 뒤 예약할 수 있습니다. 캘린더의 <b>입주문의</b>를 누르면 문자 보내기로 연결됩니다. 실제 예약 가능 여부는 객실 운영 상황에 따라 달라질 수 있습니다.</p>
   <div class="calendar-nav">
     <button type="button" onclick="changeCalendarMonth(-1)" aria-label="이전 달">‹</button>
     <strong id="calendarMonthLabel"></strong>
@@ -827,10 +827,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 <div class="refund-result" id="refundResult" role="status" aria-live="polite">객실 유형과 날짜를 입력해 주세요.</div>
 <details class="refund-rules"><summary>취소 규정 보기 ▾</summary>
 <p><strong>스탠다드·디럭스룸 — 계약금 10만 원</strong></p>
-<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 30일 이상 전</td><td>입주 20일 전까지</td></tr><tr><td>입주 20~29일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 10~19일 전</td><td>입주 10일 전까지</td></tr><tr><td>입주 9일 이내</td><td>환불 불가</td></tr></tbody></table>
+<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 41일 이상 전</td><td>별도 협의</td></tr><tr><td>입주 31~40일 전</td><td>예약 확정 후 7일 이내</td></tr><tr><td>입주 20~30일 전</td><td>예약 확정 후 5일 이내</td></tr><tr><td>입주 16~19일 전</td><td>예약 확정 후 4일 이내</td></tr><tr><td>입주 11~15일 전</td><td>입주 11일 전까지</td></tr><tr><td>입주 10일 이내</td><td>환불 불가</td></tr></tbody></table>
 <p><strong>스위트룸 — 계약금 20만 원</strong></p>
-<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 30일 이상 전</td><td>입주 20일 전까지</td></tr><tr><td>입주 20~29일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 15~19일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 14일 이내</td><td>환불 불가</td></tr></tbody></table>
-<p class="refund-note">※ 환불 가능 기한 당일까지 취소 시 계약금 전액 환불, 이후 취소 시 계약금 환불 불가를 원칙으로 합니다. 예약 확정일은 계약금 입금 확인일 기준입니다. 입주 후 이용료 환불과는 별개입니다.</p>
+<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 41일 이상 전</td><td>별도 협의</td></tr><tr><td>입주 31~40일 전</td><td>예약 확정 후 7일 이내</td></tr><tr><td>입주 20~30일 전</td><td>예약 확정 후 5일 이내</td></tr><tr><td>입주 16~19일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 15일 전</td><td>입주 15일 전 당일까지만</td></tr><tr><td>입주 14일 이내</td><td>환불 불가</td></tr></tbody></table>
+<p class="refund-note">※ 예약 확정일은 계약금 입금 확인일입니다. 확정 후 4·5·7일 이내 조건은 입금 확인일을 0일째로 계산합니다. 일반룸은 입주 11일 전, 스위트룸은 입주 15일 전이 최종 환불 마감일이며 더 이른 기한이 있으면 그 기한을 적용합니다. 환불 마감일 당일 취소까지 전액 환불합니다. 41일 이상 사전예약은 입금 전에 환불 조건을 별도로 합의합니다. 입주 후 이용료 환불은 별개입니다.</p>
 </details></details></section>
 <section class="contact">
  <h3>🎧 상담 문의</h3>
@@ -935,7 +935,7 @@ const bookingForm=document.getElementById('bookingForm');
 let bookingSelected=null,bookingReturnFocus=null;
 function setBookingInquiryMode(isGeneral,isAdvance=false){
  const inquiryOnly=isGeneral||isAdvance;
- document.getElementById('bookingTitle').textContent=isGeneral?'입주 문의':(isAdvance?'사전 입주 가능 여부 문의':'입주 문의 문의');
+ document.getElementById('bookingTitle').textContent=isGeneral?'입주 문의':(isAdvance?'공실 예정 · 입주 문의':'입주 문의');
  document.getElementById('bookingReservationNote').hidden=inquiryOnly;
  document.getElementById('bookingRefundNotice').hidden=false;
  document.getElementById('bookingRefundAgreement').hidden=false;
@@ -951,7 +951,7 @@ function openBookingInquiry(key,date,trigger){
  if(!room || date<kstTodayISO() || activeBookedEvents(room).some(e=>e.date===date) || !(room.events.some(e=>e.date===date) || (room.availableNow>0 && date===kstTodayISO())))return;
  const advance=isAdvanceVacancy(date);
  bookingSelected={key,date,advance};bookingReturnFocus=trigger;bookingForm.reset();setBookingInquiryMode(false,advance);
- document.getElementById('bookingSelection').textContent=room.name+' · '+formatDate(date)+(advance?' 공실 예정 · 입주 가능 여부 문의':' 입주 문의');
+ document.getElementById('bookingSelection').textContent=room.name+' · '+formatDate(date)+(advance?' 공실 예정 · 입주 문의(별도 협의)':' 입주 문의');
  document.getElementById('bookingStatus').textContent='문자 앱이 열리면 내용을 확인하고 전송 버튼을 눌러 주세요. 앱을 여는 것만으로 신청이 전달되지는 않습니다.';
  if(window.stayRefundSetSelection)window.stayRefundSetSelection(key,date);
  updateBookingPreview();bookingDialog.showModal();
@@ -965,7 +965,7 @@ function openGeneralInquiry(){
 function bookingMessage(){
  if(!bookingSelected)return '';
  const general=!!bookingSelected.general,advance=!!bookingSelected.advance;
- const lines=[general?'[스테이The머무름 입주 문의]':(advance?'[스테이The머무름 사전 입주 가능 여부 문의]':'[스테이The머무름 입주 문의]')];
+ const lines=[general?'[스테이The머무름 입주 문의]':(advance?'[스테이The머무름 공실 예정 입주 문의]':'[스테이The머무름 입주 문의]')];
  if(!general)lines.push('객실: '+ROOM_AVAILABILITY[bookingSelected.key].name,'희망 입주일: '+formatDate(bookingSelected.date));
  lines.push('이름: '+bookingForm.elements.residentName.value.trim(),'나이(만): '+bookingForm.elements.age.value.trim(),'준비하는 시험: '+bookingForm.elements.exam.value.trim(),'희망 입주 기간: '+bookingForm.elements.period.value.trim());
  if(general){
@@ -974,7 +974,7 @@ function bookingMessage(){
   if(question)lines.push('문의 내용: '+question);
   lines.push('입주 가능 여부 및 문의 사항 확인을 부탁드립니다.');
  }else if(advance){
-  lines.push('공실 예정일의 예약 가능 여부를 확인 부탁드립니다.','예약 확정 전 사전 문의입니다.');
+  lines.push('사전예약 가능 여부를 확인 부탁드립니다.','입주 41일 이상 전은 환불 조건 별도 협의 대상임을 확인했습니다.','계약금 입금 확인 후 예약이 확정됩니다.');
  }else{
   lines.push('계약금 입금 확인 후 예약 확정 절차를 확인했습니다.','예약 가능 여부 확인을 부탁드립니다.');
  }
@@ -1007,12 +1007,20 @@ if(new URLSearchParams(location.search).get('inquiry')==='1'){openGeneralInquiry
  function update(){const b=days(booked.value),m=days(move.value),c=days(cancel.value);
  if(!Number.isFinite(b)||!Number.isFinite(m)){result.textContent='예약 확정일과 입주 예정일을 입력해 주세요.';return;}
  const lead=m-b;if(lead<0){result.textContent='입주 예정일은 예약 확정일 이후여야 합니다.';return;}
- let cutoff=null;if(room.value==='suite'){if(lead>=30)cutoff=20;else if(lead>=20)cutoff=15;else if(lead>=15)cutoff=15;}else{if(lead>=30)cutoff=20;else if(lead>=20)cutoff=15;else if(lead>=10)cutoff=10;}
- const deposit=room.value==='suite'?'200,000원':'100,000원';
+ let deadline=null,consult=false;
+ const isSuite=room.value==='suite', cap=m-(isSuite?15:11);
+ if(lead>=41){consult=true;}
+ else if(lead>=31){deadline=Math.min(b+7,cap);}
+ else if(lead>=20){deadline=Math.min(b+5,cap);}
+ else if(lead>=16){deadline=isSuite?cap:Math.min(b+4,cap);}
+ else if(isSuite){if(lead===15)deadline=cap;}
+ else if(lead>=11){deadline=cap;}
+ const deposit=isSuite?'200,000원':'100,000원';
  let msg='예약 시점: 입주 '+lead+'일 전\n계약금: '+deposit+'\n';
- if(cutoff===null){msg+='운영 규정상 전액 환불 가능 기간이 없습니다.';}
- else{const deadline=m-cutoff;msg+='전액 환불 마감일: '+iso(deadline)+' (당일 포함)';if(Number.isFinite(c)){if(c<b||c>m){msg+='\n취소 신청일은 예약 확정일부터 입주 예정일까지 입력해 주세요.';}else{msg+='\n'+(c<=deadline?'입력한 취소일 기준: 계약금 100% 환불 가능':'입력한 취소일 기준: 운영 규정상 계약금 환불 불가');}}}
- if(cutoff===null&&Number.isFinite(c)&&c<b)msg+='\n취소 신청일을 확인해 주세요.';
+ if(consult){msg+='입주 41일 이상 전 예약: 별도 협의 대상입니다. 계약금 입금 전에 환불 조건을 확인해 주세요.';}
+ else if(deadline===null){msg+='운영 규정상 전액 환불 가능 기간이 없습니다.';}
+ else{msg+='전액 환불 마감일: '+iso(deadline)+' (당일 포함)';if(Number.isFinite(c)){if(c<b||c>m){msg+='\n취소 신청일은 예약 확정일부터 입주 예정일까지 입력해 주세요.';}else{msg+='\n'+(c<=deadline?'입력한 취소일 기준: 계약금 100% 환불 가능':'입력한 취소일 기준: 운영 규정상 계약금 환불 불가');}}}
+ if(deadline===null&&!consult&&Number.isFinite(c)&&c<b)msg+='\n취소 신청일을 확인해 주세요.';
  result.textContent=msg;
  }
  [room,booked,move,cancel].forEach(el=>el.addEventListener('change',update));
@@ -1050,10 +1058,10 @@ if(new URLSearchParams(location.search).get('inquiry')==='1'){openGeneralInquiry
  <div class="booking-rules-header"><h2 id="bookingRulesTitle">계약금 취소·환불 규정</h2><button type="button" id="bookingRulesClose">닫기</button></div>
  <div class="booking-rules-content">
 <p><strong>스탠다드·디럭스룸 — 계약금 10만 원</strong></p>
-<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 30일 이상 전</td><td>입주 20일 전까지</td></tr><tr><td>입주 20~29일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 10~19일 전</td><td>입주 10일 전까지</td></tr><tr><td>입주 9일 이내</td><td>환불 불가</td></tr></tbody></table>
+<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 41일 이상 전</td><td>별도 협의</td></tr><tr><td>입주 31~40일 전</td><td>예약 확정 후 7일 이내</td></tr><tr><td>입주 20~30일 전</td><td>예약 확정 후 5일 이내</td></tr><tr><td>입주 16~19일 전</td><td>예약 확정 후 4일 이내</td></tr><tr><td>입주 11~15일 전</td><td>입주 11일 전까지</td></tr><tr><td>입주 10일 이내</td><td>환불 불가</td></tr></tbody></table>
 <p><strong>스위트룸 — 계약금 20만 원</strong></p>
-<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 30일 이상 전</td><td>입주 20일 전까지</td></tr><tr><td>입주 20~29일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 15~19일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 14일 이내</td><td>환불 불가</td></tr></tbody></table>
-<p class="refund-note">※ 환불 가능 기한 당일까지 취소 시 계약금 전액 환불, 이후 취소 시 계약금 환불 불가를 원칙으로 합니다. 예약 확정일은 계약금 입금 확인일 기준입니다. 입주 후 이용료 환불과는 별개입니다.</p>
+<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 41일 이상 전</td><td>별도 협의</td></tr><tr><td>입주 31~40일 전</td><td>예약 확정 후 7일 이내</td></tr><tr><td>입주 20~30일 전</td><td>예약 확정 후 5일 이내</td></tr><tr><td>입주 16~19일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 15일 전</td><td>입주 15일 전 당일까지만</td></tr><tr><td>입주 14일 이내</td><td>환불 불가</td></tr></tbody></table>
+<p class="refund-note">※ 예약 확정일은 계약금 입금 확인일입니다. 확정 후 4·5·7일 이내 조건은 입금 확인일을 0일째로 계산합니다. 일반룸은 입주 11일 전, 스위트룸은 입주 15일 전이 최종 환불 마감일이며 더 이른 기한이 있으면 그 기한을 적용합니다. 환불 마감일 당일 취소까지 전액 환불합니다. 41일 이상 사전예약은 입금 전에 환불 조건을 별도로 합의합니다. 입주 후 이용료 환불은 별개입니다.</p>
 </div>
 </dialog>
 <script>

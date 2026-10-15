@@ -216,10 +216,10 @@
 <div class="refund-policy-content">
 
 <p><strong>스탠다드·디럭스룸 — 계약금 10만 원</strong></p>
-<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 30일 이상 전</td><td>입주 20일 전까지</td></tr><tr><td>입주 20~29일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 10~19일 전</td><td>입주 10일 전까지</td></tr><tr><td>입주 9일 이내</td><td>환불 불가</td></tr></tbody></table>
+<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 41일 이상 전</td><td>별도 협의</td></tr><tr><td>입주 31~40일 전</td><td>예약 확정 후 7일 이내</td></tr><tr><td>입주 20~30일 전</td><td>예약 확정 후 5일 이내</td></tr><tr><td>입주 16~19일 전</td><td>예약 확정 후 4일 이내</td></tr><tr><td>입주 11~15일 전</td><td>입주 11일 전까지</td></tr><tr><td>입주 10일 이내</td><td>환불 불가</td></tr></tbody></table>
 <p><strong>스위트룸 — 계약금 20만 원</strong></p>
-<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 30일 이상 전</td><td>입주 20일 전까지</td></tr><tr><td>입주 20~29일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 15~19일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 14일 이내</td><td>환불 불가</td></tr></tbody></table>
-<p class="refund-note">※ 환불 가능 기한 당일까지 취소 시 계약금 전액 환불, 이후 취소 시 계약금 환불 불가를 원칙으로 합니다. 예약 확정일은 계약금 입금 확인일 기준입니다. 입주 후 이용료 환불과는 별개입니다.</p>
+<table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 41일 이상 전</td><td>별도 협의</td></tr><tr><td>입주 31~40일 전</td><td>예약 확정 후 7일 이내</td></tr><tr><td>입주 20~30일 전</td><td>예약 확정 후 5일 이내</td></tr><tr><td>입주 16~19일 전</td><td>입주 15일 전까지</td></tr><tr><td>입주 15일 전</td><td>입주 15일 전 당일까지만</td></tr><tr><td>입주 14일 이내</td><td>환불 불가</td></tr></tbody></table>
+<p class="refund-note">※ 예약 확정일은 계약금 입금 확인일입니다. 확정 후 4·5·7일 이내 조건은 입금 확인일을 0일째로 계산합니다. 일반룸은 입주 11일 전, 스위트룸은 입주 15일 전이 최종 환불 마감일이며 더 이른 기한이 있으면 그 기한을 적용합니다. 환불 마감일 당일 취소까지 전액 환불합니다. 41일 이상 사전예약은 입금 전에 환불 조건을 별도로 합의합니다. 입주 후 이용료 환불은 별개입니다.</p>
 
 
 </div>
@@ -311,12 +311,20 @@
  function update(){const b=days(booked.value),m=days(move.value),c=days(cancel.value);
  if(!Number.isFinite(b)||!Number.isFinite(m)){result.textContent='예약 확정일과 입주 예정일을 입력해 주세요.';return;}
  const lead=m-b;if(lead<0){result.textContent='입주 예정일은 예약 확정일 이후여야 합니다.';return;}
- let cutoff=null;if(room.value==='suite'){if(lead>=30)cutoff=20;else if(lead>=20)cutoff=15;else if(lead>=15)cutoff=15;}else{if(lead>=30)cutoff=20;else if(lead>=20)cutoff=15;else if(lead>=10)cutoff=10;}
- const deposit=room.value==='suite'?'200,000원':'100,000원';
+ let deadline=null,consult=false;
+ const isSuite=room.value==='suite', cap=m-(isSuite?15:11);
+ if(lead>=41){consult=true;}
+ else if(lead>=31){deadline=Math.min(b+7,cap);}
+ else if(lead>=20){deadline=Math.min(b+5,cap);}
+ else if(lead>=16){deadline=isSuite?cap:Math.min(b+4,cap);}
+ else if(isSuite){if(lead===15)deadline=cap;}
+ else if(lead>=11){deadline=cap;}
+ const deposit=isSuite?'200,000원':'100,000원';
  let msg='예약 시점: 입주 '+lead+'일 전\n계약금: '+deposit+'\n';
- if(cutoff===null){msg+='운영 규정상 전액 환불 가능 기간이 없습니다.';}
- else{const deadline=m-cutoff;msg+='전액 환불 마감일: '+iso(deadline)+' (당일 포함)';if(Number.isFinite(c)){if(c<b||c>m){msg+='\n취소 신청일은 예약 확정일부터 입주 예정일까지 입력해 주세요.';}else{msg+='\n'+(c<=deadline?'입력한 취소일 기준: 계약금 100% 환불 가능':'입력한 취소일 기준: 운영 규정상 계약금 환불 불가');}}}
- if(cutoff===null&&Number.isFinite(c)&&c<b)msg+='\n취소 신청일을 확인해 주세요.';
+ if(consult){msg+='입주 41일 이상 전 예약: 별도 협의 대상입니다. 계약금 입금 전에 환불 조건을 확인해 주세요.';}
+ else if(deadline===null){msg+='운영 규정상 전액 환불 가능 기간이 없습니다.';}
+ else{msg+='전액 환불 마감일: '+iso(deadline)+' (당일 포함)';if(Number.isFinite(c)){if(c<b||c>m){msg+='\n취소 신청일은 예약 확정일부터 입주 예정일까지 입력해 주세요.';}else{msg+='\n'+(c<=deadline?'입력한 취소일 기준: 계약금 100% 환불 가능':'입력한 취소일 기준: 운영 규정상 계약금 환불 불가');}}}
+ if(deadline===null&&!consult&&Number.isFinite(c)&&c<b)msg+='\n취소 신청일을 확인해 주세요.';
  result.textContent=msg;
  }
  [room,booked,move,cancel].forEach(el=>el.addEventListener('change',update));
