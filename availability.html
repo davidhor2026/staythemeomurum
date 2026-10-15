@@ -744,7 +744,12 @@ document.addEventListener("DOMContentLoaded",()=>{
 }
 </style>
 
-<style>.recent-bookings{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0 4px;padding:10px 12px;border:1px solid #c8d9e8;border-radius:10px;background:#f4f8fc;color:#245f94;font-size:13px}.recent-bookings strong{color:#174f7f}.recent-bookings span{padding-left:8px;border-left:1px solid #b8cde0}.vacancy-color-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:10px 0 14px;font-size:13px;color:#666}.vacancy-color-legend span{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block}.legend-green{background:#24a148}.legend-orange{background:#f57c00}.legend-mustard{background:#d1a12c}.legend-blue{background:#286aa6}.legend-purple{background:#7952a3}.legend-gray{background:#747a76}@media(max-width:520px){.recent-bookings{font-size:12px;gap:6px}.vacancy-color-legend{font-size:11.5px;gap:5px 10px}}</style></head><body><div class="page">
+<style>.recent-bookings{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0 4px;padding:10px 12px;border:1px solid #c8d9e8;border-radius:10px;background:#f4f8fc;color:#245f94;font-size:13px}.recent-bookings strong{color:#174f7f}.recent-bookings span{padding-left:8px;border-left:1px solid #b8cde0}.vacancy-color-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:10px 0 14px;font-size:13px;color:#666}.vacancy-color-legend span{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block}.legend-green{background:#24a148}.legend-orange{background:#f57c00}.legend-mustard{background:#d1a12c}.legend-blue{background:#286aa6}.legend-purple{background:#7952a3}.legend-gray{background:#747a76}@media(max-width:520px){.recent-bookings{font-size:12px;gap:6px}.vacancy-color-legend{font-size:11.5px;gap:5px 10px}}</style><style id="refund-result-emphasis-20261015">
+.refund-panel .refund-result.refund-result-yes{background:#eaf3ff;border:2px solid #1766c2;color:#124a90;box-shadow:0 2px 9px rgba(23,102,194,.12)}
+.refund-panel .refund-result.refund-result-no{background:#fff0f0;border:2px solid #c92c35;color:#9c1824;box-shadow:0 2px 9px rgba(201,44,53,.10)}
+.refund-panel .refund-result .refund-result-headline{display:block;font-size:clamp(1.15rem,3.8vw,1.45rem);font-weight:850;line-height:1.5;margin-bottom:10px;padding-bottom:9px;border-bottom:1px solid currentColor;letter-spacing:-.02em}
+</style>
+</head><body><div class="page">
 <section class="brand">
  <img src="availability-logo.jpg" alt="스테이The머무름 로고">
  <h1>스테이The머무름</h1><p>여성 전용 고시원</p>
@@ -1004,7 +1009,7 @@ if(new URLSearchParams(location.search).get('inquiry')==='1'){openGeneralInquiry
  const room=root.querySelector('#refundRoom'),booked=root.querySelector('#refundBooked'),move=root.querySelector('#refundMovein'),cancel=root.querySelector('#refundCancel'),result=root.querySelector('#refundResult');
  const days=s=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(s))return NaN;const t=Date.parse(s+'T00:00:00Z');return Number.isFinite(t)?t/86400000:NaN};
  const iso=n=>new Date(n*86400000).toISOString().slice(0,10);
- function update(){const b=days(booked.value),m=days(move.value),c=days(cancel.value);
+ function update(){const b=days(booked.value),m=days(move.value),c=days(cancel.value);result.classList.remove('refund-result-yes','refund-result-no');
  if(!Number.isFinite(b)||!Number.isFinite(m)){result.textContent='예약 확정일과 입주 예정일을 입력해 주세요.';return;}
  const lead=m-b;if(lead<0){result.textContent='입주 예정일은 예약 확정일 이후여야 합니다.';return;}
  let deadline=null,consult=false;
@@ -1022,6 +1027,15 @@ if(new URLSearchParams(location.search).get('inquiry')==='1'){openGeneralInquiry
  else{msg+='전액 환불 마감일: '+iso(deadline)+' (당일 포함)';if(Number.isFinite(c)){if(c<b||c>m){msg+='\n취소 신청일은 예약 확정일부터 입주 예정일까지 입력해 주세요.';}else{msg+='\n'+(c<=deadline?'입력한 취소일 기준: 계약금 100% 환불 가능':'입력한 취소일 기준: 운영 규정상 계약금 환불 불가');}}}
  if(deadline===null&&!consult&&Number.isFinite(c)&&c<b)msg+='\n취소 신청일을 확인해 주세요.';
  result.textContent=msg;
+ result.classList.remove('refund-result-yes','refund-result-no');
+ if(Number.isFinite(c)&&c>=b&&c<=m&&!consult){
+   const refundable=deadline!==null&&c<=deadline;
+   result.classList.add(refundable?'refund-result-yes':'refund-result-no');
+   const headline=document.createElement('strong');
+   headline.className='refund-result-headline';
+   headline.textContent=refundable?'✓ 계약금 전액 환불 가능':'✕ 계약금 환불 불가';
+   result.prepend(headline);
+ }
  }
  [room,booked,move,cancel].forEach(el=>el.addEventListener('change',update));
  window.stayRefundSetSelection=function(roomKey,moveDate){room.value=/suite/i.test(roomKey)?'suite':'standard';if(moveDate)move.value=moveDate;update();};

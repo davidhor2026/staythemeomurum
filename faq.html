@@ -47,7 +47,12 @@
 .refund-policy-content th,.refund-policy-content td{padding:9px 6px;border-bottom:1px solid #dfe5df;text-align:left;vertical-align:top}
 .refund-policy-content .refund-note{font-size:12px;color:#5c665e;margin:10px 0}
 .refund-policy-toggle > .refund-calculator-toggle{margin-top:14px;border:1px solid #dce6de;border-radius:9px;padding:10px 12px;background:#fbfdfb}
-</style></head>
+</style><style id="refund-result-emphasis-20261015">
+.refund-panel .refund-result.refund-result-yes{background:#eaf3ff;border:2px solid #1766c2;color:#124a90;box-shadow:0 2px 9px rgba(23,102,194,.12)}
+.refund-panel .refund-result.refund-result-no{background:#fff0f0;border:2px solid #c92c35;color:#9c1824;box-shadow:0 2px 9px rgba(201,44,53,.10)}
+.refund-panel .refund-result .refund-result-headline{display:block;font-size:clamp(1.15rem,3.8vw,1.45rem);font-weight:850;line-height:1.5;margin-bottom:10px;padding-bottom:9px;border-bottom:1px solid currentColor;letter-spacing:-.02em}
+</style>
+</head>
 
 <body>
   <header class="sub-header sub-header--faq">
@@ -308,7 +313,7 @@
  const room=root.querySelector('#refundRoom'),booked=root.querySelector('#refundBooked'),move=root.querySelector('#refundMovein'),cancel=root.querySelector('#refundCancel'),result=root.querySelector('#refundResult');
  const days=s=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(s))return NaN;const t=Date.parse(s+'T00:00:00Z');return Number.isFinite(t)?t/86400000:NaN};
  const iso=n=>new Date(n*86400000).toISOString().slice(0,10);
- function update(){const b=days(booked.value),m=days(move.value),c=days(cancel.value);
+ function update(){const b=days(booked.value),m=days(move.value),c=days(cancel.value);result.classList.remove('refund-result-yes','refund-result-no');
  if(!Number.isFinite(b)||!Number.isFinite(m)){result.textContent='예약 확정일과 입주 예정일을 입력해 주세요.';return;}
  const lead=m-b;if(lead<0){result.textContent='입주 예정일은 예약 확정일 이후여야 합니다.';return;}
  let deadline=null,consult=false;
@@ -326,6 +331,15 @@
  else{msg+='전액 환불 마감일: '+iso(deadline)+' (당일 포함)';if(Number.isFinite(c)){if(c<b||c>m){msg+='\n취소 신청일은 예약 확정일부터 입주 예정일까지 입력해 주세요.';}else{msg+='\n'+(c<=deadline?'입력한 취소일 기준: 계약금 100% 환불 가능':'입력한 취소일 기준: 운영 규정상 계약금 환불 불가');}}}
  if(deadline===null&&!consult&&Number.isFinite(c)&&c<b)msg+='\n취소 신청일을 확인해 주세요.';
  result.textContent=msg;
+ result.classList.remove('refund-result-yes','refund-result-no');
+ if(Number.isFinite(c)&&c>=b&&c<=m&&!consult){
+   const refundable=deadline!==null&&c<=deadline;
+   result.classList.add(refundable?'refund-result-yes':'refund-result-no');
+   const headline=document.createElement('strong');
+   headline.className='refund-result-headline';
+   headline.textContent=refundable?'✓ 계약금 전액 환불 가능':'✕ 계약금 환불 불가';
+   result.prepend(headline);
+ }
  }
  [room,booked,move,cancel].forEach(el=>el.addEventListener('change',update));
  window.stayRefundSetSelection=function(roomKey,moveDate){room.value=/suite/i.test(roomKey)?'suite':'standard';if(moveDate)move.value=moveDate;update();};
