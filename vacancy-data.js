@@ -46,10 +46,11 @@ const VACANCY_MANAGER = {
     now: 0,
     dates: [
       "2026-10-30",
-      "2026-11-08",
-      "2026-11-29"
+      "2026-11-08"
     ],
-    bookedDates: [],
+    bookedDates: [
+      { date: "2026-11-29", bookedOn: "2026-10-17" }
+    ],
     tourDates: [],
     reservable: true,
     fullLabel: "현재 만실",
