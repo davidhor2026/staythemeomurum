@@ -835,7 +835,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 <p><strong>7일을 초과하는 경우</strong>에는 공실 기간 및 객실 운영 상황에 따라 <strong>별도 협의 후 예약 가능 여부</strong>를 안내해 드립니다.</p>
 <p class="gap-note">※ 실제 예약 가능 여부는 객실 상황에 따라 달라질 수 있습니다.<br>※ 별도 협의가 필요한 경우 예약 확정 전에 조건을 안내해 드립니다.<br>※ 계약금 취소·환불은 기존 규정을 그대로 적용합니다.</p>
 </div>
-<details class="refund-rules" id="refundRulesToggle"><summary>취소 규정 보기 ▾</summary>
+<details class="refund-rules" id="refundRulesToggle"><summary>계약금 취소·환불 규정 보기 ▾</summary>
 <p><strong>스탠다드·디럭스룸 — 계약금 10만 원</strong></p>
 <table><thead><tr><th>예약 확정 시점</th><th>100% 환불 가능 기한</th></tr></thead><tbody><tr><td>입주 41일 이상 전</td><td>별도 협의</td></tr><tr><td>입주 31~40일 전</td><td>예약 확정 후 7일 이내</td></tr><tr><td>입주 20~30일 전</td><td>예약 확정 후 5일 이내</td></tr><tr><td>입주 16~19일 전</td><td>예약 확정 후 4일 이내</td></tr><tr><td>입주 11~15일 전</td><td>입주 11일 전까지</td></tr><tr><td>입주 10일 이내</td><td>환불 불가</td></tr></tbody></table>
 <p><strong>스위트룸 — 계약금 20만 원</strong></p>
@@ -936,7 +936,7 @@ document.addEventListener("DOMContentLoaded", function(){
   <label for="bookingExam">준비하는 시험</label><input id="bookingExam" name="exam" required maxlength="100" placeholder="예: 초등 임용 / 해당 없으면 ‘없음’">
   <label for="bookingPeriod">희망 입주기간 <span id="bookingPeriodVacancyHint" hidden style="font-size:12px;font-weight:400;color:#647469">(공실현황을 참고해 주세요)</span></label><input id="bookingPeriod" name="period" required maxlength="120" placeholder="예: 10월 13일부터 3개월">
   <p style="font-size:12px;line-height:1.6">입력한 내용은 문자에 포함됩니다. 홈페이지에는 저장되지 않습니다. 전송한 휴대전화 번호로 원장이 회신합니다.</p>
-<div id="bookingRefundNotice" class="booking-required-note"><strong>계약금 환불 안내</strong><br>예약 확정일(계약금 입금 확인일)과 입주 예정일에 따라 전액 환불 기한이 달라집니다. <button type="button" id="bookingViewRefundRules" class="booking-rules-link">취소 규정 보기</button>를 눌러 확인해 주세요. 실제 환불 기한은 예약 확정 시 안내됩니다.</div>
+<div id="bookingRefundNotice" class="booking-required-note"><strong>계약금 환불 안내</strong><br>예약 확정일(계약금 입금 확인일)과 입주 예정일에 따라 전액 환불 기한이 달라집니다. <button type="button" id="bookingViewRefundRules" class="booking-rules-link">계약금 취소·환불 규정 보기</button>를 눌러 확인해 주세요. 실제 환불 기한은 예약 확정 시 안내됩니다.</div>
   <label id="bookingRefundAgreement" style="display:flex;align-items:flex-start;gap:8px;font-weight:500!important"><input type="checkbox" id="bookingRefundAgree" style="width:auto!important;margin-top:4px"> <span>계약금 및 취소·환불 규정을 확인했습니다.</span></label>
   <div id="bookingGeneralExtra" hidden><label for="bookingGeneralRoom">희망 객실 (선택)</label><select id="bookingGeneralRoom" name="generalRoom"><option value="">미정</option><option>스탠다드룸</option><option>디럭스룸</option><option>스위트1</option><option>스위트2</option></select><label for="bookingGeneralQuestion">문의 내용 (선택)</label><textarea id="bookingGeneralQuestion" name="generalQuestion" rows="3" maxlength="600" placeholder="궁금한 내용을 자유롭게 입력해 주세요."></textarea></div>
   <div class="booking-required-note" id="bookingSmsDeliveryNotice" role="note" style="background:#f2f7f3;border-left-color:#35634b;color:#254735">
