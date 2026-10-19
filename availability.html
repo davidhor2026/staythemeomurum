@@ -757,6 +757,49 @@ document.addEventListener("DOMContentLoaded",()=>{
 @keyframes inquiryReturnPulse {0%,100%{background:#185c3b;box-shadow:0 0 0 0 rgba(225,170,31,.55)}50%{background:#297a4e;box-shadow:0 0 0 7px rgba(225,170,31,.12)}}
 @media(prefers-reduced-motion:reduce){#inquiryReturnBar button{animation:none !important}}
 </style>
+
+<style id="vacancy-alignment-20261019">
+/* 객실별 공실현황: 날짜와 예약상태 열을 동일한 기준선에 정렬 */
+.roomrow > div:nth-child(2){min-width:0}
+.roomrow [data-detail]{width:100%;min-width:0}
+.roomrow .availability-row{
+  display:grid;
+  grid-template-columns:14px 94px minmax(0,1fr);
+  align-items:start;
+  column-gap:7px;
+  margin:5px 0;
+  white-space:normal;
+  line-height:1.5;
+}
+.roomrow .availability-dot{width:14px;text-align:center}
+.roomrow .availability-row-date{
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;
+}
+.roomrow .availability-row-status{
+  min-width:0;
+  overflow-wrap:break-word;
+  text-align:left;
+}
+@media(max-width:700px){
+  .roomrow .availability-row{
+    grid-template-columns:12px 78px minmax(0,1fr);
+    column-gap:4px;
+    font-size:12px;
+    line-height:1.55;
+  }
+  .roomrow .availability-dot{width:12px}
+  .roomrow .availability-row-date{letter-spacing:-.045em}
+}
+@media(max-width:390px){
+  .roomrow .availability-row{
+    grid-template-columns:10px 72px minmax(0,1fr);
+    column-gap:3px;
+    font-size:11.5px;
+  }
+}
+</style>
 </head><body><div id="inquiryReturnBar" style="display:none;position:sticky;top:0;z-index:9999;background:#eaf3ea;border-bottom:1px solid #bad4bf;padding:10px 14px;text-align:center;box-shadow:0 2px 8px #0001"><button type="button" onclick="returnToInquiry()" style="background:#205c3b;color:white;border:0;border-radius:9px;padding:12px 20px;font-size:16px;font-weight:700;cursor:pointer;width:min(100%,500px)">← 입주·예약 신청 안내로 돌아가기</button><div style="font-size:12px;color:#4a6451;margin-top:5px">이 창을 닫고 작성 중이던 문의 양식으로 돌아갑니다.</div></div><script>
 function returnToInquiry(){
   window.close();
