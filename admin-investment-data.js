@@ -1,5 +1,5 @@
 window.ADMIN_INVESTMENT_DATA={
- updatedAt:'2026.10.18 KST · 10/16 마지막 거래일 종가 · 10/18 브리핑 반영 (외부 원문 검증 필요)',
+ updatedAt:'2026.10.19 KST · 10/16 마지막 거래일 종가 · 10/19 브리핑 요약 추가 (외부 원문 검증 필요)',
  buyDecisions:[
   {name:'삼성전자우',ticker:'005935',action:'관망',close:'167,200원',closeDate:'2026.10.16 한국 정규장',dailyChange:'+5.09%',reason:'급락 이후 반등했으나 이전 수준 회복 여부와 HBM 수주·수급 확인이 필요합니다.',globalRisk:'AI 데이터센터 투자 회수, 미국 금리·달러, HBM 고객 인증과 메모리 가격',buyCondition:'우선주 실제 종가와 낙폭, HBM 출하·수주 및 실적 전망 유지 여부 확인 후 분할매수 검토',waitCondition:'실적 가이던스 하향, HBM 가격 하락 또는 외국인 매도 확대'},
   {name:'SCHD',ticker:'SCHD',action:'소액 분할매수 검토',close:'$34.35',closeDate:'2026.10.16 미국 정규장',dailyChange:'+0.73%',reason:'배당·가치주 상대 강세와 장기 배당투자 목적은 유효하나 고금리 및 단기 상승 부담이 있습니다.',globalRisk:'미 국채금리·연준 정책, 경기와 배당 지급기업의 이익',buyCondition:'SEC yield·분배수익률·주가·섹터 구성의 동일 기준일 검증 후 정기 분할매수 검토',waitCondition:'배당 삭감 확대, 기업이익 악화 또는 국채수익률 급등'},
@@ -121,6 +121,7 @@ window.ADMIN_INVESTMENT_DATA={
   {icon:'🌐',title:'국제정세·수출통제',signal:'공급망 꼬리위험',tone:'watch',text:'첨단칩·장비의 국가별 수출규칙은 판매 가능 시장과 제품 믹스를 바꿉니다. 발표 즉시 호재·악재로 단정하지 않고 적용 제품·고객·유예기간을 확인합니다.',affects:'삼성전자우·SCHG 직접',check:'미 상무부 규정 원문, 중국 매출 노출, 고객사의 재고·우회수요'}
  ],
  latest:[
+  {date:'2026-10-19',tag:'관리자 브리핑·원문 확인 필요',title:'10월 19일 브리핑 요약 — AI 전력·냉각과 SCHD 지표 점검',summary:'전일 브리핑에서 소개된 슈나이더 일렉트릭의 2026년 유기적 매출 성장 전망 12~14%, 조정 EBITDA 유기적 성장 전망 18~21%, SCHD 30일 SEC 수익률 3.23%(브리핑 제시 10/15 기준)를 검증 대기 참고자료로 기록합니다. 원문과 기준일을 재확인하기 전 확정 실적 또는 실시간 수치로 표시하지 않습니다.',meaning:'AI 데이터센터 전력·냉각 설비 수요의 실적 반영 가능성과 SCHD 배당 지표를 우선 관찰합니다. 삼성전자·SK하이닉스 HBM 출하 증가 및 ETF 가격 상승을 보장하지 않습니다. SCHG·SCHB·SCHF 비교는 동일 기준일 수치 확보 전 기존 자료 유지. 농업·수자원 신규 검증 수치 없음.',sourceName:'Schneider Electric IR / Schwab SCHD 공식 (원문 재확인 필요)',sourceUrl:'https://www.schwabassetmanagement.com/products/schd'},
   {date:'2026-10-18',tag:'관리자 브리핑·갱신 안내',title:'10월 18일 브리핑 반영 — SCHD 지표와 AI 금융조달 위험',summary:'SCHD 30일 SEC Yield 3.23%(브리핑 제시 10/15 기준), 회전율 40.61%(9월 말 기준)를 검증 대기 지표로 추가했습니다. Anthropic 금융조달·CXMT DDR5 기술 및 우크라이나 곡물 운송 소식은 확정 계약·실적과 구분합니다.',meaning:'삼성전자우·SCHG·FLIN 관망, SCHD 소액 분할매수 검토 의견 유지. 10/18 일요일 신규 종가 없음. 신규 공식 숫자 원문 확인 전 그래프 갱신 없음.',sourceName:'Schwab SCHD / Reuters (원문 대조 필요)',sourceUrl:'https://www.schwabassetmanagement.com/products/schd'},
 
   {date:'2026-10-17',tag:'보유종목·전일 종가',title:'10월 16일 종가와 분할매수·관망 판단 (브리핑 수치, 외부 재검증 필요)',summary:'삼성전자우 167,200원(+5.09%), SCHD $34.35(+0.73%), SCHG $35.21(-2.00%), FLIN $34.15(-0.58%). 모두 10/16 정규장 종가로 제공된 브리핑 수치이며 이 파일 생성 시 별도 거래소 시세 검증은 완료되지 않았습니다.',meaning:'SCHD는 소액 분할매수 검토, 나머지 3종목은 관망. 금리·AI 투자 회수·유가·환율을 확인합니다. 자동 주문 신호나 가격 예측이 아닙니다.',sourceName:'시세 확인: Yahoo Finance',sourceUrl:'https://finance.yahoo.com/'},
