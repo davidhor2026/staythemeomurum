@@ -24,10 +24,11 @@ const VACANCY_MANAGER = {
     name: "스탠다드룸",
     now: 0,
     dates: [
-      "2026-10-24",
+      "2026-11-08",
       "2026-11-16"
     ],
     bookedDates: [
+      { date: "2026-10-24", bookedOn: "2026-10-19" },
       { date: "2026-11-20", bookedOn: "2026-10-18" },
       { date: "2026-10-13", bookedOn: "2026-10-08" },
       { date: "2026-09-21", bookedOn: "2026-09-19" },
@@ -45,10 +46,10 @@ const VACANCY_MANAGER = {
     name: "디럭스룸",
     now: 0,
     dates: [
-      "2026-10-30",
-      "2026-11-08"
+      "2026-10-30"
     ],
     bookedDates: [
+      { date: "2026-11-08", bookedOn: "2026-10-19" },
       { date: "2026-11-29", bookedOn: "2026-10-17" }
     ],
     tourDates: [],
