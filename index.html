@@ -98,6 +98,18 @@
   .police-confetti-piece.is-round{width:6px;height:6px}
 }
 
+/* 주요 시험 응원 배너: 시선을 방해하지 않는 은은한 밝기 변화 */
+.police-congrats-image-wrap > img[src="upcoming-exams-cheer-2026.png"]{
+  animation: upcomingExamSoftGlow 3.2s ease-in-out infinite;
+}
+@keyframes upcomingExamSoftGlow{
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.065)}
+}
+@media (prefers-reduced-motion:reduce){
+  .police-congrats-image-wrap > img[src="upcoming-exams-cheer-2026.png"]{animation:none}
+}
+
 </style>
 
 <style id="hero-vacancy-sync-style-20260822">
@@ -194,70 +206,11 @@
 <span id="visitorLoadingText">방문현황 불러오는 중...</span>
 <span id="visitorCountText" hidden>오늘 <strong id="visitorToday">-</strong>명<span class="visitor-sep">·</span> 누적 <strong id="visitorTotal">-</strong>명</span>
 </div>
-<section aria-label="경찰 필기시험 합격 축하 안내" class="congrats-banner-section police-congrats-image-section">
-  <div class="police-congrats-image-wrap" id="policeCongratsWrap" role="button" tabindex="0" aria-label="2026 경찰 필기시험 합격 축하 배너. 누르면 축하 효과를 다시 볼 수 있습니다.">
-    <img src="police-written-pass-banner-2026-v3.png" alt="2026 경찰공무원 채용시험 필기시험 합격 축하 배너"/>
-    <div class="police-passers-dynamic" id="policePassersDynamic" aria-label="경찰 필기 합격자 명단"></div>
-    <div class="police-congrats-confetti" id="policeCongratsConfetti" aria-hidden="true"></div>
+<section aria-label="2026년 하반기 주요 시험 수험생 응원" class="congrats-banner-section police-congrats-image-section">
+  <div class="police-congrats-image-wrap">
+    <img src="upcoming-exams-cheer-2026.png" alt="지방직 7급 필기시험, 초등 임용 1차, 중등 임용 1차, 국가직 7급 면접시험 수험생 합격 응원 배너" loading="eager"/>
   </div>
 </section>
-<script>
-  document.write('<script src="police-passers.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
-</script>
-<script>
-(function(){
-  var wrap=document.getElementById('policePassersDynamic');
-  if(!wrap) return;
-  var names=(window.STAY_POLICE_PASSERS && Array.isArray(window.STAY_POLICE_PASSERS.names))
-    ? window.STAY_POLICE_PASSERS.names
-    : ['박O영','장O보','이O름','조O서'];
-  wrap.innerHTML='';
-  names.forEach(function(name){
-    var span=document.createElement('span');
-    span.className='police-passer-name';
-    span.textContent=String(name);
-    wrap.appendChild(span);
-  });
-})();
-</script>
-
-<script>
-(function(){
-  var wrap=document.getElementById('policeCongratsWrap');
-  var layer=document.getElementById('policeCongratsConfetti');
-  if(!wrap || !layer) return;
-  var colors=['#f4cf54','#fff3bd','#ffffff','#d8b23f','#f8e7a0'];
-
-  function celebrate(){
-    layer.innerHTML='';
-    wrap.classList.remove('police-congrats-celebrate');
-    void wrap.offsetWidth;
-    wrap.classList.add('police-congrats-celebrate');
-
-    for(var i=0;i<26;i++){
-      var piece=document.createElement('span');
-      piece.className='police-confetti-piece' + (i%5===0 ? ' is-round' : '');
-      piece.style.left=(2+Math.random()*96)+'%';
-      piece.style.setProperty('--confetti-color',colors[i%colors.length]);
-      piece.style.setProperty('--fall-delay',(Math.random()*.7).toFixed(2)+'s');
-      piece.style.setProperty('--fall-duration',(2.35+Math.random()*.95).toFixed(2)+'s');
-      piece.style.setProperty('--drift',(-38+Math.random()*76).toFixed(0)+'px');
-      piece.style.setProperty('--spin',((Math.random()>.5?1:-1)*(260+Math.random()*420)).toFixed(0)+'deg');
-      layer.appendChild(piece);
-    }
-    window.setTimeout(function(){
-      layer.innerHTML='';
-      wrap.classList.remove('police-congrats-celebrate');
-    },4100);
-  }
-
-  window.setTimeout(celebrate,250);
-  wrap.addEventListener('click',celebrate);
-  wrap.addEventListener('keydown',function(e){
-    if(e.key==='Enter' || e.key===' '){e.preventDefault();celebrate();}
-  });
-})();
-</script>
 <section aria-labelledby="examHomeTitle" class="exam-home-widget exam-home-widget--collapsible" id="exam-home">
 <button aria-controls="examHomeContent" aria-expanded="false" class="exam-home-toggle" id="examHomeToggle" type="button">
 <span class="exam-home-toggle-copy">
