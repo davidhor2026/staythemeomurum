@@ -373,7 +373,7 @@ function renderVacancyCalendar(){
     noteHtml += `<span class="legend-item"><b class="green">●</b> 즉시 입실 가능</span>`;
   }
   if(room.events.length){
-    noteHtml += `<span class="legend-item"><b class="orange">●</b> 예약 가능(입주 40일 이내)</span><span class="legend-item"><b class="mustard">●</b> 공실 예정(입주 41일 이상 · 입주문의)</span>`;
+    noteHtml += `<span class="legend-item"><b class="orange">●</b> 예약 가능(입주 40일 이내)</span><span class="legend-item"><b class="mustard">●</b> 사전 입주문의 가능(입주까지 41일 이상)</span>`;
   }
   if(activeBookedEvents(room).length){
     noteHtml += `<span class="legend-item"><b class="blue">●</b> 예약 완료</span>`;
@@ -801,6 +801,12 @@ document.addEventListener("DOMContentLoaded",()=>{
   }
 }
 </style>
+<style id="compact-inquiry-guide-20261021">
+.calendar-entry-guide,.calendar-booking-guide{font-size:13px!important;line-height:1.65!important;font-weight:400!important;letter-spacing:-.015em!important;margin:12px 0 16px!important;padding:12px 14px!important;word-break:keep-all}
+.calendar-entry-guide strong,.calendar-booking-guide strong{font-size:15px!important;font-weight:750!important}
+.calendar-entry-guide b,.calendar-booking-guide b{font-weight:700!important}
+@media(max-width:700px){.calendar-entry-guide,.calendar-booking-guide{font-size:12.5px!important;line-height:1.6!important;padding:11px 12px!important}.calendar-entry-guide strong,.calendar-booking-guide strong{font-size:14px!important}}
+</style>
 </head><body><div id="inquiryReturnBar" style="display:none;position:sticky;top:0;z-index:9999;background:#eaf3ea;border-bottom:1px solid #bad4bf;padding:10px 14px;text-align:center;box-shadow:0 2px 8px #0001"><button type="button" onclick="returnToInquiry()" style="background:#205c3b;color:white;border:0;border-radius:9px;padding:12px 20px;font-size:16px;font-weight:700;cursor:pointer;width:min(100%,500px)">← 입주·예약 신청 안내로 돌아가기</button><div style="font-size:12px;color:#4a6451;margin-top:5px">이 창을 닫고 작성 중이던 문의 양식으로 돌아갑니다.</div></div><script>
 function returnToInquiry(){
   window.close();
@@ -839,7 +845,7 @@ if(new URLSearchParams(location.search).get('from')==='inquiry'){
  <div class="vacancy-color-legend">
 <span><i class="legend-dot legend-green"></i><span id="greenLegendText"></span></span>
 <span><i class="legend-dot legend-orange"></i><span id="orangeLegendText"></span></span>
-<span><i class="legend-dot legend-mustard"></i>황금색 = 공실 예정(입주 41일 이상 · 입주문의)</span>
+<span><i class="legend-dot legend-mustard"></i>황금색 = 사전 입주문의 가능(입주까지 41일 이상)</span>
 <span><i class="legend-dot legend-blue"></i><span id="blueLegendText"></span></span>
 <span><i class="legend-dot legend-purple"></i>보라색 = 룸투어 예정(예약 확정 전)</span>
 <span><i class="legend-dot legend-gray"></i><span id="grayLegendText"></span></span>
@@ -848,7 +854,7 @@ if(new URLSearchParams(location.search).get('from')==='inquiry'){
 
 
 <section class="details" id="room-details">
- <p class="calendar-entry-guide"><strong>입주 문의 안내</strong><br><b>황금색(공실 예정)</b>은 입주 41일 이상 남은 공실로, <b>입주문의</b>를 통해 사전 상담할 수 있으며 계약금 환불 조건은 별도 협의합니다. <b>오렌지색(예약 가능)</b>은 입주 40일 이내로, 입주 제한 조건과 운영 상황을 확인한 뒤 예약할 수 있습니다. 캘린더의 <b>입주문의</b>를 누르면 문자 보내기로 연결됩니다. 실제 예약 가능 여부는 객실 운영 상황에 따라 달라질 수 있습니다.</p>
+ <p class="calendar-entry-guide"><strong>입주 문의 안내</strong><br><b>황금색</b>은 입주까지 41일 이상 남은 공실로, 사전 상담이 가능합니다(계약금 환불 조건 별도 협의). <b>오렌지색</b>은 입주까지 40일 이내인 예약 가능 객실입니다.<br>캘린더의 <b>입주문의</b>를 누르면 문자 앱으로 연결됩니다. 예약 가능 여부는 상담 후 확인됩니다.</p>
  <h3 id="roomSectionTitle"></h3>
  <div class="roomrow"><div class="roomicon">🛏</div><div><h4>스탠다드룸</h4><div data-detail="standard"></div></div><div class="room-actions"><button type="button" class="calendar-open-btn" onclick="openVacancyCalendar('standard')"><span class="calendar-button-label">공실 캘린더</span></button><a href="rooms.html?from=availability#standard"><span class="detail-button-label">자세히 보기 ›</span></a></div></div>
  <div class="roomrow"><div class="roomicon">🛏</div><div><h4>디럭스룸</h4><div data-detail="deluxe"></div></div><div class="room-actions"><button type="button" class="calendar-open-btn" onclick="openVacancyCalendar('deluxe')"><span class="calendar-button-label">공실 캘린더</span></button><a href="rooms.html?from=availability#deluxe"><span class="detail-button-label">자세히 보기 ›</span></a></div></div>
@@ -870,7 +876,7 @@ if(new URLSearchParams(location.search).get('from')==='inquiry'){
     </div>
     <button type="button" class="calendar-close-btn" onclick="document.getElementById('vacancyCalendarPanel').hidden=true">닫기</button>
   </div>
-  <p class="calendar-booking-guide" role="note"><strong>입주 문의 안내</strong><br><b>황금색(공실 예정)</b>은 입주 41일 이상 남은 공실로, <b>입주문의</b>를 통해 사전 상담할 수 있으며 계약금 환불 조건은 별도 협의합니다. <b>오렌지색(예약 가능)</b>은 입주 40일 이내로, 입주 제한 조건과 운영 상황을 확인한 뒤 예약할 수 있습니다. 캘린더의 <b>입주문의</b>를 누르면 문자 보내기로 연결됩니다. 실제 예약 가능 여부는 객실 운영 상황에 따라 달라질 수 있습니다.</p>
+  <p class="calendar-booking-guide" role="note"><strong>입주 문의 안내</strong><br><b>황금색</b>은 입주까지 41일 이상 남은 공실로, 사전 상담이 가능합니다(계약금 환불 조건 별도 협의). <b>오렌지색</b>은 입주까지 40일 이내인 예약 가능 객실입니다.<br>캘린더의 <b>입주문의</b>를 누르면 문자 앱으로 연결됩니다. 예약 가능 여부는 상담 후 확인됩니다.</p>
   <div class="calendar-nav">
     <button type="button" onclick="changeCalendarMonth(-1)" aria-label="이전 달">‹</button>
     <strong id="calendarMonthLabel"></strong>
