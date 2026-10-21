@@ -28,17 +28,14 @@
 .detail-return:hover{background:#e8f1e5}
 @media(max-width:600px){.room-detail-card{scroll-margin-top:12px}.detail-return{font-size:13px;padding:8px 11px}}
 
-/* 객실 타입별 경계 구분: 기존 카드 내용과 기능은 유지 */
-.room-detail-list{display:flex;flex-direction:column;gap:34px;margin-top:22px}
-.room-detail-list>.room-detail-card{position:relative;overflow:visible;border:2px solid #dce6de;border-radius:19px;background:#fff;box-shadow:0 7px 22px rgba(29,65,43,.075);margin:0;padding:0}
-.room-detail-list>.room-detail-card::before{content:"";position:absolute;left:0;right:0;top:0;height:7px;background:#6d987e;border-radius:17px 17px 0 0;z-index:1}
-.room-detail-list>.room-detail-card:nth-child(2)::before{background:#8c9aaf}
-.room-detail-list>.room-detail-card:nth-child(3)::before{background:#c4a47d}
-.room-detail-list>.room-detail-card:nth-child(4)::before{background:#8ca8a0}
-.room-detail-list>.room-detail-card .room-detail-media{overflow:hidden;border-radius:16px 16px 0 0}
+/* 객실 타입 경계: 색상 띠 없이 얇은 실선과 여백으로 구분 */
+.room-detail-list{display:flex;flex-direction:column;gap:32px;margin-top:22px}
+.room-detail-list>.room-detail-card{position:relative;overflow:visible;border:1px solid #d7dcd9;border-radius:16px;background:#fff;box-shadow:0 3px 12px rgba(25,45,34,.045);margin:0;padding:0}
+.room-detail-list>.room-detail-card::before{content:none!important;display:none!important}
+.room-detail-list>.room-detail-card .room-detail-media{overflow:hidden;border-radius:15px 15px 0 0}
 .room-detail-list>.room-detail-card .room-detail-body{padding-top:20px;padding-bottom:22px}
-.room-detail-list>.room-detail-card .room-detail-head{border-bottom:1px solid #e8eee9;padding-bottom:13px;margin-bottom:13px}
-@media(max-width:600px){.room-detail-list{gap:27px}.room-detail-list>.room-detail-card{border-radius:15px}.room-detail-list>.room-detail-card .room-detail-media{border-radius:12px 12px 0 0}}
+.room-detail-list>.room-detail-card .room-detail-head{border-bottom:1px solid #e4e7e5;padding-bottom:13px;margin-bottom:13px}
+@media(max-width:600px){.room-detail-list{gap:25px}.room-detail-list>.room-detail-card{border-radius:13px}.room-detail-list>.room-detail-card .room-detail-media{border-radius:12px 12px 0 0}}
 </style>
 </head>
 <body>
