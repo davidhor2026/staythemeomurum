@@ -3,9 +3,9 @@
 <html lang="ko">
 <head>
 <!-- Automatic freshness policy: HTML revalidation + local CSS/JS cache busting -->
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-<meta http-equiv="Pragma" content="no-cache"/>
-<meta http-equiv="Expires" content="0"/>
+<meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/>
+<meta content="no-cache" http-equiv="Pragma"/>
+<meta content="0" http-equiv="Expires"/>
 <script>
   window.__STAY_CACHE_V = String(Date.now());
 </script>
@@ -20,7 +20,6 @@
   document.write('<link rel="stylesheet" href="style.css?v=' + window.__STAY_CACHE_V + '">');
 </script>
 <noscript><link href="style.css" rel="stylesheet"/></noscript>
-
 <style id="room-detail-anchor-fix-20260820">
 .room-detail-card{scroll-margin-top:24px}
 .detail-return-wrap{margin:12px 0 2px;text-align:left}
@@ -28,14 +27,18 @@
 .detail-return:hover{background:#e8f1e5}
 @media(max-width:600px){.room-detail-card{scroll-margin-top:12px}.detail-return{font-size:13px;padding:8px 11px}}
 
-/* 객실 타입 경계: 색상 띠 없이 얇은 실선과 여백으로 구분 */
-.room-detail-list{display:flex;flex-direction:column;gap:32px;margin-top:22px}
-.room-detail-list>.room-detail-card{position:relative;overflow:visible;border:1px solid #d7dcd9;border-radius:16px;background:#fff;box-shadow:0 3px 12px rgba(25,45,34,.045);margin:0;padding:0}
+/* 객실 경계선은 각 다음 객실 사진 바로 위에 배치 */
+.room-detail-list{display:flex;flex-direction:column;gap:0;margin-top:22px}
+.room-detail-list>.room-detail-card{position:relative;overflow:visible;border:0;border-radius:0;background:#fff;box-shadow:none;margin:0;padding:0}
 .room-detail-list>.room-detail-card::before{content:none!important;display:none!important}
-.room-detail-list>.room-detail-card .room-detail-media{overflow:hidden;border-radius:15px 15px 0 0}
-.room-detail-list>.room-detail-card .room-detail-body{padding-top:20px;padding-bottom:22px}
+.room-detail-list>.room-detail-card:not(:first-child){border-top:1px solid #aeb8b2;margin-top:34px;padding-top:34px}
+.room-detail-list>.room-detail-card .room-detail-media{overflow:hidden;border-radius:12px}
+.room-detail-list>.room-detail-card .room-detail-body{padding-top:20px;padding-bottom:0}
 .room-detail-list>.room-detail-card .room-detail-head{border-bottom:1px solid #e4e7e5;padding-bottom:13px;margin-bottom:13px}
-@media(max-width:600px){.room-detail-list{gap:25px}.room-detail-list>.room-detail-card{border-radius:13px}.room-detail-list>.room-detail-card .room-detail-media{border-radius:12px 12px 0 0}}
+.room-title-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.room-title-row h3{margin:0;flex:1 1 auto}
+.room-title-row .detail-return{display:inline-flex;align-items:center;white-space:nowrap;font-size:13px}
+@media(max-width:600px){.room-detail-list>.room-detail-card:not(:first-child){margin-top:26px;padding-top:26px}.room-title-row{align-items:center}.room-title-row .detail-return{font-size:12px}}
 </style>
 </head>
 <body>
@@ -54,23 +57,23 @@
 </header>
 <!-- 공통 상단 메뉴 -->
 <nav>
-  <a href="index.html">메인페이지</a>
-  <a href="rooms.html">방타입</a>
-  <a href="facilities.html">시설</a>
-  <a href="reviews.html">후기</a>
-  <a href="faq.html">FAQ</a>
-  <a href="quiz.html">시험대비 퀴즈</a>
-  <a href="exam-insight.html">시험분석</a>
-  <a href="exam-schedule.html">시험 일정</a>
-  <a href="games.html">머무름 게임</a>
-  <a href="fortune.html">오늘의 운세</a>
-  <a href="knowledge.html">지식노트</a>
-  <a href="current-issues.html">시사·상식</a>
-  <a href="word-roots.html">어원 영단어</a>
-  <a href="career-benefits.html">채용제도·복지</a>
-  <a href="rent-support.html">청년 지원 정책</a>
-  <a href="gift.html">응원글 이벤트</a>
-  <a href="international.html">English</a>
+<a href="index.html">메인페이지</a>
+<a href="rooms.html">방타입</a>
+<a href="facilities.html">시설</a>
+<a href="reviews.html">후기</a>
+<a href="faq.html">FAQ</a>
+<a href="quiz.html">시험대비 퀴즈</a>
+<a href="exam-insight.html">시험분석</a>
+<a href="exam-schedule.html">시험 일정</a>
+<a href="games.html">머무름 게임</a>
+<a href="fortune.html">오늘의 운세</a>
+<a href="knowledge.html">지식노트</a>
+<a href="current-issues.html">시사·상식</a>
+<a href="word-roots.html">어원 영단어</a>
+<a href="career-benefits.html">채용제도·복지</a>
+<a href="rent-support.html">청년 지원 정책</a>
+<a href="gift.html">응원글 이벤트</a>
+<a href="international.html">English</a>
 <a href="index.html#contact">문의</a>
 </nav>
 <div aria-label="방문자수" class="visitor-counter" id="visitorCounter">
@@ -83,16 +86,16 @@
 <h2>타입별 자세히 보기</h2>
 <p>사진 속 침구류는 홍보용 연출이며, 방 구조는 호실별로 조금씩 다를 수 있습니다.</p>
 <div class="price-notice">
-<strong>방값 안내</strong><br>
+<strong>방값 안내</strong><br/>
 방값과 보증금은 시기에 따라 금액이 변동될 수 있으니 입주 전 최종 확인을 권장합니다.
 </div>
 <div class="room-detail-list">
 <article class="room-detail-card featured" id="suite1">
-<div class="room-detail-media"><img alt="스위트룸1 상세 홍보 이미지" src="suite1-detail.png"></div>
+<div class="room-detail-media"><img alt="스위트룸1 상세 홍보 이미지" src="suite1-detail.png"/></div>
 <div class="room-detail-body">
-<div class="detail-return-wrap"><a class="detail-return" href="availability.html#room-details">← 객실별 공실 현황</a></div>
-<div class="room-detail-head">
-<h3>스위트룸1</h3>
+
+<div class="room-detail-head"><div class="room-title-row"><h3>스위트룸1</h3><a class="detail-return" href="availability.html#room-details">공실현황 바로가기 →</a></div>
+
 <div class="room-price">월 49만원 / 보증금 20만원<small>금액은 변동될 수 있습니다</small></div>
 </div>
 <div class="room-tags"><span class="room-tag">넉넉한 수납공간</span><span class="room-tag">여유로운 공간 구성</span><span class="room-tag">장기 거주 추천</span></div>
@@ -101,11 +104,11 @@
 </div>
 </article>
 <article class="room-detail-card featured" id="suite2">
-<div class="room-detail-media"><img alt="스위트룸2 상세 홍보 이미지" src="suite2-detail.png"></div>
+<div class="room-detail-media"><img alt="스위트룸2 상세 홍보 이미지" src="suite2-detail.png"/></div>
 <div class="room-detail-body">
-<div class="detail-return-wrap"><a class="detail-return" href="availability.html#room-details">← 객실별 공실 현황</a></div>
-<div class="room-detail-head">
-<h3>스위트룸2</h3>
+
+<div class="room-detail-head"><div class="room-title-row"><h3>스위트룸2</h3><a class="detail-return" href="availability.html#room-details">공실현황 바로가기 →</a></div>
+
 <div class="room-price">월 46만원 / 보증금 20만원<small>금액은 변동될 수 있습니다</small></div>
 </div>
 <div class="room-tags"><span class="room-tag">실용형 프리미엄</span><span class="room-tag">객실별 구조 차이</span><span class="room-tag">공부와 생활 균형</span></div>
@@ -114,14 +117,14 @@
 </div>
 </article>
 <article class="room-detail-card" id="deluxe">
-<div class="room-detail-media"><img alt="디럭스룸 사진" src="room-deluxe.png"></div>
+<div class="room-detail-media"><img alt="디럭스룸 사진" src="room-deluxe.png"/></div>
 <div class="room-detail-body">
-<div class="detail-return-wrap"><a class="detail-return" href="availability.html#room-details">← 객실별 공실 현황</a></div>
-<div class="room-detail-head">
-<h3>디럭스룸 <span style="display:inline-block;vertical-align:middle;margin-left:7px;padding:4px 9px;border-radius:999px;background:#eef4ef;color:#35674a;font-size:0.55em;font-weight:600;line-height:1.4;">컴팩트룸 1실 별도 운영</span> <button type="button" onclick="var el=document.getElementById('deluxe-compact-preview');var expanded=el.hidden;el.hidden=!expanded;this.setAttribute('aria-expanded',String(expanded));this.textContent=expanded?'사진 닫기':'컴팩트룸 구경하기';" aria-controls="deluxe-compact-preview" aria-expanded="false" style="vertical-align:middle;margin-left:7px;padding:5px 11px;border:1px solid #b8cbbd;border-radius:18px;background:white;color:#35674a;font-size:13px;font-weight:700;cursor:pointer;">컴팩트룸 구경하기</button></h3>
+
+<div class="room-detail-head"><div class="room-title-row"><h3>디럭스룸 <span style="display:inline-block;vertical-align:middle;margin-left:7px;padding:4px 9px;border-radius:999px;background:#eef4ef;color:#35674a;font-size:0.55em;font-weight:600;line-height:1.4;">컴팩트룸 1실 별도 운영</span> <button aria-controls="deluxe-compact-preview" aria-expanded="false" onclick="var el=document.getElementById('deluxe-compact-preview');var expanded=el.hidden;el.hidden=!expanded;this.setAttribute('aria-expanded',String(expanded));this.textContent=expanded?'사진 닫기':'컴팩트룸 구경하기';" style="vertical-align:middle;margin-left:7px;padding:5px 11px;border:1px solid #b8cbbd;border-radius:18px;background:white;color:#35674a;font-size:13px;font-weight:700;cursor:pointer;" type="button">컴팩트룸 구경하기</button></h3><a class="detail-return" href="availability.html#room-details">공실현황 바로가기 →</a></div>
+
 <div class="room-price">월 38만원 / 보증금 10만원<small>금액은 변동될 수 있습니다</small></div>
 </div>
-<div id="deluxe-compact-preview" hidden style="margin:12px 0 16px;"><img src="room-deluxe-compact.png" alt="디럭스 컴팩트룸 연출 사진" loading="lazy" style="display:block;width:100%;max-width:520px;height:auto;border-radius:12px;"></div>
+<div hidden="" id="deluxe-compact-preview" style="margin:12px 0 16px;"><img alt="디럭스 컴팩트룸 연출 사진" loading="lazy" src="room-deluxe-compact.png" style="display:block;width:100%;max-width:520px;height:auto;border-radius:12px;"/></div>
 <p class="room-detail-text" style="margin:10px 0 12px;"><strong>디럭스 컴팩트룸 (월 36만원)</strong>도 1실 운영합니다. 일반 디럭스룸(월 38만원)보다 객실 크기가 조금 작으며, 창문 크기는 객실마다 차이가 있을 수 있습니다.</p>
 <div class="room-tags"><span class="room-tag">외창방</span><span class="room-tag">암막블라인드</span><span class="room-tag">낮 휴식에 유리</span></div>
 <p class="room-detail-text">디럭스룸은 외창이 있는 타입으로, 암막블라인드가 설치되어 있어 낮에도 햇빛의 방해를 줄이고 편하게 쉴 수 있다는 점이 장점입니다. 밝은 빛에 민감하거나 낮 시간 휴식이 필요한 분께 특히 도움이 됩니다.</p>
@@ -129,11 +132,11 @@
 </div>
 </article>
 <article class="room-detail-card" id="standard">
-<div class="room-detail-media"><img alt="스탠다드룸 사진" src="room-standard.png"></div>
+<div class="room-detail-media"><img alt="스탠다드룸 사진" src="room-standard.png"/></div>
 <div class="room-detail-body">
-<div class="detail-return-wrap"><a class="detail-return" href="availability.html#room-details">← 객실별 공실 현황</a></div>
-<div class="room-detail-head">
-<h3>스탠다드룸</h3>
+
+<div class="room-detail-head"><div class="room-title-row"><h3>스탠다드룸</h3><a class="detail-return" href="availability.html#room-details">공실현황 바로가기 →</a></div>
+
 <div class="room-price">월 35만원 / 보증금 10만원<small>스탠다드 컴팩트룸 일부 운영 · 월 33만원</small></div>
 </div>
 <div class="room-tags"><span class="room-tag">실속형</span><span class="room-tag">공기청정기</span><span class="room-tag">합리적인 비용</span></div>
@@ -205,8 +208,6 @@
     .catch(showError);
 })();
 </script>
-
-
 <script id="room-detail-anchor-fix-script-20260820">
 (function(){
   function target(){
@@ -232,7 +233,6 @@
   }
 })();
 </script>
-
 <script>
   document.write('<script src="site-updates.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
 </script>
