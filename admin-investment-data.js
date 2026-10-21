@@ -1,5 +1,5 @@
 window.ADMIN_INVESTMENT_DATA={
- updatedAt:'2026.10.19 KST · 10/16 마지막 거래일 종가 · 10/19 브리핑 요약 추가 (외부 원문 검증 필요)',
+ updatedAt:'2026.10.21 KST · 10/21 브리핑 참고자료 추가 · 수치 원문 재검증 필요 · 보유자산 종가는 10/16 기준',
  buyDecisions:[
   {name:'삼성전자우',ticker:'005935',action:'관망',close:'167,200원',closeDate:'2026.10.16 한국 정규장',dailyChange:'+5.09%',reason:'급락 이후 반등했으나 이전 수준 회복 여부와 HBM 수주·수급 확인이 필요합니다.',globalRisk:'AI 데이터센터 투자 회수, 미국 금리·달러, HBM 고객 인증과 메모리 가격',buyCondition:'우선주 실제 종가와 낙폭, HBM 출하·수주 및 실적 전망 유지 여부 확인 후 분할매수 검토',waitCondition:'실적 가이던스 하향, HBM 가격 하락 또는 외국인 매도 확대'},
   {name:'SCHD',ticker:'SCHD',action:'소액 분할매수 검토',close:'$34.35',closeDate:'2026.10.16 미국 정규장',dailyChange:'+0.73%',reason:'배당·가치주 상대 강세와 장기 배당투자 목적은 유효하나 고금리 및 단기 상승 부담이 있습니다.',globalRisk:'미 국채금리·연준 정책, 경기와 배당 지급기업의 이익',buyCondition:'SEC yield·분배수익률·주가·섹터 구성의 동일 기준일 검증 후 정기 분할매수 검토',waitCondition:'배당 삭감 확대, 기업이익 악화 또는 국채수익률 급등'},
