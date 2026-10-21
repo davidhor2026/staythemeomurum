@@ -373,7 +373,7 @@ function renderVacancyCalendar(){
     noteHtml += `<span class="legend-item"><b class="green">●</b> 즉시 입실 가능</span>`;
   }
   if(room.events.length){
-    noteHtml += `<span class="legend-item"><b class="orange">●</b> 예약 가능(입주 40일 이내)</span><span class="legend-item"><b class="mustard">●</b> 사전 입주문의 가능(입주까지 41일 이상)</span>`;
+    noteHtml += `<span class="legend-item"><b class="orange">●</b> 예약 가능(입주 40일 이내)</span><span class="legend-item"><b class="mustard">●</b> 공실 예정 (사전 입주문의 가능 / 입주까지 41일 이상)</span>`;
   }
   if(activeBookedEvents(room).length){
     noteHtml += `<span class="legend-item"><b class="blue">●</b> 예약 완료</span>`;
@@ -845,7 +845,7 @@ if(new URLSearchParams(location.search).get('from')==='inquiry'){
  <div class="vacancy-color-legend">
 <span><i class="legend-dot legend-green"></i><span id="greenLegendText"></span></span>
 <span><i class="legend-dot legend-orange"></i><span id="orangeLegendText"></span></span>
-<span><i class="legend-dot legend-mustard"></i>황금색 = 사전 입주문의 가능(입주까지 41일 이상)</span>
+<span><i class="legend-dot legend-mustard"></i>황금색 = 공실 예정 (사전 입주문의 가능 / 입주까지 41일 이상)</span>
 <span><i class="legend-dot legend-blue"></i><span id="blueLegendText"></span></span>
 <span><i class="legend-dot legend-purple"></i>보라색 = 룸투어 예정(예약 확정 전)</span>
 <span><i class="legend-dot legend-gray"></i><span id="grayLegendText"></span></span>
