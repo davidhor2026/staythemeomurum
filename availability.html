@@ -209,7 +209,7 @@ function renderAvailability(){
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
         const tour=activeTourEvents(room).find(item=>item.forDate===e.date);
         const tourText=tour ? ` <span class="purple">· ${DISPLAY_TEXT.roomTour}</span>` : '';
-        lines += `<p class="${vacancyDateColor(e.date)} availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${vacancyDateLabel(e.date)}${tourText}${key === "deluxe" && e.date === "2026-10-30" ? " · 디럭스 컴팩트룸 (월 36만원 · 1실)" : ""}</span></p>`;
+        lines += `<p class="${vacancyDateColor(e.date)} availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${vacancyDateLabel(e.date)}${tourText}${key === "deluxe" && e.date === "2026-10-30" ? " · 컴팩트룸" : ""}</span></p>`;
       });
       activeTourEvents(room).forEach(e=>{
         lines += `<p class="purple availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.roomTour} (예약 확정 전)</span></p>`;
@@ -346,7 +346,7 @@ function renderVacancyCalendar(){
     }else if(eventsByDate[iso]){
       cell.classList.add(isAdvanceVacancy(iso)?'has-advance':'has-upcoming');
       cell.innerHTML += `<span class="calendar-mark ${vacancyDateColor(iso)}">${vacancyDateLabel(iso)}</span>`;
-      if(calendarRoomKey==='deluxe' && iso==='2026-10-30') cell.innerHTML += `<span class="calendar-mark" style="background:#edf4ee;color:#326447;font-size:11px;line-height:1.4;">디럭스 컴팩트룸 · 월 36만원 (1실)</span>`;
+      if(calendarRoomKey==='deluxe' && iso==='2026-10-30') cell.innerHTML += `<span class="calendar-mark" style="background:#edf4ee;color:#326447;font-size:11px;line-height:1.4;">컴팩트룸</span>`;
     }
     if(toursByDate[iso]){
       cell.classList.add('has-tour');
