@@ -807,6 +807,14 @@ document.addEventListener("DOMContentLoaded",()=>{
 .calendar-entry-guide b,.calendar-booking-guide b{font-weight:700!important}
 @media(max-width:700px){.calendar-entry-guide,.calendar-booking-guide{font-size:12.5px!important;line-height:1.6!important;padding:11px 12px!important}.calendar-entry-guide strong,.calendar-booking-guide strong{font-size:14px!important}}
 </style>
+
+<style id="inquiry-guide-spacing-20261022">
+/* 입주 문의 안내의 불필요한 내부 여백만 축소 */
+#room-details{padding-top:12px}
+#room-details>.calendar-entry-guide{margin:0 0 12px!important;padding:0!important;line-height:1.5!important}
+#room-details>.calendar-entry-guide strong{display:inline-block;margin-bottom:3px}
+@media(max-width:700px){#room-details{padding-top:10px}#room-details>.calendar-entry-guide{margin:0 0 10px!important;line-height:1.5!important}}
+</style>
 </head><body><div id="inquiryReturnBar" style="display:none;position:sticky;top:0;z-index:9999;background:#eaf3ea;border-bottom:1px solid #bad4bf;padding:10px 14px;text-align:center;box-shadow:0 2px 8px #0001"><button type="button" onclick="returnToInquiry()" style="background:#205c3b;color:white;border:0;border-radius:9px;padding:12px 20px;font-size:16px;font-weight:700;cursor:pointer;width:min(100%,500px)">← 입주·예약 신청 안내로 돌아가기</button><div style="font-size:12px;color:#4a6451;margin-top:5px">이 창을 닫고 작성 중이던 문의 양식으로 돌아갑니다.</div></div><script>
 function returnToInquiry(){
   window.close();
