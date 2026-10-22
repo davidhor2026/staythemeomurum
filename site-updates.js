@@ -18,7 +18,7 @@ window.SITE_UPDATES = {
     'korean-history-advanced-quiz.html': { key: 'historyQuiz', updated: '2026-07-15' },
     'foreign-service-interview-quiz.html': { key: 'foreignInterviewQuiz', updated: '2026-07-15' },
     'exam-insight.html': { key: 'examInsight', updated: '2026-09-06', expires: '2026-09-13' },
-    'exam-schedule.html': { key: 'examSchedule', updated: '2026-09-02', expires: '2026-09-09' },
+    'exam-schedule.html': { key: 'examSchedule', updated: '2026-10-23', expires: '2026-10-30' },
     'games.html': { key: 'games', updated: '' },
     'fortune.html': { key: 'fortune', updated: '' },
     'knowledge.html': { key: 'knowledge', updated: '' },
@@ -57,7 +57,7 @@ window.SITE_UPDATES = {
   sections: {
     'exam-schedule.html#foreign-service7': { key: 'examScheduleForeign7', updated: '2026-08-18', expires: '2026-08-26' },
     'exam-schedule.html#national7': { key: 'examScheduleNational7', updated: '2026-08-18', expires: '2026-08-26' },
-    'exam-schedule.html#teacher': { key: 'examScheduleTeacher', updated: '2026-09-02', expires: '2026-09-09' },
+    'exam-schedule.html#teacher': { key: 'examScheduleTeacher', updated: '2026-10-23', expires: '2026-10-30' },
     'exam-schedule.html#police': { key: 'examSchedulePolice', updated: '2026-08-14', expires: '2026-08-23' },
     'exam-schedule.html#court': { key: 'examScheduleCourt', updated: '2026-08-07' }
   }
