@@ -1,15 +1,20 @@
 window.EXAM_HOME_DATA = {
-  updatedLabel: '2026년 10월 6일 기준',
+  updatedLabel: '2026년 10월 24일 기준',
   countdowns: [
-    { category: '경찰', title: '2차 순경 필기합격자 발표', date: '2026-08-28', status: '8월 28일 17:00' },
-    { category: '공인노무사', title: '제35회 2차 시험', date: '2026-08-29', status: '8월 29~30일 시행' },
-    { category: '경찰·경위 공채', title: '신체·체력·적성검사 시작', date: '2026-08-31', status: '8월 31일~9월 11일' },
-    { category: '경기도교육청 9급', title: '면접시험', date: '2026-09-05' },
-    { category: '국가직 7급·외무영사직', title: '2차시험', date: '2026-09-19' },
     { category: '지방직 7급', title: '필기시험', date: '2026-10-31' },
-    { category: '공인노무사', title: '2차 합격자 발표', date: '2026-11-18' },
+    { category: '국가직 7급', title: '3차 면접시험 시작', date: '2026-11-23', status: '11월 23~26일' },
     { category: '공인노무사', title: '3차 면접시험', date: '2026-11-27' },
-    { category: '공인노무사', title: '최종합격자 발표', date: '2026-12-09' }
+    { category: '서울 중등교원 임용', title: '1차 필기시험', date: '2026-11-28' },
+    { category: '서울 중등교원 임용', title: '2차 수업실연·면접 시작', date: '2027-01-20', status: '2027년 1월 20~21일' }
+  ],
+  results: [
+    { category: '국가직 7급', title: '2차 합격자 발표', date: '2026-10-29' },
+    { category: '국가직 5급·외교관후보자', title: '최종 합격자 발표', date: '2026-10-30' },
+    { category: '공인노무사', title: '2차 합격자 발표', date: '2026-11-18' },
+    { category: '공인노무사', title: '최종 합격자 발표', date: '2026-12-09' },
+    { category: '국가직 7급', title: '최종 합격자 발표', date: '2026-12-11' },
+    { category: '서울 중등교원 임용', title: '1차 합격자 발표', date: '2026-12-29' },
+    { category: '서울 중등교원 임용', title: '최종 합격자 발표', date: '2027-02-05' }
   ],
   cutlineUpdatedLabel: '2026 국가직 9급·법원직 9급 기준',
   cutlines: [

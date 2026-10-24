@@ -251,7 +251,7 @@
 </button>
 <div class="exam-home-content" hidden="" id="examHomeContent">
 <div class="exam-home-content-head">
-<p>2026 국가직·지방직·법원직·검찰직·경찰·소방·교육행정·임용·공인노무사 시험일정, 합격자 발표와 최근 필기 합격선(커트라인)을 한눈에 확인하세요.</p>
+<p>다가오는 필기·면접시험과 직렬별 합격자 발표일을 날짜순으로 확인하세요. 일정은 공식 공고에 따라 변경될 수 있습니다.</p>
 <a class="exam-home-more" href="exam-schedule.html">시험일정 전체보기 →</a>
 </div>
 <div class="exam-home-layout">
@@ -264,10 +264,10 @@
 </div>
 <div class="exam-news-panel">
 <div class="exam-panel-title">
-<strong>오늘의 시험 소식</strong>
+<strong>다가오는 합격자 발표</strong>
 <span id="examNewsUpdated"></span>
 </div>
-<div class="exam-news-list" id="examNewsList"></div>
+<div aria-live="polite" class="exam-news-list" id="examNewsList"></div>
 </div>
 </div>
 <div aria-labelledby="examCutlineTitle" class="exam-cutline-panel">
@@ -659,12 +659,24 @@
     }).join('');
   }
 
-  newsList.innerHTML=(data.news||[]).slice(0,5).map(function(item){
-    return '<article class="exam-news-item">'+
-      '<span class="exam-news-tag">'+escapeHtml(item.category)+'</span>'+
-      '<div><strong>'+escapeHtml(item.title)+'</strong><p>'+escapeHtml(item.summary)+'</p></div>'+
-    '</article>';
-  }).join('');
+  var results=(data.results||[]).map(function(item){
+    return Object.assign({},item,{days:dday(item.date)});
+  }).filter(function(item){return item.days>=0;}).sort(function(a,b){return a.days-b.days;}).slice(0,7);
+  if(!results.length){
+    newsList.innerHTML='<p class="exam-empty">현재 확인된 예정 합격자 발표가 없습니다. <a href="exam-schedule.html">전체 시험일정 보기 →</a></p>';
+  }else{
+    newsList.innerHTML=results.map(function(item){
+      var dayText=item.days===0?'D-DAY':'D-'+item.days;
+      return '<article class="exam-countdown-item">'+
+        '<div class="exam-dday">'+dayText+'</div>'+
+        '<div class="exam-countdown-copy">'+
+          '<span>'+escapeHtml(item.category)+'</span>'+
+          '<strong>'+escapeHtml(item.title)+'</strong>'+
+          '<small>'+escapeHtml(dateLabel(item.date))+(item.note?' · '+escapeHtml(item.note):'')+'</small>'+
+        '</div>'+
+      '</article>';
+    }).join('');
+  }
 
   cutlineList.innerHTML=(data.cutlines||[]).map(function(item){
     return '<article class="exam-cutline-item">'+
@@ -678,7 +690,7 @@
   if(cutlineUpdated) cutlineUpdated.textContent=data.cutlineUpdatedLabel||data.updatedLabel||'';
 
   var updated=document.getElementById('examNewsUpdated');
-  if(updated) updated.textContent=data.updatedLabel||'';
+  if(updated) updated.textContent='발표일 가까운 순';
 })();
 </script>
 <script>
