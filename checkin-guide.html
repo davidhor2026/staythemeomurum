@@ -60,6 +60,18 @@
       .guide-section h2{font-size:1.22rem;}
     }
   
+    .iphone-message-details{margin:12px 0 18px;border:1px solid #dce5da;border-radius:15px;background:#fff;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.035);}
+    .iphone-message-details summary{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 16px;cursor:pointer;list-style:none;color:#2f3b2f;font-size:.98rem;font-weight:750;background:#f4f8f1;}
+    .iphone-message-details summary::-webkit-details-marker{display:none;}
+    .iphone-message-details summary .iphone-toggle{font-size:.84rem;color:#536b4c;white-space:nowrap;}
+    .iphone-message-details[open] summary .iphone-toggle::after{content:'닫기 ▲';}
+    .iphone-message-details:not([open]) summary .iphone-toggle::after{content:'펼쳐보기 ▼';}
+    .iphone-message-content{padding:12px 17px 17px;font-size:.94rem;}
+    .iphone-message-content p{margin:0 0 9px;line-height:1.65;}
+    .iphone-message-content ul{margin:6px 0;padding-left:19px;}
+    .iphone-message-content li{line-height:1.7;margin-bottom:8px;}
+    .iphone-message-content .warning-card{margin-top:10px;padding:11px 13px;}
+    .quick-item .checkout-example{display:block;margin-top:7px;font-size:.89rem;color:#65584c;}
     .refund-policy-details { margin: 16px 0; border: 1px solid #d7e2e8; border-radius: 12px; overflow: hidden; background: #fff; }
     .refund-policy-details summary { display:flex; align-items:center; justify-content:space-between; padding: 16px 18px; cursor:pointer; font-weight:700; color:#23465b; background:#f2f7fa; list-style:none; }
     .refund-policy-details summary::-webkit-details-marker { display:none; }
@@ -91,25 +103,27 @@
     </section>
 
     <div class="guide-content" id="guideContent">
-      <section class="guide-section">
-        <h2><span class="num">iPhone</span> 아이폰 문자 수신 내용 확인 안내</h2>
-        <p><strong>아이폰 사용자는 수신한 문자가 중간에 잘려 전체 내용이 보이지 않는 경우가 있을 수 있으니, 입실 전 아래 설정을 꼭 확인해 주세요.</strong></p>
-        <ul>
-          <li><strong>글자 크기 확인</strong><br>
-            설정 → 디스플레이 및 밝기 → 텍스트 크기 → 하단 조절 버튼을 좌우로 움직여 글자 크기를 조절한 뒤 문자 내용을 다시 확인해 주세요.
-          </li>
-          <li><strong>RCS 관련 설정 비교 확인</strong><br>
-            설정 → 앱 → 메시지 → RCS 관련 옵션을 비활성화한 뒤 문자 내용이 정상적으로 표시되는지 비교해 주세요.
-          </li>
-        </ul>
-        <div class="warning-card">현관·방문 도어락 번호 등 중요한 입실 안내가 문자로 전달되므로, 메시지가 중간에 잘리지 않고 끝까지 표시되는지 반드시 확인해 주세요.</div>
-      </section>
+      <details class="iphone-message-details">
+        <summary><span>아이폰 문자 수신 내용 확인 안내</span><span class="iphone-toggle" aria-hidden="true"></span></summary>
+        <div class="iphone-message-content">
+          <p><strong>아이폰 사용자는 수신한 문자가 중간에 잘려 전체 내용이 보이지 않는 경우가 있을 수 있으니, 이럴 땐 아래 설정을 꼭 확인해 주세요.</strong></p>
+          <ul>
+            <li><strong>글자 크기 확인</strong><br>
+              설정 → 디스플레이 및 밝기 → 텍스트 크기 → 하단 조절 버튼을 좌우로 움직여 글자 크기를 조절한 뒤 문자 내용을 다시 확인해 주세요.
+            </li>
+            <li><strong>RCS 관련 설정 비교 확인</strong><br>
+              설정 → 앱 → 메시지 → RCS 관련 옵션을 비활성화한 뒤 문자 내용이 정상적으로 표시되는지 비교해 주세요.
+            </li>
+          </ul>
+          <div class="warning-card">현관·방문 도어락 번호 등 중요한 입실 안내가 문자로 전달되므로, 메시지가 중간에 잘리지 않고 끝까지 표시되는지 반드시 확인해 주세요.</div>
+        </div>
+      </details>
 
       <section class="quick-box">
         <h2>입실 전 핵심 안내</h2>
         <div class="quick-grid">
           <div class="quick-item"><strong>입실 시간</strong><span>오후 3시부터 입실 가능합니다.</span></div>
-          <div class="quick-item"><strong>퇴실 시간</strong><span>퇴실일 오전 11시까지입니다.</span></div>
+          <div class="quick-item"><strong>퇴실 시간</strong><span>퇴실일 오전 11시까지입니다. 월 계약의 퇴실일은 입실일을 기준으로 하루 전 날짜입니다.<span class="checkout-example"><strong>퇴실일 기준 예시</strong><br>11월 1일 입실 → 11월 30일 오전 11시까지 퇴실<br>11월 2일 입실 → 12월 1일 오전 11시까지 퇴실</span></span></div>
           <div class="quick-item"><strong>계약 기준</strong><span>기본 월 계약이며, 입실 2일 이내 퇴실 시, 실 입주 기간에 해당하는 입실료를 납부하고 남은 잔액의 50%를 환불하며, 입실 3일 이후에는 전액 환불이 불가합니다. 더 상세한 내용은 입실 후 입실계약서를 확인바랍니다.</span></div>
           <div class="quick-item"><strong>입실료</strong><span>입실 전 안내받은 금액을 입주자 이름으로 입금해 주세요.</span></div>
           <div class="quick-item"><strong>계약서</strong><span>입주 후 책상 위 입실계약서를 작성해 사진으로 보내주세요.</span></div>
@@ -153,7 +167,7 @@
           <li>입금 시 알림을 받으므로 별도의 문자로 알려주지 않으셔도 됩니다.</li>
           <li>입실은 <strong>오후 3시부터</strong> 가능합니다.</li>
           <li>퇴실은 <strong>오전 11시까지</strong>입니다.</li>
-          <li>퇴실일 기준은 입실일자 하루 전입니다. 예를 들어 7월 5일 입실이면 퇴실일은 8월 4일입니다.</li>
+          <li>월 계약의 퇴실일은 <strong>입실일을 기준으로 하루 전 날짜</strong>입니다. 예를 들어 11월 1일 입실이면 11월 30일 오전 11시까지, 11월 2일 입실이면 12월 1일 오전 11시까지 퇴실합니다.</li>
           <li>매달 입실료는 입실했던 날짜의 하루 전까지(예: 매달 4일), 입주자 이름으로 입금해 주세요.</li>
         </ul>
       </section>
