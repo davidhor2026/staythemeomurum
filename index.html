@@ -227,7 +227,7 @@
 <a href="admin-investment.html">AI·투자 인사이트</a>
 <a href="rent-support.html">청년 지원 정책</a>
 <a href="gift.html">응원글 이벤트</a>
-<a href="resident-event.html">입실자 이벤트</a>
+<a href="resident-event.html">입실자 이벤트 <span class="resident-event-new" hidden aria-label="진행 중인 새 이벤트">NEW</span></a>
 <a href="international.html">English</a>
 <a href="index.html#contact">문의</a>
 </nav>
@@ -793,5 +793,29 @@
 })();
 </script>
 
+
+<!-- 입실자 이벤트 진행 기간에만 메인 메뉴 NEW 표시 -->
+<style>
+.resident-event-new:not([hidden]){display:inline-block;margin-left:4px;padding:2px 5px;border-radius:5px;background:#d62d55;color:#fff;font-size:10px;font-weight:800;line-height:1.3;vertical-align:middle;letter-spacing:.02em}
+</style>
+<script>
+(function(){
+  var script=document.createElement('script');
+  script.src='resident-event-config.js?v='+Date.now();
+  script.onload=function(){
+    function updateNew(){
+      var c=window.STAY_EVENT_PUBLIC_CONFIG||{};
+      var now=Date.now();
+      var start=c.start?new Date(c.start).getTime():NaN;
+      var end=c.end?new Date(c.end).getTime():NaN;
+      var active=c.active===true && c.status==='active' && Number.isFinite(start) && Number.isFinite(end) && now>=start && now<end;
+      document.querySelectorAll('.resident-event-new').forEach(function(el){el.hidden=!active;});
+    }
+    updateNew();
+    setInterval(updateNew,15000);
+  };
+  document.head.appendChild(script);
+})();
+</script>
 </body>
 </html>
