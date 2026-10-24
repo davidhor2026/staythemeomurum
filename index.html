@@ -270,6 +270,13 @@
 <div aria-live="polite" class="exam-news-list" id="examNewsList"></div>
 </div>
 </div>
+<div class="exam-latest-news-panel" aria-labelledby="examLatestNewsTitle">
+<div class="exam-panel-title">
+<strong id="examLatestNewsTitle">오늘의 시험 소식</strong>
+<span>최근 소식</span>
+</div>
+<div aria-live="polite" class="exam-latest-news-list" id="examLatestNewsList"></div>
+</div>
 <div aria-labelledby="examCutlineTitle" class="exam-cutline-panel">
 <div class="exam-panel-title">
 <strong id="examCutlineTitle">최근 공개 필기 합격선</strong>
@@ -676,6 +683,18 @@
         '</div>'+
       '</article>';
     }).join('');
+  }
+
+  var latestNewsList=document.getElementById('examLatestNewsList');
+  if(latestNewsList){
+    var recentNews=(data.news||[]).slice(0,5);
+    latestNewsList.innerHTML=recentNews.length?recentNews.map(function(item){
+      return '<article class="exam-news-item">'+
+        '<span class="exam-news-tag">'+escapeHtml(item.category)+'</span>'+
+        '<div><strong>'+escapeHtml(item.title)+'</strong>'+
+        '<p>'+escapeHtml(item.summary)+'</p></div>'+
+      '</article>';
+    }).join(''):'<p class="exam-empty">현재 등록된 시험 소식이 없습니다.</p>';
   }
 
   cutlineList.innerHTML=(data.cutlines||[]).map(function(item){
