@@ -2,7 +2,7 @@
 window.STAY_EVENT_PUBLIC_CONFIG = {
   "status": "testing",
   "active": false,
-  "eventId": "movie-ticket-202608",
+  "eventId": "test-20261025-01",
   "eventTitle": "영화관람권 이벤트",
   "prizeLabel": "영화관람권 1매",
   "prizeCount": 2,
