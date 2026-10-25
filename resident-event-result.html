@@ -1,6 +1,15 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>추첨 결과</title><style>
 body{margin:0;background:#f7f3ee;color:#2f2a26;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:680px;margin:0 auto;padding:40px 18px}.card{background:#fff;border-radius:22px;padding:30px;box-shadow:0 8px 30px rgba(0,0,0,.06);text-align:center}h1{font-size:25px;margin:0 0 14px}p{line-height:1.7;color:#6f655d}.btn{display:inline-block;margin-top:12px;padding:13px 18px;border-radius:12px;background:#5f493d;color:#fff;text-decoration:none;font-weight:800}.notice{padding:14px;border-radius:14px;background:#f6efe8;color:#6f655d;margin-top:14px}
 </style><script>document.write('<script src="resident-event-config.js?v='+Date.now()+'"><\/script>')</script><script>document.write('<script src="resident-event-api.js?v='+Date.now()+'"><\/script>')</script></head><body><main class="wrap"><section class="card"><h1 id="title">추첨 결과</h1><div id="content"><p>결과를 확인하는 중입니다.</p></div><a class="btn" href="resident-event-user.html">이벤트 페이지로 돌아가기</a></section></main><script>
+(async function(){
+  try {
+    const server = await StayEventApi.getPublicConfig();
+    if (!server.config) throw Error('현재 서버에 공개 이벤트 설정이 없습니다.');
+    window.STAY_EVENT_PUBLIC_CONFIG = server.config;
+  } catch (error) {
+    document.body.innerHTML = '<main style="max-width:650px;margin:48px auto;padding:24px;font-family:sans-serif"><h2>이벤트 정보를 불러오지 못했습니다.</h2><p>잘못된 이벤트로 응모하지 않도록 화면을 중단했습니다. 잠시 후 새로고침해 주세요.</p><a href="index.html">홈으로 돌아가기</a></main>';
+    return;
+  }
 (function(){
  const C=Object.assign({eventId:'movie-ticket-202608',eventTitle:'입실자 이벤트'},window.STAY_EVENT_PUBLIC_CONFIG||{});
  document.getElementById('title').textContent=(C.eventTitle||'입실자 이벤트')+' 추첨 결과';
@@ -10,5 +19,6 @@ body{margin:0;background:#f7f3ee;color:#2f2a26;font-family:-apple-system,BlinkMa
    if(data.resultUrl){ location.replace(data.resultUrl); return; }
    box.innerHTML='<p><b>현재 공개된 추첨 결과가 없습니다.</b><br>새 이벤트를 시작하면서 응모 초기화를 하면 이전 추첨 결과도 함께 삭제됩니다.</p>';
  }).catch(function(err){box.innerHTML='<div class="notice">결과 확인 실패: '+String(err.message||err)+'</div>';});
+})();
 })();
 </script></body></html>
