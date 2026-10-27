@@ -1,18 +1,27 @@
 window.EXAM_HOME_DATA = {
-  updatedLabel: '2026년 10월 24일 기준',
+  updatedLabel: '2026년 10월 28일 확인 기준',
   countdowns: [
     { category: '지방직 7급', title: '필기시험', date: '2026-10-31' },
+    { category: '유·초등교원 임용', title: '2027학년도 1차 필기시험', date: '2026-11-07' },
+    { category: '경찰 2차 순경 공채', title: '면접시험 시작', date: '2026-11-09', status: '11월 9일~12월 8일 · 개인별 일정은 관할 경찰청 확인' },
+    { category: '국가직 7급 민간경력자', title: '면접시험 시작', date: '2026-11-10', status: '11월 10~13일' },
     { category: '국가직 7급', title: '3차 면접시험 시작', date: '2026-11-23', status: '11월 23~26일' },
     { category: '공인노무사', title: '3차 면접시험', date: '2026-11-27' },
     { category: '서울 중등교원 임용', title: '1차 필기시험', date: '2026-11-28' },
+    { category: '경기 지방직 7급', title: '면접시험 시작', date: '2026-12-04', status: '12월 4~10일 · 경기도 공고 기준' },
+    { category: '유·초등교원 임용', title: '2027학년도 2차 시험 시작', date: '2027-01-06', status: '1월 6~8일 · 지역별 세부 일정 확인' },
+    { category: '중등교원 임용', title: '2027학년도 2차 실기·실험평가', date: '2027-01-14', status: '실기·실험 대상 과목 및 지역별 공고 확인' },
     { category: '서울 중등교원 임용', title: '2차 수업실연·면접 시작', date: '2027-01-20', status: '2027년 1월 20~21일' }
   ],
   results: [
     { category: '국가직 7급', title: '2차 합격자 발표', date: '2026-10-29' },
     { category: '국가직 5급·외교관후보자', title: '최종 합격자 발표', date: '2026-10-30' },
     { category: '공인노무사', title: '2차 합격자 발표', date: '2026-11-18' },
+    { category: '경기 지방직 7급', title: '필기합격자 발표', date: '2026-11-25' },
     { category: '공인노무사', title: '최종 합격자 발표', date: '2026-12-09' },
+    { category: '경찰 2차 순경 공채', title: '최종합격자 발표', date: '2026-12-11', status: '시·도경찰청 공고 확인' },
     { category: '국가직 7급', title: '최종 합격자 발표', date: '2026-12-11' },
+    { category: '경기 지방직 7급', title: '최종합격자 발표', date: '2026-12-21' },
     { category: '서울 중등교원 임용', title: '1차 합격자 발표', date: '2026-12-29' },
     { category: '서울 중등교원 임용', title: '최종 합격자 발표', date: '2027-02-05' }
   ],
