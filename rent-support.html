@@ -258,7 +258,6 @@
     ]
   }
   </script>
-
 <style>
 .youth-support-extra{margin:30px 0 34px;padding-top:6px}
 .youth-support-extra .policy-section-head{margin-bottom:14px}
@@ -275,7 +274,6 @@
 .other-support-cta:hover{filter:brightness(.98);transform:translateY(-1px)}
 @media(max-width:640px){.other-support-cta{padding:17px 16px;gap:10px}.other-support-cta-title{font-size:1.03rem}.other-support-cta-desc{font-size:.84rem}.other-support-cta-arrow{width:34px;height:34px}}
 </style>
-
 <style>
 .support-info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
 .support-info-box{padding:12px 14px;border-radius:12px;background:#f7f8fa;border:1px solid #eceff2}
@@ -285,7 +283,6 @@
 .policy-action-row .official-link{margin-top:0}
 @media(max-width:640px){.support-info-grid{grid-template-columns:1fr}}
 </style>
-
 <style>
 .support-reopen-calendar{margin:28px 0 34px}
 .reopen-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
@@ -297,7 +294,6 @@
 .reopen-tip strong{display:block;margin-bottom:5px}.reopen-tip span{line-height:1.6}
 @media(max-width:720px){.reopen-grid{grid-template-columns:1fr}}
 </style>
-
 <style>
 .youth-policy-visual{margin:20px 0 28px}.youth-policy-visual figure{margin:12px 0 0}
 .youth-policy-visual img{display:block;width:100%;height:auto;border-radius:18px;border:1px solid #e7e9ed}
@@ -313,7 +309,6 @@
 <p>노량진 전입신고 가능한 여성전용 고시원 · 청년월세지원 신청 전 참고 안내</p>
 <a class="header-home-button" href="index.html">메인페이지로 돌아가기</a>
 </header>
-
 <nav>
 <a href="index.html">메인페이지</a>
 <a href="rooms.html">방타입</a>
@@ -341,187 +336,168 @@
 <span>누적 <strong id="visitorTotal">-</strong>명</span>
 </div>
 <main class="policy-wrap">
-<section class="policy-latest-news" aria-labelledby="policy-latest-news-heading">
-  <div class="policy-latest-news-heading"><h2 id="policy-latest-news-heading">📢 새로운 지원 소식</h2><span id="policy-latest-news-badge" class="policy-update-new" hidden>NEW</span></div>
-  <div id="policy-latest-news-list" aria-live="polite"></div>
+<section aria-labelledby="policy-latest-news-heading" class="policy-latest-news">
+<div class="policy-latest-news-heading"><h2 id="policy-latest-news-heading">📢 새로운 지원 소식</h2><span class="policy-update-new" hidden="" id="policy-latest-news-badge">NEW</span></div>
+<div aria-live="polite" id="policy-latest-news-list"></div>
 </section>
-
-
-<section class="youth-policy-visual" aria-label="2027 청년 지원 정책 신청 확인 시기 한눈에 보기">
-  <div class="policy-section-head">
+<section aria-label="2027 청년 지원 정책 신청 확인 시기 한눈에 보기" class="youth-policy-visual">
+<div class="policy-section-head">
 <h2>2027 청년 지원정책 신청 확인 시기 한눈에 보기</h2>
-    <p>월세·식비·주택바우처의 신청 상태와 다음 공고 확인 시기를 먼저 확인하세요.</p>
-  </div>
-  <figure>
-    <img src="youth-support-check-calendar-2027-v2.png" alt="국토부 청년월세, 서울시 청년월세, 동작구 청년 식비지원, 서울형 주택바우처의 2026 접수기간과 2027 확인 권장 시기를 정리한 안내 이미지" loading="eager">
-    <figcaption>※ 2026년 진행 기준을 바탕으로 한 2027년 예상 확인 시기이며, 정확한 일정은 각 기관의 공식 공고를 확인하세요.</figcaption>
-  </figure>
-</section>
-
-
-
-<section class="policy-card" id="basic-housing-benefit" aria-labelledby="basic-housing-benefit-title" style="margin:18px 0 24px;border:2px solid #d9e6da;">
-  <span class="tagline">2026년 공식 기준 · 상시 신청 가능 여부 확인</span>
-  <h2 id="basic-housing-benefit-title">기초생활수급자·저소득층 주거비 지원 안내</h2>
-  <p>기초생활수급자와 저소득층은 <strong>주거급여(임차급여)</strong> 대상인지 먼저 확인해 보세요. 고시원 입주자도 실제 거주 및 임대차계약·임차료 지급 등 요건을 심사받을 수 있으며, 신청만으로 지급이 확정되는 것은 아닙니다.</p>
-  <div class="detail-key" style="margin:12px 0;">
-    <div><strong>2026년 주거급여 선정기준</strong>1인 가구 월 소득인정액 1,230,834원 이하(기준 중위소득 48%)</div>
-    <div><strong>서울 1인 임차급여 기준임대료</strong>월 최대 369,000원(지원 상한이며 실제 지급액은 다를 수 있음)</div>
-    <div><strong>신청</strong>주민등록 주소지 동주민센터 또는 복지로</div>
-  </div>
-  <p><strong>지급액 산정:</strong> 실제 임차료(보증금의 연 4% 월 환산액 포함), 소득인정액, 가구원 수에 따라 달라집니다. 소득인정액이 생계급여 선정기준을 초과하면 자기부담분이 차감될 수 있습니다. 2026년 1인 가구 생계급여 선정기준은 월 820,556원입니다.</p>
-  <p><strong>신청·심사 서류:</strong> 신분증, 임대차(입실)계약서, 소득·재산 관련 서류, 금융정보 제공동의서, 통장사본 등이 필요할 수 있습니다. 실제 고시원 계약의 인정 여부와 추가 서류는 관할 주민센터 및 LH 주택조사에서 확인합니다.</p>
-  <p><strong>청년월세·바우처와 구분:</strong> 2026년 서울시 청년월세지원은 생계·의료·주거급여 수급자를 제외합니다. 서울형 주택바우처 역시 생계·의료·주거급여 수급가구를 제외하며, <strong>수급자가 아닌 저소득층</strong>을 지원합니다. 국토부 청년월세는 별도 자격심사를 거치며 주거급여 수급자의 경우 중복 지원액 조정 기준이 적용될 수 있습니다.</p>
-  <p><strong>문의:</strong> 주거급여 콜센터 1600-0777 또는 주소지 주민센터. 신청기간과 자격은 해당 연도 공고·담당기관 확인이 우선입니다.</p>
-  <p style="font-size:.91rem;"><strong>공식 출처(2026년 기준):</strong> <a href="https://housing.seoul.go.kr/site/main/content/sh01_061021" target="_blank" rel="noopener noreferrer">서울주거포털 주거급여</a> · <a href="https://lh.or.kr/menu.es?mid=a10401050100" target="_blank" rel="noopener noreferrer">LH 주거급여</a> · <a href="https://housing.seoul.go.kr/site/main/content/sh01_060513" target="_blank" rel="noopener noreferrer">서울시 청년월세</a> · <a href="https://housing.seoul.go.kr/site/main/content/sh_061010" target="_blank" rel="noopener noreferrer">서울형 주택바우처</a></p>
+<p>월세·식비·주택바우처의 신청 상태와 다음 공고 확인 시기를 먼저 확인하세요.</p>
+</div>
+<figure>
+<img alt="국토부 청년월세, 서울시 청년월세, 동작구 청년 식비지원, 서울형 주택바우처의 2026 접수기간과 2027 확인 권장 시기를 정리한 안내 이미지" loading="eager" src="youth-support-check-calendar-2027-v2.png"/>
+<figcaption>※ 2026년 진행 기준을 바탕으로 한 2027년 예상 확인 시기이며, 정확한 일정은 각 기관의 공식 공고를 확인하세요.</figcaption>
+</figure>
 </section>
 
 <section class="support-overview" id="support-overview">
-  <div class="support-overview-head">
-    <span class="tagline">고시원 입주자용 월세지원</span>
-    <h2>내가 확인할 정책을 먼저 골라보세요</h2>
-    <p>핵심 자격과 신청상태만 먼저 보고, 필요한 정책의 <strong>자세히 보기</strong>를 누르면 아래 상세내용으로 바로 이동합니다.</p>
-  </div>
+<div class="support-overview-head">
+<span class="tagline">고시원 입주자용 월세지원</span>
+<h2>내가 확인할 정책을 먼저 골라보세요</h2>
+<p>핵심 자격과 신청상태만 먼저 보고, 필요한 정책의 <strong>자세히 보기</strong>를 누르면 아래 상세내용으로 바로 이동합니다.</p>
+</div>
+<div class="support-grid">
+<article class="support-summary-card">
+<span class="support-badge closed">2026 접수 종료</span>
+<h3>국토부 청년월세</h3>
+<div class="support-amount">2027 예산안 2,319억 원 · 세부기준 미확정</div>
+<ul>
+<li>19~34세 · 부모와 별도 거주 · 무주택 청년</li>
+<li>원칙적으로 청년가구 + 원가구 소득기준 확인</li>
+<li>30세 이상·혼인 등은 원가구 기준 예외 가능</li>
+<li><strong>2027 지원 확대 방향</strong> · 세부 신청조건은 추후 공고 확인</li>
+</ul>
+<a class="support-btn" href="#detail-molit">자세히 보기</a>
+</article>
+<article class="support-summary-card">
+<span class="support-badge closed">2026 접수 종료</span>
+<h3>서울시 청년월세지원</h3>
+<div class="support-amount">월 최대 20만원 · 최대 12개월</div>
+<ul>
+<li>서울 거주 19~39세 · 무주택 청년 등</li>
+<li><strong>건강보험 가입관계가 소득심사에서 중요</strong></li>
+<li>2027년 일정 미공고 · 4~5월경 공고 확인 권장</li>
+</ul>
+<a class="support-btn" href="#detail-seoul-youth">자세히 보기</a>
+</article>
+<article class="support-summary-card">
+<span class="support-badge check">주민센터 확인·신청</span>
+<h3>서울형 주택바우처</h3>
+<p style="font-size:.88rem;">기초생활수급자라면 <a href="#basic-housing-benefit">주거급여 안내</a>를 먼저 확인하세요.</p>
+<div class="support-amount">1인 가구 월 12만원</div>
+<ul>
+<li><strong>고시원 거주 가구도 대상 가능</strong></li>
+<li>중위소득 60% 이하 등 별도 자격심사</li>
+<li><strong>생계·의료·주거급여 수급가구는 제외</strong></li>
+<li>30세 미만 미혼은 부모 포함 보장가구 여부 주의</li>
+</ul>
+<a class="support-btn" href="#detail-voucher">자세히 보기</a>
+</article>
+</div>
 
-  <div class="support-grid">
-    <article class="support-summary-card">
-      <span class="support-badge closed">2026 접수 종료</span>
-      <h3>국토부 청년월세</h3>
-      <div class="support-amount">2027 예산안 2,319억 원 · 세부기준 미확정</div>
-      <ul>
-        <li>19~34세 · 부모와 별도 거주 · 무주택 청년</li>
-        <li>원칙적으로 청년가구 + 원가구 소득기준 확인</li>
-        <li>30세 이상·혼인 등은 원가구 기준 예외 가능</li>
-        <li><strong>2027 지원 확대 방향</strong> · 세부 신청조건은 추후 공고 확인</li>
-      </ul>
-      <a class="support-btn" href="#detail-molit">자세히 보기</a>
-    </article>
-
-    <article class="support-summary-card">
-      <span class="support-badge closed">2026 접수 종료</span>
-      <h3>서울시 청년월세지원</h3>
-      <div class="support-amount">월 최대 20만원 · 최대 12개월</div>
-      <ul>
-        <li>서울 거주 19~39세 · 무주택 청년 등</li>
-        <li><strong>건강보험 가입관계가 소득심사에서 중요</strong></li>
-        <li>2027년 일정 미공고 · 4~5월경 공고 확인 권장</li>
-      </ul>
-      <a class="support-btn" href="#detail-seoul-youth">자세히 보기</a>
-    </article>
-
-    <article class="support-summary-card">
-      <span class="support-badge check">주민센터 확인·신청</span>
-      <h3>서울형 주택바우처</h3>
-       <p style="font-size:.88rem;">기초생활수급자라면 <a href="#basic-housing-benefit">주거급여 안내</a>를 먼저 확인하세요.</p>
-      <div class="support-amount">1인 가구 월 12만원</div>
-      <ul>
-        <li><strong>고시원 거주 가구도 대상 가능</strong></li>
-        <li>중위소득 60% 이하 등 별도 자격심사</li>
-        <li><strong>생계·의료·주거급여 수급가구는 제외</strong></li>
-        <li>30세 미만 미혼은 부모 포함 보장가구 여부 주의</li>
-      </ul>
-      <a class="support-btn" href="#detail-voucher">자세히 보기</a>
-    </article>
-  </div>
-
-  <section class="policy-card" id="dongjak-flu-vaccine-2026" aria-labelledby="dongjak-flu-vaccine-title" style="margin:18px 0 24px;border:2px solid #c9ddec;scroll-margin-top:90px;">
-  <span class="tagline">2026~2027절기 · 동작구 예방접종 안내</span>
-  <h2 id="dongjak-flu-vaccine-title">💉 무료 독감 예방접종, 지원 자격을 확인해 보세요 <span class="policy-update-new" data-new-date="2026-10-27" aria-label="새 소식">NEW</span></h2>
-  <p>동작구에서는 지정된 대상자에게 인플루엔자(독감) 예방접종을 무료로 지원합니다. <strong>모든 청년에게 일괄 적용되는 사업은 아니므로</strong> 해당 여부를 먼저 확인해 주세요.</p>
-  <details style="margin:12px 0;"><summary style="cursor:pointer;font-weight:700;color:#234f7b">지원 대상·접종 방법 자세히 보기</summary>
-    <div style="padding:12px 2px;line-height:1.8">
-      <p><strong>지원 대상 예시:</strong> 동작구의 지정 연령대 기초생활수급자(생계·의료·주거급여), 장애 정도가 심한 장애인, 국가유공자 등 구에서 정한 대상자. 대상별 연령·주소지·증빙 요건은 별도 확인이 필요합니다.</p>
-      <p><strong>안내된 접종 기간:</strong> 2026년 10월 15일~12월 12일. 대상별 일정과 의료기관 운영일은 다를 수 있습니다.</p>
-      <p><strong>접종 전 확인:</strong> 동작구보건소 또는 지정 의료기관에 대상 여부, 접종 가능일, 신분증·증빙서류 등을 문의해 주세요. 고시원 거주만으로 지원 자격이 부여되지는 않습니다.</p>
-      <p><strong>공식 확인:</strong> <a href="https://www.dongjak.go.kr/portal/main/main.do" target="_blank" rel="noopener noreferrer">동작구청 홈페이지</a> · <a href="https://nip.kdca.go.kr" target="_blank" rel="noopener noreferrer">질병관리청 예방접종도우미</a></p>
-    </div>
-  </details>
-  <p style="font-size:.9rem;color:#667">※ 개인정보를 보호하기 위해 공지사항 목록에는 개별 지원 자격을 표시하지 않습니다. 실제 지원 여부는 담당기관의 최신 안내가 우선입니다.</p>
+<a aria-label="생활·구직·교통 등 다른 청년지원 정책 보기" class="other-support-cta" href="#other-youth-support">
+<span class="other-support-cta-copy">
+<span class="other-support-cta-title">생활·구직·교통 등 다른 청년지원 보기 <span class="site-new-badge timed-new" data-new-until="2026-09-19">NEW</span></span>
+<span class="other-support-cta-desc">교통비 · 식비 · 취업·응시료 · 여성안전 · 생활지원</span>
+</span>
+<span aria-hidden="true" class="other-support-cta-arrow">›</span>
+</a>
 </section>
-
-
-<a class="other-support-cta" href="#other-youth-support" aria-label="생활·구직·교통 등 다른 청년지원 정책 보기">
-    <span class="other-support-cta-copy">
-      <span class="other-support-cta-title">생활·구직·교통 등 다른 청년지원 보기 <span class="site-new-badge timed-new" data-new-until="2026-09-19">NEW</span></span>
-      <span class="other-support-cta-desc">교통비 · 식비 · 취업·응시료 · 여성안전 · 생활지원</span>
-    </span>
-    <span class="other-support-cta-arrow" aria-hidden="true">›</span>
-  </a>
-</section>
-
 <section class="detail-policy" id="update-2027-youth-rent-budget">
-  <span class="tagline">2026.09.03 NEW · 2027 정부예산안</span>
-  <h2>2027 청년월세 지원 확대 추진 · 예산안 2,319억 원</h2>
-  <div class="detail-key">
-    <div><strong>2026 예산</strong>1,300억 원</div>
-    <div><strong>2027 정부예산안</strong>2,319억 원</div>
-    <div><strong>현재 상태</strong>예산안 단계 · 세부 신청기준 미확정</div>
-  </div>
-  <p>정부가 2027년도 예산안에서 청년월세 지원 예산을 <strong>2026년 1,300억 원에서 2027년 2,319억 원으로 확대 편성</strong>했습니다. 청년 주거비 부담 완화를 위한 지원 확대 방향은 확인됐지만, 실제 2027년 신청자의 소득·재산 기준과 월 지원액, 접수기간 등은 향후 공식 사업 공고를 확인해야 합니다.</p>
-  <div class="detail-note"><strong>지금 바로 신청하는 신규 모집공고는 아닙니다.</strong><br/>
+<span class="tagline">2026.09.03 NEW · 2027 정부예산안</span>
+<h2>2027 청년월세 지원 확대 추진 · 예산안 2,319억 원</h2>
+<div class="detail-key">
+<div><strong>2026 예산</strong>1,300억 원</div>
+<div><strong>2027 정부예산안</strong>2,319억 원</div>
+<div><strong>현재 상태</strong>예산안 단계 · 세부 신청기준 미확정</div>
+</div>
+<p>정부가 2027년도 예산안에서 청년월세 지원 예산을 <strong>2026년 1,300억 원에서 2027년 2,319억 원으로 확대 편성</strong>했습니다. 청년 주거비 부담 완화를 위한 지원 확대 방향은 확인됐지만, 실제 2027년 신청자의 소득·재산 기준과 월 지원액, 접수기간 등은 향후 공식 사업 공고를 확인해야 합니다.</p>
+<div class="detail-note"><strong>지금 바로 신청하는 신규 모집공고는 아닙니다.</strong><br/>
   이번 내용은 2027년도 정부예산안에 반영된 정책 확대 방향입니다. 국토교통부·복지로 등에서 2027년도 세부 시행계획과 모집공고가 발표되면 신청 대상·지원금액·접수방법을 다시 확인하세요.</div>
 </section>
-
-
 <section class="detail-policy" id="detail-molit">
-  <span class="tagline">국토교통부</span>
-  <h2>국토부 청년월세 상세</h2>
-  <div class="detail-key">
-    <div><strong>대상 핵심</strong>19~34세 · 부모와 별도 거주 · 무주택 청년</div>
-    <div><strong>지원</strong>월 최대 20만원 · 최대 24개월</div>
-    <div><strong>2026 신청</strong>3월 30일~5월 29일 · 현재 종료</div>
-  </div>
-  <p><strong>소득심사:</strong> 청년가구 기준 중위소득 60% 이하와 원가구 기준 중위소득 100% 이하를 원칙적으로 함께 확인합니다.</p>
-  <div class="detail-note"><strong>30세 미만 미혼 청년 주의</strong><br>부모와 주소를 따로 두고 살아도 원가구 소득을 함께 볼 수 있습니다. 다만 30세 이상, 혼인(이혼), 미혼부·모 등은 원가구 소득을 보지 않는 예외가 있을 수 있으므로 해당 연도 공식 공고 기준을 확인하세요.</div>
-  <p><strong>2027년 전망:</strong> 정부예산안에서 청년월세 지원 예산이 2,319억 원으로 확대 편성됐습니다. 다만 이는 예산안 단계이며, <strong>2027년 소득·재산 기준, 월 지원액, 접수일정은 아직 최종 확정된 것으로 보지 않습니다.</strong> 국토교통부·복지로의 공식 시행계획·모집공고를 확인하세요.</p>
-  <a class="back-overview" href="#support-overview">↑ 정책 한눈에 보기로</a>
+<span class="tagline">국토교통부</span>
+<h2>국토부 청년월세 상세</h2>
+<div class="detail-key">
+<div><strong>대상 핵심</strong>19~34세 · 부모와 별도 거주 · 무주택 청년</div>
+<div><strong>지원</strong>월 최대 20만원 · 최대 24개월</div>
+<div><strong>2026 신청</strong>3월 30일~5월 29일 · 현재 종료</div>
+</div>
+<p><strong>소득심사:</strong> 청년가구 기준 중위소득 60% 이하와 원가구 기준 중위소득 100% 이하를 원칙적으로 함께 확인합니다.</p>
+<div class="detail-note"><strong>30세 미만 미혼 청년 주의</strong><br/>부모와 주소를 따로 두고 살아도 원가구 소득을 함께 볼 수 있습니다. 다만 30세 이상, 혼인(이혼), 미혼부·모 등은 원가구 소득을 보지 않는 예외가 있을 수 있으므로 해당 연도 공식 공고 기준을 확인하세요.</div>
+<p><strong>2027년 전망:</strong> 정부예산안에서 청년월세 지원 예산이 2,319억 원으로 확대 편성됐습니다. 다만 이는 예산안 단계이며, <strong>2027년 소득·재산 기준, 월 지원액, 접수일정은 아직 최종 확정된 것으로 보지 않습니다.</strong> 국토교통부·복지로의 공식 시행계획·모집공고를 확인하세요.</p>
+<a class="back-overview" href="#support-overview">↑ 정책 한눈에 보기로</a>
 </section>
-
 <section class="detail-policy" id="detail-seoul-youth">
-  <span class="tagline">서울특별시</span>
-  <h2>서울시 청년월세지원 상세</h2>
-  <div class="detail-key">
-    <div><strong>대상 핵심</strong>서울 거주 19~39세 · 무주택 청년 등 공고요건 충족자</div>
-    <div><strong>지원</strong>월 최대 20만원 · 최대 12개월</div>
-    <div><strong>2026 신청</strong>5월 6일~5월 19일 · 현재 종료</div>
-  </div>
-  <p><strong>소득기준:</strong> 2026년 기준 중위소득 48% 초과~150% 이하 등 공고 기준을 확인합니다.</p>
-  <div class="detail-note"><strong>건강보험이 중요한 이유</strong><br>건강보험료 액수만으로 선정 여부를 정한다는 뜻은 아닙니다. <strong>누구의 소득을 심사할지 판단할 때 건강보험 가입관계가 핵심</strong>입니다. 본인이 부모와 건강보험이 별도라면 부모 소득을 포함하지 않고, 부모 등의 피부양자라면 주민등록이 분리돼 있어도 부양자의 소득과 건강보험상 가구원 수를 기준으로 판단합니다.</div>
-  <p><strong>다음 모집 예상:</strong> 2027년 일정은 아직 미공고입니다. 2026년에는 4월 30일 공고 후 5월 접수였으므로 <strong>2027년 4~5월경부터 서울주거포털 공고 확인을 권장</strong>합니다. 이는 예상이며 확정 일정이 아닙니다.</p>
-  <p><strong>중복지원:</strong> 국토부 또는 지자체 청년월세 지원을 현재 받고 있다면 서울시 사업의 제외 기준을 확인해야 합니다. 기존 지원이 신청 전에 종료됐다면 다른 자격요건을 다시 확인할 수 있습니다.</p>
-  <a class="back-overview" href="#support-overview">↑ 정책 한눈에 보기로</a>
+<span class="tagline">서울특별시</span>
+<h2>서울시 청년월세지원 상세</h2>
+<div class="detail-key">
+<div><strong>대상 핵심</strong>서울 거주 19~39세 · 무주택 청년 등 공고요건 충족자</div>
+<div><strong>지원</strong>월 최대 20만원 · 최대 12개월</div>
+<div><strong>2026 신청</strong>5월 6일~5월 19일 · 현재 종료</div>
+</div>
+<p><strong>소득기준:</strong> 2026년 기준 중위소득 48% 초과~150% 이하 등 공고 기준을 확인합니다.</p>
+<div class="detail-note"><strong>건강보험이 중요한 이유</strong><br/>건강보험료 액수만으로 선정 여부를 정한다는 뜻은 아닙니다. <strong>누구의 소득을 심사할지 판단할 때 건강보험 가입관계가 핵심</strong>입니다. 본인이 부모와 건강보험이 별도라면 부모 소득을 포함하지 않고, 부모 등의 피부양자라면 주민등록이 분리돼 있어도 부양자의 소득과 건강보험상 가구원 수를 기준으로 판단합니다.</div>
+<p><strong>다음 모집 예상:</strong> 2027년 일정은 아직 미공고입니다. 2026년에는 4월 30일 공고 후 5월 접수였으므로 <strong>2027년 4~5월경부터 서울주거포털 공고 확인을 권장</strong>합니다. 이는 예상이며 확정 일정이 아닙니다.</p>
+<p><strong>중복지원:</strong> 국토부 또는 지자체 청년월세 지원을 현재 받고 있다면 서울시 사업의 제외 기준을 확인해야 합니다. 기존 지원이 신청 전에 종료됐다면 다른 자격요건을 다시 확인할 수 있습니다.</p>
+<a class="back-overview" href="#support-overview">↑ 정책 한눈에 보기로</a>
 </section>
-
 <section class="detail-policy" id="detail-voucher">
-  <span class="tagline">서울형 주택바우처</span>
-  <h2>서울형 주택바우처 상세</h2>
-  <div class="detail-key">
-    <div><strong>대상 핵심</strong>서울 민간월세 주택·고시원 거주 저소득 가구</div>
-    <div><strong>지원</strong>2026년 1인 가구 월 12만원 · 가구원 수별 차등</div>
-    <div><strong>신청</strong>거주지 관할 동주민센터에서 확인·신청</div>
-  </div>
-  <p><strong>소득:</strong> 소득평가액 기준 중위소득 60% 이하. 2026년 1인 가구 기준 월 1,538,543원 이하이며, 실제 심사는 보장가구원 수에 따라 기준이 달라집니다.</p>
-  <p><strong>재산:</strong> 재산가액 2억원 이하, 금융재산 8천만원 이하 등 세부요건을 함께 확인합니다.</p>
-  <div class="detail-note"><strong>30세 미만 미혼 입주자는 특히 확인</strong><br>고시원으로 주소를 이전해 혼자 거주하더라도 부모 등이 보장가구에 포함되어 심사될 수 있습니다. 따라서 본인 소득만 보고 신청 가능하다고 판단하기보다 <strong>주민센터에 보장가구 범위를 먼저 확인</strong>하는 것이 좋습니다.</div>
-  <p><strong>신청시기:</strong> 서울시 청년월세지원처럼 연 1회 특정 모집기간을 기다리는 방식이 아니라, 자격요건을 확인해 거주지 관할 동주민센터에서 신청하는 제도입니다.</p>
-  <div class="button-wrap">
-    <a class="button" href="https://housing.seoul.go.kr/site/main/content/sh_061010" rel="noopener" target="_blank">서울형 주택바우처 공식 안내</a>
-    <a class="button light" href="https://housing.seoul.go.kr" rel="noopener" target="_blank">서울주거포털</a>
-  </div>
-  <a class="back-overview" href="#support-overview">↑ 정책 한눈에 보기로</a>
+<span class="tagline">서울형 주택바우처</span>
+<h2>서울형 주택바우처 상세</h2>
+<div class="detail-key">
+<div><strong>대상 핵심</strong>서울 민간월세 주택·고시원 거주 저소득 가구</div>
+<div><strong>지원</strong>2026년 1인 가구 월 12만원 · 가구원 수별 차등</div>
+<div><strong>신청</strong>거주지 관할 동주민센터에서 확인·신청</div>
+</div>
+<p><strong>소득:</strong> 소득평가액 기준 중위소득 60% 이하. 2026년 1인 가구 기준 월 1,538,543원 이하이며, 실제 심사는 보장가구원 수에 따라 기준이 달라집니다.</p>
+<p><strong>재산:</strong> 재산가액 2억원 이하, 금융재산 8천만원 이하 등 세부요건을 함께 확인합니다.</p>
+<div class="detail-note"><strong>30세 미만 미혼 입주자는 특히 확인</strong><br/>고시원으로 주소를 이전해 혼자 거주하더라도 부모 등이 보장가구에 포함되어 심사될 수 있습니다. 따라서 본인 소득만 보고 신청 가능하다고 판단하기보다 <strong>주민센터에 보장가구 범위를 먼저 확인</strong>하는 것이 좋습니다.</div>
+<p><strong>신청시기:</strong> 서울시 청년월세지원처럼 연 1회 특정 모집기간을 기다리는 방식이 아니라, 자격요건을 확인해 거주지 관할 동주민센터에서 신청하는 제도입니다.</p>
+<div class="button-wrap">
+<a class="button" href="https://housing.seoul.go.kr/site/main/content/sh_061010" rel="noopener" target="_blank">서울형 주택바우처 공식 안내</a>
+<a class="button light" href="https://housing.seoul.go.kr" rel="noopener" target="_blank">서울주거포털</a>
+</div>
+<a class="back-overview" href="#support-overview">↑ 정책 한눈에 보기로</a>
+</section><section aria-labelledby="basic-housing-benefit-title" class="policy-card" id="basic-housing-benefit" style="margin:18px 0 24px;border:2px solid #d9e6da;">
+<span class="tagline">2026년 공식 기준 · 상시 신청 가능 여부 확인</span>
+<h2 id="basic-housing-benefit-title">기초생활수급자·저소득층 주거비 지원 안내</h2>
+<p>기초생활수급자와 저소득층은 <strong>주거급여(임차급여)</strong> 대상인지 먼저 확인해 보세요. 고시원 입주자도 실제 거주 및 임대차계약·임차료 지급 등 요건을 심사받을 수 있으며, 신청만으로 지급이 확정되는 것은 아닙니다.</p>
+<div class="detail-key" style="margin:12px 0;">
+<div><strong>2026년 주거급여 선정기준</strong>1인 가구 월 소득인정액 1,230,834원 이하(기준 중위소득 48%)</div>
+<div><strong>서울 1인 임차급여 기준임대료</strong>월 최대 369,000원(지원 상한이며 실제 지급액은 다를 수 있음)</div>
+<div><strong>신청</strong>주민등록 주소지 동주민센터 또는 복지로</div>
+</div>
+<p><strong>지급액 산정:</strong> 실제 임차료(보증금의 연 4% 월 환산액 포함), 소득인정액, 가구원 수에 따라 달라집니다. 소득인정액이 생계급여 선정기준을 초과하면 자기부담분이 차감될 수 있습니다. 2026년 1인 가구 생계급여 선정기준은 월 820,556원입니다.</p>
+<p><strong>신청·심사 서류:</strong> 신분증, 임대차(입실)계약서, 소득·재산 관련 서류, 금융정보 제공동의서, 통장사본 등이 필요할 수 있습니다. 실제 고시원 계약의 인정 여부와 추가 서류는 관할 주민센터 및 LH 주택조사에서 확인합니다.</p>
+<p><strong>청년월세·바우처와 구분:</strong> 2026년 서울시 청년월세지원은 생계·의료·주거급여 수급자를 제외합니다. 서울형 주택바우처 역시 생계·의료·주거급여 수급가구를 제외하며, <strong>수급자가 아닌 저소득층</strong>을 지원합니다. 국토부 청년월세는 별도 자격심사를 거치며 주거급여 수급자의 경우 중복 지원액 조정 기준이 적용될 수 있습니다.</p>
+<p><strong>문의:</strong> 주거급여 콜센터 1600-0777 또는 주소지 주민센터. 신청기간과 자격은 해당 연도 공고·담당기관 확인이 우선입니다.</p>
+<p style="font-size:.91rem;"><strong>공식 출처(2026년 기준):</strong> <a href="https://housing.seoul.go.kr/site/main/content/sh01_061021" rel="noopener noreferrer" target="_blank">서울주거포털 주거급여</a> · <a href="https://lh.or.kr/menu.es?mid=a10401050100" rel="noopener noreferrer" target="_blank">LH 주거급여</a> · <a href="https://housing.seoul.go.kr/site/main/content/sh01_060513" rel="noopener noreferrer" target="_blank">서울시 청년월세</a> · <a href="https://housing.seoul.go.kr/site/main/content/sh_061010" rel="noopener noreferrer" target="_blank">서울형 주택바우처</a></p>
+</section><section aria-labelledby="dongjak-flu-vaccine-title" class="policy-card" id="dongjak-flu-vaccine-2026" style="margin:18px 0 24px;border:2px solid #c9ddec;scroll-margin-top:90px;">
+<span class="tagline">2026~2027절기 · 동작구 예방접종 안내</span>
+<h2 id="dongjak-flu-vaccine-title">💉 무료 독감 예방접종, 지원 자격을 확인해 보세요 <span aria-label="새 소식" class="policy-update-new" data-new-date="2026-10-27">NEW</span></h2>
+<p>동작구에서는 지정된 대상자에게 인플루엔자(독감) 예방접종을 무료로 지원합니다. <strong>모든 청년에게 일괄 적용되는 사업은 아니므로</strong> 해당 여부를 먼저 확인해 주세요.</p>
+<details style="margin:12px 0;"><summary style="cursor:pointer;font-weight:700;color:#234f7b">지원 대상·접종 방법 자세히 보기</summary>
+<div style="padding:12px 2px;line-height:1.8">
+<p><strong>지원 대상 예시:</strong> 동작구의 지정 연령대 기초생활수급자(생계·의료·주거급여), 장애 정도가 심한 장애인, 국가유공자 등 구에서 정한 대상자. 대상별 연령·주소지·증빙 요건은 별도 확인이 필요합니다.</p>
+<p><strong>안내된 접종 기간:</strong> 2026년 10월 15일~12월 12일. 대상별 일정과 의료기관 운영일은 다를 수 있습니다.</p>
+<p><strong>접종 전 확인:</strong> 동작구보건소 또는 지정 의료기관에 대상 여부, 접종 가능일, 신분증·증빙서류 등을 문의해 주세요. 고시원 거주만으로 지원 자격이 부여되지는 않습니다.</p>
+<p><strong>공식 확인:</strong> <a href="https://www.dongjak.go.kr/portal/main/main.do" rel="noopener noreferrer" target="_blank">동작구청 홈페이지</a> · <a href="https://nip.kdca.go.kr" rel="noopener noreferrer" target="_blank">질병관리청 예방접종도우미</a></p>
+</div>
+</details>
+<p style="font-size:.9rem;color:#667">※ 개인정보를 보호하기 위해 공지사항 목록에는 개별 지원 자격을 표시하지 않습니다. 실제 지원 여부는 담당기관의 최신 안내가 우선입니다.</p>
 </section>
-
 <section class="policy-card" style="margin-top:18px;border:2px solid #d6ad7b">
-  <span class="tagline">신청 시기 요약</span>
-  <h2>지금 신청할 수 있나요?</h2>
-  <ul>
-    <li><strong>서울형 주택바우처:</strong> 거주지 관할 동주민센터에서 자격요건 확인 후 신청</li>
-    <li><strong>서울시 청년월세지원:</strong> 2026년 접수 종료 · 2027년 일정 미공고 · 4~5월경부터 공고 확인 권장</li>
-    <li><strong>국토부 청년월세:</strong> 2026년 접수 종료 · 2027년 세부 공고 확인 필요</li>
-  </ul>
-  <p class="policy-note">※ 고시원 거주자가 실제 활용할 수 있는 월세·주거비 지원을 중심으로 안내합니다.</p>
+<span class="tagline">신청 시기 요약</span>
+<h2>지금 신청할 수 있나요?</h2>
+<ul>
+<li><strong>서울형 주택바우처:</strong> 거주지 관할 동주민센터에서 자격요건 확인 후 신청</li>
+<li><strong>서울시 청년월세지원:</strong> 2026년 접수 종료 · 2027년 일정 미공고 · 4~5월경부터 공고 확인 권장</li>
+<li><strong>국토부 청년월세:</strong> 2026년 접수 종료 · 2027년 세부 공고 확인 필요</li>
+</ul>
+<p class="policy-note">※ 고시원 거주자가 실제 활용할 수 있는 월세·주거비 지원을 중심으로 안내합니다.</p>
 </section>
-
 <section class="policy-hero">
 <span class="tagline">노량진 청년 주거비 지원 참고 페이지</span>
 <h2>전입신고 가능한 고시원이라면 청년월세지원도 미리 확인해 보세요</h2>
@@ -533,15 +509,9 @@
 <span>고시원 입실계약서</span>
 <span>노량진 여성전용 고시원</span>
 </div>
-<div class="soft-note"><strong>중요 안내</strong><br/>월세 지원은 입주 사실만으로 자동 선정되는 제도가 아닙니다. 나이, 무주택 여부, 소득·재산, 부모와 별도 거주 여부, 보증금·월세 금액, 전입신고, 월세 납부내역, 중복 수혜 여부 등 해당 연도 공고 기준에 따라 심사됩니다. 신청 전에는 반드시 복지로, 정부24, 서울주거포털 등 공식 안내를 확인해 주세요.</div>
+<div class="soft-note"><strong>중요 안내</strong><br>월세 지원은 입주 사실만으로 자동 선정되는 제도가 아닙니다. 나이, 무주택 여부, 소득·재산, 부모와 별도 거주 여부, 보증금·월세 금액, 전입신고, 월세 납부내역, 중복 수혜 여부 등 해당 연도 공고 기준에 따라 심사됩니다. 신청 전에는 반드시 복지로, 정부24, 서울주거포털 등 공식 안내를 확인해 주세요.</br></div>
 </section>
-
 <div class="policy-grid">
-
-
-
-
-
 <section class="policy-card">
 <h3>왜 전입신고가 중요한가요?</h3>
 <p><strong>정부24 전입신고:</strong> 정부24 모바일에서 입실계약서를 제출해 전입신고를 신청할 수 있습니다. 사업자등록증 없이 입실계약서만으로 신청이 가능한 것으로 안내되어 있으나, 추가 서류 필요 여부와 최종 처리 기준은 관할 주민센터에 전화로 확인해 주세요. 신청 후 최종 처리 완료 여부를 확인해 주세요. 청년월세지원 제출서류는 별도 기준입니다. <a href="faq.html">FAQ 정부24 전입신고 안내</a></p>
@@ -554,7 +524,6 @@
 <p class="mini-warning">정책별로 서류 이름과 요구 항목이 다를 수 있으므로, 신청하는 해의 공식 공고문을 기준으로 확인해야 합니다.</p>
 </section>
 </div>
-
 <section class="policy-card" style="margin-top:18px">
 <h2>입실계약서로 준비할 때 확인하면 좋은 항목</h2>
 <p>고시원 입실계약서가 월세지원 서류로 인정되는지는 해당 사업 기준에 따라 달라질 수 있습니다. 다만 아래 항목은 대부분의 월세지원 신청에서 거주 사실과 월세 관계를 확인할 때 중요하게 보는 내용입니다.</p>
@@ -566,7 +535,6 @@
 <tr><th>추가 서류</th><td>사업자등록증 사본, 월세 이체내역, 주민등록초본 또는 등본 등 공고에서 요구하는 서류</td></tr>
 </table>
 </section>
-
 <div class="policy-grid">
 <section class="policy-card">
 <h3>확인하면 좋은 대표 정책</h3>
@@ -636,8 +604,8 @@
 <li><strong>변경 신청 대상</strong>: 주소지 또는 임대차계약이 변경된 선정자</li>
 <li><strong>신청·확인</strong>: 서울주거포털 마이페이지 및 공지사항</li>
 </ul>
-<div class="highlight-box"><strong>고시원 거주자 확인</strong><br/>
-고시원·셰어하우스 거주자가 주소지 또는 계약 변경으로 변경신청을 할 때는 성명, 생년월일, 연락처, 소재지, 보증금, 월세금액, 계약일자가 기재된 <strong>입실확인서(실거주 확인서)</strong>와 해당 소재지의 <strong>사업자등록증 사본</strong>을 준비하도록 안내돼 있습니다. 스테이The머무름 입주자도 변경신청이 필요한 경우 해당 서류 기준을 먼저 확인하세요.</div>
+<div class="highlight-box"><strong>고시원 거주자 확인</strong><br>
+고시원·셰어하우스 거주자가 주소지 또는 계약 변경으로 변경신청을 할 때는 성명, 생년월일, 연락처, 소재지, 보증금, 월세금액, 계약일자가 기재된 <strong>입실확인서(실거주 확인서)</strong>와 해당 소재지의 <strong>사업자등록증 사본</strong>을 준비하도록 안내돼 있습니다. 스테이The머무름 입주자도 변경신청이 필요한 경우 해당 서류 기준을 먼저 확인하세요.</br></div>
 <p class="policy-note">지원금 지급일과 제출서류는 개인별 상황에 따라 추가 확인이 필요할 수 있으므로 서울주거포털의 본인 마이페이지와 공식 공지를 최종 기준으로 확인하세요.</p>
 </section>
 <section class="policy-card policy-card--update" style="margin-top:18px">
@@ -654,337 +622,296 @@
 <p class="policy-note">전용계좌 개설 대상과 절차는 최종 선정자에게만 해당합니다. 일반 입출금통장을 잘못 개설하지 않도록 서울주거포털 안내를 먼저 확인하세요. 군 복무기간을 고려해 지원 연령 상한이 최대 3년까지 연장될 수 있으며, 최종 자격과 발표 일정은 서울주거포털의 공식 공고를 확인하세요.</p>
 </section>
 </main>
-
-
-<section id="support-reopen-calendar" class="policy-anchor-section support-reopen-calendar">
-  <div class="policy-section-head">
-    <span class="tagline">신청 종료 후 다시 확인할 시기</span>
-    <h2>지원정책 재신청 체크 캘린더</h2>
-    <p>모집이 끝난 정책은 다음 공고가 나오기 전에 미리 확인해 두면 놓치기 쉽지 않습니다. 아래 시기는 최근 모집 일정에 따른 <strong>확인 권장 시점</strong>이며, 다음 연도 일정이 확정된 것은 아닙니다.</p>
-  <p class="past-period-note">※ 2026년 진행 기준 예시이며, 2027년 정확한 일정은 추후 공식 공고를 확인하세요.</p></div>
-
-  <div class="reopen-grid">
-    <article class="reopen-card">
-      <span class="reopen-month">2월 중순부터</span>
-      <h3>국토부 청년월세 지원</h3>
-      <p><strong>2026 접수:</strong> 3월 30일~5월 29일</p>
-      <p><strong>다음 확인 권장:</strong> 2027년 2월 중순~3월부터 복지로·국토교통부 공고를 확인하세요.</p>
-      <p class="policy-anchor-note">2027년 계속사업·세부 신청기간은 아직 확정 전입니다.</p>
-      <a class="official-link" href="https://www.bokjiro.go.kr/" target="_blank" rel="noopener">복지로 확인 →</a>
-    </article>
-
-    <article class="reopen-card">
-      <span class="reopen-month">4월 중순부터</span>
-      <h3>서울시 청년월세지원</h3>
-      <p><strong>2026 접수:</strong> 5월 6일~5월 19일</p>
-      <p><strong>다음 확인 권장:</strong> 2027년 4월 중순부터 서울주거포털 공지사항을 확인하세요.</p>
-      <p class="policy-anchor-note">서울주거포털에서는 청년월세 신청안내 메일 알림도 설정할 수 있습니다.</p>
-      <a class="official-link" href="https://housing.seoul.go.kr/site/main/content/sh01_060513" target="_blank" rel="noopener">서울주거포털 확인 →</a>
-    </article>
-
-    <article class="reopen-card">
-      <span class="reopen-month">2월 말부터</span>
-      <h3>동작구 청년 식비 지원</h3>
-      <p><strong>최근 정기모집:</strong> 2025년 3월 6~26일 / 2026년 3월 3~22일</p>
-      <p><strong>다음 확인 권장:</strong> 2027년 2월 말부터 동작구 통합예약과 노량진 청년일자리센터 공지를 확인하세요.</p>
-      <p class="policy-anchor-note">사업이 계속될 경우 3월 정기모집 가능성이 높지만, 2027 일정은 아직 미확정입니다.</p>
-      <a class="official-link" href="https://www.dongjak.go.kr/yeyak/" target="_blank" rel="noopener">동작구 통합예약 확인 →</a>
-    </article>
-
-    <article class="reopen-card reopen-card--open">
-      <span class="reopen-month">지금 확인 가능</span>
-      <h3>서울형 주택바우처</h3>
-      <p><strong>현재 상태:</strong> 정기모집형이 아니라 거주지 동주민센터에서 신청하는 상시형 지원입니다.</p>
-      <p><strong>고시원 거주자:</strong> 일반바우처는 요건을 충족하면 고시원 거주 가구도 지원대상에 포함될 수 있습니다.</p>
-      <p class="policy-anchor-note">재개 시기를 기다릴 필요 없이 현재 거주지 동주민센터에서 자격을 확인하는 것이 좋습니다.</p>
-      <a class="official-link" href="https://housing.seoul.go.kr/site/main/content/sh_061010" target="_blank" rel="noopener">서울형 주택바우처 공식안내 →</a>
-    </article>
-  </div>
-
-  <div class="reopen-tip">
-    <strong>한눈에 기억하기</strong>
-    <span>2월 말: 동작구 식비지원 · 3월 전후: 국토부 청년월세 · 4월 중순: 서울시 청년월세 · 주택바우처: 상시 주민센터 확인</span>
-  </div>
-</section>
-
-<section id="other-youth-support" class="policy-anchor-section youth-support-extra">
-  <div class="policy-section-head">
-    <span class="tagline">교통 · 식비 · 구직 · 여성안전 · 생활지원</span>
-    <h2>그 밖의 청년 지원정책</h2>
-    <p>월세·주거지원 외에 노량진 생활과 취업 준비에 직접 도움이 되는 정책을 최신순으로 모았습니다.</p>
-  </div>
-
-  <!-- 2026-10-19: 중등교원 임용 수험생 대상 무료 특강 안내 -->
-  <article class="policy-card detail-policy" id="noryangjin-secondary-teacher-exam-2026">
-    <div class="policy-card-top"><span class="status-badge status-open">2026.10.02 대학 게시 안내 · 접수 상태 확인 필요</span></div>
-    <h3>중등교원 임용시험 무료 특강｜필기 전략·면접·모의면접</h3>
-    <p><strong>노량진 청년일자리센터 청년취업역량강화 프로그램</strong>으로 안내된 중등교원 임용시험 준비생 대상 무료 교육입니다. 메가스터디타워는 <strong>교육 장소</strong>이며, 메가스터디학원 주최 특강으로 안내하지 않습니다.</p>
-    <div class="detail-key">
-      <div><strong>참가비</strong>전액 무료</div>
-      <div><strong>대상</strong>중등교원 임용시험 준비생</div>
-      <div><strong>인원</strong>회차별 30명 · 선착순 안내</div>
-    </div>
-    <h4>강의 일정</h4>
-    <ul>
-      <li><strong>11월 19일(목) 19:00~22:00</strong> — 중등 임용 1차 필기시험 준비 전략</li>
-      <li><strong>12월 3일(목) 19:00~21:00</strong> — 면접 준비 기초 및 질의응답</li>
-      <li><strong>12월 10일(목) 19:00~21:00</strong> — 면접 준비 심화 및 질의응답</li>
-      <li><strong>12월 17일(목) 19:00~21:00</strong> — 실전 모의면접 컨설팅</li>
-    </ul>
-    <p><strong>장소:</strong> 서울 동작구 노량진로 140, 메가스터디타워 2층 노량진 청년일자리센터<br>
-    <strong>운영 안내:</strong> 노량진 청년일자리센터 / 강의 진행·접수 문의: 얼티밋커리어그룹<br>
-    <strong>문의:</strong> 010-6865-1710 (프로그램 담당자), 02-812-1114 (센터)<br>
-    <strong>수료증:</strong> 3회 이상 참여 시 발급 안내</p>
-    <div class="detail-note"><strong>신청 전 확인:</strong> 세부 접수 마감일·잔여석·로그인 필요 여부·제출서류·초등/유아/보건 분야 응시자 참여 가능 여부는 확인 필요입니다. 날짜와 장소는 변경될 수 있으므로 반드시 운영기관에 재확인하세요. 이 프로그램은 <strong>현금 지원이 아닌 무료 시험대비 교육</strong>입니다.</div>
-    <div class="policy-action-row">
-      <a class="official-link" href="https://youthjob.dongjak.go.kr/" target="_blank" rel="noopener noreferrer">노량진 청년일자리센터 공식 홈페이지 →</a>
-      <a class="official-link" href="https://docs.google.com/forms/d/e/1FAIpQLSewMoAXKI1Mb15DRtmRtYGhRyQ9kY2dDN10lQ7DCbflKP1xxA/viewform" target="_blank" rel="noopener noreferrer">앞서 안내된 신청서 (접수 상태 확인) →</a>
-    </div>
-    <p class="policy-anchor-note">※ 공고일은 대학 게시 안내 기준(2026.10.02)이며, 운영기관 최초 공고일은 확인 필요입니다.</p>
-  </article>
-
-  <!-- 2026-10-16 공식 접수정보 확인: 마감일 당일 안내 -->
-  <article class="policy-card detail-policy" id="oct-2026-food-health-support">
-    <div class="policy-card-top"><span class="status-badge status-open">2026.10.16 접수 마감 · 시간 확인</span><span class="site-new-badge timed-new" data-new-until="2026-10-16">NEW</span></div>
-    <h3>10월 16일 마감｜청년 식품꾸러미·건강검진 지원</h3>
-    <p>서울광역청년센터 공식 모집 안내 기준입니다. <strong>두 사업 모두 신청 마감일이 오늘이므로 마감 시각을 꼭 확인하세요.</strong> 공고 최초 게시일은 확인되지 않았으며 아래 날짜는 신청기간입니다.</p>
-    <h4>① CJ제일제당 나눔냉장고 캠페인 — 식품꾸러미</h4>
-    <p><strong>신청:</strong> 2026.10.08~10.16 <strong>17:00까지</strong> / <strong>대상:</strong> 서울 거주 만 19~39세 식생활 지원 필요 청년 / <strong>혜택:</strong> 햇반 포함 식품꾸러미(금액 미공개).</p>
-    <p>중위소득 80% 이하, 서울 신규 전입자, 자립준비·가족돌봄청년 등 우선 선발. <strong>고시원 거주 자체의 제외 규정은 확인되지 않았으나</strong> 서울 거주 등 개별 요건 충족 필요. 지정 센터 방문·본인 수령, 센터 중복 신청·수령 제한.</p>
-    <p><a href="https://forms.gle/y47NAuZzjLsMbYwZA" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 18px;border-radius:10px;background:#146b49;color:#fff;font-weight:700;text-decoration:none">🍚 나눔냉장고 신청 바로가기 ↗</a></p>
-    <p style="margin-top:8px;color:#805016;font-weight:700">※ 신청서를 작성하려면 구글 계정으로 로그인해야 합니다.</p>
-    <p><strong>신청방법:</strong> 구글 로그인 후 <a class="official-link" href="https://forms.gle/y47NAuZzjLsMbYwZA" target="_blank" rel="noopener">공식 신청서 작성 →</a> / <a class="official-link" href="https://youth.seoul.go.kr/infoData/sprtInfo/view.do?key=2309130006&amp;sprtInfoId=74789" target="_blank" rel="noopener">서울시 공식 모집 안내 →</a></p>
-    <h4>② 하나부터 열까지 청년 건강검진 — 30만원 상당</h4>
-    <p><strong>신청:</strong> 2026.10.06~10.16 <strong>14:00까지</strong> / <strong>대상:</strong> 서울 거주 만 19~39세 미취업 청년(의무복무 제대군인은 조건에 따라 최대 42세) / <strong>혜택:</strong> 1인당 30만원 상당 건강검진.</p>
-    <p>주민등록등본, 건강보험 자격득실확인서, <strong>걷기 미션 인증자료</strong> 제출 필요. 자격 충족·미션 완료자 중 평가 고득점순 선정. 고시원 거주 자체의 제외 규정은 확인되지 않았지만 등본으로 서울 거주 입증 필요.</p>
-    <p><strong>신청방법:</strong> <a class="official-link" href="https://youth.seoul.go.kr/infoData/sprtInfo/view.do?key=2309130006&amp;sprtInfoId=74863" target="_blank" rel="noopener">서울시 공식 공고에서 신청 절차 확인 →</a></p>
-    <div class="detail-note"><strong>주의:</strong> 10월 16일 이후에는 접수 종료된 안내입니다. 선정·예산 소진 및 조기마감 여부는 신청 화면에서 최종 확인하세요. 두 사업 모두 자동 선정이 아니며, 소득·재산·중복지원 세부 요건 중 공식 공고에 없는 사항은 확인 필요입니다.</div>
-  </article>
-
-  <article class="policy-card detail-policy" id="youth-finance-2027-preview">
-    <div class="policy-card-top">
-      <span class="status-badge status-open">2026.09.21 공식 발표 · 2027년 추진 예정</span>
-      <span class="site-new-badge timed-new" data-new-until="2026-10-06">NEW</span>
-    </div>
-    <h3>2027 청년 금융지원 확대｜취업준비·자산형성·전월세 지원</h3>
-    <p>금융위원회가 2027년 청년 지원사업의 신규·개편 방향을 공식 발표했습니다. 스테이The머무름 입주생과 직접 관련성이 높은 내용은 <strong>청년기회자금 신설, 청년미래적금 확대·개편, 청년 전월세결합보증 신설</strong>입니다.</p>
-
-    <div class="detail-note"><strong>중요｜지금 바로 신청하는 사업은 아닙니다.</strong><br>
-    아래 내용은 <strong>2027년 추진 예정 사업</strong>으로, 예산의 국회 통과와 세부 운영방안 확정이 남아 있습니다. 신청기간·신청방법 등은 추후 공식 공고가 나오면 다시 확인해야 합니다. <strong>2026년 10월 7~16일 청년미래적금 2차 모집에는 현재의 소득·가구요건이 그대로 적용</strong>됩니다.</div>
-
-    <h4>입주생에게 직접 도움이 될 핵심 3가지</h4>
-    <div class="support-info-grid">
-      <div class="support-info-box"><strong>① 청년기회자금 신설</strong><span>미취업 청년의 취·창업 준비자금을 저리로 대출합니다. 1회 최대 500만원, 연간 750만원, 생애 최대 2,000만원 한도이며 취·창업 준비기간에는 최대 8년 거치기간 동안 정부가 이자를 대납하는 방식이 추진됩니다.</span></div>
-      <div class="support-info-box"><strong>② 청년미래적금 확대</strong><span>2027년에는 가입대상을 모든 청년으로 확대하고 우대형 정부기여금을 12%→15%로 높이는 방안이 추진됩니다. 지방 중소기업 재직자는 25% 우대트랙을 신설할 계획입니다.</span></div>
-      <div class="support-info-box"><strong>③ 청년 전월세결합보증 신설</strong><span>전세와 월세 자금을 함께 지원하는 결합보증을 신설할 계획입니다. 임차보증금의 90%, 2억원 한도(신혼·유자녀 3억원)까지 100% 보증하고 지방·저소득 청년에는 이차보전을 지원하는 내용입니다.</span></div>
-      <div class="support-info-box"><strong>추가｜청년미래보금자리론</strong><span>오피스텔 등 아파트 외 주택 구입을 원하는 청년에게 금리·LTV 우대를 제공하는 신규 상품도 추진됩니다. 자가 마련 단계의 청년에게 해당하는 제도입니다.</span></div>
-    </div>
-
-    <p class="policy-anchor-note">금융위원회는 2027년 청년사업 예산의 국회 통과를 추진하고 있으며, 세부 대상·금리·신청기간·신청창구는 추후 확정될 예정입니다. 확정 전에는 현재 시행 중인 제도와 혼동하지 마세요.</p>
-    <div class="policy-action-row">
-      <a class="official-link" href="https://www.fsc.go.kr/no010101/87752" target="_blank" rel="noopener">금융위원회 2027 청년사업 공식 발표 →</a>
-    </div>
-  </article>
-
-  <article class="policy-card detail-policy" id="youth-future-savings-2026-round2">
-    <div class="policy-card-top">
-      <span class="status-badge status-open">2026.09.30 절차 변경 안내 · 10.07~10.16 신청</span>
-      <span class="site-new-badge timed-new" data-new-until="2026-10-09">NEW</span>
-    </div>
-    <h3>청년미래적금 2차 모집｜신청 절차 변경 · 10월 7일 시작</h3>
-    <p>금융위원회와 서민금융진흥원이 9월 30일 2차 가입 절차를 추가 안내했습니다. 이번 2차 모집부터 신청자가 모바일 앱에서 <strong>일반소득자·중소기업 재직자·소상공인 중 본인의 가입유형을 직접 선택</strong>하고, 사전심사 결과 확인과 이의신청 절차가 새로 운영됩니다. 매월 1천원부터 최대 50만원까지 자유롭게 납입하는 3년 만기 상품입니다.</p>
-
-    <div class="detail-note"><strong>중요｜소득이 전혀 없으면 가입할 수 없습니다.</strong><br>
-    2차 모집은 <strong>2025년 국세청 확정 소득</strong>을 기준으로 심사합니다. 소득이 없거나 국세청에서 소득금액 증명이 불가능한 경우 가입할 수 없습니다. 따라서 시험 준비만 하고 있고 신고된 근로·사업소득이 전혀 없는 입주생은 대상이 아닙니다.</div>
-
-    <div class="detail-key">
-      <div><strong>신청기간</strong>2026.10.07 ~ 10.16<br>심사 10.19 ~ 11.13</div>
-      <div><strong>계좌개설</strong>심사 통과 시<br>2026.11.16 ~ 11.27</div>
-      <div><strong>연령</strong>만 19~34세<br>병역이행 기간 최대 6년 제외</div>
-    </div>
-
-    <h4>2차 모집에서 달라진 신청 절차</h4>
-    <div class="support-info-grid">
-      <div class="support-info-box"><strong>가입유형 직접 선택</strong><span>취급기관 모바일 앱에서 일반소득자·중소기업 재직자·소상공인 중 본인에게 해당하는 유형을 직접 선택해야 합니다.</span></div>
-      <div class="support-info-box"><strong>사전심사·이의신청 신설</strong><span>사전심사 결과는 10월 30일~11월 2일(잠정) 안내되며, 결과가 다르거나 이의가 있으면 11월 2~5일(잠정) 이의신청 기회가 제공됩니다.</span></div>
-      <div class="support-info-box"><strong>소상공인은 미리 준비</strong><span>소상공인 유형으로 신청하려면 신청 전에 소상공인확인서를 발급받아야 합니다. 사업장이 2개 이상이면 운영 중인 모든 사업장의 확인서가 필요합니다.</span></div>
-      <div class="support-info-box"><strong>청년도약계좌 갈아타기</strong><span>청년미래적금 신청·심사 → 가입 가능 안내 → 청년미래적금 계좌 개설 → 청년도약계좌 특별중도해지 순서로 진행해야 합니다.</span></div>
-    </div>
-
-    <h4>가입조건과 혜택</h4>
-    <ul>
-      <li><strong>일반 소득자:</strong> 총급여 7,500만원 이하(종합소득 6,300만원 이하) + 가구 중위소득 200% 이하</li>
-      <li><strong>소상공인:</strong> 연매출 3억원 이하 + 가구 중위소득 200% 이하 등 요건 적용</li>
-      <li><strong>납입:</strong> 월 1천원부터 최대 50만원까지 자유 납입 · 3년 만기</li>
-      <li><strong>정부기여금:</strong> 일반형 6%, 요건을 충족한 중소기업 재직자·신규 취업자 및 소상공인 등 우대형 12%</li>
-      <li><strong>세제혜택:</strong> 이자소득 비과세. 총급여 6,000만원 초과~7,500만원 이하 등 일부 구간은 정부기여금 없이 비과세 혜택만 적용될 수 있습니다.</li>
-    </ul>
-
-    <h4>고시원 입주 청년 체크포인트</h4>
-    <div class="support-info-grid">
-      <div class="support-info-box"><strong>알바·파트타임도 확인</strong><span>직업 형태보다 국세청에서 2025년 소득이 확인되는지가 중요합니다. 신고된 근로·사업소득이 있다면 다른 요건과 함께 가입 가능 여부를 확인하세요.</span></div>
-      <div class="support-info-box"><strong>수험 준비만 하고 소득이 없다면</strong><span>국세청 소득금액 증명이 불가능한 무소득자는 이번 2차 모집에 가입할 수 없습니다.</span></div>
-      <div class="support-info-box"><strong>중소기업 취업 청년</strong><span>일정 요건을 충족하는 중소기업 재직자·신규 취업자는 우대형 대상이 될 수 있어 정부기여금 혜택을 더 받을 수 있습니다.</span></div>
-      <div class="support-info-box"><strong>매달 부담에 맞춰 납입</strong><span>월 50만원을 반드시 채울 필요 없이 1천원부터 50만원 사이에서 자유롭게 납입할 수 있습니다.</span></div>
-    </div>
-
-    <h4>신청 일정</h4>
-    <ul>
-      <li><strong>10월 7일:</strong> 출생연도 끝자리 홀수</li>
-      <li><strong>10월 8일:</strong> 출생연도 끝자리 짝수</li>
-      <li><strong>10월 12~16일:</strong> 출생연도와 관계없이 전체 신청</li>
-      <li><strong>기존 청년도약계좌 가입자:</strong> 갈아타기를 원하면 청년미래적금 계좌를 먼저 개설한 뒤 같은 계좌개설 기간 안에 청년도약계좌 특별중도해지를 완료해야 합니다.</li>
-    </ul>
-    <p class="policy-anchor-note">이번 가입기간의 연령 기준은 계좌개설기간을 기준으로 1991년 11월 17일생부터 2007년 11월 27일생까지입니다. 세부 소득·가구요건과 우대형 판정은 신청 전 공식 안내에서 최종 확인하세요.</p>
-
-    <div class="policy-action-row">
-      <a class="official-link" href="https://www.fsc.go.kr/no010101/87820" target="_blank" rel="noopener">금융위원회 9월 30일 변경 절차 공식 안내 →</a>
-      <a class="official-link" href="https://fill4young.kinfa.or.kr/" target="_blank" rel="noopener">청년미래적금 공식 안내·자격 확인 →</a>
-    </div>
-  </article>
-
-  <article class="policy-card detail-policy" id="update-2026-climate-pass">
-    <div class="policy-card-top">
-      <span class="status-badge status-open">2026.09.01 시행 · 현재 이용 가능</span>
-      <span class="site-new-badge timed-new" data-new-until="2026-09-19">NEW</span>
-    </div>
-    <h3>모두의카드(기후동행패스)｜서울 청년 만 39세까지 확대</h3>
-    <div class="detail-key">
-      <div><strong>청년 대상</strong>만 19~39세 서울시민<br>2026년 기준 1986~2007년생</div>
-      <div><strong>이용 범위</strong>서울뿐 아니라 전국 버스·전철·GTX 등</div>
-      <div><strong>혜택 방식</strong>정률형·정액형 중 환급액이 큰 방식 자동 적용</div>
-    </div>
-
-    <div class="detail-note"><strong>거주지와 결제방식을 꼭 구분하세요.</strong><br>
-    교통 이용 범위는 전국이지만 <strong>서울시 기후동행패스 특화 혜택은 주민등록상 서울시민에게 적용</strong>됩니다. 기존 기후동행카드처럼 충전할 때 7천 원을 바로 할인하는 방식이 아니라, 교통비를 먼저 결제한 뒤 산정된 금액을 환급받는 방식입니다.</div>
-
-    <h4>청년 기본 환급 기준</h4>
-    <table class="doc-table support-compare-table">
-      <thead><tr><th>방식</th><th>청년 기준</th><th>적용 내용</th></tr></thead>
-      <tbody>
-        <tr><th>정률형</th><td>월 이용금액의 30%</td><td>대중교통 이용금액의 30% 환급</td></tr>
-        <tr><th>정액형 일반</th><td>수도권 5만5천 원</td><td>1회 총 이용금액 3천 원 미만인 일반 대중교통비가 기준금액을 넘으면 초과분 환급</td></tr>
-        <tr><th>정액형 플러스</th><td>수도권 9만 원</td><td>GTX·광역버스 등 광역수단을 포함해 기준금액 초과분 환급</td></tr>
-      </tbody>
-    </table>
-    <p class="policy-anchor-note">정률형과 정액형을 미리 선택할 필요는 없습니다. 월 이용실적을 계산해 더 큰 환급액이 자동 적용됩니다. 원칙적으로 카드 등록 후 월 15회 이상 대중교통을 이용해야 하며, 가입 첫 달은 15회 미만이어도 환급됩니다.</p>
-
-    <div class="support-info-grid">
-      <div class="support-info-box">
-        <strong>2026년 9월 이용분 한시 혜택</strong>
-        <span>청년 정액형 기준은 일반 2만5천 원·플러스 4만5천 원으로 한시 인하됩니다. 지정 시차시간 승차분은 청년 정률 환급률이 60%로 확대됩니다.</span>
-      </div>
-      <div class="support-info-box">
-        <strong>기존 기후동행카드 30일권</strong>
-        <span>신규 충전은 8월 31일 종료됐습니다. 마지막 선불 충전분은 9월 29일까지, 후불카드는 9월 30일까지 이용할 수 있습니다.</span>
-      </div>
-    </div>
-
-    <h4>발급·등록 방법</h4>
-    <ol class="step-list">
-      <li><strong>모두의카드 발급:</strong> 카드사의 신용·체크카드, 선불 실물카드 또는 모바일카드를 발급합니다.</li>
-      <li><strong>발급기관 등록:</strong> 선불·모바일카드는 티머니 등 발급기관 앱·홈페이지에 카드번호와 환급계좌를 등록합니다.</li>
-      <li><strong>K-패스 등록:</strong> K-패스 앱 또는 누리집에서 회원가입하고 카드번호와 주소지를 등록·검증합니다.</li>
-      <li><strong>이용 후 환급:</strong> 등록한 카드로 대중교통을 이용하면 다음 달에 환급액이 산정됩니다.</li>
-    </ol>
-    <p class="policy-anchor-note"><strong>이미 모두의카드(K-패스)를 이용 중인 서울시민</strong>은 카드를 다시 발급받을 필요가 없습니다. 9월 1일부터 서울 특화 혜택이 자동 적용되며, 만 35~39세도 K-패스 가입정보의 생년월일로 확인하므로 별도 청년 인증이 필요하지 않습니다.</p>
-    <div class="detail-note"><strong>제대군인 연령 연장 안내</strong><br>
-    기존 기후동행카드의 의무복무 제대군인 청년할인 연장(복무기간에 따라 최대 만 42세)은 새 기후동행패스에도 <strong>향후 적용 예정</strong>으로 안내됐습니다. 현재 적용이 완료된 혜택으로 단정하지 말고 서울시 최신 공지를 확인하세요.</div>
-
-    <div class="policy-action-row">
-      <a class="official-link" href="https://news.seoul.go.kr/traffic/archives/518138" target="_blank" rel="noopener">서울시 기후동행패스 공식 안내 →</a>
-      <a class="official-link" href="https://news.seoul.go.kr/traffic/public/climatecard-faq/faq-climatepass" target="_blank" rel="noopener">서울시 공식 FAQ →</a>
-      <a class="official-link" href="https://www.molit.go.kr/mtc/USR/WPGE0201/m_37187/DTL.jsp" target="_blank" rel="noopener">국토교통부 모두의카드 안내 →</a>
-      <a class="official-link" href="https://korea-pass.kr/" target="_blank" rel="noopener">K-패스 등록 →</a>
-    </div>
-  </article>
-
-  <article class="policy-card" id="dongjak-job-support-2026">
-    <div class="policy-card-top"><span class="status-badge status-open">현재 신청 가능</span><span class="site-new-badge timed-new" data-new-until="2026-09-15">NEW</span></div>
-    <h3>동작 청년 구직활동 지원사업｜응시료 최대 10만원·취득축하금 최대 50만원</h3>
-    <p>동작구에 6개월 이상 거주 중인 19~39세 미취업 청년을 대상으로 어학·자격증 응시료를 실비 최대 10만원까지 지원하고, 자격증 취득 시 등급에 따라 동작사랑상품권으로 최대 50만원의 취득축하금을 지원합니다.</p>
-    <ul>
-      <li><strong>신청기간:</strong> 2026. 1. 26. ~ 12. 10. (사업비 소진 시 조기 마감)</li>
-      <li><strong>주의:</strong> 신청 증가로 예산 조기 소진이 예상되어 8월 접수분부터 지급이 지연되거나 미지급될 수 있으며, 추가 예산 확보 시 순차 지급될 수 있습니다.</li>
-      <li><strong>신청:</strong> 노량진 청년일자리센터 홈페이지 온라인 접수</li>
-    </ul>
-    <a class="official-link" href="https://youthjob.dongjak.go.kr/noryangjin/contents.do?mId=1467" target="_blank" rel="noopener">노량진 청년일자리센터 공식 안내 →</a>
-  </article>
-
-  
-  <article class="policy-card" id="dongjak-food-support-2026">
-    <div class="policy-card-top"><span class="status-badge status-closed">2026 정기모집 마감</span></div>
-    <h3>동작구 청년 식비 지원｜월 6만원·연 최대 54만원</h3>
-    <p>동작구 거주 1인 가구 미취업 청년의 식비 부담을 줄이기 위한 사업입니다. 2026년에는 500명을 모집해 4월부터 12월까지 매월 6만원씩, 최대 54만원을 동작사랑상품권으로 지원합니다.</p>
-
-    <div class="support-info-grid">
-      <div class="support-info-box">
-        <strong>현재 상태</strong>
-        <span>2026년 정기모집 종료 · 선정자 지원 진행 중</span>
-      </div>
-      <div class="support-info-box">
-        <strong>다음 모집 예상</strong>
-        <span>2027년 2월 말~3월 공고, 3월 접수 가능성이 높습니다.</span>
-      </div>
-    </div>
-
-    <p class="policy-anchor-note"><strong>왜 3월로 예상하나요?</strong> 2025년에는 3월 6~26일, 2026년에는 3월 3~22일에 정기모집을 진행했습니다. 따라서 사업이 계속될 경우 2027년도 역시 2월 말~3월에 공고·접수가 시작될 가능성이 높습니다. 단, 2027년 일정은 아직 공식 확정 전이므로 실제 공고를 확인해야 합니다.</p>
-
-    <ul>
-      <li><strong>2026 지원대상:</strong> 공고일 기준 동작구 1년 이상 거주, 1인 가구, 미취업 19~39세 청년</li>
-      <li><strong>지원내용:</strong> 월 6만원 × 9개월 = 최대 54만원, 동작사랑상품권(서울페이) 지급</li>
-      <li><strong>신청방법:</strong> 모집기간에 <strong>동작구 통합예약시스템에서 온라인 신청</strong> 후 필요한 서류를 첨부</li>
-      <li><strong>주관:</strong> 동작구청 청년청소년과</li>
-      <li><strong>문의:</strong> 02-820-9298</li>
-    </ul>
-
-    <div class="policy-action-row">
-      <a class="official-link" href="https://www.dongjak.go.kr/yeyak/progrm/master/yeyak/view.do?menuNo=1600011&amp;prgSn=9339&amp;tmplatSeCd=95" target="_blank" rel="noopener">2026 공식 모집공고 확인 →</a>
-      <a class="official-link" href="https://www.dongjak.go.kr/yeyak/progrm/master/yeyak/list.do?menuNo=1600011&amp;tmplatSeCd=95" target="_blank" rel="noopener">동작구 통합예약 신청창구 확인 →</a>
-      <a class="official-link" href="https://youthjob.dongjak.go.kr/" target="_blank" rel="noopener">노량진 청년일자리센터 공지 확인 →</a>
-    </div>
-  
-    <div class="food-eligibility-detail">
-      <h4>신청자격·준비서류</h4>
-      <ul>
-        <li><strong>연령:</strong> 만 19~39세 청년</li>
-        <li><strong>거주:</strong> 모집 공고일 기준 주민등록상 동작구 1년 이상 거주 중인 1인 가구</li>
-        <li><strong>고시원 거주:</strong> 주민등록 등 공고상 거주요건을 충족하면 고시원 거주 수험생도 신청대상이 될 수 있습니다.</li>
-        <li><strong>취업:</strong> 신청일 기준 미취업자</li>
-        <li><strong>중복 제한:</strong> 생애 1회 지원으로 이전 연도 참여자는 제외됩니다.</li>
-        <li><strong>주요 제출서류:</strong> 고용보험 자격이력내역서, 주민등록등본, 활동계획서, 참여 서약서 등</li>
-      </ul>
-      <p class="policy-anchor-note">세부 자격과 제출서류는 모집연도에 변경될 수 있으므로 신청 전 해당 연도 동작구 공식 모집공고를 반드시 확인하세요.</p>
-    </div>
+<section class="policy-anchor-section support-reopen-calendar" id="support-reopen-calendar">
+<div class="policy-section-head">
+<span class="tagline">신청 종료 후 다시 확인할 시기</span>
+<h2>지원정책 재신청 체크 캘린더</h2>
+<p>모집이 끝난 정책은 다음 공고가 나오기 전에 미리 확인해 두면 놓치기 쉽지 않습니다. 아래 시기는 최근 모집 일정에 따른 <strong>확인 권장 시점</strong>이며, 다음 연도 일정이 확정된 것은 아닙니다.</p>
+<p class="past-period-note">※ 2026년 진행 기준 예시이며, 2027년 정확한 일정은 추후 공식 공고를 확인하세요.</p></div>
+<div class="reopen-grid">
+<article class="reopen-card">
+<span class="reopen-month">2월 중순부터</span>
+<h3>국토부 청년월세 지원</h3>
+<p><strong>2026 접수:</strong> 3월 30일~5월 29일</p>
+<p><strong>다음 확인 권장:</strong> 2027년 2월 중순~3월부터 복지로·국토교통부 공고를 확인하세요.</p>
+<p class="policy-anchor-note">2027년 계속사업·세부 신청기간은 아직 확정 전입니다.</p>
+<a class="official-link" href="https://www.bokjiro.go.kr/" rel="noopener" target="_blank">복지로 확인 →</a>
 </article>
-
-
-
-  <article class="policy-card" id="seoul-safe-return-scout-2026">
-    <div class="policy-card-top">
-      <span class="status-badge status-open">현재 이용 가능</span>
-      <span class="site-new-badge timed-new" data-new-until="2026-09-15">NEW</span>
-    </div>
-    <h3>서울 안심귀가스카우트｜동작구 운영·안심이 앱 사전예약</h3>
-    <p>늦은 시간 혼자 귀가하기 걱정되는 경우 서울시 안심귀가스카우트를 이용할 수 있습니다. <strong>동작구도 운영 자치구에 포함</strong>되며, 안심이 앱을 통해 미리 예약하면 스카우트 대원과 함께 안전하게 귀가할 수 있습니다.</p>
-    <ul>
-      <li><strong>신청:</strong> 안심이 앱을 통한 100% 사전예약제</li>
-      <li><strong>일반 운영시간:</strong> 월요일 22:00~24:00 / 화~금요일 22:00~익일 01:00</li>
-      <li><strong>단축 운영:</strong> 1~2월·7~8월은 화~금 22:00~24:00, 월요일 휴무</li>
-      <li><strong>운영지역:</strong> 동작구 포함 서울시 지정 자치구</li>
-    </ul>
-    <p class="policy-anchor-note">운영시간과 예약 가능 여부는 변경될 수 있으므로 이용 당일 안심이 앱 또는 서울시 공식 안내를 확인하세요.</p>
-    <a class="official-link" href="https://news.seoul.go.kr/welfare/archives/557329" target="_blank" rel="noopener">서울시 2026 안심귀가스카우트 공식 안내 →</a>
-  </article>
-
-  <article class="policy-card" id="noryangjin-youth-center">
-    <div class="policy-card-top"><span class="status-badge status-open">상시 이용·프로그램별 모집</span></div>
-    <h3>노량진 청년일자리센터｜취업상담·취업역량 프로그램</h3>
-    <p>노량진역 인근 청년일자리센터에서는 직업상담과 취업 프로그램을 운영합니다. 프로그램별 모집기간이 다르므로 현재 모집 중인 과정은 센터 홈페이지에서 확인하세요.</p>
-    <a class="official-link" href="https://youthjob.dongjak.go.kr/" target="_blank" rel="noopener">현재 모집 프로그램 확인 →</a>
-  </article>
+<article class="reopen-card">
+<span class="reopen-month">4월 중순부터</span>
+<h3>서울시 청년월세지원</h3>
+<p><strong>2026 접수:</strong> 5월 6일~5월 19일</p>
+<p><strong>다음 확인 권장:</strong> 2027년 4월 중순부터 서울주거포털 공지사항을 확인하세요.</p>
+<p class="policy-anchor-note">서울주거포털에서는 청년월세 신청안내 메일 알림도 설정할 수 있습니다.</p>
+<a class="official-link" href="https://housing.seoul.go.kr/site/main/content/sh01_060513" rel="noopener" target="_blank">서울주거포털 확인 →</a>
+</article>
+<article class="reopen-card">
+<span class="reopen-month">2월 말부터</span>
+<h3>동작구 청년 식비 지원</h3>
+<p><strong>최근 정기모집:</strong> 2025년 3월 6~26일 / 2026년 3월 3~22일</p>
+<p><strong>다음 확인 권장:</strong> 2027년 2월 말부터 동작구 통합예약과 노량진 청년일자리센터 공지를 확인하세요.</p>
+<p class="policy-anchor-note">사업이 계속될 경우 3월 정기모집 가능성이 높지만, 2027 일정은 아직 미확정입니다.</p>
+<a class="official-link" href="https://www.dongjak.go.kr/yeyak/" rel="noopener" target="_blank">동작구 통합예약 확인 →</a>
+</article>
+<article class="reopen-card reopen-card--open">
+<span class="reopen-month">지금 확인 가능</span>
+<h3>서울형 주택바우처</h3>
+<p><strong>현재 상태:</strong> 정기모집형이 아니라 거주지 동주민센터에서 신청하는 상시형 지원입니다.</p>
+<p><strong>고시원 거주자:</strong> 일반바우처는 요건을 충족하면 고시원 거주 가구도 지원대상에 포함될 수 있습니다.</p>
+<p class="policy-anchor-note">재개 시기를 기다릴 필요 없이 현재 거주지 동주민센터에서 자격을 확인하는 것이 좋습니다.</p>
+<a class="official-link" href="https://housing.seoul.go.kr/site/main/content/sh_061010" rel="noopener" target="_blank">서울형 주택바우처 공식안내 →</a>
+</article>
+</div>
+<div class="reopen-tip">
+<strong>한눈에 기억하기</strong>
+<span>2월 말: 동작구 식비지원 · 3월 전후: 국토부 청년월세 · 4월 중순: 서울시 청년월세 · 주택바우처: 상시 주민센터 확인</span>
+</div>
 </section>
-
+<section class="policy-anchor-section youth-support-extra" id="other-youth-support">
+<div class="policy-section-head">
+<span class="tagline">교통 · 식비 · 구직 · 여성안전 · 생활지원</span>
+<h2>그 밖의 청년 지원정책</h2>
+<p>월세·주거지원 외에 노량진 생활과 취업 준비에 직접 도움이 되는 정책을 최신순으로 모았습니다.</p>
+</div>
+<!-- 2026-10-19: 중등교원 임용 수험생 대상 무료 특강 안내 -->
+<article class="policy-card detail-policy" id="noryangjin-secondary-teacher-exam-2026">
+<div class="policy-card-top"><span class="status-badge status-open">2026.10.02 대학 게시 안내 · 접수 상태 확인 필요</span></div>
+<h3>중등교원 임용시험 무료 특강｜필기 전략·면접·모의면접</h3>
+<p><strong>노량진 청년일자리센터 청년취업역량강화 프로그램</strong>으로 안내된 중등교원 임용시험 준비생 대상 무료 교육입니다. 메가스터디타워는 <strong>교육 장소</strong>이며, 메가스터디학원 주최 특강으로 안내하지 않습니다.</p>
+<div class="detail-key">
+<div><strong>참가비</strong>전액 무료</div>
+<div><strong>대상</strong>중등교원 임용시험 준비생</div>
+<div><strong>인원</strong>회차별 30명 · 선착순 안내</div>
+</div>
+<h4>강의 일정</h4>
+<ul>
+<li><strong>11월 19일(목) 19:00~22:00</strong> — 중등 임용 1차 필기시험 준비 전략</li>
+<li><strong>12월 3일(목) 19:00~21:00</strong> — 면접 준비 기초 및 질의응답</li>
+<li><strong>12월 10일(목) 19:00~21:00</strong> — 면접 준비 심화 및 질의응답</li>
+<li><strong>12월 17일(목) 19:00~21:00</strong> — 실전 모의면접 컨설팅</li>
+</ul>
+<p><strong>장소:</strong> 서울 동작구 노량진로 140, 메가스터디타워 2층 노량진 청년일자리센터<br/>
+<strong>운영 안내:</strong> 노량진 청년일자리센터 / 강의 진행·접수 문의: 얼티밋커리어그룹<br/>
+<strong>문의:</strong> 010-6865-1710 (프로그램 담당자), 02-812-1114 (센터)<br/>
+<strong>수료증:</strong> 3회 이상 참여 시 발급 안내</p>
+<div class="detail-note"><strong>신청 전 확인:</strong> 세부 접수 마감일·잔여석·로그인 필요 여부·제출서류·초등/유아/보건 분야 응시자 참여 가능 여부는 확인 필요입니다. 날짜와 장소는 변경될 수 있으므로 반드시 운영기관에 재확인하세요. 이 프로그램은 <strong>현금 지원이 아닌 무료 시험대비 교육</strong>입니다.</div>
+<div class="policy-action-row">
+<a class="official-link" href="https://youthjob.dongjak.go.kr/" rel="noopener noreferrer" target="_blank">노량진 청년일자리센터 공식 홈페이지 →</a>
+<a class="official-link" href="https://docs.google.com/forms/d/e/1FAIpQLSewMoAXKI1Mb15DRtmRtYGhRyQ9kY2dDN10lQ7DCbflKP1xxA/viewform" rel="noopener noreferrer" target="_blank">앞서 안내된 신청서 (접수 상태 확인) →</a>
+</div>
+<p class="policy-anchor-note">※ 공고일은 대학 게시 안내 기준(2026.10.02)이며, 운영기관 최초 공고일은 확인 필요입니다.</p>
+</article>
+<!-- 2026-10-16 공식 접수정보 확인: 마감일 당일 안내 -->
+<article class="policy-card detail-policy" id="oct-2026-food-health-support">
+<div class="policy-card-top"><span class="status-badge status-open">2026.10.16 접수 마감 · 시간 확인</span><span class="site-new-badge timed-new" data-new-until="2026-10-16">NEW</span></div>
+<h3>10월 16일 마감｜청년 식품꾸러미·건강검진 지원</h3>
+<p>서울광역청년센터 공식 모집 안내 기준입니다. <strong>두 사업 모두 신청 마감일이 오늘이므로 마감 시각을 꼭 확인하세요.</strong> 공고 최초 게시일은 확인되지 않았으며 아래 날짜는 신청기간입니다.</p>
+<h4>① CJ제일제당 나눔냉장고 캠페인 — 식품꾸러미</h4>
+<p><strong>신청:</strong> 2026.10.08~10.16 <strong>17:00까지</strong> / <strong>대상:</strong> 서울 거주 만 19~39세 식생활 지원 필요 청년 / <strong>혜택:</strong> 햇반 포함 식품꾸러미(금액 미공개).</p>
+<p>중위소득 80% 이하, 서울 신규 전입자, 자립준비·가족돌봄청년 등 우선 선발. <strong>고시원 거주 자체의 제외 규정은 확인되지 않았으나</strong> 서울 거주 등 개별 요건 충족 필요. 지정 센터 방문·본인 수령, 센터 중복 신청·수령 제한.</p>
+<p><a href="https://forms.gle/y47NAuZzjLsMbYwZA" rel="noopener noreferrer" style="display:inline-block;padding:12px 18px;border-radius:10px;background:#146b49;color:#fff;font-weight:700;text-decoration:none" target="_blank">🍚 나눔냉장고 신청 바로가기 ↗</a></p>
+<p style="margin-top:8px;color:#805016;font-weight:700">※ 신청서를 작성하려면 구글 계정으로 로그인해야 합니다.</p>
+<p><strong>신청방법:</strong> 구글 로그인 후 <a class="official-link" href="https://forms.gle/y47NAuZzjLsMbYwZA" rel="noopener" target="_blank">공식 신청서 작성 →</a> / <a class="official-link" href="https://youth.seoul.go.kr/infoData/sprtInfo/view.do?key=2309130006&amp;sprtInfoId=74789" rel="noopener" target="_blank">서울시 공식 모집 안내 →</a></p>
+<h4>② 하나부터 열까지 청년 건강검진 — 30만원 상당</h4>
+<p><strong>신청:</strong> 2026.10.06~10.16 <strong>14:00까지</strong> / <strong>대상:</strong> 서울 거주 만 19~39세 미취업 청년(의무복무 제대군인은 조건에 따라 최대 42세) / <strong>혜택:</strong> 1인당 30만원 상당 건강검진.</p>
+<p>주민등록등본, 건강보험 자격득실확인서, <strong>걷기 미션 인증자료</strong> 제출 필요. 자격 충족·미션 완료자 중 평가 고득점순 선정. 고시원 거주 자체의 제외 규정은 확인되지 않았지만 등본으로 서울 거주 입증 필요.</p>
+<p><strong>신청방법:</strong> <a class="official-link" href="https://youth.seoul.go.kr/infoData/sprtInfo/view.do?key=2309130006&amp;sprtInfoId=74863" rel="noopener" target="_blank">서울시 공식 공고에서 신청 절차 확인 →</a></p>
+<div class="detail-note"><strong>주의:</strong> 10월 16일 이후에는 접수 종료된 안내입니다. 선정·예산 소진 및 조기마감 여부는 신청 화면에서 최종 확인하세요. 두 사업 모두 자동 선정이 아니며, 소득·재산·중복지원 세부 요건 중 공식 공고에 없는 사항은 확인 필요입니다.</div>
+</article>
+<article class="policy-card detail-policy" id="youth-finance-2027-preview">
+<div class="policy-card-top">
+<span class="status-badge status-open">2026.09.21 공식 발표 · 2027년 추진 예정</span>
+<span class="site-new-badge timed-new" data-new-until="2026-10-06">NEW</span>
+</div>
+<h3>2027 청년 금융지원 확대｜취업준비·자산형성·전월세 지원</h3>
+<p>금융위원회가 2027년 청년 지원사업의 신규·개편 방향을 공식 발표했습니다. 스테이The머무름 입주생과 직접 관련성이 높은 내용은 <strong>청년기회자금 신설, 청년미래적금 확대·개편, 청년 전월세결합보증 신설</strong>입니다.</p>
+<div class="detail-note"><strong>중요｜지금 바로 신청하는 사업은 아닙니다.</strong><br/>
+    아래 내용은 <strong>2027년 추진 예정 사업</strong>으로, 예산의 국회 통과와 세부 운영방안 확정이 남아 있습니다. 신청기간·신청방법 등은 추후 공식 공고가 나오면 다시 확인해야 합니다. <strong>2026년 10월 7~16일 청년미래적금 2차 모집에는 현재의 소득·가구요건이 그대로 적용</strong>됩니다.</div>
+<h4>입주생에게 직접 도움이 될 핵심 3가지</h4>
+<div class="support-info-grid">
+<div class="support-info-box"><strong>① 청년기회자금 신설</strong><span>미취업 청년의 취·창업 준비자금을 저리로 대출합니다. 1회 최대 500만원, 연간 750만원, 생애 최대 2,000만원 한도이며 취·창업 준비기간에는 최대 8년 거치기간 동안 정부가 이자를 대납하는 방식이 추진됩니다.</span></div>
+<div class="support-info-box"><strong>② 청년미래적금 확대</strong><span>2027년에는 가입대상을 모든 청년으로 확대하고 우대형 정부기여금을 12%→15%로 높이는 방안이 추진됩니다. 지방 중소기업 재직자는 25% 우대트랙을 신설할 계획입니다.</span></div>
+<div class="support-info-box"><strong>③ 청년 전월세결합보증 신설</strong><span>전세와 월세 자금을 함께 지원하는 결합보증을 신설할 계획입니다. 임차보증금의 90%, 2억원 한도(신혼·유자녀 3억원)까지 100% 보증하고 지방·저소득 청년에는 이차보전을 지원하는 내용입니다.</span></div>
+<div class="support-info-box"><strong>추가｜청년미래보금자리론</strong><span>오피스텔 등 아파트 외 주택 구입을 원하는 청년에게 금리·LTV 우대를 제공하는 신규 상품도 추진됩니다. 자가 마련 단계의 청년에게 해당하는 제도입니다.</span></div>
+</div>
+<p class="policy-anchor-note">금융위원회는 2027년 청년사업 예산의 국회 통과를 추진하고 있으며, 세부 대상·금리·신청기간·신청창구는 추후 확정될 예정입니다. 확정 전에는 현재 시행 중인 제도와 혼동하지 마세요.</p>
+<div class="policy-action-row">
+<a class="official-link" href="https://www.fsc.go.kr/no010101/87752" rel="noopener" target="_blank">금융위원회 2027 청년사업 공식 발표 →</a>
+</div>
+</article>
+<article class="policy-card detail-policy" id="youth-future-savings-2026-round2">
+<div class="policy-card-top">
+<span class="status-badge status-open">2026.09.30 절차 변경 안내 · 10.07~10.16 신청</span>
+<span class="site-new-badge timed-new" data-new-until="2026-10-09">NEW</span>
+</div>
+<h3>청년미래적금 2차 모집｜신청 절차 변경 · 10월 7일 시작</h3>
+<p>금융위원회와 서민금융진흥원이 9월 30일 2차 가입 절차를 추가 안내했습니다. 이번 2차 모집부터 신청자가 모바일 앱에서 <strong>일반소득자·중소기업 재직자·소상공인 중 본인의 가입유형을 직접 선택</strong>하고, 사전심사 결과 확인과 이의신청 절차가 새로 운영됩니다. 매월 1천원부터 최대 50만원까지 자유롭게 납입하는 3년 만기 상품입니다.</p>
+<div class="detail-note"><strong>중요｜소득이 전혀 없으면 가입할 수 없습니다.</strong><br/>
+    2차 모집은 <strong>2025년 국세청 확정 소득</strong>을 기준으로 심사합니다. 소득이 없거나 국세청에서 소득금액 증명이 불가능한 경우 가입할 수 없습니다. 따라서 시험 준비만 하고 있고 신고된 근로·사업소득이 전혀 없는 입주생은 대상이 아닙니다.</div>
+<div class="detail-key">
+<div><strong>신청기간</strong>2026.10.07 ~ 10.16<br/>심사 10.19 ~ 11.13</div>
+<div><strong>계좌개설</strong>심사 통과 시<br/>2026.11.16 ~ 11.27</div>
+<div><strong>연령</strong>만 19~34세<br/>병역이행 기간 최대 6년 제외</div>
+</div>
+<h4>2차 모집에서 달라진 신청 절차</h4>
+<div class="support-info-grid">
+<div class="support-info-box"><strong>가입유형 직접 선택</strong><span>취급기관 모바일 앱에서 일반소득자·중소기업 재직자·소상공인 중 본인에게 해당하는 유형을 직접 선택해야 합니다.</span></div>
+<div class="support-info-box"><strong>사전심사·이의신청 신설</strong><span>사전심사 결과는 10월 30일~11월 2일(잠정) 안내되며, 결과가 다르거나 이의가 있으면 11월 2~5일(잠정) 이의신청 기회가 제공됩니다.</span></div>
+<div class="support-info-box"><strong>소상공인은 미리 준비</strong><span>소상공인 유형으로 신청하려면 신청 전에 소상공인확인서를 발급받아야 합니다. 사업장이 2개 이상이면 운영 중인 모든 사업장의 확인서가 필요합니다.</span></div>
+<div class="support-info-box"><strong>청년도약계좌 갈아타기</strong><span>청년미래적금 신청·심사 → 가입 가능 안내 → 청년미래적금 계좌 개설 → 청년도약계좌 특별중도해지 순서로 진행해야 합니다.</span></div>
+</div>
+<h4>가입조건과 혜택</h4>
+<ul>
+<li><strong>일반 소득자:</strong> 총급여 7,500만원 이하(종합소득 6,300만원 이하) + 가구 중위소득 200% 이하</li>
+<li><strong>소상공인:</strong> 연매출 3억원 이하 + 가구 중위소득 200% 이하 등 요건 적용</li>
+<li><strong>납입:</strong> 월 1천원부터 최대 50만원까지 자유 납입 · 3년 만기</li>
+<li><strong>정부기여금:</strong> 일반형 6%, 요건을 충족한 중소기업 재직자·신규 취업자 및 소상공인 등 우대형 12%</li>
+<li><strong>세제혜택:</strong> 이자소득 비과세. 총급여 6,000만원 초과~7,500만원 이하 등 일부 구간은 정부기여금 없이 비과세 혜택만 적용될 수 있습니다.</li>
+</ul>
+<h4>고시원 입주 청년 체크포인트</h4>
+<div class="support-info-grid">
+<div class="support-info-box"><strong>알바·파트타임도 확인</strong><span>직업 형태보다 국세청에서 2025년 소득이 확인되는지가 중요합니다. 신고된 근로·사업소득이 있다면 다른 요건과 함께 가입 가능 여부를 확인하세요.</span></div>
+<div class="support-info-box"><strong>수험 준비만 하고 소득이 없다면</strong><span>국세청 소득금액 증명이 불가능한 무소득자는 이번 2차 모집에 가입할 수 없습니다.</span></div>
+<div class="support-info-box"><strong>중소기업 취업 청년</strong><span>일정 요건을 충족하는 중소기업 재직자·신규 취업자는 우대형 대상이 될 수 있어 정부기여금 혜택을 더 받을 수 있습니다.</span></div>
+<div class="support-info-box"><strong>매달 부담에 맞춰 납입</strong><span>월 50만원을 반드시 채울 필요 없이 1천원부터 50만원 사이에서 자유롭게 납입할 수 있습니다.</span></div>
+</div>
+<h4>신청 일정</h4>
+<ul>
+<li><strong>10월 7일:</strong> 출생연도 끝자리 홀수</li>
+<li><strong>10월 8일:</strong> 출생연도 끝자리 짝수</li>
+<li><strong>10월 12~16일:</strong> 출생연도와 관계없이 전체 신청</li>
+<li><strong>기존 청년도약계좌 가입자:</strong> 갈아타기를 원하면 청년미래적금 계좌를 먼저 개설한 뒤 같은 계좌개설 기간 안에 청년도약계좌 특별중도해지를 완료해야 합니다.</li>
+</ul>
+<p class="policy-anchor-note">이번 가입기간의 연령 기준은 계좌개설기간을 기준으로 1991년 11월 17일생부터 2007년 11월 27일생까지입니다. 세부 소득·가구요건과 우대형 판정은 신청 전 공식 안내에서 최종 확인하세요.</p>
+<div class="policy-action-row">
+<a class="official-link" href="https://www.fsc.go.kr/no010101/87820" rel="noopener" target="_blank">금융위원회 9월 30일 변경 절차 공식 안내 →</a>
+<a class="official-link" href="https://fill4young.kinfa.or.kr/" rel="noopener" target="_blank">청년미래적금 공식 안내·자격 확인 →</a>
+</div>
+</article>
+<article class="policy-card detail-policy" id="update-2026-climate-pass">
+<div class="policy-card-top">
+<span class="status-badge status-open">2026.09.01 시행 · 현재 이용 가능</span>
+<span class="site-new-badge timed-new" data-new-until="2026-09-19">NEW</span>
+</div>
+<h3>모두의카드(기후동행패스)｜서울 청년 만 39세까지 확대</h3>
+<div class="detail-key">
+<div><strong>청년 대상</strong>만 19~39세 서울시민<br/>2026년 기준 1986~2007년생</div>
+<div><strong>이용 범위</strong>서울뿐 아니라 전국 버스·전철·GTX 등</div>
+<div><strong>혜택 방식</strong>정률형·정액형 중 환급액이 큰 방식 자동 적용</div>
+</div>
+<div class="detail-note"><strong>거주지와 결제방식을 꼭 구분하세요.</strong><br/>
+    교통 이용 범위는 전국이지만 <strong>서울시 기후동행패스 특화 혜택은 주민등록상 서울시민에게 적용</strong>됩니다. 기존 기후동행카드처럼 충전할 때 7천 원을 바로 할인하는 방식이 아니라, 교통비를 먼저 결제한 뒤 산정된 금액을 환급받는 방식입니다.</div>
+<h4>청년 기본 환급 기준</h4>
+<table class="doc-table support-compare-table">
+<thead><tr><th>방식</th><th>청년 기준</th><th>적용 내용</th></tr></thead>
+<tbody>
+<tr><th>정률형</th><td>월 이용금액의 30%</td><td>대중교통 이용금액의 30% 환급</td></tr>
+<tr><th>정액형 일반</th><td>수도권 5만5천 원</td><td>1회 총 이용금액 3천 원 미만인 일반 대중교통비가 기준금액을 넘으면 초과분 환급</td></tr>
+<tr><th>정액형 플러스</th><td>수도권 9만 원</td><td>GTX·광역버스 등 광역수단을 포함해 기준금액 초과분 환급</td></tr>
+</tbody>
+</table>
+<p class="policy-anchor-note">정률형과 정액형을 미리 선택할 필요는 없습니다. 월 이용실적을 계산해 더 큰 환급액이 자동 적용됩니다. 원칙적으로 카드 등록 후 월 15회 이상 대중교통을 이용해야 하며, 가입 첫 달은 15회 미만이어도 환급됩니다.</p>
+<div class="support-info-grid">
+<div class="support-info-box">
+<strong>2026년 9월 이용분 한시 혜택</strong>
+<span>청년 정액형 기준은 일반 2만5천 원·플러스 4만5천 원으로 한시 인하됩니다. 지정 시차시간 승차분은 청년 정률 환급률이 60%로 확대됩니다.</span>
+</div>
+<div class="support-info-box">
+<strong>기존 기후동행카드 30일권</strong>
+<span>신규 충전은 8월 31일 종료됐습니다. 마지막 선불 충전분은 9월 29일까지, 후불카드는 9월 30일까지 이용할 수 있습니다.</span>
+</div>
+</div>
+<h4>발급·등록 방법</h4>
+<ol class="step-list">
+<li><strong>모두의카드 발급:</strong> 카드사의 신용·체크카드, 선불 실물카드 또는 모바일카드를 발급합니다.</li>
+<li><strong>발급기관 등록:</strong> 선불·모바일카드는 티머니 등 발급기관 앱·홈페이지에 카드번호와 환급계좌를 등록합니다.</li>
+<li><strong>K-패스 등록:</strong> K-패스 앱 또는 누리집에서 회원가입하고 카드번호와 주소지를 등록·검증합니다.</li>
+<li><strong>이용 후 환급:</strong> 등록한 카드로 대중교통을 이용하면 다음 달에 환급액이 산정됩니다.</li>
+</ol>
+<p class="policy-anchor-note"><strong>이미 모두의카드(K-패스)를 이용 중인 서울시민</strong>은 카드를 다시 발급받을 필요가 없습니다. 9월 1일부터 서울 특화 혜택이 자동 적용되며, 만 35~39세도 K-패스 가입정보의 생년월일로 확인하므로 별도 청년 인증이 필요하지 않습니다.</p>
+<div class="detail-note"><strong>제대군인 연령 연장 안내</strong><br/>
+    기존 기후동행카드의 의무복무 제대군인 청년할인 연장(복무기간에 따라 최대 만 42세)은 새 기후동행패스에도 <strong>향후 적용 예정</strong>으로 안내됐습니다. 현재 적용이 완료된 혜택으로 단정하지 말고 서울시 최신 공지를 확인하세요.</div>
+<div class="policy-action-row">
+<a class="official-link" href="https://news.seoul.go.kr/traffic/archives/518138" rel="noopener" target="_blank">서울시 기후동행패스 공식 안내 →</a>
+<a class="official-link" href="https://news.seoul.go.kr/traffic/public/climatecard-faq/faq-climatepass" rel="noopener" target="_blank">서울시 공식 FAQ →</a>
+<a class="official-link" href="https://www.molit.go.kr/mtc/USR/WPGE0201/m_37187/DTL.jsp" rel="noopener" target="_blank">국토교통부 모두의카드 안내 →</a>
+<a class="official-link" href="https://korea-pass.kr/" rel="noopener" target="_blank">K-패스 등록 →</a>
+</div>
+</article>
+<article class="policy-card" id="dongjak-job-support-2026">
+<div class="policy-card-top"><span class="status-badge status-open">현재 신청 가능</span><span class="site-new-badge timed-new" data-new-until="2026-09-15">NEW</span></div>
+<h3>동작 청년 구직활동 지원사업｜응시료 최대 10만원·취득축하금 최대 50만원</h3>
+<p>동작구에 6개월 이상 거주 중인 19~39세 미취업 청년을 대상으로 어학·자격증 응시료를 실비 최대 10만원까지 지원하고, 자격증 취득 시 등급에 따라 동작사랑상품권으로 최대 50만원의 취득축하금을 지원합니다.</p>
+<ul>
+<li><strong>신청기간:</strong> 2026. 1. 26. ~ 12. 10. (사업비 소진 시 조기 마감)</li>
+<li><strong>주의:</strong> 신청 증가로 예산 조기 소진이 예상되어 8월 접수분부터 지급이 지연되거나 미지급될 수 있으며, 추가 예산 확보 시 순차 지급될 수 있습니다.</li>
+<li><strong>신청:</strong> 노량진 청년일자리센터 홈페이지 온라인 접수</li>
+</ul>
+<a class="official-link" href="https://youthjob.dongjak.go.kr/noryangjin/contents.do?mId=1467" rel="noopener" target="_blank">노량진 청년일자리센터 공식 안내 →</a>
+</article>
+<article class="policy-card" id="dongjak-food-support-2026">
+<div class="policy-card-top"><span class="status-badge status-closed">2026 정기모집 마감</span></div>
+<h3>동작구 청년 식비 지원｜월 6만원·연 최대 54만원</h3>
+<p>동작구 거주 1인 가구 미취업 청년의 식비 부담을 줄이기 위한 사업입니다. 2026년에는 500명을 모집해 4월부터 12월까지 매월 6만원씩, 최대 54만원을 동작사랑상품권으로 지원합니다.</p>
+<div class="support-info-grid">
+<div class="support-info-box">
+<strong>현재 상태</strong>
+<span>2026년 정기모집 종료 · 선정자 지원 진행 중</span>
+</div>
+<div class="support-info-box">
+<strong>다음 모집 예상</strong>
+<span>2027년 2월 말~3월 공고, 3월 접수 가능성이 높습니다.</span>
+</div>
+</div>
+<p class="policy-anchor-note"><strong>왜 3월로 예상하나요?</strong> 2025년에는 3월 6~26일, 2026년에는 3월 3~22일에 정기모집을 진행했습니다. 따라서 사업이 계속될 경우 2027년도 역시 2월 말~3월에 공고·접수가 시작될 가능성이 높습니다. 단, 2027년 일정은 아직 공식 확정 전이므로 실제 공고를 확인해야 합니다.</p>
+<ul>
+<li><strong>2026 지원대상:</strong> 공고일 기준 동작구 1년 이상 거주, 1인 가구, 미취업 19~39세 청년</li>
+<li><strong>지원내용:</strong> 월 6만원 × 9개월 = 최대 54만원, 동작사랑상품권(서울페이) 지급</li>
+<li><strong>신청방법:</strong> 모집기간에 <strong>동작구 통합예약시스템에서 온라인 신청</strong> 후 필요한 서류를 첨부</li>
+<li><strong>주관:</strong> 동작구청 청년청소년과</li>
+<li><strong>문의:</strong> 02-820-9298</li>
+</ul>
+<div class="policy-action-row">
+<a class="official-link" href="https://www.dongjak.go.kr/yeyak/progrm/master/yeyak/view.do?menuNo=1600011&amp;prgSn=9339&amp;tmplatSeCd=95" rel="noopener" target="_blank">2026 공식 모집공고 확인 →</a>
+<a class="official-link" href="https://www.dongjak.go.kr/yeyak/progrm/master/yeyak/list.do?menuNo=1600011&amp;tmplatSeCd=95" rel="noopener" target="_blank">동작구 통합예약 신청창구 확인 →</a>
+<a class="official-link" href="https://youthjob.dongjak.go.kr/" rel="noopener" target="_blank">노량진 청년일자리센터 공지 확인 →</a>
+</div>
+<div class="food-eligibility-detail">
+<h4>신청자격·준비서류</h4>
+<ul>
+<li><strong>연령:</strong> 만 19~39세 청년</li>
+<li><strong>거주:</strong> 모집 공고일 기준 주민등록상 동작구 1년 이상 거주 중인 1인 가구</li>
+<li><strong>고시원 거주:</strong> 주민등록 등 공고상 거주요건을 충족하면 고시원 거주 수험생도 신청대상이 될 수 있습니다.</li>
+<li><strong>취업:</strong> 신청일 기준 미취업자</li>
+<li><strong>중복 제한:</strong> 생애 1회 지원으로 이전 연도 참여자는 제외됩니다.</li>
+<li><strong>주요 제출서류:</strong> 고용보험 자격이력내역서, 주민등록등본, 활동계획서, 참여 서약서 등</li>
+</ul>
+<p class="policy-anchor-note">세부 자격과 제출서류는 모집연도에 변경될 수 있으므로 신청 전 해당 연도 동작구 공식 모집공고를 반드시 확인하세요.</p>
+</div>
+</article>
+<article class="policy-card" id="seoul-safe-return-scout-2026">
+<div class="policy-card-top">
+<span class="status-badge status-open">현재 이용 가능</span>
+<span class="site-new-badge timed-new" data-new-until="2026-09-15">NEW</span>
+</div>
+<h3>서울 안심귀가스카우트｜동작구 운영·안심이 앱 사전예약</h3>
+<p>늦은 시간 혼자 귀가하기 걱정되는 경우 서울시 안심귀가스카우트를 이용할 수 있습니다. <strong>동작구도 운영 자치구에 포함</strong>되며, 안심이 앱을 통해 미리 예약하면 스카우트 대원과 함께 안전하게 귀가할 수 있습니다.</p>
+<ul>
+<li><strong>신청:</strong> 안심이 앱을 통한 100% 사전예약제</li>
+<li><strong>일반 운영시간:</strong> 월요일 22:00~24:00 / 화~금요일 22:00~익일 01:00</li>
+<li><strong>단축 운영:</strong> 1~2월·7~8월은 화~금 22:00~24:00, 월요일 휴무</li>
+<li><strong>운영지역:</strong> 동작구 포함 서울시 지정 자치구</li>
+</ul>
+<p class="policy-anchor-note">운영시간과 예약 가능 여부는 변경될 수 있으므로 이용 당일 안심이 앱 또는 서울시 공식 안내를 확인하세요.</p>
+<a class="official-link" href="https://news.seoul.go.kr/welfare/archives/557329" rel="noopener" target="_blank">서울시 2026 안심귀가스카우트 공식 안내 →</a>
+</article>
+<article class="policy-card" id="noryangjin-youth-center">
+<div class="policy-card-top"><span class="status-badge status-open">상시 이용·프로그램별 모집</span></div>
+<h3>노량진 청년일자리센터｜취업상담·취업역량 프로그램</h3>
+<p>노량진역 인근 청년일자리센터에서는 직업상담과 취업 프로그램을 운영합니다. 프로그램별 모집기간이 다르므로 현재 모집 중인 과정은 센터 홈페이지에서 확인하세요.</p>
+<a class="official-link" href="https://youthjob.dongjak.go.kr/" rel="noopener" target="_blank">현재 모집 프로그램 확인 →</a>
+</article>
+</section>
 <footer>
 <p>© <span id="year"></span> 스테이The머무름. All rights reserved.</p>
 <p>노량진 여성전용 고시원 · 전입신고 가능한 고시원</p>
@@ -1051,7 +978,6 @@
   });
 })();
 </script>
-
 <style id="policy-latest-news-style">
 .policy-latest-news{margin:16px 0 20px;padding:15px 17px;border:1px solid #cbdff0;border-radius:14px;background:#f3f9ff}
 .policy-latest-news-heading{display:flex;align-items:center;gap:9px;margin-bottom:9px}
