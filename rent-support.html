@@ -341,6 +341,11 @@
 <span>누적 <strong id="visitorTotal">-</strong>명</span>
 </div>
 <main class="policy-wrap">
+<section class="policy-latest-news" aria-labelledby="policy-latest-news-heading">
+  <div class="policy-latest-news-heading"><h2 id="policy-latest-news-heading">📢 새로운 지원 소식</h2><span id="policy-latest-news-badge" class="policy-update-new" hidden>NEW</span></div>
+  <div id="policy-latest-news-list" aria-live="polite"></div>
+</section>
+
 
 <section class="youth-policy-visual" aria-label="2027 청년 지원 정책 신청 확인 시기 한눈에 보기">
   <div class="policy-section-head">
@@ -354,20 +359,6 @@
 </section>
 
 
-<section class="policy-card" id="dongjak-flu-vaccine-2026" aria-labelledby="dongjak-flu-vaccine-title" style="margin:18px 0 24px;border:2px solid #c9ddec;scroll-margin-top:90px;">
-  <span class="tagline">2026~2027절기 · 동작구 예방접종 안내</span>
-  <h2 id="dongjak-flu-vaccine-title">💉 무료 독감 예방접종, 지원 자격을 확인해 보세요 <span class="policy-update-new" data-new-date="2026-10-27" aria-label="새 소식">NEW</span></h2>
-  <p>동작구에서는 지정된 대상자에게 인플루엔자(독감) 예방접종을 무료로 지원합니다. <strong>모든 청년에게 일괄 적용되는 사업은 아니므로</strong> 해당 여부를 먼저 확인해 주세요.</p>
-  <details style="margin:12px 0;"><summary style="cursor:pointer;font-weight:700;color:#234f7b">지원 대상·접종 방법 자세히 보기</summary>
-    <div style="padding:12px 2px;line-height:1.8">
-      <p><strong>지원 대상 예시:</strong> 동작구의 지정 연령대 기초생활수급자(생계·의료·주거급여), 장애 정도가 심한 장애인, 국가유공자 등 구에서 정한 대상자. 대상별 연령·주소지·증빙 요건은 별도 확인이 필요합니다.</p>
-      <p><strong>안내된 접종 기간:</strong> 2026년 10월 15일~12월 12일. 대상별 일정과 의료기관 운영일은 다를 수 있습니다.</p>
-      <p><strong>접종 전 확인:</strong> 동작구보건소 또는 지정 의료기관에 대상 여부, 접종 가능일, 신분증·증빙서류 등을 문의해 주세요. 고시원 거주만으로 지원 자격이 부여되지는 않습니다.</p>
-      <p><strong>공식 확인:</strong> <a href="https://www.dongjak.go.kr/portal/main/main.do" target="_blank" rel="noopener noreferrer">동작구청 홈페이지</a> · <a href="https://nip.kdca.go.kr" target="_blank" rel="noopener noreferrer">질병관리청 예방접종도우미</a></p>
-    </div>
-  </details>
-  <p style="font-size:.9rem;color:#667">※ 개인정보를 보호하기 위해 공지사항 목록에는 개별 지원 자격을 표시하지 않습니다. 실제 지원 여부는 담당기관의 최신 안내가 우선입니다.</p>
-</section>
 
 <section class="policy-card" id="basic-housing-benefit" aria-labelledby="basic-housing-benefit-title" style="margin:18px 0 24px;border:2px solid #d9e6da;">
   <span class="tagline">2026년 공식 기준 · 상시 신청 가능 여부 확인</span>
@@ -433,7 +424,23 @@
     </article>
   </div>
 
-  <a class="other-support-cta" href="#other-youth-support" aria-label="생활·구직·교통 등 다른 청년지원 정책 보기">
+  <section class="policy-card" id="dongjak-flu-vaccine-2026" aria-labelledby="dongjak-flu-vaccine-title" style="margin:18px 0 24px;border:2px solid #c9ddec;scroll-margin-top:90px;">
+  <span class="tagline">2026~2027절기 · 동작구 예방접종 안내</span>
+  <h2 id="dongjak-flu-vaccine-title">💉 무료 독감 예방접종, 지원 자격을 확인해 보세요 <span class="policy-update-new" data-new-date="2026-10-27" aria-label="새 소식">NEW</span></h2>
+  <p>동작구에서는 지정된 대상자에게 인플루엔자(독감) 예방접종을 무료로 지원합니다. <strong>모든 청년에게 일괄 적용되는 사업은 아니므로</strong> 해당 여부를 먼저 확인해 주세요.</p>
+  <details style="margin:12px 0;"><summary style="cursor:pointer;font-weight:700;color:#234f7b">지원 대상·접종 방법 자세히 보기</summary>
+    <div style="padding:12px 2px;line-height:1.8">
+      <p><strong>지원 대상 예시:</strong> 동작구의 지정 연령대 기초생활수급자(생계·의료·주거급여), 장애 정도가 심한 장애인, 국가유공자 등 구에서 정한 대상자. 대상별 연령·주소지·증빙 요건은 별도 확인이 필요합니다.</p>
+      <p><strong>안내된 접종 기간:</strong> 2026년 10월 15일~12월 12일. 대상별 일정과 의료기관 운영일은 다를 수 있습니다.</p>
+      <p><strong>접종 전 확인:</strong> 동작구보건소 또는 지정 의료기관에 대상 여부, 접종 가능일, 신분증·증빙서류 등을 문의해 주세요. 고시원 거주만으로 지원 자격이 부여되지는 않습니다.</p>
+      <p><strong>공식 확인:</strong> <a href="https://www.dongjak.go.kr/portal/main/main.do" target="_blank" rel="noopener noreferrer">동작구청 홈페이지</a> · <a href="https://nip.kdca.go.kr" target="_blank" rel="noopener noreferrer">질병관리청 예방접종도우미</a></p>
+    </div>
+  </details>
+  <p style="font-size:.9rem;color:#667">※ 개인정보를 보호하기 위해 공지사항 목록에는 개별 지원 자격을 표시하지 않습니다. 실제 지원 여부는 담당기관의 최신 안내가 우선입니다.</p>
+</section>
+
+
+<a class="other-support-cta" href="#other-youth-support" aria-label="생활·구직·교통 등 다른 청년지원 정책 보기">
     <span class="other-support-cta-copy">
       <span class="other-support-cta-title">생활·구직·교통 등 다른 청년지원 보기 <span class="site-new-badge timed-new" data-new-until="2026-09-19">NEW</span></span>
       <span class="other-support-cta-desc">교통비 · 식비 · 취업·응시료 · 여성안전 · 생활지원</span>
@@ -1042,6 +1049,47 @@
     var until=day(el.getAttribute('data-new-until'));
     if(Number.isFinite(until)&&today>until)el.hidden=true;
   });
+})();
+</script>
+
+<style id="policy-latest-news-style">
+.policy-latest-news{margin:16px 0 20px;padding:15px 17px;border:1px solid #cbdff0;border-radius:14px;background:#f3f9ff}
+.policy-latest-news-heading{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.policy-latest-news-heading h2{font-size:1.13rem;margin:0;color:#184a74}
+.policy-latest-news-list{display:grid;gap:8px}
+.policy-latest-news a{display:block;background:white;border:1px solid #d9e7f3;border-radius:9px;padding:11px 13px;text-decoration:none;color:#183c61;font-weight:700}
+.policy-latest-news a:hover,.policy-latest-news a:focus-visible{border-color:#387ab2;background:#eef7ff}
+.policy-latest-news a small{display:block;margin-top:4px;color:#536b80;font-size:.82rem;font-weight:400}
+.policy-latest-news .policy-update-new{margin-left:6px}
+@media(max-width:600px){.policy-latest-news{padding:12px}.policy-latest-news-heading h2{font-size:1.03rem}}
+</style>
+<script id="policy-latest-news-script">
+(function(){
+  // 신규 정책 추가 시 아래 배열에 {id,title,summary,published,expires} 항목을 추가합니다.
+  // published: 게시일, expires: 실제 사업 종료일(없으면 빈 문자열). NEW는 게시일 포함 7일간만 표시.
+  var news=[
+    {id:'dongjak-flu-vaccine-2026',title:'무료 독감 예방접종 지원 자격을 확인해 보세요',summary:'동작구 지원 대상과 접종 기간 안내',published:'2026-10-27',expires:'2026-12-12'}
+  ];
+  var dateText=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  var today=Date.parse(dateText+'T00:00:00+09:00');
+  function millis(s){return /^\d{4}-\d{2}-\d{2}$/.test(s||'')?Date.parse(s+'T00:00:00+09:00'):NaN;}
+  var valid=news.filter(function(n){
+    var start=millis(n.published),end=millis(n.expires);
+    return document.getElementById(n.id)&&Number.isFinite(start)&&today>=start&&(!Number.isFinite(end)||today<=end);
+  }).sort(function(a,b){return millis(b.published)-millis(a.published);}).slice(0,2);
+  var list=document.getElementById('policy-latest-news-list');
+  var section=document.querySelector('.policy-latest-news');
+  if(!list||!section)return;
+  if(!valid.length){section.hidden=true;return;}
+  var anyNew=false;
+  valid.forEach(function(n){
+    var a=document.createElement('a');a.href='#'+n.id;
+    a.appendChild(document.createTextNode(n.title+' ↓'));
+    var isNew=today<millis(n.published)+7*86400000;
+    if(isNew){anyNew=true;var badge=document.createElement('span');badge.className='policy-update-new';badge.textContent='NEW';a.appendChild(badge);}
+    var small=document.createElement('small');small.textContent=n.summary;a.appendChild(small);list.appendChild(a);
+  });
+  document.getElementById('policy-latest-news-badge').hidden=!anyNew;
 })();
 </script>
 </body>
