@@ -309,7 +309,7 @@
 </head>
 <body>
 <header class="sub-header sub-header--rent-support">
-<h1>청년 지원 정책 <span class="header-new-badge timed-new" data-new-until="2026-09-19">NEW</span></h1>
+<h1>청년 지원 정책 <span class="header-new-badge timed-new" data-new-until="2026-11-02">NEW</span></h1>
 <p>노량진 전입신고 가능한 여성전용 고시원 · 청년월세지원 신청 전 참고 안내</p>
 <a class="header-home-button" href="index.html">메인페이지로 돌아가기</a>
 </header>
@@ -353,6 +353,21 @@
   </figure>
 </section>
 
+
+<section class="policy-card" id="dongjak-flu-vaccine-2026" aria-labelledby="dongjak-flu-vaccine-title" style="margin:18px 0 24px;border:2px solid #c9ddec;scroll-margin-top:90px;">
+  <span class="tagline">2026~2027절기 · 동작구 예방접종 안내</span>
+  <h2 id="dongjak-flu-vaccine-title">💉 무료 독감 예방접종, 지원 자격을 확인해 보세요 <span class="policy-update-new" data-new-date="2026-10-27" aria-label="새 소식">NEW</span></h2>
+  <p>동작구에서는 지정된 대상자에게 인플루엔자(독감) 예방접종을 무료로 지원합니다. <strong>모든 청년에게 일괄 적용되는 사업은 아니므로</strong> 해당 여부를 먼저 확인해 주세요.</p>
+  <details style="margin:12px 0;"><summary style="cursor:pointer;font-weight:700;color:#234f7b">지원 대상·접종 방법 자세히 보기</summary>
+    <div style="padding:12px 2px;line-height:1.8">
+      <p><strong>지원 대상 예시:</strong> 동작구의 지정 연령대 기초생활수급자(생계·의료·주거급여), 장애 정도가 심한 장애인, 국가유공자 등 구에서 정한 대상자. 대상별 연령·주소지·증빙 요건은 별도 확인이 필요합니다.</p>
+      <p><strong>안내된 접종 기간:</strong> 2026년 10월 15일~12월 12일. 대상별 일정과 의료기관 운영일은 다를 수 있습니다.</p>
+      <p><strong>접종 전 확인:</strong> 동작구보건소 또는 지정 의료기관에 대상 여부, 접종 가능일, 신분증·증빙서류 등을 문의해 주세요. 고시원 거주만으로 지원 자격이 부여되지는 않습니다.</p>
+      <p><strong>공식 확인:</strong> <a href="https://www.dongjak.go.kr/portal/main/main.do" target="_blank" rel="noopener noreferrer">동작구청 홈페이지</a> · <a href="https://nip.kdca.go.kr" target="_blank" rel="noopener noreferrer">질병관리청 예방접종도우미</a></p>
+    </div>
+  </details>
+  <p style="font-size:.9rem;color:#667">※ 개인정보를 보호하기 위해 공지사항 목록에는 개별 지원 자격을 표시하지 않습니다. 실제 지원 여부는 담당기관의 최신 안내가 우선입니다.</p>
+</section>
 
 <section class="policy-card" id="basic-housing-benefit" aria-labelledby="basic-housing-benefit-title" style="margin:18px 0 24px;border:2px solid #d9e6da;">
   <span class="tagline">2026년 공식 기준 · 상시 신청 가능 여부 확인</span>
@@ -1009,5 +1024,25 @@
 })();
 </script>
 <script src="site-updates.js?v=20260920-scroll1"></script>
+<style id="policy-update-new-style">
+.policy-update-new{display:inline-block;margin-left:5px;padding:2px 6px;border-radius:6px;background:#e85d3f;color:#fff;font-size:10px;font-weight:800;line-height:1.4;vertical-align:middle}
+.policy-update-new[hidden],.timed-new[hidden]{display:none!important}
+</style>
+<script id="policy-update-new-timer">
+(function(){
+  // 새 항목을 게시할 때 data-new-date에 게시일(YYYY-MM-DD)을 지정합니다. 7일간 표시됩니다.
+  var now=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  function day(s){return /^\d{4}-\d{2}-\d{2}$/.test(s||'')?Date.parse(s+'T00:00:00+09:00'):NaN;}
+  var today=day(now);
+  document.querySelectorAll('.policy-update-new[data-new-date]').forEach(function(el){
+    var start=day(el.getAttribute('data-new-date'));
+    el.hidden=!(Number.isFinite(start)&&today>=start&&today<start+7*86400000);
+  });
+  document.querySelectorAll('.timed-new[data-new-until]').forEach(function(el){
+    var until=day(el.getAttribute('data-new-until'));
+    if(Number.isFinite(until)&&today>until)el.hidden=true;
+  });
+})();
+</script>
 </body>
 </html>

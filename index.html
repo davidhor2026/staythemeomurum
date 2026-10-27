@@ -192,14 +192,8 @@
 <div class="notice-compact-heading">📢 주요 공지사항</div>
 <article class="notice-compact-item">
 <strong>💉 무료 독감 예방접종 지원 자격을 확인해 보세요 <small>NEW</small></strong>
-<p>동작구 무료 예방접종 지원 안내 · 해당 여부 확인</p>
-<details><summary>지원 자격·접종 안내 보기</summary><div class="notice-compact-detail">
-동작구에서는 2026~2027절기 인플루엔자(독감) 무료 예방접종을 지원합니다. 대상 여부는 주민등록상 거주지와 개인별 자격에 따라 달라집니다.<br/>
-<strong>지원 대상 예시</strong>: 일정 연령의 기초생활수급자(생계·의료·주거급여), 장애 정도가 심한 장애인, 국가유공자 등 동작구가 정한 대상자.<br/>
-<strong>안내된 접종 기간</strong>: 2026년 10월 15일~12월 12일. 의료기관별 접종 가능 여부와 필요한 증빙서류는 방문 전에 확인해 주세요.<br/>
-※ 고시원 거주만으로 무료접종 대상이 되는 것은 아닙니다. 세부 대상·기간은 동작구보건소의 최신 안내를 기준으로 확인해 주세요.
-<a href="https://www.dongjak.go.kr/portal/main/main.do" target="_blank" rel="noopener noreferrer">동작구청 공식 안내 확인 →</a>
-</div></details>
+<p>동작구 무료 예방접종 · 지원 대상 확인</p>
+<a href="rent-support.html#dongjak-flu-vaccine-2026" style="display:inline-block;color:#fffde8;font-size:11px;font-weight:700;text-decoration:underline;text-underline-offset:3px">지원 자격·접종 안내 자세히 보기 →</a>
 </article>
 <article class="notice-compact-item">
 <strong>🎓 서울 중등임용 경쟁률 발표 <small>NEW</small></strong>
@@ -211,11 +205,7 @@
 <p>10/31(토) · 시험장소·준비물 확인</p>
 <details><summary>자세히 보기</summary><div class="notice-compact-detail">응시 지역별 시험장소 공고, 입실시간, 준비물 및 유의사항을 반드시 확인하세요.<a href="exam-schedule.html">시험일정 바로가기 →</a></div></details>
 </article>
-<article class="notice-compact-item">
-<strong>🎓 중등임용 무료 특강</strong>
-<p>11/19 시작 · 회차별 30명 안내</p>
-<details><summary>자세히 보기</summary><div class="notice-compact-detail">노량진 청년일자리센터에서 필기 전략, 면접 기초·심화, 모의면접을 지원합니다. 접수 상태는 신청처에서 확인해 주세요.<a href="rent-support.html#noryangjin-secondary-teacher-exam-2026">특강 상세·신청 안내 바로가기 →</a></div></details>
-</article>
+
 </div>
 </div>
 </header>
@@ -236,7 +226,7 @@
 <a href="word-roots.html">어원 영단어</a>
 <a href="career-benefits.html">채용제도·복지</a>
 <a href="admin-investment.html">AI·투자 인사이트</a>
-<a href="rent-support.html">청년 지원 정책</a>
+<a href="rent-support.html">청년 지원 정책 <span class="policy-update-new" data-new-date="2026-10-27" aria-label="새 소식">NEW</span></a>
 <a href="gift.html">응원글 이벤트</a>
 <a href="resident-event.html">입실자 이벤트 <span class="resident-event-new" hidden aria-label="진행 중인 새 이벤트">NEW</span></a>
 <a href="international.html">English</a>
@@ -502,7 +492,7 @@
         전입신고, 임대차계약서, 소득·재산 기준 등 여러 조건을 확인합니다.
         스테이The머무름은 전입신고가 가능하므로, 조건이 맞는 입주자는 관련 정책 신청을 검토할 수 있습니다.
       </p>
-<a class="button" href="rent-support.html">청년 지원 정책 보기</a>
+<a class="button" href="rent-support.html">청년 지원 정책 보기 <span class="policy-update-new" data-new-date="2026-10-27" aria-label="새 소식">NEW</span></a>
 </div>
 </section>
 <section id="fortune-preview">
@@ -826,6 +816,26 @@
     setInterval(updateNew,15000);
   };
   document.head.appendChild(script);
+})();
+</script>
+<style id="policy-update-new-style">
+.policy-update-new{display:inline-block;margin-left:5px;padding:2px 6px;border-radius:6px;background:#e85d3f;color:#fff;font-size:10px;font-weight:800;line-height:1.4;vertical-align:middle}
+.policy-update-new[hidden],.timed-new[hidden]{display:none!important}
+</style>
+<script id="policy-update-new-timer">
+(function(){
+  // 새 항목을 게시할 때 data-new-date에 게시일(YYYY-MM-DD)을 지정합니다. 7일간 표시됩니다.
+  var now=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  function day(s){return /^\d{4}-\d{2}-\d{2}$/.test(s||'')?Date.parse(s+'T00:00:00+09:00'):NaN;}
+  var today=day(now);
+  document.querySelectorAll('.policy-update-new[data-new-date]').forEach(function(el){
+    var start=day(el.getAttribute('data-new-date'));
+    el.hidden=!(Number.isFinite(start)&&today>=start&&today<start+7*86400000);
+  });
+  document.querySelectorAll('.timed-new[data-new-until]').forEach(function(el){
+    var until=day(el.getAttribute('data-new-until'));
+    if(Number.isFinite(until)&&today>until)el.hidden=true;
+  });
 })();
 </script>
 </body>
