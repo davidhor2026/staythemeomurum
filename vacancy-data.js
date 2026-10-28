@@ -54,9 +54,13 @@ const VACANCY_MANAGER = {
       { date: "2026-11-29", bookedOn: "2026-10-17" }
     ],
     tourDates: [],
-    reservable: true,
+    reservable: false,
     fullLabel: "현재 만실",
-    unknown: null
+    unknown: {
+      month: "2026-12",
+      label: "12월 중",
+      note: "예약 가능 여부 문의"
+    }
   },
 
   suite1: {
