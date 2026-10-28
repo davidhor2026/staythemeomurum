@@ -315,7 +315,7 @@
 </head>
 <body>
 <header class="sub-header sub-header--rent-support">
-<h1>청년 지원 정책 <span class="header-new-badge timed-new" data-new-until="2026-11-02">NEW</span></h1>
+<h1>청년 지원 정책 <span class="header-new-badge timed-new" data-new-date="2026-10-28" data-new-until="2026-11-02">NEW</span></h1>
 <p>노량진 전입신고 가능한 여성전용 고시원 · 청년월세지원 신청 전 참고 안내</p>
 <a class="header-home-button" href="index.html">메인페이지로 돌아가기</a>
 </header>
@@ -349,6 +349,11 @@
 <section class="policy-latest-news policy-news-compact" aria-labelledby="policy-latest-news-heading">
   <div class="policy-latest-news-heading"><h2 id="policy-latest-news-heading">📢 새로운 지원 소식</h2><span class="policy-news-limit">최근 소식 최대 2건</span></div>
   <div aria-live="polite" id="policy-latest-news-list"></div>
+</section>
+<section class="policy-light-news" id="policy-light-news" aria-labelledby="policy-light-heading">
+  <div class="policy-light-head"><h2 id="policy-light-heading">💡 잠깐! 이런 정보도 있어요</h2><span>가볍게 확인하는 취업·생활 정보</span></div>
+  <div id="policy-light-list" class="policy-light-list"></div>
+  <details id="policy-light-more" hidden><summary>참고정보 더 보기</summary><div id="policy-light-extra" class="policy-light-list"></div></details>
 </section>
 <section aria-label="2027 청년 지원 정책 신청 확인 시기 한눈에 보기" class="youth-policy-visual">
 <div class="policy-section-head">
@@ -986,23 +991,33 @@
 })();
 </script>
 <script src="site-updates.js?v=20260920-scroll1"></script>
+<style id="policy-light-style">
+.policy-light-news{margin:12px 0 20px;padding:12px 14px;border:1px solid #dbe7dc;border-radius:14px;background:#f8fbf8}
+.policy-light-head{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:9px}
+.policy-light-head h2{font-size:1rem;margin:0;color:#28563b}.policy-light-head>span{font-size:.75rem;color:#64786a}
+.policy-light-list{display:grid;gap:8px}.policy-light-card{border:1px solid #e1e9e2;background:#fff;border-radius:10px;padding:10px 12px}
+.policy-light-title{font-size:.91rem;font-weight:800;color:#244c37}.policy-light-meta{font-size:.76rem;color:#66776c;margin:4px 0}
+.policy-light-card p{font-size:.82rem;margin:5px 0;color:#465c50;line-height:1.55}
+.policy-light-card a{font-size:.8rem;color:#225b45;font-weight:700}
+#policy-light-more{margin-top:8px}#policy-light-more summary{cursor:pointer;color:#305b44;font-size:.82rem;font-weight:750}
+#policy-light-extra{margin-top:8px}
+@media(max-width:600px){.policy-light-news{padding:10px}.policy-light-card{padding:9px 10px}}
+</style>
 <style id="policy-update-new-style">
 .policy-update-new{display:inline-block;margin-left:5px;padding:2px 6px;border-radius:6px;background:#e85d3f;color:#fff;font-size:10px;font-weight:800;line-height:1.4;vertical-align:middle}
 .policy-update-new[hidden],.timed-new[hidden]{display:none!important}
 </style>
 <script id="policy-update-new-timer">
 (function(){
-  // 새 항목을 게시할 때 data-new-date에 게시일(YYYY-MM-DD)을 지정합니다. 7일간 표시됩니다.
-  var now=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
-  function day(s){return /^\d{4}-\d{2}-\d{2}$/.test(s||'')?Date.parse(s+'T00:00:00+09:00'):NaN;}
-  var today=day(now);
-  document.querySelectorAll('.policy-update-new[data-new-date]').forEach(function(el){
-    var start=day(el.getAttribute('data-new-date'));
-    el.hidden=!(Number.isFinite(start)&&today>=start&&today<start+7*86400000);
-  });
-  document.querySelectorAll('.timed-new[data-new-until]').forEach(function(el){
-    var until=day(el.getAttribute('data-new-until'));
-    if(Number.isFinite(until)&&today>until)el.hidden=true;
+  // KST 게시일 포함 최대 7일, 사업 종료일이 더 빠르면 종료 시각에 NEW 숨김.
+  var now=Date.now();
+  function kstDate(s){return /^\d{4}-\d{2}-\d{2}$/.test(s||'')?Date.parse(s+'T00:00:00+09:00'):NaN;}
+  function endTime(s){if(!s)return Infinity;var t=/^\d{4}-\d{2}-\d{2}$/.test(s)?kstDate(s)+86400000:Date.parse(s);return Number.isFinite(t)?t:NaN;}
+  document.querySelectorAll('.policy-update-new[data-new-date],.timed-new[data-new-until]').forEach(function(el){
+    var start=kstDate(el.dataset.newDate||el.dataset.published||'');
+    var expiry=endTime(el.dataset.validUntil||el.dataset.newUntil||'');
+    // 기존 종료일만 있는 배지는 종료일과 게시일을 혼동하지 않도록 새 날짜를 명시해야 함.
+    el.hidden=!(Number.isFinite(start)&&Number.isFinite(expiry)&&now>=start&&now<Math.min(start+7*86400000,expiry));
   });
 })();
 </script>
@@ -1045,7 +1060,7 @@
   valid.forEach(function(n){
     var a=document.createElement('a');a.href='#'+n.id;a.className='policy-news-item';
     var title=document.createElement('span');title.className='policy-news-title';title.textContent=n.title;a.appendChild(title);
-    if(now<day(n.published)+7*86400000){var badge=document.createElement('span');badge.className='policy-update-new';badge.textContent='NEW';a.appendChild(badge);}
+    if(now<Math.min(day(n.published)+7*86400000,Date.parse(n.closes))){var badge=document.createElement('span');badge.className='policy-update-new';badge.textContent='NEW';a.appendChild(badge);}
     var meta=document.createElement('div');meta.className='policy-news-meta';
     var status=document.createElement('span');status.className='policy-news-status';
     var start=Date.parse(n.opens),end=Date.parse(n.closes);
@@ -1059,5 +1074,32 @@
 })();
 </script>
 
+<script id="policy-light-news-script">
+(function(){
+  // 참고정보 추가 형식: published 게시일, expires 유효 종료일(포함), url 공식 링크.
+  // NEW = 게시일로부터 최대 7일과 유효기간 종료 중 먼저 도래하는 시점까지.
+  // 종료된 항목은 카드 자체가 자동 숨김. 신청 가능 여부 미확인 시 반드시 명시.
+  var items=[
+    {title:'한국에너지공단 청년 드림캐쳐 · 무료 온라인 교육',summary:'NCS·면접 전략 및 에너지 분야 교육. 건축직 전공교육은 아닙니다. 현재 신규 신청·남은 수강기간은 공식 사이트에서 확인하세요.',published:'2026-10-28',expires:'2026-10-31',category:'공기업 취업 참고',url:'https://www.keadream.or.kr/'}
+  ];
+  var now=Date.now(), main=document.getElementById('policy-light-list'),extra=document.getElementById('policy-light-extra'),more=document.getElementById('policy-light-more'),section=document.getElementById('policy-light-news');
+  function date(s){return /^\d{4}-\d{2}-\d{2}$/.test(s||'')?Date.parse(s+'T00:00:00+09:00'):NaN;}
+  var valid=items.filter(function(x){return Number.isFinite(date(x.published))&&Number.isFinite(date(x.expires))&&now>=date(x.published)&&now<date(x.expires)+86400000;}).sort(function(a,b){return date(b.published)-date(a.published);});
+  if(!valid.length){section.hidden=true;return;}
+  valid.forEach(function(x,i){
+    var card=document.createElement('article');card.className='policy-light-card';
+    var heading=document.createElement('div');heading.className='policy-light-title';heading.textContent=x.title;
+    if(now<Math.min(date(x.published)+7*86400000,date(x.expires)+86400000)){
+      var badge=document.createElement('span');badge.className='policy-update-new';badge.textContent='NEW';heading.appendChild(badge);
+    }
+    card.appendChild(heading);
+    var meta=document.createElement('div');meta.className='policy-light-meta';meta.textContent=x.category+' · '+x.expires.replace(/-/g,'.')+' 종료';card.appendChild(meta);
+    var desc=document.createElement('p');desc.textContent=x.summary;card.appendChild(desc);
+    if(/^https:\/\//.test(x.url)){var a=document.createElement('a');a.href=x.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='공식 안내 확인 →';card.appendChild(a);}
+    (i<2?main:extra).appendChild(card);
+  });
+  more.hidden=valid.length<=2;
+})();
+</script>
 </body>
 </html>
