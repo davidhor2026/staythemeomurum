@@ -81,16 +81,12 @@ const VACANCY_MANAGER = {
   suite2: {
     name: "스위트룸 2",
     now: 0,
-    dates: [],
+    dates: ["2027-01-06"],
     bookedDates: [],
     tourDates: [],
-    reservable: false,
+    reservable: true,
     fullLabel: "현재 만실",
-    unknown: {
-      month: "2026-12",
-      label: "12월 중",
-      note: "예약 가능 여부 문의"
-    }
+    unknown: null
   }
 };
 
