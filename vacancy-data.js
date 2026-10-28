@@ -46,6 +46,7 @@ const VACANCY_MANAGER = {
     name: "디럭스룸",
     now: 0,
     dates: [],
+    compactBookedDates: ["2026-10-30", "2026-11-30"],
     bookedDates: [
       { date: "2026-11-30", bookedOn: "2026-10-28" },
       { date: "2026-10-30", bookedOn: "2026-10-24" },

@@ -141,6 +141,7 @@ Object.entries(VACANCY_MANAGER).forEach(([key, room]) => {
     availableNow: Number(room.now || 0),
     events: (room.dates || []).map(date => ({ date, rooms: 1 })),
     bookedEvents: (room.bookedDates || []).map(item => typeof item === 'string' ? { date:item, bookedOn:null } : item),
+    compactBookedDates: room.compactBookedDates || [],
     tourEvents: (room.tourDates || []).map(item => typeof item === 'string' ? { date:item, forDate:null } : item),
     reservable: room.reservable === true || (room.dates || []).length > 0,
     fullLabel: vacancyFullLabel(room),
@@ -215,7 +216,7 @@ function renderAvailability(){
         lines += `<p class="purple availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.roomTour} (예약 확정 전)</span></p>`;
       });
       activeBookedEvents(room).forEach(e=>{
-        lines += `<p class="blue availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.booked}</span></p>`;
+        lines += `<p class="blue availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.booked}${room.compactBookedDates.includes(e.date) ? " · 컴팩트룸" : ""}</span></p>`;
       });
       if(room.unknown){
         lines += `<p class="gray">● ${unknownInquiryText(room)}</p>`;
@@ -230,13 +231,13 @@ function renderRecentBookings(){
   if(!box) return;
   const items=[];
   Object.values(ROOM_AVAILABILITY).forEach(room=>{
-    activeBookedEvents(room).forEach(e=>items.push({room:room.name,date:e.date,bookedOn:e.bookedOn||''}));
+    activeBookedEvents(room).forEach(e=>items.push({room:room.name,date:e.date,bookedOn:e.bookedOn||'',compact:room.compactBookedDates.includes(e.date)}));
   });
   items.sort((a,b)=>b.bookedOn.localeCompare(a.bookedOn) || a.date.localeCompare(b.date));
   if(!items.length){ box.hidden=true; box.innerHTML=''; return; }
   box.hidden=false;
   box.innerHTML='<strong>최근 예약 완료</strong>'+items.slice(0,1).map(x=>
-    `<span>${x.room} ${formatDate(x.date)} 예약 완료</span>`
+    `<span>${x.room}${x.compact?' 컴팩트룸':''} ${formatDate(x.date)} 예약 완료</span>`
   ).join('');
 }
 
@@ -343,11 +344,11 @@ function renderVacancyCalendar(){
     if(bookedByDate[iso]){
       cell.classList.add('has-booked');
       cell.innerHTML += `<span class="calendar-mark blue">${DISPLAY_TEXT.booked}</span>`;
-      if(calendarRoomKey==='deluxe' && iso==='2026-10-30') cell.innerHTML += `<span class="calendar-mark" style="background:#edf4ee;color:#326447;font-size:11px;line-height:1.4;">컴팩트룸</span>`;
+      if(room.compactBookedDates.includes(iso)) cell.innerHTML += `<span class="calendar-mark" style="background:#edf4ee;color:#326447;font-size:11px;line-height:1.4;">컴팩트룸</span>`;
     }else if(eventsByDate[iso]){
       cell.classList.add(isAdvanceVacancy(iso)?'has-advance':'has-upcoming');
       cell.innerHTML += `<span class="calendar-mark ${vacancyDateColor(iso)}">${vacancyDateLabel(iso)}</span>`;
-      if(calendarRoomKey==='deluxe' && iso==='2026-11-30') cell.innerHTML += `<span class="calendar-mark" style="background:#edf4ee;color:#326447;font-size:11px;line-height:1.4;">컴팩트룸</span>`;
+
     }
     if(toursByDate[iso]){
       cell.classList.add('has-tour');
