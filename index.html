@@ -828,9 +828,16 @@
   var now=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
   function day(s){return /^\d{4}-\d{2}-\d{2}$/.test(s||'')?Date.parse(s+'T00:00:00+09:00'):NaN;}
   var today=day(now);
+  // 정책 메뉴의 수동/자동 배지 중복 방지: 한 링크당 하나만 유지.
+  document.querySelectorAll('a[href="rent-support.html"]').forEach(function(link){
+    var badges=link.querySelectorAll('.policy-update-new,.timed-new,.new-badge,.header-new-badge,.site-new-badge');
+    badges.forEach(function(badge,index){if(index>0)badge.remove();});
+  });
   document.querySelectorAll('.policy-update-new[data-new-date]').forEach(function(el){
     var start=day(el.getAttribute('data-new-date'));
-    el.hidden=!(Number.isFinite(start)&&today>=start&&today<start+7*86400000);
+    var until=el.getAttribute('data-valid-until')||el.getAttribute('data-new-until');
+    var expiry=until&&/^\d{4}-\d{2}-\d{2}$/.test(until)?day(until)+86400000:Infinity;
+    el.hidden=!(Number.isFinite(start)&&today>=start&&today<Math.min(start+7*86400000,expiry));
   });
   document.querySelectorAll('.timed-new[data-new-until]').forEach(function(el){
     var until=day(el.getAttribute('data-new-until'));
