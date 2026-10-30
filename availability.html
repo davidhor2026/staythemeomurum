@@ -817,6 +817,34 @@ document.addEventListener("DOMContentLoaded",()=>{
 #room-details>.calendar-entry-guide strong{display:inline-block;margin-bottom:3px}
 @media(max-width:700px){#room-details{padding-top:10px}#room-details>.calendar-entry-guide{margin:0 0 10px!important;line-height:1.5!important}}
 </style>
+
+<style id="availability-mobile-vertical-density-20261030">
+/* 모바일 공실현황: 기존 4열/날짜/색상은 유지하고 불필요한 세로 공백만 축소 */
+@media(max-width:700px){
+ .page{padding-top:6px !important}
+ .brand{padding:7px 10px 8px !important}
+ .brand img{width:48px !important;height:48px !important}
+ .brand h1{font-size:22px !important;margin-top:3px !important;margin-bottom:2px !important}
+ .brand p{font-size:14px !important;margin:2px 0 0 !important}
+ .quick{margin:8px 0 10px !important;gap:6px !important}
+ .quick a{min-height:44px !important;padding:6px 3px !important}
+ .title{margin:12px 0 10px !important;padding:15px 16px !important}
+ .title h2{font-size:25px !important;margin:0 0 5px !important}
+ .title p{font-size:13.5px !important;line-height:1.45 !important;margin:0 !important}
+ .overview{padding:11px 9px !important;margin-bottom:12px !important}
+ .overview-head{margin-bottom:9px !important}
+ .overview-head h3{font-size:17px !important}
+ .summary{gap:5px !important}
+ .summary .sum{box-sizing:border-box;min-height:0 !important;padding:10px 3px 9px !important;justify-content:flex-start !important}
+ .summary .sum h4{min-height:32px !important;margin:0 0 5px !important;font-size:13px !important;line-height:1.2 !important}
+ .summary .sum .icon{height:24px !important;min-height:24px !important;font-size:20px !important;margin:2px 0 6px !important}
+ .summary .sum .main{min-height:32px !important;font-size:11.5px !important;line-height:1.35 !important}
+ .summary .sum hr{margin:7px auto !important}
+ .summary .sum .sub{min-height:47px !important;font-size:11px !important;line-height:1.35 !important}
+ .recent-bookings{margin:9px 0 4px !important;padding:8px 9px !important}
+ .vacancy-color-legend{margin:8px 0 9px !important;row-gap:5px !important}
+}
+</style>
 </head><body><div id="inquiryReturnBar" style="display:none;position:sticky;top:0;z-index:9999;background:#eaf3ea;border-bottom:1px solid #bad4bf;padding:10px 14px;text-align:center;box-shadow:0 2px 8px #0001"><button type="button" onclick="returnToInquiry()" style="background:#205c3b;color:white;border:0;border-radius:9px;padding:12px 20px;font-size:16px;font-weight:700;cursor:pointer;width:min(100%,500px)">← 입주·예약 신청 안내로 돌아가기</button><div style="font-size:12px;color:#4a6451;margin-top:5px">이 창을 닫고 작성 중이던 문의 양식으로 돌아갑니다.</div></div><script>
 function returnToInquiry(){
   window.close();
