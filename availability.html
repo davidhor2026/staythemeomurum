@@ -193,6 +193,13 @@ function firstFutureText(room){
   if(room.unknown) return `${room.unknown.label}<br>${room.unknown.note}`;
   return "현재 예정 없음";
 }
+function suiteVacancyConfirmationNote(key){
+  return (key === 'suite1' || key === 'suite2') ? '12월 말 공실 여부 확정 예정' : '';
+}
+function suiteVacancyConfirmationHtml(key){
+  const note = suiteVacancyConfirmationNote(key);
+  return note ? `<div class="suite-vacancy-confirmation">${note}</div>` : '';
+}
 function renderAvailability(){
   Object.entries(ROOM_AVAILABILITY).forEach(([key,room])=>{
     const sum=document.querySelector(`[data-sum="${key}"]`);
@@ -201,7 +208,7 @@ function renderAvailability(){
       const now = room.availableNow > 0
         ? `<div class="main green">${DISPLAY_TEXT.availableNow}</div>`
         : `<div class="main ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${room.fullLabel}</div>`;
-      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}<hr><div class="sub ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${firstFutureText(room)}</div>`;
+      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}<hr><div class="sub ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${firstFutureText(room)}</div>${suiteVacancyConfirmationHtml(key)}`;
     }
     if(detail){
       let lines = room.availableNow > 0
@@ -221,7 +228,7 @@ function renderAvailability(){
       if(room.unknown){
         lines += `<p class="gray">● ${unknownInquiryText(room)}</p>`;
       }
-      detail.innerHTML=lines;
+      detail.innerHTML=lines + suiteVacancyConfirmationHtml(key);
     }
   });
   renderRecentBookings();
@@ -844,6 +851,10 @@ document.addEventListener("DOMContentLoaded",()=>{
  .recent-bookings{margin:9px 0 4px !important;padding:8px 9px !important}
  .vacancy-color-legend{margin:8px 0 9px !important;row-gap:5px !important}
 }
+</style>
+<style id="suite-vacancy-confirmation-style">
+.suite-vacancy-confirmation{font-size:11px;line-height:1.45;color:#75602a;font-weight:650;margin-top:5px;word-break:keep-all;text-align:center}
+.roomrow .suite-vacancy-confirmation{text-align:left;margin:3px 0 0 0;font-size:12px}
 </style>
 </head><body><div id="inquiryReturnBar" style="display:none;position:sticky;top:0;z-index:9999;background:#eaf3ea;border-bottom:1px solid #bad4bf;padding:10px 14px;text-align:center;box-shadow:0 2px 8px #0001"><button type="button" onclick="returnToInquiry()" style="background:#205c3b;color:white;border:0;border-radius:9px;padding:12px 20px;font-size:16px;font-weight:700;cursor:pointer;width:min(100%,500px)">← 입주·예약 신청 안내로 돌아가기</button><div style="font-size:12px;color:#4a6451;margin-top:5px">이 창을 닫고 작성 중이던 문의 양식으로 돌아갑니다.</div></div><script>
 function returnToInquiry(){
