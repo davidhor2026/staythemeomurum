@@ -243,12 +243,12 @@
 #stayUpcomingCheer .stay-cheer-heading{font-size:clamp(20px,3vw,35px);font-weight:800;margin:0 0 3px}
 #stayUpcomingCheer .stay-cheer-message{font-size:clamp(14px,2.5vw,28px);font-weight:750;color:#c53b63;margin:0 0 22px}
 #stayUpcomingCheer .stay-cheer-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-#stayUpcomingCheer .stay-cheer-card{border:2px solid var(--cheer-border);background:var(--cheer-bg);border-radius:15px;min-width:0;padding:17px 7px 14px}
-#stayUpcomingCheer .stay-cheer-name{font-size:clamp(13px,2vw,22px);font-weight:750;word-break:keep-all}
-#stayUpcomingCheer .stay-cheer-date{font-size:clamp(18px,2.6vw,30px);font-weight:750;color:#b43756;margin:7px 0}
-#stayUpcomingCheer .stay-cheer-stage{font-size:clamp(12px,1.6vw,17px);color:#43524d}
+#stayUpcomingCheer .stay-cheer-card{border:2px solid var(--cheer-border);background:var(--cheer-bg);border-radius:15px;min-width:0;padding:15px 7px 13px;display:grid;grid-template-rows:minmax(3.3em,auto) auto minmax(2.8em,auto);align-items:center;justify-items:center;row-gap:7px;text-align:center}
+#stayUpcomingCheer .stay-cheer-name{font-size:clamp(13px,2vw,22px);font-weight:750;line-height:1.35;word-break:keep-all;overflow-wrap:anywhere;align-self:center}
+#stayUpcomingCheer .stay-cheer-date{font-size:clamp(18px,2.6vw,30px);font-weight:750;color:#b43756;margin:0;white-space:nowrap;align-self:center}
+#stayUpcomingCheer .stay-cheer-stage{font-size:clamp(12px,1.6vw,17px);color:#43524d;line-height:1.4;align-self:center}
 #stayUpcomingCheer .stay-cheer-footnote{margin:17px 0 0;font-size:clamp(10px,1.3vw,14px);color:#55635e}
-@media(max-width:540px){#stayUpcomingCheer .stay-cheer-panel{padding:16px 12px 12px;border-radius:20px}#stayUpcomingCheer .stay-cheer-cards{gap:7px}#stayUpcomingCheer .stay-cheer-card{padding:12px 3px 10px;border-radius:11px}#stayUpcomingCheer .stay-cheer-name{font-size:11px;line-height:1.35}#stayUpcomingCheer .stay-cheer-date{font-size:15px;margin:6px 0}#stayUpcomingCheer .stay-cheer-stage{font-size:10px}#stayUpcomingCheer .stay-cheer-message{margin-bottom:14px}}
+@media(max-width:540px){#stayUpcomingCheer .stay-cheer-panel{padding:16px 12px 12px;border-radius:20px}#stayUpcomingCheer .stay-cheer-cards{gap:7px}#stayUpcomingCheer .stay-cheer-card{padding:10px 3px;grid-template-rows:3.2em auto 2.8em;row-gap:7px;border-radius:11px}#stayUpcomingCheer .stay-cheer-name{font-size:11px;line-height:1.35}#stayUpcomingCheer .stay-cheer-date{font-size:15px}#stayUpcomingCheer .stay-cheer-stage{font-size:10px}#stayUpcomingCheer .stay-cheer-message{margin-bottom:14px}}
 </style>
 <div class="stay-cheer-panel">
   <p class="stay-cheer-heading">곧 다가오는 시험!</p>
