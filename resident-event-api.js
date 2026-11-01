@@ -48,6 +48,7 @@ window.StayEventApi = (function () {
       return call({ action: 'getResult', eventId: eventId });
     },
     count: function (eventId) { return call({ action:'count', eventId:eventId }); },
+    publicList: function (eventId, residentPassword) { return call({ action:'publicList', eventId:eventId, residentPassword:residentPassword }); },
     verifyMine: function (eventId, room, name, residentPassword) { return call({action:'verifyMine',eventId:eventId,room:room,name:name,residentPassword:residentPassword}); },
     registerEvent: function (config, adminPassword) { return call({action:'registerEvent',eventId:config.eventId,start:config.start,end:config.end,status:config.status,prizeCount:config.prizeCount,prizeLabel:config.prizeLabel,adminPassword:adminPassword}); },
     getPublicConfig: function () { return call({action:'getPublicConfig'}); },
