@@ -194,7 +194,7 @@ function firstFutureText(room){
   return "현재 예정 없음";
 }
 function suiteVacancyConfirmationNote(key){
-  return (key === 'suite1' || key === 'suite2') ? '12월 말 공실 여부 확정 예정' : '';
+  return key === 'suite1' ? '12월 말 공실 여부 확정 예정' : '';
 }
 function suiteVacancyConfirmationHtml(key){
   const note = suiteVacancyConfirmationNote(key);
