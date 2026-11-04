@@ -1,5 +1,5 @@
 window.ADMIN_INVESTMENT_DATA={
- updatedAt:'2026.10.21 KST · 10/21 브리핑 참고자료 추가 · 수치 원문 재검증 필요 · 보유자산 종가는 10/16 기준',
+ updatedAt:'2026.11.04 KST · AMD·Supermicro·ADM 공식 실적 반영 · 기존 보유자산 카드와 차트는 별도 과거 기준일',
  buyDecisions:[
   {name:'삼성전자우',ticker:'005935',action:'관망',close:'167,200원',closeDate:'2026.10.16 한국 정규장',dailyChange:'+5.09%',reason:'급락 이후 반등했으나 이전 수준 회복 여부와 HBM 수주·수급 확인이 필요합니다.',globalRisk:'AI 데이터센터 투자 회수, 미국 금리·달러, HBM 고객 인증과 메모리 가격',buyCondition:'우선주 실제 종가와 낙폭, HBM 출하·수주 및 실적 전망 유지 여부 확인 후 분할매수 검토',waitCondition:'실적 가이던스 하향, HBM 가격 하락 또는 외국인 매도 확대'},
   {name:'SCHD',ticker:'SCHD',action:'소액 분할매수 검토',close:'$34.35',closeDate:'2026.10.16 미국 정규장',dailyChange:'+0.73%',reason:'배당·가치주 상대 강세와 장기 배당투자 목적은 유효하나 고금리 및 단기 상승 부담이 있습니다.',globalRisk:'미 국채금리·연준 정책, 경기와 배당 지급기업의 이익',buyCondition:'SEC yield·분배수익률·주가·섹터 구성의 동일 기준일 검증 후 정기 분할매수 검토',waitCondition:'배당 삭감 확대, 기업이익 악화 또는 국채수익률 급등'},
@@ -13,6 +13,7 @@ window.ADMIN_INVESTMENT_DATA={
   {id:'flin',name:'FLIN',ticker:'인도 주식',holding:'보유 중',tone:'caution',status:'장기 분산 · 환율·유가 관찰',price:'$34.15',priceAsOf:'2026.10.16 미국 정규장 종가 (브리핑 수치, 재검증 필요)',change:'전일 대비 -0.58%',changeTone:'down',metrics:[['P/E','25.50배'],['금융 비중','28.76%'],['총보수','0.19%']],thesis:'인도 280종목에 분산하지만 금융 비중이 약 29%로 가장 큽니다. 내수·신용사이클이 장기 동력이고, 단기에는 미국 고금리·루피 약세·유가 상승이 달러 기준 수익률을 압박할 수 있습니다.',sourceName:'Franklin FLIN 공식',sourceUrl:'https://www.franklintempleton.com/investments/options/exchange-traded-funds/products/26348/SINGLCLASS/franklin-ftse-india-etf/FLIN',marketName:'Yahoo Finance 시세',marketUrl:'https://finance.yahoo.com/quote/FLIN/',note:'YTD·P/E·섹터 비중은 운용사 2026.08 자료, 가격은 2026.10.16 브리핑 제시값으로 별도 검증이 필요합니다. 일부 시세 제공처 간 0.02달러 차이가 있습니다.'}
  ],
  headline:[
+  {label:'11/04 공식 검증',value:'AMD·Supermicro·ADM 신규 실적',tone:'positive',text:'11월 3일 공식 실적 3건 반영. AI 서버 수요 강세와 ADM 이익 전망 상향. 기존 보유자산 카드의 종가·수익률은 과거 기준일 자료입니다.'},
   {label:'10/18 투자 브리핑',value:'SCHD 배당지표 · AI 금융조달 · DRAM 경쟁',tone:'watch',text:'10/18 일요일: 신규 종가 없음. 10/16 마지막 거래일 가격을 유지하며 새 언론 보도는 확정 계약과 구분합니다.'},
   {label:'10/13 신규 브리핑',value:'AI 칩·전력·냉각 5건 추가 · 수치 검증 대기',tone:'watch',text:'Microsoft Maia 300·CXMT·TSMC·PJM·Vertiv 관련 발표를 신규 소식에 정리했습니다. 원문 검증 전 공식 그래프 갱신 없음. 가격 예측 아님.'},
   {label:'삼성전자우',value:'긍정 강화·HBM 공급 제약 확인',tone:'up',text:'HBM이 2027년 DRAM 웨이퍼 CAPA의 약 30%까지 확대될 전망이며 9월 1~20일 한국 반도체 수출도 +259.4% YoY. 일반 DRAM 공급 제약과 가격 효과를 함께 확인'},
@@ -121,6 +122,9 @@ window.ADMIN_INVESTMENT_DATA={
   {icon:'🌐',title:'국제정세·수출통제',signal:'공급망 꼬리위험',tone:'watch',text:'첨단칩·장비의 국가별 수출규칙은 판매 가능 시장과 제품 믹스를 바꿉니다. 발표 즉시 호재·악재로 단정하지 않고 적용 제품·고객·유예기간을 확인합니다.',affects:'삼성전자우·SCHG 직접',check:'미 상무부 규정 원문, 중국 매출 노출, 고객사의 재고·우회수요'}
  ],
  latest:[
+  {date:'2026-11-03',tag:'AI·반도체 · 공식 실적',title:'AMD 데이터센터 3분기 매출 85.46억 달러, 전년 대비 +97%',summary:'AMD 3분기 전체 매출 133.77억 달러(전년 92.46억), 데이터센터 85.46억 달러(전년 43.41억). 4분기 매출 약 170억 달러(±3%)는 회사 전망.',meaning:'삼성전자·SK하이닉스 HBM·서버 DRAM 수요에 긍정적이나 공급사별 출하·매출은 미확정. 고객 CAPEX와 경쟁이 위험.',sourceName:'AMD 공식 IR',sourceUrl:'https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000188/q32026991.htm'},
+  {date:'2026-11-03',tag:'AI 서버 · 공식 실적',title:'Supermicro FY2027 1분기 매출 약 199억 달러',summary:'9월 말 종료 분기 매출 약 199억 달러(전년 약 50억). 다음 분기 매출 전망 195억~215억 달러, FY2027 연간 720억~820억 달러. 영업활동 현금유출 4.34억 달러.',meaning:'AI 서버 실물 수요 확대를 뒷받침하지만 전체 서버 매출을 GPU·HBM 매출로 환산할 수 없음. 현금흐름·마진 위험.',sourceName:'Supermicro 공식 IR',sourceUrl:'https://ir.supermicro.com/news/news-details/2026/Supermicro-Announces-First-Quarter-of-Fiscal-Year-2027-Financial-Results/default.aspx'},
+  {date:'2026-11-03',tag:'식량·농업 · 공식 실적',title:'ADM 3분기 조정 EPS 1.77달러, 연간 전망 상향',summary:'전년 동기 조정 EPS 0.92달러 → 1.77달러. 2026 연간 조정 EPS 전망 5.15~5.60달러 → 5.50~5.80달러. CAPEX 전망 13~15억 달러 → 12~13억 달러.',meaning:'농산물 가공마진·바이오연료 사업의 개선 신호. VEGI·MOO 관련 분석에 참고. DBA 선물가격 상승으로 직접 연결할 수 없음.',sourceName:'ADM 공식 IR',sourceUrl:'https://www.adm.com/en-us/news/news-releases/2026/11/adm-reports-third-quarter-2026-results/'},
   {date:'2026-10-19',tag:'관리자 브리핑·원문 확인 필요',title:'10월 19일 브리핑 요약 — AI 전력·냉각과 SCHD 지표 점검',summary:'전일 브리핑에서 소개된 슈나이더 일렉트릭의 2026년 유기적 매출 성장 전망 12~14%, 조정 EBITDA 유기적 성장 전망 18~21%, SCHD 30일 SEC 수익률 3.23%(브리핑 제시 10/15 기준)를 검증 대기 참고자료로 기록합니다. 원문과 기준일을 재확인하기 전 확정 실적 또는 실시간 수치로 표시하지 않습니다.',meaning:'AI 데이터센터 전력·냉각 설비 수요의 실적 반영 가능성과 SCHD 배당 지표를 우선 관찰합니다. 삼성전자·SK하이닉스 HBM 출하 증가 및 ETF 가격 상승을 보장하지 않습니다. SCHG·SCHB·SCHF 비교는 동일 기준일 수치 확보 전 기존 자료 유지. 농업·수자원 신규 검증 수치 없음.',sourceName:'Schneider Electric IR / Schwab SCHD 공식 (원문 재확인 필요)',sourceUrl:'https://www.schwabassetmanagement.com/products/schd'},
   {date:'2026-10-18',tag:'관리자 브리핑·갱신 안내',title:'10월 18일 브리핑 반영 — SCHD 지표와 AI 금융조달 위험',summary:'SCHD 30일 SEC Yield 3.23%(브리핑 제시 10/15 기준), 회전율 40.61%(9월 말 기준)를 검증 대기 지표로 추가했습니다. Anthropic 금융조달·CXMT DDR5 기술 및 우크라이나 곡물 운송 소식은 확정 계약·실적과 구분합니다.',meaning:'삼성전자우·SCHG·FLIN 관망, SCHD 소액 분할매수 검토 의견 유지. 10/18 일요일 신규 종가 없음. 신규 공식 숫자 원문 확인 전 그래프 갱신 없음.',sourceName:'Schwab SCHD / Reuters (원문 대조 필요)',sourceUrl:'https://www.schwabassetmanagement.com/products/schd'},
 
