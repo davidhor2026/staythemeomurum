@@ -206,16 +206,15 @@ function renderAvailability(){
     const detail=document.querySelector(`[data-detail="${key}"]`);
     if(sum){
       const now = room.availableNow > 0
-        ? `<div class="main green">${DISPLAY_TEXT.availableNow}</div>`
+        ? `<div class="main green">${DISPLAY_TEXT.availableNow} <span style="font-size:.72em;font-weight:500;color:#387650">(희망 입주일 예약 문의 가능)</span></div>`
         : `<div class="main ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${room.fullLabel}</div>`;
       const hideEmptyFuture = room.availableNow > 0 && !room.events.length && !activeTourEvents(room).length && !room.unknown;
       const futureHtml = hideEmptyFuture ? '' : `<hr><div class="sub ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${firstFutureText(room)}</div>`;
-      const inquiryHint = room.availableNow > 0 ? `<div class="movein-inquiry-hint">희망 입주일 예약 문의 가능</div>` : '';
-      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}${inquiryHint}${futureHtml}${suiteVacancyConfirmationHtml(key)}`;
+      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}${futureHtml}${suiteVacancyConfirmationHtml(key)}`;
     }
     if(detail){
       let lines = room.availableNow > 0
-        ? `<p class="green">● ${DISPLAY_TEXT.availableNow}</p>`
+        ? `<p class="green">● ${DISPLAY_TEXT.availableNow} <span style="font-size:.78em;font-weight:500;color:#387650">(희망 입주일 예약 문의 가능)</span></p>`
         : (room.events.length ? '' : `<p class="gray">● ${room.fullLabel}</p>`);
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
         const tour=activeTourEvents(room).find(item=>item.forDate===e.date);
@@ -231,7 +230,7 @@ function renderAvailability(){
       if(room.unknown){
         lines += `<p class="gray">● ${unknownInquiryText(room)}</p>`;
       }
-      detail.innerHTML=lines + (room.availableNow > 0 ? `<p class="movein-inquiry-detail">희망 입주일 예약 문의 가능</p>` : '') + suiteVacancyConfirmationHtml(key);
+      detail.innerHTML=lines + suiteVacancyConfirmationHtml(key);
     }
   });
   renderRecentBookings();
