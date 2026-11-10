@@ -206,7 +206,7 @@ function renderAvailability(){
     const detail=document.querySelector(`[data-detail="${key}"]`);
     if(sum){
       const now = room.availableNow > 0
-        ? `<div class="main green">${DISPLAY_TEXT.availableNow} <span style="font-size:.72em;font-weight:500;color:#387650">(희망 입주일 예약 문의 가능)</span></div>`
+        ? `<div class="main green availability-now-summary"><span class="availability-now-label">${DISPLAY_TEXT.availableNow}</span><span class="movein-inquiry-hint">(희망 입주일 예약 문의 가능)</span></div>`
         : `<div class="main ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${room.fullLabel}</div>`;
       const hideEmptyFuture = room.availableNow > 0 && !room.events.length && !activeTourEvents(room).length && !room.unknown;
       const futureHtml = hideEmptyFuture ? '' : `<hr><div class="sub ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${firstFutureText(room)}</div>`;
@@ -863,6 +863,14 @@ document.addEventListener("DOMContentLoaded",()=>{
 <style id="suite-vacancy-confirmation-style">
 .suite-vacancy-confirmation{font-size:11px;line-height:1.45;color:#75602a;font-weight:650;margin-top:5px;word-break:keep-all;text-align:center}
 .roomrow .suite-vacancy-confirmation{text-align:left;margin:3px 0 0 0;font-size:12px}
+</style>
+
+<style id="availability-now-summary-mobile-fix-20261111">
+/* 한눈에 보는 현황: 좁은 카드에서 상태와 문의 안내를 각각 독립된 줄에 표시 */
+.sum .main.green.availability-now-summary{white-space:normal !important;overflow-wrap:normal;word-break:keep-all;font-size:15px !important;letter-spacing:normal !important;line-height:1.5}
+.sum .availability-now-label{display:block;white-space:nowrap;font-size:15px;font-weight:650}
+.sum .availability-now-summary .movein-inquiry-hint{display:block;white-space:normal;overflow-wrap:break-word;word-break:keep-all;font-size:11px;line-height:1.4;margin-top:5px;font-weight:500;color:#397450}
+@media(max-width:420px){.sum .availability-now-label{font-size:13px}.sum .availability-now-summary .movein-inquiry-hint{font-size:10px}}
 </style>
 </head><body><div id="inquiryReturnBar" style="display:none;position:sticky;top:0;z-index:9999;background:#eaf3ea;border-bottom:1px solid #bad4bf;padding:10px 14px;text-align:center;box-shadow:0 2px 8px #0001"><button type="button" onclick="returnToInquiry()" style="background:#205c3b;color:white;border:0;border-radius:9px;padding:12px 20px;font-size:16px;font-weight:700;cursor:pointer;width:min(100%,500px)">← 입주·예약 신청 안내로 돌아가기</button><div style="font-size:12px;color:#4a6451;margin-top:5px">이 창을 닫고 작성 중이던 문의 양식으로 돌아갑니다.</div></div><script>
 function returnToInquiry(){
