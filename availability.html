@@ -210,7 +210,8 @@ function renderAvailability(){
         : `<div class="main ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${room.fullLabel}</div>`;
       const hideEmptyFuture = room.availableNow > 0 && !room.events.length && !activeTourEvents(room).length && !room.unknown;
       const futureHtml = hideEmptyFuture ? '' : `<hr><div class="sub ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${firstFutureText(room)}</div>`;
-      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}${futureHtml}${suiteVacancyConfirmationHtml(key)}`;
+      const inquiryHint = room.availableNow > 0 ? `<div class="movein-inquiry-hint">희망 입주일 예약 문의 가능</div>` : '';
+      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}${inquiryHint}${futureHtml}${suiteVacancyConfirmationHtml(key)}`;
     }
     if(detail){
       let lines = room.availableNow > 0
@@ -230,7 +231,7 @@ function renderAvailability(){
       if(room.unknown){
         lines += `<p class="gray">● ${unknownInquiryText(room)}</p>`;
       }
-      detail.innerHTML=lines + suiteVacancyConfirmationHtml(key);
+      detail.innerHTML=lines + (room.availableNow > 0 ? `<p class="movein-inquiry-detail">희망 입주일 예약 문의 가능</p>` : '') + suiteVacancyConfirmationHtml(key);
     }
   });
   renderRecentBookings();
@@ -660,6 +661,12 @@ document.addEventListener("DOMContentLoaded",()=>{
 }
 </style>
 
+
+<style id="movein-inquiry-hint-20261110">
+.sum .movein-inquiry-hint{font-size:11px;line-height:1.45;color:#397450;font-weight:650;margin-top:4px;word-break:keep-all;text-align:center}
+.roomrow .movein-inquiry-detail{font-size:12px;line-height:1.45;color:#397450;font-weight:650;margin:2px 0 4px}
+@media(min-width:700px){.sum .movein-inquiry-hint{font-size:12px}}
+</style>
 
 <style id="availability-one-line-status-20260819">
 /* 스탠다드룸 '입실 가능 1실' 한 줄 정렬 */
