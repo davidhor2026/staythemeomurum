@@ -208,7 +208,9 @@ function renderAvailability(){
       const now = room.availableNow > 0
         ? `<div class="main green">${DISPLAY_TEXT.availableNow}</div>`
         : `<div class="main ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${room.fullLabel}</div>`;
-      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}<hr><div class="sub ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${firstFutureText(room)}</div>${suiteVacancyConfirmationHtml(key)}`;
+      const hideEmptyFuture = room.availableNow > 0 && !room.events.length && !activeTourEvents(room).length && !room.unknown;
+      const futureHtml = hideEmptyFuture ? '' : `<hr><div class="sub ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${firstFutureText(room)}</div>`;
+      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}${futureHtml}${suiteVacancyConfirmationHtml(key)}`;
     }
     if(detail){
       let lines = room.availableNow > 0
