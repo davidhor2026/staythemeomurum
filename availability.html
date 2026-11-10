@@ -872,6 +872,54 @@ document.addEventListener("DOMContentLoaded",()=>{
 .sum .availability-now-summary .movein-inquiry-hint{display:block;white-space:normal;overflow-wrap:break-word;word-break:keep-all;font-size:11px;line-height:1.4;margin-top:5px;font-weight:500;color:#397450}
 @media(max-width:420px){.sum .availability-now-label{font-size:13px}.sum .availability-now-summary .movein-inquiry-hint{font-size:10px}}
 </style>
+<style id="availability-now-summary-overflow-fix-20261111">
+/* 기존 display:flex 가로 배치 및 nowrap 규칙보다 우선 적용 */
+.summary .sum .main.green.availability-now-summary{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  box-sizing:border-box !important;
+  width:100% !important;
+  max-width:100% !important;
+  min-width:0 !important;
+  white-space:normal !important;
+  overflow-wrap:break-word !important;
+  text-align:center !important;
+  gap:4px;
+}
+.summary .sum .availability-now-summary .availability-now-label{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+  white-space:normal !important;
+  word-break:keep-all !important;
+  overflow-wrap:break-word !important;
+  text-align:center !important;
+  font-size:clamp(10px,1.45vw,14px) !important;
+  line-height:1.4 !important;
+}
+.summary .sum .availability-now-summary .movein-inquiry-hint{
+  display:block !important;
+  box-sizing:border-box !important;
+  width:100% !important;
+  max-width:100% !important;
+  margin:0 !important;
+  white-space:normal !important;
+  word-break:keep-all !important;
+  overflow-wrap:anywhere !important;
+  font-size:clamp(9px,1.2vw,11px) !important;
+  font-weight:500 !important;
+  line-height:1.45 !important;
+  text-align:center !important;
+}
+@media(max-width:700px){
+  .summary .sum .main.green.availability-now-summary{min-height:75px !important;padding:0 1px !important}
+  .summary .sum .availability-now-summary .availability-now-label{font-size:11px !important}
+  .summary .sum .availability-now-summary .movein-inquiry-hint{font-size:10px !important}
+}
+</style>
 </head><body><div id="inquiryReturnBar" style="display:none;position:sticky;top:0;z-index:9999;background:#eaf3ea;border-bottom:1px solid #bad4bf;padding:10px 14px;text-align:center;box-shadow:0 2px 8px #0001"><button type="button" onclick="returnToInquiry()" style="background:#205c3b;color:white;border:0;border-radius:9px;padding:12px 20px;font-size:16px;font-weight:700;cursor:pointer;width:min(100%,500px)">← 입주·예약 신청 안내로 돌아가기</button><div style="font-size:12px;color:#4a6451;margin-top:5px">이 창을 닫고 작성 중이던 문의 양식으로 돌아갑니다.</div></div><script>
 function returnToInquiry(){
   window.close();
