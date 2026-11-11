@@ -216,11 +216,6 @@ function renderAvailability(){
       let lines = room.availableNow > 0
         ? `<p class="green">● ${DISPLAY_TEXT.availableNow} <span style="font-size:.78em;font-weight:500;color:#387650">(희망 입주일 예약 문의 가능)</span></p>`
         : (room.events.length ? '' : `<p class="gray">● ${room.fullLabel}</p>`);
-      if(key === 'suite2'){
-        activeBookedEvents(room).forEach(e=>{
-          lines += `<p class="blue availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.booked}</span></p>`;
-        });
-      }
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
         const tour=activeTourEvents(room).find(item=>item.forDate===e.date);
         const tourText=tour ? ` <span class="purple">· ${DISPLAY_TEXT.roomTour}</span>` : '';
@@ -229,13 +224,20 @@ function renderAvailability(){
       activeTourEvents(room).forEach(e=>{
         lines += `<p class="purple availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.roomTour} (예약 확정 전)</span></p>`;
       });
+      // Keep the suite 2 confirmation directly under its Jan 31 vacancy date.
+      if(key === 'suite2'){
+        lines += suiteVacancyConfirmationHtml(key);
+        activeBookedEvents(room).forEach(e=>{
+          lines += `<p class="blue availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.booked}</span></p>`;
+        });
+      }
       if(key !== 'suite2') activeBookedEvents(room).forEach(e=>{
         lines += `<p class="blue availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.booked}${room.compactBookedDates.includes(e.date) ? " · 컴팩트룸" : ""}</span></p>`;
       });
       if(room.unknown){
         lines += `<p class="gray">● ${unknownInquiryText(room)}</p>`;
       }
-      detail.innerHTML=lines + suiteVacancyConfirmationHtml(key);
+      detail.innerHTML=lines + (key === 'suite2' ? '' : suiteVacancyConfirmationHtml(key));
     }
   });
   renderRecentBookings();
