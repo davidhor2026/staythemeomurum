@@ -194,7 +194,7 @@ function firstFutureText(room){
   return "현재 예정 없음";
 }
 function suiteVacancyConfirmationNote(key){
-  return key === 'suite1' ? '12월 말 공실 여부 확정 예정' : '';
+  return (key === 'suite1' || key === 'suite2') ? '12월 말 공실 여부 확정 예정' : '';
 }
 function suiteVacancyConfirmationHtml(key){
   const note = suiteVacancyConfirmationNote(key);
@@ -216,6 +216,11 @@ function renderAvailability(){
       let lines = room.availableNow > 0
         ? `<p class="green">● ${DISPLAY_TEXT.availableNow} <span style="font-size:.78em;font-weight:500;color:#387650">(희망 입주일 예약 문의 가능)</span></p>`
         : (room.events.length ? '' : `<p class="gray">● ${room.fullLabel}</p>`);
+      if(key === 'suite2'){
+        activeBookedEvents(room).forEach(e=>{
+          lines += `<p class="blue availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.booked}</span></p>`;
+        });
+      }
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
         const tour=activeTourEvents(room).find(item=>item.forDate===e.date);
         const tourText=tour ? ` <span class="purple">· ${DISPLAY_TEXT.roomTour}</span>` : '';
@@ -224,7 +229,7 @@ function renderAvailability(){
       activeTourEvents(room).forEach(e=>{
         lines += `<p class="purple availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.roomTour} (예약 확정 전)</span></p>`;
       });
-      activeBookedEvents(room).forEach(e=>{
+      if(key !== 'suite2') activeBookedEvents(room).forEach(e=>{
         lines += `<p class="blue availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.booked}${room.compactBookedDates.includes(e.date) ? " · 컴팩트룸" : ""}</span></p>`;
       });
       if(room.unknown){
