@@ -2,9 +2,6 @@ window.EXAM_HOME_DATA = {
   updatedLabel: '2026년 11월 11일 국가직 2027 일정 반영',
   countdowns: [
     { category: '지방직 7급', title: '필기시험', date: '2026-10-31' },
-    { category: '유·초등교원 임용', title: '2027학년도 1차 필기시험', date: '2026-11-07' },
-    { category: '경찰 2차 순경 공채', title: '면접시험 시작', date: '2026-11-09', status: '11월 9일~12월 8일 · 개인별 일정은 관할 경찰청 확인' },
-    { category: '국가직 7급 민간경력자', title: '면접시험 시작', date: '2026-11-10', status: '11월 10~13일' },
     { category: '국가직 7급', title: '3차 면접시험 시작', date: '2026-11-23', status: '11월 23~26일' },
     { category: '공인노무사', title: '3차 면접시험', date: '2026-11-27' },
     { category: '서울 중등교원 임용', title: '1차 필기시험', date: '2026-11-28' },
