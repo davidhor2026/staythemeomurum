@@ -1,5 +1,5 @@
 window.EXAM_HOME_DATA = {
-  updatedLabel: '2026년 10월 29일 확인 기준',
+  updatedLabel: '2026년 11월 11일 국가직 2027 일정 반영',
   countdowns: [
     { category: '지방직 7급', title: '필기시험', date: '2026-10-31' },
     { category: '유·초등교원 임용', title: '2027학년도 1차 필기시험', date: '2026-11-07' },
@@ -11,7 +11,11 @@ window.EXAM_HOME_DATA = {
     { category: '경기 지방직 7급', title: '면접시험 시작', date: '2026-12-04', status: '12월 4~10일 · 경기도 공고 기준' },
     { category: '유·초등교원 임용', title: '2027학년도 2차 시험 시작', date: '2027-01-06', status: '1월 6~8일 · 지역별 세부 일정 확인' },
     { category: '중등교원 임용', title: '2027학년도 2차 실기·실험평가', date: '2027-01-14', status: '실기·실험 대상 과목 및 지역별 공고 확인' },
-    { category: '서울 중등교원 임용', title: '2차 수업실연·면접 시작', date: '2027-01-20', status: '2027년 1월 20~21일' }
+    { category: '서울 중등교원 임용', title: '2차 수업실연·면접 시작', date: '2027-01-20', status: '2027년 1월 20~21일' },
+    { category: '국가직 5급·외교관후보자', title: '2027 PSAT 심화 시험', date: '2027-02-27', status: '2027년 1차 검정시험' },
+    { category: '국가직 9급·관세직 9급', title: '2027 필기시험', date: '2027-03-27', status: '인사혁신처 11월 5일 발표' },
+    { category: '국가직 7급·관세직 7급', title: '2027 PSAT 기본 시험', date: '2027-07-10', status: '1차 대체 검정시험' },
+    { category: '국가직 7급·관세직 7급', title: '2027 2차 필기시험', date: '2027-10-02', status: '국가직 7급 공채' }
   ],
   results: [
     { category: '국가직 5급·외교관후보자', title: '최종 합격자 발표', date: '2026-10-30' },
