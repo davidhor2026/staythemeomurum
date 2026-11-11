@@ -25,7 +25,7 @@ window.SITE_UPDATES = {
     'current-issues.html': { key: 'currentIssues', updated: '2026-08-22', expires: '2026-08-29' },
     'word-roots.html': { key: 'wordRoots', updated: '' },
     'career-benefits.html': { key: 'careerBenefits', updated: '2026-09-06', expires: '2026-09-13' },
-    'rent-support.html': { key: 'rentSupport', updated: '2026-10-28', expires: '2026-11-04' },
+    'rent-support.html': { key: 'rentSupport', updated: '2026-11-12', expires: '2026-11-18' },
     'admin-investment.html': { key: 'adminInvestment', updated: '2026-10-08', expires: '2026-10-15' },
     'resident-event.html': { key: 'residentEvent', updated: '' },
     'gift.html': { key: 'gift', updated: '' },
