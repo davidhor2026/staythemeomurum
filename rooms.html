@@ -39,6 +39,23 @@
 .room-title-row h3{margin:0;flex:1 1 auto}
 .room-title-row .detail-return{display:inline-flex;align-items:center;white-space:nowrap;font-size:13px}
 @media(max-width:600px){.room-detail-list>.room-detail-card:not(:first-child){margin-top:26px;padding-top:26px}.room-title-row{align-items:center}.room-title-row .detail-return{font-size:12px}}
+
+/* 디럭스룸 3개 객실 사진 갤러리 */
+.deluxe-photo-gallery{overflow:visible!important}
+.deluxe-main-photo{display:block;position:relative;width:100%;padding:0;border:0;background:transparent;cursor:zoom-in;text-align:left}
+.deluxe-main-photo img{display:block;width:100%;height:auto;border-radius:12px}
+.deluxe-photo-hint{position:absolute;right:12px;bottom:12px;padding:7px 11px;border-radius:20px;background:rgba(15,30,25,.78);color:white;font-size:12px}
+.deluxe-photo-thumbnails{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.deluxe-photo-thumbnails button{min-width:0;border:2px solid #e0e6e2;border-radius:10px;background:#fff;padding:5px;cursor:pointer;color:#35513f;font-weight:600}
+.deluxe-photo-thumbnails button.is-selected{border-color:#43865c;background:#f0f7f2}
+.deluxe-photo-thumbnails img{width:100%;height:100px;object-fit:cover;object-position:center;display:block;border-radius:6px}
+.deluxe-photo-thumbnails span{display:block;padding:6px 2px 3px;font-size:12px}
+.deluxe-gallery-note{font-size:13px;line-height:1.6;color:#65746a;margin:10px 0 0}
+.deluxe-lightbox{border:0;padding:0;background:transparent;max-width:min(94vw,980px);max-height:95vh;overflow:visible}
+.deluxe-lightbox::backdrop{background:rgba(0,0,0,.82)}
+.deluxe-lightbox img{display:block;max-width:94vw;max-height:85vh;object-fit:contain;border-radius:8px}
+.deluxe-lightbox-close{position:absolute;top:-38px;right:0;background:#fff;border:0;border-radius:20px;padding:7px 14px;cursor:pointer;font-weight:700}
+@media(max-width:600px){.deluxe-photo-thumbnails{gap:6px}.deluxe-photo-thumbnails img{height:76px}.deluxe-photo-thumbnails span{font-size:11px}.deluxe-photo-hint{font-size:11px}}
 </style>
 </head>
 <body>
@@ -119,7 +136,15 @@
 </div>
 </article>
 <article class="room-detail-card" id="deluxe">
-<div class="room-detail-media"><img alt="디럭스룸 사진" src="room-deluxe.png"/></div>
+<div class="room-detail-media deluxe-photo-gallery">
+  <button type="button" class="deluxe-main-photo" onclick="openDeluxePhoto()" aria-label="디럭스룸 사진 크게 보기"><img id="deluxe-featured-photo" alt="디럭스룸 - 큰 창문이 있는 객실" src="room-deluxe.png"/><span class="deluxe-photo-hint">사진을 누르면 크게 볼 수 있어요 ⤢</span></button>
+  <div class="deluxe-photo-thumbnails" aria-label="디럭스룸 객실별 사진 선택">
+    <button type="button" class="is-selected" onclick="selectDeluxePhoto(0,this)" aria-label="큰 창문 디럭스룸 사진 보기" aria-pressed="true"><img src="room-deluxe.png" alt="큰 창문 객실" loading="lazy"/><span>큰 창문 · 대표</span></button>
+    <button type="button" onclick="selectDeluxePhoto(1,this)" aria-label="디럭스룸 다른 구조 사진 보기" aria-pressed="false"><img src="room-deluxe-view2.jpg" alt="다른 창문 구조 객실" loading="lazy"/><span>다른 구조 ①</span></button>
+    <button type="button" onclick="selectDeluxePhoto(2,this)" aria-label="디럭스룸 세 번째 사진 보기" aria-pressed="false"><img src="room-deluxe-view3.jpg" alt="또 다른 창문 구조 객실" loading="lazy"/><span>다른 구조 ②</span></button>
+  </div>
+  <p class="deluxe-gallery-note">※ 디럭스룸은 호실에 따라 창문 크기와 내부 구조가 조금씩 다릅니다. 사진을 선택해 비교해 보세요.</p>
+</div>
 <div class="room-detail-body">
 
 <div class="room-detail-head"><div class="room-title-row"><h3>디럭스룸 <span style="display:inline-block;vertical-align:middle;margin-left:7px;padding:4px 9px;border-radius:999px;background:#eef4ef;color:#35674a;font-size:0.55em;font-weight:600;line-height:1.4;">컴팩트룸 1실 별도 운영</span> <button aria-controls="deluxe-compact-preview" aria-expanded="false" onclick="var el=document.getElementById('deluxe-compact-preview');var expanded=el.hidden;el.hidden=!expanded;this.setAttribute('aria-expanded',String(expanded));this.textContent=expanded?'사진 닫기':'컴팩트룸 구경하기';" style="vertical-align:middle;margin-left:7px;padding:5px 11px;border:1px solid #b8cbbd;border-radius:18px;background:white;color:#35674a;font-size:13px;font-weight:700;cursor:pointer;" type="button">컴팩트룸 구경하기</button></h3><a class="detail-return" href="availability.html#room-details">공실현황 바로가기 →</a></div>
@@ -239,6 +264,20 @@
 </script>
 <script>
   document.write('<script src="site-updates.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
+
+<dialog class="deluxe-lightbox" id="deluxe-lightbox" onclick="if(event.target===this)this.close()"><button type="button" class="deluxe-lightbox-close" onclick="document.getElementById('deluxe-lightbox').close()">닫기 ✕</button><img id="deluxe-lightbox-image" alt="디럭스룸 확대 사진"/></dialog>
+<script>
+(function(){
+  var photos=['room-deluxe.png','room-deluxe-view2.jpg','room-deluxe-view3.jpg'];
+  var labels=['큰 창문 디럭스룸','다른 구조 디럭스룸 ①','다른 구조 디럭스룸 ②'];
+  window.selectDeluxePhoto=function(index,button){
+    var photo=document.getElementById('deluxe-featured-photo');
+    photo.src=photos[index]; photo.alt=labels[index];
+    document.querySelectorAll('.deluxe-photo-thumbnails button').forEach(function(b){var active=b===button;b.classList.toggle('is-selected',active);b.setAttribute('aria-pressed',String(active));});
+  };
+  window.openDeluxePhoto=function(){var dialog=document.getElementById('deluxe-lightbox');document.getElementById('deluxe-lightbox-image').src=document.getElementById('deluxe-featured-photo').src;dialog.showModal();};
+})();
 </script>
 </body>
 </html>
