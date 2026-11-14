@@ -253,7 +253,7 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 <a href="reviews.html" class="home-review-link" id="homeReviewLink"><span class="home-review-label">후기</span><span class="home-review-petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></a>
 <a href="faq.html">FAQ</a>
 <a href="quiz.html">시험대비 퀴즈</a>
-<a href="exam-insight.html">시험분석</a>
+<a href="exam-insight.html">시험분석 <span id="examInsightNewBadge" class="new-badge" hidden>NEW</span></a>
 <a href="exam-schedule.html">시험 일정</a>
 <a href="games.html">머무름 게임</a>
 <a href="fortune.html">오늘의 운세</a>
@@ -966,5 +966,21 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
   document.addEventListener('visibilitychange',function(){if(!document.hidden)refreshNotices();});
 })();
 </script>
+
+<style>#examInsightNewBadge[hidden]{display:none!important}</style>
+<script id="exam-insight-new-from-data" src="exam-insight-nav-data.js"></script>
+<script id="exam-insight-new-7day">(function(){
+  var badge=document.getElementById('examInsightNewBadge');if(!badge)return;
+  var nav=window.EXAM_INSIGHT_CATEGORIES||null;
+  var dates=[];
+  if(nav){var entries=Array.isArray(nav)?nav:(Array.isArray(nav.items)?nav.items:(Array.isArray(nav.categories)?nav.categories:[]));entries.forEach(function(item){if(item&&/^\d{4}-\d{2}-\d{2}$/.test(item.updatedAt||''))dates.push(item.updatedAt);});}
+  if(!dates.length){badge.hidden=true;return;}
+  var newest=dates.sort().pop();
+  var parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+  var d={};parts.forEach(function(p){d[p.type]=p.value;});
+  var today=Date.parse(d.year+'-'+d.month+'-'+d.day+'T00:00:00+09:00');
+  var start=Date.parse(newest+'T00:00:00+09:00');
+  badge.hidden=!(Number.isFinite(start)&&today>=start&&today<start+7*86400000);
+})();</script>
 </body>
 </html>
