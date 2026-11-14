@@ -42,6 +42,14 @@ body{background:#f7f5f0;color:#2f332d;}
 .guide-section ul{margin:8px 0 0;padding-left:20px;}
 .warning-card{background:#fff3f0;border:1px solid #f0c9be;border-radius:16px;padding:15px 16px;margin-top:12px;color:#704236;line-height:1.75;}
 .checklist li{list-style:"□  ";padding-left:4px;}
+.refund-intro{margin:16px 0 0;padding:15px 17px;border-radius:15px;background:#edf4e9;border:1px solid #cdddc5;color:#283c2b;line-height:1.75;font-weight:650;}
+.refund-form{display:grid;gap:13px;max-width:660px;}
+.refund-form label.field-label{display:block;font-weight:750;color:#364238;margin-bottom:6px;}
+.refund-form input[type="text"]{display:block;width:100%;box-sizing:border-box;border:1px solid #cfcfc9;border-radius:12px;padding:13px 12px;font-size:16px;background:#fff;color:#252b25;}
+.refund-consent{display:flex;gap:11px;align-items:flex-start;line-height:1.65;background:#f5f7f1;border-radius:13px;padding:14px;cursor:pointer;}
+.refund-consent input{width:20px;height:20px;flex-shrink:0;margin-top:3px;accent-color:#37573a;}
+.refund-button{border:0;border-radius:13px;padding:15px 20px;background:#36563c;color:white;font-size:17px;font-weight:800;cursor:pointer;}
+.refund-help{color:#625d55;font-size:14px;line-height:1.6;margin:0;}
 .footer-note{text-align:center;color:#777;font-size:14px;line-height:1.65;margin-top:28px;}
 @media(max-width:760px){.checkout-page{padding:16px 12px 48px;}.checkout-hero{border-radius:22px;padding:34px 18px;}.quick-grid{grid-template-columns:1fr;}.guide-section,.quick-box{padding:20px 17px;border-radius:19px;}.guide-section h2{font-size:1.22rem;}}
 </style>
@@ -65,6 +73,7 @@ body{background:#f7f5f0;color:#2f332d;}
 <div class="guide-content" id="guideContent">
 <section class="quick-box">
 <h2>퇴실 전 핵심 안내</h2>
+<p class="refund-intro">아래 퇴실 전 확인사항을 모두 확인하고 이행해 주세요. 퇴실을 완료한 뒤 페이지 맨 아래에서 확인란에 체크하고 환불 계좌를 입력해 <strong>‘보증금 환불 요청’</strong> 문자를 보내주세요. 원장이 1~2일 이내 객실을 확인하고 이상이 없으면 보증금을 환불합니다. 미정리·훼손 등이 있으면 관련 비용이 차감될 수 있습니다.</p>
 <div class="quick-grid">
 <div class="quick-item"><strong>퇴실 시간</strong><span>퇴실일 오전 11시까지 퇴실해 주세요.</span></div>
 <div class="quick-item"><strong>퇴실일 기준</strong><span>입주일자 하루 전입니다. 예: 입실일 4일 → 퇴실일 3일</span></div>
@@ -150,8 +159,21 @@ body{background:#f7f5f0;color:#2f332d;}
 <li>개인 쓰레기가 많으면 종량제 봉투로 직접 처리</li>
 <li>이불·쿠션·가구류는 대형폐기물로 분리 처리</li>
 <li>전입신고를 했다면 전출신고 진행</li>
-<li>퇴실 후 문자 남기기</li></ul>
+<li>퇴실 후 맨 아래에서 보증금 환불 요청 문자 보내기</li></ul>
 <div class="warning-card">주방 공용 냉동고 배정 칸의 잔여 음식물, 대형폐기물, 심한 오염·훼손은 보증금에서 처리 비용이 차감될 수 있습니다.</div>
+</section>
+<section class="guide-section" id="refundRequestSection">
+<h2><span class="num">✓</span>보증금 환불 요청</h2>
+<p style="line-height:1.7;color:#514d46">퇴실을 완료한 후 아래 내용을 입력하고 문자 전송을 진행해 주세요. 객실 확인 후 이상이 없으면 1~2일 이내 보증금을 환불합니다.</p>
+<form id="refundForm" class="refund-form">
+<label class="refund-consent"><input id="refundConfirm" type="checkbox" required><span>위의 퇴실 전 확인항목을 모두 확인하고 이행한 후 퇴실을 완료했습니다. <strong>(필수)</strong></span></label>
+<div><label class="field-label" for="refundRoom">퇴실 객실 번호 (필수)</label><input id="refundRoom" type="text" maxlength="30" placeholder="예: 201호" autocomplete="off" required></div>
+<div><label class="field-label" for="refundBank">은행명 (필수)</label><input id="refundBank" type="text" maxlength="40" placeholder="예: 국민은행" autocomplete="off" required></div>
+<div><label class="field-label" for="refundAccount">보증금 환불 계좌번호 (필수)</label><input id="refundAccount" type="text" maxlength="60" inputmode="numeric" placeholder="계좌번호 입력" autocomplete="off" required></div>
+<div><label class="field-label" for="refundHolder">예금주 이름 (필수)</label><input id="refundHolder" type="text" maxlength="50" placeholder="계좌주 이름 입력" autocomplete="off" required></div>
+<button type="submit" class="refund-button">보증금 환불 요청 · 문자 전송</button>
+<p class="refund-help">버튼을 누르면 휴대전화의 문자 앱이 열립니다. <strong>문자 앱에서 전송 버튼까지 눌러야</strong> 원장에게 접수됩니다. 입력 정보는 이 페이지에 저장되지 않습니다.</p>
+</form>
 </section>
 <p class="footer-note">© <span id="year"></span> 스테이The머무름. 퇴실 안내사항은 운영 상황에 따라 변경될 수 있습니다.</p>
 </div>
@@ -170,6 +192,16 @@ function openGuide(){
   }else{error.style.display='block';}
 }
 document.getElementById('guidePassword').addEventListener('keydown',function(e){if(e.key==='Enter')openGuide();});
+document.getElementById('refundForm').addEventListener('submit',function(event){
+  event.preventDefault();
+  if(!this.reportValidity())return;
+  const get=id=>document.getElementById(id).value.trim();
+  const room=get('refundRoom'),bank=get('refundBank'),account=get('refundAccount'),holder=get('refundHolder');
+  if(!room||!bank||!account||!holder){alert('객실 번호와 환불 계좌 정보를 모두 입력해 주세요.');return;}
+  const msg=['[스테이The머무름 보증금 환불 요청]','퇴실 객실: '+room,'퇴실 전 확인사항: 모두 확인 및 이행, 퇴실 완료','은행명: '+bank,'환불 계좌번호: '+account,'예금주: '+holder,'객실 확인 후 보증금 환불을 요청합니다.'].join('\n');
+  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
+  window.location.href='sms:01028779447'+(isIOS?'&':'?')+'body='+encodeURIComponent(msg);
+});
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 
