@@ -168,8 +168,9 @@ function formatDate(dateStr){
 }
 function activeBookedEvents(room){
   const today=kstTodayISO();
+  // 예약 완료 표시는 입실 예정일 전날까지만 노출합니다. 당일부터 자동 숨김.
   return (room.bookedEvents || [])
-    .filter(e=>e && e.date && e.date>=today)
+    .filter(e=>e && e.date && e.date>today)
     .sort((a,b)=>(b.bookedOn||'').localeCompare(a.bookedOn||'') || a.date.localeCompare(b.date));
 }
 function activeTourEvents(room){
