@@ -510,6 +510,48 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 <span id="visitorLoadingText">방문현황 불러오는 중...</span>
 <span id="visitorCountText" hidden>오늘 <strong id="visitorToday">-</strong>명<span class="visitor-sep">·</span> 누적 <strong id="visitorTotal">-</strong>명</span>
 </div>
+<!-- 2026-11-18~19 (KST) 수능 응원 특별 배너. 이후 기존 응원 배너 자동 복귀 -->
+<section id="suneungTwoDayBanner" class="congrats-banner-section suneung-two-day" aria-label="2027학년도 수능 특별 응원" hidden>
+  <div class="suneung-two-day__frame">
+    <img src="suneung-cheer-20261118.jpg" alt="스테이The머무름 원장이 수능 시험장 교문에 합격 기원 호박엿을 붙이며 수능시험 대박 나기를 응원하는 모습" width="1536" height="768" decoding="async" fetchpriority="low">
+    <span class="suneung-two-day__glint suneung-two-day__glint--one" aria-hidden="true">✦</span>
+    <span class="suneung-two-day__glint suneung-two-day__glint--two" aria-hidden="true">✧</span>
+    <span class="suneung-two-day__glint suneung-two-day__glint--three" aria-hidden="true">✦</span>
+  </div>
+</section>
+<style id="suneung-two-day-style">
+#suneungTwoDayBanner[hidden],#stayUpcomingCheer[hidden]{display:none!important}
+#suneungTwoDayBanner{padding:14px 16px 10px}
+.suneung-two-day__frame{position:relative;overflow:hidden;max-width:1080px;margin:0 auto;border-radius:22px;box-shadow:0 8px 25px rgba(45,36,18,.15);isolation:isolate}
+.suneung-two-day__frame img{display:block;width:100%;height:auto;animation:suneungImageGlow 5s ease-in-out infinite}
+.suneung-two-day__glint{position:absolute;z-index:1;color:#fff4b3;font-size:clamp(18px,3.5vw,44px);line-height:1;text-shadow:0 0 5px #fff,0 0 14px #ffdf73,0 0 24px #ffb73a;pointer-events:none;animation:suneungTwinkle 3.6s ease-in-out infinite}
+.suneung-two-day__glint--one{left:73%;top:6%}
+.suneung-two-day__glint--two{left:48%;top:58%;animation-delay:1.2s}
+.suneung-two-day__glint--three{left:87%;top:72%;animation-delay:2.4s}
+@keyframes suneungImageGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.065) saturate(1.045)}}
+@keyframes suneungTwinkle{0%,15%,65%,100%{opacity:0;transform:scale(.65) rotate(-12deg)}30%,45%{opacity:.96;transform:scale(1.12) rotate(8deg)}}
+@media(max-width:600px){#suneungTwoDayBanner{padding:8px 10px 6px}.suneung-two-day__frame{border-radius:14px}}
+@media(prefers-reduced-motion:reduce){.suneung-two-day__frame img,.suneung-two-day__glint{animation:none}.suneung-two-day__glint{opacity:.5}}
+</style>
+<script id="suneung-two-day-schedule">
+(function(){
+  var special=document.getElementById('suneungTwoDayBanner');
+  var normal=document.getElementById('stayUpcomingCheer');
+  if(!special||!normal)return;
+  function update(){
+    var parts=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+    var v={};parts.forEach(function(p){v[p.type]=p.value;});
+    var date=v.year+'-'+v.month+'-'+v.day;
+    var active=date==='2026-11-18'||date==='2026-11-19';
+    special.hidden=!active;
+    normal.hidden=active;
+  }
+  update();
+  window.addEventListener('pageshow',update);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)update()});
+  setInterval(update,60000);
+})();
+</script>
 <section aria-label="다가오는 주요 시험 수험생 응원" class="congrats-banner-section" id="stayUpcomingCheer">
 <style>
 #stayUpcomingCheer .stay-cheer-panel{background:linear-gradient(180deg,#fffaf1,#f7eee3);border-radius:24px;padding:24px 26px 17px;text-align:center;color:#254838;box-shadow:0 8px 25px rgba(65,45,27,.08)}
