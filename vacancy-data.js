@@ -26,7 +26,7 @@ const VACANCY_MANAGER = {
     dates: ["2026-11-26"],
     compactAvailableDates: ["2026-11-26"],
     bookedDates: [
-      { date: "2026-11-21" },
+      { date: "2026-11-21", bookedOn: "2026-11-18" },
       { date: "2026-11-17", bookedOn: "2026-11-03" },
       { date: "2026-10-24", bookedOn: "2026-10-19" },
       { date: "2026-11-20", bookedOn: "2026-10-18" },

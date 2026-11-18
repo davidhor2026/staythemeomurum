@@ -305,6 +305,46 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 @media(max-width:360px){.home-header .hero-content > .button-wrap{width:min(62vw,210px)!important;}}
 @media(prefers-reduced-transparency:reduce){.home-header .hero-content > .button-wrap > a.button{background:rgba(35,57,42,.78)!important}}
 </style>
+
+<style id="hero-action-persistent-transparency-20261118">
+/* Homepage hero actions: consistent translucency on initial load and return navigation. */
+.home-header .hero-content > .button-wrap > a.button,
+.home-header .hero-content > .button-wrap > a.button.sub,
+.home-header .hero-content > .button-wrap > a.button.light {
+  background-color: rgba(35,57,42,.38) !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 1 !important;
+}
+.home-header .hero-content > .button-wrap > a.button.sub,
+.home-header .hero-content > .button-wrap > a.button.light {
+  background-color: rgba(110,89,58,.38) !important;
+}
+@media (prefers-reduced-transparency: reduce) {
+  .home-header .hero-content > .button-wrap > a.button,
+  .home-header .hero-content > .button-wrap > a.button.sub,
+  .home-header .hero-content > .button-wrap > a.button.light {
+    background-color: rgba(35,57,42,.38) !important;
+  }
+}
+</style>
+<script>
+(function () {
+  function restoreHeroButtons() {
+    document.querySelectorAll('.home-header .hero-content > .button-wrap > a.button').forEach(function (button) {
+      var color = button.classList.contains('sub') || button.classList.contains('light')
+        ? 'rgba(110,89,58,.38)' : 'rgba(35,57,42,.38)';
+      button.style.setProperty('background-color', color, 'important');
+      button.style.setProperty('background-image', 'none', 'important');
+      button.style.setProperty('backdrop-filter', 'none', 'important');
+      button.style.setProperty('-webkit-backdrop-filter', 'none', 'important');
+    });
+  }
+  document.addEventListener('DOMContentLoaded', restoreHeroButtons);
+  window.addEventListener('pageshow', restoreHeroButtons);
+})();
+</script>
 </head>
 <body>
 <header class="home-header">
