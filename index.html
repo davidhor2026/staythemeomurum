@@ -218,6 +218,17 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 .home-tour-invite .home-tour-note{font-size:13px;color:#53695b;margin-top:12px}
 @media(max-width:600px){.home-tour-invite{padding:23px 14px}.home-tour-invite h2{font-size:21px}.home-tour-invite p{font-size:14px}}
 </style>
+<style id="tour-heading-gentle-sparkle-20261118">
+/* 방문 유도 문구에만 적용: 기존 메인 이미지와 버튼 스타일은 유지 */
+.home-tour-invite .tour-sparkle-heading{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;line-height:1.45;word-break:keep-all}
+.home-tour-invite .tour-sparkle-text{display:inline-block;animation:tourHeadingGlow 3.8s ease-in-out infinite}
+.home-tour-invite .tour-sparkle-star{display:inline-block;flex:none;color:#c99732;font-size:1.1em;animation:tourStarTwinkle 3.8s ease-in-out infinite}
+.home-tour-invite .tour-sparkle-star:last-child{animation-delay:1.9s}
+@keyframes tourStarTwinkle{0%,30%,65%,100%{opacity:.42;transform:scale(.85) rotate(-8deg)}13%,48%{opacity:1;transform:scale(1.16) rotate(8deg);text-shadow:0 0 9px rgba(222,168,66,.45)}}
+@keyframes tourHeadingGlow{0%,65%,100%{filter:brightness(1)}35%{filter:brightness(1.18);text-shadow:0 0 9px rgba(196,150,55,.25)}}
+@media(max-width:600px){.home-tour-invite .tour-sparkle-heading{gap:6px}.home-tour-invite .tour-sparkle-text{max-width:calc(100% - 56px)}}
+@media(prefers-reduced-motion:reduce){.home-tour-invite .tour-sparkle-heading *{animation:none!important}}
+</style>
 </head>
 <body>
 <header class="home-header">
@@ -461,19 +472,19 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 </div>
 <div class="button-wrap">
 <a class="button" href="facilities.html">시설 사진 더보기</a>
-<a class="button sub" href="tour.html">직접 방문해 보기</a>
+
 </div>
+</section>
+<section id="room-tour-home" class="home-tour-invite">
+<h2 class="tour-sparkle-heading"><span class="tour-sparkle-star" aria-hidden="true">✦</span><span class="tour-sparkle-text">사진보다 직접 보면 더 잘 느껴지는 공간</span><span class="tour-sparkle-star" aria-hidden="true">✧</span></h2>
+<p>객실뿐 아니라 매일 이용하는 주방, 화장실, 샤워실까지 직접 둘러보세요.<br/>부담 없이 방문하고 천천히 결정하셔도 괜찮습니다.</p>
+<div class="button-wrap"><a class="button" href="tour.html">룸투어 방문 신청하기</a><a class="button sub" href="tel:01028779447">전화로 방문 문의</a></div>
+<p class="home-tour-note">희망 일정을 문자로 보내주시면 원장이 직접 회신해 방문 시간을 조율합니다. 신청만으로 예약이 확정되지는 않습니다.</p>
 </section>
 <section id="rooms-summary">
 <h2>객실 타입 안내</h2>
 <p>스탠다드·디럭스·스위트룸의 객실 사진과 상세 구성은 객실 타입 페이지에서 확인하실 수 있습니다.</p>
 <div class="button-wrap"><a class="button" href="rooms.html">객실 타입 확인하기</a></div>
-</section>
-<section id="room-tour-home" class="home-tour-invite">
-<h2>사진보다 직접 보면 더 잘 느껴지는 공간</h2>
-<p>객실뿐 아니라 매일 이용하는 주방, 화장실, 샤워실까지 직접 둘러보세요.<br/>부담 없이 방문하고 천천히 결정하셔도 괜찮습니다.</p>
-<div class="button-wrap"><a class="button" href="tour.html">룸투어 방문 신청하기</a><a class="button sub" href="tel:01028779447">전화로 방문 문의</a></div>
-<p class="home-tour-note">희망 일정을 문자로 보내주시면 원장이 직접 회신해 방문 시간을 조율합니다. 신청만으로 예약이 확정되지는 않습니다.</p>
 </section>
 <section id="care">
 <h2>머무름의 작은 배려</h2>
