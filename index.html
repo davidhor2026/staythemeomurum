@@ -535,10 +535,10 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 </style>
 <script id="suneung-two-day-schedule">
 (function(){
-  var special=document.getElementById('suneungTwoDayBanner');
-  var normal=document.getElementById('stayUpcomingCheer');
-  if(!special||!normal)return;
   function update(){
+    var special=document.getElementById('suneungTwoDayBanner');
+    var normal=document.getElementById('stayUpcomingCheer');
+    if(!special||!normal)return;
     var parts=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
     var v={};parts.forEach(function(p){v[p.type]=p.value;});
     var date=v.year+'-'+v.month+'-'+v.day;
@@ -546,7 +546,8 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
     special.hidden=!active;
     normal.hidden=active;
   }
-  update();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);
+  else update();
   window.addEventListener('pageshow',update);
   document.addEventListener('visibilitychange',function(){if(!document.hidden)update()});
   setInterval(update,60000);
