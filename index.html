@@ -272,14 +272,14 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 </style>
 <style>
 /* Intro transfer message: subtle highlight, scoped to avoid affecting other cards. */
-#intro .transfer-highlight{display:flex;align-items:flex-start;gap:12px;margin-top:14px;padding:16px 18px;border:1px solid #d8e5d6;border-left:4px solid #5c8964;border-radius:14px;background:linear-gradient(115deg,#f3f9f1 0%,#fffdf6 100%);box-sizing:border-box;}
-#intro .transfer-highlight__sparkle{flex:none;color:#c99b36;font-size:24px;line-height:1.3;animation:transferSparkle 3.8s ease-in-out infinite;}
-#intro .transfer-highlight__content{min-width:0;}
-#intro .transfer-highlight__content strong{display:block;color:#285a3b;font-size:1.06em;line-height:1.5;font-weight:800;overflow-wrap:break-word;}
-#intro .transfer-highlight__content p{margin:6px 0 0;color:#3e4b3f;line-height:1.75;word-break:keep-all;overflow-wrap:break-word;}
+#transfer-showcase .transfer-highlight{display:flex;align-items:flex-start;gap:12px;margin-top:14px;padding:16px 18px;border:1px solid #d8e5d6;border-left:4px solid #5c8964;border-radius:14px;background:linear-gradient(115deg,#f3f9f1 0%,#fffdf6 100%);box-sizing:border-box;}
+#transfer-showcase .transfer-highlight__sparkle{flex:none;color:#c99b36;font-size:24px;line-height:1.3;animation:transferSparkle 3.8s ease-in-out infinite;}
+#transfer-showcase .transfer-highlight__content{min-width:0;}
+#transfer-showcase .transfer-highlight__content strong{display:block;color:#285a3b;font-size:1.06em;line-height:1.5;font-weight:800;overflow-wrap:break-word;}
+#transfer-showcase .transfer-highlight__content p{margin:6px 0 0;color:#3e4b3f;line-height:1.75;word-break:keep-all;overflow-wrap:break-word;}
 @keyframes transferSparkle{0%,100%{opacity:.55;transform:scale(.92)}50%{opacity:1;transform:scale(1.14)}}
-@media(max-width:600px){#intro .transfer-highlight{padding:13px 12px;gap:9px}#intro .transfer-highlight__sparkle{font-size:19px}#intro .transfer-highlight__content strong{font-size:1em}#intro .transfer-highlight__content p{font-size:.94em;line-height:1.65}#intro .transfer-highlight__desktop-break{display:none}}
-@media(prefers-reduced-motion:reduce){#intro .transfer-highlight__sparkle{animation:none}}
+@media(max-width:600px){#transfer-showcase .transfer-highlight{padding:13px 12px;gap:9px}#transfer-showcase .transfer-highlight__sparkle{font-size:19px}#transfer-showcase .transfer-highlight__content strong{font-size:1em}#transfer-showcase .transfer-highlight__content p{font-size:.94em;line-height:1.65}#transfer-showcase .transfer-highlight__desktop-break{display:none}}
+@media(prefers-reduced-motion:reduce){#transfer-showcase .transfer-highlight__sparkle{animation:none}}
 </style>
 <style id="home-hero-button-visibility-20261118">
 /* Keep the photographed characters visible through the four action buttons. */
@@ -377,6 +377,44 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 @media (prefers-reduced-motion: reduce) {
   .home-header .hero-content .button-wrap .hero-tour-glint::before,
   .home-header .hero-content .button-wrap .hero-tour-glint::after { animation: none; }
+}
+</style>
+
+<style id="transfer-showcase-and-tour-glass-enhancement">
+/* Separate the transfer story from the recommendation box. */
+#transfer-showcase.transfer-showcase-wrap{
+  max-width:1100px; margin:18px auto 24px; padding:0 18px; box-sizing:border-box;
+}
+#transfer-showcase .transfer-highlight{margin-top:0;box-shadow:0 5px 18px rgba(44,82,54,.07)}
+/* More visible light glints while preserving the translucent hero background. */
+.home-header .hero-content .button-wrap a.hero-tour-glint{
+  position:relative!important;overflow:hidden!important;isolation:isolate;
+  border:1px solid rgba(255,255,255,.78)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.68),
+    inset 0 -1px 0 rgba(255,255,255,.25),
+    0 0 11px rgba(247,226,158,.32)!important;
+}
+.home-header .hero-content .button-wrap a.hero-tour-glint::before,
+.home-header .hero-content .button-wrap a.hero-tour-glint::after{
+  content:"";position:absolute;pointer-events:none;z-index:1;
+  width:49px;height:49px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,1) 0%,rgba(255,244,188,.96) 12%,rgba(255,255,255,.48) 32%,transparent 69%);
+  opacity:0;filter:drop-shadow(0 0 5px rgba(255,237,161,.8));
+  animation:tourGlassCornerFlash 4.4s ease-in-out infinite!important;
+}
+.home-header .hero-content .button-wrap a.hero-tour-glint::before{top:-20px;left:-20px}
+.home-header .hero-content .button-wrap a.hero-tour-glint::after{right:-20px;bottom:-20px;animation-delay:2.2s!important}
+@keyframes tourGlassCornerFlash{
+  0%,8%,28%,100%{opacity:0;transform:scale(.6)}
+  12%,19%{opacity:1;transform:scale(1.12)}
+  23%{opacity:.35;transform:scale(.85)}
+}
+@media(max-width:600px){
+  #transfer-showcase.transfer-showcase-wrap{padding:0 14px;margin:14px auto 20px}
+}
+@media(prefers-reduced-motion:reduce){
+  .home-header .hero-content .button-wrap a.hero-tour-glint::before,
+  .home-header .hero-content .button-wrap a.hero-tour-glint::after{animation:none!important;opacity:.5}
 }
 </style>
 </head>
@@ -579,6 +617,10 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 <div class="info-box">
 <strong>이런 분께 추천합니다</strong>
 <p>조용하고 청결한 생활환경을 중요하게 여기며, 공동생활 수칙을 함께 지켜주실 분께 추천합니다.</p>
+
+</div>
+</section>
+<div id="transfer-showcase" class="transfer-showcase-wrap">
 <div class="transfer-highlight" aria-label="다른 고시원에서 옮겨 온 입주자 안내">
   <span class="transfer-highlight__sparkle" aria-hidden="true">✦</span>
   <div class="transfer-highlight__content">
@@ -587,7 +629,6 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
   </div>
 </div>
 </div>
-</section>
 <section id="points">
 <h2>머무름의 장점</h2>
 <div class="card-grid">
