@@ -5,7 +5,7 @@
 <label for="name">1. 이름 (필수)</label><input id="name" required maxlength="40" autocomplete="name">
 <label for="age">2. 나이 (필수)</label><input id="age" type="number" min="1" max="120" required inputmode="numeric">
 <label for="exam">3. 준비 중인 시험 (필수)</label><input id="exam" required maxlength="120" placeholder="예: 중등임용, 경찰공무원, 해당 없음"><div class="muted">※ 준비 중인 시험이 없는 경우에는 ‘해당 없음’으로 기입해 주세요.</div>
-<label for="room">4. 희망 객실 (필수)</label><select id="room" required><option value="">객실을 선택해 주세요</option><option value="standard">스탠다드</option><option value="deluxe">디럭스</option><option value="suite1">스위트1</option><option value="suite2">스위트2</option></select>
+<label for="room">4. 희망 객실 (필수)</label><select id="room" required><option value="">객실을 선택해 주세요</option><option value="standard">스탠다드</option><option value="standardCompact">스탠다드 컴팩트룸</option><option value="deluxe">디럭스</option><option value="deluxeCompact">디럭스 컴팩트룸</option><option value="suite1">스위트1</option><option value="suite2">스위트2</option></select>
 <div class="booking-box"><strong>📅 공실현황 확인 안내</strong><p>입주 희망일을 작성하기 전에 공실현황에서 객실별 예약 가능일을 먼저 확인해 주세요.</p><a class="btn outline full" href="availability.html?from=inquiry" target="_blank" rel="noopener">공실현황 확인하기 ↗</a><div class="muted" style="margin-top:8px">공실현황은 참고용이며 실제 예약 가능 여부는 관리자 확인 후 안내됩니다. 새 창에서 확인하면 작성 중인 내용이 유지됩니다.</div></div>
 <label for="date">5. 입주 희망일 (필수)</label><input id="date" type="date" required>
 <label for="period">6. 희망 입주기간 (필수)</label><input id="period" required maxlength="120" placeholder="예: 3개월 / 2027년 2월까지">
@@ -21,7 +21,7 @@
 <p class="muted" id="retryStatus" role="status" aria-live="polite">최초 문의 문자를 작성하면 24시간 동안 이 기기에서 재전송할 수 있습니다.</p>
 <button type="button" class="outline" id="clearSaved" style="padding:7px 12px;font-size:13px">임시 저장 내용 삭제</button>
 </div><details><summary>전송할 문자 내용 미리보기</summary><pre id="preview"></pre></details></form></section><p style="text-align:center"><a href="index.html">홈페이지 방문하기</a></p></main><script>
-const $=id=>document.getElementById(id),form=$('inquiryForm'),names={standard:'스탠다드',deluxe:'디럭스',suite1:'스위트1',suite2:'스위트2'},params=new URLSearchParams(location.search);
+const $=id=>document.getElementById(id),form=$('inquiryForm'),names={standard:'스탠다드',standardCompact:'스탠다드 컴팩트룸',deluxe:'디럭스',deluxeCompact:'디럭스 컴팩트룸',suite1:'스위트1',suite2:'스위트2'},params=new URLSearchParams(location.search);
 const roomParam=params.get('room');if(names[roomParam])$('room').value=roomParam;const dateParam=params.get('date');if(/^\d{4}-\d{2}-\d{2}$/.test(dateParam||''))$('date').value=dateParam;
 function message(){const v=id=>$(id).value.trim(),reserve=$('reserve').checked;return ['[스테이The머무름 '+(reserve?'예약신청':'입주문의')+']','이름: '+v('name'),'나이(만): '+v('age'),'준비 중인 시험: '+v('exam'),'희망 객실: '+(names[v('room')]||''),'입주 희망일: '+v('date'),'희망 입주기간: '+v('period'),'알게 된 경로: '+(v('source')||'미작성'),'추가 문의사항: '+(v('question')||'없음'),'예약신청 여부: '+(reserve?'예약을 신청합니다.':'일반 입주문의'),...(reserve?['계약금 환불규정 확인: 확인했습니다.']:[]),...(reserve?['입주 자격 및 객실 확인 후 계좌 안내, 계약금 입금 확인 시 예약 확정']:[])].join('\n')}
 function update(){const r=$('reserve').checked;$('refundConfirmed').required=r;$('reservationInfo').hidden=!r;$('generalHint').hidden=r;$('send').textContent=r?'예약신청 문자 보내기':'입주문의 문자 보내기';$('deposit').textContent='계약금: '+($('room').value.startsWith('suite')?'200,000원':'100,000원 (스탠다드·디럭스)');$('preview').textContent=message()}
