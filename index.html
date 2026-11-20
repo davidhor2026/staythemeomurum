@@ -603,6 +603,35 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 @keyframes staySnowmanWave{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
 @media(max-width:700px){#stayUpcomingCheer .stay-cheer-figure{bottom:9px}#stayUpcomingCheer .stay-cheer-snowman{font-size:35px;left:0}#stayUpcomingCheer .stay-cheer-big-tree{font-size:43px;right:0}#stayUpcomingCheer .stay-cheer-panel>.stay-cheer-cards{margin-left:0;margin-right:0}#stayUpcomingCheer .stay-cheer-panel{padding-bottom:34px}#stayUpcomingCheer .stay-cheer-panel::after{height:66px;bottom:-23px}#stayUpcomingCheer .stay-cheer-panel>.stay-cheer-footnote{padding:0 25px}}
 @media(prefers-reduced-motion:reduce){#stayUpcomingCheer .stay-cheer-figure,#stayUpcomingCheer .stay-cheer-lights{animation:none!important}}
+
+/* 2026 Christmas: tighter exam cards and richer winter scene; snowfall unchanged */
+#stayUpcomingCheer .stay-cheer-panel{padding:20px 22px 27px;background:radial-gradient(ellipse at 50% 0%,#fffdf4 0%,#f2f8f5 53%,#d7eae6 100%)}
+#stayUpcomingCheer .stay-cheer-message{margin-bottom:12px}
+#stayUpcomingCheer .stay-cheer-cards{gap:11px}
+#stayUpcomingCheer .stay-cheer-card{grid-template-rows:auto auto auto;row-gap:4px;padding:13px 7px 12px;min-height:0;align-content:center;border-radius:17px;background:rgba(255,255,255,.92);box-shadow:0 4px 14px rgba(26,76,47,.12)}
+#stayUpcomingCheer .stay-cheer-name{min-height:0;line-height:1.3}
+#stayUpcomingCheer .stay-cheer-date{line-height:1.3}
+#stayUpcomingCheer .stay-cheer-stage{line-height:1.35}
+#stayUpcomingCheer .stay-cheer-footnote{margin-top:13px}
+#stayUpcomingCheer .stay-cheer-landscape:before{content:'🎁  ✨  🎀';position:absolute;left:3%;top:31%;font-size:clamp(14px,2.1vw,27px);filter:drop-shadow(0 2px 3px #fff);opacity:.9;animation:stayXmasTwinkle 3.4s ease-in-out infinite}
+#stayUpcomingCheer .stay-cheer-landscape:after{content:'⭐  🎁  ✨';position:absolute;right:3%;top:31%;font-size:clamp(14px,2.1vw,27px);filter:drop-shadow(0 2px 3px #fff);opacity:.9;animation:stayXmasTwinkle 4s ease-in-out infinite}
+#stayUpcomingCheer .stay-cheer-snowman{bottom:15px;left:1.6%;font-size:clamp(48px,7vw,94px)}
+#stayUpcomingCheer .stay-cheer-big-tree{bottom:14px;right:1.6%;font-size:clamp(56px,8vw,110px)}
+#stayUpcomingCheer .stay-cheer-lights{height:23px;background:radial-gradient(circle,#ffd66b 0 4px,transparent 6px) 0 0/44px 18px repeat-x;filter:drop-shadow(0 0 7px #ffcd63)}
+#stayUpcomingCheer .stay-cheer-panel>.stay-cheer-cards{margin-left:clamp(8px,7vw,90px);margin-right:clamp(8px,7vw,90px)}
+@media(max-width:700px){
+ #stayUpcomingCheer .stay-cheer-panel{padding:16px 10px 30px}
+ #stayUpcomingCheer .stay-cheer-cards{gap:6px}
+ #stayUpcomingCheer .stay-cheer-card{padding:10px 3px 9px;row-gap:3px;border-radius:12px}
+ #stayUpcomingCheer .stay-cheer-panel>.stay-cheer-cards{margin-left:0;margin-right:0}
+ #stayUpcomingCheer .stay-cheer-message{margin-bottom:11px}
+ #stayUpcomingCheer .stay-cheer-snowman{font-size:38px;bottom:8px;left:0}
+ #stayUpcomingCheer .stay-cheer-big-tree{font-size:48px;bottom:8px;right:0}
+ #stayUpcomingCheer .stay-cheer-landscape:before{top:28%;left:1%;font-size:15px;max-width:24px;line-height:1.6}
+ #stayUpcomingCheer .stay-cheer-landscape:after{top:28%;right:1%;font-size:15px;max-width:24px;line-height:1.6}
+ #stayUpcomingCheer .stay-cheer-footnote{margin-top:12px}
+}
+@media(prefers-reduced-motion:reduce){#stayUpcomingCheer .stay-cheer-landscape:before,#stayUpcomingCheer .stay-cheer-landscape:after{animation:none}}
 </style>
 <div class="stay-cheer-panel">
   <div class="stay-cheer-snow" aria-hidden="true"><i style="--x:4%;--sz:12px;--dur:9s;--delay:-2s">❄</i><i style="--x:13%;--sz:10px;--dur:12s;--delay:-8s">❄</i><i style="--x:23%;--sz:13px;--dur:11s;--delay:-4s">❄</i><i style="--x:34%;--sz:9px;--dur:10s;--delay:-7s">❄</i><i style="--x:45%;--sz:12px;--dur:13s;--delay:-1s">❄</i><i style="--x:57%;--sz:10px;--dur:9s;--delay:-5s">❄</i><i style="--x:68%;--sz:13px;--dur:12s;--delay:-9s">❄</i><i style="--x:79%;--sz:9px;--dur:11s;--delay:-3s">❄</i><i style="--x:91%;--sz:12px;--dur:10s;--delay:-6s">❄</i><i style="--x:97%;--sz:10px;--dur:13s;--delay:-10s">❄</i></div>
