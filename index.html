@@ -532,6 +532,24 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 @keyframes suneungTwinkle{0%,15%,65%,100%{opacity:0;transform:scale(.65) rotate(-12deg)}30%,45%{opacity:.96;transform:scale(1.12) rotate(8deg)}}
 @media(max-width:600px){#suneungTwoDayBanner{padding:8px 10px 6px}.suneung-two-day__frame{border-radius:14px}}
 @media(prefers-reduced-motion:reduce){.suneung-two-day__frame img,.suneung-two-day__glint{animation:none}.suneung-two-day__glint{opacity:.5}}
+
+/* Nordic white Christmas scenery; preserve dynamically generated exam schedule and snowfall. */
+#stayUpcomingCheer .stay-cheer-panel{background:linear-gradient(180deg,rgba(240,247,255,.14),rgba(238,247,255,.06)),url("nordic-white-christmas-banner.png") center center/cover no-repeat!important;border:1px solid #d9e6ef;box-shadow:0 8px 25px rgba(30,64,91,.17);padding:22px clamp(14px,3vw,34px) 19px;min-height:330px}
+#stayUpcomingCheer .stay-cheer-panel:before,#stayUpcomingCheer .stay-cheer-panel:after{display:none}
+#stayUpcomingCheer .stay-cheer-landscape{display:none} /* snowman and tree are in the illustrated background */
+#stayUpcomingCheer .stay-cheer-christmas-top{display:none}
+#stayUpcomingCheer .stay-cheer-heading{color:#123e2c;text-shadow:0 1px 5px #fff,0 1px 12px #fff;font-size:clamp(22px,3.3vw,39px)}
+#stayUpcomingCheer .stay-cheer-message{color:#16452f;text-shadow:0 1px 5px #fff,0 1px 12px #fff;margin-bottom:16px;font-size:clamp(13px,2.3vw,23px)}
+#stayUpcomingCheer .stay-cheer-cards{max-width:84%;margin:0 auto;gap:12px}
+#stayUpcomingCheer .stay-cheer-card{background:rgba(255,255,255,.94)!important;border:1px solid #c3d6d4!important;border-radius:17px;padding:0 7px 10px;grid-template-rows:auto auto auto;row-gap:7px;box-shadow:0 5px 12px rgba(24,56,67,.2);overflow:hidden}
+#stayUpcomingCheer .stay-cheer-card:nth-child(even){border-color:#d4aeb2!important}
+#stayUpcomingCheer .stay-cheer-name{color:#143e2c;min-height:2.5em;display:flex;align-items:center;justify-content:center;font-size:clamp(12px,1.7vw,19px)}
+#stayUpcomingCheer .stay-cheer-date{order:-1;background:#175138;color:#fff!important;width:calc(100% + 14px);margin:0 -7px;padding:10px 3px;font-size:clamp(15px,2.4vw,26px)}
+#stayUpcomingCheer .stay-cheer-card:nth-child(even) .stay-cheer-date{background:#a82335}
+#stayUpcomingCheer .stay-cheer-stage{color:#a82335;font-weight:750;min-height:1.8em;font-size:clamp(12px,1.5vw,17px)}
+#stayUpcomingCheer .stay-cheer-footnote{display:table;margin:16px auto 0;padding:5px 14px;border-radius:20px;background:rgba(255,255,255,.87);color:#1c4739;text-shadow:none}
+#stayUpcomingCheer .stay-cheer-snow{z-index:3}
+@media(max-width:680px){#stayUpcomingCheer .stay-cheer-panel{padding:17px 9px 15px;min-height:0;background-position:center center!important}#stayUpcomingCheer .stay-cheer-cards{max-width:100%;gap:5px}#stayUpcomingCheer .stay-cheer-card{padding:0 3px 7px;row-gap:5px;border-radius:11px}#stayUpcomingCheer .stay-cheer-date{width:calc(100% + 6px);margin:0 -3px;padding:7px 1px}#stayUpcomingCheer .stay-cheer-name{font-size:clamp(11px,3vw,15px)}#stayUpcomingCheer .stay-cheer-stage{font-size:clamp(10px,2.7vw,14px)}#stayUpcomingCheer .stay-cheer-message{margin-bottom:12px}#stayUpcomingCheer .stay-cheer-footnote{font-size:11px;line-height:1.5;margin-top:12px}}
 </style>
 <script id="suneung-two-day-schedule">
 (function(){
