@@ -565,9 +565,35 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 #stayUpcomingCheer .stay-cheer-stage{font-size:clamp(12px,1.6vw,17px);color:#43524d;line-height:1.4;align-self:center}
 #stayUpcomingCheer .stay-cheer-footnote{margin:17px 0 0;font-size:clamp(10px,1.3vw,14px);color:#55635e}
 @media(max-width:540px){#stayUpcomingCheer .stay-cheer-panel{padding:16px 12px 12px;border-radius:20px}#stayUpcomingCheer .stay-cheer-cards{gap:7px}#stayUpcomingCheer .stay-cheer-card{padding:10px 3px;grid-template-rows:3.2em auto 2.8em;row-gap:7px;border-radius:11px}#stayUpcomingCheer .stay-cheer-name{font-size:11px;line-height:1.35}#stayUpcomingCheer .stay-cheer-date{font-size:15px}#stayUpcomingCheer .stay-cheer-stage{font-size:10px}#stayUpcomingCheer .stay-cheer-message{margin-bottom:14px}}
+/* Christmas theme: decorative only; exam cards remain generated from the original live schedule */
+#stayUpcomingCheer .stay-cheer-panel{position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(circle at 10% 10%,rgba(255,255,255,.95),transparent 35%),linear-gradient(135deg,#fff9ed 0%,#f5f7ef 55%,#fff1e8 100%);border:1px solid #d8e3d4;box-shadow:0 8px 28px rgba(35,77,53,.12)}
+#stayUpcomingCheer .stay-cheer-panel:before,#stayUpcomingCheer .stay-cheer-panel:after{content:"";position:absolute;pointer-events:none;z-index:-1;width:145px;height:145px;opacity:.45;background:radial-gradient(circle,#d5a84c 1.8px,transparent 3px) 0 0/23px 23px,radial-gradient(circle,#1f6240 2px,transparent 3px) 12px 12px/23px 23px;transform:rotate(25deg)}
+#stayUpcomingCheer .stay-cheer-panel:before{top:-82px;left:-65px}
+#stayUpcomingCheer .stay-cheer-panel:after{bottom:-90px;right:-55px}
+#stayUpcomingCheer .stay-cheer-christmas-top{font-size:clamp(15px,2vw,23px);letter-spacing:.4em;line-height:1.5;margin:-8px 0 4px;filter:drop-shadow(0 1px 1px #ffffff)}
+#stayUpcomingCheer .stay-cheer-heading{color:#174f35}
+#stayUpcomingCheer .stay-cheer-message{color:#b73b48}
+#stayUpcomingCheer .stay-cheer-card{box-shadow:0 3px 10px rgba(39,69,46,.07);border-color:#b4cbb5;background:rgba(255,255,255,.88)}
+#stayUpcomingCheer .stay-cheer-card:nth-child(even){border-color:#e4b9b2}
+#stayUpcomingCheer .stay-cheer-date{color:#b22f42}
+#stayUpcomingCheer .stay-cheer-xmas{display:inline-block;font-size:.78em;vertical-align:middle}
+@media(max-width:540px){#stayUpcomingCheer .stay-cheer-christmas-top{margin:-5px 0 3px;letter-spacing:.18em;font-size:15px}#stayUpcomingCheer .stay-cheer-panel:before,#stayUpcomingCheer .stay-cheer-panel:after{opacity:.25}}
+/* Lightweight GIF-like Christmas animation; no image downloads or script needed. */
+#stayUpcomingCheer .stay-cheer-snow{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+#stayUpcomingCheer .stay-cheer-snow i{position:absolute;top:-18px;left:var(--x);font-size:var(--sz);font-style:normal;color:#8ca9bd;opacity:0;animation:staySnowfall var(--dur) linear infinite;animation-delay:var(--delay);text-shadow:0 0 3px #fff}
+#stayUpcomingCheer .stay-cheer-panel>.stay-cheer-christmas-top,#stayUpcomingCheer .stay-cheer-panel>.stay-cheer-heading,#stayUpcomingCheer .stay-cheer-panel>.stay-cheer-message,#stayUpcomingCheer .stay-cheer-panel>.stay-cheer-cards,#stayUpcomingCheer .stay-cheer-panel>.stay-cheer-footnote{position:relative;z-index:1}
+#stayUpcomingCheer .stay-cheer-christmas-top{animation:stayXmasTwinkle 2.8s ease-in-out infinite}
+#stayUpcomingCheer .stay-cheer-xmas{transform-origin:50% 90%;animation:stayXmasTree 3.8s ease-in-out infinite}
+#stayUpcomingCheer .stay-cheer-card{transition:box-shadow .2s ease}
+@keyframes staySnowfall{0%{transform:translate3d(0,-15px,0) rotate(0deg);opacity:0}12%{opacity:.52}82%{opacity:.45}100%{transform:translate3d(25px,330px,0) rotate(110deg);opacity:0}}
+@keyframes stayXmasTwinkle{0%,100%{opacity:.7;filter:brightness(1)}50%{opacity:1;filter:brightness(1.2)}}
+@keyframes stayXmasTree{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@media(prefers-reduced-motion:reduce){#stayUpcomingCheer .stay-cheer-snow i,#stayUpcomingCheer .stay-cheer-christmas-top,#stayUpcomingCheer .stay-cheer-xmas{animation:none!important}#stayUpcomingCheer .stay-cheer-snow{display:none}}
 </style>
 <div class="stay-cheer-panel">
-  <p class="stay-cheer-heading">곧 다가오는 시험!</p>
+  <div class="stay-cheer-snow" aria-hidden="true"><i style="--x:4%;--sz:12px;--dur:9s;--delay:-2s">❄</i><i style="--x:13%;--sz:10px;--dur:12s;--delay:-8s">❄</i><i style="--x:23%;--sz:13px;--dur:11s;--delay:-4s">❄</i><i style="--x:34%;--sz:9px;--dur:10s;--delay:-7s">❄</i><i style="--x:45%;--sz:12px;--dur:13s;--delay:-1s">❄</i><i style="--x:57%;--sz:10px;--dur:9s;--delay:-5s">❄</i><i style="--x:68%;--sz:13px;--dur:12s;--delay:-9s">❄</i><i style="--x:79%;--sz:9px;--dur:11s;--delay:-3s">❄</i><i style="--x:91%;--sz:12px;--dur:10s;--delay:-6s">❄</i><i style="--x:97%;--sz:10px;--dur:13s;--delay:-10s">❄</i></div>
+  <div class="stay-cheer-christmas-top" aria-hidden="true">❄️ ✨ 🎄 ✨ ❄️</div>
+  <p class="stay-cheer-heading">곧 다가오는 시험! <span class="stay-cheer-xmas" aria-hidden="true">🎄</span></p>
   <p class="stay-cheer-message">모든 수험생 여러분의 합격을 진심으로 응원합니다!</p>
   <div class="stay-cheer-cards" id="stayUpcomingCheerCards" aria-live="polite"></div>
   <p class="stay-cheer-footnote">시험별 세부 일정은 시험 일정 페이지와 공식 공고를 확인해 주세요.</p>
