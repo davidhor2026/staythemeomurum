@@ -417,15 +417,6 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
   .home-header .hero-content .button-wrap a.hero-tour-glint::after{animation:none!important;opacity:.5}
 }
 </style>
-
-<style id="christmas-mobile-image-repair-20261121">
-@media(max-width:800px){
- #stayUpcomingCheer .stay-cheer-panel{background-image:linear-gradient(180deg,rgba(240,248,255,.06),rgba(246,250,255,.07)),url("nordic-white-christmas-mobile-fixed.png")!important;background-size:100% 100%!important;background-position:center!important;background-repeat:no-repeat!important;}
- #stayUpcomingCheer .stay-cheer-snow i{-webkit-text-stroke:0!important;text-shadow:0 1px 2px rgba(60,105,139,.25),0 0 3px rgba(255,255,255,.75)!important;opacity:0;filter:none!important;}
-}
-#stayUpcomingCheer .stay-cheer-snow i{-webkit-text-stroke:0!important;text-shadow:0 1px 2px rgba(60,105,139,.25),0 0 3px rgba(255,255,255,.75)!important;}
-@keyframes stayNordicSnowfall{0%{transform:translate3d(-10px,-24px,0) rotate(0deg);opacity:0}12%{opacity:.58}85%{opacity:.5}100%{transform:translate3d(20px,440px,0) rotate(100deg);opacity:0}}
-</style>
 </head>
 <body>
 <header class="home-header">
@@ -1398,5 +1389,30 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
   var start=Date.parse(newest+'T00:00:00+09:00');
   badge.hidden=!(Number.isFinite(start)&&today>=start&&today<start+7*86400000);
 })();</script>
+
+<style id="nordic-christmas-clean-background-20261121">
+/* One continuous image: no blurred upper/lower filler strips. */
+@media(max-width:800px){
+ #stayUpcomingCheer .stay-cheer-panel{
+  background-image:url("nordic-christmas-mobile-clean-20261121.png")!important;
+  background-size:100% 100%!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+ }
+}
+/* Subtle natural snowfall; no strong blue borders on flakes. */
+#stayUpcomingCheer .stay-cheer-snow i{
+ -webkit-text-stroke:0!important;
+ color:rgba(255,255,255,.72)!important;
+ text-shadow:0 1px 2px rgba(58,91,121,.13)!important;
+ filter:none!important;
+}
+@keyframes stayNordicSnowfall{
+ 0%{transform:translate3d(-7px,-24px,0) rotate(0);opacity:0}
+ 15%{opacity:.42}
+ 82%{opacity:.36}
+ 100%{transform:translate3d(12px,440px,0) rotate(65deg);opacity:0}
+}
+</style>
 </body>
 </html>
