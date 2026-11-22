@@ -1,7 +1,7 @@
 (function(){
 'use strict';
 if(document.getElementById('stay-bgm'))return;
-var KEY='staySiteMusicV1', state={playing:false,time:0,volume:.35};
+var KEY='staySiteMusicV1',state={playing:false,time:0,volume:.35};
 try{var saved=JSON.parse(sessionStorage.getItem(KEY)||'null');if(saved&&typeof saved==='object'){
 state.playing=saved.playing===true;
 state.time=Number.isFinite(Number(saved.time))?Math.max(0,Number(saved.time)):0;
@@ -11,8 +11,12 @@ var root=document.createElement('div');root.id='stay-bgm';root.setAttribute('rol
 root.innerHTML='<button id="stay-bgm-toggle" type="button" aria-label="배경음악 재생">♫ 음악 듣기</button>';
 var audio=document.createElement('audio');audio.src='christmas-piano-bgm.mp3';audio.preload='none';audio.loop=true;audio.volume=state.volume;
 root.appendChild(audio);
-// A normal-flow toolbar avoids covering the banner, header, and navigation.
-document.body.insertBefore(root,document.body.firstChild);
+// Put the control inside the existing representative hero/header, never above it.
+var hero=document.querySelector('header.home-header, header.sub-header, header.exam-header, header.quiz-hero, main header.hero, header.hero, main > header, body > header');
+if(!hero){hero=document.querySelector('main, .checkin-page, .checkout-page, .wrap')||document.body;}
+// Anchoring a positioned child doesn't alter the header's height or normal layout.
+if(window.getComputedStyle(hero).position==='static')hero.style.position='relative';
+hero.appendChild(root);
 var toggle=root.querySelector('#stay-bgm-toggle');
 var wantsPlayback=state.playing,restoreTime=state.time;
 function store(){try{sessionStorage.setItem(KEY,JSON.stringify({playing:wantsPlayback,time:audio.currentTime||restoreTime||0,volume:audio.volume}));}catch(e){}}
@@ -25,7 +29,5 @@ audio.addEventListener('play',function(){wantsPlayback=true;store();label();});
 audio.addEventListener('pause',function(){store();label();});
 audio.addEventListener('timeupdate',function(){restoreTime=audio.currentTime;});
 window.addEventListener('pagehide',store);document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')store();});
-label();
-// Safari may require another tap after navigating to a new HTML page.
-if(wantsPlayback)start();
+label();if(wantsPlayback)start();
 })();
