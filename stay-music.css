@@ -11,3 +11,12 @@
 /* Home hero stays lower; subpage heroes show the control at the top edge. */
 header:not(.home-header) #stay-bgm{top:9px!important;right:12px!important}
 @media(max-width:520px){header:not(.home-header) #stay-bgm{top:8px!important;right:9px!important}}
+
+/* Home mobile: keep the music control clear of the STAY/머무름 sign. */
+@media (max-width:700px) {
+  header.home-header #stay-bgm {
+    top: 12px !important;
+    right: 9px !important;
+    bottom: auto !important;
+  }
+}
