@@ -643,6 +643,56 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 .home-header .winter-glass-actions>a.button{height:27px!important;min-height:27px!important;font-size:10px!important}
 }
 </style>
+
+<style id="home-mobile-intro-nav-tight-20261122">
+/* Mobile homepage only: compact intro and evenly aligned page links. */
+@media (max-width:700px){
+ .home-header>.hero-content{
+   padding:6px 12px 7px!important;
+   min-height:0!important;
+   gap:0!important;
+ }
+ .home-header>.hero-content::before{
+   font-size:23px!important;top:9px!important;left:5%!important;
+ }
+ .home-header>.hero-content::after{
+   font-size:24px!important;right:5%!important;bottom:8px!important;
+ }
+ .home-header>.hero-content h1{
+   font-size:clamp(19px,5.15vw,24px)!important;
+   line-height:1.08!important;margin:0!important;
+ }
+ .home-header>.hero-content .subtitle{
+   font-size:clamp(10px,2.75vw,12px)!important;
+   line-height:1.15!important;margin:2px 0 0!important;
+ }
+ .home-header>.hero-content .desc{
+   font-size:clamp(11px,2.9vw,13px)!important;
+   line-height:1.17!important;margin:2px 0 0!important;
+ }
+ /* Only the main page navigation directly following the hero is affected. */
+ .home-header+nav{
+   display:grid!important;
+   grid-template-columns:repeat(4,minmax(0,1fr))!important;
+   gap:3px 3px!important;
+   padding:7px 5px!important;
+   align-items:center!important;
+   justify-items:stretch!important;
+ }
+ .home-header+nav>a{
+   display:flex!important;justify-content:center!important;align-items:center!important;
+   box-sizing:border-box!important;min-width:0!important;
+   min-height:28px!important;margin:0!important;padding:4px 1px!important;
+   font-size:clamp(10px,2.7vw,12px)!important;line-height:1.2!important;
+   text-align:center!important;white-space:normal!important;word-break:keep-all!important;
+   overflow-wrap:break-word!important;
+ }
+ .home-header+nav .new-badge{font-size:8px!important;padding:1px 3px!important;margin-left:2px!important}
+}
+@media(max-width:360px){
+ .home-header+nav>a{font-size:10px!important;padding:3px 0!important;min-height:27px!important}
+}
+</style>
 </head>
 <body>
 <header class="home-header">
