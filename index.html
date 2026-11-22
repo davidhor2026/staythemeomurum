@@ -417,6 +417,17 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
   .home-header .hero-content .button-wrap a.hero-tour-glint::after{animation:none!important;opacity:.5}
 }
 </style>
+<style id="winter-hero-2026-v2">
+/* Winter hero only. Original main.png remains unchanged for other seasons. */
+.home-header{position:relative;isolation:isolate}
+.home-header .winter-hero-snow{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;
+ background-image:radial-gradient(circle,rgba(255,255,255,.65) 0 1.2px,transparent 2.5px),radial-gradient(circle,rgba(255,255,255,.68) 0 1.1px,transparent 1.9px),radial-gradient(circle,rgba(255,255,255,.55) 0 2.6px,transparent 3.5px);
+ background-size:170px 205px,135px 180px,250px 290px;background-position:5px -15px,34px -60px,72px -110px;
+ animation:winterHeroFall 19s linear infinite;opacity:.38}
+@keyframes winterHeroFall{from{background-position:5px -15px,34px -60px,72px -110px}to{background-position:25px 263px,4px 261px,102px 312px}}
+.home-header .hero-content,.home-header .home-sns-links,.home-header .hero-vacancy-board{position:relative;z-index:4}
+@media(prefers-reduced-motion:reduce){.home-header .winter-hero-snow{animation:none}}
+</style>
 </head>
 <body>
 <header class="home-header">
@@ -425,8 +436,9 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 <a class="home-sns-link home-sns-link--youtube" href="https://youtube.com/shorts/6JJRHfQVKdw?si=2qgsfo4FNBxahsK7" target="_blank" rel="noopener noreferrer" aria-label="스테이The머무름 유튜브 열기">▶<span>유튜브</span></a>
 <a class="home-sns-link home-sns-link--instagram" href="https://www.instagram.com/reel/DZttFaSx307/?igsh=MTJteGl2YWl1andkcA==" target="_blank" rel="noopener noreferrer" aria-label="스테이The머무름 인스타그램 열기">◎<span>인스타그램</span></a>
 </div>
-<img alt="스테이The머무름 겨울 크리스마스 대표 이미지" class="hero-image" src="main-winter-christmas-2026.jpg"/><div class="home-winter-snow" aria-hidden="true"></div>
+<img alt="스테이The머무름 대표 이미지" class="hero-image" src="main-winter-christmas-2026-v3.webp"/>
 <div class="hero-overlay"></div>
+<div class="winter-hero-snow" aria-hidden="true"></div>
 <div class="hero-content">
 <h1>스테이The머무름</h1>
 <div class="subtitle stay-audience">20~30대 초반 여성 수험생·학생 중심</div>
@@ -1416,12 +1428,5 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 </style>
 <link rel="stylesheet" href="stay-music.css?v=20261122a">
 <script defer src="stay-music.js?v=20261122a"></script>
-<style id="home-winter-hero-snow-2026">
-.home-header{position:relative;overflow:hidden}
-.home-winter-snow{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
-.home-winter-snow span{position:absolute;top:-12%;left:var(--x);width:var(--size);height:var(--size);border-radius:50%;background:rgba(255,255,255,var(--alpha));box-shadow:0 0 5px 1px rgba(255,255,255,.32);animation:homeWinterFall var(--duration) linear infinite;animation-delay:var(--delay)}
-@keyframes homeWinterFall{from{transform:translate3d(0,-8px,0)}to{transform:translate3d(var(--drift),115vh,0)}}
-@media(prefers-reduced-motion:reduce){.home-winter-snow span{animation:none;opacity:.35}}
-</style>
-<script id="home-winter-snow-init-2026">(function(){function init(){var host=document.querySelector('.home-winter-snow');if(!host||host.children.length)return;for(var i=0;i<42;i++){var f=document.createElement('span');var v=(i*47+13)%101;f.style.setProperty('--x',v+'%');f.style.setProperty('--size',(i%6===0?5:i%3===0?3:2)+'px');f.style.setProperty('--alpha',(0.38+(i%5)*.08).toFixed(2));f.style.setProperty('--duration',(9+(i%9)*1.2)+'s');f.style.setProperty('--delay',(-i*.93)+'s');f.style.setProperty('--drift',((i%7)-3)*17+'px');host.appendChild(f);}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script></body>
+</body>
 </html>
