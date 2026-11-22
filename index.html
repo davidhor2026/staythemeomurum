@@ -480,6 +480,52 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
  animation-duration:13s!important;
 }
 </style>
+
+<style id="winter-hero-mobile-glass-actions-20261122">
+/* Mobile: six translucent actions sit within the bottom of the full winter picture.
+   Keep faces and chest badges above the controls; preserve all original links/panels. */
+@media(max-width:700px){
+ .home-header{position:relative!important;}
+ .home-header>.hero-content{padding:13px 14px 17px!important;}
+ .home-header>.hero-content>.button-wrap,.home-header>.hero-content>.hero-shortcuts{display:none!important;}
+ .home-header>.winter-glass-actions{
+   position:absolute!important;top:calc(100vw * 1322 / 1190 - 145px)!important;
+   left:4.5%!important;right:4.5%!important;width:91%!important;
+   z-index:12!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+   grid-template-rows:repeat(3,40px)!important;gap:6px!important;
+   margin:0!important;padding:0!important;pointer-events:auto!important;
+ }
+ .home-header .winter-glass-actions>.hero-vacancy-board,
+ .home-header .winter-glass-actions>.hero-notice-board{position:relative!important;inset:auto!important;top:auto!important;bottom:auto!important;left:auto!important;right:auto!important;width:100%!important;height:40px!important;margin:0!important;z-index:13!important;}
+ .home-header .winter-glass-actions>.hero-vacancy-board .hero-vacancy-toggle,
+ .home-header .winter-glass-actions>.hero-notice-board .hero-notice-toggle,
+ .home-header .winter-glass-actions>a.button{
+   display:flex!important;align-items:center!important;justify-content:center!important;
+   width:100%!important;min-width:0!important;max-width:none!important;
+   height:40px!important;min-height:40px!important;margin:0!important;
+   padding:5px 7px!important;box-sizing:border-box!important;border-radius:11px!important;
+   background:rgba(35,59,46,.40)!important;border:1px solid rgba(255,255,255,.65)!important;
+   color:#fff!important;font-size:12px!important;font-weight:750!important;line-height:1.15!important;
+   text-shadow:0 1px 3px rgba(0,0,0,.8)!important;
+   box-shadow:0 2px 8px rgba(0,0,0,.12)!important;
+   -webkit-backdrop-filter:blur(2px)!important;backdrop-filter:blur(2px)!important;
+ }
+ .home-header .winter-glass-actions .hero-vacancy-toggle span:first-child,
+ .home-header .winter-glass-actions .hero-notice-toggle span:first-child{white-space:normal!important;}
+ .home-header .winter-glass-actions .hero-vacancy-toggle br,
+ .home-header .winter-glass-actions .hero-notice-toggle br{display:none!important;}
+ .home-header .winter-glass-actions .hero-vacancy-panel,
+ .home-header .winter-glass-actions .hero-notice-panel{
+   position:absolute!important;top:auto!important;bottom:calc(100% + 8px)!important;
+   max-height:min(55vh,390px)!important;overflow-y:auto!important;z-index:40!important;
+ }
+ .home-header .winter-glass-actions .hero-vacancy-panel{left:0!important;right:auto!important;}
+ .home-header .winter-glass-actions .hero-notice-panel{right:0!important;left:auto!important;}
+ .home-header .winter-glass-actions>a.button.hero-tour-glint{overflow:visible!important;}
+}
+@media(max-width:360px){.home-header>.winter-glass-actions{top:calc(100vw * 1322 / 1190 - 133px)!important;grid-template-rows:repeat(3,36px)!important;gap:5px!important}.home-header .winter-glass-actions>.hero-vacancy-board,.home-header .winter-glass-actions>.hero-notice-board,.home-header .winter-glass-actions>.hero-vacancy-board .hero-vacancy-toggle,.home-header .winter-glass-actions>.hero-notice-board .hero-notice-toggle,.home-header .winter-glass-actions>a.button{height:36px!important;min-height:36px!important;font-size:10.5px!important}}
+@media(min-width:701px){.home-header>.winter-glass-actions{display:none!important}}
+</style>
 </head>
 <body>
 <header class="home-header">
@@ -1481,26 +1527,30 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 <link rel="stylesheet" href="stay-music.css?v=20261122a">
 <script defer src="stay-music.js?v=20261122a"></script>
 
-<script id="winter-hero-shortcuts-move-v4">
+<script id="winter-hero-glass-actions-move-20261122">
 (function(){
-  var header=document.querySelector('.home-header');
-  if(!header)return;
-  var content=header.querySelector('.hero-content');
-  var actions=content&&content.querySelector('.button-wrap');
-  var vacancy=document.getElementById('heroVacancyBoard');
-  var notice=document.getElementById('heroNoticeBoard');
-  if(!actions||!vacancy||!notice)return;
-  var group=document.createElement('div');group.className='hero-shortcuts';
-  group.setAttribute('aria-label','공실현황과 공지사항');
-  content.insertBefore(group,actions);
-  var mobile=window.matchMedia('(max-width:700px)');
-  function arrange(){
-    if(mobile.matches){group.appendChild(vacancy);group.appendChild(notice)}
-    else{header.appendChild(vacancy);header.appendChild(notice)}
-  }
-  arrange();
-  if(mobile.addEventListener)mobile.addEventListener('change',arrange);
-  else if(mobile.addListener)mobile.addListener(arrange);
+ var header=document.querySelector('.home-header');if(!header)return;
+ var content=header.querySelector('.hero-content');
+ var actions=content&&content.querySelector('.button-wrap');
+ var vacancy=document.getElementById('heroVacancyBoard');
+ var notice=document.getElementById('heroNoticeBoard');
+ if(!actions||!vacancy||!notice)return;
+ var overlay=document.createElement('div');overlay.className='winter-glass-actions';
+ overlay.setAttribute('aria-label','공실 및 입실 안내 바로가기');
+ header.appendChild(overlay);
+ var mobile=window.matchMedia('(max-width:700px)');
+ function arrange(){
+   if(mobile.matches){
+     overlay.appendChild(vacancy);overlay.appendChild(notice);
+     Array.prototype.slice.call(actions.children).forEach(function(a){overlay.appendChild(a)});
+   }else{
+     Array.prototype.slice.call(overlay.querySelectorAll(':scope > a.button')).forEach(function(a){actions.appendChild(a)});
+     header.appendChild(vacancy);header.appendChild(notice);
+   }
+ }
+ arrange();
+ if(mobile.addEventListener)mobile.addEventListener('change',arrange);
+ else if(mobile.addListener)mobile.addListener(arrange);
 })();
 </script>
 </body>
