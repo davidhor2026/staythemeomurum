@@ -428,6 +428,14 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 .home-header .hero-content,.home-header .home-sns-links,.home-header .hero-vacancy-board{position:relative;z-index:4}
 @media(prefers-reduced-motion:reduce){.home-header .winter-hero-snow{animation:none}}
 </style>
+
+<style id="winter-hero-full-image-mobile-ratio-20261122">
+/* Keep the entire taller winter artwork visible on mobile, rather than cropping at 90vw. */
+@media (max-width:700px){
+  .home-header{height:111.1vw!important;min-height:0!important;overflow:hidden!important;}
+  .home-header .hero-image{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center top!important;display:block!important;}
+}
+</style>
 </head>
 <body>
 <header class="home-header">
