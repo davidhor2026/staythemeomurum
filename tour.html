@@ -17,4 +17,6 @@
 (function(){const $=id=>document.getElementById(id),f=$('tourForm');const d=new Date(),today=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');$('visitDate').min=today;$('moveDate').min=today;
 function msg(){const v=id=>$(id).value.trim();return ['[스테이The머무름 룸투어 방문 신청]','방문 희망 날짜: '+v('visitDate'),'방문 희망 시간: '+v('visitTime'),'관심 객실: '+v('room'),'입주 희망일: '+v('moveDate'),'신청자 이름: '+v('name'),'준비 중인 시험: '+v('exam'),'나이(만): '+v('age'),'※ 원장 회신 후 방문 일정 확정'].join('\n')}
 function update(){$('preview').textContent=msg()}f.addEventListener('input',update);f.addEventListener('change',update);f.addEventListener('submit',function(e){e.preventDefault();if(!f.reportValidity())return;if($('visitDate').value<today){$('status').textContent='오늘 이후의 날짜를 선택해 주세요.';return}if($('moveDate').value<today){$('status').textContent='입주 희망일은 오늘 이후로 선택해 주세요.';return}if($('visitTime').value<'10:00'||$('visitTime').value>'18:00'){$('status').textContent='방문 희망 시간은 오전 10시부터 오후 6시 사이로 선택해 주세요.';return}const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);$('status').textContent='문자 앱이 열리면 전송 버튼을 직접 눌러 주세요. 문자 앱을 여는 것만으로는 신청되지 않습니다.';location.href='sms:01028779447'+(ios?'&':'?')+'body='+encodeURIComponent(msg())});update()})();
-</script></body></html>
+</script><link rel="stylesheet" href="stay-music.css?v=20261122a">
+<script defer src="stay-music.js?v=20261122a"></script>
+</body></html>

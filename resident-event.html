@@ -62,4 +62,6 @@ async function loadPublicEntries(){const status=document.getElementById('publicE
 document.getElementById('refreshEntries').onclick=loadPublicEntries;
 $('verifyMine').onclick=async function(){if(window.STAY_EVENT_CONFIG_UNAVAILABLE)return;const b=this,out=$('verifyMessage');b.disabled=true;out.textContent='서버 확인 중...';try{const x=await StayEventApi.verifyMine(C.eventId,$('verifyRoom').value.trim(),$('verifyName').value.trim(),$('verifyPass').value.trim());if(x.verified){const t=x.participant;out.textContent='✅ 서버 접수 확인 · '+t.room+'호 · '+t.name+' · 접수번호 '+t.receiptId+' · 접수시각 '+new Date(t.createdAt).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'});}else out.textContent='입력 정보와 일치하는 서버 응모 기록이 없습니다.'}catch(e){out.textContent='조회 실패: 입력 정보나 서버 연결을 확인해 주세요.'}finally{b.disabled=false}};render();updateCount();setInterval(function(){render();updateCount()},60000)})();
 })();
-</script></body></html>
+</script><link rel="stylesheet" href="stay-music.css?v=20261122a">
+<script defer src="stay-music.js?v=20261122a"></script>
+</body></html>

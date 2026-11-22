@@ -36,4 +36,6 @@ $('resend').addEventListener('click',()=>{const d=readDraft();if(!d){retryRefres
 $('clearSaved').addEventListener('click',()=>{try{localStorage.removeItem(DRAFT_KEY);}catch(e){}retryRefresh();});
 form.addEventListener('input',update);form.addEventListener('change',update);
 form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;saveDraft();retryRefresh();$('status').textContent='문자 앱에서 전송 버튼을 직접 눌러 주세요. 1시간 내 회신이 없으면 안내에 따라 재문의해 주세요.';location.href=smsLink(message());});update();retryRefresh();
-</script></body></html>
+</script><link rel="stylesheet" href="stay-music.css?v=20261122a">
+<script defer src="stay-music.js?v=20261122a"></script>
+</body></html>

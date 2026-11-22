@@ -730,33 +730,6 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
   });
 })();
 </script>
-  <div class="stay-christmas-music" role="group" aria-label="크리스마스 배경음악">
-    <audio id="stayChristmasAudio" preload="none" loop src="christmas-piano-bgm.mp3"></audio>
-    <button id="stayChristmasMusicToggle" type="button" aria-pressed="false" aria-label="크리스마스 배경음악 재생">♫ 음악 듣기</button>
-    <label for="stayChristmasMusicVolume">음량</label>
-    <input id="stayChristmasMusicVolume" type="range" min="0" max="100" value="35" aria-label="배경음악 음량" />
-  </div>
-  <style id="stay-christmas-music-style">
-    #stayUpcomingCheer .stay-christmas-music{display:flex;justify-content:center;align-items:center;gap:10px;margin:12px auto 2px;padding:7px 12px;width:max-content;max-width:100%;border:1px solid #dce6df;border-radius:999px;background:#fffdf8;color:#365444;font-size:13px;box-shadow:0 2px 8px rgba(22,64,45,.06)}
-    #stayUpcomingCheer .stay-christmas-music button{border:0;border-radius:999px;padding:8px 15px;background:#24583e;color:#fff;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}
-    #stayUpcomingCheer .stay-christmas-music button:focus-visible,#stayUpcomingCheer .stay-christmas-music input:focus-visible{outline:3px solid #d1aa54;outline-offset:3px}
-    #stayUpcomingCheer .stay-christmas-music input{width:90px;accent-color:#286346;cursor:pointer}
-    @media(max-width:420px){#stayUpcomingCheer .stay-christmas-music{gap:7px;font-size:12px;padding:6px 9px}#stayUpcomingCheer .stay-christmas-music button{padding:7px 10px}#stayUpcomingCheer .stay-christmas-music input{width:65px}}
-  </style>
-  <script>
-  (function(){
-    var audio=document.getElementById('stayChristmasAudio');
-    var button=document.getElementById('stayChristmasMusicToggle');
-    var volume=document.getElementById('stayChristmasMusicVolume');
-    if(!audio||!button||!volume)return;
-    audio.volume=.35;
-    function update(){var playing=!audio.paused;button.textContent=playing?'Ⅱ 음악 끄기':'♫ 음악 듣기';button.setAttribute('aria-pressed',String(playing));button.setAttribute('aria-label',playing?'크리스마스 배경음악 일시정지':'크리스마스 배경음악 재생');}
-    button.addEventListener('click',function(){if(audio.paused){var promise=audio.play();if(promise&&promise.catch)promise.catch(function(){update();});}else{audio.pause();}});
-    volume.addEventListener('input',function(){audio.volume=Number(volume.value)/100;});
-    audio.addEventListener('play',update);audio.addEventListener('pause',update);audio.addEventListener('ended',update);
-    update();
-  })();
-  </script>
 </section>
 <section aria-labelledby="examHomeTitle" class="exam-home-widget exam-home-widget--collapsible" id="exam-home">
 <button aria-controls="examHomeContent" aria-expanded="false" class="exam-home-toggle" id="examHomeToggle" type="button">
@@ -1441,5 +1414,7 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
  100%{transform:translate3d(12px,440px,0) rotate(65deg);opacity:0}
 }
 </style>
+<link rel="stylesheet" href="stay-music.css?v=20261122a">
+<script defer src="stay-music.js?v=20261122a"></script>
 </body>
 </html>
