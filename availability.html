@@ -138,13 +138,13 @@ const ROOM_AVAILABILITY = {};
 Object.entries(VACANCY_MANAGER).forEach(([key, room]) => {
   ROOM_AVAILABILITY[key] = {
     name: room.name,
-    availableNow: Number(room.now || 0),
-    events: (room.dates || []).map(date => ({ date, rooms: 1 })),
+    availableNow: vacancyEffectiveNow(room),
+    events: vacancyFutureDates(room).map(date => ({ date, rooms: 1 })),
     bookedEvents: (room.bookedDates || []).map(item => typeof item === 'string' ? { date:item, bookedOn:null } : item),
     compactBookedDates: room.compactBookedDates || [],
     compactAvailableDates: room.compactAvailableDates || [],
     tourEvents: (room.tourDates || []).map(item => typeof item === 'string' ? { date:item, forDate:null } : item),
-    reservable: room.reservable === true || (room.dates || []).length > 0,
+    reservable: room.reservable === true || vacancyFutureDates(room).length > 0,
     fullLabel: vacancyFullLabel(room),
     unknown: room.unknown || null
   };
@@ -251,7 +251,7 @@ function renderRecentBookings(){
   Object.values(ROOM_AVAILABILITY).forEach(room=>{
     activeBookedEvents(room).forEach(e=>items.push({room:room.name,date:e.date,bookedOn:e.bookedOn||'',compact:room.compactBookedDates.includes(e.date)}));
   });
-  items.sort((a,b)=>b.bookedOn.localeCompare(a.bookedOn) || a.date.localeCompare(b.date));
+  items.sort((a,b)=>b.bookedOn.localeCompare(a.bookedOn) || b.date.localeCompare(a.date));
   if(!items.length){ box.hidden=true; box.innerHTML=''; return; }
   box.hidden=false;
   box.innerHTML='<strong>최근 예약 완료</strong>'+items.slice(0,1).map(x=>

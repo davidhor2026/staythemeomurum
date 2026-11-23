@@ -23,9 +23,12 @@ const VACANCY_MANAGER = {
   standard: {
     name: "스탠다드룸",
     now: 0,
-    dates: ["2026-11-26"],
-    compactAvailableDates: ["2026-11-26"],
+    dates: [],
+    compactAvailableDates: [],
+    compactBookedDates: ["2026-11-26"],
     bookedDates: [
+      { date: "2026-12-02", bookedOn: "2026-11-23" },
+      { date: "2026-11-26", bookedOn: "2026-11-23" },
       { date: "2026-11-22" },
       { date: "2026-11-21", bookedOn: "2026-11-18" },
       { date: "2026-11-17", bookedOn: "2026-11-03" },
@@ -94,22 +97,31 @@ function vacancyIsAdvance(date){
   return (utc(date)-utc(vacancyKstToday()))/86400000>=35;
 }
 /* 만실 문구도 이 파일에서만 관리합니다. */
+function vacancyEffectiveNow(room){
+  if(!room) return 0;
+  const dated=(room.dates||[]).filter(d=>d<=vacancyKstToday()).length;
+  return Number(room.now||0)+dated;
+}
+function vacancyFutureDates(room){
+  return (room.dates||[]).filter(d=>d>vacancyKstToday());
+}
 function vacancyFullLabel(room){
   /* 즉시 입실은 불가능해도 확정된 입실 가능일이 있으면 '현재 만실' 대신 '예약 가능'으로 표시 */
-  if(room && Number(room.now || 0) === 0 && Array.isArray(room.dates) && room.dates.length > 0){
-    return room.dates.some(d=>!vacancyIsAdvance(d)) ? "예약 가능" : "공실 예정";
+  if(room && vacancyEffectiveNow(room)>0) return "즉시 입실 가능";
+  if(room && vacancyEffectiveNow(room) === 0 && vacancyFutureDates(room).length > 0){
+    return vacancyFutureDates(room).some(d=>!vacancyIsAdvance(d)) ? "예약 가능" : "공실 예정";
   }
   return (room && room.fullLabel) ? room.fullLabel : "현재 만실";
 }
 
 function vacancyStatusText(room){
   if(!room) return "";
-  if(Number(room.now || 0) > 0){
+  if(vacancyEffectiveNow(room) > 0){
     return room.name + " 즉시 입실 가능";
   }
   var statusLabel = vacancyFullLabel(room);
   var text = room.name + " " + statusLabel;
-  if(room.reservable === true && statusLabel.indexOf("예약 가능") === -1 && statusLabel.indexOf("공실 예정") === -1 && room.dates && room.dates.length) text += " · 예약 가능";
+  if(room.reservable === true && statusLabel.indexOf("예약 가능") === -1 && statusLabel.indexOf("공실 예정") === -1 && vacancyFutureDates(room).length) text += " · 예약 가능";
   return text;
 }
 
