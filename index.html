@@ -978,32 +978,53 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
   <p class="stay-cheer-footnote">시험별 세부 일정은 시험 일정 페이지와 공식 공고를 확인해 주세요.</p>
 </div>
 <script>
+/* The cheer banner reads the SAME exam countdown list as exam-schedule.html.
+   Run after the shared data script at the bottom of this page has loaded. */
 (function(){
-  var items=[
-    {date:'2026-11-07',name:'유·초등 임용',stage:'1차 필기시험'},
-    {date:'2026-11-09',name:'경찰 2차 순경',stage:'면접 시작'},
-    {date:'2026-11-10',name:'국가직 7급 민간경력',stage:'면접 시작'},
-    {date:'2026-11-19',name:'2027학년도 수능',stage:'대학수학능력시험'},
-    {date:'2026-11-23',name:'국가직 7급 공채',stage:'면접 시작'},
-    {date:'2026-11-28',name:'중등 임용',stage:'1차 필기시험'},
-    {date:'2026-12-02',name:'지역인재 9급',stage:'면접 시작'}
-  ];
-  var today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
-  var upcoming=items.filter(function(item){return item.date>=today}).slice(0,4);
-  var colors=[['#edaa75','#fff1e6'],['#8db3e9','#ecf4ff'],['#8ac3a2','#eaf7ee'],['#daa1ba','#fff0f5']];
-  var el=document.getElementById('stayUpcomingCheerCards');
-  if(!el)return;
-  if(!upcoming.length){document.getElementById('stayUpcomingCheer').hidden=true;return}
-  el.style.gridTemplateColumns='repeat('+upcoming.length+',minmax(0,1fr))';
-  upcoming.forEach(function(item,i){
-    var c=document.createElement('div');c.className='stay-cheer-card';
-    c.style.setProperty('--cheer-border',colors[i%4][0]);c.style.setProperty('--cheer-bg',colors[i%4][1]);
-    var n=document.createElement('div');n.className='stay-cheer-name';n.textContent=item.name;
-    var d=document.createElement('div');d.className='stay-cheer-date';
-    var parts=item.date.split('-');var weekday=['일','월','화','수','목','금','토'][new Date(item.date+'T00:00:00Z').getUTCDay()];
-    d.textContent=Number(parts[1])+'/'+Number(parts[2])+'('+weekday+')';
-    var st=document.createElement('div');st.className='stay-cheer-stage';st.textContent=item.stage;
-    c.appendChild(n);c.appendChild(d);c.appendChild(st);el.appendChild(c);
+  function renderCheerFromSharedData(){
+    var root=document.getElementById('stayUpcomingCheerCards');
+    var banner=document.getElementById('stayUpcomingCheer');
+    if(!root||!banner)return;
+    var shared=window.EXAM_HOME_DATA;
+    if(!shared||!Array.isArray(shared.countdowns)){
+      root.textContent='시험 일정 정보를 불러오지 못했습니다.';
+      return;
+    }
+    var today=new Intl.DateTimeFormat('en-CA',{
+      timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'
+    }).format(new Date());
+    var items=shared.countdowns.filter(function(item){
+      return item && /^\\d{4}-\\d{2}-\\d{2}$/.test(item.date) &&
+        item.date>=today && item.category && item.title;
+    }).sort(function(a,b){return a.date.localeCompare(b.date)}).slice(0,3);
+    root.replaceChildren();
+    if(!items.length){
+      banner.hidden=true;
+      return;
+    }
+    banner.hidden=false;
+    root.style.gridTemplateColumns='repeat('+items.length+',minmax(0,1fr))';
+    var colors=[['#edaa75','#fff1e6'],['#8db3e9','#ecf4ff'],['#8ac3a2','#eaf7ee']];
+    items.forEach(function(item,i){
+      var c=document.createElement('div');c.className='stay-cheer-card';
+      c.style.setProperty('--cheer-border',colors[i%3][0]);
+      c.style.setProperty('--cheer-bg',colors[i%3][1]);
+      var n=document.createElement('div');n.className='stay-cheer-name';n.textContent=item.category;
+      var d=document.createElement('div');d.className='stay-cheer-date';
+      var parts=item.date.split('-');
+      var weekday=['일','월','화','수','목','금','토'][new Date(item.date+'T00:00:00Z').getUTCDay()];
+      d.textContent=Number(parts[1])+'/'+Number(parts[2])+'('+weekday+')';
+      var st=document.createElement('div');st.className='stay-cheer-stage';st.textContent=item.title;
+      c.appendChild(n);c.appendChild(d);c.appendChild(st);root.appendChild(c);
+    });
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',renderCheerFromSharedData,{once:true});
+  }else{
+    renderCheerFromSharedData();
+  }
+  window.addEventListener('pageshow',function(e){
+    if(e.persisted)renderCheerFromSharedData();
   });
 })();
 </script>
