@@ -994,7 +994,7 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
       timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'
     }).format(new Date());
     var items=shared.countdowns.filter(function(item){
-      return item && /^\\d{4}-\\d{2}-\\d{2}$/.test(item.date) &&
+      return item && /^\d{4}-\d{2}-\d{2}$/.test(item.date) &&
         item.date>=today && item.category && item.title;
     }).sort(function(a,b){return a.date.localeCompare(b.date)}).slice(0,3);
     root.replaceChildren();
@@ -1018,11 +1018,7 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
       c.appendChild(n);c.appendChild(d);c.appendChild(st);root.appendChild(c);
     });
   }
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',renderCheerFromSharedData,{once:true});
-  }else{
-    renderCheerFromSharedData();
-  }
+  window.renderCheerFromSharedData=renderCheerFromSharedData;
   window.addEventListener('pageshow',function(e){
     if(e.persisted)renderCheerFromSharedData();
   });
@@ -1310,6 +1306,12 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 </footer>
 <script>
   document.write('<script src="exam-home-data.js?v=' + window.__STAY_CACHE_V + '"><\/script>');
+</script>
+<script>
+  // The shared exam data has now loaded; render the cheer cards after it.
+  if (typeof window.renderCheerFromSharedData === 'function') {
+    window.renderCheerFromSharedData();
+  }
 </script>
 <script>
     document.getElementById("year").textContent = new Date().getFullYear();
