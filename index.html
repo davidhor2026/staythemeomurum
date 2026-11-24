@@ -737,6 +737,26 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 #heroNoticePanel .hero-notice-close{top:3px;right:4px}
 @media(max-width:700px){#heroNoticePanel.hero-notice-panel--compact{width:205px;padding:8px 9px 6px}}
 </style>
+<style id="winter-bottom-button-glow-20261124">
+@media(max-width:700px){
+.home-header .winter-glass-actions>.hero-notice-board>.hero-notice-toggle,
+.home-header .winter-glass-actions>a.button{
+ font-size:clamp(11px,3.3vw,19px)!important;
+ font-weight:800!important;
+ padding-inline:4px!important;
+ border:1px solid rgba(255,255,255,.65)!important;
+ animation:stayBottomBorderGlow 2.8s ease-in-out infinite!important;
+}
+}
+@keyframes stayBottomBorderGlow{
+ 0%,100%{outline:1px solid rgba(255,255,255,.08);outline-offset:0}
+ 50%{outline:1px solid rgba(255,255,255,.85);outline-offset:0}
+}
+@media(prefers-reduced-motion:reduce){
+.home-header .winter-glass-actions>.hero-notice-board>.hero-notice-toggle,
+.home-header .winter-glass-actions>a.button{animation:none!important}
+}
+</style>
 </head>
 <body>
 <header class="home-header">
@@ -778,7 +798,7 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 </div>
 <div aria-label="홈페이지 공지사항" class="hero-notice-board hero-notice-board--toggle" id="heroNoticeBoard">
 <button aria-controls="heroNoticePanel" aria-expanded="false" class="hero-notice-toggle" id="heroNoticeToggle" type="button">
-<span>공지사항<br/>클릭</span>
+<span>공지사항</span>
 <span aria-hidden="true" class="hero-notice-toggle-icon">👆</span>
 </button>
 <div class="hero-notice-panel hero-notice-panel--compact" hidden="" id="heroNoticePanel">
