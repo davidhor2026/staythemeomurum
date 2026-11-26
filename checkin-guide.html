@@ -82,14 +82,19 @@
     .refund-policy-content li { margin-bottom:8px; line-height:1.65; }
     .refund-calculator-link a { display:inline-block; padding:10px 0; font-weight:700; color:#196e9b; text-decoration:underline; }
 
-  </style>
+  
+    .hero-home-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;max-width:100%;min-height:46px;margin-top:17px;padding:10px 22px;border:1px solid #fff3d6;border-radius:999px;background:#fff8e8;color:#34533c;text-decoration:none;font-size:16px;font-weight:800;line-height:1.45;box-shadow:0 4px 12px rgba(0,0,0,.16)}
+    .hero-home-link:hover{background:#fff;color:#23432e}
+    .hero-home-link:focus-visible{outline:3px solid #f4d28a;outline-offset:4px}
+    @media (max-width:480px){.hero-home-link{padding:10px 15px;font-size:15px}}
+</style>
 </head>
 <body>
   <main class="checkin-page">
     <section class="checkin-hero">
       <h1>입실 안내사항</h1>
       <p>스테이The머무름 입실 예정자를 위한 안내 페이지입니다. 입실 전 확인사항, 이용수칙, 퇴실 및 보증금 안내를 미리 확인해 주세요.</p>
-      <a class="checkin-home" href="index.html">홈페이지 구경하기</a>
+      <a class="hero-home-link" href="index.html" target="_blank" rel="noopener" aria-label="홈페이지 구경하기 (새 창)"><span aria-hidden="true">🏡</span> 홈페이지 구경하기 <span aria-hidden="true">↗</span></a>
     </section>
 
     <section class="gate" id="gateBox">
