@@ -648,7 +648,7 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 /* Mobile homepage only: compact intro and evenly aligned page links. */
 @media (max-width:700px){
  .home-header>.hero-content{
-   padding:6px 12px 7px!important;
+   padding:4px 10px 5px!important;
    min-height:0!important;
    gap:0!important;
  }
@@ -674,23 +674,31 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
  .home-header+nav{
    display:grid!important;
    grid-template-columns:repeat(4,minmax(0,1fr))!important;
-   gap:3px 3px!important;
-   padding:7px 5px!important;
+   gap:2px 2px!important;
+   padding:4px 4px!important;
    align-items:center!important;
    justify-items:stretch!important;
  }
  .home-header+nav>a{
    display:flex!important;justify-content:center!important;align-items:center!important;
    box-sizing:border-box!important;min-width:0!important;
-   min-height:28px!important;margin:0!important;padding:4px 1px!important;
-   font-size:clamp(10px,2.7vw,12px)!important;line-height:1.2!important;
+   min-height:25px!important;margin:0!important;padding:3px 1px!important;
+   font-size:clamp(11px,2.95vw,13px)!important;line-height:1.2!important;
    text-align:center!important;white-space:normal!important;word-break:keep-all!important;
    overflow-wrap:break-word!important;
  }
  .home-header+nav .new-badge{font-size:8px!important;padding:1px 3px!important;margin-left:2px!important}
 }
 @media(max-width:360px){
- .home-header+nav>a{font-size:10px!important;padding:3px 0!important;min-height:27px!important}
+ .home-header+nav>a{font-size:11px!important;padding:2px 0!important;min-height:25px!important}
+}
+@media(min-width:701px){
+ .home-header+nav{gap:3px 8px;padding:8px 10px}
+ .home-header+nav>a{font-size:15px;margin:2px 3px}
+}
+@media(max-width:700px){
+ .home-header+nav>a{flex-wrap:wrap;align-content:center}
+ .home-header+nav .site-new-badge,.home-header+nav .resident-event-new{min-width:0;height:auto;font-size:8px;padding:1px 3px;margin-left:2px}
 }
 </style>
 <style id="mobile-hero-label-fit-20261124">
@@ -776,7 +784,7 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 <div class="hero-content">
 <h1>스테이The머무름</h1>
 <div class="subtitle stay-audience">20~30대 초반 여성 수험생·학생 중심</div>
-<div class="desc stay-rest-message">안전하고 청결하게,<br/>세심하게 관리되는 공간</div>
+<div class="desc stay-rest-message">안전하고 청결하게, 세심하게 관리되는 공간</div>
 <div class="button-wrap">
 <a class="button" href="tel:0507-1372-9447">입실 문의 전화</a>
 <a class="button sub" href="inquiry.html">문자 문의</a>
