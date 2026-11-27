@@ -30,7 +30,7 @@
     .gate input{width:100%;max-width:280px;padding:13px 14px;border:1px solid #d9cdbd;border-radius:14px;font-size:18px;text-align:center;margin:10px 0;}
     .gate button,.copy-btn{border:0;background:#2f3b2f;color:#fff;border-radius:14px;padding:12px 18px;font-weight:800;cursor:pointer;}
     .gate-error{display:none;margin-top:10px;color:#a33;font-weight:700;}
-    .guide-content{display:none;}
+    .guide-content{display:block;}
     .quick-box{background:#fffaf3;border:1px solid #eadfd1;border-radius:22px;padding:22px;margin:18px 0;box-shadow:0 6px 18px rgba(0,0,0,.04);}
     .quick-box h2{margin:0 0 12px;color:#2f3b2f;font-size:1.45rem;}
     .quick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px;}
@@ -95,16 +95,6 @@
       <h1>입실 안내사항</h1>
       <p>스테이The머무름 입실 예정자를 위한 안내 페이지입니다. 입실 전 확인사항, 이용수칙, 퇴실 및 보증금 안내를 미리 확인해 주세요.</p>
       <a class="hero-home-link" href="index.html" target="_blank" rel="noopener" aria-label="홈페이지 구경하기 (새 창)"><span aria-hidden="true">🏡</span> 홈페이지 구경하기 <span aria-hidden="true">↗</span></a>
-    </section>
-
-    <section class="gate" id="gateBox">
-      <h2>입실 안내 비밀번호</h2>
-      <p>안내받은 숫자 비밀번호를 입력해 주세요.</p>
-      <input id="guidePassword" type="password" inputmode="text" placeholder="비밀번호 입력">
-      <br>
-      <button type="button" onclick="openGuide()">안내사항 보기</button>
-      <p class="gate-error" id="gateError">비밀번호가 맞지 않습니다. 안내받은 비밀번호를 다시 확인해 주세요.</p>
-      <p class="mini-note">※ 이 페이지는 입실 안내용입니다. 도어락 번호 등 보안 정보는 비밀번호 확인 후 안내 페이지에서 확인해 주세요.</p>
     </section>
 
     <div class="guide-content" id="guideContent">
@@ -410,28 +400,6 @@
 </main>
 
   <script>
-    sessionStorage.removeItem('checkinGuideOpen');
-    localStorage.removeItem('checkinGuideOpen');
-    const GUIDE_PASSWORD = '2026';
-
-    function openGuide(){
-      const input = document.getElementById('guidePassword');
-      const error = document.getElementById('gateError');
-      const gate = document.getElementById('gateBox');
-      const content = document.getElementById('guideContent');
-
-      if(input.value.trim() === GUIDE_PASSWORD){
-        gate.style.display = 'none';
-        content.style.display = 'block';
-        window.scrollTo({top:0,behavior:'smooth'});
-      }else{
-        error.style.display = 'block';
-      }
-    }
-
-    document.getElementById('guidePassword').addEventListener('keydown', function(e){
-      if(e.key === 'Enter') openGuide();
-    });
 document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 
