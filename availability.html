@@ -112,7 +112,7 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
 .availability-date,.availability-label{display:block;width:100%}
 .tour-inline{display:block;width:100%;margin-top:5px;color:#475569;font-size:14px;font-weight:600;line-height:1.4;text-align:center}
 .summary .sum .tour-inline{min-width:0;word-break:keep-all}
-.summary .sum .tour-inline span{display:block;white-space:nowrap}
+.summary .sum .tour-inline span{display:block;white-space:normal;overflow-wrap:anywhere}
 @media(max-width:700px){.summary .sum .tour-inline{font-size:11px;letter-spacing:-.035em}}
 @media(max-width:390px){.summary .sum .tour-inline{font-size:10px}}
 
@@ -179,10 +179,15 @@ function activeBookedEvents(room){
 }
 function activeTourEvents(room){
   const today=kstTodayISO();
-  return (room.tourEvents || [])
-    .filter(e=>e && e.date && e.date>=today)
-    .sort((a,b)=>a.date.localeCompare(b.date));
+  const grouped = new Map();
+  (room.tourEvents || []).filter(e=>e && e.date && e.date>=today).forEach(e=>{
+    const existing=grouped.get(e.date);
+    if(existing) existing.count++;
+    else grouped.set(e.date,{...e,count:1});
+  });
+  return [...grouped.values()].sort((a,b)=>a.date.localeCompare(b.date));
 }
+function tourLabel(e){return DISPLAY_TEXT.roomTour+(e.count>1?` (${e.count}건)`:'');}
 function unknownInquiryText(room){
   const label=String(room.unknown?.label || '').trim();
   const note=String(room.unknown?.note || '예약 가능 여부 문의').trim();
@@ -216,7 +221,7 @@ function renderAvailability(){
       const hideEmptyFuture = room.availableNow > 0 && !room.events.length && !room.unknown;
       const standardNote = key === 'standard' && room.availableNow === 0 ? '<div class="suite-vacancy-confirmation">12월 중 공실 여부 문의 요망</div>' : '';
       const futureHtml = hideEmptyFuture ? '' : `<hr><div class="sub ${(room.events.length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${firstFutureText(room)}</div>`;
-      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}${standardNote}${futureHtml}${activeTourEvents(room).map(e=>`<span class="tour-inline"><span>${formatDate(e.date)}</span><span>룸투어 예정</span></span>`).join('')}${suiteVacancyConfirmationHtml(key)}`;
+      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}${standardNote}${futureHtml}${activeTourEvents(room).map(e=>`<span class="tour-inline"><span>${formatDate(e.date)}</span><span>${tourLabel(e)}</span></span>`).join('')}${suiteVacancyConfirmationHtml(key)}`;
     }
     if(detail){
       let lines = room.availableNow > 0
@@ -227,7 +232,7 @@ function renderAvailability(){
         lines += `<p class="${vacancyDateColor(e.date)} availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${vacancyDateLabel(e.date)}${room.compactAvailableDates.includes(e.date) ? " · 컴팩트룸" : ""}</span></p>`;
       });
       activeTourEvents(room).forEach(e=>{
-        lines += `<p class="availability-row" style="color:#475569"><span class="availability-dot" aria-hidden="true"></span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.roomTour} (예약 확정 전)</span></p>`;
+        lines += `<p class="availability-row" style="color:#475569"><span class="availability-dot" aria-hidden="true"></span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${tourLabel(e)} (예약 확정 전)</span></p>`;
       });
       // Keep the suite 2 confirmation directly under its Jan 31 vacancy date.
       if(key === 'suite2'){
@@ -373,7 +378,7 @@ function renderVacancyCalendar(){
 
     }
     if(toursByDate[iso]){
-      cell.innerHTML += `<span class="calendar-mark" style="color:#475569;background:transparent">${DISPLAY_TEXT.roomTour}</span>`;
+      cell.innerHTML += `<span class="calendar-mark" style="color:#475569;background:transparent">${tourLabel(toursByDate[iso])}</span>`;
     }
     if(!bookedByDate[iso] && iso>=today && (eventsByDate[iso] || (room.availableNow>0 && iso===today))){
       cell.tabIndex=0;
