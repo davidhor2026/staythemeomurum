@@ -110,7 +110,7 @@ body{margin:0;background:var(--cream);color:#26362b;font-family:-apple-system,Bl
   }
 }
 .availability-date,.availability-label{display:block;width:100%}
-.tour-inline{display:block;width:100%;margin-top:5px;color:#7952a3;font-size:.86em;font-weight:800;line-height:1.35;text-align:center}
+.tour-inline{display:block;width:100%;margin-top:5px;color:#475569;font-size:.86em;font-weight:800;line-height:1.35;text-align:center}
 
 
   #refund-calculator { scroll-margin-top: 22px; }
@@ -186,8 +186,7 @@ function unknownInquiryText(room){
 }
 function firstFutureText(room){
   const upcoming=(room.events || []).map(e=>({date:e.date,type:'upcoming'}));
-  const tours=activeTourEvents(room).map(e=>({date:e.date,type:'tour'}));
-  const first=[...upcoming,...tours].sort((a,b)=>a.date.localeCompare(b.date))[0];
+  const first=upcoming.sort((a,b)=>a.date.localeCompare(b.date))[0];
   if(first){
     const label=first.type==='tour' ? DISPLAY_TEXT.roomTour : vacancyDateLabel(first.date);
     return `<span class="availability-date">${formatDate(first.date)}</span><span class="availability-label ${first.type==='tour'?'purple':vacancyDateColor(first.date)}">${label}</span>${first.type==='tour'?' <span class="tour-inline">(예약 확정 전)</span>':''}`;
@@ -209,11 +208,11 @@ function renderAvailability(){
     if(sum){
       const now = room.availableNow > 0
         ? `<div class="main green availability-now-summary"><span class="availability-now-label">${DISPLAY_TEXT.availableNow}</span><span class="movein-inquiry-hint">(희망 입주일 예약 문의 가능)</span></div>`
-        : `<div class="main ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${room.fullLabel}</div>`;
-      const hideEmptyFuture = room.availableNow > 0 && !room.events.length && !activeTourEvents(room).length && !room.unknown;
+        : `<div class="main ${(room.events.length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${room.fullLabel}</div>`;
+      const hideEmptyFuture = room.availableNow > 0 && !room.events.length && !room.unknown;
       const standardNote = key === 'standard' && room.availableNow === 0 ? '<div class="suite-vacancy-confirmation">12월 중 공실 여부 문의 요망</div>' : '';
-      const futureHtml = hideEmptyFuture ? '' : `<hr><div class="sub ${(room.events.length||activeTourEvents(room).length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${firstFutureText(room)}</div>`;
-      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}${standardNote}${futureHtml}${suiteVacancyConfirmationHtml(key)}`;
+      const futureHtml = hideEmptyFuture ? '' : `<hr><div class="sub ${(room.events.length)?(room.events.length&&!room.events.some(e=>!isAdvanceVacancy(e.date))?'mustard':'orange'):'gray'}">${firstFutureText(room)}</div>`;
+      sum.innerHTML=`<h4>${room.name}</h4><div class="icon ${dotClass(room)}">●</div>${now}${standardNote}${futureHtml}${activeTourEvents(room).map(e=>`<span class="tour-inline">📅 ${formatDate(e.date)} · 룸투어 예정</span>`).join('')}${suiteVacancyConfirmationHtml(key)}`;
     }
     if(detail){
       let lines = room.availableNow > 0
@@ -221,12 +220,10 @@ function renderAvailability(){
         : (room.events.length && key !== "suite1" && key !== "suite2" ? '' : `<p class="gray">● ${room.fullLabel}</p>`);
       if(key === 'standard' && room.availableNow === 0) lines += '<div class="suite-vacancy-confirmation">12월 중 공실 여부 문의 요망</div>';
       room.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
-        const tour=activeTourEvents(room).find(item=>item.forDate===e.date);
-        const tourText=tour ? ` <span class="purple">· ${DISPLAY_TEXT.roomTour}</span>` : '';
-        lines += `<p class="${vacancyDateColor(e.date)} availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${vacancyDateLabel(e.date)}${tourText}${room.compactAvailableDates.includes(e.date) ? " · 컴팩트룸" : ""}</span></p>`;
+        lines += `<p class="${vacancyDateColor(e.date)} availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${vacancyDateLabel(e.date)}${room.compactAvailableDates.includes(e.date) ? " · 컴팩트룸" : ""}</span></p>`;
       });
       activeTourEvents(room).forEach(e=>{
-        lines += `<p class="purple availability-row"><span class="availability-dot">●</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.roomTour} (예약 확정 전)</span></p>`;
+        lines += `<p class="availability-row" style="color:#475569"><span class="availability-dot">📅</span><span class="availability-row-date">${formatDate(e.date)}</span><span class="availability-row-status">· ${DISPLAY_TEXT.roomTour} (예약 확정 전)</span></p>`;
       });
       // Keep the suite 2 confirmation directly under its Jan 31 vacancy date.
       if(key === 'suite2'){
@@ -346,7 +343,7 @@ function renderVacancyCalendar(){
   const bookedByDate={};
   activeBookedEvents(room).forEach(e=>{bookedByDate[e.date]=e;});
   const toursByDate={};
-  activeTourEvents(room).forEach(e=>{toursByDate[e.forDate || e.date]=e;});
+  activeTourEvents(room).forEach(e=>{toursByDate[e.date]=e;});
 
   for(let day=1;day<=days;day++){
     const mm=String(calendarMonth).padStart(2,'0');
@@ -372,11 +369,9 @@ function renderVacancyCalendar(){
 
     }
     if(toursByDate[iso]){
-      cell.classList.add('has-tour');
-      cell.innerHTML += `<span class="calendar-mark purple">${DISPLAY_TEXT.roomTour}</span>`;
-      cell.innerHTML += `<span class="calendar-mark ${vacancyDateColor(iso)}">${vacancyDateLabel(iso)}</span>`;
+      cell.innerHTML += `<span class="calendar-mark" style="color:#475569;background:transparent">${DISPLAY_TEXT.roomTour}</span>`;
     }
-    if(!bookedByDate[iso] && iso>=today && (eventsByDate[iso] || toursByDate[iso] || (room.availableNow>0 && iso===today))){
+    if(!bookedByDate[iso] && iso>=today && (eventsByDate[iso] || (room.availableNow>0 && iso===today))){
       cell.tabIndex=0;
       cell.setAttribute('role','button');
       cell.setAttribute('aria-label',`${room.name} ${formatDate(iso)} ${isAdvanceVacancy(iso)?'공실 예정 · 입주 문의':'입주 문의'}`);
@@ -402,7 +397,7 @@ function renderVacancyCalendar(){
     noteHtml += `<span class="legend-item"><b class="blue">●</b> 예약 완료</span>`;
   }
   if(activeTourEvents(room).length){
-    noteHtml += `<span class="legend-item"><b class="purple">●</b> 룸투어 예정(예약 확정 전)</span>`;
+    noteHtml += `<span class="legend-item">📅 룸투어 예정(예약 확정 전)</span>`;
   }
   if(room.unknown){
     noteHtml += `<span class="calendar-unknown">※ ${unknownInquiryText(room)}</span>`;
@@ -972,7 +967,7 @@ if(new URLSearchParams(location.search).get('from')==='inquiry'){
 <span><i class="legend-dot legend-orange"></i><span id="orangeLegendText"></span></span>
 <span><i class="legend-dot legend-mustard"></i>황금색 = 공실 예정 (사전 입주문의 가능 / 입주까지 41일 이상)</span>
 <span><i class="legend-dot legend-blue"></i><span id="blueLegendText"></span></span>
-<span><i class="legend-dot legend-purple"></i>보라색 = 룸투어 예정(예약 확정 전)</span>
+
 <span><i class="legend-dot legend-gray"></i><span id="grayLegendText"></span></span>
 </div><p class="notice" id="scheduleNotice"></p>
 </section>
