@@ -857,9 +857,9 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 <span id="visitorCountText" hidden>오늘 <strong id="visitorToday">-</strong>명<span class="visitor-sep">·</span> 누적 <strong id="visitorTotal">-</strong>명</span>
 </div>
 <!-- 2026-11-18~19 (KST) 수능 응원 특별 배너. 이후 기존 응원 배너 자동 복귀 -->
-<section id="suneungTwoDayBanner" class="congrats-banner-section suneung-two-day" aria-label="2027학년도 수능 특별 응원" hidden>
+<section id="suneungTwoDayBanner" class="congrats-banner-section suneung-two-day" aria-label="2027학년도 중등 임용 필기시험 특별 응원" hidden>
   <div class="suneung-two-day__frame">
-    <img src="suneung-cheer-20261118.jpg" alt="스테이The머무름 원장이 수능 시험장 교문에 합격 기원 호박엿을 붙이며 수능시험 대박 나기를 응원하는 모습" width="1536" height="768" decoding="async" fetchpriority="low">
+    <img src="secondary-teacher-cheer-20261127.jpg" alt="중등 임용시험, 좋은 결과 있기를 응원합니다!" width="2172" height="724" decoding="async" fetchpriority="low">
     <span class="suneung-two-day__glint suneung-two-day__glint--one" aria-hidden="true">✦</span>
     <span class="suneung-two-day__glint suneung-two-day__glint--two" aria-hidden="true">✧</span>
     <span class="suneung-two-day__glint suneung-two-day__glint--three" aria-hidden="true">✦</span>
@@ -867,6 +867,7 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 </section>
 <style id="suneung-two-day-style">
 #suneungTwoDayBanner[hidden],#stayUpcomingCheer[hidden]{display:none!important}
+#suneungTwoDayBanner:not([hidden]) ~ #stayUpcomingCheer{display:none!important}
 #suneungTwoDayBanner{padding:14px 16px 10px}
 .suneung-two-day__frame{position:relative;overflow:hidden;max-width:1080px;margin:0 auto;border-radius:22px;box-shadow:0 8px 25px rgba(45,36,18,.15);isolation:isolate}
 .suneung-two-day__frame img{display:block;width:100%;height:auto;animation:suneungImageGlow 5s ease-in-out infinite}
@@ -939,16 +940,16 @@ nav .home-review-petals i:nth-child(5){left:89%;background:#f5d39b;--drift:4px;a
 </style>
 <script id="suneung-two-day-schedule">
 (function(){
+  var start=Date.parse('2026-11-27T00:00:00+09:00');
+  var end=Date.parse('2026-11-28T15:00:00+09:00');
+  var timer;
   function update(){
     var special=document.getElementById('suneungTwoDayBanner');
-    var normal=document.getElementById('stayUpcomingCheer');
-    if(!special||!normal)return;
-    var parts=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
-    var v={};parts.forEach(function(p){v[p.type]=p.value;});
-    var date=v.year+'-'+v.month+'-'+v.day;
-    var active=date==='2026-11-18'||date==='2026-11-19';
-    special.hidden=!active;
-    normal.hidden=active;
+    if(!special)return;
+    var now=Date.now();
+    special.hidden=!(now>=start && now<end);
+    clearTimeout(timer);
+    if(now<end)timer=setTimeout(update,Math.max(1,(now<start?start:end)-now));
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);
   else update();
